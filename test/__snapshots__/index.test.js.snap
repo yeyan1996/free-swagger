@@ -1,0 +1,692 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test base option 1`] = `
+"// @ts-nocheck 
+/* eslint-disable */
+export interface Category {
+  id?: number;
+  name?: string;
+}
+export interface Pet {
+  id?: number;
+  category?: Category;
+  name: string;
+  photoUrls: string[];
+  tags?: Tag[];
+  status?: \\"available\\" | \\"pending\\" | \\"sold\\"; // pet status in the store
+}
+export interface Tag {
+  id?: number;
+  name?: string;
+}
+export interface ApiResponse {
+  code?: number;
+  type?: string;
+  message?: string;
+}
+export interface Order {
+  id?: number;
+  petId?: number;
+  quantity?: number;
+  shipDate?: string;
+  status?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; // Order Status
+  complete?: boolean;
+}
+export interface User {
+  id?: number;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+  userStatus?: number; // User Status
+}
+"
+`;
+
+exports[`test base option 2`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { Pet, ApiResponse } from \\"./interface\\";
+import axios from \\"axios\\";
+
+// Find pet by ID
+export const getPetById = (
+  params: { [key: string]: never },
+  pathParams: {
+    petId: number;
+  }
+) =>
+  axios.request<Pet>({
+    url: \`/pet/\${arguments[1].petId}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Updates a pet in the store with form data
+export const updatePetWithForm = (
+  params: { [key: string]: never },
+  pathParams: {
+    petId: number;
+  }
+) =>
+  axios.request<any>({
+    url: \`/pet/\${arguments[1].petId}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Deletes a pet
+export const deletePet = (
+  params: { [key: string]: never },
+  pathParams: {
+    petId: number;
+  }
+) =>
+  axios.request<any>({
+    url: \`/pet/\${arguments[1].petId}\`,
+    method: \\"delete\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// uploads an image
+export const uploadFile = (
+  params: { [key: string]: never },
+  pathParams: {
+    petId: number;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/pet/\${arguments[1].petId}/uploadImage\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Update an existing pet
+export const updatePet = (params: Pet) =>
+  axios.request<any>({
+    url: \`/pet\`,
+    method: \\"put\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Add a new pet to the store
+export const addPet = (params: Pet) =>
+  axios.request<any>({
+    url: \`/pet\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Finds Pets by status
+export const findPetsByStatus = (params: { status: \\"available\\" | \\"pending\\" | \\"sold\\" }) =>
+  axios.request<Pet[]>({
+    url: \`/pet/findByStatus\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+/**deprecated*/
+// Finds Pets by tags
+export const findPetsByTags = (params: { tags: string }) =>
+  axios.request<Pet[]>({
+    url: \`/pet/findByTags\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test base option 3`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { Order } from \\"./interface\\";
+import axios from \\"axios\\";
+
+// Returns pet inventories by status
+export const getInventory = (params: { [key: string]: never }) =>
+  axios.request<object>({
+    url: \`/store/inventory\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Find purchase order by ID
+export const getOrderById = (
+  params: { [key: string]: never },
+  pathParams: {
+    orderId: number;
+  }
+) =>
+  axios.request<Order>({
+    url: \`/store/order/\${arguments[1].orderId}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Delete purchase order by ID
+export const deleteOrder = (
+  params: { [key: string]: never },
+  pathParams: {
+    orderId: number;
+  }
+) =>
+  axios.request<any>({
+    url: \`/store/order/\${arguments[1].orderId}\`,
+    method: \\"delete\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Place an order for a pet
+export const placeOrder = (params: Order) =>
+  axios.request<Order>({
+    url: \`/store/order\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test base option 4`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { User } from \\"./interface\\";
+import axios from \\"axios\\";
+
+// Get user by user name
+export const getUserByName = (
+  params: { [key: string]: never },
+  pathParams: {
+    username: string;
+  }
+) =>
+  axios.request<User>({
+    url: \`/user/\${arguments[1].username}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Updated user
+export const updateUser = (
+  params: User,
+  pathParams: {
+    username: string;
+  }
+) =>
+  axios.request<any>({
+    url: \`/user/\${arguments[1].username}\`,
+    method: \\"put\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Delete user
+export const deleteUser = (
+  params: { [key: string]: never },
+  pathParams: {
+    username: string;
+  }
+) =>
+  axios.request<any>({
+    url: \`/user/\${arguments[1].username}\`,
+    method: \\"delete\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Logs user into the system
+export const loginUser = (params: { username: string; password: string }) =>
+  axios.request<string>({
+    url: \`/user/login\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Logs out current logged in user session
+export const logoutUser = (params: { [key: string]: never }) =>
+  axios.request<any>({
+    url: \`/user/logout\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+// Create user
+export const createUser = (params: User) =>
+  axios.request<any>({
+    url: \`/user\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Creates list of users with given input array
+export const createUsersWithArrayInput = (params: User[]) =>
+  axios.request<any>({
+    url: \`/user/createWithArray\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+// Creates list of users with given input array
+export const createUsersWithListInput = (params: User[]) =>
+  axios.request<any>({
+    url: \`/user/createWithList\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test lang 1`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+export const GetAuditLogs = (params, pathParams) =>
+  axios.request({
+    url: \`/api/services/app/AuditLog/GetAuditLogs\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test lang 2`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+// 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
+export const uploadLngLatUsingPOST = (params, pathParams) =>
+  axios.request({
+    url: \`/dev/uploadLngLat\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test lang 3`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+export const UpdateMapper = (params, pathParams) =>
+  axios.request({
+    url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
+    method: \\"put\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test lang 4`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+// 新增或编辑标准票, 需走审批流程
+export const AddOrUpdateTicketTypical = (params, pathParams) =>
+  axios.request({
+    url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test template 1`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { DeviceRegistrationInfo } from \\"./interface\\";
+import http from \\"axios\\";
+
+export const getDevices = (params: { skip?: number; limit?: number }) =>
+  axios.request<string[]>({
+    url: \`/devices\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const register = (params: DeviceRegistrationInfo) =>
+  axios.request<any>({
+    url: \`/devices\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test template 2`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
+import http from \\"axios\\";
+
+export const temperatureSummary = (params: { [key: string]: never }) =>
+  axios.request<TemperatureSummary>({
+    url: \`/temperature\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const getForecast = (
+  params: { [key: string]: never },
+  pathParams: {
+    days: number;
+  }
+) =>
+  axios.request<ForecastResponse>({
+    url: \`/temperature/forecast/\${arguments[1].days}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const getZoneTemperature = (
+  params: { [key: string]: never },
+  pathParams: {
+    zoneId: string;
+  }
+) =>
+  axios.request<TemperatueZoneStatus>({
+    url: \`/temperature/\${arguments[1].zoneId}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const getHeaterState = (
+  params: { [key: string]: never },
+  pathParams: {
+    zoneId: string;
+  }
+) =>
+  axios.request<HeaterState>({
+    url: \`/temperature/\${arguments[1].zoneId}/heater\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const setHeaterState = (
+  params: { [key: string]: never },
+  pathParams: {
+    zoneId: string;
+    state: string;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/temperature/\${arguments[1].zoneId}/heater/\${arguments[1].state}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test template 3`] = `
+"// @ts-nocheck 
+/* eslint-disable */
+export interface LightingSummary {
+  zones?: LightingZone[];
+  zoneStatus?: LightingZoneStatus[];
+}
+export interface LightingZone {
+  id?: string;
+  name?: string;
+  deviceId?: number;
+  deviceType?: \\"dimmer\\" | \\"switch\\";
+  zone?: string;
+}
+export interface LightingZoneStatus {
+  id?: string;
+  name?: string;
+  lastUpdate?: string;
+  level?: number;
+}
+export interface TemperatureSummary {
+  zones?: TemperatureZone[];
+  zoneStatus?: TemperatueZoneStatus[];
+}
+export interface TemperatureZone {
+  id: number; // the unique identifier for the zone
+  name: string;
+  inputPosition?: number;
+  outputPosition?: number;
+  zone?: string;
+}
+export interface TemperatueZoneStatus {
+  id: string; // the unique identifier for the zone
+  name?: string; // the name of the zone
+  value: number; // the temperature in the zone
+  units?: \\"celsius\\" | \\"fahrenheit\\"; // the temperature units
+  timestamp: string; // the timestamp when the temperature was measured
+}
+export interface ApiResponse {
+  code?: number;
+  message?: string;
+}
+export interface HeaterState {
+  id?: string;
+  state?: string;
+}
+export interface DeviceState {
+  id?: string;
+  name?: string;
+  lastUpdate?: string;
+  level?: number;
+}
+export interface ForecastResponse {
+  city?: City;
+  values?: Forecast[];
+}
+export interface Forecast {
+  date?: string;
+  pressure?: number;
+  humidity?: number;
+  windSpeed?: number;
+  clouds?: number;
+  temperature?: ForecastTemperature;
+  weather?: WeatherForecast;
+}
+export interface City {
+  id?: number;
+  name?: string;
+  lat?: number;
+  lon?: number;
+  country?: string;
+}
+export interface ForecastTemperature {
+  low?: number;
+  high?: number;
+  morning?: number;
+  day?: number;
+  evening?: number;
+  night?: number;
+}
+export interface WeatherForecast {
+  summary?: string;
+  description?: string;
+  icon?: string;
+}
+export interface DeviceRegistrationInfo {
+  uri?: string;
+  id?: string;
+}
+"
+`;
+
+exports[`test template 4`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { ApiResponse, DeviceState, LightingSummary } from \\"./interface\\";
+import http from \\"axios\\";
+
+export const setDimmer = (
+  params: { [key: string]: never },
+  pathParams: {
+    deviceId: string;
+    value: number;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+export const setDimmerTimer = (
+  params: { [key: string]: never },
+  pathParams: {
+    deviceId: string;
+    value: number;
+    timeunit: number;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].timeunit}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+export const getSwitchState = (
+  params: { [key: string]: never },
+  pathParams: {
+    deviceId: string;
+  }
+) =>
+  axios.request<DeviceState>({
+    url: \`/lighting/switches/\${arguments[1].deviceId}\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const setSwitch = (
+  params: { [key: string]: never },
+  pathParams: {
+    deviceId: string;
+    value: string;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+export const setSwitchTimer = (
+  params: { [key: string]: never },
+  pathParams: {
+    deviceId: string;
+    value: string;
+    minutes: number;
+  }
+) =>
+  axios.request<ApiResponse>({
+    url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].minutes}\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+
+export const getLightingSummary = (params: { [key: string]: never }) =>
+  axios.request<LightingSummary>({
+    url: \`/lightingSummary\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test template 5`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import http from \\"axios\\";
+
+export const getZones = (params: { [key: string]: never }) =>
+  axios.request<string[]>({
+    url: \`/zones\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+
+export const quietZone = (
+  params: { [key: string]: never },
+  pathParams: {
+    zoneId: string;
+  }
+) =>
+  axios.request<any>({
+    url: \`/zones/\${arguments[1].zoneId}/quiet\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
