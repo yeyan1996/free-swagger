@@ -18,9 +18,9 @@ declare function freeSwagger(
           IParams: string;
           IPathParams: string;
         }) => string;
-        chooseAll: boolean; // 测试用
+        chooseAll: boolean;
       }
     | string
-): Promise<void>;
+): Promise<OpenAPIV2.Document>;
 
 export = freeSwagger;

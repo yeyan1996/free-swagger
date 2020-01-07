@@ -66,6 +66,15 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
           imports
         );
         break;
+      case "formData":
+        bodyParamsInterface = {
+          type: "FormData",
+          imports: [],
+          isBinary: true,
+          description: "",
+          required: true
+        };
+        break;
       case "body":
         bodyParamsInterface = parseParameter(parameter, imports);
         break;

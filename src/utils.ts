@@ -11,7 +11,7 @@ export interface Config<T = string | OpenAPIV2.Document> {
   template?: Template;
   customImportCode?: string;
   lang?: "js" | "ts";
-  chooseAll?: boolean; // 测试用
+  chooseAll?: boolean;
 }
 
 export interface Template {

@@ -38,7 +38,7 @@ describe("test", () => {
     done();
   });
 
-  test("lang", async done => {
+  test("js language", async done => {
     const { info } = await freeSwagger({
       source: require("./uberApi"),
       lang: "js",
@@ -66,7 +66,7 @@ describe("test", () => {
     done();
   });
 
-  test("template", async done => {
+  test("custom template", async done => {
     const { info } = await freeSwagger({
       source: require("./homelotApi"),
       root: path.resolve(__dirname, "api"),

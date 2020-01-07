@@ -44,7 +44,7 @@ export const deleteOrder = (
   });
 
 // Place an order for a pet
-export const placeOrder = (params: Order) =>
+export const placeOrder = (params: string) =>
   axios.request<Order>({
     url: `/store/order`,
     method: "post",

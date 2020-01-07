@@ -20,7 +20,7 @@ export const getPetById = (
 
 // Updates a pet in the store with form data
 export const updatePetWithForm = (
-  params: { [key: string]: never },
+  params: FormData,
   pathParams: {
     petId: number;
   }
@@ -50,7 +50,7 @@ export const deletePet = (
 
 // uploads an image
 export const uploadFile = (
-  params: { [key: string]: never },
+  params: FormData,
   pathParams: {
     petId: number;
   }

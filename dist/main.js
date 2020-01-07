@@ -67,8 +67,7 @@ exports.compile = async (config) => {
         config.source = JSON.parse(await fs_extra_1.default.readFile(path_1.default.resolve(process.cwd(), config.source), "utf-8"));
     }
     if (!utils_1.isOpenApi2(config)) {
-        console.log(chalk_1.default.red("free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档"));
-        return;
+        throw new Error("free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
     const { dirPath, paths, interfaces } = await parse(config);
@@ -78,18 +77,18 @@ exports.compile = async (config) => {
         : lodash_1.pick(paths, ...(await inquirer_1.chooseApi(paths)));
     await gen(config, dirPath, choosePaths, interfaces);
     spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(dirPath)}`);
+    return config.source;
 };
 // freeSwagger = merge + compile
 const freeSwagger = async (config) => {
     const spinner = ora_1.default().render();
     try {
         const mergedConfig = await default_1.mergeDefaultConfig(config);
-        await exports.compile(mergedConfig);
+        return await exports.compile(mergedConfig);
     }
     catch (e) {
         spinner.fail(`${chalk_1.default.red("api 文件生成失败")}`);
-        console.warn(e);
-        return;
+        throw new Error(e);
     }
 };
 exports.default = freeSwagger;

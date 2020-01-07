@@ -5,6 +5,7 @@ import { Api, ApiCollection } from "../parse/path";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
 
+// 只要有一个属性值不是对象就断言当前对象类型为 ParsedSchemaObject
 const isParsedSchemaObject = (
   paramsInterface: ParsedSchema
 ): paramsInterface is ParsedSchemaObject =>

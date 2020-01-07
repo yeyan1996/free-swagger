@@ -3,6 +3,7 @@ import { getResponseType, Response } from "./response";
 import { getRequestType, Request } from "./request";
 import { uniq } from "lodash";
 import { formatUrl, pascalCase } from "../utils";
+import chalk from "chalk";
 
 type Methods = [
   "get",
@@ -55,7 +56,23 @@ const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
         responses,
         deprecated = false
       } = apiObj[method]!;
-      if (!operationId || !tags[0]) return;
+      if (!operationId) {
+        console.log(
+          chalk.yellow(
+            `${method.toUpperCase()} ${path} 的 operationId 不存在,无法生成该 api`
+          )
+        );
+        return;
+      }
+
+      if (!tags[0]) {
+        console.log(
+          chalk.yellow(
+            `${method.toUpperCase()} ${path} 的 tags 不存在,无法生成该 api`
+          )
+        );
+        return;
+      }
 
       // 获取类名
       const className = pascalCase(tags[0]);
