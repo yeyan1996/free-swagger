@@ -314,69 +314,7 @@ export const createUsersWithListInput = (params: User[]) =>
 "
 `;
 
-exports[`test lang 1`] = `
-"/* eslint-disable */
-import axios from \\"axios\\";
-
-export const GetAuditLogs = (params, pathParams) =>
-  axios.request({
-    url: \`/api/services/app/AuditLog/GetAuditLogs\`,
-    method: \\"get\\",
-    params: params,
-    data: {},
-    responseType: \\"json\\"
-  });
-"
-`;
-
-exports[`test lang 2`] = `
-"/* eslint-disable */
-import axios from \\"axios\\";
-
-// 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
-export const uploadLngLatUsingPOST = (params, pathParams) =>
-  axios.request({
-    url: \`/dev/uploadLngLat\`,
-    method: \\"post\\",
-    params: {},
-    data: params,
-    responseType: \\"json\\"
-  });
-"
-`;
-
-exports[`test lang 3`] = `
-"/* eslint-disable */
-import axios from \\"axios\\";
-
-export const UpdateMapper = (params, pathParams) =>
-  axios.request({
-    url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
-    method: \\"put\\",
-    params: {},
-    data: params,
-    responseType: \\"json\\"
-  });
-"
-`;
-
-exports[`test lang 4`] = `
-"/* eslint-disable */
-import axios from \\"axios\\";
-
-// 新增或编辑标准票, 需走审批流程
-export const AddOrUpdateTicketTypical = (params, pathParams) =>
-  axios.request({
-    url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
-    method: \\"post\\",
-    params: {},
-    data: params,
-    responseType: \\"json\\"
-  });
-"
-`;
-
-exports[`test template 1`] = `
+exports[`test custom template 1`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { DeviceRegistrationInfo } from \\"./interface\\";
@@ -402,7 +340,7 @@ export const register = (params: DeviceRegistrationInfo) =>
 "
 `;
 
-exports[`test template 2`] = `
+exports[`test custom template 2`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
@@ -476,7 +414,7 @@ export const setHeaterState = (
 "
 `;
 
-exports[`test template 3`] = `
+exports[`test custom template 3`] = `
 "// @ts-nocheck 
 /* eslint-disable */
 export interface LightingSummary {
@@ -568,7 +506,7 @@ export interface DeviceRegistrationInfo {
 "
 `;
 
-exports[`test template 4`] = `
+exports[`test custom template 4`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { ApiResponse, DeviceState, LightingSummary } from \\"./interface\\";
@@ -661,7 +599,7 @@ export const getLightingSummary = (params: { [key: string]: never }) =>
 "
 `;
 
-exports[`test template 5`] = `
+exports[`test custom template 5`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import http from \\"axios\\";
@@ -686,6 +624,68 @@ export const quietZone = (
     method: \\"get\\",
     params: params,
     data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test js language 1`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+export const GetAuditLogs = (params, pathParams) =>
+  axios.request({
+    url: \`/api/services/app/AuditLog/GetAuditLogs\`,
+    method: \\"get\\",
+    params: params,
+    data: {},
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test js language 2`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+// 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
+export const uploadLngLatUsingPOST = (params, pathParams) =>
+  axios.request({
+    url: \`/dev/uploadLngLat\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test js language 3`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+export const UpdateMapper = (params, pathParams) =>
+  axios.request({
+    url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
+    method: \\"put\\",
+    params: {},
+    data: params,
+    responseType: \\"json\\"
+  });
+"
+`;
+
+exports[`test js language 4`] = `
+"/* eslint-disable */
+import axios from \\"axios\\";
+
+// 新增或编辑标准票, 需走审批流程
+export const AddOrUpdateTicketTypical = (params, pathParams) =>
+  axios.request({
+    url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
+    method: \\"post\\",
+    params: {},
+    data: params,
     responseType: \\"json\\"
   });
 "
