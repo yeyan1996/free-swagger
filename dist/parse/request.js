@@ -45,6 +45,15 @@ const getRequestType = (paramsSchema) => {
             case "query":
                 queryParamsInterface[parameter.name] = parseParameter(parameter, imports);
                 break;
+            case "formData":
+                bodyParamsInterface = {
+                    type: "FormData",
+                    imports: [],
+                    isBinary: true,
+                    description: "",
+                    required: true
+                };
+                break;
             case "body":
                 bodyParamsInterface = parseParameter(parameter, imports);
                 break;
