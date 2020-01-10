@@ -36,7 +36,7 @@ export const tsTemplate = ({
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${
   IParams
-    ? `params: ${IParams}`
+    ? `params: ${IParams},`
     : IPathParams
     ? "params:{[key:string]: never},"
     : ""

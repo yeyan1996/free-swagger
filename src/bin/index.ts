@@ -12,6 +12,7 @@ commander
   .action(async command => {
     if (command.reset) {
       rc.reset();
+      console.log(chalk.green("重置配置项成功"));
       return;
     }
     if (!command.config) {

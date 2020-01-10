@@ -14,7 +14,7 @@ exports.tsTemplate = ({ url, summary, method, name, responseType, deprecated, IR
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${IParams
-    ? `params: ${IParams}`
+    ? `params: ${IParams},`
     : IPathParams
         ? "params:{[key:string]: never},"
         : ""}${IPathParams ? `pathParams: ${IPathParams}` : ""}) => axios.request<${IResponse || "any"}>({

@@ -21,11 +21,7 @@ describe("test.ts", () => {
     const filesPath = fs.readdirSync(
       path.resolve(__dirname, "api", pascalCase(info.title))
     );
-    expect(filesPath).toEqual([
-      "pet.js",
-      "store.js",
-      "user.js"
-    ]);
+    expect(filesPath).toEqual(["pet.js", "store.js", "user.js"]);
     await wait(1000);
     filesPath.forEach(filename => {
       const file = fs.readFileSync(

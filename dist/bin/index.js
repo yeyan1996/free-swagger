@@ -16,6 +16,7 @@ commander_1.default
     .action(async (command) => {
     if (command.reset) {
         rc_1.rc.reset();
+        console.log(chalk_1.default.green("重置配置项成功"));
         return;
     }
     if (!command.config) {
