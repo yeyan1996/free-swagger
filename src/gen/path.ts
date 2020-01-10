@@ -2,10 +2,6 @@ import { Config, ParsedSchemaObject, ParsedSchema } from "../utils";
 import { uniq, isEmpty } from "lodash";
 import { formatCode } from "../utils";
 import { Api, ApiCollection } from "../parse/path";
-import {
-  DEFAULT_CUSTOM_IMPORT_CODE_JS,
-  DEFAULT_CUSTOM_IMPORT_CODE_TS
-} from "../default";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
 

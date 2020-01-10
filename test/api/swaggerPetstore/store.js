@@ -1,5 +1,5 @@
 /* eslint-disable */
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // Returns pet inventories by status
 export const getInventory = params =>

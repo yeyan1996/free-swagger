@@ -1,5 +1,5 @@
 /* eslint-disable */
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // Get user by user name
 export const getUserByName = (params, pathParams) =>

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // Find pet by ID
 export const getPetById = (params, pathParams) =>
