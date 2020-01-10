@@ -1,10 +1,10 @@
 // @ts-nocheck
 /* eslint-disable */
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from "./interface";
-import http from "axios";
+import http, { AxiosResponse } from "axios";
 
 export const temperatureSummary = (params: { [key: string]: never }) =>
-  http.request<TemperatureSummary>({
+  http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
     url: `/temperature`,
     method: "get",
     params: params,
@@ -18,7 +18,7 @@ export const getForecast = (
     days: number;
   }
 ) =>
-  http.request<ForecastResponse>({
+  http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
     url: `/temperature/forecast/${arguments[1].days}`,
     method: "get",
     params: params,
@@ -32,7 +32,7 @@ export const getZoneTemperature = (
     zoneId: string;
   }
 ) =>
-  http.request<TemperatueZoneStatus>({
+  http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
     url: `/temperature/${arguments[1].zoneId}`,
     method: "get",
     params: params,
@@ -46,7 +46,7 @@ export const getHeaterState = (
     zoneId: string;
   }
 ) =>
-  http.request<HeaterState>({
+  http.request<HeaterState, AxiosResponse<HeaterState>>({
     url: `/temperature/${arguments[1].zoneId}/heater`,
     method: "get",
     params: params,
@@ -61,7 +61,7 @@ export const setHeaterState = (
     state: string;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/temperature/${arguments[1].zoneId}/heater/${arguments[1].state}`,
     method: "post",
     params: {},

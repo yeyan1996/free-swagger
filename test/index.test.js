@@ -84,14 +84,14 @@ describe("test.ts", () => {
         IParams ? `${IParams}` : "{[key:string]: never}"
       },${
         IPathParams ? `pathParams: ${IPathParams}` : ""
-      }) => http.request<${IResponse || "any"}>({
+      }) => http.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      params:${method === "get" ? "params" : "{}"},
      data:  ${method === "get" ? "{}" : "params"},
      responseType: "${responseType}", 
  })`,
-      customImportCode: "import http from 'axios'",
+      customImportCode: "import http,{AxiosResponse} from 'axios'",
       chooseAll: true
     });
 

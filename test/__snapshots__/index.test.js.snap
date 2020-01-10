@@ -206,10 +206,10 @@ exports[`test.ts custom ts template 1`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { DeviceRegistrationInfo } from \\"./interface\\";
-import http from \\"axios\\";
+import http, { AxiosResponse } from \\"axios\\";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
-  http.request<string[]>({
+  http.request<string[], AxiosResponse<string[]>>({
     url: \`/devices\`,
     method: \\"get\\",
     params: params,
@@ -218,7 +218,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
   });
 
 export const register = (params: DeviceRegistrationInfo) =>
-  http.request<any>({
+  http.request<any, AxiosResponse<any>>({
     url: \`/devices\`,
     method: \\"post\\",
     params: {},
@@ -232,10 +232,10 @@ exports[`test.ts custom ts template 2`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
-import http from \\"axios\\";
+import http, { AxiosResponse } from \\"axios\\";
 
 export const temperatureSummary = (params: { [key: string]: never }) =>
-  http.request<TemperatureSummary>({
+  http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
     url: \`/temperature\`,
     method: \\"get\\",
     params: params,
@@ -249,7 +249,7 @@ export const getForecast = (
     days: number;
   }
 ) =>
-  http.request<ForecastResponse>({
+  http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
     url: \`/temperature/forecast/\${arguments[1].days}\`,
     method: \\"get\\",
     params: params,
@@ -263,7 +263,7 @@ export const getZoneTemperature = (
     zoneId: string;
   }
 ) =>
-  http.request<TemperatueZoneStatus>({
+  http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
     url: \`/temperature/\${arguments[1].zoneId}\`,
     method: \\"get\\",
     params: params,
@@ -277,7 +277,7 @@ export const getHeaterState = (
     zoneId: string;
   }
 ) =>
-  http.request<HeaterState>({
+  http.request<HeaterState, AxiosResponse<HeaterState>>({
     url: \`/temperature/\${arguments[1].zoneId}/heater\`,
     method: \\"get\\",
     params: params,
@@ -292,7 +292,7 @@ export const setHeaterState = (
     state: string;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: \`/temperature/\${arguments[1].zoneId}/heater/\${arguments[1].state}\`,
     method: \\"post\\",
     params: {},
@@ -398,7 +398,7 @@ exports[`test.ts custom ts template 4`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { ApiResponse, DeviceState, LightingSummary } from \\"./interface\\";
-import http from \\"axios\\";
+import http, { AxiosResponse } from \\"axios\\";
 
 export const setDimmer = (
   params: { [key: string]: never },
@@ -407,7 +407,7 @@ export const setDimmer = (
     value: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}\`,
     method: \\"post\\",
     params: {},
@@ -423,7 +423,7 @@ export const setDimmerTimer = (
     timeunit: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].timeunit}\`,
     method: \\"post\\",
     params: {},
@@ -437,7 +437,7 @@ export const getSwitchState = (
     deviceId: string;
   }
 ) =>
-  http.request<DeviceState>({
+  http.request<DeviceState, AxiosResponse<DeviceState>>({
     url: \`/lighting/switches/\${arguments[1].deviceId}\`,
     method: \\"get\\",
     params: params,
@@ -452,7 +452,7 @@ export const setSwitch = (
     value: string;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}\`,
     method: \\"post\\",
     params: {},
@@ -468,7 +468,7 @@ export const setSwitchTimer = (
     minutes: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].minutes}\`,
     method: \\"post\\",
     params: {},
@@ -477,7 +477,7 @@ export const setSwitchTimer = (
   });
 
 export const getLightingSummary = (params: { [key: string]: never }) =>
-  http.request<LightingSummary>({
+  http.request<LightingSummary, AxiosResponse<LightingSummary>>({
     url: \`/lightingSummary\`,
     method: \\"get\\",
     params: params,
@@ -490,10 +490,10 @@ export const getLightingSummary = (params: { [key: string]: never }) =>
 exports[`test.ts custom ts template 5`] = `
 "// @ts-nocheck
 /* eslint-disable */
-import http from \\"axios\\";
+import http, { AxiosResponse } from \\"axios\\";
 
 export const getZones = (params: { [key: string]: never }) =>
-  http.request<string[]>({
+  http.request<string[], AxiosResponse<string[]>>({
     url: \`/zones\`,
     method: \\"get\\",
     params: params,
@@ -507,7 +507,7 @@ export const quietZone = (
     zoneId: string;
   }
 ) =>
-  http.request<any>({
+  http.request<any, AxiosResponse<any>>({
     url: \`/zones/\${arguments[1].zoneId}/quiet\`,
     method: \\"get\\",
     params: params,

@@ -136,7 +136,7 @@ tsTemplate = ({
     : ""
 }${
   IPathParams ? `pathParams: ${IPathParams}` : ""
-}) => axios.request<${IResponse || "any"}>({
+}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      responseType: "${responseType}", 

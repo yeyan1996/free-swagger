@@ -1,10 +1,10 @@
 // @ts-nocheck
 /* eslint-disable */
 import { DeviceRegistrationInfo } from "./interface";
-import http from "axios";
+import http, { AxiosResponse } from "axios";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
-  http.request<string[]>({
+  http.request<string[], AxiosResponse<string[]>>({
     url: `/devices`,
     method: "get",
     params: params,
@@ -13,7 +13,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
   });
 
 export const register = (params: DeviceRegistrationInfo) =>
-  http.request<any>({
+  http.request<any, AxiosResponse<any>>({
     url: `/devices`,
     method: "post",
     params: {},

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 import { ApiResponse, DeviceState, LightingSummary } from "./interface";
-import http from "axios";
+import http, { AxiosResponse } from "axios";
 
 export const setDimmer = (
   params: { [key: string]: never },
@@ -10,7 +10,7 @@ export const setDimmer = (
     value: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/lighting/dimmers/${arguments[1].deviceId}/${arguments[1].value}`,
     method: "post",
     params: {},
@@ -26,7 +26,7 @@ export const setDimmerTimer = (
     timeunit: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/lighting/dimmers/${arguments[1].deviceId}/${arguments[1].value}/timer/${arguments[1].timeunit}`,
     method: "post",
     params: {},
@@ -40,7 +40,7 @@ export const getSwitchState = (
     deviceId: string;
   }
 ) =>
-  http.request<DeviceState>({
+  http.request<DeviceState, AxiosResponse<DeviceState>>({
     url: `/lighting/switches/${arguments[1].deviceId}`,
     method: "get",
     params: params,
@@ -55,7 +55,7 @@ export const setSwitch = (
     value: string;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/lighting/switches/${arguments[1].deviceId}/${arguments[1].value}`,
     method: "post",
     params: {},
@@ -71,7 +71,7 @@ export const setSwitchTimer = (
     minutes: number;
   }
 ) =>
-  http.request<ApiResponse>({
+  http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/lighting/switches/${arguments[1].deviceId}/${arguments[1].value}/timer/${arguments[1].minutes}`,
     method: "post",
     params: {},
@@ -80,7 +80,7 @@ export const setSwitchTimer = (
   });
 
 export const getLightingSummary = (params: { [key: string]: never }) =>
-  http.request<LightingSummary>({
+  http.request<LightingSummary, AxiosResponse<LightingSummary>>({
     url: `/lightingSummary`,
     method: "get",
     params: params,
