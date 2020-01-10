@@ -57,5 +57,9 @@ class Rc {
     refreshCache() {
         return this.data.previousSource !== this.data.source;
     }
+    reset() {
+        this.data = this.getDefault();
+        this.save();
+    }
 }
 exports.rc = new Rc();

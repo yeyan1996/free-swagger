@@ -24,18 +24,19 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 ![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
-## 详细配置
+## 其他命令
 
-### npx
+1. 输入 `--config/-c` 可以进行详细配置
 
 > npx free-swagger free-swagger --config
-
-输入 `--config/-c` 可以进行详细配置
-
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+
+2. 输入 `--reset/-r` 可以重置为默认配置
+
+> npx free-swagger free-swagger --reset
 
 ## 项目安装
 
@@ -108,7 +109,7 @@ template 模版是一个函数，返回字符串，接受以下几个参数，�
 默认的 ts 模版在 src/default/template.ts 下
 
 ```javascript
-({
+tsTemplate = ({
   url,
   summary,
   method,
@@ -121,15 +122,19 @@ template 模版是一个函数，返回字符串，接受以下几个参数，�
 }) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
-  export const ${name} = (params: ${
-  IParams ? `${IParams}` : "{[key:string]: never}"
-},${
+  export const ${name} = (${
+  IParams
+    ? `params: ${IParams}`
+    : IPathParams
+    ? "params:{[key:string]: never},"
+    : ""
+}${
   IPathParams ? `pathParams: ${IPathParams}` : ""
 }) => axios.request<${IResponse || "any"}>({
      url: \`${url}\`, 
      method: "${method}",
-     params:${method === "get" ? "params" : "{}"},
-     data:  ${method === "get" ? "{}" : "params"},
      responseType: "${responseType}", 
+     ${IParams ? `params:${method === "get" ? "params," : "{},"}` : ""}
+     ${IParams ? `data: ${method === "get" ? "{}," : "params,"}` : ""}
  })`;
 ```

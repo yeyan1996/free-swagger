@@ -8,7 +8,12 @@ import { source } from "./questions";
 
 commander
   .option("-c, --config")
+  .option("-r --reset")
   .action(async command => {
+    if (command.reset) {
+      rc.reset();
+      return;
+    }
     if (!command.config) {
       const answer: { source: string } = await inquirer.prompt([source]);
       rc.merge(answer);

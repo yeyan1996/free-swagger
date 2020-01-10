@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { TemplateConfig } from "../utils";
 export const jsTemplate = ({
   url,
@@ -10,7 +8,7 @@ export const jsTemplate = ({
   deprecated,
   IParams,
   IPathParams
-}: TemplateConfig) => `
+}: TemplateConfig): string => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (params,${
@@ -33,11 +31,15 @@ export const tsTemplate = ({
   IResponse,
   IParams,
   IPathParams
-}: TemplateConfig) => `
+}: TemplateConfig): string => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${
-  IParams ? `params: ${IParams}` : IPathParams ? "params:{[key:string]: never}," : ""
+  IParams
+    ? `params: ${IParams}`
+    : IPathParams
+    ? "params:{[key:string]: never},"
+    : ""
 }${
   IPathParams ? `pathParams: ${IPathParams}` : ""
 }) => axios.request<${IResponse || "any"}>({

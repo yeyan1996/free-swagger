@@ -75,6 +75,10 @@ class Rc {
   refreshCache(): boolean {
     return this.data.previousSource !== this.data.source;
   }
+  reset(){
+    this.data = this.getDefault()
+    this.save()
+  }
 }
 
 export const rc = new Rc();

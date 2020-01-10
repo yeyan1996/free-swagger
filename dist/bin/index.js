@@ -12,7 +12,12 @@ const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 commander_1.default
     .option("-c, --config")
+    .option("-r --reset")
     .action(async (command) => {
+    if (command.reset) {
+        rc_1.rc.reset();
+        return;
+    }
     if (!command.config) {
         const answer = await inquirer_1.default.prompt([questions_1.source]);
         rc_1.rc.merge(answer);
