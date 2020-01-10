@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const template_1 = require("./template");
 const rc_1 = require("./rc");
 const path_1 = __importDefault(require("path"));
-exports.DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{AxiosResponse} from "axios";`;
+exports.DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{ AxiosResponse } from "axios";`;
 exports.DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`;
 const getDefaultConfig = (config) => ({
     root: path_1.default.resolve(process.cwd(), "src/api"),

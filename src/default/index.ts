@@ -4,7 +4,7 @@ import { tsTemplate, jsTemplate } from "./template";
 import { rc } from "./rc";
 import path from "path";
 
-export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{AxiosResponse} from "axios";`;
+export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{ AxiosResponse } from "axios";`;
 export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`;
 
 const getDefaultConfig = (config: Config): Omit<Config, "source"> => ({

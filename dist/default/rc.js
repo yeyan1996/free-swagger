@@ -23,6 +23,8 @@ class Rc {
             lang: "js",
             shouldEditTemplate: "n",
             customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
+            customImportCodeJs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
+            customImportCodeTs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_TS,
             template: template_1.tsTemplate,
             tsTemplate: `${template_1.tsTemplate}`,
             jsTemplate: `${template_1.jsTemplate}`,

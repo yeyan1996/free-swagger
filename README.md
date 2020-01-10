@@ -40,9 +40,13 @@ free-swagger
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
 
-* `--reset/-r` 可以重置为默认配置
+* `--reset/-r` 重置默认配置
 
 > npx free-swagger free-swagger --reset
+
+* `--show/-s` 显示当前配置
+
+> npx free-swagger free-swagger --show
 
 ## 项目安装
 

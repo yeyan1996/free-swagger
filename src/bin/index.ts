@@ -9,7 +9,12 @@ import { source } from "./questions";
 commander
   .option("-c, --config")
   .option("-r --reset")
+  .option("-s --show")
   .action(async command => {
+    if (command.show) {
+      console.log(rc.data);
+      return;
+    }
     if (command.reset) {
       rc.reset();
       console.log(chalk.green("重置配置项成功"));
@@ -70,7 +75,10 @@ commander
       {
         name: "customImportCode",
         message: `输入自定义头语句(${chalk.magenta("自定义请求库路径")})`,
-        default: defaultAnswer.customImportCode,
+        default: (answer: Answer): string =>
+          answer.lang === "ts"
+            ? defaultAnswer.customImportCodeTs
+            : defaultAnswer.customImportCodeJs,
         validate: (input): boolean | string =>
           input ? true : "请输入默认头语句"
       }

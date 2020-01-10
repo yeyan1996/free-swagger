@@ -4,7 +4,10 @@ import fse from "fs-extra";
 import prettier from "prettier";
 import { jsTemplate, tsTemplate } from "./template";
 import { Config, Template } from "../utils";
-import { DEFAULT_CUSTOM_IMPORT_CODE_JS } from "./index";
+import {
+  DEFAULT_CUSTOM_IMPORT_CODE_JS,
+  DEFAULT_CUSTOM_IMPORT_CODE_TS
+} from "./index";
 
 export interface Answer {
   previousSource?: string;
@@ -13,6 +16,8 @@ export interface Answer {
   customImportCode?: string;
   lang?: "js" | "ts";
   shouldEditTemplate: "y" | "n";
+  customImportCodeJs: string;
+  customImportCodeTs: string;
   jsTemplate: string;
   tsTemplate: string;
   template?: Template;
@@ -36,6 +41,8 @@ class Rc {
       lang: "js",
       shouldEditTemplate: "n",
       customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+      customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+      customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
       template: tsTemplate,
       tsTemplate: `${tsTemplate}`,
       jsTemplate: `${jsTemplate}`,
