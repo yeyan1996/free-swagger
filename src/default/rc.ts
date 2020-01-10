@@ -32,7 +32,7 @@ class Rc {
     return {
       source: undefined,
       root: `${path.resolve(process.cwd(), "src/api")}`,
-      lang: "ts",
+      lang: "js",
       shouldEditTemplate: "n",
       customImportCode: `import axios from "axios";`,
       template: tsTemplate,

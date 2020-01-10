@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jsTemplate = ({ url, summary, method, name, responseType, deprecated }) => `
+exports.jsTemplate = ({ url, summary, method, name, responseType, deprecated, IPathParams }) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
-  export const ${name} = (params,pathParams) => axios.request({
+  export const ${name} = (params,${IPathParams ? `pathParams` : ""}) => axios.request({
      url: \`${url}\`, 
      method: "${method}",
      params:${method === "get" ? "params" : "{}"},

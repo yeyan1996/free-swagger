@@ -1,16 +1,9 @@
-// @ts-nocheck
 /* eslint-disable */
-import { Pet, ApiResponse } from "./interface";
 import axios from "axios";
 
 // Find pet by ID
-export const getPetById = (
-  params: { [key: string]: never },
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<Pet>({
+export const getPetById = (params, pathParams) =>
+  axios.request({
     url: `/pet/${arguments[1].petId}`,
     method: "get",
     params: params,
@@ -19,13 +12,8 @@ export const getPetById = (
   });
 
 // Updates a pet in the store with form data
-export const updatePetWithForm = (
-  params: FormData,
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<any>({
+export const updatePetWithForm = (params, pathParams) =>
+  axios.request({
     url: `/pet/${arguments[1].petId}`,
     method: "post",
     params: {},
@@ -34,13 +22,8 @@ export const updatePetWithForm = (
   });
 
 // Deletes a pet
-export const deletePet = (
-  params: { [key: string]: never },
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<any>({
+export const deletePet = (params, pathParams) =>
+  axios.request({
     url: `/pet/${arguments[1].petId}`,
     method: "delete",
     params: {},
@@ -49,13 +32,8 @@ export const deletePet = (
   });
 
 // uploads an image
-export const uploadFile = (
-  params: FormData,
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<ApiResponse>({
+export const uploadFile = (params, pathParams) =>
+  axios.request({
     url: `/pet/${arguments[1].petId}/uploadImage`,
     method: "post",
     params: {},
@@ -64,8 +42,8 @@ export const uploadFile = (
   });
 
 // Update an existing pet
-export const updatePet = (params: Pet) =>
-  axios.request<any>({
+export const updatePet = params =>
+  axios.request({
     url: `/pet`,
     method: "put",
     params: {},
@@ -74,8 +52,8 @@ export const updatePet = (params: Pet) =>
   });
 
 // Add a new pet to the store
-export const addPet = (params: Pet) =>
-  axios.request<any>({
+export const addPet = params =>
+  axios.request({
     url: `/pet`,
     method: "post",
     params: {},
@@ -84,8 +62,8 @@ export const addPet = (params: Pet) =>
   });
 
 // Finds Pets by status
-export const findPetsByStatus = (params: { status: "available" | "pending" | "sold" }) =>
-  axios.request<Pet[]>({
+export const findPetsByStatus = params =>
+  axios.request({
     url: `/pet/findByStatus`,
     method: "get",
     params: params,
@@ -94,8 +72,8 @@ export const findPetsByStatus = (params: { status: "available" | "pending" | "so
   });
 /**deprecated*/
 // Finds Pets by tags
-export const findPetsByTags = (params: { tags: string }) =>
-  axios.request<Pet[]>({
+export const findPetsByTags = params =>
+  axios.request({
     url: `/pet/findByTags`,
     method: "get",
     params: params,

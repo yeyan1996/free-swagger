@@ -1,64 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test base option 1`] = `
-"// @ts-nocheck 
-/* eslint-disable */
-export interface Category {
-  id?: number;
-  name?: string;
-}
-export interface Pet {
-  id?: number;
-  category?: Category;
-  name: string;
-  photoUrls: string[];
-  tags?: Tag[];
-  status?: \\"available\\" | \\"pending\\" | \\"sold\\"; // pet status in the store
-}
-export interface Tag {
-  id?: number;
-  name?: string;
-}
-export interface ApiResponse {
-  code?: number;
-  type?: string;
-  message?: string;
-}
-export interface Order {
-  id?: number;
-  petId?: number;
-  quantity?: number;
-  shipDate?: string;
-  status?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; // Order Status
-  complete?: boolean;
-}
-export interface User {
-  id?: number;
-  username?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  password?: string;
-  phone?: string;
-  userStatus?: number; // User Status
-}
-"
-`;
-
-exports[`test base option 2`] = `
-"// @ts-nocheck
-/* eslint-disable */
-import { Pet, ApiResponse } from \\"./interface\\";
+"/* eslint-disable */
 import axios from \\"axios\\";
 
 // Find pet by ID
-export const getPetById = (
-  params: { [key: string]: never },
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<Pet>({
+export const getPetById = (params, pathParams) =>
+  axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"get\\",
     params: params,
@@ -67,13 +15,8 @@ export const getPetById = (
   });
 
 // Updates a pet in the store with form data
-export const updatePetWithForm = (
-  params: FormData,
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<any>({
+export const updatePetWithForm = (params, pathParams) =>
+  axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"post\\",
     params: {},
@@ -82,13 +25,8 @@ export const updatePetWithForm = (
   });
 
 // Deletes a pet
-export const deletePet = (
-  params: { [key: string]: never },
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<any>({
+export const deletePet = (params, pathParams) =>
+  axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"delete\\",
     params: {},
@@ -97,13 +35,8 @@ export const deletePet = (
   });
 
 // uploads an image
-export const uploadFile = (
-  params: FormData,
-  pathParams: {
-    petId: number;
-  }
-) =>
-  axios.request<ApiResponse>({
+export const uploadFile = (params, pathParams) =>
+  axios.request({
     url: \`/pet/\${arguments[1].petId}/uploadImage\`,
     method: \\"post\\",
     params: {},
@@ -112,8 +45,8 @@ export const uploadFile = (
   });
 
 // Update an existing pet
-export const updatePet = (params: Pet) =>
-  axios.request<any>({
+export const updatePet = params =>
+  axios.request({
     url: \`/pet\`,
     method: \\"put\\",
     params: {},
@@ -122,8 +55,8 @@ export const updatePet = (params: Pet) =>
   });
 
 // Add a new pet to the store
-export const addPet = (params: Pet) =>
-  axios.request<any>({
+export const addPet = params =>
+  axios.request({
     url: \`/pet\`,
     method: \\"post\\",
     params: {},
@@ -132,8 +65,8 @@ export const addPet = (params: Pet) =>
   });
 
 // Finds Pets by status
-export const findPetsByStatus = (params: { status: \\"available\\" | \\"pending\\" | \\"sold\\" }) =>
-  axios.request<Pet[]>({
+export const findPetsByStatus = params =>
+  axios.request({
     url: \`/pet/findByStatus\`,
     method: \\"get\\",
     params: params,
@@ -142,8 +75,8 @@ export const findPetsByStatus = (params: { status: \\"available\\" | \\"pending\
   });
 /**deprecated*/
 // Finds Pets by tags
-export const findPetsByTags = (params: { tags: string }) =>
-  axios.request<Pet[]>({
+export const findPetsByTags = params =>
+  axios.request({
     url: \`/pet/findByTags\`,
     method: \\"get\\",
     params: params,
@@ -153,15 +86,13 @@ export const findPetsByTags = (params: { tags: string }) =>
 "
 `;
 
-exports[`test base option 3`] = `
-"// @ts-nocheck
-/* eslint-disable */
-import { Order } from \\"./interface\\";
+exports[`test base option 2`] = `
+"/* eslint-disable */
 import axios from \\"axios\\";
 
 // Returns pet inventories by status
-export const getInventory = (params: { [key: string]: never }) =>
-  axios.request<object>({
+export const getInventory = params =>
+  axios.request({
     url: \`/store/inventory\`,
     method: \\"get\\",
     params: params,
@@ -170,13 +101,8 @@ export const getInventory = (params: { [key: string]: never }) =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (
-  params: { [key: string]: never },
-  pathParams: {
-    orderId: number;
-  }
-) =>
-  axios.request<Order>({
+export const getOrderById = (params, pathParams) =>
+  axios.request({
     url: \`/store/order/\${arguments[1].orderId}\`,
     method: \\"get\\",
     params: params,
@@ -185,13 +111,8 @@ export const getOrderById = (
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (
-  params: { [key: string]: never },
-  pathParams: {
-    orderId: number;
-  }
-) =>
-  axios.request<any>({
+export const deleteOrder = (params, pathParams) =>
+  axios.request({
     url: \`/store/order/\${arguments[1].orderId}\`,
     method: \\"delete\\",
     params: {},
@@ -200,8 +121,8 @@ export const deleteOrder = (
   });
 
 // Place an order for a pet
-export const placeOrder = (params: Order) =>
-  axios.request<Order>({
+export const placeOrder = params =>
+  axios.request({
     url: \`/store/order\`,
     method: \\"post\\",
     params: {},
@@ -211,20 +132,13 @@ export const placeOrder = (params: Order) =>
 "
 `;
 
-exports[`test base option 4`] = `
-"// @ts-nocheck
-/* eslint-disable */
-import { User } from \\"./interface\\";
+exports[`test base option 3`] = `
+"/* eslint-disable */
 import axios from \\"axios\\";
 
 // Get user by user name
-export const getUserByName = (
-  params: { [key: string]: never },
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<User>({
+export const getUserByName = (params, pathParams) =>
+  axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"get\\",
     params: params,
@@ -233,13 +147,8 @@ export const getUserByName = (
   });
 
 // Updated user
-export const updateUser = (
-  params: User,
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<any>({
+export const updateUser = (params, pathParams) =>
+  axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"put\\",
     params: {},
@@ -248,13 +157,8 @@ export const updateUser = (
   });
 
 // Delete user
-export const deleteUser = (
-  params: { [key: string]: never },
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<any>({
+export const deleteUser = (params, pathParams) =>
+  axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"delete\\",
     params: {},
@@ -263,8 +167,8 @@ export const deleteUser = (
   });
 
 // Logs user into the system
-export const loginUser = (params: { username: string; password: string }) =>
-  axios.request<string>({
+export const loginUser = params =>
+  axios.request({
     url: \`/user/login\`,
     method: \\"get\\",
     params: params,
@@ -273,8 +177,8 @@ export const loginUser = (params: { username: string; password: string }) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params: { [key: string]: never }) =>
-  axios.request<any>({
+export const logoutUser = params =>
+  axios.request({
     url: \`/user/logout\`,
     method: \\"get\\",
     params: params,
@@ -283,8 +187,8 @@ export const logoutUser = (params: { [key: string]: never }) =>
   });
 
 // Create user
-export const createUser = (params: User) =>
-  axios.request<any>({
+export const createUser = params =>
+  axios.request({
     url: \`/user\`,
     method: \\"post\\",
     params: {},
@@ -293,8 +197,8 @@ export const createUser = (params: User) =>
   });
 
 // Creates list of users with given input array
-export const createUsersWithArrayInput = (params: User[]) =>
-  axios.request<any>({
+export const createUsersWithArrayInput = params =>
+  axios.request({
     url: \`/user/createWithArray\`,
     method: \\"post\\",
     params: {},
@@ -303,8 +207,8 @@ export const createUsersWithArrayInput = (params: User[]) =>
   });
 
 // Creates list of users with given input array
-export const createUsersWithListInput = (params: User[]) =>
-  axios.request<any>({
+export const createUsersWithListInput = params =>
+  axios.request({
     url: \`/user/createWithList\`,
     method: \\"post\\",
     params: {},
@@ -314,7 +218,7 @@ export const createUsersWithListInput = (params: User[]) =>
 "
 `;
 
-exports[`test custom template 1`] = `
+exports[`test custom ts template 1`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { DeviceRegistrationInfo } from \\"./interface\\";
@@ -340,7 +244,7 @@ export const register = (params: DeviceRegistrationInfo) =>
 "
 `;
 
-exports[`test custom template 2`] = `
+exports[`test custom ts template 2`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
@@ -414,7 +318,7 @@ export const setHeaterState = (
 "
 `;
 
-exports[`test custom template 3`] = `
+exports[`test custom ts template 3`] = `
 "// @ts-nocheck 
 /* eslint-disable */
 export interface LightingSummary {
@@ -506,7 +410,7 @@ export interface DeviceRegistrationInfo {
 "
 `;
 
-exports[`test custom template 4`] = `
+exports[`test custom ts template 4`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { ApiResponse, DeviceState, LightingSummary } from \\"./interface\\";
@@ -599,7 +503,7 @@ export const getLightingSummary = (params: { [key: string]: never }) =>
 "
 `;
 
-exports[`test custom template 5`] = `
+exports[`test custom ts template 5`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import http from \\"axios\\";
@@ -629,12 +533,14 @@ export const quietZone = (
 "
 `;
 
-exports[`test js language 1`] = `
-"/* eslint-disable */
+exports[`test ts language 1`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { IPagedResult_AuditLogListDto } from \\"./interface\\";
 import axios from \\"axios\\";
 
-export const GetAuditLogs = (params, pathParams) =>
-  axios.request({
+export const GetAuditLogs = (params: { StartDate?: string }) =>
+  axios.request<IPagedResult_AuditLogListDto>({
     url: \`/api/services/app/AuditLog/GetAuditLogs\`,
     method: \\"get\\",
     params: params,
@@ -644,13 +550,15 @@ export const GetAuditLogs = (params, pathParams) =>
 "
 `;
 
-exports[`test js language 2`] = `
-"/* eslint-disable */
+exports[`test ts language 2`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { List_AuditLogListDto } from \\"./interface\\";
 import axios from \\"axios\\";
 
 // 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
-export const uploadLngLatUsingPOST = (params, pathParams) =>
-  axios.request({
+export const uploadLngLatUsingPOST = (params: List_AuditLogListDto) =>
+  axios.request<any>({
     url: \`/dev/uploadLngLat\`,
     method: \\"post\\",
     params: {},
@@ -660,12 +568,110 @@ export const uploadLngLatUsingPOST = (params, pathParams) =>
 "
 `;
 
-exports[`test js language 3`] = `
-"/* eslint-disable */
+exports[`test ts language 3`] = `
+"// @ts-nocheck 
+/* eslint-disable */
+export interface Product {
+  product_id?: string; // Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+  description?: string; // Description of product.
+  display_name?: string; // Display name of product.
+  capacity?: string; // Capacity of product. For example, 4 people.
+  image?: string; // Image URL representing the product.
+}
+export interface PriceEstimate {
+  product_id?: string; // Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
+  currency_code?: string; // [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
+  display_name?: string; // Display name of product.
+  estimate?: string; // Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+  low_estimate?: number; // Lower bound of the estimated price.
+  high_estimate?: number; // Upper bound of the estimated price.
+  surge_multiplier?: number; // Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
+}
+export interface Profile {
+  first_name?: string; // First name of the Uber user.
+  last_name?: string; // Last name of the Uber user.
+  email?: string; // Email address of the Uber user
+  picture?: string; // Image URL of the Uber user.
+  promo_code?: string; // Promo code of the Uber user.
+  role?: RoleType;
+}
+export interface Activity {
+  uuid?: string; // Unique identifier for the activity
+}
+export interface Activities {
+  offset?: number; // Position in pagination.
+  limit?: number; // Number of items to retrieve (100 max).
+  count?: number; // Total number of items available.
+  history?: Activity[];
+}
+export interface RoleType {}
+export interface CreateOrUpdateUserInput {
+  userId?: number; // 用户ID(ID来自User表)
+  userRights?:
+    | \\"View\\"
+    | \\"Operate\\"
+    | \\"Auth\\"
+    | \\"Search\\"
+    | \\"Delete\\"
+    | \\"UserManage\\"
+    | \\"UserConfig\\"
+    | \\"SetTime\\"
+    | \\"SetNetwork\\"
+    | \\"SetSms\\"
+    | \\"SystemManage\\"[]; // 用户权限
+}
+export interface Abc {
+  id?: string;
+  isLow?: boolean;
+}
+export interface ArrayOfAbc {}
+export interface NumberArrayEnumModel {
+  foo?: \\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\"[];
+  bar?: \\"0\\" | \\"1\\" | \\"2\\" | \\"3\\"[];
+}
+export interface Error {
+  code?: number;
+  message?: string;
+  fields?: string;
+}
+export interface PagedResultDto_AuditLogListDto {
+  totalCount?: number;
+  items?: AuditLogListDto[];
+}
+export interface AuditLogListDto {
+  userId?: number;
+  id?: number;
+}
+export interface JsonResult_Guid {
+  result?: boolean; // 结果
+  code?:
+    | \\"Success\\"
+    | \\"Timeout\\"
+    | \\"Fail\\"
+    | \\"Expired\\"
+    | \\"Error\\"
+    | \\"InternalServerError\\"
+    | \\"InvalidAnonymousAccess\\"
+    | \\"UserSessionExpired\\"
+    | \\"UserIsBinded\\"; // 代码
+  data?: string; // 数据
+  message?: string; // 消息
+}
+"
+`;
+
+exports[`test ts language 4`] = `
+"// @ts-nocheck
+/* eslint-disable */
 import axios from \\"axios\\";
 
-export const UpdateMapper = (params, pathParams) =>
-  axios.request({
+export const UpdateMapper = (
+  params: { [key: string]: never },
+  pathParams: {
+    \\"mapper.id\\": string;
+  }
+) =>
+  axios.request<string>({
     url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
     method: \\"put\\",
     params: {},
@@ -675,13 +681,15 @@ export const UpdateMapper = (params, pathParams) =>
 "
 `;
 
-exports[`test js language 4`] = `
-"/* eslint-disable */
+exports[`test ts language 5`] = `
+"// @ts-nocheck
+/* eslint-disable */
+import { JsonResult_Guid } from \\"./interface\\";
 import axios from \\"axios\\";
 
 // 新增或编辑标准票, 需走审批流程
-export const AddOrUpdateTicketTypical = (params, pathParams) =>
-  axios.request({
+export const AddOrUpdateTicketTypical = (params: { [key: string]: never }) =>
+  axios.request<JsonResult_Guid>({
     url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
     method: \\"post\\",
     params: {},

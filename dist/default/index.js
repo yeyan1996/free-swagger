@@ -9,8 +9,8 @@ const path_1 = __importDefault(require("path"));
 const DEFAULT = {
     root: path_1.default.resolve(process.cwd(), "src/api"),
     customImportCode: `import axios from "axios";`,
-    lang: "ts",
-    template: template_1.tsTemplate
+    lang: "js",
+    template: template_1.jsTemplate
 };
 exports.mergeDefaultConfig = async (config) => {
     let mergedConfig = {};
@@ -26,7 +26,7 @@ exports.mergeDefaultConfig = async (config) => {
         template = mergedConfig.template;
     }
     else if (!mergedConfig.lang) {
-        template = template_1.tsTemplate;
+        template = template_1.jsTemplate;
     }
     else {
         template = mergedConfig.lang === "ts" ? template_1.tsTemplate : template_1.jsTemplate;

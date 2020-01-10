@@ -7,8 +7,8 @@ import path from "path";
 const DEFAULT: Omit<Config, "source"> = {
   root: path.resolve(process.cwd(), "src/api"),
   customImportCode: `import axios from "axios";`,
-  lang: "ts",
-  template: tsTemplate
+  lang: "js",
+  template: jsTemplate
 };
 
 export const mergeDefaultConfig = async (
@@ -27,7 +27,7 @@ export const mergeDefaultConfig = async (
   if (mergedConfig.template) {
     template = mergedConfig.template;
   } else if (!mergedConfig.lang) {
-    template = tsTemplate;
+    template = jsTemplate;
   } else {
     template = mergedConfig.lang === "ts" ? tsTemplate : jsTemplate;
   }

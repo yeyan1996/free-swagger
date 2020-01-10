@@ -1,16 +1,9 @@
-// @ts-nocheck
 /* eslint-disable */
-import { User } from "./interface";
 import axios from "axios";
 
 // Get user by user name
-export const getUserByName = (
-  params: { [key: string]: never },
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<User>({
+export const getUserByName = (params, pathParams) =>
+  axios.request({
     url: `/user/${arguments[1].username}`,
     method: "get",
     params: params,
@@ -19,13 +12,8 @@ export const getUserByName = (
   });
 
 // Updated user
-export const updateUser = (
-  params: User,
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<any>({
+export const updateUser = (params, pathParams) =>
+  axios.request({
     url: `/user/${arguments[1].username}`,
     method: "put",
     params: {},
@@ -34,13 +22,8 @@ export const updateUser = (
   });
 
 // Delete user
-export const deleteUser = (
-  params: { [key: string]: never },
-  pathParams: {
-    username: string;
-  }
-) =>
-  axios.request<any>({
+export const deleteUser = (params, pathParams) =>
+  axios.request({
     url: `/user/${arguments[1].username}`,
     method: "delete",
     params: {},
@@ -49,8 +32,8 @@ export const deleteUser = (
   });
 
 // Logs user into the system
-export const loginUser = (params: { username: string; password: string }) =>
-  axios.request<string>({
+export const loginUser = params =>
+  axios.request({
     url: `/user/login`,
     method: "get",
     params: params,
@@ -59,8 +42,8 @@ export const loginUser = (params: { username: string; password: string }) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params: { [key: string]: never }) =>
-  axios.request<any>({
+export const logoutUser = params =>
+  axios.request({
     url: `/user/logout`,
     method: "get",
     params: params,
@@ -69,8 +52,8 @@ export const logoutUser = (params: { [key: string]: never }) =>
   });
 
 // Create user
-export const createUser = (params: User) =>
-  axios.request<any>({
+export const createUser = params =>
+  axios.request({
     url: `/user`,
     method: "post",
     params: {},
@@ -79,8 +62,8 @@ export const createUser = (params: User) =>
   });
 
 // Creates list of users with given input array
-export const createUsersWithArrayInput = (params: User[]) =>
-  axios.request<any>({
+export const createUsersWithArrayInput = params =>
+  axios.request({
     url: `/user/createWithArray`,
     method: "post",
     params: {},
@@ -89,8 +72,8 @@ export const createUsersWithArrayInput = (params: User[]) =>
   });
 
 // Creates list of users with given input array
-export const createUsersWithListInput = (params: User[]) =>
-  axios.request<any>({
+export const createUsersWithListInput = params =>
+  axios.request({
     url: `/user/createWithList`,
     method: "post",
     params: {},

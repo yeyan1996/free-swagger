@@ -1,11 +1,9 @@
-// @ts-nocheck
 /* eslint-disable */
-import { Order } from "./interface";
 import axios from "axios";
 
 // Returns pet inventories by status
-export const getInventory = (params: { [key: string]: never }) =>
-  axios.request<object>({
+export const getInventory = params =>
+  axios.request({
     url: `/store/inventory`,
     method: "get",
     params: params,
@@ -14,13 +12,8 @@ export const getInventory = (params: { [key: string]: never }) =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (
-  params: { [key: string]: never },
-  pathParams: {
-    orderId: number;
-  }
-) =>
-  axios.request<Order>({
+export const getOrderById = (params, pathParams) =>
+  axios.request({
     url: `/store/order/${arguments[1].orderId}`,
     method: "get",
     params: params,
@@ -29,13 +22,8 @@ export const getOrderById = (
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (
-  params: { [key: string]: never },
-  pathParams: {
-    orderId: number;
-  }
-) =>
-  axios.request<any>({
+export const deleteOrder = (params, pathParams) =>
+  axios.request({
     url: `/store/order/${arguments[1].orderId}`,
     method: "delete",
     params: {},
@@ -44,8 +32,8 @@ export const deleteOrder = (
   });
 
 // Place an order for a pet
-export const placeOrder = (params: Order) =>
-  axios.request<Order>({
+export const placeOrder = params =>
+  axios.request({
     url: `/store/order`,
     method: "post",
     params: {},

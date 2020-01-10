@@ -13,7 +13,7 @@ const wait = time =>
 describe("test", () => {
   test("base option", async done => {
     const { info } = await freeSwagger({
-      source: require("./swaggerPetstore"),
+      source: require("./json/swaggerPetstore"),
       root: path.resolve(__dirname, "api"),
       chooseAll: true
     });
@@ -22,10 +22,9 @@ describe("test", () => {
       path.resolve(__dirname, "api", pascalCase(info.title))
     );
     expect(filesPath).toEqual([
-      "interface.ts",
-      "pet.ts",
-      "store.ts",
-      "user.ts"
+      "pet.js",
+      "store.js",
+      "user.js"
     ]);
     await wait(1000);
     filesPath.forEach(filename => {
@@ -38,10 +37,10 @@ describe("test", () => {
     done();
   });
 
-  test("js language", async done => {
+  test("ts language", async done => {
     const { info } = await freeSwagger({
-      source: require("./uberApi"),
-      lang: "js",
+      source: require("./json/uberApi"),
+      lang: "ts",
       root: path.resolve(__dirname, "api"),
       chooseAll: true
     });
@@ -50,10 +49,11 @@ describe("test", () => {
       path.resolve(__dirname, "api", pascalCase(info.title))
     );
     expect(filesPath).toEqual([
-      "auditLog.js",
-      "device.js",
-      "mappers.js",
-      "ymTicketTypical.js"
+      "auditLog.ts",
+      "device.ts",
+      "interface.ts",
+      "mappers.ts",
+      "ymTicketTypical.ts"
     ]);
     await wait(1000);
     filesPath.forEach(filename => {
@@ -66,10 +66,11 @@ describe("test", () => {
     done();
   });
 
-  test("custom template", async done => {
+  test("custom ts template", async done => {
     const { info } = await freeSwagger({
-      source: require("./homelotApi"),
+      source: require("./json/homelotApi"),
       root: path.resolve(__dirname, "api"),
+      lang: "ts",
       template: ({
         url,
         summary,

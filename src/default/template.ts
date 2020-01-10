@@ -5,11 +5,14 @@ export const jsTemplate = ({
   method,
   name,
   responseType,
-  deprecated
+  deprecated,
+  IPathParams
 }: TemplateConfig): string => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
-  export const ${name} = (params,pathParams) => axios.request({
+  export const ${name} = (params,${
+  IPathParams ? `pathParams` : ""
+}) => axios.request({
      url: \`${url}\`, 
      method: "${method}",
      params:${method === "get" ? "params" : "{}"},
