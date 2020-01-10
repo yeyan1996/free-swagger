@@ -1,21 +1,20 @@
 #!/usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
+import commander from "commander";
 import freeSwagger, { compile } from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
 
-const arg = process.argv[2];
-
-(async (): Promise<void> => {
-  console.log(11111111, arg);
-  if (!arg) {
-    console.log(2);
-    const answer: { source: string } = await inquirer.prompt([source]);
-    await freeSwagger(answer.source);
-  }
-  if (arg === "-c" || arg == "--config") {
-    console.log(3);
+commander
+  .option("-c, --config")
+  .action(async command => {
+    console.log(command);
+    if (!command.config) {
+      const answer: { source: string } = await inquirer.prompt([source]);
+      await freeSwagger(answer.source);
+      return;
+    }
     const { data: defaultAnswer } = rc;
     // 获取用户回答
     const answer: Omit<
@@ -83,7 +82,5 @@ const arg = process.argv[2];
       customImportCode: answer.customImportCode,
       template: answer.template
     });
-  }
-  console.log(4);
-})();
-console.log(5);
+  })
+  .parse(process.argv);
