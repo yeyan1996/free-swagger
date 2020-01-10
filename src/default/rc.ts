@@ -32,9 +32,9 @@ class Rc {
     const homedir = os.homedir();
     this.path = path.resolve(homedir, ".free-swaggerrc");
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
-    this.data = { ...this.getDefault(), ...JSON.parse(data) };
+    this.data = { ...this.getDefaultAnswer(), ...JSON.parse(data) };
   }
-  getDefault(): Answer {
+  getDefaultAnswer(): Answer {
     return {
       source: undefined,
       root: `${path.resolve(process.cwd(), "src/api")}`,
@@ -84,7 +84,7 @@ class Rc {
     return this.data.previousSource !== this.data.source;
   }
   reset(): void {
-    this.data = this.getDefault();
+    this.data = this.getDefaultAnswer();
     this.save();
   }
 }

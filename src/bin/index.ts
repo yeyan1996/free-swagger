@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const pkg = require("../../package.json");
 import inquirer from "inquirer";
 import chalk from "chalk";
 import commander from "commander";
@@ -7,26 +9,18 @@ import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
 
 commander
-  .option("-c, --config")
-  .option("-r --reset")
-  .option("-s --show")
-  .action(async command => {
-    if (command.show) {
-      console.log(rc.data);
-      return;
-    }
-    if (command.reset) {
-      rc.reset();
-      console.log(chalk.green("重置配置项成功"));
-      return;
-    }
-    if (!command.config) {
-      const answer: { source: string } = await inquirer.prompt([source]);
-      rc.merge(answer);
-      rc.save();
-      await compile(rc.getConfig());
-      return;
-    }
+  .version(pkg.version)
+  .usage("")
+  .option("-r --reset", "rest config", () => {
+    rc.reset();
+    console.log(chalk.green("重置配置项成功"));
+    return;
+  })
+  .option("-s --show", "show config", () => {
+    console.log(rc.data);
+    return;
+  })
+  .option("-c, --config", "launch free-swagger under config mode", async () => {
     const { data: defaultAnswer } = rc;
     // 获取用户回答
     const answer: Omit<
@@ -86,5 +80,14 @@ commander
     rc.merge(answer);
     rc.save();
     await compile(rc.getConfig());
+  })
+  // 默认启动
+  .action(async command => {
+    if (command.rawArgs[2]) return;
+    const answer: { source: string } = await inquirer.prompt([source]);
+    rc.merge(answer);
+    rc.save();
+    await compile(rc.getConfig());
+    return;
   })
   .parse(process.argv);

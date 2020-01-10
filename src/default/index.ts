@@ -10,9 +10,9 @@ export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`;
 const getDefaultConfig = (config: Config): Omit<Config, "source"> => ({
   root: path.resolve(process.cwd(), "src/api"),
   customImportCode:
-    config.lang === "js"
-      ? DEFAULT_CUSTOM_IMPORT_CODE_JS
-      : DEFAULT_CUSTOM_IMPORT_CODE_TS,
+    config.lang === "ts"
+      ? DEFAULT_CUSTOM_IMPORT_CODE_TS
+      : DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: "js",
   template: jsTemplate
 });

@@ -2,7 +2,7 @@
 
 exports[`test.ts base option 1`] = `
 "/* eslint-disable */
-import axios, { AxiosResponse } from \\"axios\\";
+import axios from \\"axios\\";
 
 // Find pet by ID
 export const getPetById = (params, pathParams) =>
@@ -84,7 +84,7 @@ export const findPetsByTags = params =>
 
 exports[`test.ts base option 2`] = `
 "/* eslint-disable */
-import axios, { AxiosResponse } from \\"axios\\";
+import axios from \\"axios\\";
 
 // Returns pet inventories by status
 export const getInventory = params =>
@@ -124,7 +124,7 @@ export const placeOrder = params =>
 
 exports[`test.ts base option 3`] = `
 "/* eslint-disable */
-import axios, { AxiosResponse } from \\"axios\\";
+import axios from \\"axios\\";
 
 // Get user by user name
 export const getUserByName = (params, pathParams) =>

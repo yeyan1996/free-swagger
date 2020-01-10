@@ -14,9 +14,9 @@ class Rc {
         const homedir = os_1.default.homedir();
         this.path = path_1.default.resolve(homedir, ".free-swaggerrc");
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
-        this.data = { ...this.getDefault(), ...JSON.parse(data) };
+        this.data = { ...this.getDefaultAnswer(), ...JSON.parse(data) };
     }
-    getDefault() {
+    getDefaultAnswer() {
         return {
             source: undefined,
             root: `${path_1.default.resolve(process.cwd(), "src/api")}`,
@@ -61,7 +61,7 @@ class Rc {
         return this.data.previousSource !== this.data.source;
     }
     reset() {
-        this.data = this.getDefault();
+        this.data = this.getDefaultAnswer();
         this.save();
     }
 }

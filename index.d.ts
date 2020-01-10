@@ -7,6 +7,7 @@ declare function freeSwagger(
         root?: string;
         customImportCode?: string;
         lang?: "js" | "ts";
+        chooseAll: boolean;
         template?: (config: {
           url: string;
           summary: string;
@@ -18,7 +19,6 @@ declare function freeSwagger(
           IParams: string;
           IPathParams: string;
         }) => string;
-        chooseAll: boolean;
       }
     | string
 ): Promise<OpenAPIV2.Document>;

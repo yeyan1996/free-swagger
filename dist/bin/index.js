@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const pkg = require("../../package.json");
 const inquirer_1 = __importDefault(require("inquirer"));
 const chalk_1 = __importDefault(require("chalk"));
 const commander_1 = __importDefault(require("commander"));
@@ -11,26 +13,18 @@ const main_1 = require("../main");
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 commander_1.default
-    .option("-c, --config")
-    .option("-r --reset")
-    .option("-s --show")
-    .action(async (command) => {
-    if (command.show) {
-        console.log(rc_1.rc.data);
-        return;
-    }
-    if (command.reset) {
-        rc_1.rc.reset();
-        console.log(chalk_1.default.green("重置配置项成功"));
-        return;
-    }
-    if (!command.config) {
-        const answer = await inquirer_1.default.prompt([questions_1.source]);
-        rc_1.rc.merge(answer);
-        rc_1.rc.save();
-        await main_1.compile(rc_1.rc.getConfig());
-        return;
-    }
+    .version(pkg.version)
+    .usage("")
+    .option("-r --reset", "rest config", () => {
+    rc_1.rc.reset();
+    console.log(chalk_1.default.green("重置配置项成功"));
+    return;
+})
+    .option("-s --show", "show config", () => {
+    console.log(rc_1.rc.data);
+    return;
+})
+    .option("-c, --config", "launch free-swagger under config mode", async () => {
     const { data: defaultAnswer } = rc_1.rc;
     // 获取用户回答
     const answer = await inquirer_1.default.prompt([
@@ -82,5 +76,15 @@ commander_1.default
     rc_1.rc.merge(answer);
     rc_1.rc.save();
     await main_1.compile(rc_1.rc.getConfig());
+})
+    // 默认启动
+    .action(async (command) => {
+    if (command.rawArgs[2])
+        return;
+    const answer = await inquirer_1.default.prompt([questions_1.source]);
+    rc_1.rc.merge(answer);
+    rc_1.rc.save();
+    await main_1.compile(rc_1.rc.getConfig());
+    return;
 })
     .parse(process.argv);

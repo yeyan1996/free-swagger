@@ -29,12 +29,11 @@ const parse = async (config) => {
 const gen = async (config, dirPath, paths, interfaces) => {
     // 生成 interface
     if (config.lang === "ts") {
+        let code = "// @ts-nocheck \n/* eslint-disable */\n";
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
-        await fs_extra_1.default.writeFile(interfacePath, `// @ts-nocheck \n/* eslint-disable */\n`);
         await utils_1.ensureExist(interfacePath);
-        for (const code of interface_2.genInterfaces(interfaces)) {
-            await fs_extra_1.default.appendFile(interfacePath, code);
-        }
+        code += interface_2.genInterfaces(interfaces);
+        await fs_extra_1.default.writeFile(interfacePath, code);
     }
     // 生成 api
     Object.entries(paths).forEach(async ([name, apiCollection]) => {

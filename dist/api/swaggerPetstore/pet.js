@@ -1,78 +1,67 @@
-/* eslint-disable */
-import axios from "axios";
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const axios_1 = __importDefault(require("axios"));
 // Find pet by ID
-export const getPetById = (params, pathParams) =>
-  axios.request({
+exports.getPetById = (params, pathParams) => axios_1.default.request({
     url: `/pet/${arguments[1].petId}`,
     method: "get",
     responseType: "json"
-  });
-
+});
 // Updates a pet in the store with form data
-export const updatePetWithForm = (params, pathParams) =>
-  axios.request({
+exports.updatePetWithForm = (params, pathParams) => axios_1.default.request({
     url: `/pet/${arguments[1].petId}`,
     method: "post",
     responseType: "json",
     params: {},
     data: params
-  });
-
+});
 // Deletes a pet
-export const deletePet = (params, pathParams) =>
-  axios.request({
+exports.deletePet = (params, pathParams) => axios_1.default.request({
     url: `/pet/${arguments[1].petId}`,
     method: "delete",
     responseType: "json"
-  });
-
+});
 // uploads an image
-export const uploadFile = (params, pathParams) =>
-  axios.request({
+exports.uploadFile = (params, pathParams) => axios_1.default.request({
     url: `/pet/${arguments[1].petId}/uploadImage`,
     method: "post",
     responseType: "json",
     params: {},
     data: params
-  });
-
+});
 // Update an existing pet
-export const updatePet = params =>
-  axios.request({
+exports.updatePet = (params) => axios_1.default.request({
     url: `/pet`,
     method: "put",
     responseType: "json",
     params: {},
     data: params
-  });
-
+});
 // Add a new pet to the store
-export const addPet = params =>
-  axios.request({
+exports.addPet = (params) => axios_1.default.request({
     url: `/pet`,
     method: "post",
     responseType: "json",
     params: {},
     data: params
-  });
-
+});
 // Finds Pets by status
-export const findPetsByStatus = params =>
-  axios.request({
+exports.findPetsByStatus = (params) => axios_1.default.request({
     url: `/pet/findByStatus`,
     method: "get",
     responseType: "json",
     params: params,
     data: {}
-  });
+});
 /**deprecated*/
 // Finds Pets by tags
-export const findPetsByTags = params =>
-  axios.request({
+exports.findPetsByTags = (params) => axios_1.default.request({
     url: `/pet/findByTags`,
     method: "get",
     responseType: "json",
     params: params,
     data: {}
-  });
+});

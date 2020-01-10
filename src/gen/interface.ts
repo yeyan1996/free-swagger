@@ -1,9 +1,10 @@
 import { formatCode } from "../utils";
 import { InterfaceCollection } from "../parse/interface";
 
-const genInterfaces = (interfaces: InterfaceCollection): string[] =>
-  Object.entries(interfaces).map(([name, props]) =>
-    formatCode(` 
+const genInterfaces = (interfaces: InterfaceCollection): string =>
+  Object.entries(interfaces)
+    .map(([name, props]) =>
+      formatCode(` 
     export interface ${name} {
         ${Object.entries(props).map(
           ([propName, prop]) =>
@@ -15,6 +16,7 @@ const genInterfaces = (interfaces: InterfaceCollection): string[] =>
         )}
       }
       `)
-  );
+    )
+    .reduce((acc: string, cur: string) => acc + cur);
 
 export { genInterfaces };

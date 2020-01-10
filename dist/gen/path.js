@@ -36,7 +36,7 @@ const genImportInterfaceCode = (apiCollection) => {
         return "";
     return `import {${importsInterface.join(",")}} from "${RELATIVE_PATH}";`;
 };
-// 生成单个 ts 文件中的所有 path
+// 生成单个 ts 文件中的所有 api
 const genPaths = (apiCollection, config) => {
     let code = "";
     code += genDisabled(config);

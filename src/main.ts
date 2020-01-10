@@ -42,15 +42,11 @@ const gen = async (
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === "ts") {
+    let code = "// @ts-nocheck \n/* eslint-disable */\n";
     const interfacePath = path.resolve(dirPath, "interface.ts");
-    await fse.writeFile(
-      interfacePath,
-      `// @ts-nocheck \n/* eslint-disable */\n`
-    );
     await ensureExist(interfacePath);
-    for (const code of genInterfaces(interfaces)) {
-      await fse.appendFile(interfacePath, code);
-    }
+    code += genInterfaces(interfaces);
+    await fse.writeFile(interfacePath, code);
   }
   // 生成 api
   Object.entries(paths).forEach(async ([name, apiCollection]) => {
