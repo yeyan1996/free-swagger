@@ -3,18 +3,11 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const inquirer_1 = __importDefault(require("inquirer"));
 const chalk_1 = __importDefault(require("chalk"));
 const commander_1 = __importDefault(require("commander"));
-const main_1 = __importStar(require("../main"));
+const main_1 = require("../main");
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 commander_1.default
@@ -22,7 +15,9 @@ commander_1.default
     .action(async (command) => {
     if (!command.config) {
         const answer = await inquirer_1.default.prompt([questions_1.source]);
-        await main_1.default(answer.source);
+        rc_1.rc.merge(answer);
+        rc_1.rc.save();
+        await main_1.compile(rc_1.rc.getConfig());
         return;
     }
     const { data: defaultAnswer } = rc_1.rc;
@@ -73,14 +68,6 @@ commander_1.default
     ]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    // 合并默认模版
-    answer.template = eval(answer.lang === "ts" ? defaultAnswer.tsTemplate : defaultAnswer.jsTemplate);
-    await main_1.compile({
-        source: answer.source,
-        root: answer.root,
-        lang: answer.lang,
-        customImportCode: answer.customImportCode,
-        template: answer.template
-    });
+    await main_1.compile(rc_1.rc.getConfig());
 })
     .parse(process.argv);

@@ -4,7 +4,7 @@ import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState
 import http from "axios";
 
 export const temperatureSummary = (params: { [key: string]: never }) =>
-  axios.request<TemperatureSummary>({
+  http.request<TemperatureSummary>({
     url: `/temperature`,
     method: "get",
     params: params,
@@ -18,7 +18,7 @@ export const getForecast = (
     days: number;
   }
 ) =>
-  axios.request<ForecastResponse>({
+  http.request<ForecastResponse>({
     url: `/temperature/forecast/${arguments[1].days}`,
     method: "get",
     params: params,
@@ -32,7 +32,7 @@ export const getZoneTemperature = (
     zoneId: string;
   }
 ) =>
-  axios.request<TemperatueZoneStatus>({
+  http.request<TemperatueZoneStatus>({
     url: `/temperature/${arguments[1].zoneId}`,
     method: "get",
     params: params,
@@ -46,7 +46,7 @@ export const getHeaterState = (
     zoneId: string;
   }
 ) =>
-  axios.request<HeaterState>({
+  http.request<HeaterState>({
     url: `/temperature/${arguments[1].zoneId}/heater`,
     method: "get",
     params: params,
@@ -61,7 +61,7 @@ export const setHeaterState = (
     state: string;
   }
 ) =>
-  axios.request<ApiResponse>({
+  http.request<ApiResponse>({
     url: `/temperature/${arguments[1].zoneId}/heater/${arguments[1].state}`,
     method: "post",
     params: {},

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { TemplateConfig } from "../utils";
 export const jsTemplate = ({
   url,
@@ -6,8 +8,9 @@ export const jsTemplate = ({
   name,
   responseType,
   deprecated,
+  IParams,
   IPathParams
-}: TemplateConfig): string => `
+}: TemplateConfig) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (params,${
@@ -15,9 +18,9 @@ export const jsTemplate = ({
 }) => axios.request({
      url: \`${url}\`, 
      method: "${method}",
-     params:${method === "get" ? "params" : "{}"},
-     data:  ${method === "get" ? "{}" : "params"},
      responseType: "${responseType}", 
+     ${IParams ? `params:${method === "get" ? "params," : "{},"}` : ""}
+     ${IParams ? `data:  ${method === "get" ? "{}," : "params,"}` : ""}
  })`;
 
 export const tsTemplate = ({
@@ -30,17 +33,17 @@ export const tsTemplate = ({
   IResponse,
   IParams,
   IPathParams
-}: TemplateConfig): string => `
+}: TemplateConfig) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
-  export const ${name} = (params: ${
-  IParams ? `${IParams}` : "{[key:string]: never}"
-},${
+  export const ${name} = (${
+  IParams ? `params: ${IParams}` : IPathParams ? "params:{[key:string]: never}," : ""
+}${
   IPathParams ? `pathParams: ${IPathParams}` : ""
 }) => axios.request<${IResponse || "any"}>({
      url: \`${url}\`, 
      method: "${method}",
-     params:${method === "get" ? "params" : "{}"},
-     data:  ${method === "get" ? "{}" : "params"},
      responseType: "${responseType}", 
+     ${IParams ? `params:${method === "get" ? "params," : "{},"}` : ""}
+     ${IParams ? `data: ${method === "get" ? "{}," : "params,"}` : ""}
  })`;

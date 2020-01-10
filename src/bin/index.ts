@@ -2,7 +2,7 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import commander from "commander";
-import freeSwagger, { compile } from "../main";
+import { compile } from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
 
@@ -11,7 +11,9 @@ commander
   .action(async command => {
     if (!command.config) {
       const answer: { source: string } = await inquirer.prompt([source]);
-      await freeSwagger(answer.source);
+      rc.merge(answer);
+      rc.save();
+      await compile(rc.getConfig());
       return;
     }
     const { data: defaultAnswer } = rc;
@@ -69,17 +71,6 @@ commander
     ]);
     rc.merge(answer);
     rc.save();
-
-    // 合并默认模版
-    answer.template = eval(
-      answer.lang === "ts" ? defaultAnswer.tsTemplate : defaultAnswer.jsTemplate
-    );
-    await compile({
-      source: answer.source!,
-      root: answer.root,
-      lang: answer.lang,
-      customImportCode: answer.customImportCode,
-      template: answer.template
-    });
+    await compile(rc.getConfig());
   })
   .parse(process.argv);

@@ -11,7 +11,5 @@ export const UpdateMapper = (
   axios.request<string>({
     url: `/crawler/v1/mapper/${arguments[1]["mapper.id"]}`,
     method: "put",
-    params: {},
-    data: params,
     responseType: "json"
   });

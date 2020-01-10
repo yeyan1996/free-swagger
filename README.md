@@ -14,12 +14,11 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 > npx free-swagger free-swagger
 
-### npm 
+### npm
 
 > npm i free-swagger -g
 
 > free-swagger
-
 
 输入 swagger 路径即可，路径可以是 url，也可以是本地的 json 路径
 
@@ -33,7 +32,6 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 输入 `--config/-c` 可以进行详细配置
 
-命令行
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
@@ -67,7 +65,7 @@ const json = require("./swagger.json");
 
 freeSwagger({
   source: json,
-  customImportCode: "import axios from './request'", // 假设请求库在 ./request 
+  customImportCode: "import axios from './request'", // 假设请求库在 ./request
   lang: "js"
 }).then();
 ```
@@ -82,18 +80,18 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 
 # API
 
-| 参数             | 说明                         | 类型                       | 可选值       | 默认值                      |
-| ---------------- | ---------------------------- | -------------------------- | ------------ | --------------------------- |
-| source           | swagger 路径（url/文件路径/json文件） | string/json                | -            | -                           |
-| root             | 生成 api 的根路径            | string                     | -            | 当前路径 + src/api          |
-| customImportCode | 自定义头部代码               | string                     | -            | "import axios from 'axios'" |
-| lang             | 生成 api 语言                | string                     | "js" / "ts" | "ts"                        |
-| template         | 生成 api 的模版              | Function(Config) | -            | 见源文件 src/default/template.ts |
-| chooseAll | 选择全部 api | boolean | - | false |
+| 参数             | 说明                                   | 类型             | 可选值      | 默认值                           |
+| ---------------- | -------------------------------------- | ---------------- | ----------- | -------------------------------- |
+| source           | swagger 路径（url/文件路径/json 文件） | string/json      | -           | -                                |
+| root             | 生成 api 的根路径                      | string           | -           | 当前路径 + src/api               |
+| customImportCode | 自定义头部代码                         | string           | -           | "import axios from 'axios'"      |
+| lang             | 生成 api 语言                          | string           | "js" / "ts" | "ts"                             |
+| template         | 生成 api 的模版                        | Function(Config) | -           | 见源文件 src/default/template.ts |
+| chooseAll        | 选择全部 api                           | boolean          | -           | false                            |
 
 **Config**
 
-template 模版是一个函数，返回字符串，接受以下几个参数，用户可以自定义生成的 api 模版 
+template 模版是一个函数，返回字符串，接受以下几个参数，用户可以自定义生成的 api 模版
 
 | 参数         | 说明                 | 类型    | 可选值 | 默认值 |
 | ------------ | -------------------- | ------- | ------ | ------ |
@@ -133,5 +131,5 @@ template 模版是一个函数，返回字符串，接受以下几个参数，�
      params:${method === "get" ? "params" : "{}"},
      data:  ${method === "get" ? "{}" : "params"},
      responseType: "${responseType}", 
- })`
+ })`;
 ```

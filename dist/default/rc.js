@@ -28,6 +28,17 @@ class Rc {
             apiChoices: []
         };
     }
+    getConfig() {
+        // 合并默认模版
+        const template = eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate);
+        return {
+            source: this.data.source || "",
+            root: this.data.root,
+            lang: this.data.lang,
+            customImportCode: this.data.customImportCode,
+            template
+        };
+    }
     merge(answer) {
         this.data = { ...this.data, ...answer };
     }

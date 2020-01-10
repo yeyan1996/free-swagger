@@ -4,7 +4,7 @@ import { DeviceRegistrationInfo } from "./interface";
 import http from "axios";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
-  axios.request<string[]>({
+  http.request<string[]>({
     url: `/devices`,
     method: "get",
     params: params,
@@ -13,7 +13,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
   });
 
 export const register = (params: DeviceRegistrationInfo) =>
-  axios.request<any>({
+  http.request<any>({
     url: `/devices`,
     method: "post",
     params: {},

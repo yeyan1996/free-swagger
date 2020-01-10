@@ -3,7 +3,7 @@
 import http from "axios";
 
 export const getZones = (params: { [key: string]: never }) =>
-  axios.request<string[]>({
+  http.request<string[]>({
     url: `/zones`,
     method: "get",
     params: params,
@@ -17,7 +17,7 @@ export const quietZone = (
     zoneId: string;
   }
 ) =>
-  axios.request<any>({
+  http.request<any>({
     url: `/zones/${arguments[1].zoneId}/quiet`,
     method: "get",
     params: params,

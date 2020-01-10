@@ -10,7 +10,7 @@ const wait = time =>
     }, time)
   );
 
-describe("test", () => {
+describe("test.ts", () => {
   test("base option", async done => {
     const { info } = await freeSwagger({
       source: require("./json/swaggerPetstore"),
@@ -88,7 +88,7 @@ describe("test", () => {
         IParams ? `${IParams}` : "{[key:string]: never}"
       },${
         IPathParams ? `pathParams: ${IPathParams}` : ""
-      }) => axios.request<${IResponse || "any"}>({
+      }) => http.request<${IResponse || "any"}>({
      url: \`${url}\`, 
      method: "${method}",
      params:${method === "get" ? "params" : "{}"},
