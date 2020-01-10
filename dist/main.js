@@ -70,11 +70,13 @@ exports.compile = async (config) => {
         throw new Error("free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
+    // parse
     const { dirPath, paths, interfaces } = await parse(config);
     spinner.succeed("api 文件解析完成");
     const choosePaths = config.chooseAll
         ? paths
         : lodash_1.pick(paths, ...(await inquirer_1.chooseApi(paths)));
+    // gen
     await gen(config, dirPath, choosePaths, interfaces);
     spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(dirPath)}`);
     return config.source;

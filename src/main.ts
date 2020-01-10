@@ -96,12 +96,14 @@ export const compile = async (config: Config): Promise<OpenAPIV2.Document> => {
   }
   spinner.start("正在生成 api 文件...");
 
+  // parse
   const { dirPath, paths, interfaces } = await parse(config);
   spinner.succeed("api 文件解析完成");
 
   const choosePaths = config.chooseAll
     ? paths
     : pick(paths, ...(await chooseApi(paths)));
+  // gen
   await gen(config, dirPath, choosePaths, interfaces);
   spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk.green(dirPath)}`);
   return config.source;

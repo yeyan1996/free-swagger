@@ -20,7 +20,6 @@ const questions_1 = require("./questions");
 commander_1.default
     .option("-c, --config")
     .action(async (command) => {
-    console.log(command);
     if (!command.config) {
         const answer = await inquirer_1.default.prompt([questions_1.source]);
         await main_1.default(answer.source);

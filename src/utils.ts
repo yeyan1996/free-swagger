@@ -4,6 +4,7 @@ import camelcase from "camelcase";
 import fse from "fs-extra";
 import path from "path";
 import chalk from "chalk";
+import fs from "fs";
 
 export interface Config<T = string | OpenAPIV2.Document> {
   source: T;
@@ -160,7 +161,7 @@ const formatCode = (code: string, lang?: "ts" | "js"): string =>
 const ensureExist = async (path: string, isDir = false): Promise<void> => {
   if (!fse.existsSync(path)) {
     if (isDir) {
-      await fse.mkdir(path);
+      fse.mkdirSync(path, { recursive: true });
     } else {
       await fse.writeFile(path, "");
     }

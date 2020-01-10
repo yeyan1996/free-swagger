@@ -9,7 +9,6 @@ import { source } from "./questions";
 commander
   .option("-c, --config")
   .action(async command => {
-    console.log(command);
     if (!command.config) {
       const answer: { source: string } = await inquirer.prompt([source]);
       await freeSwagger(answer.source);

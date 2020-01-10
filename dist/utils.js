@@ -115,7 +115,7 @@ exports.formatCode = formatCode;
 const ensureExist = async (path, isDir = false) => {
     if (!fs_extra_1.default.existsSync(path)) {
         if (isDir) {
-            await fs_extra_1.default.mkdir(path);
+            fs_extra_1.default.mkdirSync(path, { recursive: true });
         }
         else {
             await fs_extra_1.default.writeFile(path, "");
