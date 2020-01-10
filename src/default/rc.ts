@@ -4,6 +4,7 @@ import fse from "fs-extra";
 import prettier from "prettier";
 import { jsTemplate, tsTemplate } from "./template";
 import { Config, Template } from "../utils";
+import { DEFAULT_CUSTOM_IMPORT_CODE_JS } from "./index";
 
 export interface Answer {
   previousSource?: string;
@@ -34,7 +35,7 @@ class Rc {
       root: `${path.resolve(process.cwd(), "src/api")}`,
       lang: "js",
       shouldEditTemplate: "n",
-      customImportCode: `import axios from "axios";`,
+      customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       template: tsTemplate,
       tsTemplate: `${tsTemplate}`,
       jsTemplate: `${jsTemplate}`,
@@ -75,9 +76,9 @@ class Rc {
   refreshCache(): boolean {
     return this.data.previousSource !== this.data.source;
   }
-  reset(){
-    this.data = this.getDefault()
-    this.save()
+  reset(): void {
+    this.data = this.getDefault();
+    this.save();
   }
 }
 

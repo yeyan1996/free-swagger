@@ -12,13 +12,19 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 ### npx
 
-> npx free-swagger free-swagger
+```
+npx free-swagger free-swagger
+```
 
 ### npm
 
-> npm i free-swagger -g
+```
+npm i free-swagger -g
+```
 
-> free-swagger
+```
+free-swagger
+```
 
 输入 swagger 路径即可，路径可以是 url，也可以是本地的 json 路径
 
@@ -26,7 +32,7 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 ## 其他命令
 
-1. 输入 `--config/-c` 可以进行详细配置
+* `--config/-c` 可以进行详细配置
 
 > npx free-swagger free-swagger --config
 
@@ -34,7 +40,7 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
 
-2. 输入 `--reset/-r` 可以重置为默认配置
+* `--reset/-r` 可以重置为默认配置
 
 > npx free-swagger free-swagger --reset
 
@@ -124,7 +130,7 @@ tsTemplate = ({
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${
   IParams
-    ? `params: ${IParams}`
+    ? `params: ${IParams},`
     : IPathParams
     ? "params:{[key:string]: never},"
     : ""

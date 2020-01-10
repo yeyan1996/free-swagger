@@ -4,7 +4,6 @@ import camelcase from "camelcase";
 import fse from "fs-extra";
 import path from "path";
 import chalk from "chalk";
-import fs from "fs";
 
 export interface Config<T = string | OpenAPIV2.Document> {
   source: T;

@@ -21,11 +21,13 @@ const genParsedSchema = (paramsInterface) => {
       }`;
     }
 };
+const genDisabled = (config) => config.lang === "ts"
+    ? `// @ts-nocheck \n/* eslint-disable */\n`
+    : "/* eslint-disable */\n";
 const genIParams = ({ pathParamsInterface, queryParamsInterface, bodyParamsInterface, method }) => ({
     IParams: genParsedSchema(method === "get" ? queryParamsInterface : bodyParamsInterface),
     IPathParams: genParsedSchema(pathParamsInterface)
 });
-const genImportRequestLibraryCode = (customImportCode) => customImportCode || `import axios from "axios";`;
 const genImportInterfaceCode = (apiCollection) => {
     const importsInterface = lodash_1.uniq(Object.keys(apiCollection)
         .map(key => apiCollection[key])
@@ -35,15 +37,14 @@ const genImportInterfaceCode = (apiCollection) => {
     return `import {${importsInterface.join(",")}} from "${RELATIVE_PATH}";`;
 };
 // 生成单个 ts 文件中的所有 path
-const genPaths = (apiCollection, { template: templateFn, customImportCode, lang }) => {
-    let code = lang === "ts"
-        ? `// @ts-nocheck \n/* eslint-disable */\n`
-        : "/* eslint-disable */\n";
-    code += lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
-    code += genImportRequestLibraryCode(customImportCode);
+const genPaths = (apiCollection, config) => {
+    let code = "";
+    code += genDisabled(config);
+    code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
+    code += config.customImportCode;
     Object.entries(apiCollection).forEach(([name, api]) => {
         const { IPathParams, IParams } = genIParams(api);
-        code += templateFn({
+        code += config.template({
             name,
             method: api.method,
             url: api.url,
@@ -55,6 +56,6 @@ const genPaths = (apiCollection, { template: templateFn, customImportCode, lang 
             IPathParams
         });
     });
-    return utils_1.formatCode(code, lang);
+    return utils_1.formatCode(code, config.lang);
 };
 exports.genPaths = genPaths;

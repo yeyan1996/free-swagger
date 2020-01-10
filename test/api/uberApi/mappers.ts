@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* eslint-disable */
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export const UpdateMapper = (
   params: { [key: string]: never },
@@ -8,7 +8,7 @@ export const UpdateMapper = (
     "mapper.id": string;
   }
 ) =>
-  axios.request<string>({
+  axios.request<string, AxiosResponse<string>>({
     url: `/crawler/v1/mapper/${arguments[1]["mapper.id"]}`,
     method: "put",
     responseType: "json"

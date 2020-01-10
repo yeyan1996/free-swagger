@@ -8,6 +8,7 @@ const os_1 = __importDefault(require("os"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const prettier_1 = __importDefault(require("prettier"));
 const template_1 = require("./template");
+const index_1 = require("./index");
 class Rc {
     constructor() {
         const homedir = os_1.default.homedir();
@@ -21,7 +22,7 @@ class Rc {
             root: `${path_1.default.resolve(process.cwd(), "src/api")}`,
             lang: "js",
             shouldEditTemplate: "n",
-            customImportCode: `import axios from "axios";`,
+            customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             template: template_1.tsTemplate,
             tsTemplate: `${template_1.tsTemplate}`,
             jsTemplate: `${template_1.jsTemplate}`,

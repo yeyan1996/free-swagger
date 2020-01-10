@@ -2,6 +2,10 @@ import { Config, ParsedSchemaObject, ParsedSchema } from "../utils";
 import { uniq, isEmpty } from "lodash";
 import { formatCode } from "../utils";
 import { Api, ApiCollection } from "../parse/path";
+import {
+  DEFAULT_CUSTOM_IMPORT_CODE_JS,
+  DEFAULT_CUSTOM_IMPORT_CODE_TS
+} from "../default";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
 
@@ -31,6 +35,11 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
   }
 };
 
+const genDisabled = (config: Config): string =>
+  config.lang === "ts"
+    ? `// @ts-nocheck \n/* eslint-disable */\n`
+    : "/* eslint-disable */\n";
+
 const genIParams = ({
   pathParamsInterface,
   queryParamsInterface,
@@ -43,10 +52,6 @@ const genIParams = ({
   IPathParams: genParsedSchema(pathParamsInterface)
 });
 
-const genImportRequestLibraryCode = (
-  customImportCode: Config["customImportCode"]
-): string => customImportCode || `import axios from "axios";`;
-
 const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   const importsInterface = uniq(
     Object.keys(apiCollection)
@@ -57,20 +62,16 @@ const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   return `import {${importsInterface.join(",")}} from "${RELATIVE_PATH}";`;
 };
 // 生成单个 ts 文件中的所有 path
-const genPaths = (
-  apiCollection: ApiCollection,
-  { template: templateFn, customImportCode, lang }: Config
-): string => {
-  let code =
-    lang === "ts"
-      ? `// @ts-nocheck \n/* eslint-disable */\n`
-      : "/* eslint-disable */\n";
-  code += lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
-  code += genImportRequestLibraryCode(customImportCode);
+const genPaths = (apiCollection: ApiCollection, config: Config): string => {
+  let code = "";
+
+  code += genDisabled(config);
+  code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
+  code += config.customImportCode;
 
   Object.entries<Api>(apiCollection).forEach(([name, api]) => {
     const { IPathParams, IParams } = genIParams(api);
-    code += templateFn!({
+    code += config.template!({
       name,
       method: api.method,
       url: api.url,
@@ -82,7 +83,7 @@ const genPaths = (
       IPathParams
     });
   });
-  return formatCode(code, lang);
+  return formatCode(code, config.lang);
 };
 
 export { genPaths };
