@@ -18,11 +18,14 @@ const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 const arg = process.argv[2];
 (async () => {
+    console.log(11111111, arg);
     if (!arg) {
+        console.log(2);
         const answer = await inquirer_1.default.prompt([questions_1.source]);
         await main_1.default(answer.source);
     }
     if (arg === "-c" || arg == "--config") {
+        console.log(3);
         const { data: defaultAnswer } = rc_1.rc;
         // 获取用户回答
         const answer = await inquirer_1.default.prompt([
@@ -81,4 +84,6 @@ const arg = process.argv[2];
             template: answer.template
         });
     }
+    console.log(4);
 })();
+console.log(5);

@@ -8,11 +8,14 @@ import { source } from "./questions";
 const arg = process.argv[2];
 
 (async (): Promise<void> => {
+  console.log(11111111, arg);
   if (!arg) {
+    console.log(2);
     const answer: { source: string } = await inquirer.prompt([source]);
     await freeSwagger(answer.source);
   }
   if (arg === "-c" || arg == "--config") {
+    console.log(3);
     const { data: defaultAnswer } = rc;
     // 获取用户回答
     const answer: Omit<
@@ -81,4 +84,6 @@ const arg = process.argv[2];
       template: answer.template
     });
   }
+  console.log(4);
 })();
+console.log(5);

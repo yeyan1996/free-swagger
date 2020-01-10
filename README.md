@@ -21,12 +21,23 @@ free-swagger 提供了两种方式使用，上手非常简单
 > free-swagger
 
 
-在第一次运行时命令行会问你一些傻瓜式问题，真正需要输入的只有 `swagger 路径`，其他不需要额外配置的话回车即可
+输入 swagger 路径即可，路径可以是 url，也可以是本地的 json 路径
 
+![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
-![image-20200103173040602](https://tva1.sinaimg.cn/large/006tNbRwly1gaji6hphlxj30wk0egah9.jpg)
+## 详细配置
 
-之后 free-swagger 会记住用户的配置项，下次启动只需无脑回车即可～
+### npx
+
+> npx free-swagger free-swagger --config
+
+输入 `--config/-c` 可以进行详细配置
+
+命令行
+
+![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
+
+在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
 
 ## 项目安装
 
