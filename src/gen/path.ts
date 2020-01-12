@@ -31,7 +31,7 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
   }
 };
 
-const genDisabled = (config: Config): string =>
+const genDisabledCode = (config: Config): string =>
   config.lang === "ts"
     ? `// @ts-nocheck \n/* eslint-disable */\n`
     : "/* eslint-disable */\n";
@@ -62,7 +62,7 @@ const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
 const genPaths = (apiCollection: ApiCollection, config: Config): string => {
   let code = "";
 
-  code += genDisabled(config);
+  code += genDisabledCode(config);
   code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
   code += config.customImportCode;
 

@@ -8,6 +8,8 @@
     "free-swagger": "dist/bin/index.js"
   },
   "scripts": {
+    "release": "sh script/release.sh",
+    "build": "rm -rf ./dist && tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts --fix"
   },
@@ -19,7 +21,7 @@
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test && lint-staged && rm -rf ./dist && tsc && git add ."
+      "pre-commit": "npm run test && npm run lint && npm run build && git add ."
     }
   },
   "dependencies": {

@@ -21,7 +21,7 @@ const genParsedSchema = (paramsInterface) => {
       }`;
     }
 };
-const genDisabled = (config) => config.lang === "ts"
+const genDisabledCode = (config) => config.lang === "ts"
     ? `// @ts-nocheck \n/* eslint-disable */\n`
     : "/* eslint-disable */\n";
 const genIParams = ({ pathParamsInterface, queryParamsInterface, bodyParamsInterface, method }) => ({
@@ -39,7 +39,7 @@ const genImportInterfaceCode = (apiCollection) => {
 // 生成单个 ts 文件中的所有 api
 const genPaths = (apiCollection, config) => {
     let code = "";
-    code += genDisabled(config);
+    code += genDisabledCode(config);
     code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
     code += config.customImportCode;
     Object.entries(apiCollection).forEach(([name, api]) => {
