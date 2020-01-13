@@ -14,7 +14,8 @@ const getDefaultConfig = (config) => ({
         ? exports.DEFAULT_CUSTOM_IMPORT_CODE_TS
         : exports.DEFAULT_CUSTOM_IMPORT_CODE_JS,
     lang: "js",
-    template: template_1.jsTemplate
+    template: template_1.jsTemplate,
+    chooseAll: false
 });
 exports.mergeDefaultConfig = async (config) => {
     let mergedConfig = {};

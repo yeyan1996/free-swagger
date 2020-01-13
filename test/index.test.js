@@ -1,7 +1,6 @@
 const path = require("path");
 const fs = require("fs");
 const freeSwagger = require("../src/main").default;
-const { pascalCase } = require("../src/utils");
 
 const wait = time =>
   new Promise(resolve =>
@@ -12,15 +11,13 @@ const wait = time =>
 
 describe("test.ts", () => {
   test("base option", async done => {
-    const { info } = await freeSwagger({
+    const root = path.resolve(__dirname, "api", "swaggerPetstore");
+    await freeSwagger({
       source: require("./json/swaggerPetstore"),
-      root: path.resolve(__dirname, "api"),
+      root,
       chooseAll: true
     });
-
-    const filesPath = fs.readdirSync(
-      path.resolve(__dirname, "api", pascalCase(info.title))
-    );
+    const filesPath = fs.readdirSync(root);
     expect(filesPath).toEqual(["pet.js", "store.js", "user.js"]);
     await wait(1000);
     filesPath.forEach(filename => {
@@ -34,16 +31,15 @@ describe("test.ts", () => {
   });
 
   test("ts language", async done => {
-    const { info } = await freeSwagger({
+    const root = path.resolve(__dirname, "api", "uberApi");
+    await freeSwagger({
       source: require("./json/uberApi"),
       lang: "ts",
-      root: path.resolve(__dirname, "api"),
+      root,
       chooseAll: true
     });
+    const filesPath = fs.readdirSync(root);
 
-    const filesPath = fs.readdirSync(
-      path.resolve(__dirname, "api", pascalCase(info.title))
-    );
     expect(filesPath).toEqual([
       "auditLog.ts",
       "device.ts",
@@ -63,9 +59,10 @@ describe("test.ts", () => {
   });
 
   test("custom ts template", async done => {
-    const { info } = await freeSwagger({
-      source: require("./json/homelotApi"),
-      root: path.resolve(__dirname, "api"),
+    const root = path.resolve(__dirname, "api", "homeIotApi");
+    await freeSwagger({
+      source: require("./json/homeIotApi"),
+      root,
       lang: "ts",
       template: ({
         url,
@@ -84,7 +81,8 @@ describe("test.ts", () => {
         IParams ? `${IParams}` : "{[key:string]: never}"
       },${
         IPathParams ? `pathParams: ${IPathParams}` : ""
-      }) => http.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
+      }) => http.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+        "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      params:${method === "get" ? "params" : "{}"},
@@ -95,9 +93,7 @@ describe("test.ts", () => {
       chooseAll: true
     });
 
-    const filesPath = fs.readdirSync(
-      path.resolve(__dirname, "api", pascalCase(info.title))
-    );
+    const filesPath = fs.readdirSync(root);
     expect(filesPath).toEqual([
       "device.ts",
       "environment.ts",
@@ -115,4 +111,21 @@ describe("test.ts", () => {
     });
     done();
   });
+
+  // test("diff", async done => {
+  //   // todo diff 测试
+  //   await freeSwagger({
+  //     source: require("./json/defectHomeIotApi"),
+  //     root: path.resolve(__dirname, "api", "defectHomeIotApi"),
+  //     chooseAll: true
+  //   });
+  //
+  //   await freeSwagger({
+  //     source: require("./json/defectHomeIotApi"),
+  //     root: path.resolve(__dirname, "api", "homeIotApi"),
+  //     chooseAll: true
+  //   });
+  //
+  //   done();
+  // });
 });

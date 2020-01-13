@@ -17,13 +17,14 @@ const path_2 = require("./parse/path");
 const interface_1 = require("./parse/interface");
 const interface_2 = require("./gen/interface");
 const path_3 = require("./gen/path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const diff = require("diff");
+// parse swagger json
 const parse = async (config) => {
     await utils_1.ensureExist(config.root, true);
-    const dirPath = path_1.default.resolve(config.root, camelcase_1.default(config.source.info.title));
-    await utils_1.ensureExist(dirPath, true);
     const paths = path_2.parsePaths(config.source.paths);
     const interfaces = interface_1.parseInterfaces(config.source.definitions);
-    return { paths, interfaces, dirPath };
+    return { paths, interfaces };
 };
 // code generate
 const gen = async (config, dirPath, paths, interfaces) => {
@@ -35,12 +36,19 @@ const gen = async (config, dirPath, paths, interfaces) => {
         code += interface_2.genInterfaces(interfaces);
         await fs_extra_1.default.writeFile(interfacePath, code);
     }
+    const diffObj = {};
     // 生成 api
     Object.entries(paths).forEach(async ([name, apiCollection]) => {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
         await utils_1.ensureExist(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
+        // todo diff
+        const previousCode = await fs_extra_1.default.readFile(apiCollectionPath, "utf-8");
+        diffObj[name] = diff
+            .diffChars(previousCode, code)
+            .filter((part) => part.added || part.removed);
         await fs_extra_1.default.writeFile(apiCollectionPath, code);
+        return diffObj;
     });
 };
 const fetchJSON = async (url) => {
@@ -63,21 +71,23 @@ exports.compile = async (config) => {
         config.source = await fetchJSON(config.source);
     }
     if (utils_1.isPath(config.source)) {
-        config.source = JSON.parse(await fs_extra_1.default.readFile(path_1.default.resolve(process.cwd(), config.source), "utf-8"));
+        const sourcePath = path_1.default.resolve(process.cwd(), config.source);
+        config.source = JSON.parse(await fs_extra_1.default.readFile(sourcePath, "utf-8"));
     }
     if (!utils_1.isOpenApi2(config)) {
         throw new Error("free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
+    await utils_1.ensureExist(config.root, true);
     // parse
-    const { dirPath, paths, interfaces } = await parse(config);
+    const { paths, interfaces } = await parse(config);
     spinner.succeed("api 文件解析完成");
     const choosePaths = config.chooseAll
         ? paths
         : lodash_1.pick(paths, ...(await inquirer_1.chooseApi(paths)));
     // gen
-    await gen(config, dirPath, choosePaths, interfaces);
-    spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(dirPath)}`);
+    await gen(config, config.root, choosePaths, interfaces);
+    spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(config.root)}`);
     return config.source;
 };
 // freeSwagger = merge + compile

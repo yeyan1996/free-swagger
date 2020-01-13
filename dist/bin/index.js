@@ -4,14 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const pkg = require("../../package.json");
 const inquirer_1 = __importDefault(require("inquirer"));
 const chalk_1 = __importDefault(require("chalk"));
+const path_1 = __importDefault(require("path"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
 const main_1 = require("../main");
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
+const packageJsonPath = path_1.default.resolve(__dirname, "../../package.json");
+const pkg = JSON.parse(fs_extra_1.default.readFileSync(packageJsonPath, "utf-8")); // package.json
 commander_1.default
     .version(pkg.version)
     .usage("")

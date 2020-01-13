@@ -13,24 +13,22 @@ import { parsePaths, Paths } from "./parse/path";
 import { InterfaceCollection, parseInterfaces } from "./parse/interface";
 import { genInterfaces } from "./gen/interface";
 import { genPaths } from "./gen/path";
+import { Change } from "diff";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const diff = require("diff");
 
+// parse swagger json
 const parse = async (
   config: Config<OpenAPIV2.Document>
 ): Promise<{
   paths: Paths;
   interfaces: InterfaceCollection;
-  dirPath: string;
 }> => {
   await ensureExist(config.root!, true);
-  const dirPath = path.resolve(
-    config.root!,
-    camelcase(config.source.info.title)
-  );
-  await ensureExist(dirPath, true);
   const paths = parsePaths(config.source.paths);
   const interfaces = parseInterfaces(config.source.definitions);
 
-  return { paths, interfaces, dirPath };
+  return { paths, interfaces };
 };
 
 // code generate
@@ -48,6 +46,8 @@ const gen = async (
     code += genInterfaces(interfaces);
     await fse.writeFile(interfacePath, code);
   }
+
+  const diffObj: any = {};
   // 生成 api
   Object.entries(paths).forEach(async ([name, apiCollection]) => {
     const apiCollectionPath = path.resolve(
@@ -56,7 +56,13 @@ const gen = async (
     );
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
+    // todo diff
+    const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
+    diffObj[name] = diff
+      .diffChars(previousCode, code)
+      .filter((part: Change) => part.added  || part.removed);
     await fse.writeFile(apiCollectionPath, code);
+    return diffObj;
   });
 };
 
@@ -74,16 +80,17 @@ const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
 };
 
 // compile = parse + gen
-export const compile = async (config: Config): Promise<OpenAPIV2.Document> => {
+export const compile = async (
+  config: Required<Config>
+): Promise<OpenAPIV2.Document> => {
   const spinner = ora().render();
 
   if (isUrl(config.source)) {
     config.source = await fetchJSON(config.source);
   }
   if (isPath(config.source)) {
-    config.source = JSON.parse(
-      await fse.readFile(path.resolve(process.cwd(), config.source), "utf-8")
-    );
+    const sourcePath = path.resolve(process.cwd(), config.source);
+    config.source = JSON.parse(await fse.readFile(sourcePath, "utf-8"));
   }
   if (!isOpenApi2(config)) {
     throw new Error(
@@ -92,16 +99,20 @@ export const compile = async (config: Config): Promise<OpenAPIV2.Document> => {
   }
   spinner.start("正在生成 api 文件...");
 
+  await ensureExist(config.root, true);
+
   // parse
-  const { dirPath, paths, interfaces } = await parse(config);
+  const { paths, interfaces } = await parse(config);
   spinner.succeed("api 文件解析完成");
 
   const choosePaths = config.chooseAll
     ? paths
     : pick(paths, ...(await chooseApi(paths)));
   // gen
-  await gen(config, dirPath, choosePaths, interfaces);
-  spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk.green(dirPath)}`);
+  await gen(config, config.root, choosePaths, interfaces);
+  spinner.succeed(
+    `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
+  );
   return config.source;
 };
 

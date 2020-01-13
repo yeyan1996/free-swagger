@@ -1,12 +1,15 @@
 #!/usr/bin/env node
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const pkg = require("../../package.json");
 import inquirer from "inquirer";
 import chalk from "chalk";
+import path from "path";
+import fse from "fs-extra";
 import commander from "commander";
 import { compile } from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
+
+const packageJsonPath = path.resolve(__dirname, "../../package.json");
+const pkg = JSON.parse(fse.readFileSync(packageJsonPath, "utf-8")); // package.json
 
 commander
   .version(pkg.version)
