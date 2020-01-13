@@ -81,6 +81,7 @@ commander_1.default
 })
     // 默认启动
     .action(async (command) => {
+    console.log('rawArgs', command.rawArgs);
     if (command.rawArgs[2])
         return;
     const answer = await inquirer_1.default.prompt([questions_1.source]);

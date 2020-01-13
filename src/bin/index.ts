@@ -86,6 +86,7 @@ commander
   })
   // 默认启动
   .action(async command => {
+    console.log('rawArgs',command.rawArgs);
     if (command.rawArgs[2]) return;
     const answer: { source: string } = await inquirer.prompt([source]);
     rc.merge(answer);
