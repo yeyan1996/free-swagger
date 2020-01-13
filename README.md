@@ -13,7 +13,7 @@ free-swagger 提供了两种方式使用，上手非常简单
 ### npx
 
 ```
-npx free-swagger free-swagger
+npx free-swagger 
 ```
 
 ### npm
@@ -34,7 +34,7 @@ free-swagger
 
 * `--config/-c` 可以进行详细配置
 
-> npx free-swagger free-swagger --config
+> npx free-swagger --config
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
@@ -42,11 +42,11 @@ free-swagger
 
 * `--reset/-r` 重置默认配置
 
-> npx free-swagger free-swagger --reset
+> npx free-swagger --reset
 
 * `--show/-s` 显示当前配置
 
-> npx free-swagger free-swagger --show
+> npx free-swagger --show
 
 ## 项目安装
 
@@ -61,11 +61,19 @@ const freeSwagger = require("free-swagger");
 freeSwagger("https://petstore.swagger.io/v2/swagger.json").then();
 ```
 
-之后在 nodejs 中运行当前脚本
+之后在 nodejs 中运行当前脚本，或者绑定 npm script 
 
 ```
 node api.js
 ```
+
+```
+"swagger": "node api.js"
+
+npm run swagger
+```
+
+`free-swagger 是 node 包，请勿在任何前端页面中使用！，否则会在打包工具打包过程中发生错误`
 
 如果需要进一步的配置，则需要传入一个对象
 

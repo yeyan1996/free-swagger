@@ -60,7 +60,7 @@ const gen = async (
     const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
     diffObj[name] = diff
       .diffChars(previousCode, code)
-      .filter((part: Change) => part.added  || part.removed);
+      .filter((part: Change) => part.added || part.removed);
     await fse.writeFile(apiCollectionPath, code);
     return diffObj;
   });
@@ -130,4 +130,4 @@ const freeSwagger = async (
   }
 };
 
-export default freeSwagger;
+module.exports = freeSwagger;
