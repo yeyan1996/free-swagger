@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
+const utils_1 = require("../client/utils");
 const genInterfaces = (interfaces) => Object.entries(interfaces)
     .map(([name, props]) => utils_1.formatCode(` 
     export interface ${name} {

@@ -2,7 +2,7 @@ import { OpenAPIV2 } from "openapi-types";
 import { getResponseType, Response } from "./response";
 import { getRequestType, Request } from "./request";
 import { uniq } from "lodash";
-import { formatUrl, pascalCase } from "../utils";
+import { formatUrl, pascalCase } from "../client/utils";
 import chalk from "chalk";
 
 type Methods = [

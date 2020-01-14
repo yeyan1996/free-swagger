@@ -1,6 +1,6 @@
-import { Config, ParsedSchemaObject, ParsedSchema } from "../utils";
+import { ParsedSchemaObject, ParsedSchema, formatCode } from "../client/utils";
+import { Config } from "../utils";
 import { uniq, isEmpty } from "lodash";
-import { formatCode } from "../utils";
 import { Api, ApiCollection } from "../parse/path";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径

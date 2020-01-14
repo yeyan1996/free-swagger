@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
+const utils_1 = require("../client/utils");
 const parseInterfaces = (definitions) => {
     if (!definitions)
         return {};

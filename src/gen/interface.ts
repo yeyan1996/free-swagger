@@ -1,4 +1,4 @@
-import { formatCode } from "../utils";
+import { formatCode } from "../client/utils";
 import { InterfaceCollection } from "../parse/interface";
 
 const genInterfaces = (interfaces: InterfaceCollection): string =>

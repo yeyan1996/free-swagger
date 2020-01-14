@@ -1,8 +1,11 @@
 import { OpenAPIV2 } from "openapi-types";
-import { schemaToTsType, formatGenericInterface } from "../utils";
-import { ParsedSchemaObject } from "../utils";
+import {
+  schemaToTsType,
+  formatGenericInterface,
+  ParsedSchemaObject
+} from "../client/utils";
 
-type ParsedInterfaceProp = Omit<ParsedSchemaObject, "isBinary">
+type ParsedInterfaceProp = Omit<ParsedSchemaObject, "isBinary">;
 export interface ParsedInterface {
   [prop: string]: ParsedInterfaceProp;
 }

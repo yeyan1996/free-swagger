@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("../client/utils");
 const lodash_1 = require("lodash");
-const utils_1 = require("../utils");
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
 // 只要有一个属性值不是对象就断言当前对象类型为 ParsedSchemaObject
 const isParsedSchemaObject = (paramsInterface) => Object.keys(paramsInterface).some(

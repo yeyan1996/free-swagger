@@ -1,6 +1,6 @@
 import { OpenAPIV2 } from "openapi-types";
-import { isRef, schemaToTsType, TYPE_MAP } from "../utils";
-import { ParsedSchemaObject, ParsedSchema } from "../utils";
+import { isRef, schemaToTsType, TYPE_MAP } from "../client/utils";
+import { ParsedSchemaObject, ParsedSchema } from "../client/utils";
 
 export interface Request {
   pathParamsInterface: ParsedSchema;

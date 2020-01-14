@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const response_1 = require("./response");
 const request_1 = require("./request");
 const lodash_1 = require("lodash");
-const utils_1 = require("../utils");
+const utils_1 = require("../client/utils");
 const chalk_1 = __importDefault(require("chalk"));
 const methods = [
     "get",
