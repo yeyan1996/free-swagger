@@ -1,5 +1,7 @@
 import { OpenAPIV2 } from "openapi-types";
-import prettier from "prettier";
+import prettier from "prettier/standalone";
+import parserTypescript from "prettier/parser-typescript";
+import parserBabel from "prettier/parser-babylon";
 import camelcase from "camelcase";
 import fse from "fs-extra";
 import path from "path";
@@ -150,6 +152,7 @@ const schemaToTsType = (
 
 const formatCode = (code: string, lang?: "ts" | "js"): string =>
   prettier.format(code, {
+    plugins: [parserBabel, parserTypescript],
     printWidth: 120,
     tabWidth: 2,
     parser: lang === "js" ? "babel" : "typescript",

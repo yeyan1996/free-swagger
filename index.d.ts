@@ -1,4 +1,6 @@
 import { OpenAPIV2 } from "openapi-types";
+import { Api } from "./src/parse/path";
+import { Config } from "./src/utils";
 
 declare function freeSwagger(
   config:
@@ -23,4 +25,14 @@ declare function freeSwagger(
     | string
 ): Promise<OpenAPIV2.Document>;
 
-export = freeSwagger;
+declare function genPath(api: Api, config: Required<Config>): string;
+declare function parsePath(
+  name: string,
+  url: string,
+  // todo 类型优化
+  method: string,
+  { parameters, summary, responses, deprecated }: OpenAPIV2.OperationObject
+): Api;
+
+export default freeSwagger;
+export { parsePath, genPath };

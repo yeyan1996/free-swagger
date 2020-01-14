@@ -12,7 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const prettier_1 = __importDefault(require("prettier"));
+const standalone_1 = __importDefault(require("prettier/standalone"));
+const parser_typescript_1 = __importDefault(require("prettier/parser-typescript"));
+const parser_babylon_1 = __importDefault(require("prettier/parser-babylon"));
 const camelcase_1 = __importDefault(require("camelcase"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
@@ -113,7 +115,8 @@ const schemaToTsType = (schema) => {
     };
 };
 exports.schemaToTsType = schemaToTsType;
-const formatCode = (code, lang) => prettier_1.default.format(code, {
+const formatCode = (code, lang) => standalone_1.default.format(code, {
+    plugins: [parser_babylon_1.default, parser_typescript_1.default],
     printWidth: 120,
     tabWidth: 2,
     parser: lang === "js" ? "babel" : "typescript",
