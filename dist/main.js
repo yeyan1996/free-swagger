@@ -26,8 +26,9 @@ const path_2 = require("./parse/path");
 const interface_1 = require("./parse/interface");
 const interface_2 = require("./gen/interface");
 const path_3 = require("./gen/path");
+// import { Change } from "diff";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const diff = require("diff");
+// const diff = require("diff");
 // parse swagger json
 const parse = (config) => __awaiter(void 0, void 0, void 0, function* () {
     yield utils_1.ensureExist(config.root, true);
@@ -45,19 +46,19 @@ const gen = (config, dirPath, paths, interfaces) => __awaiter(void 0, void 0, vo
         code += interface_2.genInterfaces(interfaces);
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }
-    const diffObj = {};
+    // const diffObj: any = {};
     // 生成 api
     Object.entries(paths).forEach(([name, apiCollection]) => __awaiter(void 0, void 0, void 0, function* () {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
         yield utils_1.ensureExist(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
         // todo diff
-        const previousCode = yield fs_extra_1.default.readFile(apiCollectionPath, "utf-8");
-        diffObj[name] = diff
-            .diffChars(previousCode, code)
-            .filter((part) => part.added || part.removed);
+        // const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
+        // diffObj[name] = diff
+        //   .diffChars(previousCode, code)
+        //   .filter((part: Change) => part.added || part.removed);
         yield fs_extra_1.default.writeFile(apiCollectionPath, code);
-        return diffObj;
+        // return diffObj;
     }));
 });
 const fetchJSON = (url) => __awaiter(void 0, void 0, void 0, function* () {
@@ -112,3 +113,5 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 module.exports = freeSwagger;
+exports.parsePath = path_2.parsePath;
+exports.genPath = path_3.genPath;

@@ -27,11 +27,11 @@ const methods: Methods = [
 ];
 
 export interface Paths {
-  [key: string]: ApiCollection;
+  [controllerName: string]: ApiCollection;
 }
 
 export interface ApiCollection {
-  [key: string]: Api;
+  [pathName: string]: Api;
 }
 
 export interface Api extends Request, Response {
@@ -39,24 +39,54 @@ export interface Api extends Request, Response {
   summary: string;
   url: string;
   method: string;
+  name: string;
 }
+
+const parsePath = (
+  name: string,
+  url: string,
+  // todo 类型优化
+  method: string,
+  {
+    parameters,
+    summary = "",
+    responses,
+    deprecated = false
+  }: OpenAPIV2.OperationObject
+): Api => {
+  // 获取到接口的参数
+  const {
+    bodyParamsInterface,
+    queryParamsInterface,
+    pathParamsInterface,
+    imports: requestImports
+  } = getRequestType(parameters);
+
+  const { responseInterface } = getResponseType(responses);
+
+  return {
+    imports: uniq([...requestImports, ...responseInterface.imports]),
+    summary,
+    deprecated,
+    url,
+    name,
+    method,
+    bodyParamsInterface,
+    queryParamsInterface,
+    pathParamsInterface,
+    responseInterface
+  };
+};
 
 const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
   const requestClasses: { [key: string]: ApiCollection } = {};
 
   Object.entries<OpenAPIV2.PathItemObject>(paths).forEach(([path, apiObj]) => {
-    const url = formatUrl(path);
     methods.forEach(method => {
-      if (!apiObj[method]) return;
-      const {
-        parameters,
-        tags = [],
-        summary = "",
-        operationId,
-        responses,
-        deprecated = false
-      } = apiObj[method]!;
-      if (!operationId) {
+      const operationObject = apiObj[method];
+      if (!operationObject) return;
+
+      if (!operationObject.operationId) {
         console.log(
           chalk.yellow(
             `${method.toUpperCase()} ${path} 的 operationId 不存在,无法生成该 api`
@@ -65,7 +95,7 @@ const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
         return;
       }
 
-      if (!tags[0]) {
+      if (!operationObject.tags?.[0]) {
         console.log(
           chalk.yellow(
             `${method.toUpperCase()} ${path} 的 tags 不存在,无法生成该 api`
@@ -75,34 +105,19 @@ const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
       }
 
       // 获取类名
-      const className = pascalCase(tags[0]);
+      const className = pascalCase(operationObject.tags[0]);
       if (!requestClasses[className]) {
         requestClasses[className] = {};
       }
-      // 获取到接口的参数
-      const {
-        bodyParamsInterface,
-        queryParamsInterface,
-        pathParamsInterface,
-        imports: requestImports
-      } = getRequestType(parameters);
-
-      const { responseInterface } = getResponseType(responses);
-
-      requestClasses[className][operationId] = {
-        imports: uniq([...requestImports, ...responseInterface.imports]),
-        summary,
-        deprecated,
-        url,
+      requestClasses[className][operationObject.operationId] = parsePath(
+        operationObject.operationId,
+        formatUrl(path),
         method,
-        bodyParamsInterface,
-        queryParamsInterface,
-        pathParamsInterface,
-        responseInterface
-      };
+        operationObject
+      );
     });
   });
   return requestClasses;
 };
 
-export { parsePaths };
+export { parsePaths, parsePath };

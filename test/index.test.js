@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const freeSwagger = require("../src/main");
+const freeSwagger = require("../dist/main");
 
 const wait = time =>
   new Promise(resolve =>

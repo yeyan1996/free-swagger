@@ -36,26 +36,30 @@ const genImportInterfaceCode = (apiCollection) => {
         return "";
     return `import {${importsInterface.join(",")}} from "${RELATIVE_PATH}";`;
 };
+const genPath = (api, config) => {
+    const { IPathParams, IParams } = genIParams(api);
+    return config.template({
+        name: api.name,
+        method: api.method,
+        url: api.url,
+        responseType: api.responseInterface.isBinary ? "blob" : "json",
+        deprecated: api.deprecated,
+        summary: api.summary,
+        IResponse: api.responseInterface.type,
+        IParams,
+        IPathParams
+    });
+};
+exports.genPath = genPath;
 // 生成单个 ts 文件中的所有 api
 const genPaths = (apiCollection, config) => {
     let code = "";
     code += genDisabledCode(config);
     code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
     code += config.customImportCode;
-    Object.entries(apiCollection).forEach(([name, api]) => {
-        const { IPathParams, IParams } = genIParams(api);
-        code += config.template({
-            name,
-            method: api.method,
-            url: api.url,
-            responseType: api.responseInterface.isBinary ? "blob" : "json",
-            deprecated: api.deprecated,
-            summary: api.summary,
-            IResponse: api.responseInterface.type,
-            IParams,
-            IPathParams
-        });
-    });
+    code += Object.values(apiCollection)
+        .map(api => genPath(api, config))
+        .reduce((acc, cur) => acc + cur);
     return utils_1.formatCode(code, config.lang);
 };
 exports.genPaths = genPaths;

@@ -10,7 +10,7 @@
   "scripts": {
     "release": "sh script/release.sh",
     "build": "rm -rf ./dist && tsc",
-    "test": "jest",
+    "test": "tsc && jest",
     "lint": "eslint . --ext .ts --fix"
   },
   "keywords": [

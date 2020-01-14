@@ -9,13 +9,13 @@ import { ensureExist, Config, isUrl, isPath, isOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
-import { parsePaths, Paths } from "./parse/path";
+import { parsePaths, parsePath, Paths } from "./parse/path";
 import { InterfaceCollection, parseInterfaces } from "./parse/interface";
 import { genInterfaces } from "./gen/interface";
-import { genPaths } from "./gen/path";
-import { Change } from "diff";
+import { genPaths, genPath } from "./gen/path";
+// import { Change } from "diff";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const diff = require("diff");
+// const diff = require("diff");
 
 // parse swagger json
 const parse = async (
@@ -33,7 +33,7 @@ const parse = async (
 
 // code generate
 const gen = async (
-  config: Config<OpenAPIV2.Document>,
+  config: Required<Config<OpenAPIV2.Document>>,
   dirPath: string,
   paths: Paths,
   interfaces: InterfaceCollection
@@ -47,7 +47,8 @@ const gen = async (
     await fse.writeFile(interfacePath, code);
   }
 
-  const diffObj: any = {};
+  // const diffObj: any = {};
+
   // 生成 api
   Object.entries(paths).forEach(async ([name, apiCollection]) => {
     const apiCollectionPath = path.resolve(
@@ -57,12 +58,12 @@ const gen = async (
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     // todo diff
-    const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
-    diffObj[name] = diff
-      .diffChars(previousCode, code)
-      .filter((part: Change) => part.added || part.removed);
+    // const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
+    // diffObj[name] = diff
+    //   .diffChars(previousCode, code)
+    //   .filter((part: Change) => part.added || part.removed);
     await fse.writeFile(apiCollectionPath, code);
-    return diffObj;
+    // return diffObj;
   });
 };
 
@@ -131,3 +132,5 @@ const freeSwagger = async (
 };
 
 module.exports = freeSwagger;
+exports.parsePath = parsePath;
+exports.genPath = genPath;
