@@ -1,6 +1,6 @@
 {
   "name": "free-swagger",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "openApi(swagger) Document Generator",
   "main": "dist",
   "types": "index.d.ts",
