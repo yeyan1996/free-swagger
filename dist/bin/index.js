@@ -20,8 +20,7 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { compile } = require("../main");
+const main_1 = require("../main");
 const packageJsonPath = path_1.default.resolve(__dirname, "../../package.json");
 const pkg = JSON.parse(fs_extra_1.default.readFileSync(packageJsonPath, "utf-8")); // package.json
 commander_1.default
@@ -87,7 +86,7 @@ commander_1.default
     ]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    yield compile(rc_1.rc.getConfig());
+    yield main_1.compile(rc_1.rc.getConfig());
 }))
     // 默认启动
     .action((command) => __awaiter(void 0, void 0, void 0, function* () {
@@ -96,7 +95,7 @@ commander_1.default
     const answer = yield inquirer_1.default.prompt([questions_1.source]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    yield compile(rc_1.rc.getConfig());
+    yield main_1.compile(rc_1.rc.getConfig());
     return;
 }))
     .parse(process.argv);

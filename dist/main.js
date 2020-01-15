@@ -101,6 +101,7 @@ const compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
     spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(config.root)}`);
     return config.source;
 });
+exports.compile = compile;
 // freeSwagger = merge + compile
 const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     const spinner = ora_1.default().render();
@@ -113,5 +114,4 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error(e);
     }
 });
-module.exports = freeSwagger;
-exports.compile = compile;
+exports.default = freeSwagger;

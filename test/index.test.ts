@@ -1,8 +1,7 @@
 import path from "path";
 import fs from "fs";
+import freeSwagger from "../src/main";
 import { TemplateConfig } from "free-swagger-client";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const freeSwagger = require("../src/main");
 
 const wait = (time: number): Promise<void> =>
   new Promise(resolve =>

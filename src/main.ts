@@ -130,5 +130,5 @@ const freeSwagger = async (
   }
 };
 
-module.exports = freeSwagger;
-exports.compile = compile;
+export default freeSwagger;
+export { compile };
