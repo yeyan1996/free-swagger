@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,7 +26,7 @@ const getDefaultConfig = (config) => ({
     template: template_1.jsTemplate,
     chooseAll: false
 });
-exports.mergeDefaultConfig = async (config) => {
+exports.mergeDefaultConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
     let mergedConfig = {};
     if (typeof config === "string") {
         mergedConfig.source = config;
@@ -36,9 +45,5 @@ exports.mergeDefaultConfig = async (config) => {
     else {
         template = mergedConfig.lang === "ts" ? template_1.tsTemplate : template_1.jsTemplate;
     }
-    return {
-        ...getDefaultConfig(mergedConfig),
-        template,
-        ...mergedConfig
-    };
-};
+    return Object.assign(Object.assign(Object.assign({}, getDefaultConfig(mergedConfig)), { template }), mergedConfig);
+});

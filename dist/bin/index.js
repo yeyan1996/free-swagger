@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -26,10 +35,10 @@ commander_1.default
     console.log(rc_1.rc.data);
     return;
 })
-    .option("-c, --config", "launch free-swagger under config mode", async () => {
+    .option("-c, --config", "launch free-swagger under config mode", () => __awaiter(void 0, void 0, void 0, function* () {
     const { data: defaultAnswer } = rc_1.rc;
     // 获取用户回答
-    const answer = await inquirer_1.default.prompt([
+    const answer = yield inquirer_1.default.prompt([
         questions_1.source,
         {
             name: "root",
@@ -77,16 +86,16 @@ commander_1.default
     ]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    await main_1.default.compile(rc_1.rc.getConfig());
-})
+    yield main_1.default.compile(rc_1.rc.getConfig());
+}))
     // 默认启动
-    .action(async (command) => {
+    .action((command) => __awaiter(void 0, void 0, void 0, function* () {
     if (command.rawArgs[2])
         return;
-    const answer = await inquirer_1.default.prompt([questions_1.source]);
+    const answer = yield inquirer_1.default.prompt([questions_1.source]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    await main_1.default.compile(rc_1.rc.getConfig());
+    yield main_1.default.compile(rc_1.rc.getConfig());
     return;
-})
+}))
     .parse(process.argv);
