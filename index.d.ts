@@ -1,6 +1,4 @@
 import { OpenAPIV2 } from "openapi-types";
-import { Api } from "./src/parse/path";
-import { Config } from "./src/utils";
 
 declare function freeSwagger(
   config:
@@ -25,7 +23,4 @@ declare function freeSwagger(
     | string
 ): Promise<OpenAPIV2.Document>;
 
-
-
 export default freeSwagger;
-
