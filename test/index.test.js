@@ -1,9 +1,8 @@
 import path from "path";
 import fs from "fs";
-import freeSwagger from "../src/main";
-import { TemplateConfig } from "free-swagger-client";
+import freeSwagger from "../dist/main";
 
-const wait = (time: number): Promise<void> =>
+const wait = time =>
   new Promise(resolve =>
     setTimeout(() => {
       resolve();
@@ -75,7 +74,7 @@ describe("test.ts", () => {
         IResponse,
         IParams,
         IPathParams
-      }: TemplateConfig) => `
+      }) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (params: ${

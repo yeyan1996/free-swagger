@@ -4,9 +4,9 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
+import freeSwagger from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
-import freeSwagger from "../main";
 
 const packageJsonPath = path.resolve(__dirname, "../../package.json");
 const pkg = JSON.parse(fse.readFileSync(packageJsonPath, "utf-8")); // package.json

@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
@@ -114,4 +113,4 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 freeSwagger.compile = compile;
-exports.default = freeSwagger;
+module.exports = freeSwagger;
