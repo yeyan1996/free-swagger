@@ -76,7 +76,7 @@ const fetchJSON = (url) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 // compile = parse + gen
-exports.compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
+const compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
     const spinner = ora_1.default().render();
     if (utils_1.isUrl(config.source)) {
         config.source = yield fetchJSON(config.source);
@@ -106,7 +106,7 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     const spinner = ora_1.default().render();
     try {
         const mergedConfig = yield default_1.mergeDefaultConfig(config);
-        return yield exports.compile(mergedConfig);
+        return yield compile(mergedConfig);
     }
     catch (e) {
         spinner.fail(`${chalk_1.default.red("api 文件生成失败")}`);
@@ -114,3 +114,4 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 module.exports = freeSwagger;
+exports.compile = compile;

@@ -4,9 +4,10 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
-import { compile } from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { compile } = require("../main");
 
 const packageJsonPath = path.resolve(__dirname, "../../package.json");
 const pkg = JSON.parse(fse.readFileSync(packageJsonPath, "utf-8")); // package.json

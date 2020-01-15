@@ -80,7 +80,7 @@ const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
 };
 
 // compile = parse + gen
-export const compile = async (
+const compile = async (
   config: Required<Config>
 ): Promise<OpenAPIV2.Document> => {
   const spinner = ora().render();
@@ -131,3 +131,4 @@ const freeSwagger = async (
 };
 
 module.exports = freeSwagger;
+exports.compile = compile;

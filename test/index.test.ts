@@ -130,4 +130,6 @@ describe("test.ts", () => {
   //
   //   done();
   // });
+
+  // todo bin 测试
 });
