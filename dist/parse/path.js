@@ -42,7 +42,6 @@ const parsePaths = (paths) => {
     const requestClasses = {};
     Object.entries(paths).forEach(([path, apiObj]) => {
         methods.forEach(method => {
-            var _a;
             const operationObject = apiObj[method];
             if (!operationObject)
                 return;
@@ -50,7 +49,7 @@ const parsePaths = (paths) => {
                 console.log(chalk_1.default.yellow(`${method.toUpperCase()} ${path} 的 operationId 不存在,无法生成该 api`));
                 return;
             }
-            if (!((_a = operationObject.tags) === null || _a === void 0 ? void 0 : _a[0])) {
+            if (!operationObject.tags?.[0]) {
                 console.log(chalk_1.default.yellow(`${method.toUpperCase()} ${path} 的 tags 不存在,无法生成该 api`));
                 return;
             }

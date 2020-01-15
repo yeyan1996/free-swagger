@@ -6,7 +6,7 @@ import fse from "fs-extra";
 import commander from "commander";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
-import { compile } from "../main";
+import freeSwagger from "../main";
 
 const packageJsonPath = path.resolve(__dirname, "../../package.json");
 const pkg = JSON.parse(fse.readFileSync(packageJsonPath, "utf-8")); // package.json
@@ -82,7 +82,7 @@ commander
     ]);
     rc.merge(answer);
     rc.save();
-    await compile(rc.getConfig());
+    await freeSwagger.compile(rc.getConfig());
   })
   // 默认启动
   .action(async command => {
@@ -90,7 +90,7 @@ commander
     const answer: { source: string } = await inquirer.prompt([source]);
     rc.merge(answer);
     rc.save();
-    await compile(rc.getConfig());
+    await freeSwagger.compile(rc.getConfig());
     return;
   })
   .parse(process.argv);

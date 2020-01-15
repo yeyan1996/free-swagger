@@ -1,14 +1,5 @@
 #!/usr/bin/env node
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -20,7 +11,7 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
-const main_1 = require("../main");
+const main_1 = __importDefault(require("../main"));
 const packageJsonPath = path_1.default.resolve(__dirname, "../../package.json");
 const pkg = JSON.parse(fs_extra_1.default.readFileSync(packageJsonPath, "utf-8")); // package.json
 commander_1.default
@@ -35,10 +26,10 @@ commander_1.default
     console.log(rc_1.rc.data);
     return;
 })
-    .option("-c, --config", "launch free-swagger under config mode", () => __awaiter(void 0, void 0, void 0, function* () {
+    .option("-c, --config", "launch free-swagger under config mode", async () => {
     const { data: defaultAnswer } = rc_1.rc;
     // 获取用户回答
-    const answer = yield inquirer_1.default.prompt([
+    const answer = await inquirer_1.default.prompt([
         questions_1.source,
         {
             name: "root",
@@ -86,16 +77,16 @@ commander_1.default
     ]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    yield main_1.compile(rc_1.rc.getConfig());
-}))
+    await main_1.default.compile(rc_1.rc.getConfig());
+})
     // 默认启动
-    .action((command) => __awaiter(void 0, void 0, void 0, function* () {
+    .action(async (command) => {
     if (command.rawArgs[2])
         return;
-    const answer = yield inquirer_1.default.prompt([questions_1.source]);
+    const answer = await inquirer_1.default.prompt([questions_1.source]);
     rc_1.rc.merge(answer);
     rc_1.rc.save();
-    yield main_1.compile(rc_1.rc.getConfig());
+    await main_1.default.compile(rc_1.rc.getConfig());
     return;
-}))
+})
     .parse(process.argv);

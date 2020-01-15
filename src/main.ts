@@ -130,5 +130,5 @@ const freeSwagger = async (
   }
 };
 
+freeSwagger.compile = compile;
 export default freeSwagger;
-export { compile };

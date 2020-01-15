@@ -14,7 +14,7 @@ class Rc {
         const homedir = os_1.default.homedir();
         this.path = path_1.default.resolve(homedir, ".free-swaggerrc");
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
-        this.data = Object.assign(Object.assign({}, this.getDefaultAnswer()), JSON.parse(data));
+        this.data = { ...this.getDefaultAnswer(), ...JSON.parse(data) };
     }
     getDefaultAnswer() {
         return {
@@ -43,7 +43,7 @@ class Rc {
         };
     }
     merge(answer) {
-        this.data = Object.assign(Object.assign({}, this.data), answer);
+        this.data = { ...this.data, ...answer };
     }
     // 生成本次输入的所有回答并存储进 rc
     save() {
