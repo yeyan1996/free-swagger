@@ -23,9 +23,9 @@ const default_1 = require("./default");
 const inquirer_1 = require("./inquirer");
 const lodash_1 = require("lodash");
 const path_2 = require("./parse/path");
-const interface_1 = require("./parse/interface");
-const interface_2 = require("./gen/interface");
+const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
+const utils_2 = require("./utils");
 // import { Change } from "diff";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const diff = require("diff");
@@ -33,17 +33,18 @@ const path_3 = require("./gen/path");
 const parse = (config) => __awaiter(void 0, void 0, void 0, function* () {
     yield utils_1.ensureExist(config.root, true);
     const paths = path_2.parsePaths(config.source.paths);
-    const interfaces = interface_1.parseInterfaces(config.source.definitions);
-    return { paths, interfaces };
+    return { paths };
 });
 // code generate
-const gen = (config, dirPath, paths, interfaces) => __awaiter(void 0, void 0, void 0, function* () {
+const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, function* () {
     // 生成 interface
     if (config.lang === "ts") {
-        let code = "// @ts-nocheck \n/* eslint-disable */\n";
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
         yield utils_1.ensureExist(interfacePath);
-        code += interface_2.genInterfaces(interfaces);
+        const code = free_swagger_client_1.compileInterfaces({
+            source: config.source,
+            prettier: utils_2.formatCode("ts")
+        });
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }
     // const diffObj: any = {};
@@ -90,13 +91,13 @@ exports.compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
     spinner.start("正在生成 api 文件...");
     yield utils_1.ensureExist(config.root, true);
     // parse
-    const { paths, interfaces } = yield parse(config);
+    const { paths } = yield parse(config);
     spinner.succeed("api 文件解析完成");
     const choosePaths = config.chooseAll
         ? paths
         : lodash_1.pick(paths, ...(yield inquirer_1.chooseApi(paths)));
     // gen
-    yield gen(config, config.root, choosePaths, interfaces);
+    yield gen(config, config.root, choosePaths);
     spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(config.root)}`);
     return config.source;
 });
@@ -113,5 +114,3 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 module.exports = freeSwagger;
-exports.parsePath = path_2.parsePath;
-exports.genPath = path_3.genPath;

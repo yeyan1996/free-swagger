@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../client/utils");
+const free_swagger_client_1 = require("free-swagger-client");
 const SUCCESS_CODE = 200;
 const getResponseType = (responses) => {
     if (!responses[SUCCESS_CODE]) {
@@ -16,7 +16,7 @@ const getResponseType = (responses) => {
     }
     const { schema } = responses[SUCCESS_CODE];
     return {
-        responseInterface: utils_1.schemaToTsType(schema)
+        responseInterface: free_swagger_client_1.schemaToTsType(schema)
     };
 };
 exports.getResponseType = getResponseType;

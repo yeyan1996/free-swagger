@@ -1,5 +1,5 @@
 import { OpenAPIV2 } from "openapi-types";
-import { ParsedSchemaObject, schemaToTsType } from "../client/utils";
+import { ParsedSchemaObject, schemaToTsType } from "free-swagger-client";
 const SUCCESS_CODE = 200;
 
 export interface Response {

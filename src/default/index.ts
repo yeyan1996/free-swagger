@@ -1,5 +1,6 @@
 import { OpenAPIV2 } from "openapi-types";
-import { Config, Template } from "../utils";
+import { Template } from "free-swagger-client";
+import { Config } from "../utils";
 import { tsTemplate, jsTemplate } from "./template";
 import { rc } from "./rc";
 import path from "path";

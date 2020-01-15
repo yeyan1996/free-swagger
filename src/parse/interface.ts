@@ -3,7 +3,7 @@ import {
   schemaToTsType,
   formatGenericInterface,
   ParsedSchemaObject
-} from "../client/utils";
+} from "free-swagger-client";
 
 type ParsedInterfaceProp = Omit<ParsedSchemaObject, "isBinary">;
 export interface ParsedInterface {

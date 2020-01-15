@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../client/utils");
+const free_swagger_client_1 = require("free-swagger-client");
 const parseParameter = (parameter, parametersImports) => {
     const imports = [];
     let type = "";
     let isBinary = false;
     // 引用类型
     if (parameter.schema || parameter.items) {
-        const parsedSchemaObject = utils_1.schemaToTsType(parameter.schema || parameter.items);
+        const parsedSchemaObject = free_swagger_client_1.schemaToTsType(parameter.schema || parameter.items);
         type = parsedSchemaObject.type;
         isBinary = parsedSchemaObject.isBinary;
         imports.push(...parsedSchemaObject.imports);
         parametersImports.push(...parsedSchemaObject.imports);
     }
     else {
-        type = utils_1.TYPE_MAP[parameter.type]; // 基本类型
+        type = free_swagger_client_1.TYPE_MAP[parameter.type]; // 基本类型
     }
     return {
         type,
@@ -25,7 +25,7 @@ const parseParameter = (parameter, parametersImports) => {
     };
 };
 const getRequestType = (paramsSchema) => {
-    if (!paramsSchema || paramsSchema.some(utils_1.isRef))
+    if (!paramsSchema || paramsSchema.some(free_swagger_client_1.isRef))
         return {
             imports: [],
             pathParamsInterface: {},

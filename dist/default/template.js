@@ -17,7 +17,8 @@ exports.tsTemplate = ({ url, summary, method, name, responseType, deprecated, IR
     ? `params: ${IParams},`
     : IPathParams
         ? "params:{[key:string]: never},"
-        : ""}${IPathParams ? `pathParams: ${IPathParams}` : ""}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
+        : ""}${IPathParams ? `pathParams: ${IPathParams}` : ""}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+    "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      responseType: "${responseType}", 

@@ -1,6 +1,11 @@
 import { OpenAPIV2 } from "openapi-types";
-import { isRef, schemaToTsType, TYPE_MAP } from "../client/utils";
-import { ParsedSchemaObject, ParsedSchema } from "../client/utils";
+import {
+  isRef,
+  schemaToTsType,
+  TYPE_MAP,
+  ParsedSchemaObject,
+  ParsedSchema
+} from "free-swagger-client";
 
 export interface Request {
   pathParamsInterface: ParsedSchema;

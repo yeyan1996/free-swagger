@@ -1,8 +1,10 @@
-const path = require("path");
-const fs = require("fs");
-const freeSwagger = require("../dist/main");
+import path from "path";
+import fs from "fs";
+import { TemplateConfig } from "free-swagger-client";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const freeSwagger = require("../src/main");
 
-const wait = time =>
+const wait = (time: number): Promise<void> =>
   new Promise(resolve =>
     setTimeout(() => {
       resolve();
@@ -74,7 +76,7 @@ describe("test.ts", () => {
         IResponse,
         IParams,
         IPathParams
-      }) => `
+      }: TemplateConfig) => `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (params: ${

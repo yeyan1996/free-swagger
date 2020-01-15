@@ -3,7 +3,8 @@ import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
 import { jsTemplate, tsTemplate } from "./template";
-import { Config, Template } from "../utils";
+import { Template } from "free-swagger-client";
+import { Config } from "../utils";
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS

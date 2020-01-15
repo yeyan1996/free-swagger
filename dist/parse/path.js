@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const response_1 = require("./response");
 const request_1 = require("./request");
 const lodash_1 = require("lodash");
-const utils_1 = require("../client/utils");
+const free_swagger_client_1 = require("free-swagger-client");
 const chalk_1 = __importDefault(require("chalk"));
 const methods = [
     "get",
@@ -55,11 +55,11 @@ const parsePaths = (paths) => {
                 return;
             }
             // 获取类名
-            const className = utils_1.pascalCase(operationObject.tags[0]);
+            const className = free_swagger_client_1.pascalCase(operationObject.tags[0]);
             if (!requestClasses[className]) {
                 requestClasses[className] = {};
             }
-            requestClasses[className][operationObject.operationId] = parsePath(operationObject.operationId, utils_1.formatUrl(path), method, operationObject);
+            requestClasses[className][operationObject.operationId] = parsePath(operationObject.operationId, free_swagger_client_1.formatUrl(path), method, operationObject);
         });
     });
     return requestClasses;

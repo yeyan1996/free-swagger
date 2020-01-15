@@ -1,4 +1,5 @@
-import { TemplateConfig } from "../utils";
+import { TemplateConfig } from "free-swagger-client";
+
 export const jsTemplate = ({
   url,
   summary,
@@ -42,7 +43,8 @@ export const tsTemplate = ({
     : ""
 }${
   IPathParams ? `pathParams: ${IPathParams}` : ""
-}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
+}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+  "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      responseType: "${responseType}", 

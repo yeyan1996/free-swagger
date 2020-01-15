@@ -34,14 +34,15 @@
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "diff": "^4.0.1",
+    "free-swagger-client": "^0.3.2",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.1",
     "lodash": "^4.17.15",
     "ora": "^4.0.3",
-    "prettier": "^1.19.1",
-    "translate": "^1.1.0"
+    "prettier": "^1.19.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-typescript": "^7.7.7",
     "@types/chalk": "^2.2.0",

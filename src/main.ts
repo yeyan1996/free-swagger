@@ -9,10 +9,10 @@ import { ensureExist, Config, isUrl, isPath, isOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
-import { parsePaths, parsePath, Paths } from "./parse/path";
-import { InterfaceCollection, parseInterfaces } from "./parse/interface";
-import { genInterfaces } from "./gen/interface";
-import { genPaths, genPath } from "./gen/path";
+import { parsePaths, Paths } from "./parse/path";
+import { compileInterfaces } from "free-swagger-client";
+import { genPaths } from "./gen/path";
+import { formatCode } from "./utils";
 // import { Change } from "diff";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const diff = require("diff");
@@ -22,28 +22,27 @@ const parse = async (
   config: Config<OpenAPIV2.Document>
 ): Promise<{
   paths: Paths;
-  interfaces: InterfaceCollection;
 }> => {
   await ensureExist(config.root!, true);
   const paths = parsePaths(config.source.paths);
-  const interfaces = parseInterfaces(config.source.definitions);
 
-  return { paths, interfaces };
+  return { paths };
 };
 
 // code generate
 const gen = async (
   config: Required<Config<OpenAPIV2.Document>>,
   dirPath: string,
-  paths: Paths,
-  interfaces: InterfaceCollection
+  paths: Paths
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === "ts") {
-    let code = "// @ts-nocheck \n/* eslint-disable */\n";
     const interfacePath = path.resolve(dirPath, "interface.ts");
     await ensureExist(interfacePath);
-    code += genInterfaces(interfaces);
+    const code = compileInterfaces({
+      source: config.source,
+      prettier: formatCode("ts")
+    });
     await fse.writeFile(interfacePath, code);
   }
 
@@ -103,14 +102,14 @@ export const compile = async (
   await ensureExist(config.root, true);
 
   // parse
-  const { paths, interfaces } = await parse(config);
+  const { paths } = await parse(config);
   spinner.succeed("api 文件解析完成");
 
   const choosePaths = config.chooseAll
     ? paths
     : pick(paths, ...(await chooseApi(paths)));
   // gen
-  await gen(config, config.root, choosePaths, interfaces);
+  await gen(config, config.root, choosePaths);
   spinner.succeed(
     `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
   );
@@ -132,5 +131,3 @@ const freeSwagger = async (
 };
 
 module.exports = freeSwagger;
-exports.parsePath = parsePath;
-exports.genPath = genPath;

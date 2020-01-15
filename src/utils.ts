@@ -1,7 +1,11 @@
 import { OpenAPIV2 } from "openapi-types";
+import { Template } from "free-swagger-client";
 import fse from "fs-extra";
 import path from "path";
 import chalk from "chalk";
+import prettier from "prettier/standalone";
+import parserBabel from "prettier/parser-babylon";
+import parserTypescript from "prettier/parser-typescript";
 
 export interface Config<T = string | OpenAPIV2.Document> {
   source: T;
@@ -10,22 +14,6 @@ export interface Config<T = string | OpenAPIV2.Document> {
   customImportCode?: string;
   lang?: "js" | "ts";
   chooseAll?: boolean;
-}
-
-export interface Template {
-  (config: TemplateConfig): string;
-}
-
-export interface TemplateConfig {
-  url: string;
-  summary: string;
-  method: string;
-  name: string;
-  responseType: string;
-  deprecated: boolean;
-  IResponse: string;
-  IParams: string;
-  IPathParams: string;
 }
 
 const isUrl = (url: string | OpenAPIV2.Document): url is string =>
@@ -52,4 +40,14 @@ const isOpenApi2 = (config: Config): config is Config<OpenAPIV2.Document> => {
   return version.startsWith("2.", 0);
 };
 
-export { ensureExist, isUrl, isPath, isOpenApi2 };
+const formatCode = (lang: "js" | "ts") => (code: string): string =>
+  prettier.format(code, {
+    plugins: [parserBabel, parserTypescript],
+    printWidth: 120,
+    tabWidth: 2,
+    parser: lang === "js" ? "babel" : "typescript",
+    trailingComma: "none",
+    jsxBracketSameLine: false
+  });
+
+export { ensureExist, isUrl, isPath, isOpenApi2, formatCode };
