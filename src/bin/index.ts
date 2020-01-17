@@ -35,8 +35,7 @@ commander
         name: "root",
         message: "输入导出 api 的根路径",
         default: defaultAnswer.root,
-        validate: (input): boolean | string =>
-          input ? true : "请输入 api 根路径"
+        validate: (input): boolean | string => !!input || "请输入 api 根路径"
       },
       {
         name: "lang",
@@ -73,11 +72,11 @@ commander
         name: "customImportCode",
         message: `输入自定义头语句(${chalk.magenta("自定义请求库路径")})`,
         default: (answer: Answer): string =>
-          answer.lang === "ts"
+          defaultAnswer.customImportCode ||
+          (answer.lang === "ts"
             ? defaultAnswer.customImportCodeTs
-            : defaultAnswer.customImportCodeJs,
-        validate: (input): boolean | string =>
-          input ? true : "请输入默认头语句"
+            : defaultAnswer.customImportCodeJs),
+        validate: (input): boolean | string => !!input || "请输入默认头语句"
       }
     ]);
     rc.merge(answer);

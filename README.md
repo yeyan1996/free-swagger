@@ -2,6 +2,8 @@
 
 根据 swagger 文档自动生成 api 文件，真正解放双手的工具
 
+free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，额外为生成的代码提供写入和命令行交互能力，同时支持全量生成 api
+
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
 
 # 快速上手
@@ -13,7 +15,7 @@ free-swagger 提供了两种方式使用，上手非常简单
 ### npx
 
 ```
-npx free-swagger 
+npx free-swagger
 ```
 
 ### npm
@@ -32,7 +34,7 @@ free-swagger
 
 ## 其他命令
 
-* `--config/-c` 可以进行详细配置
+- `--config/-c` 可以进行详细配置
 
 > npx free-swagger --config
 
@@ -40,11 +42,11 @@ free-swagger
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
 
-* `--reset/-r` 重置默认配置
+- `--reset/-r` 重置默认配置
 
 > npx free-swagger --reset
 
-* `--show/-s` 显示当前配置
+- `--show/-s` 显示当前配置
 
 > npx free-swagger --show
 
@@ -61,7 +63,7 @@ const freeSwagger = require("free-swagger");
 freeSwagger("https://petstore.swagger.io/v2/swagger.json").then();
 ```
 
-之后在 nodejs 中运行当前脚本，或者绑定 npm script 
+之后在 nodejs 中运行当前脚本，或者绑定 npm script
 
 ```
 node api.js
@@ -105,10 +107,10 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 | root             | 生成 api 的根路径                      | string           | -           | 当前路径 + src/api               |
 | customImportCode | 自定义头部代码                         | string           | -           | "import axios from 'axios'"      |
 | lang             | 生成 api 语言                          | string           | "js" / "ts" | "ts"                             |
-| template         | 生成 api 的模版                        | Function(Config) | -           | 见源文件 src/default/template.ts |
+| template         | 生成 api 的模版                        | Function(TemplateConfig) | -           | 见源文件 src/default/template.ts |
 | chooseAll        | 选择全部 api                           | boolean          | -           | false                            |
 
-**Config**
+**TemplateConfig**
 
 template 模版是一个函数，返回字符串，接受以下几个参数，用户可以自定义生成的 api 模版
 
@@ -148,7 +150,8 @@ tsTemplate = ({
     : ""
 }${
   IPathParams ? `pathParams: ${IPathParams}` : ""
-}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
+}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+  "any"}>>({
      url: \`${url}\`, 
      method: "${method}",
      responseType: "${responseType}", 
