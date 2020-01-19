@@ -1,8 +1,5 @@
 import { OpenAPIV2 } from "openapi-types";
-import { getResponseType, Response } from "./response";
-import { getRequestType, Request } from "./request";
-import { uniq } from "lodash";
-import { formatUrl, pascalCase } from "free-swagger-client";
+import { formatUrl, pascalCase, parsePath, Api } from "free-swagger-client";
 import chalk from "chalk";
 
 type Methods = [
@@ -33,50 +30,6 @@ export interface Paths {
 export interface ApiCollection {
   [pathName: string]: Api;
 }
-
-export interface Api extends Request, Response {
-  deprecated: boolean;
-  summary: string;
-  url: string;
-  method: string;
-  name: string;
-}
-
-const parsePath = (
-  name: string,
-  url: string,
-  // todo 类型优化
-  method: string,
-  {
-    parameters,
-    summary = "",
-    responses,
-    deprecated = false
-  }: OpenAPIV2.OperationObject
-): Api => {
-  // 获取到接口的参数
-  const {
-    bodyParamsInterface,
-    queryParamsInterface,
-    pathParamsInterface,
-    imports: requestImports
-  } = getRequestType(parameters);
-
-  const { responseInterface } = getResponseType(responses);
-
-  return {
-    imports: uniq([...requestImports, ...responseInterface.imports]),
-    summary,
-    deprecated,
-    url,
-    name,
-    method,
-    bodyParamsInterface,
-    queryParamsInterface,
-    pathParamsInterface,
-    responseInterface
-  };
-};
 
 const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
   const requestClasses: { [key: string]: ApiCollection } = {};
@@ -111,7 +64,7 @@ const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
       }
       requestClasses[className][operationObject.operationId] = parsePath(
         operationObject.operationId,
-        formatUrl(path),
+        path,
         method,
         operationObject
       );

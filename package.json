@@ -34,7 +34,7 @@
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "diff": "^4.0.1",
-    "free-swagger-client": "^0.3.2",
+    "free-swagger-client": "^0.3.8",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.1",
     "lodash": "^4.17.15",

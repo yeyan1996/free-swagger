@@ -25,9 +25,6 @@ const path_2 = require("./parse/path");
 const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
 const utils_2 = require("./utils");
-// import { Change } from "diff";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const diff = require("diff");
 // parse swagger json
 const parse = (config) => __awaiter(void 0, void 0, void 0, function* () {
     yield utils_1.ensureExist(config.root, true);
@@ -52,13 +49,7 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
         yield utils_1.ensureExist(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
-        // todo diff
-        // const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
-        // diffObj[name] = diff
-        //   .diffChars(previousCode, code)
-        //   .filter((part: Change) => part.added || part.removed);
         yield fs_extra_1.default.writeFile(apiCollectionPath, code);
-        // return diffObj;
     }));
 });
 const fetchJSON = (url) => __awaiter(void 0, void 0, void 0, function* () {
@@ -85,7 +76,7 @@ const compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
         config.source = JSON.parse(yield fs_extra_1.default.readFile(sourcePath, "utf-8"));
     }
     if (!utils_1.isOpenApi2(config)) {
-        throw new Error("free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档");
+        throw new Error("文档解析错误，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
     yield utils_1.ensureExist(config.root, true);

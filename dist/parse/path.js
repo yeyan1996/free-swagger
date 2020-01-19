@@ -3,10 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const response_1 = require("./response");
-const request_1 = require("./request");
-const lodash_1 = require("lodash");
 const free_swagger_client_1 = require("free-swagger-client");
+exports.parsePath = free_swagger_client_1.parsePath;
 const chalk_1 = __importDefault(require("chalk"));
 const methods = [
     "get",
@@ -18,26 +16,6 @@ const methods = [
     "head",
     "patch"
 ];
-const parsePath = (name, url, 
-// todo 类型优化
-method, { parameters, summary = "", responses, deprecated = false }) => {
-    // 获取到接口的参数
-    const { bodyParamsInterface, queryParamsInterface, pathParamsInterface, imports: requestImports } = request_1.getRequestType(parameters);
-    const { responseInterface } = response_1.getResponseType(responses);
-    return {
-        imports: lodash_1.uniq([...requestImports, ...responseInterface.imports]),
-        summary,
-        deprecated,
-        url,
-        name,
-        method,
-        bodyParamsInterface,
-        queryParamsInterface,
-        pathParamsInterface,
-        responseInterface
-    };
-};
-exports.parsePath = parsePath;
 const parsePaths = (paths) => {
     const requestClasses = {};
     Object.entries(paths).forEach(([path, apiObj]) => {
@@ -59,7 +37,7 @@ const parsePaths = (paths) => {
             if (!requestClasses[className]) {
                 requestClasses[className] = {};
             }
-            requestClasses[className][operationObject.operationId] = parsePath(operationObject.operationId, free_swagger_client_1.formatUrl(path), method, operationObject);
+            requestClasses[className][operationObject.operationId] = free_swagger_client_1.parsePath(operationObject.operationId, path, method, operationObject);
         });
     });
     return requestClasses;

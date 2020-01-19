@@ -1,8 +1,8 @@
 import { formatCode } from "../utils";
 import { genPath } from "free-swagger-client";
+import { ApiCollection } from "../parse/path";
 import { Config } from "../utils";
 import { uniq, isEmpty } from "lodash";
-import { ApiCollection } from "../parse/path";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
 

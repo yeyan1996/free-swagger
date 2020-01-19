@@ -9,13 +9,11 @@ import { ensureExist, Config, isUrl, isPath, isOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
-import { parsePaths, Paths } from "./parse/path";
+import { parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
+import { Paths } from "./parse/path";
 import { genPaths } from "./gen/path";
 import { formatCode } from "./utils";
-// import { Change } from "diff";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const diff = require("diff");
 
 // parse swagger json
 const parse = async (
@@ -56,13 +54,7 @@ const gen = async (
     );
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
-    // todo diff
-    // const previousCode = await fse.readFile(apiCollectionPath, "utf-8");
-    // diffObj[name] = diff
-    //   .diffChars(previousCode, code)
-    //   .filter((part: Change) => part.added || part.removed);
     await fse.writeFile(apiCollectionPath, code);
-    // return diffObj;
   });
 };
 
@@ -93,9 +85,7 @@ const compile = async (
     config.source = JSON.parse(await fse.readFile(sourcePath, "utf-8"));
   }
   if (!isOpenApi2(config)) {
-    throw new Error(
-      "free-swagger 暂时不支持 openApi3 规范，请使用 openApi2 规范的文档"
-    );
+    throw new Error("文档解析错误，请使用 openApi2 规范的文档");
   }
   spinner.start("正在生成 api 文件...");
 
@@ -131,4 +121,4 @@ const freeSwagger = async (
 };
 
 freeSwagger.compile = compile;
-export = freeSwagger
+export = freeSwagger;
