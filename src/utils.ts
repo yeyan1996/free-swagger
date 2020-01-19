@@ -1,6 +1,7 @@
 import { OpenAPIV2 } from "openapi-types";
 import { Template } from "free-swagger-client";
 import fse from "fs-extra";
+import camelcase from "camelcase";
 import path from "path";
 import chalk from "chalk";
 import prettier from "prettier/standalone";
@@ -50,4 +51,9 @@ const formatCode = (lang: "js" | "ts") => (code: string): string =>
     jsxBracketSameLine: false
   });
 
-export { ensureExist, isUrl, isPath, isOpenApi2, formatCode };
+const pascalCase = (str: string): string =>
+  camelcase(str, {
+    pascalCase: true
+  });
+
+export { ensureExist, isUrl, isPath, isOpenApi2, formatCode, pascalCase };

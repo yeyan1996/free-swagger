@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_extra_1 = __importDefault(require("fs-extra"));
+const camelcase_1 = __importDefault(require("camelcase"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
 const standalone_1 = __importDefault(require("prettier/standalone"));
@@ -51,3 +52,7 @@ const formatCode = (lang) => (code) => standalone_1.default.format(code, {
     jsxBracketSameLine: false
 });
 exports.formatCode = formatCode;
+const pascalCase = (str) => camelcase_1.default(str, {
+    pascalCase: true
+});
+exports.pascalCase = pascalCase;

@@ -1,5 +1,6 @@
 import { OpenAPIV2 } from "openapi-types";
-import { pascalCase, parsePath, Api } from "free-swagger-client";
+import { parsePath, Api } from "free-swagger-client";
+import { pascalCase } from "../utils";
 import chalk from "chalk";
 
 type Methods = [
