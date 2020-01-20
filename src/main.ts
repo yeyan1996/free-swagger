@@ -44,8 +44,6 @@ const gen = async (
     await fse.writeFile(interfacePath, code);
   }
 
-  // const diffObj: any = {};
-
   // 生成 api
   Object.entries(paths).forEach(async ([name, apiCollection]) => {
     const apiCollectionPath = path.resolve(

@@ -43,7 +43,6 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
         });
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }
-    // const diffObj: any = {};
     // 生成 api
     Object.entries(paths).forEach(([name, apiCollection]) => __awaiter(void 0, void 0, void 0, function* () {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);

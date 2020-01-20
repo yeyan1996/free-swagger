@@ -7,7 +7,7 @@ const path_1 = __importDefault(require("path"));
 const os_1 = __importDefault(require("os"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const prettier_1 = __importDefault(require("prettier"));
-const template_1 = require("./template");
+const free_swagger_client_1 = require("free-swagger-client");
 const index_1 = require("./index");
 class Rc {
     constructor() {
@@ -25,9 +25,9 @@ class Rc {
             customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeJs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeTs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_TS,
-            template: template_1.tsTemplate,
-            tsTemplate: `${template_1.tsTemplate}`,
-            jsTemplate: `${template_1.jsTemplate}`,
+            template: free_swagger_client_1.tsTemplate,
+            tsTemplate: `${free_swagger_client_1.tsTemplate}`,
+            jsTemplate: `${free_swagger_client_1.jsTemplate}`,
             apiChoices: []
         };
     }

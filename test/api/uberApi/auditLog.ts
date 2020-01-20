@@ -7,7 +7,6 @@ export const GetAuditLogs = (params: { StartDate?: string }) =>
   axios.request<IPagedResult_AuditLogListDto, AxiosResponse<IPagedResult_AuditLogListDto>>({
     url: `/api/services/app/AuditLog/GetAuditLogs`,
     method: "get",
-    responseType: "json",
     params: params,
     data: {}
   });

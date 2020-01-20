@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test.ts base option 1`] = `
+exports[`test base option 1`] = `
 "/* eslint-disable */
 import axios from \\"axios\\";
 
@@ -9,7 +9,8 @@ export const getPetById = (params, pathParams) =>
   axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"get\\",
-    responseType: \\"json\\"
+    params: params,
+    data: {}
   });
 
 // Updates a pet in the store with form data
@@ -17,7 +18,6 @@ export const updatePetWithForm = (params, pathParams) =>
   axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -27,7 +27,8 @@ export const deletePet = (params, pathParams) =>
   axios.request({
     url: \`/pet/\${arguments[1].petId}\`,
     method: \\"delete\\",
-    responseType: \\"json\\"
+    params: {},
+    data: params
   });
 
 // uploads an image
@@ -35,7 +36,6 @@ export const uploadFile = (params, pathParams) =>
   axios.request({
     url: \`/pet/\${arguments[1].petId}/uploadImage\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -45,7 +45,6 @@ export const updatePet = params =>
   axios.request({
     url: \`/pet\`,
     method: \\"put\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -55,7 +54,6 @@ export const addPet = params =>
   axios.request({
     url: \`/pet\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -65,7 +63,6 @@ export const findPetsByStatus = params =>
   axios.request({
     url: \`/pet/findByStatus\`,
     method: \\"get\\",
-    responseType: \\"json\\",
     params: params,
     data: {}
   });
@@ -75,14 +72,13 @@ export const findPetsByTags = params =>
   axios.request({
     url: \`/pet/findByTags\`,
     method: \\"get\\",
-    responseType: \\"json\\",
     params: params,
     data: {}
   });
 "
 `;
 
-exports[`test.ts base option 2`] = `
+exports[`test base option 2`] = `
 "/* eslint-disable */
 import axios from \\"axios\\";
 
@@ -91,7 +87,8 @@ export const getInventory = params =>
   axios.request({
     url: \`/store/inventory\`,
     method: \\"get\\",
-    responseType: \\"json\\"
+    params: params,
+    data: {}
   });
 
 // Find purchase order by ID
@@ -99,7 +96,8 @@ export const getOrderById = (params, pathParams) =>
   axios.request({
     url: \`/store/order/\${arguments[1].orderId}\`,
     method: \\"get\\",
-    responseType: \\"json\\"
+    params: params,
+    data: {}
   });
 
 // Delete purchase order by ID
@@ -107,7 +105,8 @@ export const deleteOrder = (params, pathParams) =>
   axios.request({
     url: \`/store/order/\${arguments[1].orderId}\`,
     method: \\"delete\\",
-    responseType: \\"json\\"
+    params: {},
+    data: params
   });
 
 // Place an order for a pet
@@ -115,14 +114,13 @@ export const placeOrder = params =>
   axios.request({
     url: \`/store/order\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
 "
 `;
 
-exports[`test.ts base option 3`] = `
+exports[`test base option 3`] = `
 "/* eslint-disable */
 import axios from \\"axios\\";
 
@@ -131,7 +129,8 @@ export const getUserByName = (params, pathParams) =>
   axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"get\\",
-    responseType: \\"json\\"
+    params: params,
+    data: {}
   });
 
 // Updated user
@@ -139,7 +138,6 @@ export const updateUser = (params, pathParams) =>
   axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"put\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -149,7 +147,8 @@ export const deleteUser = (params, pathParams) =>
   axios.request({
     url: \`/user/\${arguments[1].username}\`,
     method: \\"delete\\",
-    responseType: \\"json\\"
+    params: {},
+    data: params
   });
 
 // Logs user into the system
@@ -157,7 +156,6 @@ export const loginUser = params =>
   axios.request({
     url: \`/user/login\`,
     method: \\"get\\",
-    responseType: \\"json\\",
     params: params,
     data: {}
   });
@@ -167,7 +165,8 @@ export const logoutUser = params =>
   axios.request({
     url: \`/user/logout\`,
     method: \\"get\\",
-    responseType: \\"json\\"
+    params: params,
+    data: {}
   });
 
 // Create user
@@ -175,7 +174,6 @@ export const createUser = params =>
   axios.request({
     url: \`/user\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -185,7 +183,6 @@ export const createUsersWithArrayInput = params =>
   axios.request({
     url: \`/user/createWithArray\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
@@ -195,14 +192,13 @@ export const createUsersWithListInput = params =>
   axios.request({
     url: \`/user/createWithList\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
 "
 `;
 
-exports[`test.ts custom ts template 1`] = `
+exports[`test custom ts template 1`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { DeviceRegistrationInfo } from \\"./interface\\";
@@ -228,7 +224,7 @@ export const register = (params: DeviceRegistrationInfo) =>
 "
 `;
 
-exports[`test.ts custom ts template 2`] = `
+exports[`test custom ts template 2`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
@@ -302,7 +298,7 @@ export const setHeaterState = (
 "
 `;
 
-exports[`test.ts custom ts template 3`] = `
+exports[`test custom ts template 3`] = `
 "// @ts-nocheck
 /* eslint-disable */
 
@@ -409,7 +405,7 @@ export interface DeviceRegistrationInfo {
 "
 `;
 
-exports[`test.ts custom ts template 4`] = `
+exports[`test custom ts template 4`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { ApiResponse, DeviceState, LightingSummary } from \\"./interface\\";
@@ -502,7 +498,7 @@ export const getLightingSummary = (params: { [key: string]: never }) =>
 "
 `;
 
-exports[`test.ts custom ts template 5`] = `
+exports[`test custom ts template 5`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import http, { AxiosResponse } from \\"axios\\";
@@ -532,7 +528,7 @@ export const quietZone = (
 "
 `;
 
-exports[`test.ts ts language 1`] = `
+exports[`test ts language 1`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { IPagedResult_AuditLogListDto } from \\"./interface\\";
@@ -542,14 +538,13 @@ export const GetAuditLogs = (params: { StartDate?: string }) =>
   axios.request<IPagedResult_AuditLogListDto, AxiosResponse<IPagedResult_AuditLogListDto>>({
     url: \`/api/services/app/AuditLog/GetAuditLogs\`,
     method: \\"get\\",
-    responseType: \\"json\\",
     params: params,
     data: {}
   });
 "
 `;
 
-exports[`test.ts ts language 2`] = `
+exports[`test ts language 2`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { List_AuditLogListDto } from \\"./interface\\";
@@ -560,14 +555,13 @@ export const uploadLngLatUsingPOST = (params: List_AuditLogListDto) =>
   axios.request<any, AxiosResponse<any>>({
     url: \`/dev/uploadLngLat\`,
     method: \\"post\\",
-    responseType: \\"json\\",
     params: {},
     data: params
   });
 "
 `;
 
-exports[`test.ts ts language 3`] = `
+exports[`test ts language 3`] = `
 "// @ts-nocheck
 /* eslint-disable */
 
@@ -673,7 +667,7 @@ export interface JsonResult_Guid {
 "
 `;
 
-exports[`test.ts ts language 4`] = `
+exports[`test ts language 4`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import axios, { AxiosResponse } from \\"axios\\";
@@ -687,12 +681,13 @@ export const UpdateMapper = (
   axios.request<string, AxiosResponse<string>>({
     url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
     method: \\"put\\",
-    responseType: \\"json\\"
+    params: {},
+    data: params
   });
 "
 `;
 
-exports[`test.ts ts language 5`] = `
+exports[`test ts language 5`] = `
 "// @ts-nocheck
 /* eslint-disable */
 import { JsonResult_Guid } from \\"./interface\\";
@@ -703,7 +698,8 @@ export const AddOrUpdateTicketTypical = () =>
   axios.request<JsonResult_Guid, AxiosResponse<JsonResult_Guid>>({
     url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
     method: \\"post\\",
-    responseType: \\"json\\"
+    params: {},
+    data: params
   });
 "
 `;

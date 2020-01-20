@@ -9,7 +9,7 @@ const wait = time =>
     }, time)
   );
 
-describe("test.ts", () => {
+describe("test", () => {
   test("base option", async done => {
     const root = path.resolve(__dirname, "api", "swaggerPetstore");
     await freeSwagger({
@@ -111,23 +111,6 @@ describe("test.ts", () => {
     });
     done();
   });
-
-  // test("diff", async done => {
-  //   // todo diff 测试
-  //   await freeSwagger({
-  //     source: require("./json/defectHomeIotApi"),
-  //     root: path.resolve(__dirname, "api", "defectHomeIotApi"),
-  //     chooseAll: true
-  //   });
-  //
-  //   await freeSwagger({
-  //     source: require("./json/defectHomeIotApi"),
-  //     root: path.resolve(__dirname, "api", "homeIotApi"),
-  //     chooseAll: true
-  //   });
-  //
-  //   done();
-  // });
 
   // todo bin 测试
 });

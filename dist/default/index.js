@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const template_1 = require("./template");
+const free_swagger_client_1 = require("free-swagger-client");
 const rc_1 = require("./rc");
 const path_1 = __importDefault(require("path"));
 exports.DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{ AxiosResponse } from "axios";`;
@@ -23,7 +23,7 @@ const getDefaultConfig = (config) => ({
         ? exports.DEFAULT_CUSTOM_IMPORT_CODE_TS
         : exports.DEFAULT_CUSTOM_IMPORT_CODE_JS,
     lang: "js",
-    template: template_1.jsTemplate,
+    template: free_swagger_client_1.jsTemplate,
     chooseAll: false
 });
 exports.mergeDefaultConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,10 +40,10 @@ exports.mergeDefaultConfig = (config) => __awaiter(void 0, void 0, void 0, funct
         template = mergedConfig.template;
     }
     else if (!mergedConfig.lang) {
-        template = template_1.jsTemplate;
+        template = free_swagger_client_1.jsTemplate;
     }
     else {
-        template = mergedConfig.lang === "ts" ? template_1.tsTemplate : template_1.jsTemplate;
+        template = mergedConfig.lang === "ts" ? free_swagger_client_1.tsTemplate : free_swagger_client_1.jsTemplate;
     }
     return Object.assign(Object.assign(Object.assign({}, getDefaultConfig(mergedConfig)), { template }), mergedConfig);
 });

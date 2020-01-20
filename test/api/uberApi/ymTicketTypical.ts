@@ -8,5 +8,6 @@ export const AddOrUpdateTicketTypical = () =>
   axios.request<JsonResult_Guid, AxiosResponse<JsonResult_Guid>>({
     url: `/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical`,
     method: "post",
-    responseType: "json"
+    params: {},
+    data: params
   });

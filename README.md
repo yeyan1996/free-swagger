@@ -101,14 +101,14 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 
 # API
 
-| 参数             | 说明                                   | 类型             | 可选值      | 默认值                           |
-| ---------------- | -------------------------------------- | ---------------- | ----------- | -------------------------------- |
-| source           | swagger 路径（url/文件路径/json 文件） | string/json      | -           | -                                |
-| root             | 生成 api 的根路径                      | string           | -           | 当前路径 + src/api               |
-| customImportCode | 自定义头部代码                         | string           | -           | "import axios from 'axios'"      |
-| lang             | 生成 api 语言                          | string           | "js" / "ts" | "ts"                             |
+| 参数             | 说明                                   | 类型                     | 可选值      | 默认值                           |
+| ---------------- | -------------------------------------- | ------------------------ | ----------- | -------------------------------- |
+| source           | swagger 路径（url/文件路径/json 文件） | string/json              | -           | -                                |
+| root             | 生成 api 的根路径                      | string                   | -           | 当前路径 + src/api               |
+| customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"      |
+| lang             | 生成 api 语言                          | string                   | "js" / "ts" | "ts"                             |
 | template         | 生成 api 的模版                        | Function(TemplateConfig) | -           | 见源文件 src/default/template.ts |
-| chooseAll        | 选择全部 api                           | boolean          | -           | false                            |
+| chooseAll        | 选择全部 api                           | boolean                  | -           | false                            |
 
 **TemplateConfig**
 
@@ -153,9 +153,9 @@ tsTemplate = ({
 }) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
   "any"}>>({
      url: \`${url}\`, 
-     method: "${method}",
-     responseType: "${responseType}", 
-     ${IParams ? `params:${method === "get" ? "params," : "{},"}` : ""}
-     ${IParams ? `data: ${method === "get" ? "{}," : "params,"}` : ""}
+     method: "${method}",  
+     params:${`${method === "get" ? "params," : "{},"}`}
+     data:${`${method === "get" ? "{}," : "params,"}`}
+     ${responseType === "json" ? "" : `responseType: ${responseType}`}
  })`;
 ```

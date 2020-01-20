@@ -2,8 +2,7 @@ import path from "path";
 import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
-import { jsTemplate, tsTemplate } from "./template";
-import { Template } from "free-swagger-client";
+import { Template, jsTemplate, tsTemplate } from "free-swagger-client";
 import { Config } from "../utils";
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,

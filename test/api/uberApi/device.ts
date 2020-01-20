@@ -8,7 +8,6 @@ export const uploadLngLatUsingPOST = (params: List_AuditLogListDto) =>
   axios.request<any, AxiosResponse<any>>({
     url: `/dev/uploadLngLat`,
     method: "post",
-    responseType: "json",
     params: {},
     data: params
   });
