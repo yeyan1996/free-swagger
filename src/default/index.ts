@@ -16,7 +16,7 @@ const getDefaultConfig = (
       ? DEFAULT_CUSTOM_IMPORT_CODE_TS
       : DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: "js",
-  template: jsTemplate,
+  template: eval(jsTemplate),
   chooseAll: false
 });
 
@@ -36,9 +36,9 @@ export const mergeDefaultConfig = async (
   if (mergedConfig.template) {
     template = mergedConfig.template;
   } else if (!mergedConfig.lang) {
-    template = jsTemplate;
+    template = eval(jsTemplate);
   } else {
-    template = mergedConfig.lang === "ts" ? tsTemplate : jsTemplate;
+    template = mergedConfig.lang === "ts" ? eval(tsTemplate) : eval(jsTemplate);
   }
 
   return {

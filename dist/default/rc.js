@@ -25,9 +25,9 @@ class Rc {
             customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeJs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeTs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_TS,
-            template: free_swagger_client_1.tsTemplate,
-            tsTemplate: `${free_swagger_client_1.tsTemplate}`,
-            jsTemplate: `${free_swagger_client_1.jsTemplate}`,
+            template: eval(free_swagger_client_1.tsTemplate),
+            tsTemplate: free_swagger_client_1.tsTemplate,
+            jsTemplate: free_swagger_client_1.jsTemplate,
             apiChoices: []
         };
     }

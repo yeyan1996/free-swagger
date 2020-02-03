@@ -113,4 +113,5 @@ describe("test", () => {
   });
 
   // todo bin 测试
+  // todo template -> templateFunction
 });

@@ -43,9 +43,9 @@ class Rc {
       customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
-      template: tsTemplate,
-      tsTemplate: `${tsTemplate}`,
-      jsTemplate: `${jsTemplate}`,
+      template: eval(tsTemplate),
+      tsTemplate: tsTemplate,
+      jsTemplate: jsTemplate,
       apiChoices: []
     };
   }

@@ -23,7 +23,7 @@ const getDefaultConfig = (config) => ({
         ? exports.DEFAULT_CUSTOM_IMPORT_CODE_TS
         : exports.DEFAULT_CUSTOM_IMPORT_CODE_JS,
     lang: "js",
-    template: free_swagger_client_1.jsTemplate,
+    template: eval(free_swagger_client_1.jsTemplate),
     chooseAll: false
 });
 exports.mergeDefaultConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,10 +40,10 @@ exports.mergeDefaultConfig = (config) => __awaiter(void 0, void 0, void 0, funct
         template = mergedConfig.template;
     }
     else if (!mergedConfig.lang) {
-        template = free_swagger_client_1.jsTemplate;
+        template = eval(free_swagger_client_1.jsTemplate);
     }
     else {
-        template = mergedConfig.lang === "ts" ? free_swagger_client_1.tsTemplate : free_swagger_client_1.jsTemplate;
+        template = mergedConfig.lang === "ts" ? eval(free_swagger_client_1.tsTemplate) : eval(free_swagger_client_1.jsTemplate);
     }
     return Object.assign(Object.assign(Object.assign({}, getDefaultConfig(mergedConfig)), { template }), mergedConfig);
 });
