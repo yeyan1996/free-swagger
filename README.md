@@ -28,7 +28,7 @@ npm i free-swagger -g
 free-swagger
 ```
 
-输入 swagger 路径即可，路径可以是 url，也可以是本地的 json 路径
+之后需要输入 swagger 路径，路径可以是 url，也可以是本地的 json 文件的相对/绝对路径
 
 ![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
