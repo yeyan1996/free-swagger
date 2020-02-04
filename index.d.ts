@@ -8,7 +8,7 @@ declare function freeSwagger(
         customImportCode?: string;
         lang?: "js" | "ts";
         chooseAll: boolean;
-        template?: (config: {
+        templateFunction?: (config: {
           url: string;
           summary: string;
           method: string;

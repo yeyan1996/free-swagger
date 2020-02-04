@@ -32,7 +32,7 @@ const genPaths = (
   code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
   code += config.customImportCode;
   code += Object.values(apiCollection)
-    .map(api => genPath(api, config.template))
+    .map(api => genPath(api, config.templateFunction))
     .reduce((acc, cur) => acc + cur);
 
   return formatCode(config.lang)(code);

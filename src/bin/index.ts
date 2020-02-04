@@ -52,9 +52,9 @@ commander
         message: "是否需要编辑模版"
       },
       {
-        name: "template",
+        name: "templateFunction",
         type: "editor",
-        message: "输入模版",
+        message: "输入模版函数",
         when: ({ shouldEditTemplate }): boolean => shouldEditTemplate === "y",
         validate: (input, answer): boolean => {
           if (!answer) return false;

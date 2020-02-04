@@ -25,7 +25,7 @@ class Rc {
             customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeJs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeTs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_TS,
-            template: eval(free_swagger_client_1.tsTemplate),
+            templateFunction: eval(free_swagger_client_1.tsTemplate),
             tsTemplate: free_swagger_client_1.tsTemplate,
             jsTemplate: free_swagger_client_1.jsTemplate,
             apiChoices: []
@@ -38,7 +38,7 @@ class Rc {
             lang: this.data.lang,
             customImportCode: this.data.customImportCode,
             // 合并默认模版
-            template: eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate),
+            templateFunction: eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate),
             chooseAll: false
         };
     }

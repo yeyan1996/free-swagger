@@ -22,7 +22,7 @@ const genPaths = (apiCollection, config) => {
     code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
     code += config.customImportCode;
     code += Object.values(apiCollection)
-        .map(api => free_swagger_client_1.genPath(api, config.template))
+        .map(api => free_swagger_client_1.genPath(api, config.templateFunction))
         .reduce((acc, cur) => acc + cur);
     return utils_1.formatCode(config.lang)(code);
 };

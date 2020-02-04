@@ -2,7 +2,7 @@ import path from "path";
 import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
-import { Template, jsTemplate, tsTemplate } from "free-swagger-client";
+import { TemplateFunction, jsTemplate, tsTemplate } from "free-swagger-client";
 import { Config } from "../utils";
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
@@ -20,7 +20,7 @@ export interface Answer {
   customImportCodeTs: string;
   jsTemplate: string;
   tsTemplate: string;
-  template?: Template;
+  templateFunction?: TemplateFunction;
   apiChoices: { name: string; checked: boolean }[];
 }
 
@@ -43,7 +43,7 @@ class Rc {
       customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
-      template: eval(tsTemplate),
+      templateFunction: eval(tsTemplate),
       tsTemplate: tsTemplate,
       jsTemplate: jsTemplate,
       apiChoices: []
@@ -56,7 +56,7 @@ class Rc {
       lang: this.data.lang!,
       customImportCode: this.data.customImportCode!,
       // 合并默认模版
-      template: eval(
+      templateFunction: eval(
         this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate
       ),
       chooseAll: false

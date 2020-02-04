@@ -9,62 +9,57 @@ const wait = time =>
     }, time)
   );
 
+const assetFiles = async (apiDirName, apiFilesList) => {
+  const root = path.resolve(__dirname, "api", apiDirName);
+  const filesPath = fs.readdirSync(root);
+  expect(filesPath).toEqual(apiFilesList);
+  await wait(1000);
+  filesPath.forEach(filename => {
+    const file = fs.readFileSync(
+      path.resolve(path.resolve(__dirname, `api/${apiDirName}`), filename),
+      "utf-8"
+    );
+    expect(file).toMatchSnapshot();
+  });
+};
+
 describe("test", () => {
   test("base option", async done => {
-    const root = path.resolve(__dirname, "api", "swaggerPetstore");
+    const dirname = "swaggerPetstore";
     await freeSwagger({
       source: require("./json/swaggerPetstore"),
-      root,
+      root: path.resolve(__dirname, "api", dirname),
       chooseAll: true
     });
-    const filesPath = fs.readdirSync(root);
-    expect(filesPath).toEqual(["pet.js", "store.js", "user.js"]);
-    await wait(1000);
-    filesPath.forEach(filename => {
-      const file = fs.readFileSync(
-        path.resolve(path.resolve(__dirname, "api/swaggerPetstore"), filename),
-        "utf-8"
-      );
-      expect(file).toMatchSnapshot();
-    });
+    await assetFiles(dirname, ["pet.js", "store.js", "user.js"]);
     done();
   });
 
   test("ts language", async done => {
-    const root = path.resolve(__dirname, "api", "uberApi");
+    const dirname = "uberApi";
     await freeSwagger({
       source: require("./json/uberApi"),
       lang: "ts",
-      root,
+      root: path.resolve(__dirname, "api", dirname),
       chooseAll: true
     });
-    const filesPath = fs.readdirSync(root);
-
-    expect(filesPath).toEqual([
+    await assetFiles(dirname, [
       "auditLog.ts",
       "device.ts",
       "interface.ts",
       "mappers.ts",
       "ymTicketTypical.ts"
     ]);
-    await wait(1000);
-    filesPath.forEach(filename => {
-      const file = fs.readFileSync(
-        path.resolve(path.resolve(__dirname, "api/uberApi"), filename),
-        "utf-8"
-      );
-      expect(file).toMatchSnapshot();
-    });
     done();
   });
 
   test("custom ts template", async done => {
-    const root = path.resolve(__dirname, "api", "homeIotApi");
+    const dirname = "homeIotApi";
     await freeSwagger({
       source: require("./json/homeIotApi"),
-      root,
+      root: path.resolve(__dirname, "api", dirname),
       lang: "ts",
-      template: ({
+      templateFunction: ({
         url,
         summary,
         method,
@@ -93,25 +88,15 @@ describe("test", () => {
       chooseAll: true
     });
 
-    const filesPath = fs.readdirSync(root);
-    expect(filesPath).toEqual([
+    await assetFiles(dirname, [
       "device.ts",
       "environment.ts",
       "interface.ts",
       "zWave.ts",
       "zones.ts"
     ]);
-    await wait(1000);
-    filesPath.forEach(filename => {
-      const file = fs.readFileSync(
-        path.resolve(path.resolve(__dirname, "api/homeIotApi"), filename),
-        "utf-8"
-      );
-      expect(file).toMatchSnapshot();
-    });
     done();
   });
 
   // todo bin 测试
-  // todo template -> templateFunction
 });

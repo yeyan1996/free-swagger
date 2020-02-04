@@ -107,12 +107,10 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 | root             | 生成 api 的根路径                      | string                   | -           | 当前路径 + src/api               |
 | customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"      |
 | lang             | 生成 api 语言                          | string                   | "js" / "ts" | "ts"                             |
-| template         | 生成 api 的模版                        | Function(TemplateConfig) | -           | 见源文件 src/default/template.ts |
+| templateFunction | 模版函数                               | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段 |
 | chooseAll        | 选择全部 api                           | boolean                  | -           | false                            |
 
 **TemplateConfig**
-
-template 模版是一个函数，返回字符串，接受以下几个参数，用户可以自定义生成的 api 模版
 
 | 参数         | 说明                 | 类型    | 可选值 | 默认值 |
 | ------------ | -------------------- | ------- | ------ | ------ |
@@ -126,10 +124,10 @@ template 模版是一个函数，返回字符串，接受以下几个参数，�
 | IParams      | 请求值接口类型       | string  | -      | -      |
 | IPathParams  | 路径请求值接口类型   | string  | -      | -      |
 
-默认的 ts 模版在 src/default/template.ts 下
+当导出语言为 ts 时，默认 templateFunction 如下
 
 ```javascript
-tsTemplate = ({
+({
   url,
   summary,
   method,

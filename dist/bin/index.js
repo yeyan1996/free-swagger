@@ -61,9 +61,9 @@ commander_1.default
             message: "是否需要编辑模版"
         },
         {
-            name: "template",
+            name: "templateFunction",
             type: "editor",
-            message: "输入模版",
+            message: "输入模版函数",
             when: ({ shouldEditTemplate }) => shouldEditTemplate === "y",
             validate: (input, answer) => {
                 if (!answer)

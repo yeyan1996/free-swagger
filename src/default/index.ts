@@ -1,5 +1,5 @@
 import { OpenAPIV2 } from "openapi-types";
-import { Template, tsTemplate, jsTemplate } from "free-swagger-client";
+import { TemplateFunction, tsTemplate, jsTemplate } from "free-swagger-client";
 import { Config } from "../utils";
 import { rc } from "./rc";
 import path from "path";
@@ -16,7 +16,7 @@ const getDefaultConfig = (
       ? DEFAULT_CUSTOM_IMPORT_CODE_TS
       : DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: "js",
-  template: eval(jsTemplate),
+  templateFunction: eval(jsTemplate),
   chooseAll: false
 });
 
@@ -32,18 +32,18 @@ export const mergeDefaultConfig = async (
     mergedConfig = config;
   }
 
-  let template: Template;
-  if (mergedConfig.template) {
-    template = mergedConfig.template;
+  let templateFunction: TemplateFunction;
+  if (mergedConfig.templateFunction) {
+    templateFunction = mergedConfig.templateFunction;
   } else if (!mergedConfig.lang) {
-    template = eval(jsTemplate);
+    templateFunction = eval(jsTemplate);
   } else {
-    template = mergedConfig.lang === "ts" ? eval(tsTemplate) : eval(jsTemplate);
+    templateFunction = mergedConfig.lang === "ts" ? eval(tsTemplate) : eval(jsTemplate);
   }
 
   return {
     ...getDefaultConfig(mergedConfig),
-    template,
+    templateFunction,
     ...(<Config<OpenAPIV2.Document>>mergedConfig)
   };
 };

@@ -1,5 +1,5 @@
 import { OpenAPIV2 } from "openapi-types";
-import { Template } from "free-swagger-client";
+import { TemplateFunction } from "free-swagger-client";
 import fse from "fs-extra";
 import camelcase from "camelcase";
 import path from "path";
@@ -11,7 +11,7 @@ import parserTypescript from "prettier/parser-typescript";
 export interface Config<T = string | OpenAPIV2.Document> {
   source: T;
   root?: string;
-  template?: Template;
+  templateFunction?: TemplateFunction;
   customImportCode?: string;
   lang?: "js" | "ts";
   chooseAll?: boolean;
