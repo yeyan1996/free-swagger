@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs";
 import freeSwagger from "../dist/main";
+import inquirer from "inquirer";
+import { init } from "../dist/bin/init";
 
 const wait = time =>
   new Promise(resolve =>
@@ -9,55 +11,53 @@ const wait = time =>
     }, time)
   );
 
-const assetFiles = async (apiDirName, apiFilesList) => {
-  const root = path.resolve(__dirname, "api", apiDirName);
-  const filesPath = fs.readdirSync(root);
+const assertFiles = async (dirPath, apiFilesList) => {
+  const filesPath = fs.readdirSync(dirPath);
   expect(filesPath).toEqual(apiFilesList);
-  await wait(1000);
+  await wait(500);
   filesPath.forEach(filename => {
-    const file = fs.readFileSync(
-      path.resolve(path.resolve(__dirname, `api/${apiDirName}`), filename),
-      "utf-8"
-    );
+    const file = fs.readFileSync(path.resolve(dirPath, filename), "utf-8");
     expect(file).toMatchSnapshot();
   });
 };
 
-describe("test", () => {
-  test("base option", async done => {
+describe("pkg", () => {
+  test("base option", async () => {
     const dirname = "swaggerPetstore";
+    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
     await freeSwagger({
-      source: require("./json/swaggerPetstore"),
-      root: path.resolve(__dirname, "api", dirname),
+      source: require(`./json/${dirname}`),
+      root: dirPath,
       chooseAll: true
     });
-    await assetFiles(dirname, ["pet.js", "store.js", "user.js"]);
-    done();
+    await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
   });
 
-  test("ts language", async done => {
+  test("ts language", async () => {
     const dirname = "uberApi";
+    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
     await freeSwagger({
-      source: require("./json/uberApi"),
+      source: require(`./json/${dirname}`),
       lang: "ts",
-      root: path.resolve(__dirname, "api", dirname),
+      root: dirPath,
       chooseAll: true
     });
-    await assetFiles(dirname, [
+    await assertFiles(dirPath, [
       "auditLog.ts",
       "device.ts",
       "interface.ts",
       "mappers.ts",
       "ymTicketTypical.ts"
     ]);
-    done();
   });
 
-  test("custom ts template", async done => {
+  test("custom ts template", async () => {
     const dirname = "homeIotApi";
+    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
+
     await freeSwagger({
-      source: require("./json/homeIotApi"),
-      root: path.resolve(__dirname, "api", dirname),
+      source: require(`./json/${dirname}`),
+      root: dirPath,
       lang: "ts",
       templateFunction: ({
         url,
@@ -88,15 +88,45 @@ describe("test", () => {
       chooseAll: true
     });
 
-    await assetFiles(dirname, [
+    await assertFiles(dirPath, [
       "device.ts",
       "environment.ts",
       "interface.ts",
       "zWave.ts",
       "zones.ts"
     ]);
-    done();
+  });
+});
+
+describe("bin", () => {
+  let backup;
+  // todo 清楚记忆缓存
+  beforeAll(() => {
+    backup = inquirer.prompt;
+  });
+  afterAll(() => {
+    inquirer.prompt = backup;
+  });
+  beforeEach(() => {
+    process.argv.length = 2;
   });
 
-  // todo bin 测试
+  test("zero config", async () => {
+    const dirname = "swaggerPetstore";
+    const dirPath = path.resolve(__dirname, "api", "bin", dirname);
+
+    const fnSpy = jest.fn(() =>
+      Promise.resolve({
+        chooseAll: true,
+        root: dirPath,
+        source: path.resolve(__dirname, `./json/${dirname}.json`)
+      })
+    );
+    inquirer.prompt = fnSpy;
+    init();
+    expect(fnSpy).toBeCalledTimes(1);
+    await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
+  });
+
+  // todo 记忆功能/增加覆盖率
 });

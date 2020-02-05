@@ -53,7 +53,7 @@ const gen = async (
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     await fse.writeFile(apiCollectionPath, code);
-  });
+  })
 };
 
 const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
@@ -92,7 +92,6 @@ const compile = async (
   // parse
   const { paths } = await parse(config);
   spinner.succeed("api 文件解析完成");
-
   const choosePaths = config.chooseAll
     ? paths
     : pick(paths, ...(await chooseApi(paths)));

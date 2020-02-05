@@ -3,13 +3,9 @@ import { genPath } from "free-swagger-client";
 import { ApiCollection } from "../parse/path";
 import { Config } from "../utils";
 import { uniq, isEmpty } from "lodash";
+import { DEFAULT_HEAD_CODE_JS, DEFAULT_HEAD_CODE_TS } from "../default";
 
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
-
-const genDisabledCode = (lang: "ts" | "js"): string =>
-  lang === "ts"
-    ? `// @ts-nocheck \n/* eslint-disable */\n`
-    : "/* eslint-disable */\n";
 
 const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   const importsInterface = uniq(
@@ -27,8 +23,7 @@ const genPaths = (
   config: Required<Config>
 ): string => {
   let code = "";
-
-  code += genDisabledCode(config.lang);
+  code += config.lang === "ts" ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS;
   code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
   code += config.customImportCode;
   code += Object.values(apiCollection)

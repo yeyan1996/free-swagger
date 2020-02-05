@@ -22,6 +22,7 @@ export interface Answer {
   tsTemplate: string;
   templateFunction?: TemplateFunction;
   apiChoices: { name: string; checked: boolean }[];
+  chooseAll: boolean;
 }
 
 class Rc {
@@ -46,7 +47,8 @@ class Rc {
       templateFunction: eval(tsTemplate),
       tsTemplate: tsTemplate,
       jsTemplate: jsTemplate,
-      apiChoices: []
+      apiChoices: [],
+      chooseAll: false
     };
   }
   getConfig(): Required<Config> {
@@ -59,7 +61,7 @@ class Rc {
       templateFunction: eval(
         this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate
       ),
-      chooseAll: false
+      chooseAll: this.data.chooseAll
     };
   }
   merge(answer: Partial<Answer>): void {

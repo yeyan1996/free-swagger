@@ -3,10 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../utils");
 const free_swagger_client_1 = require("free-swagger-client");
 const lodash_1 = require("lodash");
+const default_1 = require("../default");
 const RELATIVE_PATH = "./interface"; // interface 的相对路径
-const genDisabledCode = (lang) => lang === "ts"
-    ? `// @ts-nocheck \n/* eslint-disable */\n`
-    : "/* eslint-disable */\n";
 const genImportInterfaceCode = (apiCollection) => {
     const importsInterface = lodash_1.uniq(Object.keys(apiCollection)
         .map(key => apiCollection[key])
@@ -18,7 +16,7 @@ const genImportInterfaceCode = (apiCollection) => {
 // 生成单个 ts 文件中的所有 api
 const genPaths = (apiCollection, config) => {
     let code = "";
-    code += genDisabledCode(config.lang);
+    code += config.lang === "ts" ? default_1.DEFAULT_HEAD_CODE_TS : default_1.DEFAULT_HEAD_CODE_JS;
     code += config.lang === "ts" ? genImportInterfaceCode(apiCollection) : "";
     code += config.customImportCode;
     code += Object.values(apiCollection)

@@ -28,7 +28,8 @@ class Rc {
             templateFunction: eval(free_swagger_client_1.tsTemplate),
             tsTemplate: free_swagger_client_1.tsTemplate,
             jsTemplate: free_swagger_client_1.jsTemplate,
-            apiChoices: []
+            apiChoices: [],
+            chooseAll: false
         };
     }
     getConfig() {
@@ -39,7 +40,7 @@ class Rc {
             customImportCode: this.data.customImportCode,
             // 合并默认模版
             templateFunction: eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate),
-            chooseAll: false
+            chooseAll: this.data.chooseAll
         };
     }
     merge(answer) {
