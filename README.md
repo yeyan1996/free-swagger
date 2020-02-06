@@ -108,7 +108,7 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 | customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"                    |
 | lang             | 生成 api 语言                          | string                   | "js" / "ts" | "ts"                                           |
 | templateFunction | 模版函数                               | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
-| chooseAll        | 选择全部 api                           | boolean                  | -           | false                                          |
+| chooseAll        | 是否跳过选择 api 的步骤                       | boolean                  | -           | false                                          |
 
 TemplateConfig
 
