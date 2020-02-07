@@ -1,5 +1,4 @@
-import { formatCode } from "../utils";
-import { genPath } from "free-swagger-client";
+import { genPath,formatCode } from "free-swagger-client";
 import { ApiCollection } from "../parse/path";
 import { Config } from "../utils";
 import { uniq, isEmpty } from "lodash";

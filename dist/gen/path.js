@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
 const free_swagger_client_1 = require("free-swagger-client");
 const lodash_1 = require("lodash");
 const default_1 = require("../default");
@@ -22,6 +21,6 @@ const genPaths = (apiCollection, config) => {
     code += Object.values(apiCollection)
         .map(api => free_swagger_client_1.genPath(api, config.templateFunction))
         .reduce((acc, cur) => acc + cur);
-    return utils_1.formatCode(config.lang)(code);
+    return free_swagger_client_1.formatCode(config.lang)(code);
 };
 exports.genPaths = genPaths;

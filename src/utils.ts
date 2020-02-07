@@ -4,9 +4,6 @@ import fse from "fs-extra";
 import camelcase from "camelcase";
 import path from "path";
 import chalk from "chalk";
-import prettier from "prettier/standalone";
-import parserBabel from "prettier/parser-babylon";
-import parserTypescript from "prettier/parser-typescript";
 
 export interface Config<T = string | OpenAPIV2.Document> {
   source: T;
@@ -41,19 +38,9 @@ const isOpenApi2 = (config: Config): config is Config<OpenAPIV2.Document> => {
   return version.startsWith("2.", 0);
 };
 
-const formatCode = (lang: "js" | "ts") => (code: string): string =>
-  prettier.format(code, {
-    plugins: [parserBabel, parserTypescript],
-    printWidth: 120,
-    tabWidth: 2,
-    parser: lang === "js" ? "babel" : "typescript",
-    trailingComma: "none",
-    jsxBracketSameLine: false
-  });
-
 const pascalCase = (str: string): string =>
   camelcase(str, {
     pascalCase: true
   });
 
-export { ensureExist, isUrl, isPath, isOpenApi2, formatCode, pascalCase };
+export { ensureExist, isUrl, isPath, isOpenApi2, pascalCase };

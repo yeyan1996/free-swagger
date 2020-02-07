@@ -24,7 +24,6 @@ const lodash_1 = require("lodash");
 const path_2 = require("./parse/path");
 const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
-const utils_2 = require("./utils");
 // parse swagger json
 const parse = (config) => __awaiter(void 0, void 0, void 0, function* () {
     yield utils_1.ensureExist(config.root, true);
@@ -38,8 +37,7 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
         yield utils_1.ensureExist(interfacePath);
         const code = free_swagger_client_1.compileInterfaces({
-            source: config.source,
-            prettier: utils_2.formatCode("ts")
+            source: config.source
         });
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }

@@ -13,7 +13,6 @@ import { parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
 import { Paths } from "./parse/path";
 import { genPaths } from "./gen/path";
-import { formatCode } from "./utils";
 
 // parse swagger json
 const parse = async (
@@ -38,8 +37,7 @@ const gen = async (
     const interfacePath = path.resolve(dirPath, "interface.ts");
     await ensureExist(interfacePath);
     const code = compileInterfaces({
-      source: config.source,
-      prettier: formatCode("ts")
+      source: config.source
     });
     await fse.writeFile(interfacePath, code);
   }
@@ -53,7 +51,7 @@ const gen = async (
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     await fse.writeFile(apiCollectionPath, code);
-  })
+  });
 };
 
 const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {

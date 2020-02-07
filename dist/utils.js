@@ -16,9 +16,6 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const camelcase_1 = __importDefault(require("camelcase"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
-const standalone_1 = __importDefault(require("prettier/standalone"));
-const parser_babylon_1 = __importDefault(require("prettier/parser-babylon"));
-const parser_typescript_1 = __importDefault(require("prettier/parser-typescript"));
 const isUrl = (url) => typeof url === "string" && url.startsWith("http");
 exports.isUrl = isUrl;
 const isPath = (url) => typeof url === "string" && fs_extra_1.default.existsSync(path_1.default.resolve(process.cwd(), url));
@@ -43,15 +40,6 @@ const isOpenApi2 = (config) => {
     return version.startsWith("2.", 0);
 };
 exports.isOpenApi2 = isOpenApi2;
-const formatCode = (lang) => (code) => standalone_1.default.format(code, {
-    plugins: [parser_babylon_1.default, parser_typescript_1.default],
-    printWidth: 120,
-    tabWidth: 2,
-    parser: lang === "js" ? "babel" : "typescript",
-    trailingComma: "none",
-    jsxBracketSameLine: false
-});
-exports.formatCode = formatCode;
 const pascalCase = (str) => camelcase_1.default(str, {
     pascalCase: true
 });
