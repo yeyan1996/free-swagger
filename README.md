@@ -30,6 +30,8 @@ free-swagger
 
 之后需要输入 swagger 路径，路径可以是 url，也可以是本地的 json 文件的相对/绝对路径
 
+![image-20200208153153194](https://tva1.sinaimg.cn/large/0082zybply1gbp11zc8jrj32bo0h842p.jpg)
+
 ![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
 ## 其他命令
