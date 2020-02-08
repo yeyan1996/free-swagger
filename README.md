@@ -12,7 +12,7 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 ## 全局安装
 
-### npx
+### npx(推荐)
 
 ```
 npx free-swagger
@@ -50,6 +50,10 @@ free-swagger
 
 > npx free-swagger --show
 
+- `--help/-h` 查询命令
+
+> npx free-swagger --help
+
 ## 项目安装
 
 > npm i free-swagger -D
@@ -60,22 +64,23 @@ free-swagger
 // api.js
 const freeSwagger = require("free-swagger");
 
-freeSwagger("https://petstore.swagger.io/v2/swagger.json").then();
+freeSwagger("https://petstore.swagger.io/v2/swagger.json");
 ```
 
-之后在 nodejs 中运行当前脚本，或者绑定 npm script
+之后在 nodejs 中运行当前脚本
 
 ```
 node api.js
 ```
 
+或者绑定为 npm script
+
 ```
+// package.json
 "swagger": "node api.js"
 
 npm run swagger
 ```
-
-`free-swagger 是 node 包，请勿在任何前端页面中使用！，否则会在打包工具打包过程中发生错误`
 
 如果需要进一步的配置，则需要传入一个对象
 
@@ -99,6 +104,8 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 
 当生成一次后，free-swagger 同样会记住用户的选择
 
+**free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
+
 # API
 
 | 参数             | 说明                                   | 类型                     | 可选值      | 默认值                                         |
@@ -108,7 +115,7 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 | customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"                    |
 | lang             | 生成 api 语言                          | string                   | "js" / "ts" | "ts"                                           |
 | templateFunction | 模版函数                               | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
-| chooseAll        | 是否跳过选择 api 的步骤                       | boolean                  | -           | false                                          |
+| chooseAll        | 是否跳过选择 api 的步骤                | boolean                  | -           | false                                          |
 
 TemplateConfig
 
