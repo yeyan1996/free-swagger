@@ -65,5 +65,8 @@ class Rc {
         this.data = this.getDefaultAnswer();
         this.save();
     }
+    show() {
+        console.log(this.data);
+    }
 }
 exports.rc = new Rc();

@@ -89,6 +89,9 @@ class Rc {
     this.data = this.getDefaultAnswer();
     this.save();
   }
+  show(): void {
+    console.log(this.data);
+  }
 }
 
 export const rc = new Rc();

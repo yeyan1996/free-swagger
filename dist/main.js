@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
@@ -42,12 +43,13 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }
     // 生成 api
-    Object.entries(paths).forEach(([name, apiCollection]) => __awaiter(void 0, void 0, void 0, function* () {
+    const genApi = ([name, apiCollection]) => __awaiter(void 0, void 0, void 0, function* () {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
         yield utils_1.ensureExist(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
         yield fs_extra_1.default.writeFile(apiCollectionPath, code);
-    }));
+    });
+    Object.entries(paths).forEach(genApi);
 });
 const fetchJSON = (url) => __awaiter(void 0, void 0, void 0, function* () {
     const spinner = ora_1.default().render();

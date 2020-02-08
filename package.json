@@ -4,6 +4,12 @@
   "description": "openApi(swagger) Document Generator",
   "main": "dist/main.js",
   "types": "index.d.ts",
+  "files": [
+    "dist/**",
+    "README.md",
+    "index.d.ts",
+    "LICENSE"
+  ],
   "bin": {
     "free-swagger": "dist/bin/index.js"
   },
@@ -44,7 +50,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.7.7",
-    "@babel/preset-typescript": "^7.7.7",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/chalk": "^2.2.0",
     "@types/diff": "^4.0.2",
     "@types/fs-extra": "^8.0.1",

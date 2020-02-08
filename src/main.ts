@@ -9,7 +9,7 @@ import { ensureExist, Config, isUrl, isPath, isOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
-import { parsePaths } from "./parse/path";
+import { ApiCollection, parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
 import { Paths } from "./parse/path";
 import { genPaths } from "./gen/path";
@@ -43,7 +43,10 @@ const gen = async (
   }
 
   // 生成 api
-  Object.entries(paths).forEach(async ([name, apiCollection]) => {
+  const genApi = async ([name, apiCollection]: [
+    string,
+    ApiCollection
+  ]): Promise<void> => {
     const apiCollectionPath = path.resolve(
       dirPath,
       `${camelcase(name)}.${config.lang}`
@@ -51,7 +54,9 @@ const gen = async (
     await ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     await fse.writeFile(apiCollectionPath, code);
-  });
+  };
+
+  Object.entries(paths).forEach(genApi);
 };
 
 const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
@@ -116,4 +121,4 @@ const freeSwagger = async (
 };
 
 freeSwagger.compile = compile;
-export = freeSwagger;
+module.exports = freeSwagger;

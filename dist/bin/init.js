@@ -17,10 +17,11 @@ const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
-const main_1 = __importDefault(require("../main"));
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
-function init() {
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const freeSwagger = require("../main");
+function init(/*测试用*/ cb) {
     const packageJsonPath = path_1.default.resolve(__dirname, "../../package.json");
     const pkg = JSON.parse(fs_extra_1.default.readFileSync(packageJsonPath, "utf-8")); // package.json
     commander_1.default
@@ -29,11 +30,9 @@ function init() {
         .option("-r --reset", "rest config", () => {
         rc_1.rc.reset();
         console.log(chalk_1.default.green("重置配置项成功"));
-        return;
     })
         .option("-s --show", "show config", () => {
-        console.log(rc_1.rc.data);
-        return;
+        rc_1.rc.show();
     })
         .option("-c, --config", "launch free-swagger under config mode", () => __awaiter(this, void 0, void 0, function* () {
         const { data: defaultAnswer } = rc_1.rc;
@@ -89,16 +88,18 @@ function init() {
         ]);
         rc_1.rc.merge(answer);
         rc_1.rc.save();
-        yield main_1.default.compile(rc_1.rc.getConfig());
+        yield freeSwagger.compile(rc_1.rc.getConfig());
     }))
         // 默认启动
         .action((command) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
         if (command.rawArgs[2])
             return;
         const answer = yield inquirer_1.default.prompt([questions_1.source]);
         rc_1.rc.merge(answer);
         rc_1.rc.save();
-        yield main_1.default.compile(rc_1.rc.getConfig());
+        yield freeSwagger.compile(rc_1.rc.getConfig());
+        (_a = cb) === null || _a === void 0 ? void 0 : _a();
         return;
     }))
         .allowUnknownOption()

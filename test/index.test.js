@@ -1,8 +1,9 @@
 import path from "path";
 import fs from "fs";
-import freeSwagger from "../dist/main";
 import inquirer from "inquirer";
-import { init } from "../dist/bin/init";
+import freeSwagger from "../src/main";
+import { init } from "../src/bin/init";
+import { rc } from "../src/default/rc";
 
 const wait = time =>
   new Promise(resolve =>
@@ -100,18 +101,19 @@ describe("pkg", () => {
 
 describe("bin", () => {
   let backup;
-  // todo 清楚记忆缓存
   beforeAll(() => {
+    rc.reset();
     backup = inquirer.prompt;
   });
   afterAll(() => {
     inquirer.prompt = backup;
+    rc.reset();
   });
   beforeEach(() => {
     process.argv.length = 2;
   });
 
-  test("zero config", async () => {
+  test("zero config", done => {
     const dirname = "swaggerPetstore";
     const dirPath = path.resolve(__dirname, "api", "bin", dirname);
 
@@ -123,10 +125,41 @@ describe("bin", () => {
       })
     );
     inquirer.prompt = fnSpy;
-    init();
-    expect(fnSpy).toBeCalledTimes(1);
-    await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
+    init(() => {
+      assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
+      expect(fnSpy).toBeCalledTimes(1);
+      done();
+    });
   });
 
-  // todo 记忆功能/增加覆盖率
+  test("can remember previous(zero config) configuration", () => {
+    expect(rc.data).toMatchSnapshot();
+  });
+
+  test("ts language", done => {
+    const dirname = "uberApi";
+    const dirPath = path.resolve(__dirname, "api", "bin", dirname);
+
+    inquirer.prompt = () =>
+      Promise.resolve({
+        chooseAll: true,
+        lang: "ts",
+        root: dirPath,
+        source: path.resolve(__dirname, `./json/${dirname}.json`)
+      });
+    init(() => {
+      assertFiles(dirPath, [
+        "auditLog.ts",
+        "device.ts",
+        "interface.ts",
+        "mappers.ts",
+        "ymTicketTypical.ts"
+      ]);
+      done();
+    });
+  });
+
+  test("can remember previous(ts language) configuration", () => {
+    expect(rc.data).toMatchSnapshot();
+  });
 });

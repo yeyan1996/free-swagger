@@ -3,11 +3,12 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
-import freeSwagger from "../main";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const freeSwagger = require("../main");
 
-export function init(): void {
+export function init(/*测试用*/ cb?: Function): void {
   const packageJsonPath = path.resolve(__dirname, "../../package.json");
   const pkg = JSON.parse(fse.readFileSync(packageJsonPath, "utf-8")); // package.json
 
@@ -17,11 +18,9 @@ export function init(): void {
     .option("-r --reset", "rest config", () => {
       rc.reset();
       console.log(chalk.green("重置配置项成功"));
-      return;
     })
     .option("-s --show", "show config", () => {
-      console.log(rc.data);
-      return;
+      rc.show();
     })
     .option(
       "-c, --config",
@@ -98,6 +97,7 @@ export function init(): void {
       rc.merge(answer);
       rc.save();
       await freeSwagger.compile(rc.getConfig());
+      cb?.();
       return;
     })
     .allowUnknownOption()
