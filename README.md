@@ -2,7 +2,7 @@
 
 根据 swagger 文档自动生成 api 文件，真正解放双手的工具
 
-free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，额外为生成的代码提供写入和命令行交互能力，同时支持全量生成 api
+free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，提供全量生成 api 并写入至项目文件和命令行交互能力
 
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
 
@@ -63,7 +63,7 @@ free-swagger
 随后新建一个 js 脚本，引入 free-swagger 包，传入 swagger url 即可
 
 ```javascript
-// api.js
+// swagger.js
 const freeSwagger = require("free-swagger");
 
 freeSwagger("https://petstore.swagger.io/v2/swagger.json");
@@ -80,33 +80,35 @@ node api.js
 ```
 // package.json
 "swagger": "node api.js"
+```
 
+```
 npm run swagger
 ```
 
 如果需要进一步的配置，则需要传入一个对象
 
 ```javascript
-// api.js
+// swagger.js
 const freeSwagger = require("free-swagger");
 const json = require("./swagger.json");
 
 freeSwagger({
   source: json,
-  customImportCode: "import axios from './request'", // 假设请求库在 ./request
+  customImportCode: "import http from './request'", // 假设请求库在 ./request
   lang: "js"
-}).then();
+});
 ```
 
 # 提醒
 
-free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
+1. free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
 
 ![image-20200103174105519](https://tva1.sinaimg.cn/large/006tNbRwgy1gajihbv47tj30uq0c2k2u.jpg)
 
 当生成一次后，free-swagger 同样会记住用户的选择
 
-**free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
+2. **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
 
 # API
 
@@ -115,23 +117,23 @@ free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，�
 | source           | swagger 路径（url/文件路径/json 文件） | string/json              | -           | -                                              |
 | root             | 生成 api 的根路径                      | string                   | -           | 当前路径 + src/api                             |
 | customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"                    |
-| lang             | 生成 api 语言                          | string                   | "js" / "ts" | "ts"                                           |
+| lang             | 生成 api 语言                          | string                   | "js" / "ts" | "js"                                           |
 | templateFunction | 模版函数                               | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
 | chooseAll        | 是否跳过选择 api 的步骤                | boolean                  | -           | false                                          |
 
 TemplateConfig
 
-| 参数         | 说明                 | 类型    | 可选值 | 默认值 |
-| ------------ | -------------------- | ------- | ------ | ------ |
-| url          | 路径                 | string  | -      | -      |
-| summary      | 注释                 | string  | -      | -      |
-| method       | 方法                 | string  | -      | -      |
-| name         | 名称                 | string  | -      | -      |
-| responseType | 返回值类型，同 axios | string  | -      | "json" |
-| deprecated   | 是否废弃             | boolean | -      | false  |
-| IResponse    | 返回值接口类型       | string  | -      | -      |
-| IParams      | 请求值接口类型       | string  | -      | -      |
-| IPathParams  | 路径请求值接口类型   | string  | -      | -      |
+| 参数         | 说明                                   | 类型    | 可选值   | 默认值 |
+| ------------ | -------------------------------------- | ------- | -------- | ------ |
+| url          | 路径                                   | string  | -        | -      |
+| summary      | 注释，对应 swagger 文档 summary        | string  | -        | -      |
+| method       | 方法                                   | string  | -        | -      |
+| name         | 名称，对应 swagger 文档 operationId    | string  | -        | -      |
+| deprecated   | 是否废弃，对应 swagger 文档 deprecated | boolean | -        | -      |
+| responseType | 返回值类型                             | string  | 同 axios | -      |
+| IResponse    | 返回值接口类型                         | string  | -        | -      |
+| IParams      | 请求值接口类型                         | string  | -        | -      |
+| IPathParams  | 路径请求值接口类型                     | string  | -        | -      |
 
 当导出语言为 ts 时，默认 templateFunction 如下
 
