@@ -22,7 +22,6 @@ const parse = async (
 }> => {
   await ensureExist(config.root!, true);
   const paths = parsePaths(config.source.paths);
-
   return { paths };
 };
 
@@ -72,19 +71,27 @@ const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
   }
 };
 
+const normalizeSource = async (
+  source: string | OpenAPIV2.Document
+): Promise<OpenAPIV2.Document> => {
+  if (isUrl(source)) {
+    return await fetchJSON(source);
+  }
+  if (isPath(source)) {
+    const sourcePath = path.resolve(process.cwd(), source);
+    return JSON.parse(await fse.readFile(sourcePath, "utf-8"));
+  }
+  return source;
+};
+
 // compile = parse + gen
 const compile = async (
   config: Required<Config>
 ): Promise<OpenAPIV2.Document> => {
   const spinner = ora().render();
 
-  if (isUrl(config.source)) {
-    config.source = await fetchJSON(config.source);
-  }
-  if (isPath(config.source)) {
-    const sourcePath = path.resolve(process.cwd(), config.source);
-    config.source = JSON.parse(await fse.readFile(sourcePath, "utf-8"));
-  }
+  config.source = await normalizeSource(config.source);
+
   if (!isOpenApi2(config)) {
     throw new Error("文档解析错误，请使用 openApi2 规范的文档");
   }
@@ -122,3 +129,5 @@ const freeSwagger = async (
 
 freeSwagger.compile = compile;
 module.exports = freeSwagger;
+
+// todo 重新组织代码，结合 free-swagger-client

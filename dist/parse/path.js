@@ -20,7 +20,7 @@ const methods = [
 const parsePaths = (paths) => {
     const requestClasses = {};
     Object.entries(paths).forEach(([path, apiObj]) => {
-        methods.forEach(method => {
+        methods.forEach((method) => {
             var _a;
             const operationObject = apiObj[method];
             if (!operationObject)

@@ -64,16 +64,20 @@ const fetchJSON = (url) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error(e);
     }
 });
+const normalizeSource = (source) => __awaiter(void 0, void 0, void 0, function* () {
+    if (utils_1.isUrl(source)) {
+        return yield fetchJSON(source);
+    }
+    if (utils_1.isPath(source)) {
+        const sourcePath = path_1.default.resolve(process.cwd(), source);
+        return JSON.parse(yield fs_extra_1.default.readFile(sourcePath, "utf-8"));
+    }
+    return source;
+});
 // compile = parse + gen
 const compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
     const spinner = ora_1.default().render();
-    if (utils_1.isUrl(config.source)) {
-        config.source = yield fetchJSON(config.source);
-    }
-    if (utils_1.isPath(config.source)) {
-        const sourcePath = path_1.default.resolve(process.cwd(), config.source);
-        config.source = JSON.parse(yield fs_extra_1.default.readFile(sourcePath, "utf-8"));
-    }
+    config.source = yield normalizeSource(config.source);
     if (!utils_1.isOpenApi2(config)) {
         throw new Error("文档解析错误，请使用 openApi2 规范的文档");
     }
@@ -104,3 +108,4 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
 });
 freeSwagger.compile = compile;
 module.exports = freeSwagger;
+// todo 重新组织代码，结合 free-swagger-client

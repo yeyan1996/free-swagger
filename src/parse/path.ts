@@ -1,19 +1,9 @@
 import { OpenAPIV2 } from "openapi-types";
-import { parsePath, Api } from "free-swagger-client";
+import { parsePath, Api, Method } from "free-swagger-client";
 import { pascalCase } from "../utils";
 import chalk from "chalk";
 
-type Methods = [
-  "get",
-  "put",
-  "post",
-  "del",
-  "delete",
-  "options",
-  "head",
-  "patch"
-];
-const methods: Methods = [
+const methods: Method[] = [
   "get",
   "put",
   "post",
@@ -36,7 +26,7 @@ const parsePaths = (paths: OpenAPIV2.PathsObject): Paths => {
   const requestClasses: { [key: string]: ApiCollection } = {};
 
   Object.entries<OpenAPIV2.PathItemObject>(paths).forEach(([path, apiObj]) => {
-    methods.forEach(method => {
+    methods.forEach((method: Method) => {
       const operationObject = apiObj[method];
       if (!operationObject) return;
 
