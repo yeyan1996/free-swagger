@@ -3,7 +3,7 @@ import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
 import { TemplateFunction, jsTemplate, tsTemplate } from "free-swagger-client";
-import { Config } from "../utils";
+import { Config, ensureExist } from "../utils";
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS
@@ -32,6 +32,7 @@ class Rc {
   constructor() {
     const homedir = os.homedir();
     this.path = path.resolve(homedir, ".free-swaggerrc");
+    ensureExist(this.path);
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
     this.data = { ...this.getDefaultAnswer(), ...JSON.parse(data) };
   }

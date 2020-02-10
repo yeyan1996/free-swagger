@@ -27,7 +27,7 @@ const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
 // parse swagger json
 const parse = (config) => __awaiter(void 0, void 0, void 0, function* () {
-    yield utils_1.ensureExist(config.root, true);
+    utils_1.ensureExist(config.root, true);
     const paths = path_2.parsePaths(config.source.paths);
     return { paths };
 });
@@ -36,7 +36,7 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
     // 生成 interface
     if (config.lang === "ts") {
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
-        yield utils_1.ensureExist(interfacePath);
+        utils_1.ensureExist(interfacePath);
         const code = free_swagger_client_1.compileInterfaces({
             source: config.source
         });
@@ -45,7 +45,7 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
     // 生成 api
     const genApi = ([name, apiCollection]) => __awaiter(void 0, void 0, void 0, function* () {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
-        yield utils_1.ensureExist(apiCollectionPath);
+        utils_1.ensureExist(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
         yield fs_extra_1.default.writeFile(apiCollectionPath, code);
     });
@@ -82,7 +82,7 @@ const compile = (config) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error("文档解析错误，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
-    yield utils_1.ensureExist(config.root, true);
+    utils_1.ensureExist(config.root, true);
     // parse
     const { paths } = yield parse(config);
     spinner.succeed("api 文件解析完成");

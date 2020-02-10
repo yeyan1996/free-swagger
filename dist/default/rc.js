@@ -8,11 +8,13 @@ const os_1 = __importDefault(require("os"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const prettier_1 = __importDefault(require("prettier"));
 const free_swagger_client_1 = require("free-swagger-client");
+const utils_1 = require("../utils");
 const index_1 = require("./index");
 class Rc {
     constructor() {
         const homedir = os_1.default.homedir();
         this.path = path_1.default.resolve(homedir, ".free-swaggerrc");
+        utils_1.ensureExist(this.path);
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
         this.data = Object.assign(Object.assign({}, this.getDefaultAnswer()), JSON.parse(data));
     }

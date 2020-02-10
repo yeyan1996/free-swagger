@@ -20,7 +20,7 @@ const parse = async (
 ): Promise<{
   paths: Paths;
 }> => {
-  await ensureExist(config.root!, true);
+  ensureExist(config.root!, true);
   const paths = parsePaths(config.source.paths);
   return { paths };
 };
@@ -34,7 +34,7 @@ const gen = async (
   // 生成 interface
   if (config.lang === "ts") {
     const interfacePath = path.resolve(dirPath, "interface.ts");
-    await ensureExist(interfacePath);
+    ensureExist(interfacePath);
     const code = compileInterfaces({
       source: config.source
     });
@@ -50,7 +50,7 @@ const gen = async (
       dirPath,
       `${camelcase(name)}.${config.lang}`
     );
-    await ensureExist(apiCollectionPath);
+    ensureExist(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     await fse.writeFile(apiCollectionPath, code);
   };
@@ -97,7 +97,7 @@ const compile = async (
   }
   spinner.start("正在生成 api 文件...");
 
-  await ensureExist(config.root, true);
+  ensureExist(config.root, true);
 
   // parse
   const { paths } = await parse(config);

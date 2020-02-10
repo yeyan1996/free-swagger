@@ -19,12 +19,12 @@ const isUrl = (url: string | OpenAPIV2.Document): url is string =>
 const isPath = (url: string | OpenAPIV2.Document): url is string =>
   typeof url === "string" && fse.existsSync(path.resolve(process.cwd(), url));
 
-const ensureExist = async (path: string, isDir = false): Promise<void> => {
+const ensureExist = (path: string, isDir = false): void => {
   if (!fse.existsSync(path)) {
     if (isDir) {
       fse.mkdirSync(path, { recursive: true });
     } else {
-      await fse.writeFile(path, "");
+      fse.writeFileSync(path, "");
     }
   }
 };
