@@ -28,7 +28,7 @@ npm i free-swagger -g
 free-swagger
 ```
 
-之后需要输入 swagger 路径，路径可以是 url，也可以是本地的 json 文件的相对/绝对路径
+之后需要输入 swagger 源，可以是 url，也可以是本地的 json 文件的相对/绝对路径
 
 ![image-20200208153153194](https://tva1.sinaimg.cn/large/0082zybply1gbp11zc8jrj32bo0h842p.jpg)
 
@@ -114,7 +114,7 @@ freeSwagger({
 
 | 参数             | 说明                                   | 类型                     | 可选值      | 默认值                                         |
 | ---------------- | -------------------------------------- | ------------------------ | ----------- | ---------------------------------------------- |
-| source           | swagger 路径（url/文件路径/json 文件） | string/json              | -           | -                                              |
+| source           | swagger 源（url/文件路径/json 文件） | string/json              | -           | -                                              |
 | root             | 生成 api 的根路径                      | string                   | -           | 当前路径 + src/api                             |
 | customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"                    |
 | lang             | 生成 api 语言                          | string                   | "js" / "ts" | "js"                                           |

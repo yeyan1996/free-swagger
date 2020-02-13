@@ -37,9 +37,7 @@ const gen = (config, dirPath, paths) => __awaiter(void 0, void 0, void 0, functi
     if (config.lang === "ts") {
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
         utils_1.ensureExist(interfacePath);
-        const code = free_swagger_client_1.compileInterfaces({
-            source: config.source
-        });
+        const code = free_swagger_client_1.compileInterfaces(config.source);
         yield fs_extra_1.default.writeFile(interfacePath, code);
     }
     // 生成 api
@@ -109,3 +107,4 @@ const freeSwagger = (config) => __awaiter(void 0, void 0, void 0, function* () {
 freeSwagger.compile = compile;
 module.exports = freeSwagger;
 // todo 重新组织代码，结合 free-swagger-client
+// todo 添加开源商标

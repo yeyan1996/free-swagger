@@ -35,9 +35,7 @@ const gen = async (
   if (config.lang === "ts") {
     const interfacePath = path.resolve(dirPath, "interface.ts");
     ensureExist(interfacePath);
-    const code = compileInterfaces({
-      source: config.source
-    });
+    const code = compileInterfaces(config.source);
     await fse.writeFile(interfacePath, code);
   }
 
@@ -131,3 +129,4 @@ freeSwagger.compile = compile;
 module.exports = freeSwagger;
 
 // todo 重新组织代码，结合 free-swagger-client
+// todo 添加开源商标
