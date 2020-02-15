@@ -1,16 +1,15 @@
 import { OpenAPIV2 } from "openapi-types";
-import { TemplateFunction } from "free-swagger-client";
+import {  ConfigClient } from "free-swagger-client";
 import fse from "fs-extra";
 import camelcase from "camelcase";
 import path from "path";
 import chalk from "chalk";
 
-export interface Config<T = string | OpenAPIV2.Document> {
+export interface Config<T = string | OpenAPIV2.Document>
+  extends Omit<ConfigClient, "source"> {
   source: T;
   root?: string;
-  templateFunction?: TemplateFunction;
   customImportCode?: string;
-  lang?: "js" | "ts";
   chooseAll?: boolean;
 }
 

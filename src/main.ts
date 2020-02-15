@@ -87,14 +87,11 @@ const compile = async (
   config: Required<Config>
 ): Promise<OpenAPIV2.Document> => {
   const spinner = ora().render();
-
   config.source = await normalizeSource(config.source);
-
   if (!isOpenApi2(config)) {
     throw new Error("文档解析错误，请使用 openApi2 规范的文档");
   }
   spinner.start("正在生成 api 文件...");
-
   ensureExist(config.root, true);
 
   // parse
@@ -108,6 +105,7 @@ const compile = async (
   spinner.succeed(
     `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
   );
+
   return config.source;
 };
 
