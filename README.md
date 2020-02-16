@@ -112,14 +112,14 @@ freeSwagger({
 
 # API
 
-| 参数             | 说明                                   | 类型                     | 可选值      | 默认值                                         |
-| ---------------- | -------------------------------------- | ------------------------ | ----------- | ---------------------------------------------- |
+| 参数             | 说明                                 | 类型                     | 可选值      | 默认值                                         |
+| ---------------- | ------------------------------------ | ------------------------ | ----------- | ---------------------------------------------- |
 | source           | swagger 源（url/文件路径/json 文件） | string/json              | -           | -                                              |
-| root             | 生成 api 的根路径                      | string                   | -           | 当前路径 + src/api                             |
-| customImportCode | 自定义头部代码                         | string                   | -           | "import axios from 'axios'"                    |
-| lang             | 生成 api 语言                          | string                   | "js" / "ts" | "js"                                           |
-| templateFunction | 模版函数                               | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
-| chooseAll        | 是否跳过选择 api 的步骤                | boolean                  | -           | false                                          |
+| root             | 生成 api 的根路径                    | string                   | -           | 当前路径 + src/api                             |
+| customImportCode | 自定义头部代码                       | string                   | -           | "import axios from 'axios'"                    |
+| lang             | 生成 api 语言                        | string                   | "js" / "ts" | "js"                                           |
+| templateFunction | 模版函数                             | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
+| chooseAll        | 是否跳过选择 api 的步骤              | boolean                  | -           | false                                          |
 
 TemplateConfig
 
@@ -134,6 +134,35 @@ TemplateConfig
 | IResponse    | 返回值接口类型                         | string  | -        | -      |
 | IParams      | 请求值接口类型                         | string  | -        | -      |
 | IPathParams  | 路径请求值接口类型                     | string  | -        | -      |
+
+# 默认模版
+
+当导出语言为 js 时，默认 templateFunction 如下
+
+```javascript
+({
+  url,
+  summary,
+  method,
+  name,
+  responseType,
+  deprecated,
+  IParams,
+  IPathParams
+}) =>
+  `
+  ${deprecated ? `/**deprecated*/` : ""}
+  ${summary ? `// ${summary}` : ""}
+  export const ${name} = (params,${
+  IPathParams ? `pathParams` : ""
+}) => axios.request({
+     url: \`${url}\`, 
+     method: "${method}",
+     params:${`${method === "get" ? "params," : "{},"}`}
+     data:${`${method === "get" ? "{}," : "params,"}`}
+     ${responseType === "json" ? "" : `responseType: ${responseType}`}
+ })`
+```
 
 当导出语言为 ts 时，默认 templateFunction 如下
 
