@@ -33,7 +33,8 @@ const assertOpenApi2 = (
   config: Config
 ): config is Config<OpenAPIV2.Document> => {
   // @ts-ignore
-  if ("swagger" in config.source) {
+  if (config.source?.swagger) {
+    // @ts-ignore
     const version = config.source.swagger;
     console.log("openApi version:", chalk.yellow(version));
     assert(version.startsWith("2.", 0));

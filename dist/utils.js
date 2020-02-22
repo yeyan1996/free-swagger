@@ -24,8 +24,10 @@ const ensureExist = (path, isDir = false) => {
 };
 exports.ensureExist = ensureExist;
 const assertOpenApi2 = (config) => {
+    var _a;
     // @ts-ignore
-    if ("swagger" in config.source) {
+    if ((_a = config.source) === null || _a === void 0 ? void 0 : _a.swagger) {
+        // @ts-ignore
         const version = config.source.swagger;
         console.log("openApi version:", chalk_1.default.yellow(version));
         assert_1.default(version.startsWith("2.", 0));
