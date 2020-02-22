@@ -9,8 +9,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
     url: `/devices`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const register = (params: DeviceRegistrationInfo) =>
@@ -18,6 +17,5 @@ export const register = (params: DeviceRegistrationInfo) =>
     url: `/devices`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });

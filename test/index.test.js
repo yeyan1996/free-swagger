@@ -67,24 +67,33 @@ describe("pkg", () => {
         name,
         responseType,
         deprecated,
+        pathParams,
         IResponse,
         IParams,
         IPathParams
-      }) => `
+      }) => {
+        const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => `\${${$1}}`);
+
+        return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
-  export const ${name} = (params: ${
-        IParams ? `${IParams}` : "{[key:string]: never}"
-      },${
-        IPathParams ? `pathParams: ${IPathParams}` : ""
-      }) => http.request<${IResponse || "any"},AxiosResponse<${IResponse ||
-        "any"}>>({
-     url: \`${url}\`, 
-     method: "${method}",
-     params:${method === "get" ? "params" : "{}"},
-     data:  ${method === "get" ? "{}" : "params"},
-     responseType: "${responseType}", 
- })`,
+  export const ${name} = (${
+          IParams
+            ? `params: ${IParams},`
+            : IPathParams
+            ? "params:{[key:string]: never},"
+            : ""
+        }${
+          pathParams.length ? `{${pathParams.join(",")}} = ${IPathParams}` : ""
+        }) => http.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+          "any"}>>({
+     url: \`${parsedUrl}\`, 
+     method: "${method}",  
+     params:${`${method === "get" ? "params," : "{},"}`}
+     data:${`${method === "get" ? "{}," : "params,"}`}
+     ${responseType === "json" ? "" : `responseType: ${responseType}`}
+ })`;
+      },
       customImportCode: "import http,{AxiosResponse} from 'axios'",
       chooseAll: true
     });
@@ -107,6 +116,7 @@ describe("bin", () => {
   });
   afterAll(() => {
     inquirer.prompt = backup;
+    console.log(123);
     rc.reset();
   });
   beforeEach(() => {

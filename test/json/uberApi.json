@@ -278,7 +278,7 @@
         }
       }
     },
-    "/crawler/v1/mapper/{mapper.id}": {
+    "/crawler/v1/mapper/{id}": {
       "put": {
         "operationId": "UpdateMapper",
         "responses": {
@@ -291,7 +291,7 @@
         },
         "parameters": [
           {
-            "name": "mapper.id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string",

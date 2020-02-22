@@ -12,18 +12,18 @@ export const getInventory = params =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, pathParams) =>
+export const getOrderById = (params, { orderId }) =>
   axios.request({
-    url: `/store/order/${arguments[1].orderId}`,
+    url: `/store/order/${orderId}`,
     method: "get",
     params: params,
     data: {}
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, pathParams) =>
+export const deleteOrder = (params, { orderId }) =>
   axios.request({
-    url: `/store/order/${arguments[1].orderId}`,
+    url: `/store/order/${orderId}`,
     method: "delete",
     params: {},
     data: params

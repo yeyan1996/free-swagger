@@ -18,7 +18,7 @@ class Rc {
         this.path = path_1.default.resolve(homedir, ".free-swaggerrc.js");
         utils_1.ensureExist(this.path);
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
-        // hack 目的是取出 free-swaggerrc 中的代码片段
+        // hack: 目的是取出 free-swaggerrc 中的代码片段
         /*eslint-disable*/
         let _obj = {};
         eval(`_obj = ` + data.slice(EXPORT_DEFAULT.length));

@@ -4,68 +4,63 @@
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from "./interface";
 import http, { AxiosResponse } from "axios";
 
-export const temperatureSummary = (params: { [key: string]: never }) =>
+export const temperatureSummary = () =>
   http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
     url: `/temperature`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const getForecast = (
   params: { [key: string]: never },
-  pathParams: {
-    days: number;
+  { days } = {
+    days: number
   }
 ) =>
   http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
-    url: `/temperature/forecast/${arguments[1].days}`,
+    url: `/temperature/forecast/${days}`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const getZoneTemperature = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
+  { zoneId } = {
+    zoneId: string
   }
 ) =>
   http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
-    url: `/temperature/${arguments[1].zoneId}`,
+    url: `/temperature/${zoneId}`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const getHeaterState = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
+  { zoneId } = {
+    zoneId: string
   }
 ) =>
   http.request<HeaterState, AxiosResponse<HeaterState>>({
-    url: `/temperature/${arguments[1].zoneId}/heater`,
+    url: `/temperature/${zoneId}/heater`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const setHeaterState = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
-    state: string;
+  { zoneId, state } = {
+    zoneId: string,
+    state: string
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/temperature/${arguments[1].zoneId}/heater/${arguments[1].state}`,
+    url: `/temperature/${zoneId}/heater/${state}`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });

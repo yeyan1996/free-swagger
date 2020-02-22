@@ -2,27 +2,27 @@
 /* eslint-disable */
 
 // Get user by user name
-export const getUserByName = (params, pathParams) =>
+export const getUserByName = (params, { username }) =>
   axios.request({
-    url: `/user/${arguments[1].username}`,
+    url: `/user/${username}`,
     method: "get",
     params: params,
     data: {}
   });
 
 // Updated user
-export const updateUser = (params, pathParams) =>
+export const updateUser = (params, { username }) =>
   axios.request({
-    url: `/user/${arguments[1].username}`,
+    url: `/user/${username}`,
     method: "put",
     params: {},
     data: params
   });
 
 // Delete user
-export const deleteUser = (params, pathParams) =>
+export const deleteUser = (params, { username }) =>
   axios.request({
-    url: `/user/${arguments[1].username}`,
+    url: `/user/${username}`,
     method: "delete",
     params: {},
     data: params

@@ -3,36 +3,36 @@
 import axios from "axios";
 
 // Find pet by ID
-export const getPetById = (params, pathParams) =>
+export const getPetById = (params, { petId }) =>
   axios.request({
-    url: `/pet/${arguments[1].petId}`,
+    url: `/pet/${petId}`,
     method: "get",
     params: params,
     data: {}
   });
 
 // Updates a pet in the store with form data
-export const updatePetWithForm = (params, pathParams) =>
+export const updatePetWithForm = (params, { petId }) =>
   axios.request({
-    url: `/pet/${arguments[1].petId}`,
+    url: `/pet/${petId}`,
     method: "post",
     params: {},
     data: params
   });
 
 // Deletes a pet
-export const deletePet = (params, pathParams) =>
+export const deletePet = (params, { petId }) =>
   axios.request({
-    url: `/pet/${arguments[1].petId}`,
+    url: `/pet/${petId}`,
     method: "delete",
     params: {},
     data: params
   });
 
 // uploads an image
-export const uploadFile = (params, pathParams) =>
+export const uploadFile = (params, { petId }) =>
   axios.request({
-    url: `/pet/${arguments[1].petId}/uploadImage`,
+    url: `/pet/${petId}/uploadImage`,
     method: "post",
     params: {},
     data: params

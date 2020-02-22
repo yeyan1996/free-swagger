@@ -14,21 +14,27 @@ Object {
   name,
   responseType,
   deprecated,
+  pathParams,
   IParams,
   IPathParams
-}) =>
-  \`
+}) => {
+  // 处理动态路由参数
+  // \`/pet/{id}\` => \`/pet/\${id}\`
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+
+  return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
   \${summary ? \`// \${summary}\` : \\"\\"}
   export const \${name} = (params,\${
-  IPathParams ? \`pathParams\` : \\"\\"
+  pathParams.length ? \`{\${pathParams.join(\\",\\")}}\` : \\"\\"
 }) => axios.request({
-url: \\\\\`\${url}\\\\\`,
+     url: \\\\\`\${parsedUrl}\\\\\`,
      method: \\"\${method}\\",
      params:\${method === \\"get\\" ? \\"params,\\" : \\"{},\\"}
      data:\${method === \\"get\\" ? \\"{},\\" : \\"params,\\"}
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
- })\`",
+ })\`;
+};",
   "lang": "ts",
   "root": "/Users/bytedance/Desktop/free-swagger/test/api/bin/uberApi",
   "shouldEditTemplate": "n",
@@ -41,10 +47,16 @@ url: \\\\\`\${url}\\\\\`,
   name,
   responseType,
   deprecated,
+  pathParams,
   IResponse,
   IParams,
   IPathParams
-}) => \`
+}) => {
+  // 处理动态路由参数
+  // \`/pet/{id}\` => \`/pet/\${id}\`
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+
+  return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
   \${summary ? \`// \${summary}\` : \\"\\"}  
   export const \${name} = (\${
@@ -54,7 +66,7 @@ url: \\\\\`\${url}\\\\\`,
     ? \\"params:{[key:string]: never},\\"
     : \\"\\"
 }\${
-  IPathParams ? \`pathParams: \${IPathParams}\` : \\"\\"
+  pathParams.length ? \`{\${pathParams.join(\\",\\")}} = \${IPathParams}\` : \\"\\"
 }) => axios.request<\${IResponse || \\"any\\"},AxiosResponse<\${IResponse ||
 \\"any\\"}>>({
      url: \\\\\`\${url}\\\\\`,
@@ -62,7 +74,8 @@ url: \\\\\`\${url}\\\\\`,
      params:\${method === \\"get\\" ? \\"params,\\" : \\"{},\\"}
      data:\${method === \\"get\\" ? \\"{},\\" : \\"params,\\"}
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
- })\`",
+ })\`;
+};",
 }
 `;
 
@@ -80,21 +93,27 @@ Object {
   name,
   responseType,
   deprecated,
+  pathParams,
   IParams,
   IPathParams
-}) =>
-  \`
+}) => {
+  // 处理动态路由参数
+  // \`/pet/{id}\` => \`/pet/\${id}\`
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+
+  return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
   \${summary ? \`// \${summary}\` : \\"\\"}
   export const \${name} = (params,\${
-  IPathParams ? \`pathParams\` : \\"\\"
+  pathParams.length ? \`{\${pathParams.join(\\",\\")}}\` : \\"\\"
 }) => axios.request({
-url: \\\\\`\${url}\\\\\`,
+     url: \\\\\`\${parsedUrl}\\\\\`,
      method: \\"\${method}\\",
      params:\${method === \\"get\\" ? \\"params,\\" : \\"{},\\"}
      data:\${method === \\"get\\" ? \\"{},\\" : \\"params,\\"}
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
- })\`",
+ })\`;
+};",
   "lang": "js",
   "root": "/Users/bytedance/Desktop/free-swagger/test/api/bin/swaggerPetstore",
   "shouldEditTemplate": "n",
@@ -107,10 +126,16 @@ url: \\\\\`\${url}\\\\\`,
   name,
   responseType,
   deprecated,
+  pathParams,
   IResponse,
   IParams,
   IPathParams
-}) => \`
+}) => {
+  // 处理动态路由参数
+  // \`/pet/{id}\` => \`/pet/\${id}\`
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+
+  return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
   \${summary ? \`// \${summary}\` : \\"\\"}  
   export const \${name} = (\${
@@ -120,7 +145,7 @@ url: \\\\\`\${url}\\\\\`,
     ? \\"params:{[key:string]: never},\\"
     : \\"\\"
 }\${
-  IPathParams ? \`pathParams: \${IPathParams}\` : \\"\\"
+  pathParams.length ? \`{\${pathParams.join(\\",\\")}} = \${IPathParams}\` : \\"\\"
 }) => axios.request<\${IResponse || \\"any\\"},AxiosResponse<\${IResponse ||
 \\"any\\"}>>({
      url: \\\\\`\${url}\\\\\`,
@@ -128,7 +153,8 @@ url: \\\\\`\${url}\\\\\`,
      params:\${method === \\"get\\" ? \\"params,\\" : \\"{},\\"}
      data:\${method === \\"get\\" ? \\"{},\\" : \\"params,\\"}
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
- })\`",
+ })\`;
+};",
 }
 `;
 
@@ -137,36 +163,36 @@ exports[`bin ts language 1`] = `
 /* eslint-disable */
 
 // Find pet by ID
-export const getPetById = (params, pathParams) =>
+export const getPetById = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Updates a pet in the store with form data
-export const updatePetWithForm = (params, pathParams) =>
+export const updatePetWithForm = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"post\\",
     params: {},
     data: params
   });
 
 // Deletes a pet
-export const deletePet = (params, pathParams) =>
+export const deletePet = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"delete\\",
     params: {},
     data: params
   });
 
 // uploads an image
-export const uploadFile = (params, pathParams) =>
+export const uploadFile = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}/uploadImage\`,
+    url: \`/pet/\${petId}/uploadImage\`,
     method: \\"post\\",
     params: {},
     data: params
@@ -224,18 +250,18 @@ export const getInventory = params =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, pathParams) =>
+export const getOrderById = (params, { orderId }) =>
   axios.request({
-    url: \`/store/order/\${arguments[1].orderId}\`,
+    url: \`/store/order/\${orderId}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, pathParams) =>
+export const deleteOrder = (params, { orderId }) =>
   axios.request({
-    url: \`/store/order/\${arguments[1].orderId}\`,
+    url: \`/store/order/\${orderId}\`,
     method: \\"delete\\",
     params: {},
     data: params
@@ -257,27 +283,27 @@ exports[`bin ts language 3`] = `
 /* eslint-disable */
 
 // Get user by user name
-export const getUserByName = (params, pathParams) =>
+export const getUserByName = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Updated user
-export const updateUser = (params, pathParams) =>
+export const updateUser = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"put\\",
     params: {},
     data: params
   });
 
 // Delete user
-export const deleteUser = (params, pathParams) =>
+export const deleteUser = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"delete\\",
     params: {},
     data: params
@@ -336,36 +362,36 @@ exports[`pkg base option 1`] = `
 import axios from \\"axios\\";
 
 // Find pet by ID
-export const getPetById = (params, pathParams) =>
+export const getPetById = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Updates a pet in the store with form data
-export const updatePetWithForm = (params, pathParams) =>
+export const updatePetWithForm = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"post\\",
     params: {},
     data: params
   });
 
 // Deletes a pet
-export const deletePet = (params, pathParams) =>
+export const deletePet = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}\`,
+    url: \`/pet/\${petId}\`,
     method: \\"delete\\",
     params: {},
     data: params
   });
 
 // uploads an image
-export const uploadFile = (params, pathParams) =>
+export const uploadFile = (params, { petId }) =>
   axios.request({
-    url: \`/pet/\${arguments[1].petId}/uploadImage\`,
+    url: \`/pet/\${petId}/uploadImage\`,
     method: \\"post\\",
     params: {},
     data: params
@@ -424,18 +450,18 @@ export const getInventory = params =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, pathParams) =>
+export const getOrderById = (params, { orderId }) =>
   axios.request({
-    url: \`/store/order/\${arguments[1].orderId}\`,
+    url: \`/store/order/\${orderId}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, pathParams) =>
+export const deleteOrder = (params, { orderId }) =>
   axios.request({
-    url: \`/store/order/\${arguments[1].orderId}\`,
+    url: \`/store/order/\${orderId}\`,
     method: \\"delete\\",
     params: {},
     data: params
@@ -458,27 +484,27 @@ exports[`pkg base option 3`] = `
 import axios from \\"axios\\";
 
 // Get user by user name
-export const getUserByName = (params, pathParams) =>
+export const getUserByName = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"get\\",
     params: params,
     data: {}
   });
 
 // Updated user
-export const updateUser = (params, pathParams) =>
+export const updateUser = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"put\\",
     params: {},
     data: params
   });
 
 // Delete user
-export const deleteUser = (params, pathParams) =>
+export const deleteUser = (params, { username }) =>
   axios.request({
-    url: \`/user/\${arguments[1].username}\`,
+    url: \`/user/\${username}\`,
     method: \\"delete\\",
     params: {},
     data: params
@@ -543,8 +569,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
     url: \`/devices\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const register = (params: DeviceRegistrationInfo) =>
@@ -552,8 +577,7 @@ export const register = (params: DeviceRegistrationInfo) =>
     url: \`/devices\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 "
 `;
@@ -565,70 +589,65 @@ exports[`pkg custom ts template 2`] = `
 import { TemperatureSummary, ForecastResponse, TemperatueZoneStatus, HeaterState, ApiResponse } from \\"./interface\\";
 import http, { AxiosResponse } from \\"axios\\";
 
-export const temperatureSummary = (params: { [key: string]: never }) =>
+export const temperatureSummary = () =>
   http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
     url: \`/temperature\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const getForecast = (
   params: { [key: string]: never },
-  pathParams: {
-    days: number;
+  { days } = {
+    days: number
   }
 ) =>
   http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
-    url: \`/temperature/forecast/\${arguments[1].days}\`,
+    url: \`/temperature/forecast/\${days}\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const getZoneTemperature = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
+  { zoneId } = {
+    zoneId: string
   }
 ) =>
   http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
-    url: \`/temperature/\${arguments[1].zoneId}\`,
+    url: \`/temperature/\${zoneId}\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const getHeaterState = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
+  { zoneId } = {
+    zoneId: string
   }
 ) =>
   http.request<HeaterState, AxiosResponse<HeaterState>>({
-    url: \`/temperature/\${arguments[1].zoneId}/heater\`,
+    url: \`/temperature/\${zoneId}/heater\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const setHeaterState = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
-    state: string;
+  { zoneId, state } = {
+    zoneId: string,
+    state: string
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: \`/temperature/\${arguments[1].zoneId}/heater/\${arguments[1].state}\`,
+    url: \`/temperature/\${zoneId}/heater/\${state}\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 "
 `;
@@ -734,87 +753,81 @@ import http, { AxiosResponse } from \\"axios\\";
 
 export const setDimmer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: number;
+  { deviceId, value } = {
+    deviceId: string,
+    value: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}\`,
+    url: \`/lighting/dimmers/\${deviceId}/\${value}\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 
 export const setDimmerTimer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: number;
-    timeunit: number;
+  { deviceId, value, timeunit } = {
+    deviceId: string,
+    value: number,
+    timeunit: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: \`/lighting/dimmers/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].timeunit}\`,
+    url: \`/lighting/dimmers/\${deviceId}/\${value}/timer/\${timeunit}\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 
 export const getSwitchState = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
+  { deviceId } = {
+    deviceId: string
   }
 ) =>
   http.request<DeviceState, AxiosResponse<DeviceState>>({
-    url: \`/lighting/switches/\${arguments[1].deviceId}\`,
+    url: \`/lighting/switches/\${deviceId}\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const setSwitch = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: string;
+  { deviceId, value } = {
+    deviceId: string,
+    value: string
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}\`,
+    url: \`/lighting/switches/\${deviceId}/\${value}\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 
 export const setSwitchTimer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: string;
-    minutes: number;
+  { deviceId, value, minutes } = {
+    deviceId: string,
+    value: string,
+    minutes: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: \`/lighting/switches/\${arguments[1].deviceId}/\${arguments[1].value}/timer/\${arguments[1].minutes}\`,
+    url: \`/lighting/switches/\${deviceId}/\${value}/timer/\${minutes}\`,
     method: \\"post\\",
     params: {},
-    data: params,
-    responseType: \\"json\\"
+    data: params
   });
 
-export const getLightingSummary = (params: { [key: string]: never }) =>
+export const getLightingSummary = () =>
   http.request<LightingSummary, AxiosResponse<LightingSummary>>({
     url: \`/lightingSummary\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 "
 `;
@@ -825,27 +838,25 @@ exports[`pkg custom ts template 5`] = `
 /* eslint-disable */
 import http, { AxiosResponse } from \\"axios\\";
 
-export const getZones = (params: { [key: string]: never }) =>
+export const getZones = () =>
   http.request<string[], AxiosResponse<string[]>>({
     url: \`/zones\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 
 export const quietZone = (
   params: { [key: string]: never },
-  pathParams: {
-    zoneId: string;
+  { zoneId } = {
+    zoneId: string
   }
 ) =>
   http.request<any, AxiosResponse<any>>({
-    url: \`/zones/\${arguments[1].zoneId}/quiet\`,
+    url: \`/zones/\${zoneId}/quiet\`,
     method: \\"get\\",
     params: params,
-    data: {},
-    responseType: \\"json\\"
+    data: {}
   });
 "
 `;
@@ -985,12 +996,12 @@ import axios, { AxiosResponse } from \\"axios\\";
 
 export const UpdateMapper = (
   params: { [key: string]: never },
-  pathParams: {
-    \\"mapper.id\\": string;
+  { id } = {
+    id: string
   }
 ) =>
   axios.request<string, AxiosResponse<string>>({
-    url: \`/crawler/v1/mapper/\${arguments[1][\\"mapper.id\\"]}\`,
+    url: \`/crawler/v1/mapper/{id}\`,
     method: \\"put\\",
     params: {},
     data: params

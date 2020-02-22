@@ -129,17 +129,18 @@ freeSwagger({
 
 TemplateConfig
 
-| 参数         | 说明                                   | 类型    | 可选值   | 默认值 |
-| ------------ | -------------------------------------- | ------- | -------- | ------ |
-| url          | 路径                                   | string  | -        | -      |
-| summary      | 注释，对应 swagger 文档 summary        | string  | -        | -      |
-| method       | 方法                                   | string  | -        | -      |
-| name         | 名称，对应 swagger 文档 operationId    | string  | -        | -      |
-| deprecated   | 是否废弃，对应 swagger 文档 deprecated | boolean | -        | -      |
-| responseType | 返回值类型                             | string  | 同 axios | -      |
-| IResponse    | 返回值接口类型                         | string  | -        | -      |
-| IParams      | 请求值接口类型                         | string  | -        | -      |
-| IPathParams  | 路径请求值接口类型                     | string  | -        | -      |
+| 参数         | 说明                                   | 类型     | 可选值   | 默认值 |
+| ------------ | -------------------------------------- | -------- | -------- | ------ |
+| url          | 路径                                   | string   | -        | -      |
+| summary      | 注释，对应 swagger 文档 summary        | string   | -        | -      |
+| method       | 方法                                   | string   | -        | -      |
+| name         | 名称，对应 swagger 文档 operationId    | string   | -        | -      |
+| deprecated   | 是否废弃，对应 swagger 文档 deprecated | boolean  | -        | -      |
+| responseType | 返回值类型                             | string   | 同 axios | -      |
+| pathParams   | 路径参数                               | string[] | -        | -      |
+| IResponse    | 返回值接口类型                         | string   | -        | -      |
+| IParams      | 请求值接口类型                         | string   | -        | -      |
+| IPathParams  | 路径参数接口类型                       | string   | -        | -      |
 
 # 默认模版
 
@@ -153,21 +154,25 @@ TemplateConfig
   name,
   responseType,
   deprecated,
+  pathParams,
   IParams,
   IPathParams
-}) =>
-  `
+}) => {
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => `\${${$1}}`);
+
+  return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (params,${
-    IPathParams ? `pathParams` : ""
+    pathParams.length ? `{${pathParams.join(",")}}` : ""
   }) => axios.request({
-     url: \`${url}\`, 
+     url: \`${parsedUrl}\`, 
      method: "${method}",
      params:${`${method === "get" ? "params," : "{},"}`}
      data:${`${method === "get" ? "{}," : "params,"}`}
      ${responseType === "json" ? "" : `responseType: ${responseType}`}
  })`;
+};
 ```
 
 当导出语言为 ts 时，默认 templateFunction 如下
@@ -180,26 +185,31 @@ TemplateConfig
   name,
   responseType,
   deprecated,
+  pathParams,
   IResponse,
   IParams,
   IPathParams
-}) => `
+}) => {
+  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => `\${${$1}}`);
+
+  return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${
-  IParams
-    ? `params: ${IParams},`
-    : IPathParams
-    ? "params:{[key:string]: never},"
-    : ""
-}${
-  IPathParams ? `pathParams: ${IPathParams}` : ""
-}) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
-  "any"}>>({
-     url: \`${url}\`, 
+    IParams
+      ? `params: ${IParams},`
+      : IPathParams
+      ? "params:{[key:string]: never},"
+      : ""
+  }${
+    pathParams.length ? `{${pathParams.join(",")}} = ${IPathParams}` : ""
+  }) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+    "any"}>>({
+     url: \`${parsedUrl}\`, 
      method: "${method}",  
      params:${`${method === "get" ? "params," : "{},"}`}
      data:${`${method === "get" ? "{}," : "params,"}`}
      ${responseType === "json" ? "" : `responseType: ${responseType}`}
  })`;
+};
 ```

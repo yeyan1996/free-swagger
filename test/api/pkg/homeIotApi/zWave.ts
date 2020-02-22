@@ -6,85 +6,79 @@ import http, { AxiosResponse } from "axios";
 
 export const setDimmer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: number;
+  { deviceId, value } = {
+    deviceId: string,
+    value: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/dimmers/${arguments[1].deviceId}/${arguments[1].value}`,
+    url: `/lighting/dimmers/${deviceId}/${value}`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });
 
 export const setDimmerTimer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: number;
-    timeunit: number;
+  { deviceId, value, timeunit } = {
+    deviceId: string,
+    value: number,
+    timeunit: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/dimmers/${arguments[1].deviceId}/${arguments[1].value}/timer/${arguments[1].timeunit}`,
+    url: `/lighting/dimmers/${deviceId}/${value}/timer/${timeunit}`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });
 
 export const getSwitchState = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
+  { deviceId } = {
+    deviceId: string
   }
 ) =>
   http.request<DeviceState, AxiosResponse<DeviceState>>({
-    url: `/lighting/switches/${arguments[1].deviceId}`,
+    url: `/lighting/switches/${deviceId}`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
 
 export const setSwitch = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: string;
+  { deviceId, value } = {
+    deviceId: string,
+    value: string
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/switches/${arguments[1].deviceId}/${arguments[1].value}`,
+    url: `/lighting/switches/${deviceId}/${value}`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });
 
 export const setSwitchTimer = (
   params: { [key: string]: never },
-  pathParams: {
-    deviceId: string;
-    value: string;
-    minutes: number;
+  { deviceId, value, minutes } = {
+    deviceId: string,
+    value: string,
+    minutes: number
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/switches/${arguments[1].deviceId}/${arguments[1].value}/timer/${arguments[1].minutes}`,
+    url: `/lighting/switches/${deviceId}/${value}/timer/${minutes}`,
     method: "post",
     params: {},
-    data: params,
-    responseType: "json"
+    data: params
   });
 
-export const getLightingSummary = (params: { [key: string]: never }) =>
+export const getLightingSummary = () =>
   http.request<LightingSummary, AxiosResponse<LightingSummary>>({
     url: `/lightingSummary`,
     method: "get",
     params: params,
-    data: {},
-    responseType: "json"
+    data: {}
   });
