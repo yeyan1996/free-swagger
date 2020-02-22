@@ -116,7 +116,6 @@ describe("bin", () => {
   });
   afterAll(() => {
     inquirer.prompt = backup;
-    console.log(123);
     rc.reset();
   });
   beforeEach(() => {
