@@ -1,9 +1,10 @@
 import { OpenAPIV2 } from "openapi-types";
-import {  ConfigClient } from "free-swagger-client";
+import { ConfigClient } from "free-swagger-client";
 import fse from "fs-extra";
 import camelcase from "camelcase";
 import path from "path";
 import chalk from "chalk";
+import assert from "assert";
 
 export interface Config<T = string | OpenAPIV2.Document>
   extends Omit<ConfigClient, "source"> {
@@ -28,13 +29,18 @@ const ensureExist = (path: string, isDir = false): void => {
   }
 };
 
-const isOpenApi2 = (config: Config): config is Config<OpenAPIV2.Document> => {
-  if (typeof config.source === "string") {
+const assertOpenApi2 = (
+  config: Config
+): config is Config<OpenAPIV2.Document> => {
+  // @ts-ignore
+  if ("swagger" in config.source) {
+    const version = config.source.swagger;
+    console.log("openApi version:", chalk.yellow(version));
+    assert(version.startsWith("2.", 0));
+    return true;
+  } else {
     return false;
   }
-  const version = config.source.swagger;
-  console.log("openApi version:", chalk.yellow(version));
-  return version.startsWith("2.", 0);
 };
 
 const pascalCase = (str: string): string =>
@@ -42,4 +48,4 @@ const pascalCase = (str: string): string =>
     pascalCase: true
   });
 
-export { ensureExist, isUrl, isPath, isOpenApi2, pascalCase };
+export { ensureExist, isUrl, isPath, assertOpenApi2, pascalCase };

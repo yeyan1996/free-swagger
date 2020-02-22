@@ -5,7 +5,7 @@ import ora from "ora";
 import camelcase from "camelcase";
 import axios from "axios";
 import { OpenAPIV2 } from "openapi-types";
-import { ensureExist, Config, isUrl, isPath, isOpenApi2 } from "./utils";
+import { ensureExist, Config, isUrl, isPath, assertOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
@@ -13,6 +13,8 @@ import { ApiCollection, parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
 import { Paths } from "./parse/path";
 import { genPaths } from "./gen/path";
+
+const spinner = ora().render();
 
 // parse swagger json
 const parse = async (
@@ -83,44 +85,39 @@ const normalizeSource = async (
 };
 
 // compile = parse + gen
-const compile = async (
-  config: Required<Config>
-): Promise<OpenAPIV2.Document> => {
-  const spinner = ora().render();
-  config.source = await normalizeSource(config.source);
-  if (!isOpenApi2(config)) {
-    throw new Error("文档解析错误，请使用 openApi2 规范的文档");
+const compile = async (config: Required<Config>): Promise<any> => {
+  try {
+    config.source = await normalizeSource(config.source);
+    if (!assertOpenApi2(config)) {
+      throw new Error("文档解析错误，请使用 openApi2 规范的文档");
+    }
+    spinner.start("正在生成 api 文件...");
+    ensureExist(config.root, true);
+
+    // parse
+    const { paths } = await parse(config);
+    spinner.succeed("api 文件解析完成");
+    const choosePaths = config.chooseAll
+      ? paths
+      : pick(paths, ...(await chooseApi(paths)));
+    // gen
+    await gen(config, config.root, choosePaths);
+    spinner.succeed(
+      `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
+    );
+    return config.source;
+  } catch (e) {
+    console.log(e);
+    spinner.fail(`${chalk.red("api 文件生成失败")}`);
   }
-  spinner.start("正在生成 api 文件...");
-  ensureExist(config.root, true);
-
-  // parse
-  const { paths } = await parse(config);
-  spinner.succeed("api 文件解析完成");
-  const choosePaths = config.chooseAll
-    ? paths
-    : pick(paths, ...(await chooseApi(paths)));
-  // gen
-  await gen(config, config.root, choosePaths);
-  spinner.succeed(
-    `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
-  );
-
-  return config.source;
 };
 
 // freeSwagger = merge + compile
 const freeSwagger = async (
   config: Config | string
 ): Promise<OpenAPIV2.Document> => {
-  const spinner = ora().render();
-  try {
-    const mergedConfig = await mergeDefaultConfig(config);
-    return await compile(mergedConfig);
-  } catch (e) {
-    spinner.fail(`${chalk.red("api 文件生成失败")}`);
-    throw new Error(e);
-  }
+  const mergedConfig = await mergeDefaultConfig(config);
+  return await compile(mergedConfig);
 };
 
 freeSwagger.compile = compile;

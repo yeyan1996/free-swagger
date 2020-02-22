@@ -10,21 +10,30 @@ const prettier_1 = __importDefault(require("prettier"));
 const free_swagger_client_1 = require("free-swagger-client");
 const utils_1 = require("../utils");
 const index_1 = require("./index");
+const child_process_1 = require("child_process");
+const EXPORT_DEFAULT = "export default";
 class Rc {
     constructor() {
         const homedir = os_1.default.homedir();
-        this.path = path_1.default.resolve(homedir, ".free-swaggerrc");
+        this.path = path_1.default.resolve(homedir, ".free-swaggerrc.js");
         utils_1.ensureExist(this.path);
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
-        this.data = Object.assign(Object.assign({}, this.getDefaultAnswer()), JSON.parse(data));
+        // hack 目的是取出 free-swaggerrc 中的代码片段
+        const _obj = {};
+        eval(`_obj = ` + data.slice(EXPORT_DEFAULT.length));
+        this.data = {
+            ...this.getDefaultAnswer(),
+            ..._obj
+        };
     }
+    // 获取 inquirer 默认回答
     getDefaultAnswer() {
         return {
             source: undefined,
             root: `${path_1.default.resolve(process.cwd(), "src/api")}`,
             lang: "js",
             shouldEditTemplate: "n",
-            customImportCode: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
+            customImportCode: "",
             customImportCodeJs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeTs: index_1.DEFAULT_CUSTOM_IMPORT_CODE_TS,
             templateFunction: eval(free_swagger_client_1.tsTemplate),
@@ -34,25 +43,32 @@ class Rc {
             chooseAll: false
         };
     }
+    // 获取默认配置项
     getConfig() {
         return {
             source: this.data.source,
             root: this.data.root,
             lang: this.data.lang,
             customImportCode: this.data.customImportCode,
-            // 合并默认模版
             templateFunction: eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate),
             chooseAll: this.data.chooseAll
         };
     }
+    // 合并配置项
     merge(answer) {
-        this.data = Object.assign(Object.assign({}, this.data), answer);
+        this.data = { ...this.data, ...answer };
     }
-    // 生成本次输入的所有回答并存储进 rc
+    // 将配置项存储至 rc 文件
     save() {
-        fs_extra_1.default.writeFileSync(this.path, prettier_1.default.format(JSON.stringify(this.data), {
-            parser: "json"
-        }));
+        const data = JSON.stringify(this.data);
+        // 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
+        const dataWithFunction = data.slice(0, data.length - 1) +
+            "," +
+            `templateFunction:${this.data.templateFunction}}`;
+        const code = prettier_1.default.format(`${EXPORT_DEFAULT} ${dataWithFunction}`, {
+            parser: "babel"
+        });
+        fs_extra_1.default.writeFileSync(this.path, code);
     }
     // 记录当前 source 和之前的 source
     // 对比两者判断是否需要清空用户选择的 api 缓存记录
@@ -60,15 +76,21 @@ class Rc {
         this.data.previousSource = this.data.source;
         this.data.source = newSource;
     }
+    // 是否清空用户选择的 api 缓存记录
     refreshCache() {
         return this.data.previousSource !== this.data.source;
     }
+    // 重置为默认配置项
     reset() {
         this.data = this.getDefaultAnswer();
         this.save();
     }
     show() {
         console.log(this.data);
+    }
+    // 打开编辑器编辑模版
+    edit() {
+        child_process_1.execSync(`code ${this.path}`);
     }
 }
 exports.rc = new Rc();

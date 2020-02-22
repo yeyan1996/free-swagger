@@ -8,6 +8,8 @@ import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS
 } from "./index";
+import { execSync } from "child_process";
+const EXPORT_DEFAULT = "export default";
 
 export interface Answer {
   previousSource?: string;
@@ -31,18 +33,25 @@ class Rc {
 
   constructor() {
     const homedir = os.homedir();
-    this.path = path.resolve(homedir, ".free-swaggerrc");
+    this.path = path.resolve(homedir, ".free-swaggerrc.js");
     ensureExist(this.path);
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
-    this.data = { ...this.getDefaultAnswer(), ...JSON.parse(data) };
+    // hack 目的是取出 free-swaggerrc 中的代码片段
+    const _obj = {};
+    eval(`_obj = ` + data.slice(EXPORT_DEFAULT.length));
+    this.data = {
+      ...this.getDefaultAnswer(),
+      ..._obj
+    };
   }
+  // 获取 inquirer 默认回答
   getDefaultAnswer(): Answer {
     return {
       source: undefined,
       root: `${path.resolve(process.cwd(), "src/api")}`,
       lang: "js",
       shouldEditTemplate: "n",
-      customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+      customImportCode: "",
       customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
       customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
       templateFunction: eval(tsTemplate),
@@ -52,30 +61,35 @@ class Rc {
       chooseAll: false
     };
   }
+  // 获取默认配置项
   getConfig(): Required<Config> {
     return {
       source: this.data.source!,
       root: this.data.root!,
       lang: this.data.lang!,
       customImportCode: this.data.customImportCode!,
-      // 合并默认模版
       templateFunction: eval(
         this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate
       ),
       chooseAll: this.data.chooseAll
     };
   }
+  // 合并配置项
   merge(answer: Partial<Answer>): void {
     this.data = { ...this.data, ...answer };
   }
-  // 生成本次输入的所有回答并存储进 rc
+  // 将配置项存储至 rc 文件
   save(): void {
-    fse.writeFileSync(
-      this.path,
-      prettier.format(JSON.stringify(this.data), {
-        parser: "json"
-      })
-    );
+    const data = JSON.stringify(this.data);
+    // 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
+    const dataWithFunction =
+      data.slice(0, data.length - 1) +
+      "," +
+      `templateFunction:${this.data.templateFunction}}`;
+    const code = prettier.format(`${EXPORT_DEFAULT} ${dataWithFunction}`, {
+      parser: "babel"
+    });
+    fse.writeFileSync(this.path, code);
   }
   // 记录当前 source 和之前的 source
   // 对比两者判断是否需要清空用户选择的 api 缓存记录
@@ -83,15 +97,23 @@ class Rc {
     this.data.previousSource = this.data.source;
     this.data.source = newSource;
   }
+
+  // 是否清空用户选择的 api 缓存记录
   refreshCache(): boolean {
     return this.data.previousSource !== this.data.source;
   }
+
+  // 重置为默认配置项
   reset(): void {
     this.data = this.getDefaultAnswer();
     this.save();
   }
   show(): void {
     console.log(this.data);
+  }
+  // 打开编辑器编辑模版
+  edit(): void {
+    execSync(`code ${this.path}`);
   }
 }
 

@@ -15,7 +15,7 @@ const wait = time =>
 const assertFiles = async (dirPath, apiFilesList) => {
   const filesPath = fs.readdirSync(dirPath);
   expect(filesPath).toEqual(apiFilesList);
-  await wait(500);
+  await wait(100);
   filesPath.forEach(filename => {
     const file = fs.readFileSync(path.resolve(dirPath, filename), "utf-8");
     expect(file).toMatchSnapshot();

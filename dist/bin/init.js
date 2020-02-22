@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -21,23 +12,26 @@ const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const freeSwagger = require("../main");
-function init(/*测试用*/ cb) {
+function init(cb) {
     const packageJsonPath = path_1.default.resolve(__dirname, "../../package.json");
     const pkg = JSON.parse(fs_extra_1.default.readFileSync(packageJsonPath, "utf-8")); // package.json
     commander_1.default
         .version(pkg.version)
         .usage("")
-        .option("-r --reset", "rest config", () => {
+        .option("-r --reset", "重置为默认配置", () => {
         rc_1.rc.reset();
         console.log(chalk_1.default.green("重置配置项成功"));
     })
-        .option("-s --show", "show config", () => {
+        .option("-s --show", "显示当前配置", () => {
         rc_1.rc.show();
     })
-        .option("-c, --config", "launch free-swagger under config mode", () => __awaiter(this, void 0, void 0, function* () {
+        .option("-e --edit", "修改当前配置", () => {
+        rc_1.rc.edit();
+    })
+        .option("-c, --config", "以配置项启动 free-swagger", async () => {
         const { data: defaultAnswer } = rc_1.rc;
         // 获取用户回答
-        const answer = yield inquirer_1.default.prompt([
+        const answer = await inquirer_1.default.prompt([
             questions_1.source,
             {
                 name: "root",
@@ -88,20 +82,20 @@ function init(/*测试用*/ cb) {
         ]);
         rc_1.rc.merge(answer);
         rc_1.rc.save();
-        yield freeSwagger.compile(rc_1.rc.getConfig());
-    }))
+        await freeSwagger.compile(rc_1.rc.getConfig());
+    })
         // 默认启动
-        .action((command) => __awaiter(this, void 0, void 0, function* () {
+        .action(async (command) => {
         var _a;
         if (command.rawArgs[2])
             return;
-        const answer = yield inquirer_1.default.prompt([questions_1.source]);
+        const answer = await inquirer_1.default.prompt([questions_1.source]);
         rc_1.rc.merge(answer);
         rc_1.rc.save();
-        yield freeSwagger.compile(rc_1.rc.getConfig());
+        await freeSwagger.compile(rc_1.rc.getConfig());
         (_a = cb) === null || _a === void 0 ? void 0 : _a();
         return;
-    }))
+    })
         .allowUnknownOption()
         .parse(process.argv);
 }

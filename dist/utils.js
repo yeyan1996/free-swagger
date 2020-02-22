@@ -7,6 +7,7 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const camelcase_1 = __importDefault(require("camelcase"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
+const assert_1 = __importDefault(require("assert"));
 const isUrl = (url) => typeof url === "string" && url.startsWith("http");
 exports.isUrl = isUrl;
 const isPath = (url) => typeof url === "string" && fs_extra_1.default.existsSync(path_1.default.resolve(process.cwd(), url));
@@ -22,15 +23,19 @@ const ensureExist = (path, isDir = false) => {
     }
 };
 exports.ensureExist = ensureExist;
-const isOpenApi2 = (config) => {
-    if (typeof config.source === "string") {
+const assertOpenApi2 = (config) => {
+    // @ts-ignore
+    if ("swagger" in config.source) {
+        const version = config.source.swagger;
+        console.log("openApi version:", chalk_1.default.yellow(version));
+        assert_1.default(version.startsWith("2.", 0));
+        return true;
+    }
+    else {
         return false;
     }
-    const version = config.source.swagger;
-    console.log("openApi version:", chalk_1.default.yellow(version));
-    return version.startsWith("2.", 0);
 };
-exports.isOpenApi2 = isOpenApi2;
+exports.assertOpenApi2 = assertOpenApi2;
 const pascalCase = (str) => camelcase_1.default(str, {
     pascalCase: true
 });

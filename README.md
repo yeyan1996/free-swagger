@@ -1,5 +1,7 @@
 # free-swagger
 
+![](https://img.shields.io/npm/v/free-swagger)
+
 根据 swagger 文档自动生成 api 文件，真正解放双手的工具
 
 free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，提供全量生成 api 并写入至项目文件和命令行交互能力
@@ -44,13 +46,17 @@ free-swagger
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
 
-- `--reset/-r` 重置默认配置
+- `--reset/-r` 重置为默认配置
 
 > npx free-swagger --reset
 
 - `--show/-s` 显示当前配置
 
 > npx free-swagger --show
+
+- `--edit/-e` 编辑配置
+
+> npx free-swagger --edit
 
 - `--help/-h` 查询命令
 
@@ -154,14 +160,14 @@ TemplateConfig
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (params,${
-  IPathParams ? `pathParams` : ""
-}) => axios.request({
+    IPathParams ? `pathParams` : ""
+  }) => axios.request({
      url: \`${url}\`, 
      method: "${method}",
      params:${`${method === "get" ? "params," : "{},"}`}
      data:${`${method === "get" ? "{}," : "params,"}`}
      ${responseType === "json" ? "" : `responseType: ${responseType}`}
- })`
+ })`;
 ```
 
 当导出语言为 ts 时，默认 templateFunction 如下
