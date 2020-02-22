@@ -37,7 +37,8 @@ class Rc {
     ensureExist(this.path);
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
     // hack 目的是取出 free-swaggerrc 中的代码片段
-    const _obj = {};
+    /*eslint-disable*/
+    let _obj = {};
     eval(`_obj = ` + data.slice(EXPORT_DEFAULT.length));
     this.data = {
       ...this.getDefaultAnswer(),
