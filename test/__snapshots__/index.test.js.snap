@@ -18,9 +18,9 @@ Object {
   IParams,
   IPathParams
 }) => {
-  // 处理动态路由参数
+  // 处理路径参数
   // \`/pet/{id}\` => \`/pet/\${id}\`
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+ const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
 
   return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
@@ -52,9 +52,9 @@ Object {
   IParams,
   IPathParams
 }) => {
-  // 处理动态路由参数
+  // 处理路径参数
   // \`/pet/{id}\` => \`/pet/\${id}\`
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+ const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
 
   return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
@@ -97,9 +97,9 @@ Object {
   IParams,
   IPathParams
 }) => {
-  // 处理动态路由参数
+  // 处理路径参数
   // \`/pet/{id}\` => \`/pet/\${id}\`
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+ const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
 
   return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}
@@ -131,9 +131,9 @@ Object {
   IParams,
   IPathParams
 }) => {
-  // 处理动态路由参数
+  // 处理路径参数
   // \`/pet/{id}\` => \`/pet/\${id}\`
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => \`\\\\\${\${$1}}\`); 
+ const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
 
   return \`
   \${deprecated ? \`/**deprecated*/\` : \\"\\"}

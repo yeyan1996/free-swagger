@@ -158,7 +158,9 @@ TemplateConfig
   IParams,
   IPathParams
 }) => {
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => `\${${$1}}`);
+  // 处理路径参数
+  // `/pet/{id}` => `/pet/${id}`
+ const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
 
   return `
   ${deprecated ? `/**deprecated*/` : ""}
@@ -190,7 +192,9 @@ TemplateConfig
   IParams,
   IPathParams
 }) => {
-  const parsedUrl = url.replace(/{(.*?)}/g, (_, $1) => `\${${$1}}`);
+  // 处理路径参数
+  // `/pet/{id}` => `/pet/${id}`
+  const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
 
   return `
   ${deprecated ? `/**deprecated*/` : ""}
