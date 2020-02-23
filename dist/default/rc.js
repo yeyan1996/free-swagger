@@ -61,11 +61,17 @@ class Rc {
     }
     // 将配置项存储至 rc 文件
     save() {
+        var _a, _b;
         const data = JSON.stringify(this.data);
-        // 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
+        // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
+        // 去除尾部分号，否则会报语法错误
+        let templateFunction = (_a = this.data.templateFunction) === null || _a === void 0 ? void 0 : _a.toString().replace("\n", "").trim();
+        if ((_b = templateFunction) === null || _b === void 0 ? void 0 : _b.endsWith(";")) {
+            templateFunction = templateFunction.slice(0, templateFunction.length - 1);
+        }
         const dataWithFunction = data.slice(0, data.length - 1) +
             "," +
-            `templateFunction:${this.data.templateFunction}}`;
+            `templateFunction:${templateFunction}}`;
         const code = prettier_1.default.format(`${EXPORT_DEFAULT} ${dataWithFunction}`, {
             parser: "babel"
         });

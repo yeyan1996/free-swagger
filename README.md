@@ -108,13 +108,13 @@ freeSwagger({
 
 # 提醒
 
-1. free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
+- free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
 
 ![image-20200103174105519](https://tva1.sinaimg.cn/large/006tNbRwgy1gajihbv47tj30uq0c2k2u.jpg)
 
 当生成一次后，free-swagger 同样会记住用户的选择
 
-2. **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
+- **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
 
 # API
 
@@ -129,91 +129,4 @@ freeSwagger({
 
 TemplateConfig
 
-| 参数         | 说明                                   | 类型     | 可选值   | 默认值 |
-| ------------ | -------------------------------------- | -------- | -------- | ------ |
-| url          | 路径                                   | string   | -        | -      |
-| summary      | 注释，对应 swagger 文档 summary        | string   | -        | -      |
-| method       | 方法                                   | string   | -        | -      |
-| name         | 名称，对应 swagger 文档 operationId    | string   | -        | -      |
-| deprecated   | 是否废弃，对应 swagger 文档 deprecated | boolean  | -        | -      |
-| responseType | 返回值类型                             | string   | 同 axios | -      |
-| pathParams   | 路径参数                               | string[] | -        | -      |
-| IResponse    | 返回值接口类型                         | string   | -        | -      |
-| IParams      | 请求值接口类型                         | string   | -        | -      |
-| IPathParams  | 路径参数接口类型                       | string   | -        | -      |
-
-# 默认模版
-
-当导出语言为 js 时，默认 templateFunction 如下
-
-```javascript
-({
-  url,
-  summary,
-  method,
-  name,
-  responseType,
-  deprecated,
-  pathParams,
-  IParams,
-  IPathParams
-}) => {
-  // 处理路径参数
-  // `/pet/{id}` => `/pet/${id}`
- const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
-
-  return `
-  ${deprecated ? `/**deprecated*/` : ""}
-  ${summary ? `// ${summary}` : ""}
-  export const ${name} = (params,${
-    pathParams.length ? `{${pathParams.join(",")}}` : ""
-  }) => axios.request({
-     url: \`${parsedUrl}\`, 
-     method: "${method}",
-     params:${`${method === "get" ? "params," : "{},"}`}
-     data:${`${method === "get" ? "{}," : "params,"}`}
-     ${responseType === "json" ? "" : `responseType: ${responseType}`}
- })`;
-};
-```
-
-当导出语言为 ts 时，默认 templateFunction 如下
-
-```javascript
-({
-  url,
-  summary,
-  method,
-  name,
-  responseType,
-  deprecated,
-  pathParams,
-  IResponse,
-  IParams,
-  IPathParams
-}) => {
-  // 处理路径参数
-  // `/pet/{id}` => `/pet/${id}`
-  const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
-
-  return `
-  ${deprecated ? `/**deprecated*/` : ""}
-  ${summary ? `// ${summary}` : ""}  
-  export const ${name} = (${
-    IParams
-      ? `params: ${IParams},`
-      : IPathParams
-      ? "params:{[key:string]: never},"
-      : ""
-  }${
-    pathParams.length ? `{${pathParams.join(",")}} = ${IPathParams}` : ""
-  }) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
-    "any"}>>({
-     url: \`${parsedUrl}\`, 
-     method: "${method}",  
-     params:${`${method === "get" ? "params," : "{},"}`}
-     data:${`${method === "get" ? "{}," : "params,"}`}
-     ${responseType === "json" ? "" : `responseType: ${responseType}`}
- })`;
-};
-```
+见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
