@@ -3,7 +3,6 @@ import path from "path";
 import chalk from "chalk";
 import ora from "ora";
 import camelcase from "camelcase";
-import axios from "axios";
 import { OpenAPIV2 } from "openapi-types";
 import { ensureExist, Config, isUrl, isPath, assertOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
@@ -13,6 +12,7 @@ import { ApiCollection, parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
 import { Paths } from "./parse/path";
 import { genPaths } from "./gen/path";
+import { fetchJSON } from "./request";
 
 const spinner = ora().render();
 
@@ -58,24 +58,12 @@ const gen = async (
   Object.entries(paths).forEach(genApi);
 };
 
-const fetchJSON = async (url: string): Promise<OpenAPIV2.Document> => {
-  const spinner = ora().render();
-  spinner.start(`正在发送请求到: ${url}`);
-  try {
-    const { data } = await axios.get(url);
-    spinner.succeed("请求结束");
-    return data;
-  } catch (e) {
-    spinner.fail("请求失败");
-    throw new Error(e);
-  }
-};
-
 const normalizeSource = async (
-  source: string | OpenAPIV2.Document
+  source: string | OpenAPIV2.Document,
+  cookie: string
 ): Promise<OpenAPIV2.Document> => {
   if (isUrl(source)) {
-    return await fetchJSON(source);
+    return await fetchJSON(source, cookie);
   }
   if (isPath(source)) {
     const sourcePath = path.resolve(process.cwd(), source);
@@ -87,7 +75,7 @@ const normalizeSource = async (
 // compile = parse + gen
 const compile = async (config: Required<Config>): Promise<any> => {
   try {
-    config.source = await normalizeSource(config.source);
+    config.source = await normalizeSource(config.source, config.cookie);
     if (!assertOpenApi2(config)) {
       throw new Error("文档解析错误，请使用 openApi2 规范的文档");
     }

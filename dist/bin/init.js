@@ -34,6 +34,11 @@ function init(cb) {
         const answer = await inquirer_1.default.prompt([
             questions_1.source,
             {
+                name: "cookie",
+                message: `输入用于鉴权的 cookie(${chalk_1.default.magenta("swagger 源不需要鉴权则置空")})`,
+                default: defaultAnswer.cookie
+            },
+            {
                 name: "root",
                 message: "输入导出 api 的根路径",
                 default: defaultAnswer.root,

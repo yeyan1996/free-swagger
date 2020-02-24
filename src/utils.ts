@@ -9,6 +9,7 @@ import assert from "assert";
 export interface Config<T = string | OpenAPIV2.Document>
   extends Omit<ConfigClient, "source"> {
   source: T;
+  cookie?: string;
   root?: string;
   customImportCode?: string;
   chooseAll?: boolean;

@@ -34,11 +34,19 @@ export function init(cb?: Function): void {
       > = await inquirer.prompt([
         source,
         {
+          name: "cookie",
+          message: `输入用于鉴权的 cookie(${chalk.magenta(
+            "swagger 源不需要鉴权则置空"
+          )})`,
+          default: defaultAnswer.cookie
+        },
+        {
           name: "root",
           message: "输入导出 api 的根路径",
           default: defaultAnswer.root,
           validate: (input): boolean | string => !!input || "请输入 api 根路径"
         },
+
         {
           name: "lang",
           type: "list",

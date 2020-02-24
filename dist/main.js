@@ -8,7 +8,6 @@ const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
 const ora_1 = __importDefault(require("ora"));
 const camelcase_1 = __importDefault(require("camelcase"));
-const axios_1 = __importDefault(require("axios"));
 const utils_1 = require("./utils");
 const default_1 = require("./default");
 const inquirer_1 = require("./inquirer");
@@ -16,6 +15,7 @@ const lodash_1 = require("lodash");
 const path_2 = require("./parse/path");
 const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
+const request_1 = require("./request");
 const spinner = ora_1.default().render();
 // parse swagger json
 const parse = async (config) => {
@@ -41,22 +41,9 @@ const gen = async (config, dirPath, paths) => {
     };
     Object.entries(paths).forEach(genApi);
 };
-const fetchJSON = async (url) => {
-    const spinner = ora_1.default().render();
-    spinner.start(`正在发送请求到: ${url}`);
-    try {
-        const { data } = await axios_1.default.get(url);
-        spinner.succeed("请求结束");
-        return data;
-    }
-    catch (e) {
-        spinner.fail("请求失败");
-        throw new Error(e);
-    }
-};
-const normalizeSource = async (source) => {
+const normalizeSource = async (source, cookie) => {
     if (utils_1.isUrl(source)) {
-        return await fetchJSON(source);
+        return await request_1.fetchJSON(source, cookie);
     }
     if (utils_1.isPath(source)) {
         const sourcePath = path_1.default.resolve(process.cwd(), source);
@@ -67,7 +54,7 @@ const normalizeSource = async (source) => {
 // compile = parse + gen
 const compile = async (config) => {
     try {
-        config.source = await normalizeSource(config.source);
+        config.source = await normalizeSource(config.source, config.cookie);
         if (!utils_1.assertOpenApi2(config)) {
             throw new Error("文档解析错误，请使用 openApi2 规范的文档");
         }

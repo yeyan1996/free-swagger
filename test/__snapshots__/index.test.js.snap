@@ -4,6 +4,7 @@ exports[`bin can remember previous(ts language) configuration 1`] = `
 Object {
   "apiChoices": Array [],
   "chooseAll": true,
+  "cookie": "",
   "customImportCode": "",
   "customImportCodeJs": "import axios from \\"axios\\";",
   "customImportCodeTs": "import axios,{ AxiosResponse } from \\"axios\\";",
@@ -83,6 +84,7 @@ exports[`bin can remember previous(zero config) configuration 1`] = `
 Object {
   "apiChoices": Array [],
   "chooseAll": true,
+  "cookie": "",
   "customImportCode": "",
   "customImportCodeJs": "import axios from \\"axios\\";",
   "customImportCodeTs": "import axios,{ AxiosResponse } from \\"axios\\";",

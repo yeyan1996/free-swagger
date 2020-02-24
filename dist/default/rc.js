@@ -31,6 +31,7 @@ class Rc {
     getDefaultAnswer() {
         return {
             source: undefined,
+            cookie: "",
             root: `${path_1.default.resolve(process.cwd(), "src/api")}`,
             lang: "js",
             shouldEditTemplate: "n",
@@ -50,6 +51,7 @@ class Rc {
             source: this.data.source,
             root: this.data.root,
             lang: this.data.lang,
+            cookie: this.data.cookie,
             customImportCode: this.data.customImportCode,
             templateFunction: eval(this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate),
             chooseAll: this.data.chooseAll
@@ -64,7 +66,7 @@ class Rc {
         var _a, _b;
         const data = JSON.stringify(this.data);
         // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
-        // 去除尾部分号，否则会报语法错误
+        // 去除尾部分号，否则会报词法错误
         let templateFunction = (_a = this.data.templateFunction) === null || _a === void 0 ? void 0 : _a.toString().replace("\n", "").trim();
         if ((_b = templateFunction) === null || _b === void 0 ? void 0 : _b.endsWith(";")) {
             templateFunction = templateFunction.slice(0, templateFunction.length - 1);
