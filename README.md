@@ -78,14 +78,14 @@ freeSwagger("https://petstore.swagger.io/v2/swagger.json");
 之后在 nodejs 中运行当前脚本
 
 ```
-node api.js
+node swagger.js
 ```
 
 或者绑定为 npm script
 
 ```
 // package.json
-"swagger": "node api.js"
+"swagger": "node swagger.js"
 ```
 
 ```

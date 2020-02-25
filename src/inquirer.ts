@@ -8,7 +8,7 @@ const createChoices = (paths: Paths): Answer["apiChoices"] => {
     checked: true
   }));
   const apiChoices = rc.data.apiChoices;
-  if (!apiChoices.length || rc.refreshCache()) return chooseAll;
+  if (!apiChoices.length || rc.shouldRefreshCache()) return chooseAll;
 
   // 根据之前的缓存设置选项
   return Object.keys(paths).map(name => {

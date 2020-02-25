@@ -112,7 +112,7 @@ class Rc {
   }
 
   // 是否清空用户选择的 api 缓存记录
-  refreshCache(): boolean {
+  shouldRefreshCache(): boolean {
     return this.data.previousSource !== this.data.source;
   }
 

@@ -11,7 +11,7 @@ const createChoices = (paths) => {
         checked: true
     }));
     const apiChoices = rc_1.rc.data.apiChoices;
-    if (!apiChoices.length || rc_1.rc.refreshCache())
+    if (!apiChoices.length || rc_1.rc.shouldRefreshCache())
         return chooseAll;
     // 根据之前的缓存设置选项
     return Object.keys(paths).map(name => {

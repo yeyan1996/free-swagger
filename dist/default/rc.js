@@ -86,7 +86,7 @@ class Rc {
         this.data.source = newSource;
     }
     // 是否清空用户选择的 api 缓存记录
-    refreshCache() {
+    shouldRefreshCache() {
         return this.data.previousSource !== this.data.source;
     }
     // 重置为默认配置项
