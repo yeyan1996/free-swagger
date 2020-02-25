@@ -8,6 +8,7 @@ const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
+const utils_1 = require("../utils");
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -36,6 +37,7 @@ function init(cb) {
             {
                 name: "cookie",
                 message: `输入用于鉴权的 cookie(${chalk_1.default.magenta("swagger 源不需要鉴权则置空")})`,
+                when: ({ source }) => utils_1.isUrl(source),
                 default: defaultAnswer.cookie
             },
             {

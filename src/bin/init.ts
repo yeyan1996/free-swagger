@@ -3,6 +3,7 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
+import { isUrl } from "../utils";
 import { Answer, rc } from "../default/rc";
 import { source } from "./questions";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -38,6 +39,7 @@ export function init(cb?: Function): void {
           message: `输入用于鉴权的 cookie(${chalk.magenta(
             "swagger 源不需要鉴权则置空"
           )})`,
+          when: ({ source }): boolean => isUrl(source!),
           default: defaultAnswer.cookie
         },
         {
