@@ -2,6 +2,7 @@ import path from "path";
 import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
+import { EOL } from "os";
 import { TemplateFunction, jsTemplate, tsTemplate } from "free-swagger-client";
 import { Config, ensureExist } from "../utils";
 import {
@@ -90,7 +91,7 @@ class Rc {
     // 去除尾部分号，否则会报词法错误
     let templateFunction = this.data.templateFunction
       ?.toString()
-      .replace("\n", "")
+      .replace(EOL, "")
       .trim();
     if (templateFunction?.endsWith(";")) {
       templateFunction = templateFunction.slice(0, templateFunction.length - 1);

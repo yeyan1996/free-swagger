@@ -7,6 +7,7 @@ const path_1 = __importDefault(require("path"));
 const os_1 = __importDefault(require("os"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const prettier_1 = __importDefault(require("prettier"));
+const os_2 = require("os");
 const free_swagger_client_1 = require("free-swagger-client");
 const utils_1 = require("../utils");
 const index_1 = require("./index");
@@ -67,7 +68,7 @@ class Rc {
         const data = JSON.stringify(this.data);
         // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
         // 去除尾部分号，否则会报词法错误
-        let templateFunction = (_a = this.data.templateFunction) === null || _a === void 0 ? void 0 : _a.toString().replace("\n", "").trim();
+        let templateFunction = (_a = this.data.templateFunction) === null || _a === void 0 ? void 0 : _a.toString().replace(os_2.EOL, "").trim();
         if ((_b = templateFunction) === null || _b === void 0 ? void 0 : _b.endsWith(";")) {
             templateFunction = templateFunction.slice(0, templateFunction.length - 1);
         }
