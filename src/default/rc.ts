@@ -41,7 +41,7 @@ class Rc {
     // hack: 目的是取出 free-swaggerrc 中的代码片段
     /*eslint-disable*/
     let _obj = {};
-    eval(`_obj = ` + data.slice(EXPORT_DEFAULT.length));
+    eval(`_obj = ` + data.replace(new RegExp(`^${EXPORT_DEFAULT}`), ''));
     this.data = {
       ...this.getDefaultAnswer(),
       ..._obj
