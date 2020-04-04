@@ -4,5 +4,5 @@ node_js:
 cache: # 缓存 node_js 依赖，提升第二次构建的效率
   directories:
     - node_modules
-test:
+script:
   - npm run ci # 运行自动测试框架
