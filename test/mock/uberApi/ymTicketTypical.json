@@ -1,0 +1,12 @@
+{
+  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "result": true,
+      "code": "200",
+      "data": "urn:uuid:a703834b-e82d-2781-4ff7-21900ca58684",
+      "message": "ex ullamco culpa velit eu"
+    }
+  }
+}

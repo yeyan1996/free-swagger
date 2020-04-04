@@ -12,17 +12,6 @@ const isUrl = (url) => typeof url === "string" && url.startsWith("http");
 exports.isUrl = isUrl;
 const isPath = (url) => typeof url === "string" && fs_extra_1.default.existsSync(path_1.default.resolve(process.cwd(), url));
 exports.isPath = isPath;
-const ensureExist = (path, isDir = false) => {
-    if (!fs_extra_1.default.existsSync(path)) {
-        if (isDir) {
-            fs_extra_1.default.mkdirSync(path, { recursive: true });
-        }
-        else {
-            fs_extra_1.default.writeFileSync(path, "");
-        }
-    }
-};
-exports.ensureExist = ensureExist;
 const assertOpenApi2 = (config) => {
     var _a;
     // @ts-ignore
@@ -42,3 +31,5 @@ const pascalCase = (str) => camelcase_1.default(str, {
     pascalCase: true
 });
 exports.pascalCase = pascalCase;
+const hasChinese = (str) => /[\u4E00-\u9FA5\uF900-\uFA2D]/.test(str);
+exports.hasChinese = hasChinese;

@@ -19,3 +19,9 @@ exports.source = {
         return "输入的路径不合法或不存在";
     }
 };
+exports.cookie = {
+    name: "cookie",
+    message: `输入用于鉴权的 cookie(${chalk_1.default.magenta("swagger 源不需要鉴权则置空")})`,
+    when: ({ source }) => utils_1.isUrl(source),
+    default: rc_1.rc.data.cookie
+};

@@ -1,0 +1,85 @@
+{
+  "GET /pet/:petId": {
+    "name": "deserunt ex quis adipisicing",
+    "photoUrls": [
+      "labore in"
+    ],
+    "id": -56303617,
+    "category": {
+      "id": 52302126,
+      "name": "laborum"
+    },
+    "tags": [
+      {
+        "id": -49199841,
+        "name": "incididunt magna commodo"
+      }
+    ],
+    "status": "sold"
+  },
+  "POST /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "DELETE /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet/:petId/uploadImage": {
+    "code": "200",
+    "type": "elit",
+    "message": "nulla minim culpa deserunt aute"
+  },
+  "PUT /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "GET /pet/findByStatus": [
+    {
+      "name": "laboris nostrud Lorem fugiat",
+      "photoUrls": [
+        "in do"
+      ],
+      "id": -70171040,
+      "category": {
+        "id": -19832469,
+        "name": "anim et"
+      },
+      "tags": [
+        {
+          "id": 76039806,
+          "name": "mollit officia sint"
+        }
+      ],
+      "status": "sold"
+    }
+  ],
+  "GET /pet/findByTags": [
+    {
+      "name": "est",
+      "photoUrls": [
+        "dolor labore Duis tempor incididunt"
+      ],
+      "id": 82106414,
+      "category": {
+        "id": 81432403,
+        "name": "ipsum cupidatat do ullamco"
+      },
+      "tags": [
+        {
+          "id": -12756255,
+          "name": "esse culpa in eiusmod ex"
+        }
+      ],
+      "status": "pending"
+    }
+  ]
+}

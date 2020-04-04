@@ -37,6 +37,7 @@ Object {
  })\`;
 };",
   "lang": "ts",
+  "mockRoot": "/Users/bytedance/Desktop/free-swagger/.join-mock/mock",
   "root": "/Users/bytedance/Desktop/free-swagger/test/api/bin/uberApi",
   "shouldEditTemplate": "n",
   "source": "/Users/bytedance/Desktop/free-swagger/test/json/uberApi.json",
@@ -77,6 +78,7 @@ Object {
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
  })\`;
 };",
+  "wrap": false,
 }
 `;
 
@@ -117,6 +119,7 @@ Object {
  })\`;
 };",
   "lang": "js",
+  "mockRoot": "/Users/bytedance/Desktop/free-swagger/.join-mock/mock",
   "root": "/Users/bytedance/Desktop/free-swagger/test/api/bin/swaggerPetstore",
   "shouldEditTemplate": "n",
   "source": "/Users/bytedance/Desktop/free-swagger/test/json/swaggerPetstore.json",
@@ -157,6 +160,7 @@ Object {
      \${responseType === \\"json\\" ? \\"\\" : \`responseType: \${responseType}\`}
  })\`;
 };",
+  "wrap": false,
 }
 `;
 

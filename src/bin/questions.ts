@@ -14,3 +14,12 @@ export const source = {
     return "输入的路径不合法或不存在";
   }
 };
+
+export const cookie = {
+  name: "cookie",
+  message: `输入用于鉴权的 cookie(${chalk.magenta(
+    "swagger 源不需要鉴权则置空"
+  )})`,
+  when: ({ source }: any): boolean => isUrl(source!),
+  default: rc.data.cookie
+};

@@ -4,26 +4,28 @@ import chalk from "chalk";
 import ora from "ora";
 import camelcase from "camelcase";
 import { OpenAPIV2 } from "openapi-types";
-import { ensureExist, Config, isUrl, isPath, assertOpenApi2 } from "./utils";
+import { Config, isUrl, isPath, assertOpenApi2 } from "./utils";
 import { mergeDefaultConfig } from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
 import { ApiCollection, parsePaths } from "./parse/path";
 import { compileInterfaces } from "free-swagger-client";
-import { Paths } from "./parse/path";
+import { ParsedPaths } from "./parse/path";
 import { genPaths } from "./gen/path";
 import { fetchJSON } from "./request";
+import { mock } from "./mock";
+import { MockAnswer } from "./default/rc";
 
-const spinner = ora().render();
+export const spinner = ora().render();
 
 // parse swagger json
 const parse = async (
   config: Config<OpenAPIV2.Document>
 ): Promise<{
-  paths: Paths;
+  paths: ParsedPaths;
 }> => {
-  ensureExist(config.root!, true);
-  const paths = parsePaths(config.source.paths);
+  fse.ensureDirSync(config.root!);
+  const paths = parsePaths(config.source);
   return { paths };
 };
 
@@ -31,12 +33,12 @@ const parse = async (
 const gen = async (
   config: Required<Config<OpenAPIV2.Document>>,
   dirPath: string,
-  paths: Paths
+  paths: ParsedPaths
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === "ts") {
     const interfacePath = path.resolve(dirPath, "interface.ts");
-    ensureExist(interfacePath);
+    fse.ensureFileSync(interfacePath);
     const code = compileInterfaces(config.source);
     await fse.writeFile(interfacePath, code);
   }
@@ -50,7 +52,7 @@ const gen = async (
       dirPath,
       `${camelcase(name)}.${config.lang}`
     );
-    ensureExist(apiCollectionPath);
+    fse.ensureFileSync(apiCollectionPath);
     const code = genPaths(apiCollection, config);
     await fse.writeFile(apiCollectionPath, code);
   };
@@ -60,7 +62,7 @@ const gen = async (
 
 const normalizeSource = async (
   source: string | OpenAPIV2.Document,
-  cookie: string
+  cookie?: string
 ): Promise<OpenAPIV2.Document> => {
   if (isUrl(source)) {
     return await fetchJSON(source, cookie);
@@ -80,7 +82,7 @@ const compile = async (config: Required<Config>): Promise<any> => {
       throw new Error("文档解析错误，请使用 openApi2 规范的文档");
     }
     spinner.start("正在生成 api 文件...");
-    ensureExist(config.root, true);
+    fse.ensureDirSync(config.root);
 
     // parse
     const { paths } = await parse(config);
@@ -88,6 +90,7 @@ const compile = async (config: Required<Config>): Promise<any> => {
     const choosePaths = config.chooseAll
       ? paths
       : pick(paths, ...(await chooseApi(paths)));
+
     // gen
     await gen(config, config.root, choosePaths);
     spinner.succeed(
@@ -109,7 +112,21 @@ const freeSwagger = async (
 };
 
 freeSwagger.compile = compile;
+freeSwagger.mock = async (config: MockAnswer): Promise<void> => {
+  const source = await normalizeSource(config.source, config.cookie);
+  await mock({
+    source,
+    wrap: config.wrap,
+    mockRoot: config.mockRoot
+  });
+  spinner.succeed(
+    `mock 文件生成成功，文件根目录地址: ${chalk.green(
+      path.resolve(config.mockRoot)
+    )}`
+  );
+};
 module.exports = freeSwagger;
 
 // todo 重新组织代码，结合 free-swagger-client
 // todo 添加开源商标
+// todo 对泛型的处理

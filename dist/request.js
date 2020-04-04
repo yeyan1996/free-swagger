@@ -46,11 +46,13 @@ exports.fetchJSON = async (url, cookie) => {
             // 普通数据则直接请求
             res = await axios_1.default.get(url);
         }
+        if (typeof res.data !== "object")
+            throw new Error("返回的数据不是 json");
         spinner.succeed("请求结束");
         return res.data;
     }
     catch (e) {
-        spinner.fail("请求失败");
+        spinner.fail("请求失败，可能没有权限或者返回格式不正确");
         throw new Error(e);
     }
 };

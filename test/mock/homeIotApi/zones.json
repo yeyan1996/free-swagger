@@ -1,0 +1,18 @@
+{
+  "GET /zones": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      "exercitation sint sunt aliqua proident"
+    ]
+  },
+  "GET /zones/:zoneId/quiet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "msg": "xxx",
+      "data": {}
+    }
+  }
+}

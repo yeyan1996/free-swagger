@@ -1,0 +1,67 @@
+{
+  "POST /lighting/dimmers/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "laboris amet dolore"
+    }
+  },
+  "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "quis ad minim"
+    }
+  },
+  "GET /lighting/switches/:deviceId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "id": "nostrud dolore",
+      "name": "consequat aliqua",
+      "lastUpdate": "2003-12-21T16:08:51.349Z",
+      "level": -71622960
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "aute sit reprehenderit"
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "aute ex"
+    }
+  },
+  "GET /lightingSummary": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "zones": [
+        {
+          "id": "laboris ea enim do",
+          "name": "velit dolore",
+          "deviceId": -10726999,
+          "deviceType": "switch",
+          "zone": "in cillum aliqua"
+        }
+      ],
+      "zoneStatus": [
+        {
+          "id": "velit sed",
+          "name": "nulla tempor",
+          "lastUpdate": "2004-06-03T07:59:55.398Z",
+          "level": 65917582
+        }
+      ]
+    }
+  }
+}

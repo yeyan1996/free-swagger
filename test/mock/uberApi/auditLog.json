@@ -1,0 +1,96 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "Product": {
+        "product_id": "sint ullamco commodo nostrud in",
+        "description": "aliquip ex",
+        "display_name": "dolor",
+        "capacity": "sit",
+        "image": "et"
+      },
+      "PriceEstimate": {
+        "product_id": "deserunt elit sed culpa dolore",
+        "currency_code": "sunt consectetur est",
+        "display_name": "Duis veniam nulla in mollit",
+        "estimate": "in dolor sunt dolore",
+        "low_estimate": -63926199.974595875,
+        "high_estimate": 48125400.03878182,
+        "surge_multiplier": -92435345.60243596
+      },
+      "Profile": {
+        "first_name": "cillum mollit",
+        "last_name": "non pariatur",
+        "email": "cillum proident quis esse ut",
+        "picture": "exercitation",
+        "promo_code": "esse",
+        "role": "Admin"
+      },
+      "Activity": {
+        "uuid": "minim dolore cillum"
+      },
+      "Activities": {
+        "offset": -23889127,
+        "limit": -94932104,
+        "count": 19677807,
+        "history": [
+          {
+            "uuid": "elit cillum anim"
+          }
+        ]
+      },
+      "RoleType": "User",
+      "CreateOrUpdateUserInput": {
+        "userId": 94880163,
+        "userRights": [
+          "SystemManage"
+        ],
+        "cardNo": 62682706.48944035
+      },
+      "Abc": {
+        "id": "exercitation adipisicing dolore aliquip",
+        "isLow": true
+      },
+      "ArrayOfAbc": [
+        {
+          "id": "elit dolor quis",
+          "isLow": true
+        }
+      ],
+      "NumberArrayEnumModel": {
+        "foo": [
+          4
+        ],
+        "bar": [
+          0
+        ]
+      },
+      "Error": {
+        "code": 36111538,
+        "message": "quis esse consectetur sunt",
+        "fields": "cupidatat pariatur"
+      },
+      "PagedResultDto[AuditLogListDto]": {
+        "totalCount": -27477802,
+        "items": [
+          {
+            "userId": 12301592,
+            "id": -2294809
+          }
+        ]
+      },
+      "AuditLogListDto": {
+        "userId": -73782728,
+        "id": -75692406
+      },
+      "JsonResult[Guid]": {
+        "result": true,
+        "code": "Timeout",
+        "data": "urn:uuid:a7c39ca7-d40b-18f4-bb01-a205b7dbf459",
+        "message": "eu"
+      },
+      "List": []
+    }
+  }
+}

@@ -4,7 +4,7 @@ import fse from "fs-extra";
 import prettier from "prettier";
 import { EOL } from "os";
 import { TemplateFunction, jsTemplate, tsTemplate } from "free-swagger-client";
-import { Config, ensureExist } from "../utils";
+import { Config } from "../utils";
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS
@@ -12,10 +12,16 @@ import {
 import { execSync } from "child_process";
 const EXPORT_DEFAULT = "export default";
 
-export interface Answer {
+export interface MockAnswer {
+  source: string;
+  mockRoot: string;
+  wrap: boolean;
+  cookie?: string;
+}
+
+export interface Answer extends MockAnswer {
   previousSource?: string;
-  source?: string;
-  cookie: string;
+  cookie?: string;
   root?: string;
   customImportCode?: string;
   lang?: "js" | "ts";
@@ -36,12 +42,12 @@ class Rc {
   constructor() {
     const homedir = os.homedir();
     this.path = path.resolve(homedir, ".free-swaggerrc.js");
-    ensureExist(this.path);
+    fse.ensureFileSync(this.path)
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
     // hack: 目的是取出 free-swaggerrc 中的代码片段
     /*eslint-disable*/
     let _obj = {};
-    eval(`_obj = ` + data.replace(new RegExp(`^${EXPORT_DEFAULT}`), ''));
+    eval(`_obj = ` + data.replace(new RegExp(`^${EXPORT_DEFAULT}`), ""));
     this.data = {
       ...this.getDefaultAnswer(),
       ..._obj
@@ -50,9 +56,11 @@ class Rc {
   // 获取 inquirer 默认回答
   getDefaultAnswer(): Answer {
     return {
-      source: undefined,
+      source: "",
       cookie: "",
-      root: `${path.resolve(process.cwd(), "src/api")}`,
+      root: path.resolve(process.cwd(), "src/api"),
+      mockRoot: path.resolve(process.cwd(), ".join-mock", "mock"),
+      wrap: false,
       lang: "js",
       shouldEditTemplate: "n",
       customImportCode: "",
@@ -107,7 +115,7 @@ class Rc {
   }
   // 记录当前 source 和之前的 source
   // 对比两者判断是否需要清空用户选择的 api 缓存记录
-  recordHash(newSource?: string): void {
+  recordHash(newSource: string): void {
     this.data.previousSource = this.data.source;
     this.data.source = newSource;
   }

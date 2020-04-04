@@ -6,3 +6,4 @@ declare function freeSwagger(
 ): Promise<OpenAPIV2.Document>;
 
 export default freeSwagger;
+// todo mock 类型

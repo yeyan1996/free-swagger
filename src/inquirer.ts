@@ -1,8 +1,8 @@
 import inquirer from "inquirer";
-import { Paths } from "./parse/path";
+import { ParsedPaths } from "./parse/path";
 import { rc, Answer } from "./default/rc";
 
-const createChoices = (paths: Paths): Answer["apiChoices"] => {
+const createChoices = (paths: ParsedPaths): Answer["apiChoices"] => {
   const chooseAll = Object.keys(paths).map(name => ({
     name,
     checked: true
@@ -21,7 +21,7 @@ const createChoices = (paths: Paths): Answer["apiChoices"] => {
   });
 };
 
-export const chooseApi = async (paths: Paths): Promise<string[]> => {
+export const chooseApi = async (paths: ParsedPaths): Promise<string[]> => {
   const { choosePaths } = await inquirer.prompt([
     {
       name: "choosePaths",

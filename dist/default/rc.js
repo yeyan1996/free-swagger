@@ -9,7 +9,6 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const prettier_1 = __importDefault(require("prettier"));
 const os_2 = require("os");
 const free_swagger_client_1 = require("free-swagger-client");
-const utils_1 = require("../utils");
 const index_1 = require("./index");
 const child_process_1 = require("child_process");
 const EXPORT_DEFAULT = "export default";
@@ -17,12 +16,12 @@ class Rc {
     constructor() {
         const homedir = os_1.default.homedir();
         this.path = path_1.default.resolve(homedir, ".free-swaggerrc.js");
-        utils_1.ensureExist(this.path);
+        fs_extra_1.default.ensureFileSync(this.path);
         const data = fs_extra_1.default.readFileSync(this.path, "utf-8") || "{}";
         // hack: 目的是取出 free-swaggerrc 中的代码片段
         /*eslint-disable*/
         let _obj = {};
-        eval(`_obj = ` + data.replace(new RegExp(`^${EXPORT_DEFAULT}`), ''));
+        eval(`_obj = ` + data.replace(new RegExp(`^${EXPORT_DEFAULT}`), ""));
         this.data = {
             ...this.getDefaultAnswer(),
             ..._obj
@@ -31,9 +30,11 @@ class Rc {
     // 获取 inquirer 默认回答
     getDefaultAnswer() {
         return {
-            source: undefined,
+            source: "",
             cookie: "",
-            root: `${path_1.default.resolve(process.cwd(), "src/api")}`,
+            root: path_1.default.resolve(process.cwd(), "src/api"),
+            mockRoot: path_1.default.resolve(process.cwd(), ".join-mock", "mock"),
+            wrap: false,
             lang: "js",
             shouldEditTemplate: "n",
             customImportCode: "",

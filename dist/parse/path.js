@@ -7,7 +7,7 @@ const free_swagger_client_1 = require("free-swagger-client");
 exports.parsePath = free_swagger_client_1.parsePath;
 const utils_1 = require("../utils");
 const chalk_1 = __importDefault(require("chalk"));
-const methods = [
+exports.methods = [
     "get",
     "put",
     "post",
@@ -17,12 +17,12 @@ const methods = [
     "head",
     "patch"
 ];
-const parsePaths = (paths) => {
+const parsePaths = (swagger) => {
     const requestClasses = {};
-    Object.entries(paths).forEach(([path, apiObj]) => {
-        methods.forEach((method) => {
+    Object.entries(swagger.paths).forEach(([path, pathItemObject]) => {
+        exports.methods.forEach((method) => {
             var _a;
-            const operationObject = apiObj[method];
+            const operationObject = pathItemObject[method];
             if (!operationObject)
                 return;
             if (!operationObject.operationId) {
@@ -33,12 +33,23 @@ const parsePaths = (paths) => {
                 console.log(chalk_1.default.yellow(`${method.toUpperCase()} ${path} 的 tags 不存在,无法生成该 api`));
                 return;
             }
-            // 获取类名
-            const className = utils_1.pascalCase(operationObject.tags[0]);
-            if (!requestClasses[className]) {
-                requestClasses[className] = {};
+            // 含有中文则使用 description 作为文件名
+            let controllerName = "";
+            if (utils_1.hasChinese(operationObject.tags[0])) {
+                const tag = swagger.tags.find((tag) => tag.name === operationObject.tags[0]);
+                if (!tag)
+                    return;
+                controllerName = tag.description
+                    ? utils_1.pascalCase(tag.description)
+                    : tag.name;
             }
-            requestClasses[className][operationObject.operationId] = free_swagger_client_1.parsePath(operationObject.operationId, path, method, operationObject);
+            else {
+                controllerName = utils_1.pascalCase(operationObject.tags[0]);
+            }
+            if (!requestClasses[controllerName]) {
+                requestClasses[controllerName] = {};
+            }
+            requestClasses[controllerName][operationObject.operationId] = free_swagger_client_1.parsePath(operationObject.operationId, path, method, operationObject);
         });
     });
     return requestClasses;

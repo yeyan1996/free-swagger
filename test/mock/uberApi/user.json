@@ -1,0 +1,28 @@
+{
+  "GET /me": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "first_name": "esse aute minim",
+      "last_name": "laborum magna",
+      "email": "consectetur",
+      "picture": "dolore",
+      "promo_code": "fugiat in culpa",
+      "role": "User"
+    }
+  },
+  "GET /history": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "offset": -90447084,
+      "limit": -98767084,
+      "count": -94352984,
+      "history": [
+        {
+          "uuid": "est eiusmod laboris"
+        }
+      ]
+    }
+  }
+}

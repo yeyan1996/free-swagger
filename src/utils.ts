@@ -20,16 +20,6 @@ const isUrl = (url: string | OpenAPIV2.Document): url is string =>
 const isPath = (url: string | OpenAPIV2.Document): url is string =>
   typeof url === "string" && fse.existsSync(path.resolve(process.cwd(), url));
 
-const ensureExist = (path: string, isDir = false): void => {
-  if (!fse.existsSync(path)) {
-    if (isDir) {
-      fse.mkdirSync(path, { recursive: true });
-    } else {
-      fse.writeFileSync(path, "");
-    }
-  }
-};
-
 const assertOpenApi2 = (
   config: Config
 ): config is Config<OpenAPIV2.Document> => {
@@ -50,4 +40,7 @@ const pascalCase = (str: string): string =>
     pascalCase: true
   });
 
-export { ensureExist, isUrl, isPath, assertOpenApi2, pascalCase };
+const hasChinese = (str: string): boolean =>
+  /[\u4E00-\u9FA5\uF900-\uFA2D]/.test(str);
+
+export { isUrl, isPath, assertOpenApi2, pascalCase, hasChinese };

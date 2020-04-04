@@ -1,0 +1,30 @@
+{
+  "GET /estimates/price": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "product_id": "enim sint id dolor sed",
+        "currency_code": "veniam",
+        "display_name": "Duis deserunt",
+        "estimate": "sint qui",
+        "low_estimate": -47722686.17329196,
+        "high_estimate": -53179761.75542966,
+        "surge_multiplier": 95448220.070263
+      }
+    ]
+  },
+  "GET /estimates/time": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "product_id": "in ad",
+        "description": "voluptate sint",
+        "display_name": "in in",
+        "capacity": "ullamco est dolore ad anim",
+        "image": "sed in consectetur ipsum commodo"
+      }
+    ]
+  }
+}

@@ -3,9 +3,8 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
-import { isUrl } from "../utils";
 import { Answer, rc } from "../default/rc";
-import { source } from "./questions";
+import { cookie, source } from "./questions";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const freeSwagger = require("../main");
 
@@ -26,6 +25,31 @@ export function init(cb?: Function): void {
     .option("-e --edit", "修改当前配置", () => {
       rc.edit();
     })
+    .option("-m --mock", "全量生成 mock 数据", async () => {
+      const { data: defaultAnswer } = rc;
+      const answer = await inquirer.prompt([
+        source,
+        cookie,
+        {
+          name: "wrap",
+          type: "confirm",
+          message: `是否额外包裹一层标准接口返回格式？(${chalk.magenta(
+            `e.g {code:"200",msg:xxx,data:xxx}`
+          )}) `,
+          default: false
+        },
+        {
+          name: "mockRoot",
+          message: "输入导出 mock 文件的路径",
+          default: defaultAnswer.mockRoot,
+          validate: (input): boolean | string =>
+            !!input || "请输入 mock 文件的路径"
+        }
+      ]);
+      rc.merge(answer);
+      rc.save();
+      await freeSwagger.mock(answer);
+    })
     .option("-c, --config", "以配置项启动 free-swagger", async () => {
       const { data: defaultAnswer } = rc;
       // 获取用户回答
@@ -34,14 +58,7 @@ export function init(cb?: Function): void {
         "tsTemplate" | "jsTemplate"
       > = await inquirer.prompt([
         source,
-        {
-          name: "cookie",
-          message: `输入用于鉴权的 cookie(${chalk.magenta(
-            "swagger 源不需要鉴权则置空"
-          )})`,
-          when: ({ source }): boolean => isUrl(source!),
-          default: defaultAnswer.cookie
-        },
+        cookie,
         {
           name: "root",
           message: "输入导出 api 的根路径",

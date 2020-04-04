@@ -8,7 +8,6 @@ const chalk_1 = __importDefault(require("chalk"));
 const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const commander_1 = __importDefault(require("commander"));
-const utils_1 = require("../utils");
 const rc_1 = require("../default/rc");
 const questions_1 = require("./questions");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -29,17 +28,34 @@ function init(cb) {
         .option("-e --edit", "修改当前配置", () => {
         rc_1.rc.edit();
     })
+        .option("-m --mock", "全量生成 mock 数据", async () => {
+        const { data: defaultAnswer } = rc_1.rc;
+        const answer = await inquirer_1.default.prompt([
+            questions_1.source,
+            questions_1.cookie,
+            {
+                name: "wrap",
+                type: "confirm",
+                message: `是否额外包裹一层标准接口返回格式？(${chalk_1.default.magenta(`e.g {code:"200",msg:xxx,data:xxx}`)}) `,
+                default: false
+            },
+            {
+                name: "mockRoot",
+                message: "输入导出 mock 文件的路径",
+                default: defaultAnswer.mockRoot,
+                validate: (input) => !!input || "请输入 mock 文件的路径"
+            }
+        ]);
+        rc_1.rc.merge(answer);
+        rc_1.rc.save();
+        await freeSwagger.mock(answer);
+    })
         .option("-c, --config", "以配置项启动 free-swagger", async () => {
         const { data: defaultAnswer } = rc_1.rc;
         // 获取用户回答
         const answer = await inquirer_1.default.prompt([
             questions_1.source,
-            {
-                name: "cookie",
-                message: `输入用于鉴权的 cookie(${chalk_1.default.magenta("swagger 源不需要鉴权则置空")})`,
-                when: ({ source }) => utils_1.isUrl(source),
-                default: defaultAnswer.cookie
-            },
+            questions_1.cookie,
             {
                 name: "root",
                 message: "输入导出 api 的根路径",

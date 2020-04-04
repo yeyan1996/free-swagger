@@ -16,11 +16,12 @@ const path_2 = require("./parse/path");
 const free_swagger_client_1 = require("free-swagger-client");
 const path_3 = require("./gen/path");
 const request_1 = require("./request");
-const spinner = ora_1.default().render();
+const mock_1 = require("./mock");
+exports.spinner = ora_1.default().render();
 // parse swagger json
 const parse = async (config) => {
-    utils_1.ensureExist(config.root, true);
-    const paths = path_2.parsePaths(config.source.paths);
+    fs_extra_1.default.ensureDirSync(config.root);
+    const paths = path_2.parsePaths(config.source);
     return { paths };
 };
 // code generate
@@ -28,14 +29,14 @@ const gen = async (config, dirPath, paths) => {
     // 生成 interface
     if (config.lang === "ts") {
         const interfacePath = path_1.default.resolve(dirPath, "interface.ts");
-        utils_1.ensureExist(interfacePath);
+        fs_extra_1.default.ensureFileSync(interfacePath);
         const code = free_swagger_client_1.compileInterfaces(config.source);
         await fs_extra_1.default.writeFile(interfacePath, code);
     }
     // 生成 api
     const genApi = async ([name, apiCollection]) => {
         const apiCollectionPath = path_1.default.resolve(dirPath, `${camelcase_1.default(name)}.${config.lang}`);
-        utils_1.ensureExist(apiCollectionPath);
+        fs_extra_1.default.ensureFileSync(apiCollectionPath);
         const code = path_3.genPaths(apiCollection, config);
         await fs_extra_1.default.writeFile(apiCollectionPath, code);
     };
@@ -58,22 +59,22 @@ const compile = async (config) => {
         if (!utils_1.assertOpenApi2(config)) {
             throw new Error("文档解析错误，请使用 openApi2 规范的文档");
         }
-        spinner.start("正在生成 api 文件...");
-        utils_1.ensureExist(config.root, true);
+        exports.spinner.start("正在生成 api 文件...");
+        fs_extra_1.default.ensureDirSync(config.root);
         // parse
         const { paths } = await parse(config);
-        spinner.succeed("api 文件解析完成");
+        exports.spinner.succeed("api 文件解析完成");
         const choosePaths = config.chooseAll
             ? paths
             : lodash_1.pick(paths, ...(await inquirer_1.chooseApi(paths)));
         // gen
         await gen(config, config.root, choosePaths);
-        spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(config.root)}`);
+        exports.spinner.succeed(`api 文件生成成功，文件根目录地址: ${chalk_1.default.green(config.root)}`);
         return config.source;
     }
     catch (e) {
         console.log(e);
-        spinner.fail(`${chalk_1.default.red("api 文件生成失败")}`);
+        exports.spinner.fail(`${chalk_1.default.red("api 文件生成失败")}`);
     }
 };
 // freeSwagger = merge + compile
@@ -82,6 +83,16 @@ const freeSwagger = async (config) => {
     return await compile(mergedConfig);
 };
 freeSwagger.compile = compile;
+freeSwagger.mock = async (config) => {
+    const source = await normalizeSource(config.source, config.cookie);
+    await mock_1.mock({
+        source,
+        wrap: config.wrap,
+        mockRoot: config.mockRoot
+    });
+    exports.spinner.succeed(`mock 文件生成成功，文件根目录地址: ${chalk_1.default.green(path_1.default.resolve(config.mockRoot))}`);
+};
 module.exports = freeSwagger;
 // todo 重新组织代码，结合 free-swagger-client
 // todo 添加开源商标
+// todo 对泛型的处理
