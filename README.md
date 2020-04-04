@@ -54,7 +54,7 @@ npx free-swagger --config
 
 ![image-20200404175701656](https://tva1.sinaimg.cn/large/00831rSTly1gdhvyepnt8j32hi0u0u0x.jpg)
 
-![image-20200404180035431](/Users/bytedance/Library/Application Support/typora-user-images/image-20200404180135026.png)
+![](https://tva1.sinaimg.cn/large/00831rSTly1gdhwhmhydqj31fo0u0u0x.jpg)
 
 其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock（**free-swagger 只输出 mock 文件，不提供本地 mock**）
 
