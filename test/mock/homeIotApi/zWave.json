@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "aliquip nulla"
+      "message": "anim labore nulla minim"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ut aliquip non in id"
+      "message": "irure id culpa ut"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "Lorem consectetur ullamco sunt",
-      "name": "sit",
-      "lastUpdate": "1955-11-25T20:17:36.901Z",
-      "level": 21711142
+      "id": "sunt ut",
+      "name": "consequat",
+      "lastUpdate": "1944-03-12T07:34:35.654Z",
+      "level": 10551270
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "aute voluptate nisi"
+      "message": "exercitation voluptate"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ut"
+      "message": "ut nulla aliqua"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "consequat aute",
-          "name": "ad occaecat",
-          "deviceId": -72141092,
-          "deviceType": "dimmer",
-          "zone": "in ut adipisicing exercitation tempor"
+          "id": "Lorem quis est ut aute",
+          "name": "sunt veniam dolor",
+          "deviceId": 26952140,
+          "deviceType": "switch",
+          "zone": "dolor deserunt aute proident"
         }
       ],
       "zoneStatus": [
         {
-          "id": "velit irure consectetur dolore",
-          "name": "nostrud veniam magna",
-          "lastUpdate": "1969-11-23T19:25:35.445Z",
-          "level": 81573050
+          "id": "commodo voluptate",
+          "name": "in dolore consectetur labore ut",
+          "lastUpdate": "1943-01-21T23:04:15.133Z",
+          "level": -10349214
         }
       ]
     }

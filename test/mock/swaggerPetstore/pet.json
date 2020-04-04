@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "ex consequat ut sed sint",
+    "name": "sit laboris sunt ex",
     "photoUrls": [
-      "ut"
+      "ex laborum"
     ],
-    "id": -98863070,
+    "id": 40534058,
     "category": {
-      "id": 1245603,
-      "name": "culpa velit Lorem elit ut"
+      "id": 10448675,
+      "name": "ipsum anim"
     },
     "tags": [
       {
-        "id": -64348378,
-        "name": "Excepteur id"
+        "id": 48790265,
+        "name": "enim irure sint dolor"
       }
     ],
-    "status": "available"
+    "status": "sold"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "non",
-    "message": "adipisicing dolor labore occaecat"
+    "type": "nostrud",
+    "message": "in voluptate aliqua"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,39 +44,39 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "anim aliqua voluptate",
+      "name": "aute in proident adipisicing",
       "photoUrls": [
-        "sit occaecat anim dolor magna"
+        "ut id nulla proident in"
       ],
-      "id": -65697892,
+      "id": -35729132,
       "category": {
-        "id": 11512722,
-        "name": "Lorem dolore ex non"
+        "id": -95955419,
+        "name": "officia magna eu esse sed"
       },
       "tags": [
         {
-          "id": 49426591,
-          "name": "Ut ut in elit"
+          "id": -42201954,
+          "name": "id"
         }
       ],
-      "status": "available"
+      "status": "pending"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "velit tempor elit Ut do",
+      "name": "eu incididunt",
       "photoUrls": [
-        "anim aute"
+        "nisi fugiat"
       ],
-      "id": -72784629,
+      "id": 88813632,
       "category": {
-        "id": 25447185,
-        "name": "ex velit consectetur culpa Lorem"
+        "id": -87285032,
+        "name": "enim labore in quis"
       },
       "tags": [
         {
-          "id": 85456660,
-          "name": "cillum eiusmod"
+          "id": 50437698,
+          "name": "amet non nostrud"
         }
       ],
       "status": "available"

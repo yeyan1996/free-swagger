@@ -16,17 +16,17 @@ free-swagger 提供了两种方式使用，上手非常简单
 
 ### npx(推荐)
 
-```
+```shell
 npx free-swagger
 ```
 
 ### npm
 
-```
+```shell
 npm i free-swagger -g
 ```
 
-```
+```shell
 free-swagger
 ```
 
@@ -36,15 +36,35 @@ free-swagger
 
 ![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
-## 其他命令
+## 详细配置
 
-- `--config/-c` 以配置项启动 free-swagger
+输出 ts 文件或者编辑模版等进一步功能，需要详细配置
 
-> npx free-swagger --config
+```shell
+npx free-swagger --config
+```
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+
+## 生成 mock 文件
+
+和详细配置 free-swagger 相似，输入 swagger 源，将全量的 mock 数据（json）输出到指定文件夹中，配合其他 mock 工具实现本地 mock
+
+![image-20200404175701656](https://tva1.sinaimg.cn/large/00831rSTly1gdhvyepnt8j32hi0u0u0x.jpg)
+
+![image-20200404180035431](/Users/bytedance/Library/Application Support/typora-user-images/image-20200404180135026.png)
+
+其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock（**free-swagger 只输出 mock 文件，不提供本地 mock**）
+
+![image-20200404180216916](https://tva1.sinaimg.cn/large/00831rSTly1gdhw3qqj8cj30pm0ac404.jpg)
+
+## 所有命令
+
+- `--config/-c` 以配置项启动 free-swagger
+
+> npx free-swagger --config
 
 - `--mock/-m` 全量生成 mock 数据
 
