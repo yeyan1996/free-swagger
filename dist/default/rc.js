@@ -30,6 +30,7 @@ class Rc {
     // 获取 inquirer 默认回答
     getDefaultAnswer() {
         return {
+            previousSource: "",
             source: "",
             cookie: "",
             root: path_1.default.resolve(process.cwd(), "src/api"),

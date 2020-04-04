@@ -12,25 +12,27 @@ import {
 import { execSync } from "child_process";
 const EXPORT_DEFAULT = "export default";
 
+// mock 功能
 export interface MockAnswer {
   source: string;
   mockRoot: string;
   wrap: boolean;
-  cookie?: string;
+  cookie: string;
 }
 
+// 详细配置功能
 export interface Answer extends MockAnswer {
-  previousSource?: string;
-  cookie?: string;
-  root?: string;
-  customImportCode?: string;
-  lang?: "js" | "ts";
+  previousSource: string;
+  cookie: string;
+  root: string;
+  customImportCode: string;
+  lang: "js" | "ts";
   shouldEditTemplate: "y" | "n";
   customImportCodeJs: string;
   customImportCodeTs: string;
   jsTemplate: string;
   tsTemplate: string;
-  templateFunction?: TemplateFunction;
+  templateFunction: TemplateFunction;
   apiChoices: { name: string; checked: boolean }[];
   chooseAll: boolean;
 }
@@ -42,7 +44,7 @@ class Rc {
   constructor() {
     const homedir = os.homedir();
     this.path = path.resolve(homedir, ".free-swaggerrc.js");
-    fse.ensureFileSync(this.path)
+    fse.ensureFileSync(this.path);
     const data = fse.readFileSync(this.path, "utf-8") || "{}";
     // hack: 目的是取出 free-swaggerrc 中的代码片段
     /*eslint-disable*/
@@ -56,6 +58,7 @@ class Rc {
   // 获取 inquirer 默认回答
   getDefaultAnswer(): Answer {
     return {
+      previousSource: "",
       source: "",
       cookie: "",
       root: path.resolve(process.cwd(), "src/api"),
@@ -74,13 +77,13 @@ class Rc {
     };
   }
   // 获取默认配置项
-  getConfig(): Required<Config> {
+  getConfig(): Config {
     return {
-      source: this.data.source!,
-      root: this.data.root!,
-      lang: this.data.lang!,
-      cookie: this.data.cookie!,
-      customImportCode: this.data.customImportCode!,
+      source: this.data.source,
+      root: this.data.root,
+      lang: this.data.lang,
+      cookie: this.data.cookie,
+      customImportCode: this.data.customImportCode,
       templateFunction: eval(
         this.data.lang === "ts" ? this.data.tsTemplate : this.data.jsTemplate
       ),
