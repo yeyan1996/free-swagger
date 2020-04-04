@@ -19,6 +19,7 @@
     "release": "sh script/release.sh",
     "build": "rm -rf ./dist && tsc",
     "test": "tsc && jest",
+    "ci": "jest --coverage --updateSnapshot",
     "lint": "eslint . --ext .ts --fix"
   },
   "keywords": [
