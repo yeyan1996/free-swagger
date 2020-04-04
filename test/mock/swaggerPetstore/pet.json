@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "deserunt ex quis adipisicing",
+    "name": "ut",
     "photoUrls": [
-      "labore in"
+      "mollit minim"
     ],
-    "id": -56303617,
+    "id": 35139225,
     "category": {
-      "id": 52302126,
-      "name": "laborum"
+      "id": -10762164,
+      "name": "esse quis anim occaecat"
     },
     "tags": [
       {
-        "id": -49199841,
-        "name": "incididunt magna commodo"
+        "id": -95262934,
+        "name": "elit non"
       }
     ],
-    "status": "sold"
+    "status": "pending"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "elit",
-    "message": "nulla minim culpa deserunt aute"
+    "type": "et ea",
+    "message": "aute ex Ut"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "laboris nostrud Lorem fugiat",
+      "name": "nisi aute quis deserunt aliqua",
       "photoUrls": [
-        "in do"
+        "cillum velit"
       ],
-      "id": -70171040,
+      "id": 66047090,
       "category": {
-        "id": -19832469,
-        "name": "anim et"
+        "id": -40863221,
+        "name": "sint ut Excepteur"
       },
       "tags": [
         {
-          "id": 76039806,
-          "name": "mollit officia sint"
+          "id": -16828208,
+          "name": "amet dolore ea nisi"
         }
       ],
-      "status": "sold"
+      "status": "pending"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "est",
+      "name": "Lorem exercitation",
       "photoUrls": [
-        "dolor labore Duis tempor incididunt"
+        "Excepteur dolore commodo nisi"
       ],
-      "id": 82106414,
+      "id": 53491031,
       "category": {
-        "id": 81432403,
-        "name": "ipsum cupidatat do ullamco"
+        "id": 35035185,
+        "name": "ad irure est deserunt et"
       },
       "tags": [
         {
-          "id": -12756255,
-          "name": "esse culpa in eiusmod ex"
+          "id": 15789501,
+          "name": "Excepteur"
         }
       ],
-      "status": "pending"
+      "status": "available"
     }
   ]
 }

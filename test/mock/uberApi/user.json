@@ -3,24 +3,24 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "first_name": "esse aute minim",
-      "last_name": "laborum magna",
-      "email": "consectetur",
-      "picture": "dolore",
-      "promo_code": "fugiat in culpa",
-      "role": "User"
+      "first_name": "dolor velit",
+      "last_name": "ut qui amet labore",
+      "email": "in et nisi",
+      "picture": "incididunt laboris ut",
+      "promo_code": "tempor Excepteur cillum quis",
+      "role": "Admin"
     }
   },
   "GET /history": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "offset": -90447084,
-      "limit": -98767084,
-      "count": -94352984,
+      "offset": 21910354,
+      "limit": -6015750,
+      "count": -52949981,
       "history": [
         {
-          "uuid": "est eiusmod laboris"
+          "uuid": "minim sunt id ipsum"
         }
       ]
     }
