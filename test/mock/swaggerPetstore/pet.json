@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "sit laboris sunt ex",
+    "name": "cupidatat quis laboris",
     "photoUrls": [
-      "ex laborum"
+      "voluptate cupidatat"
     ],
-    "id": 40534058,
+    "id": 63203071,
     "category": {
-      "id": 10448675,
-      "name": "ipsum anim"
+      "id": -34016484,
+      "name": "labore"
     },
     "tags": [
       {
-        "id": 48790265,
-        "name": "enim irure sint dolor"
+        "id": 9564737,
+        "name": "sit"
       }
     ],
-    "status": "sold"
+    "status": "pending"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "nostrud",
-    "message": "in voluptate aliqua"
+    "type": "consectetur labore Duis proident dolore",
+    "message": "nostrud dolor amet"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "aute in proident adipisicing",
+      "name": "nulla dolor",
       "photoUrls": [
-        "ut id nulla proident in"
+        "eu laboris"
       ],
-      "id": -35729132,
+      "id": -22940104,
       "category": {
-        "id": -95955419,
-        "name": "officia magna eu esse sed"
+        "id": -92692144,
+        "name": "adipisicing"
       },
       "tags": [
         {
-          "id": -42201954,
-          "name": "id"
+          "id": 2272733,
+          "name": "in est ut ipsum"
         }
       ],
-      "status": "pending"
+      "status": "sold"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "eu incididunt",
+      "name": "sunt Duis fugiat",
       "photoUrls": [
-        "nisi fugiat"
+        "veniam eiusmod eu cupidatat"
       ],
-      "id": 88813632,
+      "id": 75838692,
       "category": {
-        "id": -87285032,
-        "name": "enim labore in quis"
+        "id": 79315557,
+        "name": "reprehenderit ipsum sint in"
       },
       "tags": [
         {
-          "id": 50437698,
-          "name": "amet non nostrud"
+          "id": -71865513,
+          "name": "sint aliqua"
         }
       ],
-      "status": "available"
+      "status": "sold"
     }
   ]
 }

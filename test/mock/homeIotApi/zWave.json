@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "anim labore nulla minim"
+      "message": "nisi proident aliqua minim ipsum"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "irure id culpa ut"
+      "message": "occaecat ad qui Duis reprehenderit"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "sunt ut",
-      "name": "consequat",
-      "lastUpdate": "1944-03-12T07:34:35.654Z",
-      "level": 10551270
+      "id": "consequat sint culpa deserunt",
+      "name": "occaecat est Excepteur",
+      "lastUpdate": "2000-07-23T16:09:01.733Z",
+      "level": 30597191
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "exercitation voluptate"
+      "message": "dolor"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ut nulla aliqua"
+      "message": "voluptate"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "Lorem quis est ut aute",
-          "name": "sunt veniam dolor",
-          "deviceId": 26952140,
+          "id": "irure esse",
+          "name": "dolor voluptate",
+          "deviceId": -8146761,
           "deviceType": "switch",
-          "zone": "dolor deserunt aute proident"
+          "zone": "enim in"
         }
       ],
       "zoneStatus": [
         {
-          "id": "commodo voluptate",
-          "name": "in dolore consectetur labore ut",
-          "lastUpdate": "1943-01-21T23:04:15.133Z",
-          "level": -10349214
+          "id": "mollit Ut consectetur occaecat",
+          "name": "ex incididunt culpa nulla dolore",
+          "lastUpdate": "2007-02-12T13:50:22.802Z",
+          "level": 16502192
         }
       ]
     }

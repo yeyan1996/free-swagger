@@ -4,91 +4,91 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "product_id": "qui",
-        "description": "amet cupidatat veniam tempor",
-        "display_name": "dolor ex ad ut",
-        "capacity": "aliqua nostrud",
-        "image": "dolor qui"
+        "product_id": "minim enim velit",
+        "description": "cillum laboris quis Ut est",
+        "display_name": "officia adipisicing ea elit",
+        "capacity": "enim",
+        "image": "nostrud elit incididunt ullamco consectetur"
       },
       "PriceEstimate": {
-        "product_id": "occaecat in in sed",
-        "currency_code": "enim",
-        "display_name": "reprehenderit consequat",
-        "estimate": "pariatur ad",
-        "low_estimate": 81805997.53513053,
-        "high_estimate": -68201410.13065535,
-        "surge_multiplier": 34048495.7736658
+        "product_id": "non",
+        "currency_code": "voluptate",
+        "display_name": "ea",
+        "estimate": "non sunt veniam velit sit",
+        "low_estimate": 48618042.68405795,
+        "high_estimate": 12913030.980977386,
+        "surge_multiplier": 54372046.43559444
       },
       "Profile": {
-        "first_name": "nostrud nisi voluptate",
-        "last_name": "elit dolore",
-        "email": "consectetur et reprehenderit cupidatat",
-        "picture": "ut in proident enim et",
-        "promo_code": "in ut mollit cillum in",
-        "role": "User"
+        "first_name": "dolore aliquip nisi",
+        "last_name": "commodo nostrud cillum eiusmod dolor",
+        "email": "eiusmod ad nulla",
+        "picture": "in adipisicing Lorem non in",
+        "promo_code": "fugiat labore proident",
+        "role": "Admin"
       },
       "Activity": {
-        "uuid": "laborum labore"
+        "uuid": "quis in"
       },
       "Activities": {
-        "offset": -25569556,
-        "limit": -94426666,
-        "count": -267573,
+        "offset": -20790952,
+        "limit": 58375007,
+        "count": -15522414,
         "history": [
           {
-            "uuid": "proident officia Ut ea"
+            "uuid": "sit"
           }
         ]
       },
-      "RoleType": "SetSms",
+      "RoleType": "Admin",
       "CreateOrUpdateUserInput": {
-        "userId": 97420141,
+        "userId": 90283353,
         "userRights": [
-          "SetSms"
+          "Auth"
         ],
-        "cardNo": 80291832
+        "cardNo": -40341687
       },
       "Abc": {
-        "id": "Lorem est elit",
+        "id": "et dolor ullamco ex",
         "isLow": true
       },
       "ArrayOfAbc": [
         {
-          "id": "anim esse qui Lorem culpa",
-          "isLow": false
+          "id": "exercitation",
+          "isLow": true
         }
       ],
       "NumberArrayEnumModel": {
         "foo": [
-          8
+          2
         ],
         "bar": [
           3
         ]
       },
       "Error": {
-        "code": 78085064,
-        "message": "Excepteur labore occaecat",
-        "fields": "ipsum elit"
+        "code": -695499,
+        "message": "occaecat magna consectetur",
+        "fields": "enim ut"
       },
       "PagedResultDto[AuditLogListDto]": {
-        "totalCount": 42364243,
+        "totalCount": -51347324,
         "items": [
           {
-            "userId": -53795158,
-            "id": -43309556
+            "userId": 98150198,
+            "id": 46500488
           }
         ]
       },
       "AuditLogListDto": {
-        "userId": -99903241,
-        "id": -51414082
+        "userId": -2519796,
+        "id": -55360718
       },
       "JsonResult[Guid]": {
         "result": false,
-        "code": "InternalServerError",
-        "data": "urn:uuid:825e927c-fcf2-a4f8-a906-f4327025b12c",
-        "message": "eiusmod sunt"
+        "code": "InvalidAnonymousAccess",
+        "data": "75645741-387c-a740-324f-22eaa0ed918e",
+        "message": "consequat aliquip esse ipsum"
       },
       "List": []
     }
