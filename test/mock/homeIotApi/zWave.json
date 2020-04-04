@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ad incididunt voluptate est aliquip"
+      "message": "anim enim ex reprehenderit"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "dolore minim est"
+      "message": "anim reprehenderit elit amet dolor"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "aliquip",
-      "name": "cupidatat",
-      "lastUpdate": "2019-12-19T18:25:25.851Z",
-      "level": 26951775
+      "id": "tempor",
+      "name": "deserunt ex reprehenderit ut",
+      "lastUpdate": "1994-09-18T06:35:38.647Z",
+      "level": 7999057
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ut officia esse"
+      "message": "nisi Ut"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "sed commodo"
+      "message": "laboris sunt"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "elit voluptate adipisicing dolor enim",
-          "name": "consequat est",
-          "deviceId": 93638886,
-          "deviceType": "dimmer",
-          "zone": "irure"
+          "id": "laboris consequat Duis est dolor",
+          "name": "incididunt",
+          "deviceId": 93224988,
+          "deviceType": "switch",
+          "zone": "aliquip irure sed nostrud dolor"
         }
       ],
       "zoneStatus": [
         {
-          "id": "veniam consectetur ipsum nostrud",
-          "name": "laborum qui",
-          "lastUpdate": "1953-07-23T18:47:57.166Z",
-          "level": 9434300
+          "id": "laborum et laboris aute",
+          "name": "amet ullamco adipisicing occaecat aliqua",
+          "lastUpdate": "2007-07-20T05:11:15.08Z",
+          "level": -85681550
         }
       ]
     }

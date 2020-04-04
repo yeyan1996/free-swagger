@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "ut",
+    "name": "aute",
     "photoUrls": [
-      "mollit minim"
+      "dolor id culpa ullamco"
     ],
-    "id": 35139225,
+    "id": -28455278,
     "category": {
-      "id": -10762164,
-      "name": "esse quis anim occaecat"
+      "id": -35686655,
+      "name": "in dolore culpa"
     },
     "tags": [
       {
-        "id": -95262934,
-        "name": "elit non"
+        "id": -24164750,
+        "name": "anim Duis nisi"
       }
     ],
-    "status": "pending"
+    "status": "available"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "et ea",
-    "message": "aute ex Ut"
+    "type": "incididunt",
+    "message": "eiusmod"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "nisi aute quis deserunt aliqua",
+      "name": "dolore",
       "photoUrls": [
-        "cillum velit"
+        "dolor ut elit"
       ],
-      "id": 66047090,
+      "id": -17490214,
       "category": {
-        "id": -40863221,
-        "name": "sint ut Excepteur"
+        "id": -48496324,
+        "name": "in irure fugiat amet exercitation"
       },
       "tags": [
         {
-          "id": -16828208,
-          "name": "amet dolore ea nisi"
+          "id": 19329313,
+          "name": "minim tempor consectetur"
         }
       ],
-      "status": "pending"
+      "status": "available"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Lorem exercitation",
+      "name": "id",
       "photoUrls": [
-        "Excepteur dolore commodo nisi"
+        "fugiat minim"
       ],
-      "id": 53491031,
+      "id": 54919885,
       "category": {
-        "id": 35035185,
-        "name": "ad irure est deserunt et"
+        "id": -85213503,
+        "name": "ut laboris commodo ipsum veniam"
       },
       "tags": [
         {
-          "id": 15789501,
-          "name": "Excepteur"
+          "id": -69093769,
+          "name": "laborum ipsum nulla minim ut"
         }
       ],
-      "status": "available"
+      "status": "pending"
     }
   ]
 }

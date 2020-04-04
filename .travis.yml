@@ -1,8 +1,0 @@
-language: node_js # 项目语言，node 项目就按照这种写法就OK了
-node_js:
-  - 13.2.0 # 项目环境
-cache: # 缓存 node_js 依赖，提升第二次构建的效率
-  directories:
-    - node_modules
-test:
-  - npm run test # 运行自动测试框架
