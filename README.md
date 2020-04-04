@@ -38,13 +38,17 @@ free-swagger
 
 ## 其他命令
 
-- `--config/-c` 可以进行详细配置
+- `--config/-c` 以配置项启动 free-swagger
 
 > npx free-swagger --config
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
 在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+
+- `--mock/-m` 全量生成 mock 数据
+
+> npx free-swagger --mock
 
 - `--reset/-r` 重置为默认配置
 
@@ -54,11 +58,11 @@ free-swagger
 
 > npx free-swagger --show
 
-- `--edit/-e` 编辑配置
+- `--edit/-e` 编辑当前配置
 
 > npx free-swagger --edit
 
-- `--help/-h` 查询命令
+- `--help/-h` output usage information
 
 > npx free-swagger --help
 

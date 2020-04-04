@@ -1,18 +1,18 @@
 {
   "GET /pet/:petId": {
-    "name": "velit aute ullamco nulla labore",
+    "name": "dolor",
     "photoUrls": [
-      "enim occaecat non ut"
+      "dolore veniam qui culpa ipsum"
     ],
-    "id": -19569975,
+    "id": 51388641,
     "category": {
-      "id": -85729616,
-      "name": "est"
+      "id": 13241315,
+      "name": "Lorem"
     },
     "tags": [
       {
-        "id": 85342442,
-        "name": "velit culpa ut dolore aute"
+        "id": 8867354,
+        "name": "dolore pariatur"
       }
     ],
     "status": "pending"
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "in",
-    "message": "veniam sit cillum"
+    "type": "laboris",
+    "message": "magna"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "voluptate",
+      "name": "Duis consequat aliquip commodo",
       "photoUrls": [
-        "minim esse"
+        "laboris"
       ],
-      "id": -26803604,
+      "id": -37942100,
       "category": {
-        "id": -60963580,
-        "name": "eiusmod in laborum culpa"
+        "id": 46093336,
+        "name": "commodo do ea pariatur nostrud"
       },
       "tags": [
         {
-          "id": 59727484,
-          "name": "occaecat non aute cillum"
+          "id": -8832533,
+          "name": "proident"
         }
       ],
-      "status": "available"
+      "status": "pending"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "ea est fugiat elit amet",
+      "name": "velit dolor qui",
       "photoUrls": [
-        "amet in est"
+        "ex"
       ],
-      "id": -10835078,
+      "id": -93441562,
       "category": {
-        "id": 74153929,
-        "name": "ut"
+        "id": 723427,
+        "name": "in ut aliqua Lorem id"
       },
       "tags": [
         {
-          "id": -37857334,
-          "name": "Excepteur ipsum sunt"
+          "id": 33082793,
+          "name": "amet enim"
         }
       ],
-      "status": "sold"
+      "status": "available"
     }
   ]
 }

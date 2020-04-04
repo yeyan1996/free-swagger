@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "eiusmod"
+      "message": "in magna tempor commodo proident"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "nulla cillum labore id"
+      "message": "ipsum in ea esse exercitation"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "voluptate nulla aliqua",
-      "name": "culpa elit fugiat reprehenderit",
-      "lastUpdate": "1944-10-19T18:56:06.499Z",
-      "level": 16064877
+      "id": "do officia id aliqua Ut",
+      "name": "sint adipisicing mollit est",
+      "lastUpdate": "1982-08-16T02:01:51.08Z",
+      "level": -17134586
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "reprehenderit tempor pariatur eiusmod"
+      "message": "eiusmod ipsum do nostrud fugiat"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "reprehenderit culpa minim"
+      "message": "consequat ad eiusmod voluptate officia"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "Duis",
-          "name": "consequat",
-          "deviceId": -12786148,
-          "deviceType": "switch",
-          "zone": "cillum reprehenderit dolor"
+          "id": "Excepteur sit in sint",
+          "name": "eiusmod",
+          "deviceId": 65797592,
+          "deviceType": "dimmer",
+          "zone": "Duis magna exercitation"
         }
       ],
       "zoneStatus": [
         {
-          "id": "minim consectetur velit",
-          "name": "voluptate officia nisi proident ullamco",
-          "lastUpdate": "1990-09-22T20:49:45.569Z",
-          "level": 2978118
+          "id": "dolore tempor nisi",
+          "name": "et sunt",
+          "lastUpdate": "1963-03-10T13:44:41.477Z",
+          "level": 49379267
         }
       ]
     }
