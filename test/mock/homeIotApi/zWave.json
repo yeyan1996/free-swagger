@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "anim enim ex reprehenderit"
+      "message": "eiusmod"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "anim reprehenderit elit amet dolor"
+      "message": "nulla cillum labore id"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "tempor",
-      "name": "deserunt ex reprehenderit ut",
-      "lastUpdate": "1994-09-18T06:35:38.647Z",
-      "level": 7999057
+      "id": "voluptate nulla aliqua",
+      "name": "culpa elit fugiat reprehenderit",
+      "lastUpdate": "1944-10-19T18:56:06.499Z",
+      "level": 16064877
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "nisi Ut"
+      "message": "reprehenderit tempor pariatur eiusmod"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "laboris sunt"
+      "message": "reprehenderit culpa minim"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "laboris consequat Duis est dolor",
-          "name": "incididunt",
-          "deviceId": 93224988,
+          "id": "Duis",
+          "name": "consequat",
+          "deviceId": -12786148,
           "deviceType": "switch",
-          "zone": "aliquip irure sed nostrud dolor"
+          "zone": "cillum reprehenderit dolor"
         }
       ],
       "zoneStatus": [
         {
-          "id": "laborum et laboris aute",
-          "name": "amet ullamco adipisicing occaecat aliqua",
-          "lastUpdate": "2007-07-20T05:11:15.08Z",
-          "level": -85681550
+          "id": "minim consectetur velit",
+          "name": "voluptate officia nisi proident ullamco",
+          "lastUpdate": "1990-09-22T20:49:45.569Z",
+          "level": 2978118
         }
       ]
     }

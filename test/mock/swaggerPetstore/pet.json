@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "aute",
+    "name": "velit aute ullamco nulla labore",
     "photoUrls": [
-      "dolor id culpa ullamco"
+      "enim occaecat non ut"
     ],
-    "id": -28455278,
+    "id": -19569975,
     "category": {
-      "id": -35686655,
-      "name": "in dolore culpa"
+      "id": -85729616,
+      "name": "est"
     },
     "tags": [
       {
-        "id": -24164750,
-        "name": "anim Duis nisi"
+        "id": 85342442,
+        "name": "velit culpa ut dolore aute"
       }
     ],
-    "status": "available"
+    "status": "pending"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "incididunt",
-    "message": "eiusmod"
+    "type": "in",
+    "message": "veniam sit cillum"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,19 +44,19 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "dolore",
+      "name": "voluptate",
       "photoUrls": [
-        "dolor ut elit"
+        "minim esse"
       ],
-      "id": -17490214,
+      "id": -26803604,
       "category": {
-        "id": -48496324,
-        "name": "in irure fugiat amet exercitation"
+        "id": -60963580,
+        "name": "eiusmod in laborum culpa"
       },
       "tags": [
         {
-          "id": 19329313,
-          "name": "minim tempor consectetur"
+          "id": 59727484,
+          "name": "occaecat non aute cillum"
         }
       ],
       "status": "available"
@@ -64,22 +64,22 @@
   ],
   "GET /pet/findByTags": [
     {
-      "name": "id",
+      "name": "ea est fugiat elit amet",
       "photoUrls": [
-        "fugiat minim"
+        "amet in est"
       ],
-      "id": 54919885,
+      "id": -10835078,
       "category": {
-        "id": -85213503,
-        "name": "ut laboris commodo ipsum veniam"
+        "id": 74153929,
+        "name": "ut"
       },
       "tags": [
         {
-          "id": -69093769,
-          "name": "laborum ipsum nulla minim ut"
+          "id": -37857334,
+          "name": "Excepteur ipsum sunt"
         }
       ],
-      "status": "pending"
+      "status": "sold"
     }
   ]
 }

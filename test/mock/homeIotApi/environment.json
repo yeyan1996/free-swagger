@@ -5,19 +5,19 @@
     "data": {
       "zones": [
         {
-          "id": 26875553,
-          "name": "mollit cupidatat Ut",
-          "inputPosition": -92769416,
-          "outputPosition": -43258075,
-          "zone": "exercitation proident adipisicing Duis"
+          "id": 15616496,
+          "name": "dolore ad voluptate do laborum",
+          "inputPosition": 46907538,
+          "outputPosition": 73212892,
+          "zone": "in esse amet fugiat"
         }
       ],
       "zoneStatus": [
         {
-          "id": "consequat Duis",
-          "timestamp": "2006-11-13T13:37:23.201Z",
-          "value": -59687231.85420259,
-          "name": "laboris deserunt",
+          "id": "in",
+          "timestamp": "2010-07-26T14:00:30.142Z",
+          "value": -98817797.43996648,
+          "name": "ullamco commodo consequat",
           "units": "fahrenheit"
         }
       ]
@@ -28,31 +28,31 @@
     "msg": "xxx",
     "data": {
       "city": {
-        "id": 70339070,
-        "name": "laborum",
-        "lat": -52998216.1165969,
-        "lon": -51317116.868975356,
-        "country": "sed ut sunt"
+        "id": 21145406,
+        "name": "veniam quis culpa commodo Excepteur",
+        "lat": 44492998.79480302,
+        "lon": 26790364.391508743,
+        "country": "ut deserunt laborum Ut"
       },
       "values": [
         {
-          "date": "2005-06-28T15:51:36.72Z",
-          "pressure": -45587820.009274036,
-          "humidity": 36020178,
-          "windSpeed": 19620262.332138166,
-          "clouds": -23177163,
+          "date": "1951-09-09T20:59:33.725Z",
+          "pressure": 32194141.562062085,
+          "humidity": 59538788,
+          "windSpeed": -5447504.294693857,
+          "clouds": 24854569,
           "temperature": {
-            "low": 68213364.18549034,
-            "high": 87779269.12338874,
-            "morning": 17667405.455346823,
-            "day": -19809627.497225925,
-            "evening": 43213636.373479724,
-            "night": 30889808.245920405
+            "low": 58680549.35735533,
+            "high": -21726097.193932235,
+            "morning": -37911227.31424279,
+            "day": 71553277.2926963,
+            "evening": -15293066.898540616,
+            "night": -92307144.57706885
           },
           "weather": {
-            "summary": "veniam consectetur fugiat adipisicing cillum",
-            "description": "ut aliquip",
-            "icon": "aute deserunt"
+            "summary": "est",
+            "description": "laboris sit fugiat",
+            "icon": "magna dolor culpa quis"
           }
         }
       ]
@@ -62,10 +62,10 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "deserunt ipsum in elit nulla",
-      "timestamp": "1968-07-28T05:42:55.455Z",
-      "value": 46820178.76570663,
-      "name": "nisi",
+      "id": "aliqua et officia cillum",
+      "timestamp": "1951-01-05T03:36:30.483Z",
+      "value": 69834341.74056014,
+      "name": "dolor mollit nisi consequat Ut",
       "units": "fahrenheit"
     }
   },
@@ -73,8 +73,8 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "dolor occaecat consectetur",
-      "state": "ea enim officia proident"
+      "id": "minim nisi",
+      "state": "Ut"
     }
   },
   "POST /temperature/:zoneId/heater/:state": {
@@ -82,7 +82,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "culpa est"
+      "message": "deserunt laboris in non ea"
     }
   }
 }

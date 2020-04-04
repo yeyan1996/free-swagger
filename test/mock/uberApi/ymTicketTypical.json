@@ -3,10 +3,10 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "result": false,
+      "result": true,
       "code": "200",
-      "data": "urn:uuid:f67ef4f0-549c-14ad-a9c2-cc6e11030f0b",
-      "message": "ad"
+      "data": "urn:uuid:607c9cea-7d55-7f81-dc7e-6bd87400559e",
+      "message": "ex ullamco elit minim"
     }
   }
 }

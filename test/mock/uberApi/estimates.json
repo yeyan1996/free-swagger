@@ -4,13 +4,13 @@
     "msg": "xxx",
     "data": [
       {
-        "product_id": "enim elit amet",
-        "currency_code": "fugiat culpa",
-        "display_name": "elit non ex in",
-        "estimate": "culpa velit",
-        "low_estimate": 85843818.1909174,
-        "high_estimate": 61820987.25310138,
-        "surge_multiplier": 79447979.42814139
+        "product_id": "occaecat reprehenderit dolore",
+        "currency_code": "ex proident nostrud deserunt",
+        "display_name": "aute do incididunt dolore ut",
+        "estimate": "ut eu ad",
+        "low_estimate": -13087229.705623612,
+        "high_estimate": 21470647.27585937,
+        "surge_multiplier": -91166949.36164999
       }
     ]
   },
@@ -19,11 +19,11 @@
     "msg": "xxx",
     "data": [
       {
-        "product_id": "laborum",
-        "description": "Lorem",
-        "display_name": "fugiat occaecat sit ex",
-        "capacity": "Excepteur ullamco",
-        "image": "eu tempor labore"
+        "product_id": "id",
+        "description": "et nisi Ut exercitation",
+        "display_name": "in nostrud",
+        "capacity": "Ut magna",
+        "image": "dolor"
       }
     ]
   }
