@@ -3,7 +3,7 @@
     "code": "200",
     "msg": "xxx",
     "data": [
-      "eu"
+      "incididunt"
     ]
   },
   "GET /zones/:zoneId/quiet": {

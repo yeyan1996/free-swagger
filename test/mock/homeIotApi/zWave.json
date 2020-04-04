@@ -4,7 +4,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "in magna tempor commodo proident"
+      "message": "aliquip nulla"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,17 +12,17 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "ipsum in ea esse exercitation"
+      "message": "ut aliquip non in id"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "do officia id aliqua Ut",
-      "name": "sint adipisicing mollit est",
-      "lastUpdate": "1982-08-16T02:01:51.08Z",
-      "level": -17134586
+      "id": "Lorem consectetur ullamco sunt",
+      "name": "sit",
+      "lastUpdate": "1955-11-25T20:17:36.901Z",
+      "level": 21711142
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,7 +30,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "eiusmod ipsum do nostrud fugiat"
+      "message": "aute voluptate nisi"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
@@ -38,7 +38,7 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "consequat ad eiusmod voluptate officia"
+      "message": "ut"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zones": [
         {
-          "id": "Excepteur sit in sint",
-          "name": "eiusmod",
-          "deviceId": 65797592,
+          "id": "consequat aute",
+          "name": "ad occaecat",
+          "deviceId": -72141092,
           "deviceType": "dimmer",
-          "zone": "Duis magna exercitation"
+          "zone": "in ut adipisicing exercitation tempor"
         }
       ],
       "zoneStatus": [
         {
-          "id": "dolore tempor nisi",
-          "name": "et sunt",
-          "lastUpdate": "1963-03-10T13:44:41.477Z",
-          "level": 49379267
+          "id": "velit irure consectetur dolore",
+          "name": "nostrud veniam magna",
+          "lastUpdate": "1969-11-23T19:25:35.445Z",
+          "level": 81573050
         }
       ]
     }
