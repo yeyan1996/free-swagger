@@ -50,13 +50,17 @@ npx free-swagger --config
 
 ## 生成 mock 文件
 
+```shell
+npx free-swagger --mock
+```
+
 和详细配置 free-swagger 相似，输入 swagger 源，将全量的 mock 数据（json）输出到指定文件夹中，配合其他 mock 工具实现本地 mock
 
 ![image-20200404175701656](https://tva1.sinaimg.cn/large/00831rSTly1gdhvyepnt8j32hi0u0u0x.jpg)
 
 ![](https://tva1.sinaimg.cn/large/00831rSTly1gdhwhmhydqj31fo0u0u0x.jpg)
 
-其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock（**free-swagger 只输出 mock 文件，不提供本地 mock**）
+其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock（**free-swagger 只输出 mock 文件，不提供本地 mock 服务**）
 
 ![image-20200404180216916](https://tva1.sinaimg.cn/large/00831rSTly1gdhw3qqj8cj30pm0ac404.jpg)
 
@@ -66,7 +70,7 @@ npx free-swagger --config
 
 > npx free-swagger --config
 
-- `--mock/-m` 全量生成 mock 数据
+- `--mock/-m` 全量生成 mock 文件
 
 > npx free-swagger --mock
 
@@ -130,16 +134,6 @@ freeSwagger({
 });
 ```
 
-# 提醒
-
-- free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
-
-![image-20200103174105519](https://tva1.sinaimg.cn/large/006tNbRwgy1gajihbv47tj30uq0c2k2u.jpg)
-
-当生成一次后，free-swagger 同样会记住用户的选择
-
-- **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
-
 # API
 
 | 参数             | 说明                                            | 类型                     | 可选值      | 默认值                                         |
@@ -155,6 +149,18 @@ freeSwagger({
 - TemplateConfig
 
 见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+
+# 提醒
+
+- free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
+
+![image-20200103174105519](https://tva1.sinaimg.cn/large/006tNbRwgy1gajihbv47tj30uq0c2k2u.jpg)
+
+当生成一次后，free-swagger 同样会记住用户的选择
+
+- **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
+
+- 不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会对他们作出警告
 
 # 默认模版
 

@@ -84,6 +84,7 @@ const compile = async (config: Required<Config>): Promise<any> => {
     spinner.start("正在生成 api 文件...");
     fse.ensureDirSync(config.root);
 
+
     // parse
     const { paths } = await parse(config);
     spinner.succeed("api 文件解析完成");
