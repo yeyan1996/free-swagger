@@ -16,7 +16,7 @@
   },
   "scripts": {
     "debuggerMock": "node --inspect-brk dist/bin/index.js -m",
-    "release": "sh script/release.sh",
+    "release": "sh scripts/release.sh",
     "build": "rm -rf ./dist && tsc",
     "test": "tsc && jest",
     "lint": "eslint . --ext .ts --fix"
