@@ -10,7 +10,7 @@ free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swa
 
 # 快速上手
 
-free-swagger 提供了两种方式使用，上手非常简单
+free-swagger 提供了全局安装和项目安装两种方式
 
 ## 全局安装
 
@@ -54,15 +54,17 @@ npx free-swagger --config
 npx free-swagger --mock
 ```
 
-和详细配置 free-swagger 相似，输入 swagger 源，将全量的 mock 数据（json）输出到指定文件夹中，配合其他 mock 工具实现本地 mock
+和详细配置 free-swagger 步骤相似，输入一个 swagger 源，全量生成 mock 数据（json），配合其他 mock 工具实现本地 mock
 
 ![image-20200404175701656](https://tva1.sinaimg.cn/large/00831rSTly1gdhvyepnt8j32hi0u0u0x.jpg)
 
 ![](https://tva1.sinaimg.cn/large/00831rSTly1gdhwhmhydqj31fo0u0u0x.jpg)
 
-其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock（**free-swagger 只输出 mock 文件，不提供本地 mock 服务**）
+其中还包含了一个 mock.js 文件用于汇总所有 json，这使得 mock 工具只需引入一个 mock.js 即可实现本地 mock
 
-![image-20200404180216916](https://tva1.sinaimg.cn/large/00831rSTly1gdhw3qqj8cj30pm0ac404.jpg)
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1ge6dlcwtw5j30za0fijtq.jpg)
+
+**注意：free-swagger 只输出 mock 文件，不提供本地 mock 服务**
 
 ## 所有命令
 
@@ -150,18 +152,27 @@ freeSwagger({
 
 见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
 
-# 提醒
-
-- free-swagger 在生成 api 文件时会让用户选择需要生成哪些 api，以防止可能覆盖用户自定义的 api 文件（默认全选）
-
-![image-20200103174105519](https://tva1.sinaimg.cn/large/006tNbRwgy1gajihbv47tj30uq0c2k2u.jpg)
-
-当生成一次后，free-swagger 同样会记住用户的选择
-
-- **free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！**
-
-- 不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会对他们作出警告
-
 # 默认模版
 
 见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+
+# 常见问题
+
+## 文档解析错误，请使用 openApi2 规范的文档
+
+  ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
+
+可能是输入的 swagger 源需要权限访问，所以默认无法访问
+为此 free-swagger 提供了 cookie 选项，填入可以访问到对应 swagger 源的 cookie 
+
+ ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/e18f278506ab4ac58e05d6222427fff1~tplv-em5hxbkur4-noop.image?width=1602&height=396)
+
+或者直接将 swagger 源下载到本地，输入本地路径
+
+## 使用 npm 形式安装后，打包工具报错
+
+free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！
+
+## 某些接口的 mock 文件并没有生成
+
+不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会对他们作出警告

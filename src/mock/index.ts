@@ -128,13 +128,16 @@ export const mock = async ({
   fse.writeFileSync(
     path.resolve(mockRoot, "mock.js"),
     `const fs = require("fs");
+const path = require("path");
 const mock = {};
-fs.readdirSync(".")
+
+fs.readdirSync(__dirname)
   .filter(file => file.endsWith(".json"))
-  .map(file => {
-    Object.assign(mock, require(\`./\${file}\`));
+  .forEach(file => {
+    Object.assign(mock, require(path.resolve(__dirname,file)));
   });
-exports.mock = mock;
+
+module.exports = mock;
   `
   );
 };
