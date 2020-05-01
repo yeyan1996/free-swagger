@@ -9,6 +9,7 @@
     "README.md",
     "src/**",
     "index.d.ts",
+    "global.d.ts",
     "LICENSE"
   ],
   "bin": {
