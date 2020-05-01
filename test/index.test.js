@@ -29,6 +29,11 @@ const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
 };
 
 describe("pkg", () => {
+  beforeAll(() => {
+    rc.reset();
+    global.__DEV__ = true
+  });
+
   test("base option", async () => {
     const dirname = "swaggerPetstore";
     const dirPath = path.resolve(__dirname, "api", "pkg", dirname);

@@ -87,7 +87,7 @@ const compile = async (config: Required<Config>): Promise<any> => {
     // parse
     const { paths } = await parse(config);
     spinner.succeed("api 文件解析完成");
-    const choosePaths = config.chooseAll || __DEV__
+    const choosePaths = config.chooseAll || (<any>global).__DEV__
       ? paths
       : pick(paths, ...(await chooseApi(paths)));
 

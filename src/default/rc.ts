@@ -78,7 +78,7 @@ class Rc {
         return {
             source: "",
             cookie: "",
-            mockRoot: __DEV__ ? path.resolve(__dirname, "../../test/mock/default") : path.resolve(process.cwd(), "mock"),
+            mockRoot: (<any>global).__DEV__ ? path.resolve(__dirname, "../../test/mock/default") : path.resolve(process.cwd(), "mock"),
             wrap: false,
         };
     }
