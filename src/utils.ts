@@ -15,10 +15,18 @@ export interface Config<T = string | OpenAPIV2.Document>
   chooseAll?: boolean;
 }
 
+export interface MockConfig<T = string | OpenAPIV2.Document> {
+  source: T;
+  cookie?: string;
+  wrap?: boolean;
+  mockRoot?: string;
+}
+
 const isUrl = (url: string | OpenAPIV2.Document): url is string =>
   typeof url === "string" && url.startsWith("http");
 const isPath = (url: string | OpenAPIV2.Document): url is string =>
   typeof url === "string" && fse.existsSync(path.resolve(process.cwd(), url));
+const isSwaggerDocument = (value: any): value is OpenAPIV2.Document  => !!value.swagger
 
 const assertOpenApi2 = (
   config: Config
@@ -43,4 +51,4 @@ const pascalCase = (str: string): string =>
 const hasChinese = (str: string): boolean =>
   /[\u4E00-\u9FA5\uF900-\uFA2D]/.test(str);
 
-export { isUrl, isPath, assertOpenApi2, pascalCase, hasChinese };
+export { isUrl, isPath, assertOpenApi2, pascalCase, hasChinese,isSwaggerDocument };

@@ -1,9 +1,11 @@
 import { OpenAPIV2 } from "openapi-types";
-import { Config } from "./src/utils";
+import {Config, MockConfig} from "./src/utils";
 
 declare function freeSwagger(
   config: Config | string
 ): Promise<OpenAPIV2.Document>;
 
+declare function mock(config: MockConfig | string): Promise<void>;
+
 export default freeSwagger;
-// todo mock 类型
+export { mock } ;

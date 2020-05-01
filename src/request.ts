@@ -13,18 +13,18 @@ export const fetchJSON = async (
 ): Promise<OpenAPIV2.Document> => {
   url = encodeURI(url);
   const spinner = ora().render();
-  spinner.start(`正在发送请求到: ${url}`);
+  spinner.start(`正在发送请求到: ${url} \n`);
   let res;
   try {
     if (cookie) {
       // 受权限保护的数据走代理
-      const { host, pathname } = new URL(url);
+      const { host, pathname,search } = new URL(url);
       const server = http.createServer();
       server.on("request", (req, res) => {
-        const proxy = https.request(
+        const proxyReq = https.request(
           {
             hostname: host,
-            path: req.url,
+            path: pathname + search,
             method: req.method,
             headers: { ...req.headers, host, cookie }
           },
@@ -38,22 +38,24 @@ export const fetchJSON = async (
             });
           }
         );
-        req.pipe(proxy, {
+        req.pipe(proxyReq, {
           end: true
         });
       });
       server.listen(PORT);
-      res = await axios.get(`http://localhost:${PORT}${pathname}`);
+      res = await axios.get(`http://localhost:${PORT}`);
       server.close();
     } else {
       // 普通数据则直接请求
       res = await axios.get(url);
     }
-    if (typeof res.data !== "object") throw new Error("返回的数据不是 json");
+    if (typeof res.data !== "object") {
+      throw new Error("返回的数据不是 json");
+    }
     spinner.succeed("请求结束");
     return res.data;
   } catch (e) {
-    spinner.fail("请求失败，可能没有权限或者返回格式不正确");
+    spinner.fail("请求失败，可能没有接口权限或者返回格式不正确");
     throw new Error(e);
   }
 };

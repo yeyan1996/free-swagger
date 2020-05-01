@@ -10,10 +10,6 @@ free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swa
 
 # 快速上手
 
-free-swagger 提供了全局安装和项目安装两种方式
-
-## 全局安装
-
 ### npx(推荐)
 
 ```shell
@@ -36,11 +32,29 @@ free-swagger
 
 ![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
 
-## 项目安装
+# 详细配置
+
+输出 ts 文件或者编辑模版等进一步功能，需要详细配置
+
+```shell
+npx free-swagger --config
+```
+
+![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
+
+在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+
+# 生成 api 文件
+
+使用 free-swagger 可以自动生成 api 文件
+
+## 项目使用
+
+本地安装 free-swagger，**务必使用 -D 参数防止被 web 打包工具打包**
 
 > npm i free-swagger -D
 
-随后新建一个 js 脚本，引入 free-swagger 包，传入 swagger url 即可
+新建一个 js 脚本，引入 free-swagger 包，传入 swagger url 即可
 
 ```javascript
 // swagger.js
@@ -71,30 +85,38 @@ npm run swagger
 ```javascript
 // swagger.js
 const freeSwagger = require("free-swagger");
-const json = require("./swagger.json");
+const json = 
 
 freeSwagger({
-  source: json,
+  source: require("./swagger.json"),
   customImportCode: "import http from './request'", // 假设请求库在 ./request
   lang: "js"
 });
 ```
 
-# 详细配置
+## API
 
-输出 ts 文件或者编辑模版等进一步功能，需要详细配置
+| 参数             | 说明                                            | 类型                     | 可选值      | 默认值                                         |
+| ---------------- | ----------------------------------------------- | ------------------------ | ----------- | ---------------------------------------------- |
+| source           | 必选，swagger 源（url/文件路径/json 文件）      | string/json              | -           | -                                              |
+| cookie           | 可选，用于给作为 url 的 swagger 源鉴权的 cookie | string                   | -           | -                                              |
+| root             | 可选，生成 api 的根路径                         | string                   | -           | 当前路径 + src/api                             |
+| customImportCode | 可选，自定义头部代码                            | string                   | -           | "import axios from 'axios'"                    |
+| lang             | 可选，生成 api 语言                             | string                   | "js" / "ts" | "js"                                           |
+| templateFunction | 可选，模版函数                                  | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
+| chooseAll        | 可选，是否跳过选择 api 的步骤                   | boolean                  | -           | false                                          |
 
-```shell
-npx free-swagger --config
-```
+**TemplateConfig**
 
-![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
+见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
 
-在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+## 默认模版
+
+free-swagger 基于内置了默认模版生成 api 代码片段，具体见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
 
 # 生成 mock 文件
 
-除了生成 api，free-swagger 还提供了生成 mock 文件的功能
+除了生成 api，free-swagger 还可以生成 mock 文件
 
 ```shell
 npx free-swagger --mock
@@ -111,6 +133,60 @@ npx free-swagger --mock
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1ge6dlcwtw5j30za0fijtq.jpg)
 
 **注意：free-swagger 只输出 mock 文件，不提供本地 mock 服务**
+
+## 项目使用
+
+本地安装 free-swagger，**务必使用 -D 参数防止被 web 打包工具打包**
+
+> npm i free-swagger -D
+
+新建一个 js 脚本，引入 free-swagger 包，传入 swagger url 即可
+
+```javascript
+// swagger-mock.js
+const { mock } = require("free-swagger");
+
+mock("https://petstore.swagger.io/v2/swagger.json");
+```
+
+之后在 nodejs 中运行当前脚本
+
+```
+node swagger-mock.js
+```
+
+或者绑定为 npm script
+
+```
+// package.json
+"mock": "node swagger-mock.js"
+```
+
+```
+npm run mock
+```
+
+mock 功能同样支持详细配置
+
+```javascript
+// swagger-mock.js
+const { mock } = require("free-swagger");
+
+mock({
+  source: require("./swagger.json"),
+ 	wrap:true
+});
+```
+
+## API
+
+| 参数     | 说明                                                         | 类型        | 可选值 | 默认值          |
+| -------- | ------------------------------------------------------------ | ----------- | ------ | --------------- |
+| source   | 必选，swagger 源（url/文件路径/json 文件）                   | string/json | -      | -               |
+| cookie   | 可选，用于给作为 url 的 swagger 源鉴权的 cookie              | string      | -      | -               |
+| mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + mock |
+| wrap     | 可选，是否额外包裹一层标准接口返回格式 e.g {code:"200",msg:xxx,data:xxx} | boolean     | -      | false           |
+|          |                                                              |             |        |                 |
 
 # 所有命令
 
@@ -138,26 +214,6 @@ npx free-swagger --mock
 
 > npx free-swagger --help
 
-# API
-
-| 参数             | 说明                                            | 类型                     | 可选值      | 默认值                                         |
-| ---------------- | ----------------------------------------------- | ------------------------ | ----------- | ---------------------------------------------- |
-| source           | 必选，swagger 源（url/文件路径/json 文件）      | string/json              | -           | -                                              |
-| cookie           | 可选，用于给作为 url 的 swagger 源鉴权的 cookie | string                   | -           | -                                              |
-| root             | 可选，生成 api 的根路径                         | string                   | -           | 当前路径 + src/api                             |
-| customImportCode | 可选，自定义头部代码                            | string                   | -           | "import axios from 'axios'"                    |
-| lang             | 可选，生成 api 语言                             | string                   | "js" / "ts" | "js"                                           |
-| templateFunction | 可选，模版函数                                  | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
-| chooseAll        | 可选，是否跳过选择 api 的步骤                   | boolean                  | -           | false                                          |
-
-- TemplateConfig
-
-见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
-
-# 默认模版
-
-free-swagger 基于内置了默认模版生成 api 代码片段，具体见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
-
 # 常见问题
 
 ## 文档解析错误，请使用 openApi2 规范的文档
@@ -167,7 +223,7 @@ free-swagger 基于内置了默认模版生成 api 代码片段，具体见 [fre
 可能是输入的 swagger 源需要权限访问，所以默认无法访问
 为此 free-swagger 提供了 cookie 选项，填入可以访问到对应 swagger 源的 cookie 
 
- ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/e18f278506ab4ac58e05d6222427fff1~tplv-em5hxbkur4-noop.image?width=1602&height=396)
+![image-20200501172449259](https://tva1.sinaimg.cn/large/007S8ZIlly1ged2r4g7isj32ge0liqor.jpg)
 
 或者直接将 swagger 源下载到本地，输入本地路径
 

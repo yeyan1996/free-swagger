@@ -4,8 +4,8 @@ import chalk from "chalk";
 import ora from "ora";
 import camelcase from "camelcase";
 import { OpenAPIV2 } from "openapi-types";
-import { Config, isUrl, isPath, assertOpenApi2 } from "./utils";
-import { mergeDefaultConfig } from "./default";
+import {Config, isUrl, isPath, assertOpenApi2, MockConfig} from "./utils";
+import {mergeDefaultConfig, mergeDefaultMockConfig} from "./default";
 import { chooseApi } from "./inquirer";
 import { pick } from "lodash";
 import { ApiCollection, parsePaths } from "./parse/path";
@@ -14,7 +14,6 @@ import { ParsedPaths } from "./parse/path";
 import { genPaths } from "./gen/path";
 import { fetchJSON } from "./request";
 import { mock } from "./mock";
-import { MockAnswer } from "./default/rc";
 
 export const spinner = ora().render();
 
@@ -88,7 +87,7 @@ const compile = async (config: Required<Config>): Promise<any> => {
     // parse
     const { paths } = await parse(config);
     spinner.succeed("api 文件解析完成");
-    const choosePaths = config.chooseAll
+    const choosePaths = config.chooseAll || __DEV__
       ? paths
       : pick(paths, ...(await chooseApi(paths)));
 
@@ -113,16 +112,13 @@ const freeSwagger = async (
 };
 
 freeSwagger.compile = compile;
-freeSwagger.mock = async (config: MockAnswer): Promise<void> => {
-  const source = await normalizeSource(config.source, config.cookie);
-  await mock({
-    source,
-    wrap: config.wrap,
-    mockRoot: config.mockRoot
-  });
+freeSwagger.mock = async (config: MockConfig  | string ): Promise<void> => {
+  const mergedConfig = mergeDefaultMockConfig(config);
+  const source = await normalizeSource(mergedConfig.source, mergedConfig.cookie);
+  await mock({...mergedConfig,source});
   spinner.succeed(
     `mock 文件生成成功，文件根目录地址: ${chalk.green(
-      path.resolve(config.mockRoot)
+      path.resolve(mergedConfig.mockRoot)
     )}`
   );
 };

@@ -1,6 +1,6 @@
 import { OpenAPIV2 } from "openapi-types";
 import { Method } from "free-swagger-client";
-import { pascalCase, hasChinese } from "../utils";
+import {pascalCase, hasChinese, MockConfig} from "../utils";
 import { spinner } from "../main";
 import { methods } from "../parse/path";
 import path from "path";
@@ -42,11 +42,7 @@ export const mock = async ({
   wrap,
   source,
   mockRoot
-}: {
-  wrap: boolean;
-  mockRoot: string;
-  source: OpenAPIV2.Document;
-}): Promise<void> => {
+}: Required<MockConfig<OpenAPIV2.Document>>): Promise<void> => {
   fse.ensureDirSync(mockRoot);
 
   const mockCollection: {
@@ -60,7 +56,6 @@ export const mock = async ({
     }
   });
   spinner.start("正在生成 mock 文件...\n");
-  // @ts-ignore
   const parsedSwagger = await SwaggerParser.dereference(source);
   Object.entries<OpenAPIV2.PathItemObject>(parsedSwagger.paths).forEach(
     ([path, pathItemObject]) => {

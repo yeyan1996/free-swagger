@@ -12,9 +12,15 @@ const wait = time =>
     }, time)
   );
 
-const assertFiles = async (dirPath, apiFilesList) => {
+const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
   const filesPath = fs.readdirSync(dirPath);
-  expect(filesPath).toEqual(apiFilesList);
+  if(shouldInclude){
+    apiFilesList.forEach(filePath => {
+      expect(filesPath.includes(filePath)).toBe(true);
+    })
+  }else{
+    expect(filesPath).toEqual(apiFilesList);
+  }
   await wait(100);
   filesPath.forEach(filename => {
     const file = fs.readFileSync(path.resolve(dirPath, filename), "utf-8");
@@ -29,7 +35,6 @@ describe("pkg", () => {
     await freeSwagger({
       source: require(`./json/${dirname}`),
       root: dirPath,
-      chooseAll: true
     });
     await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
   });
@@ -41,7 +46,6 @@ describe("pkg", () => {
       source: require(`./json/${dirname}`),
       lang: "ts",
       root: dirPath,
-      chooseAll: true
     });
     await assertFiles(dirPath, [
       "auditLog.ts",
@@ -95,7 +99,6 @@ describe("pkg", () => {
  })`;
       },
       customImportCode: "import http,{AxiosResponse} from 'axios'",
-      chooseAll: true
     });
 
     await assertFiles(dirPath, [
@@ -105,6 +108,23 @@ describe("pkg", () => {
       "zWave.ts",
       "zones.ts"
     ]);
+  });
+
+  test("should work with only one string params", async () => {
+    const dirname = "swaggerPetstore1";
+    await freeSwagger(path.resolve(__dirname, "json", `${dirname}.json`));
+    await assertFiles(path.resolve(__dirname, "api/pkg/default"), ["pet.js", "store.js", "user.js"],true);
+  });
+
+  test("should work with only one json params", async () => {
+    const dirname = "uberApi1";
+    await freeSwagger(require(path.resolve(__dirname, "json", `${dirname}.json`)));
+    await assertFiles(path.resolve(__dirname, "api/pkg/default"), [
+      "auditLog.js",
+      "device.js",
+      "mappers.js",
+      "ymTicketTypical.js"
+    ],true);
   });
 });
 
@@ -128,7 +148,6 @@ describe("bin", () => {
 
     const fnSpy = jest.fn(() =>
       Promise.resolve({
-        chooseAll: true,
         root: dirPath,
         source: path.resolve(__dirname, `./json/${dirname}.json`)
       })
@@ -151,7 +170,6 @@ describe("bin", () => {
 
     inquirer.prompt = () =>
       Promise.resolve({
-        chooseAll: true,
         lang: "ts",
         root: dirPath,
         source: path.resolve(__dirname, `./json/${dirname}.json`)

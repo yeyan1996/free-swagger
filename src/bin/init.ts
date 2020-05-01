@@ -3,7 +3,7 @@ import chalk from "chalk";
 import path from "path";
 import fse from "fs-extra";
 import commander from "commander";
-import { Answer, rc } from "../default/rc";
+import { ConfigAnswer, rc } from "../default/rc";
 import { cookie, source } from "./questions";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const freeSwagger = require("../main");
@@ -26,7 +26,7 @@ export function init(cb?: Function): void {
       rc.edit();
     })
     .option("-m --mock", "全量生成 mock 数据", async () => {
-      const { data: defaultAnswer } = rc;
+      const { mockData } = rc;
       const answer = await inquirer.prompt([
         source,
         cookie,
@@ -41,7 +41,7 @@ export function init(cb?: Function): void {
         {
           name: "mockRoot",
           message: "输入导出 mock 文件的路径",
-          default: defaultAnswer.mockRoot,
+          default: mockData.mockRoot,
           validate: (input): boolean | string =>
             !!input || "请输入 mock 文件的路径"
         }
@@ -51,10 +51,10 @@ export function init(cb?: Function): void {
       await freeSwagger.mock(answer);
     })
     .option("-c, --config", "以配置项启动 free-swagger", async () => {
-      const { data: defaultAnswer } = rc;
+      const { configData } = rc;
       // 获取用户回答
       const answer: Omit<
-        Answer,
+          ConfigAnswer,
         "tsTemplate" | "jsTemplate"
       > = await inquirer.prompt([
         source,
@@ -62,7 +62,7 @@ export function init(cb?: Function): void {
         {
           name: "root",
           message: "输入导出 api 的根路径",
-          default: defaultAnswer.root,
+          default: configData.root,
           validate: (input): boolean | string => !!input || "请输入 api 根路径"
         },
 
@@ -70,7 +70,7 @@ export function init(cb?: Function): void {
           name: "lang",
           type: "list",
           message: "选择导出 api 的语言",
-          default: defaultAnswer.lang,
+          default: configData.lang,
           choices: ["ts", "js"]
         },
         {
@@ -94,19 +94,19 @@ export function init(cb?: Function): void {
             );
             return true;
           },
-          default: (answer: Answer): string =>
+          default: (answer: ConfigAnswer): string =>
             answer.lang === "ts"
-              ? defaultAnswer.tsTemplate
-              : defaultAnswer.jsTemplate
+              ? configData.tsTemplate
+              : configData.jsTemplate
         },
         {
           name: "customImportCode",
           message: `输入自定义头语句(${chalk.magenta("自定义请求库路径")})`,
-          default: (answer: Answer): string =>
-            defaultAnswer.customImportCode ||
+          default: (answer: ConfigAnswer): string =>
+              configData.customImportCode ||
             (answer.lang === "ts"
-              ? defaultAnswer.customImportCodeTs
-              : defaultAnswer.customImportCodeJs),
+              ? configData.customImportCodeTs
+              : configData.customImportCodeJs),
           validate: (input): boolean | string => !!input || "请输入默认头语句"
         }
       ]);

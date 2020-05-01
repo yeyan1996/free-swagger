@@ -1,13 +1,13 @@
 import inquirer from "inquirer";
 import { ParsedPaths } from "./parse/path";
-import { rc, Answer } from "./default/rc";
+import { rc, ConfigAnswer } from "./default/rc";
 
-const createChoices = (paths: ParsedPaths): Answer["apiChoices"] => {
+const createChoices = (paths: ParsedPaths): ConfigAnswer["apiChoices"] => {
   const chooseAll = Object.keys(paths).map(name => ({
     name,
     checked: true
   }));
-  const apiChoices = rc.data.apiChoices;
+  const apiChoices = rc.configData.apiChoices;
   if (!apiChoices.length || rc.shouldRefreshCache()) return chooseAll;
 
   // 根据之前的缓存设置选项
