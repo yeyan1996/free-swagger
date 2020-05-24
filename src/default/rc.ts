@@ -2,7 +2,7 @@ import path from "path";
 import os from "os";
 import fse from "fs-extra";
 import prettier from "prettier";
-import {pick} from 'lodash'
+import {pick,mergeWith} from 'lodash'
 import {EOL} from "os";
 import {jsTemplate, tsTemplate} from "free-swagger-client";
 import {Config, MockConfig} from "../utils";
@@ -100,13 +100,16 @@ class Rc {
 
     // 合并配置项
     merge(answer: Partial<ConfigAnswer>): void {
-        this.configData = {...this.configData, ...answer};
+        this.configData = mergeWith(this.configData,answer,(old,now) => {
+            if(!now) return old
+        })
     }
 
     // 将配置项存储至 rc 文件
     save(): void {
-        const data = JSON.stringify({...this.configData, ...this.mockData});
-
+        const data = JSON.stringify( mergeWith(this.configData,this.mockData,(old,now) => {
+            if(!now) return old
+        }));
         // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
         // 去除尾部分号，否则会报词法错误
         let templateFunction = this.configData.templateFunction
@@ -147,7 +150,9 @@ class Rc {
 
     // 查看配置项
     show(): void {
-        console.log({...this.configData, ...this.mockData});
+        console.log(mergeWith(this.configData,this.mockData,(old,now) => {
+            if(!now) return old
+        }));
     }
 
     // 打开编辑器编辑模版

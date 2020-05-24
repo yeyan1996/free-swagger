@@ -127,3 +127,4 @@ module.exports = freeSwagger;
 // todo 重新组织代码，结合 free-swagger-client
 // todo 添加开源商标
 // todo 对泛型的处理
+// todo 记忆功能失效bug
