@@ -7,5 +7,5 @@ export const UpdateMapper = (params, { id }) =>
     url: `/crawler/v1/mapper/${id}`,
     method: "put",
     params: {},
-    data: params
+    data: {}
   });

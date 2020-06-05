@@ -7,7 +7,7 @@ export const getUserByName = (params, { username }) =>
   axios.request({
     url: `/user/${username}`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
@@ -26,7 +26,7 @@ export const deleteUser = (params, { username }) =>
     url: `/user/${username}`,
     method: "delete",
     params: {},
-    data: params
+    data: {}
   });
 
 // Logs user into the system
@@ -43,7 +43,7 @@ export const logoutUser = params =>
   axios.request({
     url: `/user/logout`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 

@@ -6,7 +6,7 @@ export const getPetById = (params, { petId }) =>
   axios.request({
     url: `/pet/${petId}`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
@@ -25,7 +25,7 @@ export const deletePet = (params, { petId }) =>
     url: `/pet/${petId}`,
     method: "delete",
     params: {},
-    data: params
+    data: {}
   });
 
 // uploads an image

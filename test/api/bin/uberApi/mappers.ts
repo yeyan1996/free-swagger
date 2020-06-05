@@ -9,8 +9,8 @@ export const UpdateMapper = (
   }
 ) =>
   axios.request<string, AxiosResponse<string>>({
-    url: `/crawler/v1/mapper/{id}`,
+    url: `/crawler/v1/mapper/${id}`,
     method: "put",
     params: {},
-    data: params
+    data: {}
   });

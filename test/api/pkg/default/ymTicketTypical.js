@@ -8,5 +8,5 @@ export const AddOrUpdateTicketTypical = params =>
     url: `/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical`,
     method: "post",
     params: {},
-    data: params
+    data: {}
   });

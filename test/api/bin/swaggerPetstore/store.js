@@ -6,7 +6,7 @@ export const getInventory = params =>
   axios.request({
     url: `/store/inventory`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
@@ -15,7 +15,7 @@ export const getOrderById = (params, { orderId }) =>
   axios.request({
     url: `/store/order/${orderId}`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
@@ -25,7 +25,7 @@ export const deleteOrder = (params, { orderId }) =>
     url: `/store/order/${orderId}`,
     method: "delete",
     params: {},
-    data: params
+    data: {}
   });
 
 // Place an order for a pet
