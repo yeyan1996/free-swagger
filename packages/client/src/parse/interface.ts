@@ -37,8 +37,20 @@ const buildInInterfaces: { [key: string]: { name: string; code: string } } = {
   },
 }
 
-const map: { [key: string]: ParsedInterface } = {}
-const recursiveMap: { [key: string]: ParsedInterface } = {}
+let map: { [key: string]: ParsedInterface } = {}
+let genericInterfaceMap: { [key: string]: ParsedInterface } = {}
+let recursiveMap: { [key: string]: ParsedInterface } = {}
+
+const findInterface = (interfaceName: string) =>
+  genericInterfaceMap[interfaceName] ||
+  map[interfaceName] ||
+  recursiveMap[interfaceName]
+
+const resetInterfaceMap = () => {
+  map = {}
+  genericInterfaceMap = {}
+  recursiveMap = {}
+}
 
 // 将 interface 解析成数组
 const parseInterfaceName = (interfaceName: string) => {
@@ -109,8 +121,8 @@ const shouldSkipGenerate = (interfaceName: string) => {
 const parseInterface = (
   definitions: OpenAPIV2.DefinitionsObject,
   interfaceName: string,
-  recursive?: boolean
-): ParsedInterface => {
+  recursive = false
+) => {
   const currentMap = recursive ? recursiveMap : map
   const [item] = parseInterfaceName(interfaceName)
 
@@ -131,8 +143,9 @@ const parseInterface = (
   if (!properties) return parsedInterface
 
   if (parsedInterface.hasGeneric) {
-    if (map[item.interface] || recursiveMap[item.interface]) {
+    if (genericInterfaceMap[item.interface]) {
       parsedInterface.skipGenerate = true
+      return
     } else {
       const genericKey = findGenericKey(properties)
       parsedInterface.props = genericKey
@@ -146,21 +159,30 @@ const parseInterface = (
             ...parseProperties(omit(properties, genericKey), required),
           }
         : parseProperties(properties, required)
-      currentMap[item.interface] = parsedInterface
+      // todo 如果是包含泛型的接口，则删除 recursiveMap/map 中的类型
+      if (recursiveMap[item.interface]) {
+        delete recursiveMap[item.interface]
+      }
+      if (map[item.interface]) {
+        delete map[item.interface]
+      }
+      genericInterfaceMap[item.interface] = parsedInterface
+      return
     }
-    return parsedInterface
   }
-
   parsedInterface.props = parseProperties(properties, required)
   currentMap[item.interface] = parsedInterface
-  return parsedInterface
 }
 
 export {
   parseInterface,
   shouldSkipGenerate,
+  map,
   recursiveMap,
+  genericInterfaceMap,
   buildInInterfaces,
+  findInterface,
+  resetInterfaceMap,
   parseInterfaceName,
   generateInterfaceName,
 }

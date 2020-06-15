@@ -1,6 +1,5 @@
 {
   "name": "free-swagger",
-  "version": "1.5.4",
   "description": "openApi(swagger) Document Generator",
   "scripts": {
     "build": "node scripts/build.js",

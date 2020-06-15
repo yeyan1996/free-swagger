@@ -29,6 +29,7 @@ const TYPE_MAP = {
     string: 'string',
     file: 'Blob',
     formData: 'FormData',
+    Void: 'void',
 };
 exports.TYPE_MAP = TYPE_MAP;
 const formatGenericInterface = (definitionClassName) => interface_1.generateInterfaceName(interface_1.parseInterfaceName(definitionClassName.replace(SPECIAL_CHARACTERS_MAP_REG, ($0) => SPECIAL_CHARACTERS_MAP[$0])).map((item) => (Object.assign(Object.assign({}, item), { interface: interface_1.buildInInterfaces[item.interface]

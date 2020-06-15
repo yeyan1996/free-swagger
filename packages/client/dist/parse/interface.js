@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterfaceName = exports.parseInterfaceName = exports.buildInInterfaces = exports.recursiveMap = exports.shouldSkipGenerate = exports.parseInterface = void 0;
+exports.generateInterfaceName = exports.parseInterfaceName = exports.resetInterfaceMap = exports.findInterface = exports.buildInInterfaces = exports.genericInterfaceMap = exports.recursiveMap = exports.map = exports.shouldSkipGenerate = exports.parseInterface = void 0;
 const utils_1 = require("../utils");
 const lodash_1 = require("lodash");
 const buildInInterfaces = {
@@ -22,9 +22,22 @@ const buildInInterfaces = {
     },
 };
 exports.buildInInterfaces = buildInInterfaces;
-const map = {};
-const recursiveMap = {};
+let map = {};
+exports.map = map;
+let genericInterfaceMap = {};
+exports.genericInterfaceMap = genericInterfaceMap;
+let recursiveMap = {};
 exports.recursiveMap = recursiveMap;
+const findInterface = (interfaceName) => genericInterfaceMap[interfaceName] ||
+    map[interfaceName] ||
+    recursiveMap[interfaceName];
+exports.findInterface = findInterface;
+const resetInterfaceMap = () => {
+    exports.map = map = {};
+    exports.genericInterfaceMap = genericInterfaceMap = {};
+    exports.recursiveMap = recursiveMap = {};
+};
+exports.resetInterfaceMap = resetInterfaceMap;
 const parseInterfaceName = (interfaceName) => {
     const res = [];
     const recursive = (name) => {
@@ -76,7 +89,7 @@ const shouldSkipGenerate = (interfaceName) => {
     return res.every((item) => map[item.interface] || recursiveMap[item.interface]);
 };
 exports.shouldSkipGenerate = shouldSkipGenerate;
-const parseInterface = (definitions, interfaceName, recursive) => {
+const parseInterface = (definitions, interfaceName, recursive = false) => {
     const currentMap = recursive ? recursiveMap : map;
     const [item] = parseInterfaceName(interfaceName);
     if (utils_1.hasGeneric(item.generic)) {
@@ -94,8 +107,9 @@ const parseInterface = (definitions, interfaceName, recursive) => {
     if (!properties)
         return parsedInterface;
     if (parsedInterface.hasGeneric) {
-        if (map[item.interface] || recursiveMap[item.interface]) {
+        if (genericInterfaceMap[item.interface]) {
             parsedInterface.skipGenerate = true;
+            return;
         }
         else {
             const genericKey = findGenericKey(properties);
@@ -106,12 +120,17 @@ const parseInterface = (definitions, interfaceName, recursive) => {
                         required: (required === null || required === void 0 ? void 0 : required.includes(genericKey)) || false,
                         description: properties[genericKey].description || '',
                     } }, parseProperties(lodash_1.omit(properties, genericKey), required)) : parseProperties(properties, required);
-            currentMap[item.interface] = parsedInterface;
+            if (recursiveMap[item.interface]) {
+                delete recursiveMap[item.interface];
+            }
+            if (map[item.interface]) {
+                delete map[item.interface];
+            }
+            genericInterfaceMap[item.interface] = parsedInterface;
+            return;
         }
-        return parsedInterface;
     }
     parsedInterface.props = parseProperties(properties, required);
     currentMap[item.interface] = parsedInterface;
-    return parsedInterface;
 };
 exports.parseInterface = parseInterface;

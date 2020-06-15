@@ -72,6 +72,7 @@ const TYPE_MAP: { [key: string]: string } = {
   string: 'string',
   file: 'Blob',
   formData: 'FormData',
+  Void: 'void',
 }
 
 // 格式化含有泛型的接口

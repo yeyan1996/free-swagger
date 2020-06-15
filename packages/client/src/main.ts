@@ -8,8 +8,11 @@ import {
   shouldSkipGenerate,
   recursiveMap,
   buildInInterfaces,
+  genericInterfaceMap,
+  map,
+  findInterface,
+  resetInterfaceMap,
 } from './parse/interface'
-import { pipe, curry } from 'lodash/fp'
 import { formatCode } from './utils'
 import { mergeDefaultConfig } from './default'
 
@@ -44,14 +47,9 @@ const compileInterface = (
   source: OpenAPIV2.Document,
   interfaceName: string
 ): string => {
-  if (!source.definitions) return ''
-  return source.definitions[interfaceName] && !shouldSkipGenerate(interfaceName)
-    ? pipe(
-        curry(parseInterface)(curry.placeholder, interfaceName, false),
-        genInterface,
-        formatCode('ts')
-      )(source.definitions)
-    : ''
+  if (!source.definitions || shouldSkipGenerate(interfaceName)) return ''
+  parseInterface(source.definitions, interfaceName)
+  return formatCode('ts')(genInterface(findInterface(interfaceName)))
 }
 
 // 生成全量 interface 代码
@@ -60,6 +58,8 @@ const compileInterfaces = (
   interfaceName?: string
 ): string => {
   if (!source.definitions) return ''
+  resetInterfaceMap()
+
   if (interfaceName) {
     return compileInterface(source, interfaceName)
   } else {
@@ -68,19 +68,33 @@ const compileInterfaces = (
       (acc, cur) => acc + buildInInterfaces[cur].code,
       ''
     )
-    const interfaceCode = Object.keys(source.definitions).reduce(
+
+    Object.keys(source.definitions).forEach((key) => {
+      parseInterface(source.definitions!, key)
+    })
+
+    const interfaceCode = Object.keys(map).reduce(
       (acc, cur) => acc + compileInterface(source, cur),
       ''
     )
-    const interfaceWithGenericCode = Object.keys(recursiveMap).reduce(
+
+    const recursiveInterfaceCode = Object.keys(recursiveMap).reduce(
       (acc, cur) => acc + formatCode('ts')(genInterface(recursiveMap[cur])),
       ''
     )
+
+    const interfaceWithGenericCode = Object.keys(genericInterfaceMap).reduce(
+      (acc, cur) =>
+        acc + formatCode('ts')(genInterface(genericInterfaceMap[cur])),
+      ''
+    )
+
     return formatCode('ts')(
       headerCode +
         buildInInterfaceCode +
+        interfaceWithGenericCode +
         interfaceCode +
-        interfaceWithGenericCode
+        recursiveInterfaceCode
     )
   }
 }

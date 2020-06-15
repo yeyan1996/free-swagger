@@ -160,9 +160,12 @@ describe("bin", () => {
     init(async () => {
       await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
       expect(fnSpy).toBeCalledTimes(1);
-      expect(rc.configData).toMatchSnapshot();
       done();
     });
+  });
+
+  test("can remember previous configuration", () => {
+    expect(rc.configData).toMatchSnapshot();
   });
 
   // todo 缓存测试

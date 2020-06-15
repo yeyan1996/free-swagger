@@ -116,6 +116,25 @@ export interface JavaMap<T, U> {
 export interface JavaList<T> {
   [index: number]: T;
 }
+export interface PagedResultDto<T> {
+  items?: T[];
+  totalCount?: number;
+}
+export interface JsonResult<T> {
+  result?: boolean; // 结果
+  code?:
+    | \\"Success\\"
+    | \\"Timeout\\"
+    | \\"Fail\\"
+    | \\"Expired\\"
+    | \\"Error\\"
+    | \\"InternalServerError\\"
+    | \\"InvalidAnonymousAccess\\"
+    | \\"UserSessionExpired\\"
+    | \\"UserIsBinded\\"; // 代码
+  data?: string; // 数据
+  message?: string; // 消息
+}
 export interface Product {
   product_id?: string; // Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
   description?: string; // Description of product.
@@ -149,7 +168,6 @@ export interface Activities {
   count?: number; // Total number of items available.
   history?: Activity[];
 }
-export interface RoleType {}
 export interface CreateOrUpdateUserInput {
   userId?: number; // 用户ID(ID来自User表)
   userRights?:
@@ -169,7 +187,6 @@ export interface Abc {
   id?: string;
   isLow?: boolean;
 }
-export interface ArrayOfAbc {}
 export interface NumberArrayEnumModel {
   foo?: \\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\"[];
   bar?: \\"0\\" | \\"1\\" | \\"2\\" | \\"3\\"[];
@@ -179,28 +196,9 @@ export interface Error {
   message?: string;
   fields?: string;
 }
-export interface PagedResultDto<T> {
-  items?: T[];
-  totalCount?: number;
-}
 export interface AuditLogListDto {
   userId?: number;
   id?: number;
-}
-export interface JsonResult<T> {
-  result?: boolean; // 结果
-  code?:
-    | \\"Success\\"
-    | \\"Timeout\\"
-    | \\"Fail\\"
-    | \\"Expired\\"
-    | \\"Error\\"
-    | \\"InternalServerError\\"
-    | \\"InvalidAnonymousAccess\\"
-    | \\"UserSessionExpired\\"
-    | \\"UserIsBinded\\"; // 代码
-  data?: string; // 数据
-  message?: string; // 消息
 }
 "
 `;
