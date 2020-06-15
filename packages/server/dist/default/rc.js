@@ -77,6 +77,14 @@ class Rc {
             if (!now)
                 return old;
         });
+        // todo mockData 的 source 字段可能和 configData 的 source 字段重合，导致 source 被缓存没有更新
+        Object.keys(this.mockData).forEach(key => {
+            // @ts-ignore
+            if (answer[key]) {
+                // @ts-ignore
+                this.mockData[key] = answer[key];
+            }
+        });
     }
     // 将配置项存储至 rc 文件
     save() {
