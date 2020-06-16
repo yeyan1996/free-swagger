@@ -7,17 +7,13 @@ const buildInInterfaces = {
     Map: {
         name: 'JavaMap',
         code: `
-    export interface JavaMap<T,U>{
-        [key:T]:U
-    }
+   export type JavaMap<T, U> = Record<string, U>
   `,
     },
     List: {
         name: 'JavaList',
         code: `
-    export interface JavaList<T>{
-        [index:number]:T
-    }
+   export type JavaList<T> = Array<T>
   `,
     },
 };
