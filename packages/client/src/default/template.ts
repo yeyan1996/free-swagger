@@ -53,7 +53,7 @@ export const tsTemplate = `({
     ? "params:{[key:string]: never},"
     : ""
 }\${
-  pathParams.length ? \`{\${pathParams.join(",")}} = \${IPathParams}\` : ""
+  pathParams.length ? \`{\${pathParams.join(",")}} : \${IPathParams}\` : ""
 }) => axios.request<\${IResponse || "any"},AxiosResponse<\${IResponse ||
 "any"}>>({
      url: \\\`\${parsedUrl}\\\`,

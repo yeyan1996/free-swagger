@@ -124,4 +124,3 @@ freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
 module.exports = freeSwagger
 
 // todo 重新组织代码，结合 free-swagger-client
-// todo 添加开源商标

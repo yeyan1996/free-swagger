@@ -18,7 +18,6 @@ const EXPORT_DEFAULT = 'export default'
 
 // mock answer
 export type MockAnswer = Required<MockConfig<string>>
-
 // config answer
 export interface ConfigAnswer<T = string> extends Required<Config<string>> {
   previousSource: string
@@ -104,12 +103,8 @@ class Rc {
             if(!now) return old
         })
         // todo mockData 的 source 字段可能和 configData 的 source 字段重合，导致 source 被缓存没有更新
-        Object.keys(this.mockData).forEach(key => {
-            // @ts-ignore
-            if(answer[key]){
-                // @ts-ignore
-                this.mockData[key] = answer[key]
-            }
+        this.mockData = mergeWith(this.mockData,answer,(old,now) => {
+            if(!now) return old
         })
     }
 
@@ -153,6 +148,7 @@ class Rc {
     reset(): void {
         this.configData = this.getDefaultConfigAnswer();
         this.mockData = this.getDefaultMockAnswer();
+        fse.unlinkSync(this.path);
         this.save();
     }
 
