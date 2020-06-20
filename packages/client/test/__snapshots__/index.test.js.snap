@@ -199,6 +199,8 @@ exports[`freeSwaggerClient generate ts interface snippet 1`] = `
 "
 `;
 
+exports[`freeSwaggerClient generate ts interface snippet width generic 1`] = `""`;
+
 exports[`freeSwaggerClient ts code fragment with generic 1`] = `
 "// companies
 export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>

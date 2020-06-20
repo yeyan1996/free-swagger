@@ -237,9 +237,6 @@ function remap (inventory) {
   }
 }
 
-/**
- * TODO
- */
 function findInInventory (inventory, $refParent, $refKey) {
   for (let i = 0; i < inventory.length; i++) {
     let existingEntry = inventory[i];

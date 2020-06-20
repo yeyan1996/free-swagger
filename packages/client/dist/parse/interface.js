@@ -77,11 +77,13 @@ const findGenericKey = (properties) => {
     });
     return Object.keys(properties)[index];
 };
-const shouldSkipGenerate = (interfaceName) => {
+const shouldSkipGenerate = (interfaceName, noContext = false) => {
     const res = parseInterfaceName(interfaceName);
     if (!res[0].hasGeneric) {
         return false;
     }
+    if (noContext)
+        return true;
     return res.every((item) => map[item.interface] || recursiveMap[item.interface]);
 };
 exports.shouldSkipGenerate = shouldSkipGenerate;

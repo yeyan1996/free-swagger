@@ -216,9 +216,6 @@ function remap(inventory) {
         // console.log('    new value: %s', (entry.$ref && entry.$ref.$ref) ? entry.$ref.$ref : '[object Object]');
     }
 }
-/**
- * TODO
- */
 function findInInventory(inventory, $refParent, $refKey) {
     for (let i = 0; i < inventory.length; i++) {
         let existingEntry = inventory[i];

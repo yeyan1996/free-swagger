@@ -103,12 +103,14 @@ const findGenericKey = (properties: {
   return Object.keys(properties)[index]
 }
 
-const shouldSkipGenerate = (interfaceName: string) => {
+const shouldSkipGenerate = (interfaceName: string, noContext = false) => {
   const res = parseInterfaceName(interfaceName)
   // 没有泛型则直接不跳过
   if (!res[0].hasGeneric) {
     return false
   }
+  // 没有上下文的泛型直接跳过生成
+  if (noContext) return true
   return res.every(
     (item) => map[item.interface] || recursiveMap[item.interface]
   )

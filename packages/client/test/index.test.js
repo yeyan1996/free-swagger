@@ -107,4 +107,12 @@ describe("freeSwaggerClient", () => {
     );
     expect(codeFragment).toMatchSnapshot();
   });
+
+    test("generate ts interface snippet width generic", () => {
+        const codeFragment = compileInterfaces(
+            require("./json/generic.json"),
+            "PageInfo«List«Qwe»»"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 });
