@@ -169,29 +169,29 @@ describe("bin", () => {
   });
 
   // todo 缓存测试
-  // test("ts language", done => {
-  //   const dirname = "uberApi";
-  //   const dirPath = path.resolve(__dirname, "api", "bin", dirname);
-  //
-  //   inquirer.prompt = () =>
-  //     Promise.resolve({
-  //       lang: "ts",
-  //       root: dirPath,
-  //       source: path.resolve(__dirname, `./json/${dirname}.json`),
-  //     });
-  //   init(async() => {
-  //    await assertFiles(dirPath, [
-  //       "auditLog.ts",
-  //       "device.ts",
-  //       "interface.ts",
-  //       "mappers.ts",
-  //       "ymTicketTypical.ts"
-  //     ]);
-  //     done();
-  //   });
-  // });
-  //
-  // test("can remember previous(ts language) configuration", () => {
-  //   expect(rc.configData).toMatchSnapshot();
-  // });
+  test("ts language", done => {
+    const dirname = "uberApi";
+    const dirPath = path.resolve(__dirname, "api", "bin", dirname);
+
+    inquirer.prompt = () =>
+      Promise.resolve({
+        lang: "ts",
+        root: dirPath,
+        source: path.resolve(__dirname, `./json/${dirname}.json`),
+      });
+    init(async() => {
+     await assertFiles(dirPath, [
+        "auditLog.ts",
+        "device.ts",
+        "interface.ts",
+        "mappers.ts",
+        "ymTicketTypical.ts"
+      ]);
+      done();
+    });
+  });
+
+  test("can remember previous(ts language) configuration", () => {
+    expect(rc.configData).toMatchSnapshot();
+  });
 });

@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tsTemplate = exports.jsTemplate = void 0;
-exports.jsTemplate = `({
+exports.jsTemplate = `
+// js template
+({
   url,
   summary,
   method,
@@ -29,7 +31,9 @@ exports.jsTemplate = `({
      \${responseType === "json" ? "" : \`responseType: \${responseType}\`}
  })\`;
 };`;
-exports.tsTemplate = `({
+exports.tsTemplate = `
+// ts template
+({
   url,
   summary,
   method,

@@ -4,8 +4,8 @@ import parserTypescript from 'prettier/parser-typescript'
 import parserBabel from 'prettier/parser-babel'
 import {
   buildInInterfaces,
-  generateInterfaceName,
-  parseInterfaceName,
+  flatInterfaceName,
+  formatGenericInterface,
 } from './parse/interface'
 
 export interface ConfigClient {
@@ -52,6 +52,22 @@ const SPECIAL_CHARACTERS_MAP: { [key: string]: string } = {
   ']': '>',
   '{': '<',
   '}': '>',
+  '<': '<',
+  '>': '>',
+}
+
+const SPECIAL_CHARACTERS_MAP_OPEN: { [key: string]: string } = {
+  '«': '<',
+  '[': '<',
+  '{': '<',
+  '<': '<',
+}
+
+const SPECIAL_CHARACTERS_MAP_CLOSE: { [key: string]: string } = {
+  '»': '>',
+  ']': '>',
+  '}': '>',
+  '>': '>',
 }
 
 const SPECIAL_CHARACTERS_MAP_REG = new RegExp(
@@ -66,6 +82,7 @@ const TYPE_MAP: { [key: string]: string } = {
   boolean: 'boolean',
   bool: 'boolean',
   Boolean: 'boolean',
+  long: 'number',
   Int64: 'number',
   integer: 'number',
   number: 'number',
@@ -75,23 +92,20 @@ const TYPE_MAP: { [key: string]: string } = {
   Void: 'void',
 }
 
-// 格式化含有泛型的接口
-// 同时 Java 内建的类型转成自定义泛型
-// Animal«Dog» -> Animal<Dog>
-const formatGenericInterface = (definitionClassName: string): string =>
-  generateInterfaceName(
-    parseInterfaceName(
-      definitionClassName.replace(
-        SPECIAL_CHARACTERS_MAP_REG,
-        ($0) => SPECIAL_CHARACTERS_MAP[$0]
-      )
-    ).map((item) => ({
-      ...item,
-      interface: buildInInterfaces[item.interface]
-        ? buildInInterfaces[item.interface].name
-        : item.interface,
-    }))
-  )
+const traverseTree = <T>(
+  tree: T,
+  cb: (node: T) => any,
+  childrenKey = 'generics'
+) => {
+  cb(tree)
+  // @ts-ignore
+  if (tree[childrenKey]) {
+    // @ts-ignore
+    tree[childrenKey].forEach((child: T) => {
+      traverseTree(child, cb, childrenKey)
+    })
+  }
+}
 
 // 获取 $ref 指向的类型
 // /definitions/ref -> ref
@@ -122,8 +136,7 @@ const schemaToTsType = (
       const isWord = /^\w*$/
       const originRef = getRef(schema.$ref)
       imports.push(
-        ...parseInterfaceName(originRef)
-          .map((item) => item.interface)
+        ...flatInterfaceName(originRef)
           // 过滤出 interface
           .filter((item) => !Object.keys(TYPE_MAP).includes(item))
           // 排除一些特殊的泛型 Map<string,string>
@@ -185,6 +198,10 @@ export {
   getRef,
   isRef,
   schemaToTsType,
-  TYPE_MAP,
   hasGeneric,
+  traverseTree,
+  TYPE_MAP,
+  SPECIAL_CHARACTERS_MAP,
+  SPECIAL_CHARACTERS_MAP_OPEN,
+  SPECIAL_CHARACTERS_MAP_CLOSE,
 }

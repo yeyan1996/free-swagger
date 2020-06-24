@@ -100,18 +100,18 @@ class Rc {
     // 合并配置项
     merge(answer: Partial<ConfigAnswer>): void {
         this.configData = mergeWith(this.configData,answer,(old,now) => {
-            if(!now) return old
+            if(now == null) return old
         })
         // todo mockData 的 source 字段可能和 configData 的 source 字段重合，导致 source 被缓存没有更新
         this.mockData = mergeWith(this.mockData,answer,(old,now) => {
-            if(!now) return old
+            if(now == null) return old
         })
     }
 
     // 将配置项存储至 rc 文件
     save(): void {
         const data = JSON.stringify(mergeWith(this.configData,this.mockData,(old,now) => {
-            if(!now) return old
+            if(now == null) return old
         }));
         // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
         // 去除尾部分号，否则会报词法错误
@@ -155,7 +155,7 @@ class Rc {
     // 查看配置项
     show(): void {
         console.log(mergeWith(this.configData,this.mockData,(old,now) => {
-            if(!now) return old
+            if(now == null) return old
         }));
     }
 

@@ -5,8 +5,10 @@ import axios, { AxiosResponse } from "axios";
 
 export const UpdateMapper = (
   params: { [key: string]: never },
-  { id } = {
-    id: string
+  {
+    id
+  }: {
+    id: string;
   }
 ) =>
   axios.request<string, AxiosResponse<string>>({

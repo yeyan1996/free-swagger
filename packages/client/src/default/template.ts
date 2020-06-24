@@ -1,4 +1,6 @@
-export const jsTemplate = `({
+export const jsTemplate = `
+// js template
+({
   url,
   summary,
   method,
@@ -27,7 +29,9 @@ export const jsTemplate = `({
  })\`;
 };`
 
-export const tsTemplate = `({
+export const tsTemplate = `
+// ts template
+({
   url,
   summary,
   method,
