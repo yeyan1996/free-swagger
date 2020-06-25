@@ -90,6 +90,8 @@ const TYPE_MAP: { [key: string]: string } = {
   file: 'Blob',
   formData: 'FormData',
   Void: 'void',
+  object: 'object',
+  array: 'Array<any>',
 }
 
 const traverseTree = <T>(

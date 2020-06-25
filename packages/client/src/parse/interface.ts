@@ -70,7 +70,6 @@ const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
     Object.keys(SPECIAL_CHARACTERS_MAP_CLOSE).includes(character)
 
   for (const s of interfaceName.split('')) {
-    // todo 其他泛型符
     if (isOpenCharacter(s)) {
       stack.push(word)
       word = ''

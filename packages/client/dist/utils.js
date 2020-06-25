@@ -49,6 +49,8 @@ const TYPE_MAP = {
     file: 'Blob',
     formData: 'FormData',
     Void: 'void',
+    object: 'object',
+    array: 'Array<any>',
 };
 exports.TYPE_MAP = TYPE_MAP;
 const traverseTree = (tree, cb, childrenKey = 'generics') => {
