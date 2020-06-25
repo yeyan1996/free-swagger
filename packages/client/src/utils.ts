@@ -139,8 +139,8 @@ const schemaToTsType = (
       const originRef = getRef(schema.$ref)
       imports.push(
         ...flatInterfaceName(originRef)
-          // 过滤出 interface
-          .filter((item) => !Object.keys(TYPE_MAP).includes(item))
+          // 排除 ts 内置类型
+          .filter((item) => !Object.values(TYPE_MAP).includes(item))
           // 排除一些特殊的泛型 Map<string,string>
           .filter((item) => isWord.test(item))
           // 如果是 Java 内建类型则转换成自定义泛型

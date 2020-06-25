@@ -84,7 +84,7 @@ const schemaToTsType = (schema) => {
             const isWord = /^\w*$/;
             const originRef = getRef(schema.$ref);
             imports.push(...interface_1.flatInterfaceName(originRef)
-                .filter((item) => !Object.keys(TYPE_MAP).includes(item))
+                .filter((item) => !Object.values(TYPE_MAP).includes(item))
                 .filter((item) => isWord.test(item))
                 .map((item) => interface_1.buildInInterfaces[item] ? interface_1.buildInInterfaces[item].name : item));
             return originRef;

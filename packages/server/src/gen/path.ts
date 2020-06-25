@@ -4,7 +4,7 @@ import { Config } from '../utils'
 import { uniq, isEmpty } from 'lodash'
 import { DEFAULT_HEAD_CODE_JS, DEFAULT_HEAD_CODE_TS } from '../default'
 
-const RELATIVE_PATH = './interface' // interface 的相对路径
+const RELATIVE_PATH = './interface/index.ts' // interface 的相对路径
 
 const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   const importsInterface = uniq(
@@ -32,4 +32,4 @@ const genPaths = (
   return formatCode(config.lang)(code)
 }
 
-export { genPaths }
+export { genPaths, RELATIVE_PATH }

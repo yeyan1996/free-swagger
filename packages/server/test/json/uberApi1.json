@@ -369,7 +369,7 @@
             "description": "设备地理坐标信息集合",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/List<AuditLogListDto>"
+              "$ref": "#/definitions/List<Void>"
             }
           },
           {

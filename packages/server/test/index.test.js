@@ -23,6 +23,11 @@ const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
   }
   await wait(100);
   filesPath.forEach(filename => {
+    if(filename === 'interface'){
+    const file = fs.readFileSync(path.resolve(dirPath, filename,'index.ts'), "utf-8");
+    expect(file).toMatchSnapshot();
+        return
+    }
     const file = fs.readFileSync(path.resolve(dirPath, filename), "utf-8");
     expect(file).toMatchSnapshot();
   });
@@ -55,7 +60,7 @@ describe("pkg", () => {
     await assertFiles(dirPath, [
       "auditLog.ts",
       "device.ts",
-      "interface.ts",
+      "interface",
       "mappers.ts",
       "ymTicketTypical.ts"
     ]);
@@ -109,7 +114,7 @@ describe("pkg", () => {
     await assertFiles(dirPath, [
       "device.ts",
       "environment.ts",
-      "interface.ts",
+      "interface",
       "zWave.ts",
       "zones.ts"
     ]);
@@ -183,7 +188,7 @@ describe("bin", () => {
      await assertFiles(dirPath, [
         "auditLog.ts",
         "device.ts",
-        "interface.ts",
+        "interface",
         "mappers.ts",
         "ymTicketTypical.ts"
       ]);

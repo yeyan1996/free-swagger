@@ -108,6 +108,9 @@ const formatGenericInterface = (interfaceName) => {
         if (buildInInterfaces[interfaceItem.name]) {
             interfaceItem.name = buildInInterfaces[interfaceItem.name].name;
         }
+        if (utils_1.TYPE_MAP[interfaceItem.name]) {
+            interfaceItem.name = utils_1.TYPE_MAP[interfaceItem.name];
+        }
     });
     return reduceInterfaceName(tree);
 };

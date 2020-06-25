@@ -29,7 +29,7 @@ const parse = async (config) => {
 const gen = async (config, dirPath, paths) => {
     // 生成 interface
     if (config.lang === 'ts') {
-        const interfacePath = path_1.default.resolve(dirPath, 'interface.ts');
+        const interfacePath = path_1.default.resolve(dirPath, path_3.RELATIVE_PATH);
         fs_extra_1.default.ensureFileSync(interfacePath);
         const code = free_swagger_client_1.compileInterfaces(config.source);
         await fs_extra_1.default.writeFile(interfacePath, code);

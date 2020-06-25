@@ -116,6 +116,7 @@ const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
   return { name: word }
 }
 
+// 取出 interface 中所有 interfaceName （排除泛型名）
 const flatInterfaceName = (interfaceName: string) => {
   const interfaceNames: string[] = []
   traverseTree(parseInterfaceName(interfaceName), (interfaceNameItem) => {
@@ -136,13 +137,16 @@ const reduceInterfaceName = (tree: InterfaceNameItem): string => {
 }
 
 // 格式化含有泛型的接口
-// 同时 Java 内建的类型转成自定义泛型
+// 同时 Java 内建的类型转成 自定义/TS 内建泛型
 // Animal«Dog» -> Animal<Dog>
 const formatGenericInterface = (interfaceName: string): string => {
   const tree = parseInterfaceName(interfaceName)
   traverseTree(tree, (interfaceItem) => {
     if (buildInInterfaces[interfaceItem.name]) {
       interfaceItem.name = buildInInterfaces[interfaceItem.name].name
+    }
+    if (TYPE_MAP[interfaceItem.name]) {
+      interfaceItem.name = TYPE_MAP[interfaceItem.name]
     }
   })
   return reduceInterfaceName(tree)
@@ -180,7 +184,7 @@ const findGenericKey = (properties: {
 
 const shouldSkipGenerate = (interfaceName: string, noContext = false) => {
   const res = parseInterfaceName(interfaceName)
-  // 没有泛型则直接不跳过
+  // 没有泛型则直接不跳过生成
   if (!res.generics?.length) {
     return false
   }
@@ -228,7 +232,8 @@ const parseInterface = (
             ...parseProperties(omit(properties, genericKey), required),
           }
         : parseProperties(properties, required)
-      // todo 如果是包含泛型的接口，则删除 recursiveMap/map 中的类型
+      // 如果是包含泛型的接口，则删除 recursiveMap/map 中的类型
+      // todo 更好的实现方式？
       if (recursiveMap[res.name]) {
         delete recursiveMap[res.name]
       }

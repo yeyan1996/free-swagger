@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.genPaths = void 0;
+exports.RELATIVE_PATH = exports.genPaths = void 0;
 const free_swagger_client_1 = require("free-swagger-client");
 const lodash_1 = require("lodash");
 const default_1 = require("../default");
-const RELATIVE_PATH = './interface'; // interface 的相对路径
+const RELATIVE_PATH = './interface/index.ts'; // interface 的相对路径
+exports.RELATIVE_PATH = RELATIVE_PATH;
 const genImportInterfaceCode = (apiCollection) => {
     const importsInterface = lodash_1.uniq(Object.keys(apiCollection)
         .map((key) => apiCollection[key])

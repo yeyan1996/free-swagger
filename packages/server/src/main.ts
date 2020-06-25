@@ -11,7 +11,7 @@ import { pick } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
 import { compileInterfaces } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
-import { genPaths } from './gen/path'
+import { genPaths, RELATIVE_PATH } from './gen/path'
 import { fetchJSON } from './request'
 import { mock } from './mock'
 
@@ -36,7 +36,7 @@ const gen = async (
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === 'ts') {
-    const interfacePath = path.resolve(dirPath, 'interface.ts')
+    const interfacePath = path.resolve(dirPath, RELATIVE_PATH)
     fse.ensureFileSync(interfacePath)
     const code = compileInterfaces(config.source)
     await fse.writeFile(interfacePath, code)
