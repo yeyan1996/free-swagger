@@ -53,14 +53,9 @@ export interface ApiResponse {
   type?: string;
   message?: string;
 }
-export interface Order {
-  id?: number;
-  petId?: number;
-  quantity?: number;
-  shipDate?: string;
-  status?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; // Order Status
-  complete?: boolean;
-}
+
+// interfaceName: Order 生成失败，检查是否符合 swagger 规范
+
 export interface User {
   id?: number;
   username?: string;

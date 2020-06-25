@@ -33,7 +33,16 @@ const compileInterface = (source, interfaceName, noContext = false) => {
     if (!source.definitions || interface_2.shouldSkipGenerate(interfaceName, noContext))
         return '';
     interface_2.parseInterface(source.definitions, interfaceName);
-    return utils_1.formatCode('ts')(interface_1.genInterface(interface_2.findInterface(interfaceName)));
+    try {
+        return utils_1.formatCode('ts')(interface_1.genInterface(interface_2.findInterface(interfaceName)));
+    }
+    catch (e) {
+        console.warn(`interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范`, e);
+        return `
+    // interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+    
+    `;
+    }
 };
 const compileInterfaces = (source, interfaceName) => {
     if (!source.definitions)

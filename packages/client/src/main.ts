@@ -51,7 +51,19 @@ const compileInterface = (
   if (!source.definitions || shouldSkipGenerate(interfaceName, noContext))
     return ''
   parseInterface(source.definitions, interfaceName)
-  return formatCode('ts')(genInterface(findInterface(interfaceName)))
+
+  try {
+    return formatCode('ts')(genInterface(findInterface(interfaceName)))
+  } catch (e) {
+    console.warn(
+      `interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范`,
+      e
+    )
+    return `
+    // interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+    
+    `
+  }
 }
 
 // 生成全量 interface 代码
@@ -107,5 +119,3 @@ export * from './default/template'
 export * from './utils'
 export * from './gen/path'
 export * from './parse/path'
-
-// todo Map<string,List<xxx>> 的处理
