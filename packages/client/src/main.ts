@@ -56,9 +56,9 @@ const compileInterface = (
     return formatCode('ts')(genInterface(findInterface(interfaceName)))
   } catch (e) {
     console.warn(
-      `interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范`,
-      e
+      `interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
     )
+    console.warn(e)
     return `
     // interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范
     

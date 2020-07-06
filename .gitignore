@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /packages/server/test/mock
+/packages/server/dist
+/packages/client/dist
 
 # local env files
 .env.local
