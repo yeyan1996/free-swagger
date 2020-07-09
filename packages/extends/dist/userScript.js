@@ -1,6 +1,6 @@
 // ==UserScript==
 // @author  yeyan1996
-// @name  swagger-extends
+// @name  free-swagger-extends
 // @namespace  http://tampermonkey.net/
 // @description  swagger 油猴脚本扩展工具
 // @version  1.0.0
@@ -24,5 +24,5 @@ function createScripTag(src) {
     document.body.append(createDom("script", {src}));
 }
 
-createScripTag("/js/app.df70b185.js")
+createScripTag("/js/app.911df593.js")
 //  createScripTag("http://localhost:8888/js/app.js") // 本地调试用
