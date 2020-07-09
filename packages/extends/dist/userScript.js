@@ -24,5 +24,5 @@ function createScripTag(src) {
     document.body.append(createDom("script", {src}));
 }
 
-createScripTag("/js/app.55d77de9.js")
+createScripTag("https://cdn.jsdelivr.net/npm/free-swagger-extends@2.2.3/dist/js/app.52f50c9e.js")
 //  createScripTag("http://localhost:8888/js/app.js") // 本地调试用

@@ -6,6 +6,10 @@ const pkg = require("./package.json");
 const UserScriptPlugin = require("./libs/user-script-webpack-plugin");
 
 module.exports = {
+  publicPath:
+    process.env.NODE_ENV === "development"
+      ? ""
+      : `https://cdn.jsdelivr.net/npm/free-swagger-extends@${pkg.version}/dist`,
   productionSourceMap: false,
   chainWebpack: config => {
     config.optimization.delete("splitChunks");

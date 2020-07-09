@@ -5,7 +5,7 @@
   "author": "yeyan1996",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --report",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
