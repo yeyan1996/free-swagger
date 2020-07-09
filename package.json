@@ -2,9 +2,9 @@
   "name": "free-swagger",
   "description": "openApi(swagger) Document Generator",
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "lerna exec -- npm run build",
     "test": "jest",
-    "lint": "eslint 'packages/**/*.ts' --fix"
+    "lint": "lerna exec -- npm run lint"
   },
   "keywords": [
     "swagger",

@@ -1,0 +1,55 @@
+{
+  "name": "swagger-extends",
+  "version": "1.0.0",
+  "description": "swagger 油猴脚本扩展工具",
+  "author": "yeyan1996",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --report",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@jsdevtools/ono": "^7.1.2",
+    "ajax-hook": "^1.8.3",
+    "axios": "^0.19.2",
+    "call-me-maybe": "^1.0.1",
+    "core-js": "^3.6.5",
+    "ejs": "^3.1.3",
+    "element-ui": "^2.13.2",
+    "free-swagger-client": "^2.2.2",
+    "generate-schema": "^2.6.0",
+    "js-yaml": "^3.14.0",
+    "json-schema-faker": "^0.5.0-rcv.24",
+    "lodash-es": "^4.17.15",
+    "monaco-editor": "^0.20.0",
+    "prettier": "^1.19.1",
+    "swagger-parser": "^9.0.1",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-plugin-eslint": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^5.0.0",
+    "git-revision-webpack-plugin": "^3.0.6",
+    "lint-staged": "^10.2.11",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "svg-sprite-loader": "^4.3.0",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint"
+    ]
+  }
+}
