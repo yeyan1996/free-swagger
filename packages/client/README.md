@@ -2,8 +2,6 @@
 
 ![Travis (.com)](https://img.shields.io/travis/com/yeyan1996/free-swagger-client)![](https://img.shields.io/npm/v/free-swagger-client)
 
-`free-swagger 的浏览器版本，区别于 free-swagger 需要依赖 nodejs 环境（fs/path/ora...），free-swagger-client 同时适合双端`
-
 根据 swagger 文档自动生成 api 代码片段
 
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`

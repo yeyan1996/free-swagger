@@ -8,8 +8,8 @@ const UserScriptPlugin = require("./libs/user-script-webpack-plugin");
 module.exports = {
   publicPath:
     process.env.NODE_ENV === "development"
-      ? ""
-      : `https://cdn.jsdelivr.net/npm/free-swagger-extends@${pkg.version}/dist`,
+      ? "http://localhost:8888"
+      : `https://cdn.jsdelivr.net/npm/free-swagger-extends/dist`,
   productionSourceMap: false,
   chainWebpack: config => {
     config.optimization.delete("splitChunks");
@@ -41,6 +41,9 @@ module.exports = {
     });
   },
   configureWebpack: {
+    devServer: {
+      port: 8888
+    },
     plugins: [
       new GitRevisionPlugin({
         commithashCommand: "rev-list --max-count=1 --no-merges HEAD",

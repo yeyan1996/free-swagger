@@ -8,3 +8,5 @@
 [free-swagger-client 文档](./packages/client/README.md)
 
 [free-swagger 文档](./packages/server/README.md)
+
+[free-swagger-extends 文档](./packages/extends/README.md)

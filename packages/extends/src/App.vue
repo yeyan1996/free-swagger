@@ -104,7 +104,9 @@ export default {
     // 注入 icons
     injectApiIcons(parent) {
       const method = parent.querySelector(".opblock-summary-method")?.innerText;
-      const path = parent.querySelector(".opblock-summary-path")?.innerText;
+      const path = parent
+        .querySelector(".opblock-summary-path")
+        ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
       const summary = parent.querySelector(".opblock-summary-description")
         ?.innerText;
       if (!method || !path || !summary) return;

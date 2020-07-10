@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { handleCopyPath, handleCopyApi, handleCopyFake, state } from "@/state";
+import { handleCopyPath, handleCopyApi, handleCopyFake } from "@/state";
 
 export default {
   name: "ApiIcons",

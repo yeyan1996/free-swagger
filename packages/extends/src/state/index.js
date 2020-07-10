@@ -111,7 +111,9 @@ export const handleCopyPath = async (
   method = state.currentApi.method
 ) => {
   try {
-    copyMessage(`"${method.toUpperCase()} ${path}"`);
+    // /pet/{petId}/uploadImage -> /pet/:petId/uploadImage
+    const formattedPath = path.replace(/{(.*?)}/g, ":$1");
+    copyMessage(`"${method.toUpperCase()} ${formattedPath}"`);
   } catch (e) {
     Message.error("复制失败，请检查选择的 api 或模版");
     console.log(e);
