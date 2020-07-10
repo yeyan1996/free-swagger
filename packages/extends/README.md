@@ -12,25 +12,27 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ##  api 搜索
 
-![Kapture 2020-07-10 at 14.22.03](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggluvhxia4g31340qc7wu.gif)
+![Kapture 2020-07-10 at 15.55.29](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxjz7sn3g30go0bc4qv.gif)
 
-## 复制 api  路径		![Kapture 2020-07-10 at 14.38.11](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglvbj0ksjg31gw0q21kx.gif)
+## 复制 api  路径	
 
-* 生成 mock 数据
-
-  ![Kapture 2020-07-10 at 15.00.33](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglvzafp4vg31gw0q2kjo.gif)
+![Kapture 2020-07-10 at 16.01.54](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxqmz3jxg30go07j7wi.gif)
 
 ## 生成 api 代码片段
 
-![Kapture 2020-07-10 at 15.02.03](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglw14lfk8g31gw0q2x6v.gif)
+![Kapture 2020-07-10 at 15.57.46](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxmdpqtxg30go07j4qq.gif)
 
 ## 生成 typescript interface 
 
-![Kapture 2020-07-10 at 15.04.09](/private/var/folders/gh/16c1yvx16n9_ktd0gv3rl02r0000gp/T/8f903b15cc9d47815a146228b83a3412/Kapture 2020-07-10 at 15.04.09.gif)
+![Kapture 2020-07-10 at 16.00.57](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxpm12d0g30go07jduw.gif)
+
+## 生成 mock 数据
+
+![Kapture 2020-07-10 at 16.04.02](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxss88y6g30go07jqi6.gif)
 
 ## 展开所有 api 
 
-![Kapture 2020-07-10 at 15.05.48](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglw4nap76g31gw0q2x73.gif)
+![Kapture 2020-07-10 at 15.58.52](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglxo0mjxcg30go0bd7wl.gif)
 
 # 安装使用
 
