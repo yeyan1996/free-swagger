@@ -10,11 +10,11 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 # 功能介绍
 
-## 支持 api 搜索
+##  api 搜索
 
 ![Kapture 2020-07-10 at 14.22.03](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggluvhxia4g31340qc7wu.gif)
 
-## 复制 api  url		![Kapture 2020-07-10 at 14.38.11](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglvbj0ksjg31gw0q21kx.gif)
+## 复制 api  路径		![Kapture 2020-07-10 at 14.38.11](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglvbj0ksjg31gw0q21kx.gif)
 
 * 生成 mock 数据
 
@@ -24,7 +24,7 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ![Kapture 2020-07-10 at 15.02.03](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglw14lfk8g31gw0q2x6v.gif)
 
-## 生成 interface 代码片段（ts）
+## 生成 typescript interface 
 
 ![Kapture 2020-07-10 at 15.04.09](/private/var/folders/gh/16c1yvx16n9_ktd0gv3rl02r0000gp/T/8f903b15cc9d47815a146228b83a3412/Kapture 2020-07-10 at 15.04.09.gif)
 
