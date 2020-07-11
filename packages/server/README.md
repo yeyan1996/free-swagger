@@ -2,9 +2,7 @@
 
 ![](https://img.shields.io/npm/v/free-swagger)
 
-根据 swagger 文档自动生成 api 文件，真正解放双手的工具
-
-free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，提供全量生成 api 并写入至项目文件和命令行交互能力
+free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，根据 swagger 文档全量生成 api 并写入至项目文件
 
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
 
