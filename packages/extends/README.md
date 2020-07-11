@@ -104,4 +104,6 @@ free-swagger-extends 基于 free-swagger-client，通过模版生成代码片段
 
 ![image-20200710151641774](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglwfby4fbj30rm0ix76p.jpg)
 
-模版接受多个参数，可以自由组合成想要的格式，更多技巧参考 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client）
+模版接受多个参数，可以自由组合成想要的格式，更多技巧参考 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+
+## 复制 api  路径	
