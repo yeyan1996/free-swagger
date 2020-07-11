@@ -12,15 +12,15 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ##  api 搜索
 
-
+![](./docs/api搜索.gif)
 
 ## 复制 api  路径	
 
-![](./docs/api搜索.gif)
+
 
 ## 生成 api 代码片段
 
-![](./docs/复制url.gif)
+![](docs/复制api路径.gif)
 
 ## 生成 typescript interface 
 
