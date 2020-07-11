@@ -1,8 +1,8 @@
 # free-swagger-extends
 
-根据 swagger 文档自动生成 api 文件，真正解放双手的工具
+根据 swagger 文档自动生成前端接口代码片段
 
-free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client) 开发的油猴脚本，增强浏览器对于 swagger 文档的处理行为
+free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client) 开发的油猴脚本，增强浏览器端对于 swagger 文档的处理行为
 
 ![image-20200710125155851](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggls8qwputj312o0qcgpb.jpg)
 
