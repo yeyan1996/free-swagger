@@ -16,23 +16,23 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ## 复制 api  路径	
 
-
+![](./docs/复制api路径.gif)
 
 ## 生成 api 代码片段
 
-![](docs/复制api路径.gif)
+![](./docs/复制代码片段.gif)
 
 ## 生成 typescript interface 
 
-
+![](./docs/生成interface.gif)
 
 ## 生成 mock 数据
 
-
+![](./docs/生成mock数据.gif)
 
 ## 展开所有 api 
 
-
+![](./docs/展开所有api.gif)
 
 # 安装使用
 
@@ -104,4 +104,4 @@ free-swagger-extends 基于 free-swagger-client，通过模版生成代码片段
 
 ![image-20200710151641774](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglwfby4fbj30rm0ix76p.jpg)
 
-模版接受多个参数，可以自由组合成想要的格式，更多技巧参考 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+模版接受多个参数，可以自由组合成想要的格式，更多技巧参考 [free-swagger-client](
