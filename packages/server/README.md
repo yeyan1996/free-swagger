@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/npm/v/free-swagger)
 
-free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，根据 swagger 文档全量生成 api 并写入至项目文件
+free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，根据 swagger 文档全量生成前端接口代码并写入至项目文件
 
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
 
