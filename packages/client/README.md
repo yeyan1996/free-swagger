@@ -2,7 +2,7 @@
 
 ![Travis (.com)](https://img.shields.io/travis/com/yeyan1996/free-swagger-client)![](https://img.shields.io/npm/v/free-swagger-client)
 
-根据 swagger 文档自动生成 api 代码片段
+根据 swagger 文档自动生成前端接口代码片段
 
 `目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
 
