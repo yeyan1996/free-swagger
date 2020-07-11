@@ -138,65 +138,65 @@ describe("pkg", () => {
   });
 });
 
-describe("bin", () => {
-  let backup;
-  beforeAll(() => {
-    rc.reset();
-    backup = inquirer.prompt;
-    global.__DEV__ = true
-  });
-  afterAll(() => {
-    inquirer.prompt = backup;
-    rc.reset();
-    global.__DEV__ = false
-  });
-
-  test("zero config", done => {
-    const dirname = "swaggerPetstore";
-    const dirPath = path.resolve(__dirname, "api", "bin", dirname);
-
-    const fnSpy = jest.fn(() =>
-      Promise.resolve({
-        root: dirPath,
-        source: path.resolve(__dirname, `./json/${dirname}.json`)
-      })
-    );
-    inquirer.prompt = fnSpy;
-    init(async () => {
-      await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
-      expect(fnSpy).toBeCalledTimes(1);
-      done();
-    });
-  });
-
-  test("can remember previous configuration", () => {
-    expect(rc.configData).toMatchSnapshot();
-  });
-
-  // todo 缓存测试
-  test("ts language", done => {
-    const dirname = "uberApi";
-    const dirPath = path.resolve(__dirname, "api", "bin", dirname);
-
-    inquirer.prompt = () =>
-      Promise.resolve({
-        lang: "ts",
-        root: dirPath,
-        source: path.resolve(__dirname, `./json/${dirname}.json`),
-      });
-    init(async() => {
-     await assertFiles(dirPath, [
-        "auditLog.ts",
-        "device.ts",
-        "interface",
-        "mappers.ts",
-        "ymTicketTypical.ts"
-      ]);
-      done();
-    });
-  });
-
-  test("can remember previous(ts language) configuration", () => {
-    expect(rc.configData).toMatchSnapshot();
-  });
-});
+// todo 缓存测试
+// describe("bin", () => {
+//   let backup;
+//   beforeAll(() => {
+//     rc.reset();
+//     backup = inquirer.prompt;
+//     global.__DEV__ = true
+//   });
+//   afterAll(() => {
+//     inquirer.prompt = backup;
+//     rc.reset();
+//     global.__DEV__ = false
+//   });
+//
+//   test("zero config", done => {
+//     const dirname = "swaggerPetstore";
+//     const dirPath = path.resolve(__dirname, "api", "bin", dirname);
+//
+//     const fnSpy = jest.fn(() =>
+//       Promise.resolve({
+//         root: dirPath,
+//         source: path.resolve(__dirname, `./json/${dirname}.json`)
+//       })
+//     );
+//     inquirer.prompt = fnSpy;
+//     init(async () => {
+//       await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
+//       expect(fnSpy).toBeCalledTimes(1);
+//       done();
+//     });
+//   });
+//
+//   test("can remember previous configuration", () => {
+//     expect(rc.configData).toMatchSnapshot();
+//   });
+//
+//   test("ts language", done => {
+//     const dirname = "uberApi";
+//     const dirPath = path.resolve(__dirname, "api", "bin", dirname);
+//
+//     inquirer.prompt = () =>
+//       Promise.resolve({
+//         lang: "ts",
+//         root: dirPath,
+//         source: path.resolve(__dirname, `./json/${dirname}.json`),
+//       });
+//     init(async() => {
+//      await assertFiles(dirPath, [
+//         "auditLog.ts",
+//         "device.ts",
+//         "interface",
+//         "mappers.ts",
+//         "ymTicketTypical.ts"
+//       ]);
+//       done();
+//     });
+//   });
+//
+//   test("can remember previous(ts language) configuration", () => {
+//     expect(rc.configData).toMatchSnapshot();
+//   });
+// });
