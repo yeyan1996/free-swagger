@@ -5,13 +5,27 @@ import http from 'http'
 import https from 'https'
 
 const PORT = 9998
+function isEncoded(uri: string) {
+  uri = uri || ''
+  return uri !== decodeURIComponent(uri)
+}
+function fullyDecodeURI(uri: string) {
+  while (isEncoded(uri)) {
+    uri = decodeURIComponent(uri)
+  }
+  return uri
+}
+
+function superEncodeUrl(uri: string) {
+  return encodeURI(fullyDecodeURI(uri))
+}
 
 // 通过代理 + cookie 访问需要权限的数据
 export const fetchJSON = async (
   url: string,
   cookie?: string
 ): Promise<OpenAPIV2.Document> => {
-  url = encodeURI(url)
+  url = superEncodeUrl(url)
   const spinner = ora().render()
   spinner.start(`正在发送请求到: ${url} \n`)
   let res
