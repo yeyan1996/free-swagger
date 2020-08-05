@@ -51,14 +51,16 @@ export const state = new Vue({
         });
       });
       // 根据 Tags 排序
-      tags.forEach(tag => {
+      tags.forEach(tagItem => {
         let index;
         do {
-          index = options.findIndex(option => option.tag === tag.name);
+          index = options.findIndex(
+            optionItem => optionItem.tag === tagItem.name
+          );
           if (index < 0) return;
           sortOptions.push(options[index]);
           options.splice(index, 1);
-        } while (index > 0);
+        } while (index >= 0);
       });
       return sortOptions;
     }
