@@ -51,7 +51,10 @@ window.fetch = new Proxy(fetch, {
           apply(target, response, args) {
             const promise = Reflect.apply(target, response, args);
             promise.then(async data => {
-              await assignState(data, response.url);
+              try {
+                const parsedData = JSON.parse(data);
+                await assignState(parsedData, response.url);
+              } catch {}
             });
             return promise;
           }
@@ -60,7 +63,10 @@ window.fetch = new Proxy(fetch, {
           apply(target, response, args) {
             const promise = Reflect.apply(target, response, args);
             promise.then(async data => {
-              await assignState(JSON.parse(data), response.url);
+              try {
+                const parsedData = JSON.parse(data);
+                await assignState(parsedData, response.url);
+              } catch {}
             });
             return promise;
           }

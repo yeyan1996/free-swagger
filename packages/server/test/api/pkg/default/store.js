@@ -4,7 +4,7 @@
 import axios from "axios";
 
 // Returns pet inventories by status
-export const getInventory = (params) =>
+export const getInventory = () =>
   axios.request({
     url: `/store/inventory`,
     method: "get",

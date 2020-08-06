@@ -40,7 +40,7 @@ export const loginUser = (params) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params) =>
+export const logoutUser = () =>
   axios.request({
     url: `/user/logout`,
     method: "get",

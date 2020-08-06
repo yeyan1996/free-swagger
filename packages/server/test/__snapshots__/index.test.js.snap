@@ -87,7 +87,7 @@ exports[`pkg base option 2`] = `
 import axios from \\"axios\\";
 
 // Returns pet inventories by status
-export const getInventory = (params) =>
+export const getInventory = () =>
   axios.request({
     url: \`/store/inventory\`,
     method: \\"get\\",
@@ -167,7 +167,7 @@ export const loginUser = (params) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params) =>
+export const logoutUser = () =>
   axios.request({
     url: \`/user/logout\`,
     method: \\"get\\",
@@ -659,7 +659,7 @@ exports[`pkg should work with only one json params 5`] = `
 import axios from \\"axios\\";
 
 // Returns pet inventories by status
-export const getInventory = (params) =>
+export const getInventory = () =>
   axios.request({
     url: \`/store/inventory\`,
     method: \\"get\\",
@@ -739,7 +739,7 @@ export const loginUser = (params) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params) =>
+export const logoutUser = () =>
   axios.request({
     url: \`/user/logout\`,
     method: \\"get\\",
@@ -783,7 +783,7 @@ exports[`pkg should work with only one json params 7`] = `
 import axios from \\"axios\\";
 
 // 新增或编辑标准票, 需走审批流程
-export const AddOrUpdateTicketTypical = (params) =>
+export const AddOrUpdateTicketTypical = () =>
   axios.request({
     url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
     method: \\"post\\",
@@ -929,7 +929,7 @@ exports[`pkg should work with only one string params 5`] = `
 import axios from \\"axios\\";
 
 // Returns pet inventories by status
-export const getInventory = (params) =>
+export const getInventory = () =>
   axios.request({
     url: \`/store/inventory\`,
     method: \\"get\\",
@@ -1009,7 +1009,7 @@ export const loginUser = (params) =>
   });
 
 // Logs out current logged in user session
-export const logoutUser = (params) =>
+export const logoutUser = () =>
   axios.request({
     url: \`/user/logout\`,
     method: \\"get\\",
@@ -1053,7 +1053,7 @@ exports[`pkg should work with only one string params 7`] = `
 import axios from \\"axios\\";
 
 // 新增或编辑标准票, 需走审批流程
-export const AddOrUpdateTicketTypical = (params) =>
+export const AddOrUpdateTicketTypical = () =>
   axios.request({
     url: \`/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
     method: \\"post\\",

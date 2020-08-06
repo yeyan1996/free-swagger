@@ -18,7 +18,7 @@ export const jsTemplate = `
   return \`
   \${deprecated ? \`/**deprecated*/\` : ""}
   \${summary ? \`// \${summary}\` : ""}
-  export const \${name} = (params,\${
+  export const \${name} = (\${IParams || pathParams.length  ? "params," : ""}\${
   pathParams.length ? \`{\${pathParams.join(",")}}\` : ""
 }) => axios.request({
      url: \\\`\${parsedUrl}\\\`,

@@ -54,66 +54,74 @@ export default {
     }
   },
   methods: {
+    findControllerDom({ isNewUi, controller }) {
+      const selector = isNewUi
+        ? `[title="${controller}"]`
+        : `#operations-tag-${controller}`;
+      return document.querySelector(selector);
+    },
+    findApiDom({ controllerDom, isNewUi, operationId }) {
+      const selector = isNewUi
+        ? `[data-hashurl$="${operationId}"]`
+        : `#operations-${controller}-${operationId}`;
+      return controllerDom.querySelector(selector);
+    },
+    openControllerDom(controllerDom, isNewUi) {
+      const isOpen = isNewUi
+        ? controllerDom.classList.contains("open")
+        : controllerDom.parentNode.classList.contains("is-open");
+      if (isOpen) return;
+      if (isNewUi) {
+        controllerDom.querySelector("* > a").click();
+      } else {
+        controllerDom.click();
+      }
+    },
+    clickApiDom(apiDom, isNewUi) {
+      if (isNewUi) {
+        apiDom.click();
+      } else {
+        apiDom.classList.contains("is-open") || apiDom.firstChild.click();
+      }
+    },
+
     assignCurrentApi(key) {
       state.currentApi = state.options.find(item => item.key === key);
     },
     // 展开一个 api
     async expandApiCollapse({ controller, operationId }) {
-      if (state.isNewUi) {
-        const controllerDom = document.querySelector(`[title="${controller}"]`);
-        if (!controllerDom) return;
-        if (!controllerDom.classList.contains("open")) {
-          controllerDom.querySelector("* > a").click();
-        }
-        await this.$nextTick();
-        const apiDom = controllerDom.querySelector(
-          `[data-hashurl="#/default/${controller}/${operationId}"]`
-        );
-        apiDom?.click();
-      } else {
-        try {
-          const controllerDOM = document.querySelector(
-            `#operations-tag-${controller}`
-          );
-          if (!controllerDOM) {
-            return;
-          }
-          const controllerDOMOpen = controllerDOM.parentNode.classList.contains(
-            "is-open"
-          );
-          if (!controllerDOMOpen) {
-            controllerDOM.click();
-          }
-          await this.$nextTick();
-          const apiDOM = document.querySelector(
-            `#operations-${controller}-${operationId}`
-          );
-          if (!apiDOM) return;
-          const apiOpen = apiDOM.classList.contains("is-open");
-          if (!apiOpen) {
-            apiDOM.firstChild.click();
-          }
-        } catch {}
-      }
+      const controllerDom = this.findControllerDom({
+        isNewUi: state.isNewUi,
+        controller
+      });
+      if (!controllerDom) return false;
+      this.openControllerDom(controllerDom, state.isNewUi);
+      await this.$nextTick();
+      const apiDom = this.findApiDom({
+        isNewUi: state.isNewUi,
+        controllerDom,
+        operationId
+      });
+      if (!apiDom) return false;
+      this.clickApiDom(apiDom);
+      return { apiDom, controllerDom };
     },
     async handleSearch(key) {
       this.assignCurrentApi(key);
-      let apiDOM;
+      let apiDom;
       await retry({
         cb: async () => {
-          await this.expandApiCollapse(state.currentApi.collection);
+          const { controller, operationId } = state.currentApi.collection;
+          const res = await this.expandApiCollapse({ controller, operationId });
           await this.$nextTick();
           state.isNewUi = !window.ui;
-          apiDOM = document.querySelector(
-            state.isNewUi
-              ? // eslint-disable-next-line max-len
-                `[data-hashurl="#/default/${state.currentApi.collection.controller}/${state.currentApi.collection.operationId}"]`
-              : `#operations-${state.currentApi.collection.controller}-${state.currentApi.collection.operationId}`
-          );
-          apiDOM?.scrollIntoView({ behavior: "smooth" });
-          highlightDOM(apiDOM, "custom-highlight-anime");
+          if (res) {
+            apiDom = res.apiDom;
+            apiDom.scrollIntoView({ behavior: "smooth" });
+            highlightDOM(apiDom, "custom-highlight-anime");
+          }
         },
-        endCondition: () => apiDOM,
+        endCondition: () => apiDom,
         retryNumber: 10,
         success: () => {
           state.domLoaded = true;
