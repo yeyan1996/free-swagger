@@ -4,7 +4,7 @@
 
 import { ApiResponse, DeviceState, LightingSummary } from "./interface/index.ts";
 import { AxiosResponse } from "axios";
-import http from "../http";
+import http from "http";
 
 export const setDimmer = (
   params: { [key: string]: never },

@@ -63,6 +63,7 @@ export const addUsingPOST = params =>
 当导出语言为 js 时，默认 templateFunction 如下
 
 ```javascript
+// js template
 ({
   url,
   summary,
@@ -71,23 +72,43 @@ export const addUsingPOST = params =>
   responseType,
   deprecated,
   pathParams,
-  IParams,
+  IQueryParams,
+  IBodyParams,
   IPathParams
 }) => {
   // 处理路径参数
   // `/pet/{id}` => `/pet/${id}`
-  const parsedUrl = url.replace(/{(.*?)}/g, "${$1}");
+ const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
 
+ const onlyIQueryParams = IQueryParams && !IBodyParams
+ const onlyIBodyParams = IBodyParams && !IQueryParams
+ const multipleParams = IQueryParams && IBodyParams
+ 
   return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
-  export const ${name} = (${IParams || pathParams.length  ? "params," : ""}${
-    pathParams.length ? `{${pathParams.join(",")}}` : ""
-  }) => axios.request({
-     url: \`${parsedUrl}\`, 
+  export const ${name} = (${
+   onlyIQueryParams
+    ? "params,"
+    : onlyIBodyParams 
+    ? "params,"
+    : multipleParams
+    ? "queryParams,"
+    // no params
+    : IPathParams
+    ? "params,"
+    : ""
+  }${
+  IPathParams ? `{${pathParams.join(",")}},` : multipleParams ? "pathParams," : ""
+}${
+  multipleParams
+    ? `bodyParams: ${IBodyParams}`
+    : ""
+}) => axios.request({
+     url: \`${parsedUrl}\`,
      method: "${method}",
-     params:${`\${method === "get" ? IParams ? "params," : "{}," : "{},"}`}
-     data:${`\${method === "get" ? "{}," : IParams ? "params," : "{},"}`}
+     params:${`${ multipleParams ? "queryParams" : IQueryParams ? "params," : "{},"}`}
+     data:${`${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      ${responseType === "json" ? "" : `responseType: ${responseType}`}
  })`;
 };
@@ -97,39 +118,53 @@ export const addUsingPOST = params =>
 
 ```javascript
 ({
-  url,
-  summary,
-  method,
-  name,
-  responseType,
-  deprecated,
-  pathParams,
-  IResponse,
-  IParams,
-  IPathParams
-}) => {
-  // 处理路径参数
-  // `/pet/{id}` => `/pet/${id}`
-  const parsedUrl = url.replace(/{(.*?)}/g, "${$1}");
+   url,
+   summary,
+   method,
+   name,
+   responseType,
+   deprecated,
+   pathParams,
+   IResponse,
+   IQueryParams,
+   IBodyParams,
+   IPathParams
+ }) => {
+        // 处理路径参数
+        // `/pet/{id}` => `/pet/${id}`
+        const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
 
-  return `
+        const onlyIQueryParams = IQueryParams && !IBodyParams
+        const onlyIBodyParams = IBodyParams && !IQueryParams
+        const multipleParams = IQueryParams && IBodyParams
+
+        return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (${
-    IParams
-      ? `params: ${IParams},`
-      : IPathParams
-      ? "params:{[key:string]: never},"
-      : ""
-  }${
-    pathParams.length ? `{${pathParams.join(",")}} : ${IPathParams}` : ""
-  }) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse ||
-    "any"}>>({
-     url: \`${parsedUrl}\`, 
-     method: "${method}",  
-     params:${`\${method === "get" ? IParams ? "params," : "{}," : "{},"}`}
-     data:${`\${method === "get" ? "{}," : IParams ? "params," : "{},"}`}
+  onlyIQueryParams
+    ? `params: ${IQueryParams},`
+    : onlyIBodyParams 
+    ? `params: ${IBodyParams},`
+    : multipleParams
+    ? `params: ${IQueryParams},`
+    // no params
+    :  IPathParams
+    ? "params:{[key:string]: never},"
+    : ""
+}${
+  pathParams.length ? `{${pathParams.join(",")}}: ${IPathParams},` : multipleParams ? "pathParams:{[key:string]: never}," : ""
+}${
+  multipleParams
+    ? `bodyParams: ${IBodyParams}`
+    : ""
+}) => http.request<${IResponse || "any"},AxiosResponse<${IResponse ||
+"any"}>>({
+     url: \`${parsedUrl}\`,
+     method: "${method}",
+     params:${`${ multipleParams ? "queryParams" : IQueryParams ? "params," : "{},"}`}
+     data:${`${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      ${responseType === "json" ? "" : `responseType: ${responseType}`}
  })`;
-};
+}
 ```

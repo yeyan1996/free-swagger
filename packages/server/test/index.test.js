@@ -88,8 +88,8 @@ describe("pkg", () => {
                            IPathParams
                          }) => {
         // 处理路径参数
-        // \`/pet/{id}\` => \`/pet/\${id}\`
-        const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}');
+        // `/pet/{id}` => `/pet/${id}`
+        const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
 
         const onlyIQueryParams = IQueryParams && !IBodyParams
         const onlyIBodyParams = IBodyParams && !IQueryParams
@@ -126,7 +126,7 @@ describe("pkg", () => {
 },
       customImportCode: `
             import {AxiosResponse} from 'axios'
-            import http from '../http'
+            import http from 'http'
         `
         ,
     });

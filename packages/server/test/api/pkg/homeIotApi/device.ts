@@ -4,7 +4,7 @@
 
 import { DeviceRegistrationInfo } from "./interface/index.ts";
 import { AxiosResponse } from "axios";
-import http from "../http";
+import http from "http";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
   http.request<string[], AxiosResponse<string[]>>({

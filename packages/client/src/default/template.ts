@@ -47,7 +47,8 @@ export const jsTemplate = `
      data:${`\${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      \${responseType === "json" ? "" : \`responseType: \${responseType}\`}
  })\`;
-};`
+};
+`
 
 export const tsTemplate = `
 // ts template
@@ -100,4 +101,5 @@ export const tsTemplate = `
      data:${`\${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      \${responseType === "json" ? "" : \`responseType: \${responseType}\`}
  })\`;
-};`
+};
+`
