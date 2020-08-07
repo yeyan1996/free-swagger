@@ -3,7 +3,7 @@
 // @name  free-swagger-extends
 // @namespace  http://tampermonkey.net/
 // @description  swagger 油猴脚本扩展工具
-// @version  2.4.1
+// @version  2.4.2
 
 // @include  /swagger/
 
@@ -24,5 +24,5 @@ function createScripTag(src) {
     document.body.append(createDom("script", {src}));
 }
 
-createScripTag("https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/js/app.2dec8e36.js")
+createScripTag("https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/js/app.07f2f96b.js")
 //  createScripTag("http://localhost:8888/js/app.js") // 本地调试用
