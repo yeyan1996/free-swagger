@@ -55,7 +55,8 @@ export const addUsingPOST = params =>
 | responseType | 返回值类型                           | string   | 同 axios | -      |
 | pathParams   | 路径参数                             | string[] | -        |
 | IResponse    | 返回值接口类型                       | string   | -        | -      |
-| IParams      | 请求值接口类型                       | string   | -        | -      |
+| IQueryParams      | 请求值接口类型（请求参数）                      | string   | -        | -      |
+| IBodyParams      | 请求值接口类型（请求体）                      | string   | -        | -      |
 | IPathParams  | 路径参数接口类型                     | string   | -        | -      |
 
 # 默认模版

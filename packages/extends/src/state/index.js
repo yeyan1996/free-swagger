@@ -40,9 +40,9 @@ export const state = new Vue({
             path,
             method,
             key: `${method} ${path} ${summary}`,
-            tag: tags[0],
+            tag: tags[tags.length - 1],
             collection: {
-              controller: tags[0],
+              controller: tags[tags.length - 1],
               summary,
               description,
               operationId
