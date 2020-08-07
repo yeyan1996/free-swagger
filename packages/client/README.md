@@ -1,7 +1,5 @@
 # free-swagger-client
 
-
-
 ![Travis (.com)](https://img.shields.io/travis/com/yeyan1996/free-swagger-client)![](https://img.shields.io/npm/v/free-swagger-client)
 
 根据 swagger 文档自动生成前端接口代码片段
@@ -83,7 +81,7 @@ export const addUsingPOST = params =>
   return `
   ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
-  export const ${name} = (params,${
+  export const ${name} = (${IParams || pathParams.length  ? "params," : ""}${
     pathParams.length ? `{${pathParams.join(",")}}` : ""
   }) => axios.request({
      url: \`${parsedUrl}\`, 

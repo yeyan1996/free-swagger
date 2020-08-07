@@ -27,7 +27,8 @@ export interface TemplateConfig {
   deprecated: boolean
   pathParams: string[]
   IResponse: string
-  IParams: string
+  IQueryParams: string
+  IBodyParams: string
   IPathParams: string
 }
 export interface ParsedSchemaObject {
@@ -45,17 +46,6 @@ export type ParsedSchema =
     }
   | ParsedSchemaObject
 
-const SPECIAL_CHARACTERS_MAP: { [key: string]: string } = {
-  '«': '<',
-  '»': '>',
-  '[': '<',
-  ']': '>',
-  '{': '<',
-  '}': '>',
-  '<': '<',
-  '>': '>',
-}
-
 const SPECIAL_CHARACTERS_MAP_OPEN: { [key: string]: string } = {
   '«': '<',
   '[': '<',
@@ -69,13 +59,6 @@ const SPECIAL_CHARACTERS_MAP_CLOSE: { [key: string]: string } = {
   '}': '>',
   '>': '>',
 }
-
-const SPECIAL_CHARACTERS_MAP_REG = new RegExp(
-  `[${Object.keys(SPECIAL_CHARACTERS_MAP).join('\\')}]`,
-  'g'
-)
-const hasGeneric = (interfaceName: string) =>
-  SPECIAL_CHARACTERS_MAP_REG.test(interfaceName)
 
 // openApi 类型 => ts 类型
 const TYPE_MAP: { [key: string]: string } = {
@@ -200,10 +183,8 @@ export {
   getRef,
   isRef,
   schemaToTsType,
-  hasGeneric,
   traverseTree,
   TYPE_MAP,
-  SPECIAL_CHARACTERS_MAP,
   SPECIAL_CHARACTERS_MAP_OPEN,
   SPECIAL_CHARACTERS_MAP_CLOSE,
 }

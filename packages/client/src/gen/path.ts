@@ -32,16 +32,18 @@ const genIParams = ({
   pathParamsInterface,
   queryParamsInterface,
   bodyParamsInterface,
-  method,
-}: Api): { IPathParams: string; IParams: string } => ({
-  IParams: genParsedSchema(
-    method === 'get' ? queryParamsInterface : bodyParamsInterface
-  ),
+}: Api): {
+  IPathParams: string
+  IQueryParams: string
+  IBodyParams: string
+} => ({
+  IQueryParams: genParsedSchema(queryParamsInterface),
+  IBodyParams: genParsedSchema(bodyParamsInterface),
   IPathParams: genParsedSchema(pathParamsInterface),
 })
 
 const genPath = (api: Api, templateFunction: TemplateFunction): string => {
-  const { IPathParams, IParams } = genIParams(api)
+  const { IPathParams, IBodyParams, IQueryParams } = genIParams(api)
   return templateFunction({
     name: api.name,
     method: api.method,
@@ -51,7 +53,8 @@ const genPath = (api: Api, templateFunction: TemplateFunction): string => {
     summary: api.summary,
     IResponse: api.responseInterface.type,
     pathParams: Object.keys(api.pathParamsInterface),
-    IParams,
+    IQueryParams,
+    IBodyParams,
     IPathParams,
   })
 }

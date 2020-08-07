@@ -9,65 +9,75 @@ import {
   HeaterState,
   ApiResponse
 } from "./interface/index.ts";
-import http, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import http from "../http";
 
 export const temperatureSummary = () =>
   http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
     url: `/temperature`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
 export const getForecast = (
   params: { [key: string]: never },
-  { days } = {
-    days: number
+  {
+    days
+  }: {
+    days: number;
   }
 ) =>
   http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
     url: `/temperature/forecast/${days}`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
 export const getZoneTemperature = (
   params: { [key: string]: never },
-  { zoneId } = {
-    zoneId: string
+  {
+    zoneId
+  }: {
+    zoneId: string;
   }
 ) =>
   http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
     url: `/temperature/${zoneId}`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
 export const getHeaterState = (
   params: { [key: string]: never },
-  { zoneId } = {
-    zoneId: string
+  {
+    zoneId
+  }: {
+    zoneId: string;
   }
 ) =>
   http.request<HeaterState, AxiosResponse<HeaterState>>({
     url: `/temperature/${zoneId}/heater`,
     method: "get",
-    params: params,
+    params: {},
     data: {}
   });
 
 export const setHeaterState = (
   params: { [key: string]: never },
-  { zoneId, state } = {
-    zoneId: string,
-    state: string
+  {
+    zoneId,
+    state
+  }: {
+    zoneId: string;
+    state: string;
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
     url: `/temperature/${zoneId}/heater/${state}`,
     method: "post",
     params: {},
-    data: params
+    data: {}
   });
