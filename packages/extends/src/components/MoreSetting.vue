@@ -46,7 +46,7 @@
             模版</span
           >
           <!--代码编辑器-->
-          <div id="textarea" @input="handleInput"></div>
+          <div id="textarea"></div>
 
           <el-button size="small" @click="handleResetJs"
             >重置为默认js模版</el-button
