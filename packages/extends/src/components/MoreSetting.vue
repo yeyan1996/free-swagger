@@ -7,15 +7,36 @@
 
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item @click.native="dialog = true"
-          >编辑 snippet 模版</el-dropdown-item
+          >编辑模版</el-dropdown-item
+        >
+        <el-dropdown-item>
+          <div @click.stop>
+            <span class="js-doc-text">JS Doc</span>
+            <el-switch
+              @change="toggleJsDoc"
+              v-model="state.useJsDoc"
+              active-text="开"
+              inactive-text="关"
+            ></el-switch>
+          </div>
+        </el-dropdown-item>
+        <el-dropdown-item @click.native="handleCopyJsDoc()"
+          >复制 JS Doc（JS）</el-dropdown-item
+        >
+        <el-dropdown-item @click.native="handleCopyInterface()"
+          >复制 Interface（TS）</el-dropdown-item
         >
         <!--        <el-dropdown-item @click.native="handleCopySchema"-->
         <!--          >复制响应数据schema</el-dropdown-item-->
         <!--        >-->
-        <el-dropdown-item @click.native="openAllController"
+        <el-dropdown-item
+          @click.native="openAllController"
+          v-if="!state.isNewUi"
           >展开全部 api</el-dropdown-item
         >
-        <el-dropdown-item @click.native="closeAllController"
+        <el-dropdown-item
+          @click.native="closeAllController"
+          v-if="!state.isNewUi"
           >收起全部 api</el-dropdown-item
         >
       </el-dropdown-menu>
@@ -66,17 +87,22 @@
 
 <script>
 import { Message } from "element-ui";
-import { copyMessage } from "@/utils/dom-utils";
 import { state } from "@/state";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 import "monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution";
 import { defaults } from "lodash-es";
+import {
+  handleCopyInterface,
+  // handleCopySchema,
+  handleCopyJsDoc
+} from "../state";
 
 const SUCCESS_CODE = 200;
 export default {
   name: "MoreSetting",
   data() {
     return {
+      state,
       dialog: false,
       exportLanguage: "js",
       form: {
@@ -103,6 +129,8 @@ export default {
             if (oldVal === "") return newVal;
           }
         );
+        // todo 重构 localStorage
+        state.useJsDoc = mergedForm.useJsDoc;
         localStorage.setItem("swagger-extends", JSON.stringify(mergedForm));
 
         if (now) {
@@ -123,6 +151,8 @@ export default {
             this.handleInput(this.instance.getValue());
           });
           this.form = mergedForm;
+          this.exportLanguage =
+            localStorage.getItem("swagger-extends-lang") ?? "js";
         } else {
           this.instance?.dispose();
         }
@@ -131,6 +161,19 @@ export default {
     }
   },
   methods: {
+    // handleCopySchema,
+    handleCopyJsDoc,
+    handleCopyInterface,
+    toggleJsDoc(val) {
+      const form = JSON.parse(localStorage.getItem("swagger-extends"));
+      localStorage.setItem(
+        "swagger-extends",
+        JSON.stringify({
+          ...form,
+          useJsDoc: val ?? false
+        })
+      );
+    },
     handleInput(value) {
       if (this.exportLanguage === "js") {
         this.form.jsTemplate = value;
@@ -183,20 +226,6 @@ export default {
         "_blank"
       );
     },
-    handleCopySchema() {
-      try {
-        const path = state.currentApi.path;
-        const method = state.currentApi.method;
-        const parsedSwagger = state.parsedSwagger;
-        const { schema } = parsedSwagger.paths[path][method].responses[
-          SUCCESS_CODE
-        ];
-        copyMessage(schema);
-      } catch (e) {
-        console.log(e);
-        Message.error("复制失败，请检查选择的 api 或模版");
-      }
-    },
     handleSubmit() {
       localStorage.setItem("swagger-extends", JSON.stringify(this.form));
       Message.success("保存成功");
@@ -218,5 +247,13 @@ export default {
 }
 #textarea {
   height: 400px;
+}
+
+.js-doc-text {
+  margin-right: 10px;
+}
+
+::v-deep .el-switch__label * {
+  line-height: initial;
 }
 </style>

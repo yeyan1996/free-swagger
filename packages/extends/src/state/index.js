@@ -19,10 +19,11 @@ export const state = new Vue({
         operationId: ""
       }
     },
+    useJsDoc: false, // 是否使用 js doc
     isNewUi: false,
     domLoaded: false, // swagger 文档 dom 渲染完毕
     swagger: null,
-    parsedSwagger: null
+    parsedSwagger: null // 解析所有 ref 后的 swagger 对象
   },
   computed: {
     options() {
@@ -83,6 +84,8 @@ export const handleCopyApi = async (
 
     let template = jsTemplate;
     let lang = "js";
+    let useJsDoc = false;
+
     const isTypescript =
       localStorage.getItem("swagger-extends-lang") === "ts" || false;
     const form = localStorage.getItem("swagger-extends")
@@ -91,12 +94,15 @@ export const handleCopyApi = async (
     if (form) {
       template = isTypescript ? form.tsTemplate : form.jsTemplate;
       lang = isTypescript ? "ts" : "js";
+      useJsDoc = form.useJsDoc;
     }
+
     const codeFragment = freeSwaggerClient(
       {
         source,
-        templateFunction: eval(template),
-        lang
+        lang,
+        useJsDoc,
+        templateFunction: eval(template)
       },
       path,
       method
@@ -163,10 +169,49 @@ export const handleCopyInterface = async (
   source = state.swagger,
   interfaceName = null
 ) => {
-  const { compileInterfaces } = await import("free-swagger-client");
+  const { compileInterfaces, parseInterfaceName } = await import(
+    "free-swagger-client"
+  );
   try {
+    const hasGenerics = parseInterfaceName(interfaceName).generics.length;
+    if (hasGenerics) {
+      Message.warning(
+        "复制失败，interface 片段会丢失上下文，请选择复制 interface"
+      );
+      return;
+    }
     const code = compileInterfaces(source, interfaceName);
     copyMessage(code);
+  } catch (e) {
+    console.log(e);
+    Message.error("复制失败，请检查选择的 api");
+  }
+};
+
+export const handleCopyJsDoc = async (
+  source = state.swagger,
+  interfaceName = null
+) => {
+  const { compileJsDocs } = await import("free-swagger-client");
+  try {
+    const code = compileJsDocs(source, interfaceName);
+    copyMessage(code);
+  } catch (e) {
+    console.log(e);
+    Message.error("复制失败，请检查选择的 api");
+  }
+};
+
+export const handleCopySchema = (
+  path = state.currentApi.path,
+  method = state.currentApi.method,
+  parsedSwagger = state.parsedSwagger
+) => {
+  try {
+    const { schema } = parsedSwagger.paths[path][method].responses[
+      SUCCESS_CODE
+    ];
+    copyMessage(schema);
   } catch (e) {
     console.log(e);
     Message.error("复制失败，请检查选择的 api 或模版");

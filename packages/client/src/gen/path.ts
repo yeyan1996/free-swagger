@@ -21,7 +21,8 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
     ${Object.entries(paramsInterface)
       .map(
         ([propName, prop]) =>
-          `"${propName}"${prop.required ? '' : '?'}: ${prop.type}`
+          `
+          "${propName}"${prop.required ? '' : '?'}: ${prop.type}`
       )
       .join(',')}
       }`
@@ -42,7 +43,11 @@ const genIParams = ({
   IPathParams: genParsedSchema(pathParamsInterface),
 })
 
-const genPath = (api: Api, templateFunction: TemplateFunction): string => {
+const genPath = (
+  api: Api,
+  templateFunction: TemplateFunction,
+  useJsDoc = false
+): string => {
   const { IPathParams, IBodyParams, IQueryParams } = genIParams(api)
   return templateFunction({
     name: api.name,
@@ -50,7 +55,7 @@ const genPath = (api: Api, templateFunction: TemplateFunction): string => {
     url: api.url,
     responseType: api.responseInterface.isBinary ? 'blob' : 'json',
     deprecated: api.deprecated,
-    summary: api.summary,
+    summary: useJsDoc ? '' : api.summary,
     IResponse: api.responseInterface.type,
     pathParams: Object.keys(api.pathParamsInterface),
     IQueryParams,
@@ -59,4 +64,4 @@ const genPath = (api: Api, templateFunction: TemplateFunction): string => {
   })
 }
 
-export { genPath }
+export { genPath, isParsedSchemaObject, genIParams }

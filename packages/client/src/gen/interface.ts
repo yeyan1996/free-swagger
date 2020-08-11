@@ -1,4 +1,4 @@
-import { ParsedInterface } from '../parse/interface'
+import { ParsedInterface } from '../..'
 
 const genInterface = ({ name, props, skipGenerate }: ParsedInterface): string =>
   skipGenerate

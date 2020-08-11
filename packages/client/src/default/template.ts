@@ -1,5 +1,4 @@
-export const jsTemplate = `
-// js template
+export const jsTemplate = `// js template
 ({
   url,
   summary,
@@ -50,8 +49,7 @@ export const jsTemplate = `
 };
 `
 
-export const tsTemplate = `
-// ts template
+export const tsTemplate = `// ts template
 ({
   url,
   summary,

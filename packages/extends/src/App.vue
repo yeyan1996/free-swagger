@@ -11,9 +11,6 @@
       <el-link @click="handleCopyFake()" :underline="false"
         >复制模拟数据</el-link
       >
-      <el-link @click="handleCopyInterface(state.swagger)" :underline="false"
-        >复制Interface</el-link
-      >
       <div class="switch-container">
         <span class="text">语言：</span>
         <el-switch
@@ -42,12 +39,7 @@ import { wait } from "@/utils";
 import { state } from "@/state";
 import MoreSetting from "@/components/MoreSetting";
 import ApiOptions from "@/components/ApiOptions";
-import {
-  handleCopyApi,
-  handleCopyPath,
-  handleCopyFake,
-  handleCopyInterface
-} from "@/state";
+import { handleCopyApi, handleCopyPath, handleCopyFake } from "@/state";
 import {
   createApiIconsDom,
   createInterfaceIconDom
@@ -76,7 +68,6 @@ export default {
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
-    handleCopyInterface,
     // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件
     async controllerTagBindClickEvents() {
       await this.$nextTick();

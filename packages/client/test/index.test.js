@@ -1,7 +1,8 @@
 import freeSwaggerClient, {
   jsTemplate,
   tsTemplate,
-  compileInterfaces
+  compileInterfaces,
+  compileJsDocs
 } from "../src/main";
 
 describe("freeSwaggerClient", () => {
@@ -30,6 +31,20 @@ describe("freeSwaggerClient", () => {
     );
     expect(codeFragment).toMatchSnapshot();
   });
+
+    test("code fragment with jsdoc", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(jsTemplate),
+                lang: "js",
+                useJsDoc:true
+            },
+            "/pet/{petId}/uploadImage",
+            "post"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
   test("ts code fragment with get method", () => {
     const codeFragment = freeSwaggerClient(
@@ -83,6 +98,12 @@ describe("freeSwaggerClient", () => {
         );
         expect(codeFragment).toMatchSnapshot();
     });
+
+    test("generate full js doc", () => {
+        const codeFragment = compileJsDocs(require("./json/swaggerPetstore"));
+        expect(codeFragment).toMatchSnapshot();
+    });
+
 
   test("generate full ts interface", () => {
     const codeFragment = compileInterfaces(require("./json/swaggerPetstore"));

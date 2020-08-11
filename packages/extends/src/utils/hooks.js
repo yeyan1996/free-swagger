@@ -34,7 +34,11 @@ ah.hookAjax({
       let response = {};
       try {
         response = JSON.parse(xhr.response);
-      } catch {}
+      } catch (err) {
+        console.error(err);
+        console.error(`JSON.parse 发生错误，请检查 json 是否规范：`);
+        console.log(xhr.response);
+      }
       await assignState(response, xhr.responseURL);
     }, 500);
   }

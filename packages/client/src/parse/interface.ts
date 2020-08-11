@@ -18,12 +18,6 @@ export interface ParsedInterface {
   skipGenerate?: boolean
 }
 
-export interface ParsedInterfaceName {
-  interface: string
-  generic: string
-  hasGeneric: boolean
-}
-
 export interface InterfaceNameItem {
   name: string
   generics?: InterfaceNameItem[]
@@ -60,7 +54,8 @@ const resetInterfaceMap = () => {
   recursiveMap = {}
 }
 
-// 将 interface 解析成数组
+// 解析 interface
+// interface 名 => 树形数组
 const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
   const stack: (InterfaceNameItem | string)[] = []
   let word = ''
@@ -116,16 +111,8 @@ const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
   return { name: word }
 }
 
-// 取出 interface 中所有 interfaceName （排除泛型名）
-const flatInterfaceName = (interfaceName: string) => {
-  const interfaceNames: string[] = []
-  traverseTree(parseInterfaceName(interfaceName), (interfaceNameItem) => {
-    interfaceNames.push(interfaceNameItem.name)
-  })
-  return interfaceNames
-}
-
-// 将数组转成 interface
+// 还原 interface
+// 树形数组 => interface 名
 const reduceInterfaceName = (tree: InterfaceNameItem): string => {
   if (tree.generics) {
     return `${tree.name}<${tree.generics
@@ -134,6 +121,15 @@ const reduceInterfaceName = (tree: InterfaceNameItem): string => {
   } else {
     return tree.name
   }
+}
+
+// 取出 interface 中所有 interfaceName （排除泛型名）
+const flatInterfaceName = (interfaceName: string) => {
+  const interfaceNames: string[] = []
+  traverseTree(parseInterfaceName(interfaceName), (interfaceNameItem) => {
+    interfaceNames.push(interfaceNameItem.name)
+  })
+  return interfaceNames
 }
 
 // 格式化含有泛型的接口
@@ -249,12 +245,13 @@ const parseInterface = (
 }
 
 export {
-  parseInterface,
-  shouldSkipGenerate,
   map,
   recursiveMap,
   genericInterfaceMap,
   buildInInterfaces,
+  parseInterfaceName,
+  parseInterface,
+  shouldSkipGenerate,
   findInterface,
   resetInterfaceMap,
   flatInterfaceName,

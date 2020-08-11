@@ -12,6 +12,7 @@ export interface ConfigClient {
   source: OpenAPIV2.Document
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
+  useJsDoc?: boolean
 }
 
 export interface TemplateFunction {

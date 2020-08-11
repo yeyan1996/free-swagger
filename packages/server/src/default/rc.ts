@@ -69,7 +69,8 @@ class Rc {
             tsTemplate: tsTemplate,
             jsTemplate: jsTemplate,
             apiChoices: [],
-            chooseAll: false
+            chooseAll: false,
+            useJsDoc:false
         };
     }
 

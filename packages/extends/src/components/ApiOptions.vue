@@ -63,8 +63,10 @@ export default {
     findApiDom({ controllerDom, isNewUi, operationId }) {
       const selector = isNewUi
         ? `[data-hashurl$="${operationId}"]`
-        : `#operations-${controller}-${operationId}`;
-      return controllerDom.querySelector(selector);
+        : `[id$="${operationId}"]`;
+      return isNewUi
+        ? controllerDom.querySelector(selector)
+        : controllerDom.parentNode.querySelector(selector);
     },
     openControllerDom(controllerDom, isNewUi) {
       const isOpen = isNewUi

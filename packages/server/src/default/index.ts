@@ -31,6 +31,7 @@ const getDefaultConfig = (
   lang: 'js',
   templateFunction: eval(jsTemplate),
   chooseAll: false,
+  useJsDoc: false,
 })
 
 export const mergeDefaultConfig = async (
