@@ -45,5 +45,6 @@ export { compileInterfaces, compileJsDocs }
 export * from './default/template'
 export * from './utils'
 export * from './gen/path'
+export * from './gen/jsDoc'
 export * from './parse/path'
 export * from './parse/interface'

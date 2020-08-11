@@ -9,11 +9,13 @@ import { mergeDefaultConfig, mergeDefaultMockConfig } from './default'
 import { chooseApi } from './inquirer'
 import { pick } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
-import { compileInterfaces } from 'free-swagger-client'
+import { compileInterfaces, compileJsDocs } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
-import { genPaths, RELATIVE_PATH } from './gen/path'
+import { genPaths } from './gen/path'
 import { fetchJSON } from './request'
 import { mock } from './mock'
+import { INTERFACE_PATH } from './gen/interface'
+import { JSDOC_PATH } from './gen/jsDoc'
 
 export const spinner = ora().render()
 
@@ -36,10 +38,15 @@ const gen = async (
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === 'ts') {
-    const interfacePath = path.resolve(dirPath, RELATIVE_PATH)
+    const interfacePath = path.resolve(dirPath, INTERFACE_PATH)
     fse.ensureFileSync(interfacePath)
-    const code = compileInterfaces(config.source)
-    await fse.writeFile(interfacePath, code)
+    await fse.writeFile(interfacePath, compileInterfaces(config.source))
+  }
+
+  if (config.lang === 'js' && config.useJsDoc) {
+    const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
+    fse.ensureFileSync(jsDocPath)
+    await fse.writeFile(jsDocPath, compileJsDocs(config.source))
   }
 
   // 生成 api
@@ -122,5 +129,3 @@ freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
   )
 }
 module.exports = freeSwagger
-
-// todo server 端 jsdoc 功能

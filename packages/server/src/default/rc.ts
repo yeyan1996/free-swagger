@@ -21,7 +21,7 @@ export type MockAnswer = Required<MockConfig<string>>
 // config answer
 export interface ConfigAnswer<T = string> extends Required<Config<string>> {
   previousSource: string
-  shouldEditTemplate: 'y' | 'n'
+  shouldEditTemplate: boolean
   customImportCodeJs: string
   customImportCodeTs: string
   jsTemplate: string
@@ -61,7 +61,7 @@ class Rc {
             cookie: "",
             root: path.resolve(process.cwd(), "src/api"),
             lang: "js",
-            shouldEditTemplate: "n",
+            shouldEditTemplate:false,
             customImportCode: "",
             customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
             customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
@@ -94,6 +94,7 @@ class Rc {
             templateFunction: eval(
                 this.configData.lang === "ts" ? this.configData.tsTemplate : this.configData.jsTemplate
             ),
+            useJsDoc:this.configData.useJsDoc,
             chooseAll: this.configData.chooseAll
         };
     }

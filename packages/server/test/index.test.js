@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
-import inquirer from "inquirer";
+// import inquirer from "inquirer";
 import freeSwagger from "../src/main";
-import { init } from "../src/bin/init";
+// import { init } from "../src/bin/init";
 import { rc } from "../src/default/rc";
 
 const wait = time =>
@@ -28,6 +28,11 @@ const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
     expect(file).toMatchSnapshot();
         return
     }
+    if(filename === 'typedef'){
+      const file = fs.readFileSync(path.resolve(dirPath, filename,'index.js'), "utf-8");
+      expect(file).toMatchSnapshot();
+      return
+    }
     const file = fs.readFileSync(path.resolve(dirPath, filename), "utf-8");
     expect(file).toMatchSnapshot();
   });
@@ -47,6 +52,18 @@ describe("pkg", () => {
       root: dirPath,
     });
     await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
+  });
+
+  test("jsdoc", async () => {
+    const dirname = "swaggerPetstore";
+    const dirPath = path.resolve(__dirname, "api", "pkg", dirname + "1");
+    await freeSwagger({
+      source: require(`./json/${dirname}`),
+      root: dirPath,
+      useJsDoc:true
+    });
+    await assertFiles(dirPath, ["pet.js", "store.js","typedef", "user.js",
+    ]);
   });
 
   test("ts language", async () => {

@@ -22,5 +22,6 @@ export { compileInterfaces, compileJsDocs }
 export * from './src/default/template'
 export * from './src/utils'
 export * from './src/gen/path'
+export * from './src/gen/jsDoc'
 export * from './src/parse/path'
 export * from './src/parse/interface'

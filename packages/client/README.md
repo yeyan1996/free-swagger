@@ -4,8 +4,6 @@
 
 根据 swagger 文档自动生成前端接口代码片段
 
-`目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
-
 # 快速上手
 
 ```javascript
@@ -42,7 +40,7 @@ export const addUsingPOST = params =>
 | source           | 必选，swagger 源          | json                     | -           | -                                    |
 | lang             | 可选，生成 api 语言       | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数            | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
-| useJsDoc         | 可选，是否添加 jsdoc 注释 | Boolean                  |             | False                                |
+| useJsDoc         | 可选，是否添加 jsdoc 注释 | boolean                  |             | false                                |
 
 - TemplateConfig
 
@@ -132,13 +130,13 @@ export const addUsingPOST = params =>
    IBodyParams,
    IPathParams
  }) => {
-        // 处理路径参数
-        // `/pet/{id}` => `/pet/${id}`
-        const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
+ // 处理路径参数
+ // `/pet/{id}` => `/pet/${id}`
+ const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
 
-        const onlyIQueryParams = IQueryParams && !IBodyParams
-        const onlyIBodyParams = IBodyParams && !IQueryParams
-        const multipleParams = IQueryParams && IBodyParams
+ const onlyIQueryParams = IQueryParams && !IBodyParams
+ const onlyIBodyParams = IBodyParams && !IQueryParams
+ const multipleParams = IQueryParams && IBodyParams
 
         return `
   ${deprecated ? `/**deprecated*/` : ""}

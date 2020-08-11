@@ -4,8 +4,6 @@
 
 free-swagger 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)，根据 swagger 文档全量生成前端接口代码并写入至项目文件
 
-`目前仅支持 OpenApi2 规范的 swagger 文档，3.0 版本请先转为 2.0`
-
 # 快速上手
 
 ### npx(推荐)
@@ -103,6 +101,7 @@ freeSwagger({
 | lang             | 可选，生成 api 语言                             | string                   | "js" / "ts" | "js"                                           |
 | templateFunction | 可选，模版函数                                  | Function(TemplateConfig) | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
 | chooseAll        | 可选，是否跳过选择 api 的步骤                   | boolean                  | -           | false                                          |
+| useJsDoc         | 可选，是否添加 jsdoc 注释                       | boolean                  |             | false                                          |
 
 **TemplateConfig**
 

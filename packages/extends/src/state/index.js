@@ -167,13 +167,15 @@ export const handleCopyFake = async (
 
 export const handleCopyInterface = async (
   source = state.swagger,
-  interfaceName = null
+  interfaceName
 ) => {
   const { compileInterfaces, parseInterfaceName } = await import(
     "free-swagger-client"
   );
   try {
-    const hasGenerics = parseInterfaceName(interfaceName).generics.length;
+    const hasGenerics =
+      interfaceName && parseInterfaceName(interfaceName).generics.length;
+
     if (hasGenerics) {
       Message.warning(
         "复制失败，interface 片段会丢失上下文，请选择复制 interface"
@@ -190,7 +192,7 @@ export const handleCopyInterface = async (
 
 export const handleCopyJsDoc = async (
   source = state.swagger,
-  interfaceName = null
+  interfaceName
 ) => {
   const { compileJsDocs } = await import("free-swagger-client");
   try {

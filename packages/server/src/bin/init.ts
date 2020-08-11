@@ -74,17 +74,24 @@ export function init(cb?: Function): void {
           choices: ['ts', 'js'],
         },
         {
+          name: 'useJsDoc',
+          type: 'confirm',
+          message: '是否使用 jsDoc',
+          default: false,
+          when: ({ lang }) => lang === 'js',
+        },
+        {
           name: 'shouldEditTemplate',
-          type: 'list',
-          default: 'n',
-          choices: ['y', 'n'],
+          type: 'confirm',
+          default: false,
           message: '是否需要编辑模版',
         },
         {
           name: 'templateFunction',
           type: 'editor',
           message: '输入模版函数',
-          when: ({ shouldEditTemplate }): boolean => shouldEditTemplate === 'y',
+          when: ({ shouldEditTemplate }): boolean =>
+            shouldEditTemplate === 'n' ? false : shouldEditTemplate,
           validate: (input, answer): boolean => {
             if (!answer) return false
             rc.merge(

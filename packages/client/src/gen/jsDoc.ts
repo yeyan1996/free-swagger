@@ -9,19 +9,19 @@ const genJsDocTypeDef = ({
 }: ParsedInterface): string => {
   return skipGenerate
     ? ''
-    : ` 
-    /**
-     * @typedef {
-     * {
+    : `
+/**
+ * @typedef {
+  * {
 ${Object.entries(props)
   .map(
     ([propName, prop]) => `        * ${propName}: ${prop.type}
 `
   )
   .join('')}     * }
-     * } ${name}
-     **/
- `
+  * } ${name}
+**/
+`
 }
 
 const genJsDocSchema = (paramsInterface?: ParsedSchema): string => {
@@ -117,8 +117,7 @@ ${pathCode}
       : hasPathParams
       ? `
  * @param {Object} params -never
-${pathCode}
-  `
+${pathCode}`
       : ''
   }
  **/`
