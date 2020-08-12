@@ -1,5 +1,4 @@
 import { Message } from "element-ui";
-import { state } from "@/state";
 import ah from "ajax-hook";
 import SwaggerParser from "@/libs/json-schema-ref-parser/lib/index";
 import { cloneDeep } from "lodash-es";
@@ -8,6 +7,7 @@ import youngParse from "../libs/youngParse";
 let ok = false;
 
 const assignState = async (swagger, url) => {
+  const { state } = await import("@/state");
   try {
     if (!swagger.swagger) return;
     ok = true;
