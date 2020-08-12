@@ -119,8 +119,7 @@ ${pathCode}
  * @param {Object} params -never
 ${pathCode}`
       : ''
-  }
- **/`
+  } **/`
 }
 
 export { genJsDocTypeDef, genJsDoc }

@@ -3,6 +3,7 @@ import { state } from "@/state";
 import ah from "ajax-hook";
 import SwaggerParser from "@/libs/json-schema-ref-parser/lib/index";
 import { cloneDeep } from "lodash-es";
+import youngParse from "../libs/youngParse";
 
 let ok = false;
 
@@ -33,7 +34,8 @@ ah.hookAjax({
     setTimeout(async () => {
       let response = {};
       try {
-        response = JSON.parse(xhr.response);
+        if (typeof xhr.response !== "string") return;
+        response = youngParse(xhr.response);
       } catch (err) {
         console.error(err);
         console.error(`JSON.parse 发生错误，请检查 json 是否规范：`);
@@ -51,29 +53,26 @@ window.fetch = new Proxy(fetch, {
     const response = Reflect.apply(...args);
     response.then(async res => {
       if (res.ok) {
+        const apply = (target, response, args) => {
+          const promise = Reflect.apply(target, response, args);
+          promise.then(async data => {
+            try {
+              if (typeof data !== "string") return;
+              const parsedData = youngParse(data);
+              await assignState(parsedData, response.url);
+            } catch (err) {
+              console.error(err);
+              console.error(`JSON.parse 发生错误，请检查 json 是否规范：`);
+              console.log(data);
+            }
+          });
+          return promise;
+        };
         res.json = new Proxy(res.json, {
-          apply(target, response, args) {
-            const promise = Reflect.apply(target, response, args);
-            promise.then(async data => {
-              try {
-                const parsedData = JSON.parse(data);
-                await assignState(parsedData, response.url);
-              } catch {}
-            });
-            return promise;
-          }
+          apply
         });
         res.text = new Proxy(res.text, {
-          apply(target, response, args) {
-            const promise = Reflect.apply(target, response, args);
-            promise.then(async data => {
-              try {
-                const parsedData = JSON.parse(data);
-                await assignState(parsedData, response.url);
-              } catch {}
-            });
-            return promise;
-          }
+          apply
         });
       }
     });

@@ -1,17 +1,18 @@
 import Vue from "vue";
-import App from "./App.vue";
 import { start, injectCdn, onload } from "@/utils/monkey-starter";
 import "@/style/index.scss";
 import "@/icons";
-import "@/utils/hooks";
 import "./plugins/element.js";
 
 const selectorId = "extends-app";
 
-start(selectorId, [injectCdn, onload]).then(() => {
+start(selectorId, [injectCdn, onload]).then(async () => {
+  // 等待 prettier 加载完毕再加载组件
+  const App = await import("./App.vue");
+  await import("@/utils/hooks");
   Vue.config.productionTip = false;
   new Vue({
-    render: h => h(App)
+    render: h => h(App.default)
   }).$mount(`#${selectorId}`);
 });
 

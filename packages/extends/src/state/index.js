@@ -1,29 +1,44 @@
 import Vue from "vue";
 import { Message } from "element-ui";
 import { copyMessage } from "@/utils/dom-utils";
+import { defaults } from "lodash-es";
+import {
+  default as freeSwaggerClient,
+  jsTemplate,
+  tsTemplate,
+  compileInterfaces,
+  parseInterfaceName,
+  compileJsDocs
+} from "free-swagger-client";
 
+const STORAGE_KEY = "SWAGGER-EXTENDS";
 export const state = new Vue({
-  data: {
-    isTypescript: localStorage.getItem("swagger-extends-lang")
-      ? localStorage.getItem("swagger-extends-lang") === "ts"
-      : false,
-    url: "",
-    dialog: false,
-    key: "",
-    currentApi: {
+  data() {
+    return {
+      url: "",
+      dialog: false,
       key: "",
-      path: "",
-      method: "",
-      collection: {
-        controller: {},
-        operationId: ""
-      }
-    },
-    useJsDoc: false, // 是否使用 js doc
-    isNewUi: false,
-    domLoaded: false, // swagger 文档 dom 渲染完毕
-    swagger: null,
-    parsedSwagger: null // 解析所有 ref 后的 swagger 对象
+      currentApi: {
+        key: "",
+        path: "",
+        method: "",
+        collection: {
+          controller: {},
+          operationId: ""
+        }
+      },
+      storage: {
+        jsTemplate,
+        tsTemplate,
+        useJsDoc: false, // 是否使用 js doc
+        exportLanguage: "js",
+        currentLanguage: "js"
+      },
+      isNewUi: false,
+      domLoaded: false, // swagger 文档 dom 渲染完毕
+      swagger: null,
+      parsedSwagger: null // 解析所有 ref 后的 swagger 对象
+    };
   },
   computed: {
     options() {
@@ -65,6 +80,23 @@ export const state = new Vue({
       });
       return sortOptions;
     }
+  },
+  watch: {
+    storage: {
+      handler(newVal) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal));
+      },
+      deep: true
+    }
+  },
+  created() {
+    const storage = localStorage.getItem(STORAGE_KEY)
+      ? JSON.parse(localStorage.getItem(STORAGE_KEY))
+      : {};
+
+    this.storage = defaults(storage, this.storage, (oldVal, newVal) => {
+      if (oldVal === "") return newVal;
+    });
   }
 });
 
@@ -73,36 +105,21 @@ export const handleCopyApi = async (
   method = state.currentApi.method,
   source = state.swagger
 ) => {
-  const { jsTemplate, default: freeSwaggerClient } = await import(
-    "free-swagger-client"
-  );
-
   try {
     if (!path) {
       throw new Error();
     }
-
-    let template = jsTemplate;
-    let lang = "js";
-    let useJsDoc = false;
-
-    const isTypescript =
-      localStorage.getItem("swagger-extends-lang") === "ts" || false;
-    const form = localStorage.getItem("swagger-extends")
-      ? JSON.parse(localStorage.getItem("swagger-extends"))
-      : null;
-    if (form) {
-      template = isTypescript ? form.tsTemplate : form.jsTemplate;
-      lang = isTypescript ? "ts" : "js";
-      useJsDoc = form.useJsDoc;
-    }
-
+    const storage = state.storage;
     const codeFragment = freeSwaggerClient(
       {
         source,
-        lang,
-        useJsDoc,
-        templateFunction: eval(template)
+        lang: storage.currentLanguage,
+        useJsDoc: storage.useJsDoc,
+        templateFunction: eval(
+          storage.currentLanguage === "js"
+            ? storage.jsTemplate
+            : storage.tsTemplate
+        )
       },
       path,
       method
@@ -169,9 +186,6 @@ export const handleCopyInterface = async (
   source = state.swagger,
   interfaceName
 ) => {
-  const { compileInterfaces, parseInterfaceName } = await import(
-    "free-swagger-client"
-  );
   try {
     const hasGenerics =
       interfaceName && parseInterfaceName(interfaceName).generics.length;
@@ -194,7 +208,6 @@ export const handleCopyJsDoc = async (
   source = state.swagger,
   interfaceName
 ) => {
-  const { compileJsDocs } = await import("free-swagger-client");
   try {
     const code = compileJsDocs(source, interfaceName);
     copyMessage(code);

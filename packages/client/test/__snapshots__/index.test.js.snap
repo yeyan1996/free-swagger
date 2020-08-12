@@ -17,8 +17,7 @@ exports[`freeSwaggerClient code fragment with jsdoc 1`] = `
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
- **/
+ * @param {number} pathParams.petId -ID of pet to update **/
 
 export const uploadFile = (params, { petId }) =>
   axios.request({

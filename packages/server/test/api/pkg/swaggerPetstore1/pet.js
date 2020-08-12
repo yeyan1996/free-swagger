@@ -6,8 +6,7 @@ import axios from "axios";
  * @description Find pet by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return
- **/
+ * @param {number} pathParams.petId -ID of pet to return **/
 
 // Find pet by ID
 export const getPetById = (params, { petId }) =>
@@ -21,8 +20,7 @@ export const getPetById = (params, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated
- **/
+ * @param {number} pathParams.petId -ID of pet that needs to be updated **/
 
 // Updates a pet in the store with form data
 export const updatePetWithForm = (params, { petId }) =>
@@ -36,8 +34,7 @@ export const updatePetWithForm = (params, { petId }) =>
  * @description Deletes a pet
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete
- **/
+ * @param {number} pathParams.petId -Pet id to delete **/
 
 // Deletes a pet
 export const deletePet = (params, { petId }) =>
@@ -51,8 +48,7 @@ export const deletePet = (params, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
- **/
+ * @param {number} pathParams.petId -ID of pet to update **/
 
 // uploads an image
 export const uploadFile = (params, { petId }) =>
@@ -63,9 +59,8 @@ export const uploadFile = (params, { petId }) =>
     data: params
   });
 /**
- * @description Update an existing pet  
+ * @description Update an existing pet
  * @param {Pet} params -Pet object that needs to be added to the store
-
  **/
 
 // Update an existing pet
@@ -77,9 +72,8 @@ export const updatePet = (params) =>
     data: params
   });
 /**
- * @description Add a new pet to the store  
+ * @description Add a new pet to the store
  * @param {Pet} params -Pet object that needs to be added to the store
-
  **/
 
 // Add a new pet to the store
@@ -95,7 +89,6 @@ export const addPet = (params) =>
  * @param {{
     "status": "available" | "pending" | "sold"
 }} params 
-
  **/
 
 // Finds Pets by status
@@ -111,7 +104,6 @@ export const findPetsByStatus = (params) =>
  * @param {{
     "tags": string
 }} params 
-
  **/
 /**deprecated*/
 // Finds Pets by tags

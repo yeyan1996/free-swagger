@@ -13,8 +13,7 @@
           <div @click.stop>
             <span class="js-doc-text">JS Doc</span>
             <el-switch
-              @change="toggleJsDoc"
-              v-model="state.useJsDoc"
+              v-model="state.storage.useJsDoc"
               active-text="开"
               inactive-text="关"
             ></el-switch>
@@ -51,7 +50,10 @@
     >
       <el-form :model="form" label-width="80px">
         <el-form-item label="模版语言">
-          <el-select v-model="exportLanguage" @change="handleLangChange">
+          <el-select
+            v-model="state.storage.exportLanguage"
+            @change="handleLangChange"
+          >
             <el-option label="javascript" value="js"></el-option>
             <el-option label="typescript" value="ts"></el-option>
           </el-select>
@@ -69,10 +71,16 @@
           <!--代码编辑器-->
           <div id="textarea"></div>
 
-          <el-button size="small" @click="handleResetJs"
+          <el-button
+            size="small"
+            @click="handleResetJs"
+            :disabled="state.storage.exportLanguage !== 'js'"
             >重置为默认js模版</el-button
           >
-          <el-button size="small" @click="handleResetTs"
+          <el-button
+            size="small"
+            @click="handleResetTs"
+            :disabled="state.storage.exportLanguage !== 'ts'"
             >重置为默认ts模版</el-button
           >
         </el-form-item>
@@ -90,12 +98,12 @@ import { Message } from "element-ui";
 import { state } from "@/state";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 import "monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution";
-import { defaults } from "lodash-es";
 import {
-  handleCopyInterface,
   // handleCopySchema,
+  handleCopyInterface,
   handleCopyJsDoc
 } from "../state";
+import { jsTemplate, tsTemplate } from "free-swagger-client";
 
 const SUCCESS_CODE = 200;
 export default {
@@ -104,44 +112,25 @@ export default {
     return {
       state,
       dialog: false,
-      exportLanguage: "js",
+      instance: null,
       form: {
         jsTemplate: "",
         tsTemplate: ""
-      },
-      instance: null
+      }
     };
   },
   watch: {
     dialog: {
       async handler(now) {
-        const { jsTemplate, tsTemplate } = await import("free-swagger-client");
-        const form = localStorage.getItem("swagger-extends")
-          ? JSON.parse(localStorage.getItem("swagger-extends"))
-          : {};
-        const mergedForm = defaults(
-          form,
-          {
-            jsTemplate,
-            tsTemplate
-          },
-          (oldVal, newVal) => {
-            if (oldVal === "") return newVal;
-          }
-        );
-        // todo 重构 localStorage
-        state.useJsDoc = mergedForm.useJsDoc;
-        localStorage.setItem("swagger-extends", JSON.stringify(mergedForm));
-
         if (now) {
           await this.$nextTick();
           this.instance = monaco.editor.create(
             document.querySelector("#textarea"),
             {
               value:
-                this.exportLanguage === "js"
-                  ? mergedForm.jsTemplate
-                  : mergedForm.tsTemplate,
+                state.storage.exportLanguage === "js"
+                  ? state.storage.jsTemplate
+                  : state.storage.tsTemplate,
               theme: "vs-dark",
               language: "javascript",
               automaticLayout: true
@@ -150,9 +139,8 @@ export default {
           this.instance.onDidChangeModelContent(() => {
             this.handleInput(this.instance.getValue());
           });
-          this.form = mergedForm;
-          this.exportLanguage =
-            localStorage.getItem("swagger-extends-lang") ?? "js";
+          this.form.jsTemplate = state.storage.jsTemplate;
+          this.form.tsTemplate = state.storage.tsTemplate;
         } else {
           this.instance?.dispose();
         }
@@ -164,29 +152,18 @@ export default {
     // handleCopySchema,
     handleCopyJsDoc,
     handleCopyInterface,
-    toggleJsDoc(val) {
-      const form = JSON.parse(localStorage.getItem("swagger-extends"));
-      localStorage.setItem(
-        "swagger-extends",
-        JSON.stringify({
-          ...form,
-          useJsDoc: val ?? false
-        })
-      );
-    },
     handleInput(value) {
-      if (this.exportLanguage === "js") {
+      if (state.storage.exportLanguage === "js") {
         this.form.jsTemplate = value;
       } else {
         this.form.tsTemplate = value;
       }
     },
     handleLangChange(exportLanguage) {
-      const form = JSON.parse(localStorage.getItem("swagger-extends"));
       if (exportLanguage === "js") {
-        this.form.jsTemplate = form.jsTemplate;
+        this.form.jsTemplate = state.storage.jsTemplate;
       } else {
-        this.form.tsTemplate = form.tsTemplate;
+        this.form.tsTemplate = state.storage.tsTemplate;
       }
       this.instance?.setValue(
         exportLanguage === "js" ? this.form.jsTemplate : this.form.tsTemplate
@@ -211,12 +188,10 @@ export default {
       blockList.forEach(block => block.firstChild.click());
     },
     async handleResetJs() {
-      const { jsTemplate } = await import("free-swagger-client");
       this.form.jsTemplate = jsTemplate;
       this.instance?.setValue(jsTemplate);
     },
     async handleResetTs() {
-      const { tsTemplate } = await import("free-swagger-client");
       this.form.tsTemplate = tsTemplate;
       this.instance?.setValue(tsTemplate);
     },
@@ -227,7 +202,8 @@ export default {
       );
     },
     handleSubmit() {
-      localStorage.setItem("swagger-extends", JSON.stringify(this.form));
+      state.storage.jsTemplate = this.form.jsTemplate;
+      state.storage.tsTemplate = this.form.tsTemplate;
       Message.success("保存成功");
       this.dialog = false;
     }

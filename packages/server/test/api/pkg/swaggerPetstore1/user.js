@@ -6,8 +6,7 @@ import axios from "axios";
  * @description Get user by user name
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
- **/
+ * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.  **/
 
 // Get user by user name
 export const getUserByName = (params, { username }) =>
@@ -21,8 +20,7 @@ export const getUserByName = (params, { username }) =>
  * @description Updated user
  * @param {User} params -Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated
- **/
+ * @param {string} pathParams.username -name that need to be updated **/
 
 // Updated user
 export const updateUser = (params, { username }) =>
@@ -36,8 +34,7 @@ export const updateUser = (params, { username }) =>
  * @description Delete user
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted
- **/
+ * @param {string} pathParams.username -The name that needs to be deleted **/
 
 // Delete user
 export const deleteUser = (params, { username }) =>
@@ -53,7 +50,6 @@ export const deleteUser = (params, { username }) =>
     "username": string
     "password": string
 }} params 
-
  **/
 
 // Logs user into the system
@@ -65,8 +61,7 @@ export const loginUser = (params) =>
     data: {}
   });
 /**
- * @description Logs out current logged in user session
- **/
+ * @description Logs out current logged in user session  **/
 
 // Logs out current logged in user session
 export const logoutUser = () =>
@@ -77,9 +72,8 @@ export const logoutUser = () =>
     data: {}
   });
 /**
- * @description Create user  
+ * @description Create user
  * @param {User} params -Created user object
-
  **/
 
 // Create user
@@ -91,9 +85,8 @@ export const createUser = (params) =>
     data: params
   });
 /**
- * @description Creates list of users with given input array  
+ * @description Creates list of users with given input array
  * @param {User[]} params -List of user object
-
  **/
 
 // Creates list of users with given input array
@@ -105,9 +98,8 @@ export const createUsersWithArrayInput = (params) =>
     data: params
   });
 /**
- * @description Creates list of users with given input array  
+ * @description Creates list of users with given input array
  * @param {User[]} params -List of user object
-
  **/
 
 // Creates list of users with given input array

@@ -3,8 +3,7 @@
 
 import axios from "axios";
 /**
- * @description Returns pet inventories by status
- **/
+ * @description Returns pet inventories by status  **/
 
 // Returns pet inventories by status
 export const getInventory = () =>
@@ -18,8 +17,7 @@ export const getInventory = () =>
  * @description Find purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched
- **/
+ * @param {number} pathParams.orderId -ID of pet that needs to be fetched **/
 
 // Find purchase order by ID
 export const getOrderById = (params, { orderId }) =>
@@ -33,8 +31,7 @@ export const getOrderById = (params, { orderId }) =>
  * @description Delete purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted
- **/
+ * @param {number} pathParams.orderId -ID of the order that needs to be deleted **/
 
 // Delete purchase order by ID
 export const deleteOrder = (params, { orderId }) =>
@@ -45,9 +42,8 @@ export const deleteOrder = (params, { orderId }) =>
     data: {}
   });
 /**
- * @description Place an order for a pet  
+ * @description Place an order for a pet
  * @param {Order} params -order placed for purchasing the pet
-
  **/
 
 // Place an order for a pet

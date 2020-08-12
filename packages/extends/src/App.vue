@@ -14,8 +14,9 @@
       <div class="switch-container">
         <span class="text">语言：</span>
         <el-switch
-          @change="handleLangChange"
-          v-model="state.isTypescript"
+          v-model="state.storage.currentLanguage"
+          active-value="ts"
+          inactive-value="js"
           active-color="#409eff"
           inactive-color="#ecac0f"
           active-text="TS"
@@ -146,9 +147,6 @@ export default {
         const interfaceNode = createInterfaceIconDom(node.innerText);
         node.appendChild(interfaceNode);
       });
-    },
-    handleLangChange(isTypeScript) {
-      localStorage.setItem("swagger-extends-lang", isTypeScript ? "ts" : "js");
     }
   }
 };
