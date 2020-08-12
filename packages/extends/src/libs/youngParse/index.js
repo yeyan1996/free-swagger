@@ -7,9 +7,12 @@ export default (string)=> {
         return resObj
     } catch {
         string = 'globalObj.$JSON = ' + string
-        eval(string)
-        return globalObj.$JSON
+        try {
+            eval(string)
+            return globalObj.$JSON
+        } catch  {
+            return {}
+        }
     }
-    throw new Error('Your JSON FORMAT IS TOO STRANGER')
 }
 
