@@ -1,6 +1,6 @@
 {
 	"name": "free-swagger",
-	"version": "2.5.2",
+	"version": "2.5.3",
 	"description": "openApi(swagger) Document Generator",
 	"main": "dist/main.js",
 	"types": "index.d.ts",
@@ -35,7 +35,7 @@
 		"camelcase": "^5.3.1",
 		"chalk": "^3.0.0",
 		"commander": "^4.1.0",
-		"free-swagger-client": "^2.5.2",
+		"free-swagger-client": "^2.5.3",
 		"fs-extra": "^8.1.0",
 		"inquirer": "^7.0.1",
 		"js-yaml": "^3.13.1",
