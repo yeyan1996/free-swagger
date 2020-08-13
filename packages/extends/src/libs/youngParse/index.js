@@ -1,18 +1,19 @@
 // format 不规范的 json
-export default (string)=> {
-    let globalObj = {}
-    let resObj
+export default (string)=>{
+    if (typeof string !== 'string') {
+        console.error('请传入string')
+        return {}
+    }
+    let scopedData = {}
     try {
-        resObj = JSON.parse(string)
-        return resObj
+        return JSON.parse(string)
     } catch {
-        string = 'globalObj.$JSON = ' + string
+        string = `scopedData.$JSON = ${string}`
         try {
             eval(string)
-            return globalObj.$JSON
-        } catch  {
+        } catch {
             return {}
         }
+        return scopedData.$JSON
     }
 }
-

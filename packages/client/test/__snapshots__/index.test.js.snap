@@ -17,7 +17,8 @@ exports[`freeSwaggerClient code fragment with jsdoc 1`] = `
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update **/
+ * @param {number} pathParams.petId -ID of pet to update
+ **/
 
 export const uploadFile = (params, { petId }) =>
   axios.request({
@@ -46,66 +47,66 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
     
 /**
  * @typedef {
-  * {
-        * id: number
-        * name: string
-     * }
-  * } Category
+ *   {
+ *     id: number
+ *     name: string
+ *   }
+ * } Category
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * category: Category
-        * name: string
-        * photoUrls: string[]
-        * tags: Tag[]
-        * status: \\"available\\" | \\"pending\\" | \\"sold\\"
-     * }
-  * } Pet
+ *   {
+ *     id: number
+ *     category: Category
+ *     name: string
+ *     photoUrls: string[]
+ *     tags: Tag[]
+ *     status: \\"available\\" | \\"pending\\" | \\"sold\\"
+ *   }
+ * } Pet
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * name: string
-     * }
-  * } Tag
+ *   {
+ *     id: number
+ *     name: string
+ *   }
+ * } Tag
 **/
 
 /**
  * @typedef {
-  * {
-        * code: number
-        * type: string
-        * message: string
-     * }
-  * } ApiResponse
+ *   {
+ *     code: number
+ *     type: string
+ *     message: string
+ *   }
+ * } ApiResponse
 **/
 
 /**
  * @typedef {
-  * {
-        * status: \\"[\\"FORM_INSERT_AFTER\\"\\" | \\"\\"FORM_UPDATE_AFTER\\"]\\"
-     * }
-  * } Order
+ *   {
+ *     status: \\"[\\"FORM_INSERT_AFTER\\"\\" | \\"\\"FORM_UPDATE_AFTER\\"]\\"
+ *   }
+ * } Order
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * username: string
-        * firstName: string
-        * lastName: string
-        * email: string
-        * password: string
-        * phone: string
-        * userStatus: number
-     * }
-  * } User
+ *   {
+ *     id: number
+ *     username: string
+ *     firstName: string
+ *     lastName: string
+ *     email: string
+ *     password: string
+ *     phone: string
+ *     userStatus: number
+ *   }
+ * } User
 **/
 "
 `;

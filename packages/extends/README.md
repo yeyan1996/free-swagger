@@ -22,6 +22,10 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ![](./docs/复制代码片段.gif)
 
+## 生成 jsdoc
+
+![](./docs/生成jsDoc.gif)
+
 ## 生成 typescript interface 
 
 ![](./docs/生成interface.gif)

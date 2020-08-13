@@ -33,6 +33,7 @@ ah.hookAjax({
   open(_, xhr) {
     setTimeout(async () => {
       let response = {};
+      console.log("xhr", xhr);
       try {
         if (typeof xhr.response !== "string") return;
         response = youngParse(xhr.response);

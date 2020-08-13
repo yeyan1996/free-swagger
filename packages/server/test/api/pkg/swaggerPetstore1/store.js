@@ -17,7 +17,8 @@ export const getInventory = () =>
  * @description Find purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched **/
+ * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ **/
 
 // Find purchase order by ID
 export const getOrderById = (params, { orderId }) =>
@@ -31,7 +32,8 @@ export const getOrderById = (params, { orderId }) =>
  * @description Delete purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted **/
+ * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ **/
 
 // Delete purchase order by ID
 export const deleteOrder = (params, { orderId }) =>

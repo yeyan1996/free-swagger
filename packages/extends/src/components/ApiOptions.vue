@@ -11,6 +11,7 @@
       v-for="(item, index) in state.options"
       :key="index"
       :value="item.key"
+      @change="handleCopyApi()"
     >
       <div class="option-container">
         <div
@@ -37,7 +38,7 @@
 </template>
 
 <script>
-import { state } from "@/state";
+import { state, handleCopyApi } from "@/state";
 import { highlightDOM } from "@/utils/dom-utils";
 import { retry } from "@/utils";
 
@@ -54,6 +55,7 @@ export default {
     }
   },
   methods: {
+    handleCopyApi,
     findControllerDom({ isNewUi, controller }) {
       const selector = isNewUi
         ? `[title="${controller}"]`
@@ -110,6 +112,7 @@ export default {
     },
     async handleSearch(key) {
       this.assignCurrentApi(key);
+      handleCopyApi();
       let apiDom;
       await retry({
         cb: async () => {

@@ -10,6 +10,7 @@ import {
   parseInterfaceName,
   compileJsDocs
 } from "free-swagger-client";
+import { option, generate } from "json-schema-faker";
 
 const STORAGE_KEY = "SWAGGER-EXTENDS";
 export const state = new Vue({
@@ -100,7 +101,7 @@ export const state = new Vue({
   }
 });
 
-export const handleCopyApi = async (
+export const handleCopyApi = (
   path = state.currentApi.path,
   method = state.currentApi.method,
   source = state.swagger
@@ -131,7 +132,7 @@ export const handleCopyApi = async (
   }
 };
 
-export const handleCopyPath = async (
+export const handleCopyPath = (
   path = state.currentApi.path,
   method = state.currentApi.method
 ) => {
@@ -145,13 +146,12 @@ export const handleCopyPath = async (
   }
 };
 
-export const handleCopyFake = async (
+export const handleCopyFake = (
   path = state.currentApi.path,
   method = state.currentApi.method,
   parsedSwagger = state.parsedSwagger
 ) => {
   const SUCCESS_CODE = "200";
-  const { option, generate } = await import("json-schema-faker");
   option({
     useExamplesValue: true,
     useDefaultValue: true,
@@ -182,10 +182,7 @@ export const handleCopyFake = async (
   }
 };
 
-export const handleCopyInterface = async (
-  source = state.swagger,
-  interfaceName
-) => {
+export const handleCopyInterface = (source = state.swagger, interfaceName) => {
   try {
     const hasGenerics =
       interfaceName && parseInterfaceName(interfaceName).generics.length;
@@ -204,10 +201,7 @@ export const handleCopyInterface = async (
   }
 };
 
-export const handleCopyJsDoc = async (
-  source = state.swagger,
-  interfaceName
-) => {
+export const handleCopyJsDoc = (source = state.swagger, interfaceName) => {
   try {
     const code = compileJsDocs(source, interfaceName);
     copyMessage(code);

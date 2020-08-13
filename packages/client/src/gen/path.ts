@@ -54,7 +54,7 @@ const genPath = (
     method: api.method,
     url: api.url,
     responseType: api.responseInterface.isBinary ? 'blob' : 'json',
-    deprecated: api.deprecated,
+    deprecated: useJsDoc ? false : api.deprecated,
     summary: useJsDoc ? '' : api.summary,
     IResponse: api.responseInterface.type,
     pathParams: Object.keys(api.pathParamsInterface),

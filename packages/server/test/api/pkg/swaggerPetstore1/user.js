@@ -6,7 +6,8 @@ import axios from "axios";
  * @description Get user by user name
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.  **/
+ * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ **/
 
 // Get user by user name
 export const getUserByName = (params, { username }) =>
@@ -20,7 +21,8 @@ export const getUserByName = (params, { username }) =>
  * @description Updated user
  * @param {User} params -Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated **/
+ * @param {string} pathParams.username -name that need to be updated
+ **/
 
 // Updated user
 export const updateUser = (params, { username }) =>
@@ -34,7 +36,8 @@ export const updateUser = (params, { username }) =>
  * @description Delete user
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted **/
+ * @param {string} pathParams.username -The name that needs to be deleted
+ **/
 
 // Delete user
 export const deleteUser = (params, { username }) =>
@@ -44,7 +47,7 @@ export const deleteUser = (params, { username }) =>
     params: {},
     data: {}
   });
-/**
+/** 
  * @description Logs user into the system  
  * @param {{
     "username": string

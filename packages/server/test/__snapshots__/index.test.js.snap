@@ -565,7 +565,8 @@ import axios from \\"axios\\";
  * @description Find pet by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return **/
+ * @param {number} pathParams.petId -ID of pet to return
+ **/
 
 // Find pet by ID
 export const getPetById = (params, { petId }) =>
@@ -579,7 +580,8 @@ export const getPetById = (params, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated **/
+ * @param {number} pathParams.petId -ID of pet that needs to be updated
+ **/
 
 // Updates a pet in the store with form data
 export const updatePetWithForm = (params, { petId }) =>
@@ -593,7 +595,8 @@ export const updatePetWithForm = (params, { petId }) =>
  * @description Deletes a pet
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete **/
+ * @param {number} pathParams.petId -Pet id to delete
+ **/
 
 // Deletes a pet
 export const deletePet = (params, { petId }) =>
@@ -607,7 +610,8 @@ export const deletePet = (params, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update **/
+ * @param {number} pathParams.petId -ID of pet to update
+ **/
 
 // uploads an image
 export const uploadFile = (params, { petId }) =>
@@ -643,7 +647,7 @@ export const addPet = (params) =>
     params: {},
     data: params
   });
-/**
+/** 
  * @description Finds Pets by status  
  * @param {{
     \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
@@ -658,7 +662,8 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
-/**
+/** 
+ * @deprecated
  * @description Finds Pets by tags  
  * @param {{
     \\"tags\\": string
@@ -696,7 +701,8 @@ export const getInventory = () =>
  * @description Find purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched **/
+ * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ **/
 
 // Find purchase order by ID
 export const getOrderById = (params, { orderId }) =>
@@ -710,7 +716,8 @@ export const getOrderById = (params, { orderId }) =>
  * @description Delete purchase order by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted **/
+ * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ **/
 
 // Delete purchase order by ID
 export const deleteOrder = (params, { orderId }) =>
@@ -741,71 +748,71 @@ exports[`pkg jsdoc 3`] = `
     
 /**
  * @typedef {
-  * {
-        * id: number
-        * name: string
-     * }
-  * } Category
+ *   {
+ *     id: number
+ *     name: string
+ *   }
+ * } Category
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * category: Category
-        * name: string
-        * photoUrls: string[]
-        * tags: Tag[]
-        * status: \\"available\\" | \\"pending\\" | \\"sold\\"
-     * }
-  * } Pet
+ *   {
+ *     id: number
+ *     category: Category
+ *     name: string
+ *     photoUrls: string[]
+ *     tags: Tag[]
+ *     status: \\"available\\" | \\"pending\\" | \\"sold\\"
+ *   }
+ * } Pet
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * name: string
-     * }
-  * } Tag
+ *   {
+ *     id: number
+ *     name: string
+ *   }
+ * } Tag
 **/
 
 /**
  * @typedef {
-  * {
-        * code: number
-        * type: string
-        * message: string
-     * }
-  * } ApiResponse
+ *   {
+ *     code: number
+ *     type: string
+ *     message: string
+ *   }
+ * } ApiResponse
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * petId: number
-        * quantity: number
-        * shipDate: string
-        * status: \\"placed\\" | \\"approved\\" | \\"delivered\\"
-        * complete: boolean
-     * }
-  * } Order
+ *   {
+ *     id: number
+ *     petId: number
+ *     quantity: number
+ *     shipDate: string
+ *     status: \\"placed\\" | \\"approved\\" | \\"delivered\\"
+ *     complete: boolean
+ *   }
+ * } Order
 **/
 
 /**
  * @typedef {
-  * {
-        * id: number
-        * username: string
-        * firstName: string
-        * lastName: string
-        * email: string
-        * password: string
-        * phone: string
-        * userStatus: number
-     * }
-  * } User
+ *   {
+ *     id: number
+ *     username: string
+ *     firstName: string
+ *     lastName: string
+ *     email: string
+ *     password: string
+ *     phone: string
+ *     userStatus: number
+ *   }
+ * } User
 **/
 "
 `;
@@ -819,7 +826,8 @@ import axios from \\"axios\\";
  * @description Get user by user name
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.  **/
+ * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ **/
 
 // Get user by user name
 export const getUserByName = (params, { username }) =>
@@ -833,7 +841,8 @@ export const getUserByName = (params, { username }) =>
  * @description Updated user
  * @param {User} params -Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated **/
+ * @param {string} pathParams.username -name that need to be updated
+ **/
 
 // Updated user
 export const updateUser = (params, { username }) =>
@@ -847,7 +856,8 @@ export const updateUser = (params, { username }) =>
  * @description Delete user
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted **/
+ * @param {string} pathParams.username -The name that needs to be deleted
+ **/
 
 // Delete user
 export const deleteUser = (params, { username }) =>
@@ -857,7 +867,7 @@ export const deleteUser = (params, { username }) =>
     params: {},
     data: {}
   });
-/**
+/** 
  * @description Logs user into the system  
  * @param {{
     \\"username\\": string

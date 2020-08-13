@@ -6,7 +6,8 @@ import axios from "axios";
  * @description Find pet by ID
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return **/
+ * @param {number} pathParams.petId -ID of pet to return
+ **/
 
 // Find pet by ID
 export const getPetById = (params, { petId }) =>
@@ -20,7 +21,8 @@ export const getPetById = (params, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated **/
+ * @param {number} pathParams.petId -ID of pet that needs to be updated
+ **/
 
 // Updates a pet in the store with form data
 export const updatePetWithForm = (params, { petId }) =>
@@ -34,7 +36,8 @@ export const updatePetWithForm = (params, { petId }) =>
  * @description Deletes a pet
  * @param {Object} params -never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete **/
+ * @param {number} pathParams.petId -Pet id to delete
+ **/
 
 // Deletes a pet
 export const deletePet = (params, { petId }) =>
@@ -48,7 +51,8 @@ export const deletePet = (params, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update **/
+ * @param {number} pathParams.petId -ID of pet to update
+ **/
 
 // uploads an image
 export const uploadFile = (params, { petId }) =>
@@ -84,7 +88,7 @@ export const addPet = (params) =>
     params: {},
     data: params
   });
-/**
+/** 
  * @description Finds Pets by status  
  * @param {{
     "status": "available" | "pending" | "sold"
@@ -99,7 +103,8 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
-/**
+/** 
+ * @deprecated
  * @description Finds Pets by tags  
  * @param {{
     "tags": string

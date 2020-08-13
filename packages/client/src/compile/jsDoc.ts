@@ -28,7 +28,6 @@ const compileJsDoc = (
     console.warn(e)
     return `
     // jsDoc: ${interfaceName} 生成失败，检查是否符合 swagger 规范
-    
     `
   }
 }
