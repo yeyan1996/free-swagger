@@ -13,21 +13,22 @@ export const start = (mountElementId, prepareFns = []) =>
     resolve();
   });
 
-export const onload = () =>
+export const injectCdn = () =>
   new Promise(resolve => {
-    window.addEventListener("load", () => {
-      resolve();
-    });
-  });
-
-export const injectCdn = () => {
-  const fragment = document.createDocumentFragment();
-  cdnList.forEach(url => {
-    fragment.appendChild(
-      createDom("script", {
+    let count = 0;
+    const fragment = document.createDocumentFragment();
+    cdnList.forEach(url => {
+      const dom = createDom("script", {
         src: url
-      })
-    );
+      });
+      dom.onload = () => {
+        count++;
+        console.log("count", count);
+        if (count === cdnList.length) {
+          resolve();
+        }
+      };
+      fragment.appendChild(dom);
+    });
+    document.head.appendChild(fragment);
   });
-  document.head.appendChild(fragment);
-};
