@@ -52,31 +52,34 @@ window.fetch = new Proxy(fetch, {
   apply(...args) {
     if (ok) return Reflect.apply(...args);
     const response = Reflect.apply(...args);
-    response.then(async res => {
-      if (res.ok) {
-        const apply = (target, response, args) => {
-          const promise = Reflect.apply(target, response, args);
-          promise.then(async data => {
-            try {
-              if (typeof data !== "string") return;
-              const parsedData = youngParse(data);
-              await assignState(parsedData, response.url);
-            } catch (err) {
-              console.error(err);
-              console.error(`JSON.parse 发生错误，请检查 json 是否规范：`);
-              console.log(data);
-            }
+    response
+      .then(async res => {
+        console.log("res", res);
+        if (res.ok) {
+          const apply = (target, response, args) => {
+            const promise = Reflect.apply(target, response, args);
+            promise.then(async data => {
+              try {
+                if (typeof data !== "string") return;
+                const parsedData = youngParse(data);
+                await assignState(parsedData, response.url);
+              } catch (err) {
+                console.error(err);
+                console.error(`JSON.parse 发生错误，请检查 json 是否规范：`);
+                console.log(data);
+              }
+            });
+            return promise;
+          };
+          res.json = new Proxy(res.json, {
+            apply
           });
-          return promise;
-        };
-        res.json = new Proxy(res.json, {
-          apply
-        });
-        res.text = new Proxy(res.text, {
-          apply
-        });
-      }
-    });
+          res.text = new Proxy(res.text, {
+            apply
+          });
+        }
+      })
+      .catch(err => console.error(err));
     return response;
   }
 });

@@ -137,7 +137,9 @@ const schemaToTsType = (
     if (!schema.type) return 'any'
 
     if (schema.type === 'array' && schema.items) {
-      return `${recursive(schema.items)}[]`
+      return schema.items.enum
+        ? `(${recursive(schema.items)})[]`
+        : `${recursive(schema.items)}[]`
     }
     // todo 对 object 的响应 schema 做处理
     if (schema.type === 'object') {

@@ -59,7 +59,7 @@ export interface Activities {
 }
 export interface CreateOrUpdateUserInput {
   userId?: number; // 用户ID(ID来自User表)
-  userRights?:
+  userRights?: (
     | "View"
     | "Operate"
     | "Auth"
@@ -70,15 +70,16 @@ export interface CreateOrUpdateUserInput {
     | "SetTime"
     | "SetNetwork"
     | "SetSms"
-    | "SystemManage"[]; // 用户权限
+    | "SystemManage"
+  )[]; // 用户权限
 }
 export interface Abc {
   id?: string;
   isLow?: boolean;
 }
 export interface NumberArrayEnumModel {
-  foo?: "0" | "1" | "2" | "4" | "8"[];
-  bar?: "0" | "1" | "2" | "3"[];
+  foo?: ("0" | "1" | "2" | "4" | "8")[];
+  bar?: ("0" | "1" | "2" | "3")[];
 }
 export interface Error {
   code?: number;

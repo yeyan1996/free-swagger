@@ -586,7 +586,11 @@
       "type": "object",
       "properties": {
         "id": { "type": "integer", "format": "int64" },
-        "name": { "type": "string" }
+        "name": { "type": "string" },
+          "names": {
+              "type": "array",
+              "items": {"type":"string", "enum": ["available", "pending", "sold"]}
+          }
       },
       "xml": { "name": "Category" }
     },
