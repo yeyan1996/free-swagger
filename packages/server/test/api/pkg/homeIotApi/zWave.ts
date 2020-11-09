@@ -17,7 +17,7 @@ export const setDimmer = (
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/dimmers/${deviceId}/${value}`,
+    url: `/yeyan1996/IOT/1.0.0/lighting/dimmers/${deviceId}/${value}`,
     method: "post",
     params: {},
     data: {}
@@ -38,7 +38,7 @@ export const setDimmerTimer = (
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/dimmers/${deviceId}/${value}/timer/${timeunit}`,
+    url: `/yeyan1996/IOT/1.0.0/lighting/dimmers/${deviceId}/${value}/timer/${timeunit}`,
     method: "post",
     params: params,
     data: {}
@@ -53,7 +53,7 @@ export const getSwitchState = (
   }
 ) =>
   http.request<DeviceState, AxiosResponse<DeviceState>>({
-    url: `/lighting/switches/${deviceId}`,
+    url: `/yeyan1996/IOT/1.0.0/lighting/switches/${deviceId}`,
     method: "get",
     params: {},
     data: {}
@@ -70,7 +70,7 @@ export const setSwitch = (
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/switches/${deviceId}/${value}`,
+    url: `/yeyan1996/IOT/1.0.0/lighting/switches/${deviceId}/${value}`,
     method: "post",
     params: {},
     data: {}
@@ -89,7 +89,7 @@ export const setSwitchTimer = (
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/lighting/switches/${deviceId}/${value}/timer/${minutes}`,
+    url: `/yeyan1996/IOT/1.0.0/lighting/switches/${deviceId}/${value}/timer/${minutes}`,
     method: "post",
     params: {},
     data: {}
@@ -97,7 +97,7 @@ export const setSwitchTimer = (
 
 export const getLightingSummary = () =>
   http.request<LightingSummary, AxiosResponse<LightingSummary>>({
-    url: `/lightingSummary`,
+    url: `/yeyan1996/IOT/1.0.0/lightingSummary`,
     method: "get",
     params: {},
     data: {}

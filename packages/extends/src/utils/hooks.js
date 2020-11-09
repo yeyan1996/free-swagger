@@ -2,6 +2,7 @@ import { Message } from "element-ui";
 import ah from "ajax-hook";
 import SwaggerParser from "@/libs/json-schema-ref-parser/lib/index";
 import { cloneDeep } from "lodash-es";
+import { wait } from "@/utils/index";
 import youngParse from "../libs/youngParse";
 
 let ok = false;
@@ -33,7 +34,7 @@ ah.hookAjax({
   open(_, xhr) {
     setTimeout(async () => {
       let response = {};
-      console.log("xhr", xhr);
+      await wait();
       try {
         if (typeof xhr.response !== "string") return;
         response = youngParse(xhr.response);

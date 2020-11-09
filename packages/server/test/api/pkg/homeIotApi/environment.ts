@@ -14,7 +14,7 @@ import http from "http";
 
 export const temperatureSummary = () =>
   http.request<TemperatureSummary, AxiosResponse<TemperatureSummary>>({
-    url: `/temperature`,
+    url: `/yeyan1996/IOT/1.0.0/temperature`,
     method: "get",
     params: {},
     data: {}
@@ -29,7 +29,7 @@ export const getForecast = (
   }
 ) =>
   http.request<ForecastResponse, AxiosResponse<ForecastResponse>>({
-    url: `/temperature/forecast/${days}`,
+    url: `/yeyan1996/IOT/1.0.0/temperature/forecast/${days}`,
     method: "get",
     params: {},
     data: {}
@@ -44,7 +44,7 @@ export const getZoneTemperature = (
   }
 ) =>
   http.request<TemperatueZoneStatus, AxiosResponse<TemperatueZoneStatus>>({
-    url: `/temperature/${zoneId}`,
+    url: `/yeyan1996/IOT/1.0.0/temperature/${zoneId}`,
     method: "get",
     params: {},
     data: {}
@@ -59,7 +59,7 @@ export const getHeaterState = (
   }
 ) =>
   http.request<HeaterState, AxiosResponse<HeaterState>>({
-    url: `/temperature/${zoneId}/heater`,
+    url: `/yeyan1996/IOT/1.0.0/temperature/${zoneId}/heater`,
     method: "get",
     params: {},
     data: {}
@@ -76,7 +76,7 @@ export const setHeaterState = (
   }
 ) =>
   http.request<ApiResponse, AxiosResponse<ApiResponse>>({
-    url: `/temperature/${zoneId}/heater/${state}`,
+    url: `/yeyan1996/IOT/1.0.0/temperature/${zoneId}/heater/${state}`,
     method: "post",
     params: {},
     data: {}

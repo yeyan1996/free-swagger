@@ -12,7 +12,7 @@ import axios from "axios";
 // Get user by user name
 export const getUserByName = (params, { username }) =>
   axios.request({
-    url: `/user/${username}`,
+    url: `/v2/user/${username}`,
     method: "get",
     params: {},
     data: {}
@@ -27,7 +27,7 @@ export const getUserByName = (params, { username }) =>
 // Updated user
 export const updateUser = (params, { username }) =>
   axios.request({
-    url: `/user/${username}`,
+    url: `/v2/user/${username}`,
     method: "put",
     params: {},
     data: params
@@ -42,7 +42,7 @@ export const updateUser = (params, { username }) =>
 // Delete user
 export const deleteUser = (params, { username }) =>
   axios.request({
-    url: `/user/${username}`,
+    url: `/v2/user/${username}`,
     method: "delete",
     params: {},
     data: {}
@@ -58,7 +58,7 @@ export const deleteUser = (params, { username }) =>
 // Logs user into the system
 export const loginUser = (params) =>
   axios.request({
-    url: `/user/login`,
+    url: `/v2/user/login`,
     method: "get",
     params: params,
     data: {}
@@ -69,7 +69,7 @@ export const loginUser = (params) =>
 // Logs out current logged in user session
 export const logoutUser = () =>
   axios.request({
-    url: `/user/logout`,
+    url: `/v2/user/logout`,
     method: "get",
     params: {},
     data: {}
@@ -82,7 +82,7 @@ export const logoutUser = () =>
 // Create user
 export const createUser = (params) =>
   axios.request({
-    url: `/user`,
+    url: `/v2/user`,
     method: "post",
     params: {},
     data: params
@@ -95,7 +95,7 @@ export const createUser = (params) =>
 // Creates list of users with given input array
 export const createUsersWithArrayInput = (params) =>
   axios.request({
-    url: `/user/createWithArray`,
+    url: `/v2/user/createWithArray`,
     method: "post",
     params: {},
     data: params
@@ -108,7 +108,7 @@ export const createUsersWithArrayInput = (params) =>
 // Creates list of users with given input array
 export const createUsersWithListInput = (params) =>
   axios.request({
-    url: `/user/createWithList`,
+    url: `/v2/user/createWithList`,
     method: "post",
     params: {},
     data: params

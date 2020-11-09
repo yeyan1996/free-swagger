@@ -12,7 +12,7 @@ import axios from "axios";
 // Find pet by ID
 export const getPetById = (params, { petId }) =>
   axios.request({
-    url: `/pet/${petId}`,
+    url: `/v2/pet/${petId}`,
     method: "get",
     params: {},
     data: {}
@@ -27,7 +27,7 @@ export const getPetById = (params, { petId }) =>
 // Updates a pet in the store with form data
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
-    url: `/pet/${petId}`,
+    url: `/v2/pet/${petId}`,
     method: "post",
     params: {},
     data: params
@@ -42,7 +42,7 @@ export const updatePetWithForm = (params, { petId }) =>
 // Deletes a pet
 export const deletePet = (params, { petId }) =>
   axios.request({
-    url: `/pet/${petId}`,
+    url: `/v2/pet/${petId}`,
     method: "delete",
     params: {},
     data: {}
@@ -57,7 +57,7 @@ export const deletePet = (params, { petId }) =>
 // uploads an image
 export const uploadFile = (params, { petId }) =>
   axios.request({
-    url: `/pet/${petId}/uploadImage`,
+    url: `/v2/pet/${petId}/uploadImage`,
     method: "post",
     params: {},
     data: params
@@ -70,7 +70,7 @@ export const uploadFile = (params, { petId }) =>
 // Update an existing pet
 export const updatePet = (params) =>
   axios.request({
-    url: `/pet`,
+    url: `/v2/pet`,
     method: "put",
     params: {},
     data: params
@@ -83,7 +83,7 @@ export const updatePet = (params) =>
 // Add a new pet to the store
 export const addPet = (params) =>
   axios.request({
-    url: `/pet`,
+    url: `/v2/pet`,
     method: "post",
     params: {},
     data: params
@@ -98,7 +98,7 @@ export const addPet = (params) =>
 // Finds Pets by status
 export const findPetsByStatus = (params) =>
   axios.request({
-    url: `/pet/findByStatus`,
+    url: `/v2/pet/findByStatus`,
     method: "get",
     params: params,
     data: {}
@@ -114,7 +114,7 @@ export const findPetsByStatus = (params) =>
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
   axios.request({
-    url: `/pet/findByTags`,
+    url: `/v2/pet/findByTags`,
     method: "get",
     params: params,
     data: {}

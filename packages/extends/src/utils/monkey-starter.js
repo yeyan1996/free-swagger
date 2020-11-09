@@ -23,7 +23,6 @@ export const injectCdn = () =>
       });
       dom.onload = () => {
         count++;
-        console.log("count", count);
         if (count === cdnList.length) {
           resolve();
         }

@@ -13,7 +13,7 @@ export const UpdateMapper = (
   }
 ) =>
   axios.request<string, AxiosResponse<string>>({
-    url: `/crawler/v1/mapper/${id}`,
+    url: `/v1/crawler/v1/mapper/${id}`,
     method: "put",
     params: {},
     data: {}

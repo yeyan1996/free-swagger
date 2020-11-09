@@ -8,7 +8,7 @@ import http from "http";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
   http.request<string[], AxiosResponse<string[]>>({
-    url: `/devices`,
+    url: `/yeyan1996/IOT/1.0.0/devices`,
     method: "get",
     params: params,
     data: {}
@@ -16,7 +16,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
 
 export const register = (params: DeviceRegistrationInfo) =>
   http.request<any, AxiosResponse<any>>({
-    url: `/devices`,
+    url: `/yeyan1996/IOT/1.0.0/devices`,
     method: "post",
     params: {},
     data: params

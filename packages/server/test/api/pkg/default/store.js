@@ -6,7 +6,7 @@ import axios from "axios";
 // Returns pet inventories by status
 export const getInventory = () =>
   axios.request({
-    url: `/store/inventory`,
+    url: `/v2/store/inventory`,
     method: "get",
     params: {},
     data: {}
@@ -15,7 +15,7 @@ export const getInventory = () =>
 // Find purchase order by ID
 export const getOrderById = (params, { orderId }) =>
   axios.request({
-    url: `/store/order/${orderId}`,
+    url: `/v2/store/order/${orderId}`,
     method: "get",
     params: {},
     data: {}
@@ -24,7 +24,7 @@ export const getOrderById = (params, { orderId }) =>
 // Delete purchase order by ID
 export const deleteOrder = (params, { orderId }) =>
   axios.request({
-    url: `/store/order/${orderId}`,
+    url: `/v2/store/order/${orderId}`,
     method: "delete",
     params: {},
     data: {}
@@ -33,7 +33,7 @@ export const deleteOrder = (params, { orderId }) =>
 // Place an order for a pet
 export const placeOrder = (params) =>
   axios.request({
-    url: `/store/order`,
+    url: `/v2/store/order`,
     method: "post",
     params: {},
     data: params

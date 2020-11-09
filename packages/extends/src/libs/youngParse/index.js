@@ -11,7 +11,8 @@ export default (string)=>{
         string = `scopedData.$JSON = ${string}`
         try {
             eval(string)
-        } catch {
+        } catch(e) {
+            console.error(e)
             return {}
         }
         return scopedData.$JSON

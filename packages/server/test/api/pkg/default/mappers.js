@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const UpdateMapper = (params, { id }) =>
   axios.request({
-    url: `/crawler/v1/mapper/${id}`,
+    url: `/v1/crawler/v1/mapper/${id}`,
     method: "put",
     params: {},
     data: {}

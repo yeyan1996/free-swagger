@@ -7,7 +7,7 @@ import http from "http";
 
 export const getZones = () =>
   http.request<string[], AxiosResponse<string[]>>({
-    url: `/zones`,
+    url: `/yeyan1996/IOT/1.0.0/zones`,
     method: "get",
     params: {},
     data: {}
@@ -22,7 +22,7 @@ export const quietZone = (
   }
 ) =>
   http.request<any, AxiosResponse<any>>({
-    url: `/zones/${zoneId}/quiet`,
+    url: `/yeyan1996/IOT/1.0.0/zones/${zoneId}/quiet`,
     method: "get",
     params: {},
     data: {}

@@ -7,7 +7,7 @@ import axios, { AxiosResponse } from "axios";
 
 export const GetAuditLogs = (params: { StartDate?: string }) =>
   axios.request<IPagedResult<AuditLogListDto>, AxiosResponse<IPagedResult<AuditLogListDto>>>({
-    url: `/api/services/app/AuditLog/GetAuditLogs`,
+    url: `/v1/api/services/app/AuditLog/GetAuditLogs`,
     method: "get",
     params: params,
     data: {}

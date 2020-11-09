@@ -11,6 +11,7 @@ import {
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
 } from './index'
 import { execSync } from 'child_process'
+import camelcase from 'camelcase'
 
 const EXPORT_DEFAULT = 'export default'
 
@@ -70,7 +71,8 @@ class Rc {
             jsTemplate: jsTemplate,
             apiChoices: [],
             chooseAll: false,
-            useJsDoc:false
+            useJsDoc: false,
+            fileName: (name: string) => camelcase(name)
         };
     }
 

@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const GetAuditLogs = (params) =>
   axios.request({
-    url: `/api/services/app/AuditLog/GetAuditLogs`,
+    url: `/v1/api/services/app/AuditLog/GetAuditLogs`,
     method: "get",
     params: params,
     data: {}
