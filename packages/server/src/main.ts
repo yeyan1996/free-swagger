@@ -2,7 +2,6 @@ import fse from 'fs-extra'
 import path from 'path'
 import chalk from 'chalk'
 import ora from 'ora'
-import camelcase from 'camelcase'
 import { OpenAPIV2 } from 'openapi-types'
 import { Config, isUrl, isPath, assertOpenApi2, MockConfig } from './utils'
 import { mergeDefaultConfig, mergeDefaultMockConfig } from './default'
@@ -56,7 +55,7 @@ const gen = async (
   ]): Promise<void> => {
     const apiCollectionPath = path.resolve(
       dirPath,
-      `${camelcase(name)}.${config.lang}`
+      `${config.fileName(name)}.${config.lang}`
     )
     fse.ensureFileSync(apiCollectionPath)
     const code = genPaths(apiCollection, config)

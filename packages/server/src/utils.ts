@@ -13,6 +13,7 @@ export interface Config<T = string | OpenAPIV2.Document>
   root?: string
   customImportCode?: string
   chooseAll?: boolean
+  fileName?(name: string): string
 }
 
 export interface MockConfig<T = string | OpenAPIV2.Document> {
