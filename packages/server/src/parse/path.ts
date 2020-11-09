@@ -68,7 +68,7 @@ const parsePaths = (swagger: OpenAPIV2.Document): ParsedPaths => {
         }
         requestClasses[controllerName][operationObject.operationId] = parsePath(
           operationObject.operationId,
-          path,
+          `${swagger.basePath}${path}`,
           method,
           operationObject
         )
