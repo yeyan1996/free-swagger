@@ -1,4 +1,5 @@
 import { TemplateFunction, tsTemplate, jsTemplate } from 'free-swagger-client'
+import camelcase from 'camelcase'
 import { Config, isSwaggerDocument, MockConfig } from '../utils'
 import { rc } from './rc'
 import path from 'path'
@@ -32,6 +33,7 @@ const getDefaultConfig = (
   templateFunction: eval(jsTemplate),
   chooseAll: false,
   useJsDoc: false,
+  fileName: (name) => camelcase(name),
 })
 
 export const mergeDefaultConfig = async (
