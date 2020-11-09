@@ -56,7 +56,9 @@ const gen = async (
   ]): Promise<void> => {
     const apiCollectionPath = path.resolve(
       dirPath,
-      `${camelcase(name)}.${config.lang}`
+      `${camelcase(config.fileName ? config.fileName(name) : name)}.${
+        config.lang
+      }`
     )
     fse.ensureFileSync(apiCollectionPath)
     const code = genPaths(apiCollection, config)
