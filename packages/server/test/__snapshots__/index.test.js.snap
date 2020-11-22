@@ -648,7 +648,7 @@ export const addPet = (params) =>
     data: params
   });
 /** 
- * @description Finds Pets by status  
+ * @description Finds Pets by status 
  * @param {{
     \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
 }} params 
@@ -664,7 +664,7 @@ export const findPetsByStatus = (params) =>
   });
 /** 
  * @deprecated
- * @description Finds Pets by tags  
+ * @description Finds Pets by tags 
  * @param {{
     \\"tags\\": string
 }} params 
@@ -749,8 +749,8 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     name: string
+ *     'id': number
+ *     'name': string
  *   }
  * } Category
 **/
@@ -758,12 +758,12 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     category: Category
- *     name: string
- *     photoUrls: string[]
- *     tags: Tag[]
- *     status: \\"available\\" | \\"pending\\" | \\"sold\\"
+ *     'id': number
+ *     'category': Category
+ *     'name': string
+ *     'photoUrls': string[]
+ *     'tags': Tag[]
+ *     'status': \\"available\\" | \\"pending\\" | \\"sold\\"
  *   }
  * } Pet
 **/
@@ -771,8 +771,8 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     name: string
+ *     'id': number
+ *     'name': string
  *   }
  * } Tag
 **/
@@ -780,9 +780,9 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     code: number
- *     type: string
- *     message: string
+ *     'code': number
+ *     'type': string
+ *     'message': string
  *   }
  * } ApiResponse
 **/
@@ -790,12 +790,12 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     petId: number
- *     quantity: number
- *     shipDate: string
- *     status: \\"placed\\" | \\"approved\\" | \\"delivered\\"
- *     complete: boolean
+ *     'id': number
+ *     'petId': number
+ *     'quantity': number
+ *     'shipDate': string
+ *     'status': \\"placed\\" | \\"approved\\" | \\"delivered\\"
+ *     'complete': boolean
  *   }
  * } Order
 **/
@@ -803,14 +803,14 @@ exports[`pkg jsdoc 3`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     username: string
- *     firstName: string
- *     lastName: string
- *     email: string
- *     password: string
- *     phone: string
- *     userStatus: number
+ *     'id': number
+ *     'username': string
+ *     'firstName': string
+ *     'lastName': string
+ *     'email': string
+ *     'password': string
+ *     'phone': string
+ *     'userStatus': number
  *   }
  * } User
 **/
@@ -868,7 +868,7 @@ export const deleteUser = (params, { username }) =>
     data: {}
   });
 /** 
- * @description Logs user into the system  
+ * @description Logs user into the system 
  * @param {{
     \\"username\\": string
     \\"password\\": string

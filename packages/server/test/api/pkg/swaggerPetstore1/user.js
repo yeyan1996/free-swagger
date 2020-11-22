@@ -48,7 +48,7 @@ export const deleteUser = (params, { username }) =>
     data: {}
   });
 /** 
- * @description Logs user into the system  
+ * @description Logs user into the system 
  * @param {{
     "username": string
     "password": string

@@ -48,9 +48,9 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     name: string
- *     names: (\\"available\\" | \\"pending\\" | \\"sold\\")[]
+ *     'id': number
+ *     'name': string
+ *     'names': (\\"available\\" | \\"pending\\" | \\"sold\\")[]
  *   }
  * } Category
 **/
@@ -58,12 +58,12 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     category: Category
- *     name: string
- *     photoUrls: string[]
- *     tags: Tag[]
- *     status: \\"available\\" | \\"pending\\" | \\"sold\\"
+ *     'id': number
+ *     'category': Category
+ *     'name': string
+ *     'photoUrls': string[]
+ *     'tags': Tag[]
+ *     'status': \\"available\\" | \\"pending\\" | \\"sold\\"
  *   }
  * } Pet
 **/
@@ -71,8 +71,8 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     name: string
+ *     'id': number
+ *     'name': string
  *   }
  * } Tag
 **/
@@ -80,9 +80,9 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     code: number
- *     type: string
- *     message: string
+ *     'code': number
+ *     'type': string
+ *     'message': string
  *   }
  * } ApiResponse
 **/
@@ -90,7 +90,7 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     status: \\"[\\"FORM_INSERT_AFTER\\"\\" | \\"\\"FORM_UPDATE_AFTER\\"]\\"
+ *     'status': \\"[\\"FORM_INSERT_AFTER\\"\\" | \\"\\"FORM_UPDATE_AFTER\\"]\\"
  *   }
  * } Order
 **/
@@ -98,14 +98,14 @@ exports[`freeSwaggerClient generate full js doc 1`] = `
 /**
  * @typedef {
  *   {
- *     id: number
- *     username: string
- *     firstName: string
- *     lastName: string
- *     email: string
- *     password: string
- *     phone: string
- *     userStatus: number
+ *     'id': number
+ *     'username': string
+ *     'first-name': string
+ *     'lastName': string
+ *     'email': string
+ *     'password': string
+ *     'phone': string
+ *     'userStatus': number
  *   }
  * } User
 **/
@@ -148,7 +148,7 @@ export interface ApiResponse {
 export interface User {
   id?: number;
   username?: string;
-  firstName?: string;
+  \\"first-name\\"?: string;
   lastName?: string;
   email?: string;
   password?: string;
@@ -168,7 +168,7 @@ export type JavaMap<T, U> = Record<string, U>;
 export type JavaList<T> = Array<T>;
 export interface PageInfo<T> {
   list?: T[];
-  pageNum?: number;
+  \\"page-num\\"?: number;
   pageSize?: number;
   pages?: number;
   total?: number;

@@ -89,7 +89,7 @@ export const addPet = (params) =>
     data: params
   });
 /** 
- * @description Finds Pets by status  
+ * @description Finds Pets by status 
  * @param {{
     "status": "available" | "pending" | "sold"
 }} params 
@@ -105,7 +105,7 @@ export const findPetsByStatus = (params) =>
   });
 /** 
  * @deprecated
- * @description Finds Pets by tags  
+ * @description Finds Pets by tags 
  * @param {{
     "tags": string
 }} params 

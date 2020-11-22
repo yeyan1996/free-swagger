@@ -15,7 +15,7 @@ const genJsDocTypeDef = ({
  *   {
 ${Object.entries(props)
   .map(
-    ([propName, prop]) => ` *     ${propName}: ${prop.type}
+    ([propName, prop]) => ` *     '${propName}': ${prop.type}
 `
   )
   .join('')} *   }
@@ -88,19 +88,19 @@ ${Object.entries(api.pathParamsInterface)
     : ''
 
   const queryCode = onlyIQueryParams
-    ? ` 
+    ? `
  * @param {${IQueryParams}} params ${queryDescription}
 ${pathCode}`
     : ''
 
   const bodyCode = onlyIBodyParams
-    ? ` 
+    ? `
  * @param {${IBodyParams}} params ${bodyDescription}
 ${pathCode}`
     : ''
 
   const multiCode = multipleParams
-    ? ` 
+    ? `
  * @param {${IQueryParams}} queryParams ${queryDescription}
 ${pathCode}
  * @param {${IBodyParams}} bodyParams ${bodyDescription}`

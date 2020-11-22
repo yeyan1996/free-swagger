@@ -72,7 +72,7 @@
             "$ref": "#/definitions/Qwe"
           }
         },
-        "pageNum": {
+        "page-num": {
           "type": "integer",
           "format": "int32"
         },
