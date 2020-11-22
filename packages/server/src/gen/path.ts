@@ -32,7 +32,7 @@ const genPaths = (
     )
     .reduce((acc, cur) => acc + cur)
 
-  return formatCode(config.lang)(code)
+  return formatCode(config.lang, config.prettierOptions)(code)
 }
 
 export { genPaths }
