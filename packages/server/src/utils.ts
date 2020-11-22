@@ -1,6 +1,5 @@
 import { OpenAPIV2 } from 'openapi-types'
 import { ConfigClient } from 'free-swagger-client'
-import { Options } from 'prettier'
 import fse from 'fs-extra'
 import camelcase from 'camelcase'
 import path from 'path'
@@ -15,7 +14,6 @@ export interface Config<T = string | OpenAPIV2.Document>
   customImportCode?: string
   chooseAll?: boolean
   fileName?(name: string): string
-  prettierOptions?: Options
 }
 
 export interface MockConfig<T = string | OpenAPIV2.Document> {
