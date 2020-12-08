@@ -46,7 +46,7 @@ npx free-swagger --config
 
 ## 项目使用
 
-本地安装 free-swagger，**务必使用 -D 参数防止被 web 打包工具打包**
+本地安装 free-swagger，**务必使用 -S 参数防止被 web 打包工具打包**
 
 > npm i free-swagger -D
 
