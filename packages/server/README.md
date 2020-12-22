@@ -182,7 +182,7 @@ mock({
 | -------- | ------------------------------------------------------------ | ----------- | ------ | --------------- |
 | source   | 必选，swagger 源（url/文件路径/json 文件）                   | string/json | -      | -               |
 | cookie   | 可选，用于给作为 url 的 swagger 源鉴权的 cookie              | string      | -      | -               |
-| mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + mock |
+| mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + "/mock" |
 | wrap     | 可选，是否额外包裹一层标准接口返回格式 e.g {code:"200",msg:xxx,data:xxx} | boolean     | -      | false           |
 |          |                                                              |             |        |                 |
 
