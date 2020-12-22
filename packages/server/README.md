@@ -96,7 +96,7 @@ freeSwagger({
 | ---------------- | ----------------------------------------------- | ------------------------- | ----------- | ---------------------------------------------- |
 | source           | 必选，swagger 源（url/文件路径/json 文件）      | string/json               | -           | -                                              |
 | cookie           | 可选，用于给作为 url 的 swagger 源鉴权的 cookie | string                    | -           | -                                              |
-| root             | 可选，生成 api 的根路径                         | string                    | -           | 当前路径 + src/api                             |
+| root             | 可选，生成 api 的根路径                         | string                    | -           | 当前路径 + "/src/api"                             |
 | customImportCode | 可选，自定义头部代码                            | string                    | -           | "import axios from 'axios'"                    |
 | lang             | 可选，生成 api 语言                             | string                    | "js" / "ts" | "js"                                           |
 | templateFunction | 可选，模版函数                                  | (TemplateConfig):  string | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
