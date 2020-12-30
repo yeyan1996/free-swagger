@@ -34,6 +34,7 @@ const getDefaultConfig = (
   chooseAll: false,
   useJsDoc: false,
   fileName: (name) => camelcase(name),
+  propComment: 'tail',
 })
 
 export const mergeDefaultConfig = async (

@@ -14,6 +14,7 @@ export interface Config<T = string | OpenAPIV2.Document>
   customImportCode?: string
   chooseAll?: boolean
   fileName?(name: string): string
+  propComment?: 'head' | 'tail' | null
 }
 
 export interface MockConfig<T = string | OpenAPIV2.Document> {

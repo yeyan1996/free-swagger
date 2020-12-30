@@ -37,10 +37,11 @@ export const addUsingPOST = params =>
 
 | 参数             | 说明                      | 类型                     | 可选值      | 默认值                               |
 | ---------------- | ------------------------- | ------------------------ | ----------- | ------------------------------------ |
-| source           | 必选，swagger 源          | json                     | -           | -                                    |
+| source           | 必选，swagger 源          | json                    | -           | -                                    |
 | lang             | 可选，生成 api 语言       | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数            | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
-| useJsDoc         | 可选，是否添加 jsdoc 注释 | boolean                  |             | false                                |
+| useJsDoc         | 可选，是否添加 jsdoc 注释 | boolean                   |             | false                                |
+| propComment      | 可选，注释位置           | string                    |"head" / "tail" / null| "tail"                                |
 
 - TemplateConfig
 

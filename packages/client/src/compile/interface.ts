@@ -17,6 +17,7 @@ import { genInterface } from '../gen/interface'
 const compileInterface = (
   source: OpenAPIV2.Document,
   interfaceName: string,
+  propComment?: string,
   noContext = false
 ): string => {
   if (!source.definitions || shouldSkipGenerate(interfaceName, noContext))
@@ -24,7 +25,9 @@ const compileInterface = (
   parseInterface(source.definitions, interfaceName)
 
   try {
-    return formatCode('ts')(genInterface(findInterface(interfaceName)))
+    return formatCode('ts')(
+      genInterface(findInterface(interfaceName), propComment)
+    )
   } catch (e) {
     console.warn(
       `interfaceName: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
@@ -40,13 +43,14 @@ const compileInterface = (
 // 生成全量 interface 代码
 const compileInterfaces = (
   source: OpenAPIV2.Document,
-  interfaceName?: string
+  interfaceName?: string,
+  propComment?: string
 ): string => {
   if (!source.definitions) return ''
   resetInterfaceMap()
 
   if (interfaceName) {
-    return compileInterface(source, interfaceName, true)
+    return compileInterface(source, interfaceName, propComment, true)
   } else {
     const headerCode = `/* eslint-disable */
     // @ts-nocheck
@@ -63,18 +67,20 @@ const compileInterfaces = (
     })
 
     const interfaceCode = Object.keys(map).reduce(
-      (acc, cur) => acc + compileInterface(source, cur),
+      (acc, cur) => acc + compileInterface(source, cur, propComment),
       ''
     )
 
     const recursiveInterfaceCode = Object.keys(recursiveMap).reduce(
-      (acc, cur) => acc + formatCode('ts')(genInterface(recursiveMap[cur])),
+      (acc, cur) =>
+        acc + formatCode('ts')(genInterface(recursiveMap[cur], propComment)),
       ''
     )
 
     const interfaceWithGenericCode = Object.keys(genericInterfaceMap).reduce(
       (acc, cur) =>
-        acc + formatCode('ts')(genInterface(genericInterfaceMap[cur])),
+        acc +
+        formatCode('ts')(genInterface(genericInterfaceMap[cur], propComment)),
       ''
     )
 

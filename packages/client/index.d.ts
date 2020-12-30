@@ -9,7 +9,8 @@ declare function freeSwaggerClient(
 
 declare function compileInterfaces(
   source: OpenAPIV2.Document,
-  interfaceName?: string
+  interfaceName?: string,
+  propComment?: string
 ): string
 
 declare function compileJsDocs(

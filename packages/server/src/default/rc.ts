@@ -72,7 +72,8 @@ class Rc {
             apiChoices: [],
             chooseAll: false,
             useJsDoc: false,
-            fileName: (name: string) => camelcase(name)
+            fileName: (name: string) => camelcase(name),
+            propComment: 'tail'
         };
     }
 

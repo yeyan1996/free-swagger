@@ -39,7 +39,10 @@ const gen = async (
   if (config.lang === 'ts') {
     const interfacePath = path.resolve(dirPath, INTERFACE_PATH)
     fse.ensureFileSync(interfacePath)
-    await fse.writeFile(interfacePath, compileInterfaces(config.source))
+    await fse.writeFile(
+      interfacePath,
+      compileInterfaces(config.source, undefined, config.propComment)
+    )
   }
 
   if (config.lang === 'js' && config.useJsDoc) {
