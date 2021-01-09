@@ -12,6 +12,21 @@ import {
 } from "free-swagger-client";
 import { option, generate } from "json-schema-faker";
 
+export const uiFeature = {
+  origin: {
+    controllerSelector: ".opblock-tag",
+    icon: true, // 是否注入 icon
+    clickApi: true, // 点击 api 切换底部下拉框
+    highLight: true // 点击下拉框高亮 api
+  },
+  layUi: {
+    controllerSelector: ".opblock-tag",
+    icon: false,
+    clickApi: true,
+    highLight: true
+  }
+};
+
 const STORAGE_KEY = "SWAGGER-EXTENDS";
 export const state = new Vue({
   data() {
@@ -42,6 +57,9 @@ export const state = new Vue({
     };
   },
   computed: {
+    currentFeature() {
+      return uiFeature[this.isNewUi ? "layUi" : "origin"];
+    },
     options() {
       if (!this.swagger) return [];
       const options = [];

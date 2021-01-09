@@ -61,8 +61,8 @@ export default {
   watch: {
     async "state.domLoaded"(isLoaded) {
       if (!isLoaded) return;
-      await this.controllerTagBindClickEvents();
-      await this.modelTagBindClickEvents();
+      await this.bindClickEventForController();
+      await this.bindClickEventForModel();
     }
   },
   methods: {
@@ -70,36 +70,45 @@ export default {
     handleCopyPath,
     handleCopyFake,
     // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件
-    async controllerTagBindClickEvents() {
+    async bindClickEventForController() {
       await this.$nextTick();
-      const controllerTagNodeList = [
-        ...document.querySelectorAll(".opblock-tag")
+      const controllerNodeList = [
+        ...document.querySelectorAll(
+          this.state.currentFeature.controllerSelector
+        )
       ];
       // 给所有 controller 节点绑定事件，注入 icons
-      controllerTagNodeList.forEach(tagNode =>
-        tagNode.addEventListener("click", this.controllerTagHandler)
+      controllerNodeList.forEach(controllerNode =>
+        controllerNode.addEventListener("click", e => {
+          this.injectApiIconsForControllerNode(e.currentTarget);
+        })
       );
-
       // 锚点跳转时给当前锚点的 controller 节点注入 icons
-      const [openedControllerNode] = controllerTagNodeList.filter(node =>
+      const [openedControllerNode] = controllerNodeList.filter(node =>
         node.parentNode.classList.contains("is-open")
       );
-      if (!openedControllerNode) return;
+      this.injectApiIconsForControllerNode(openedControllerNode);
+    },
+    async injectApiIconsForControllerNode(controllerNode) {
+      if (!controllerNode) return;
+      await wait(0);
       const apiNodeList = [
-        ...openedControllerNode.nextSibling.querySelectorAll(".opblock")
+        ...controllerNode.nextSibling.querySelectorAll(".opblock")
       ];
       apiNodeList.forEach(apiNode => {
-        apiNode.style.position = "relative";
-        this.injectApiIcons(apiNode);
+        this.injectApiIconsForApiNode(apiNode);
+        this.bindClickApiHandlerForApiNode(apiNode);
       });
     },
     // 注入 icons
-    injectApiIcons(parent) {
-      const method = parent.querySelector(".opblock-summary-method")?.innerText;
-      const path = parent
+    injectApiIconsForApiNode(apiNode) {
+      apiNode.style.position = "relative";
+      const method = apiNode.querySelector(".opblock-summary-method")
+        ?.innerText;
+      const path = apiNode
         .querySelector(".opblock-summary-path")
         ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
-      const summary = parent.querySelector(".opblock-summary-description")
+      const summary = apiNode.querySelector(".opblock-summary-description")
         ?.innerText;
       if (!method || !path || !summary) return;
       const apiIconsNode = createApiIconsDom(
@@ -107,40 +116,31 @@ export default {
         method.toLowerCase(),
         summary
       );
-      parent.appendChild(apiIconsNode);
+      apiNode.appendChild(apiIconsNode);
     },
-    // 给 controller 绑定事件
-    async controllerTagHandler(e) {
-      const controllerNode = e.currentTarget.parentNode;
-      if (!controllerNode) return;
-      await wait(100);
-      const apiTagNodeList = [...controllerNode.querySelectorAll(".opblock")];
-      apiTagNodeList.forEach(tagNode => {
-        tagNode.style.position = "relative";
-        this.injectApiIcons(tagNode);
-        tagNode.addEventListener("click", this.apiTagHandler);
+    // 绑定点击 api 事件
+    bindClickApiHandlerForApiNode(apiNode) {
+      apiNode.addEventListener("click", e => {
+        const apiTag = e.currentTarget;
+        const method = apiTag.querySelector(".opblock-summary-method")
+          ?.innerText;
+        const path = apiTag.querySelector(".opblock-summary-path")?.innerText;
+        const summary = apiTag.querySelector(".opblock-summary-description")
+          ?.innerText;
+        if (!method || !path || !summary) return;
+        const key = method.toLowerCase() + " " + path + " " + summary;
+        state.key = key;
+        this.$refs.apiOptions?.assignCurrentApi(key);
       });
     },
-    // 给某个 api 绑定事件
-    apiTagHandler(e) {
-      const apiTag = e.currentTarget;
-      const method = apiTag.querySelector(".opblock-summary-method")?.innerText;
-      const path = apiTag.querySelector(".opblock-summary-path")?.innerText;
-      const summary = apiTag.querySelector(".opblock-summary-description")
-        ?.innerText;
-      if (!method || !path || !summary) return;
-      const key = method.toLowerCase() + " " + path + " " + summary;
-      state.key = key;
-      this.$refs.apiOptions?.assignCurrentApi(key);
-    },
-    async modelTagBindClickEvents() {
+    async bindClickEventForModel() {
       await this.$nextTick();
       document
         .querySelector(".models")
         ?.firstChild?.addEventListener("click", this.modelTagHandler);
     },
     async modelTagHandler() {
-      await wait(100);
+      await wait(0);
       const modelNodeList = [...document.querySelectorAll(".model-container")];
       modelNodeList.forEach(node => {
         node.style.position = "relative";
