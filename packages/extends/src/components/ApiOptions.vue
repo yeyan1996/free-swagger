@@ -88,10 +88,6 @@ export default {
         apiDom.classList.contains("is-open") || apiDom.firstChild.click();
       }
     },
-
-    assignCurrentApi(key) {
-      state.currentApi = state.options.find(item => item.key === key);
-    },
     // 展开一个 api
     async expandApiCollapse({ controller, operationId }) {
       const controllerDom = this.findControllerDom({
@@ -111,8 +107,12 @@ export default {
       return { apiDom, controllerDom };
     },
     async handleSearch(key) {
-      this.assignCurrentApi(key);
-      handleCopyApi();
+      state.currentApi = state.options.find(item => item.key === key);
+      handleCopyApi(
+        state.currentApi.path,
+        state.currentApi.method,
+        state.swagger
+      );
       let apiDom;
       await retry({
         cb: async () => {
