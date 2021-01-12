@@ -37,7 +37,7 @@ export const jsTemplate = `// js template
   IPathParams ? \`{\${pathParams.join(",")}},\` : multipleParams ? "pathParams," : ""
 }\${
   multipleParams
-    ? \`bodyParams: \${IBodyParams}\`
+    ? \`bodyParams\`
     : ""
 }) => axios.request({
      url: \\\`\${parsedUrl}\\\`,

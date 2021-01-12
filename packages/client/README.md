@@ -102,7 +102,7 @@ export const addUsingPOST = params =>
   IPathParams ? `{${pathParams.join(",")}},` : multipleParams ? "pathParams," : ""
 }${
   multipleParams
-    ? `bodyParams: ${IBodyParams}`
+    ? `bodyParams`
     : ""
 }) => axios.request({
      url: \`${parsedUrl}\`,
