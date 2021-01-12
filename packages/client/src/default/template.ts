@@ -42,7 +42,7 @@ export const jsTemplate = `// js template
 }) => axios.request({
      url: \\\`\${parsedUrl}\\\`,
      method: "\${method}",
-     params:${`\${ multipleParams ? "queryParams" : IQueryParams ? "params," : "{},"}`}
+     params:${`\${ multipleParams ? "queryParams," : IQueryParams ? "params," : "{},"}`}
      data:${`\${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      \${responseType === "json" ? "" : \`responseType: \${responseType}\`}
  })\`;
@@ -95,7 +95,7 @@ export const tsTemplate = `// ts template
 "any"}>>({
      url: \\\`\${parsedUrl}\\\`,
      method: "\${method}",
-     params:${`\${ multipleParams ? "queryParams" : IQueryParams ? "params," : "{},"}`}
+     params:${`\${ multipleParams ? "queryParams," : IQueryParams ? "params," : "{},"}`}
      data:${`\${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
      \${responseType === "json" ? "" : \`responseType: \${responseType}\`}
  })\`;

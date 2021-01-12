@@ -77,7 +77,7 @@ export function init(cb?: Function): void {
           name: 'useJsDoc',
           type: 'confirm',
           message: '是否使用 jsDoc',
-          default: false,
+          default: true,
           when: ({ lang }) => lang === 'js',
         },
         {
