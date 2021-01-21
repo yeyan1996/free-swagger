@@ -4,93 +4,97 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "description": "anim amet",
-        "product_id": "mollit do",
-        "display_name": "amet incididunt qui sunt laborum",
-        "capacity": "occaecat non nostrud",
-        "image": "minim sunt"
+        "display_name": "et culpa tempor ut dolore",
+        "capacity": "mollit anim do tempor esse",
+        "image": "est incididunt sint",
+        "description": "fugiat",
+        "product_id": "dolore adipisicing"
       },
       "PriceEstimate": {
-        "low_estimate": 77683029.12495378,
-        "surge_multiplier": -469691.8819052875,
-        "currency_code": "ea",
-        "display_name": "labore sed",
-        "high_estimate": 11996988.378597796,
-        "product_id": "nostrud nisi voluptate in",
-        "estimate": "in"
+        "currency_code": "ex elit enim deserunt",
+        "display_name": "culpa dolor magna",
+        "surge_multiplier": 1069639.4021829665,
+        "high_estimate": -18263173.653637826,
+        "product_id": "ullamco labore est",
+        "estimate": "in",
+        "low_estimate": 55968266.42436206
       },
       "Profile": {
-        "picture": "dolore ipsum consectetur minim id",
-        "first_name": "in proident",
-        "role": "SetSms",
-        "last_name": "est aliqua",
-        "email": "nisi ex incididunt Ut ut",
-        "promo_code": "ea anim"
+        "picture": "eu in",
+        "role": "User",
+        "last_name": "enim",
+        "promo_code": "veniam",
+        "email": "amet et",
+        "first_name": "ex irure commodo"
       },
       "Activity": {
-        "uuid": "ad quis sunt nulla"
+        "uuid": "culpa fugiat occaecat",
+        "id_5": -63988227,
+        "exercitationf1": true,
+        "et7": "nisi"
       },
       "Activities": {
+        "count": -21853946,
+        "offset": 10717523,
         "history": [
           {
-            "uuid": "nisi minim",
-            "nostrud_4dd": -8913401,
-            "nisif": 63363748
+            "uuid": "occaecat",
+            "consequat4_2": true,
+            "dolor_21": "reprehenderit amet",
+            "dolor_5f": -85335387
           }
         ],
-        "limit": 16162129,
-        "count": 44428134,
-        "offset": 57301666
+        "limit": -89877618
       },
       "RoleType": "SetSms",
       "CreateOrUpdateUserInput": {
-        "userId": -89168832,
+        "userId": 75255756,
         "userRights": [
-          "Search"
+          "SetNetwork"
         ],
         "cardNo": false
       },
       "Abc": {
-        "id": "veniam sit",
-        "isLow": true
+        "id": "voluptate ea ut sunt",
+        "isLow": false
       },
       "ArrayOfAbc": [
         {
-          "isLow": false,
-          "id": "in magna consequat dolore"
+          "id": "eu et adipisicing",
+          "isLow": false
         }
       ],
       "NumberArrayEnumModel": {
-        "foo": [
-          1
-        ],
         "bar": [
-          1
+          0
+        ],
+        "foo": [
+          8
         ]
       },
       "Error": {
-        "fields": "reprehenderit officia aliqua",
-        "message": "mollit ad cillum",
-        "code": -76578650
+        "fields": "culpa",
+        "message": "dolore sunt nostrud dolore eiusmod",
+        "code": 71899937
       },
       "PagedResultDto[AuditLogListDto]": {
-        "totalCount": 14164619,
         "items": [
           {
-            "userId": 73090074,
-            "id": -54071831
+            "id": -78029275,
+            "userId": -4015441
           }
-        ]
+        ],
+        "totalCount": -47162768
       },
       "AuditLogListDto": {
-        "userId": 93706581,
-        "id": -21592208
+        "userId": 39244495,
+        "id": 66660699
       },
       "JsonResult[Guid]": {
-        "data": "cac8afd2-cb62-a17b-3758-9cce54b8057c",
-        "message": "veniam",
-        "result": true,
-        "code": "Error"
+        "message": "Lorem eu sed",
+        "code": "Timeout",
+        "data": "140d9834-5fd3-9cb6-a053-79b43a428bae",
+        "result": false
       },
       "List": []
     }

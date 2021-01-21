@@ -4,13 +4,13 @@
     "msg": "xxx",
     "data": [
       {
-        "low_estimate": 45572112.37184054,
-        "estimate": "sint",
-        "product_id": "aliquip",
-        "high_estimate": 19893128.79037404,
-        "surge_multiplier": 8547727.574322164,
-        "currency_code": "eiusmod Ut",
-        "display_name": "do"
+        "product_id": "ex labore",
+        "estimate": "adipisicing aute sunt",
+        "low_estimate": -25890849.27514018,
+        "currency_code": "nisi Excepteur fugiat sunt",
+        "display_name": "in",
+        "high_estimate": 97434372.31797528,
+        "surge_multiplier": 33413100.109739527
       }
     ]
   },
@@ -19,11 +19,11 @@
     "msg": "xxx",
     "data": [
       {
-        "display_name": "ullamco reprehenderit",
-        "capacity": "ipsum amet nisi aliquip dolor",
-        "image": "mollit incididunt dolor ipsum occaecat",
-        "description": "veniam",
-        "product_id": "mollit"
+        "description": "dolore nulla enim Ut ad",
+        "image": "Excepteur nisi exercitation laborum quis",
+        "capacity": "culpa consectetur occaecat nostrud",
+        "display_name": "ad deserunt est veniam sit",
+        "product_id": "sunt pariatur est labore incididunt"
       }
     ]
   }

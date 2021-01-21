@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "laborum ullamco dolore",
+    "name": "consequat nostrud dolor aute",
     "photoUrls": [
-      "enim minim amet"
+      "ipsum aliqua fugiat"
     ],
-    "status": "pending",
+    "status": "sold",
     "tags": [
       {
-        "name": "proident",
-        "id": -53092274
+        "name": "Ut consectetur",
+        "id": 89401456
       }
     ],
     "category": {
-      "id": 34297957,
-      "name": "ad ipsum elit in in"
+      "id": -50752086,
+      "name": "proident Duis officia qui"
     },
-    "id": 24564748
+    "id": 45780342
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "message": "sint velit cillum laborum",
-    "code": "200",
-    "type": "in deserunt aliquip commodo tempor"
+    "type": "in sit sunt reprehenderit",
+    "message": "ex",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "dolore dolor",
+      "name": "dolore",
       "photoUrls": [
-        "Duis"
+        "nulla non"
       ],
+      "status": "sold",
+      "id": 62687860,
       "category": {
-        "id": -10409842,
-        "name": "ea"
+        "id": 72186219,
+        "name": "dolore consequat"
       },
       "tags": [
         {
-          "id": -49358599,
-          "name": "reprehenderit ut"
+          "id": 69353058,
+          "name": "anim"
         }
-      ],
-      "id": 73065501,
-      "status": "available"
+      ]
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "eiusmod dolor labore ad",
+      "name": "Lorem in",
       "photoUrls": [
-        "et tempor"
+        "non"
       ],
+      "id": 73863839,
+      "status": "pending",
       "category": {
-        "id": -78671679,
-        "name": "exercitation nulla"
+        "name": "ex ut",
+        "id": -86554577
       },
       "tags": [
         {
-          "name": "ea",
-          "id": -59381737
+          "name": "officia",
+          "id": 69376330
         }
-      ],
-      "status": "pending",
-      "id": 53915340
+      ]
     }
   ]
 }

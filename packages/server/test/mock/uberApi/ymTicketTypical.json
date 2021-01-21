@@ -3,10 +3,10 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "result": false,
+      "data": "a8c4c14a-aca4-a849-abd7-3000187c6490",
+      "message": "sed minim cupidatat ex",
       "code": "200",
-      "data": "207deadf-6e03-76ef-36d5-5a431cdc90e3",
-      "message": "id non sunt consectetur"
+      "result": true
     }
   }
 }

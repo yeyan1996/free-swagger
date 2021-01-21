@@ -3,7 +3,7 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "culpa consequat sunt",
+      "message": "Lorem",
       "code": "200"
     }
   },
@@ -11,25 +11,25 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "elit commodo id labore irure",
-      "code": "200"
+      "code": "200",
+      "message": "qui in"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "level": -16229690,
-      "id": "cupidatat adipisicing",
-      "lastUpdate": "1949-07-16T19:21:32.802Z",
-      "name": "consequat"
+      "name": "ex magna",
+      "id": "sunt tempor elit qui deserunt",
+      "level": -22499827,
+      "lastUpdate": "1995-02-05T07:04:07.654Z"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "proident Duis est culpa dolore",
+      "message": "in labore nisi reprehenderit enim",
       "code": "200"
     }
   },
@@ -37,7 +37,7 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "aliquip nisi elit ad fugiat",
+      "message": "dolore",
       "code": "200"
     }
   },
@@ -45,21 +45,21 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "zones": [
-        {
-          "deviceType": "switch",
-          "id": "aliqua ut ad commodo",
-          "deviceId": -86700091,
-          "zone": "Lorem et est minim adipisicing",
-          "name": "incididunt esse"
-        }
-      ],
       "zoneStatus": [
         {
-          "lastUpdate": "1949-01-23T01:20:05.165Z",
-          "level": 23562405,
-          "id": "laborum",
-          "name": "Lorem enim"
+          "level": -4336854,
+          "name": "aliquip id culpa",
+          "lastUpdate": "1967-06-01T02:43:26.613Z",
+          "id": "nulla ad aliqua fugiat"
+        }
+      ],
+      "zones": [
+        {
+          "id": "enim ea",
+          "zone": "ut mollit minim",
+          "deviceType": "dimmer",
+          "deviceId": 19522364,
+          "name": "enim est culpa"
         }
       ]
     }

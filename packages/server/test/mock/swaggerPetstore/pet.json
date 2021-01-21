@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "consequat proident Lorem fugiat",
+    "name": "in dolor tempor occaecat ea",
     "photoUrls": [
-      "pariatur fugiat in"
+      "minim velit"
     ],
     "tags": [
       {
-        "id": -82874791,
-        "name": "aliqua cupidatat dolore"
+        "name": "sint cupidatat qui ipsum sunt",
+        "id": 4673728
       }
     ],
+    "id": -84876088,
+    "status": "available",
     "category": {
-      "name": "elit in mollit sint adipisicing",
-      "id": -12972465
-    },
-    "id": 53930935,
-    "status": "sold"
+      "id": -34367730,
+      "name": "dolore id commodo exercitation"
+    }
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
+    "type": "cupidatat",
     "code": "200",
-    "message": "elit incididunt Lorem",
-    "type": "labore ea sint Duis"
+    "message": "eiusmod velit commodo laboris"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "sit veniam dolore mollit est",
+      "name": "dolore",
       "photoUrls": [
-        "aliqua reprehenderit ad in"
+        "aute ea dolore ullamco Excepteur"
       ],
-      "status": "sold",
+      "id": -38503080,
+      "status": "pending",
       "tags": [
         {
-          "name": "cillum tempor dolor fugiat voluptate",
-          "id": -1885704
+          "name": "consectetur",
+          "id": -27734369
         }
       ],
       "category": {
-        "id": -57924707,
-        "name": "eu ipsum dolor"
-      },
-      "id": 23798466
+        "name": "sit Excepteur eu deserunt amet",
+        "id": -27998312
+      }
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "consectetur",
+      "name": "cillum occaecat nostrud",
       "photoUrls": [
-        "do magna consectetur"
+        "officia ipsum sit"
       ],
-      "id": 51147600,
-      "category": {
-        "id": -3169810,
-        "name": "in"
-      },
-      "status": "pending",
+      "status": "available",
+      "id": 31343489,
       "tags": [
         {
-          "id": -99890171,
-          "name": "eiusmod ut laborum non"
+          "name": "Duis veniam ut",
+          "id": 79146896
         }
-      ]
+      ],
+      "category": {
+        "name": "fugiat dolore aliqua adipisicing dolore",
+        "id": 25692494
+      }
     }
   ]
 }

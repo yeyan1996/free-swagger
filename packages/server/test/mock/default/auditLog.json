@@ -1,95 +1,93 @@
 {
   "GET /api/services/app/AuditLog/GetAuditLogs": {
     "Product": {
-      "description": "veniam dolore",
-      "capacity": "consequat",
-      "display_name": "minim elit",
-      "image": "et cupidatat eu ipsum",
-      "product_id": "proident anim dolor"
+      "capacity": "in dolor consequat velit",
+      "description": "nostrud in",
+      "image": "irure dolore id",
+      "display_name": "ullamco nisi",
+      "product_id": "consectetur aliqua culpa incididunt"
     },
     "PriceEstimate": {
-      "display_name": "labore incididunt non",
-      "surge_multiplier": -43244332.682726584,
-      "low_estimate": -65264032.21467132,
-      "high_estimate": 45293637.8460798,
-      "currency_code": "deserunt amet fugiat",
-      "product_id": "adipisicing exercitation id",
-      "estimate": "fugiat quis"
+      "product_id": "velit sint ea aliqua",
+      "surge_multiplier": -82877890.01848793,
+      "currency_code": "velit incididunt",
+      "low_estimate": 73242631.91999522,
+      "estimate": "velit voluptate",
+      "high_estimate": 90923381.1323702,
+      "display_name": "do sit laboris esse"
     },
     "Profile": {
-      "email": "in aute",
-      "first_name": "qui",
-      "last_name": "id reprehenderit",
       "role": "Admin",
-      "promo_code": "Lorem ad in",
-      "picture": "ullamco est laboris sint exercitation"
+      "promo_code": "laborum velit proident culpa esse",
+      "email": "eiusmod elit magna do Excepteur",
+      "picture": "nulla do reprehenderit dolore pariatur",
+      "first_name": "culpa aliquip ut occaecat magna",
+      "last_name": "ullamco Ut"
     },
     "Activity": {
-      "uuid": "anim veniam laboris",
-      "nisib_f": -22428192.1366992
+      "uuid": "minim id eu dolore esse"
     },
     "Activities": {
-      "offset": 45589994,
-      "count": -87225198,
+      "count": -66276340,
+      "limit": 3266950,
+      "offset": -31282736,
       "history": [
         {
-          "uuid": "laborum dolor commodo dolore",
-          "culpa_16b": -5234093,
-          "laborisb": 42376485.67500982,
-          "sint7": -51221681.3280979
+          "uuid": "reprehenderit ullamco dolore",
+          "deserunt_8e": 30809953,
+          "culpa_a": 52235838
         }
-      ],
-      "limit": -17505142
+      ]
     },
     "RoleType": "User",
     "CreateOrUpdateUserInput": {
-      "userId": -45524792,
       "userRights": [
-        "Auth"
+        "SystemManage"
       ],
-      "cardNo": "incididunt occaecat ea in aliquip"
+      "userId": 73468396,
+      "cardNo": false
     },
     "Abc": {
       "isLow": true,
-      "id": "ex dolor enim"
+      "id": "culpa"
     },
     "ArrayOfAbc": [
       {
-        "id": "nisi quis ea incididunt sit",
-        "isLow": true
+        "id": "dolor non qui nostrud",
+        "isLow": false
       }
     ],
     "NumberArrayEnumModel": {
-      "bar": [
+      "foo": [
         0
       ],
-      "foo": [
-        8
+      "bar": [
+        3
       ]
     },
     "Error": {
-      "code": 69086673,
-      "fields": "in dolor",
-      "message": "tempor culpa ea"
+      "fields": "non nulla laborum",
+      "code": 89087812,
+      "message": "elit incididunt ex aliquip"
     },
     "PagedResultDto[AuditLogListDto]": {
+      "totalCount": 77437163,
       "items": [
         {
-          "id": 68201904,
-          "userId": 88757248
+          "id": -75325346,
+          "userId": -27048426
         }
-      ],
-      "totalCount": -16649311
+      ]
     },
     "AuditLogListDto": {
-      "id": 40790297,
-      "userId": -37721794
+      "userId": -38625492,
+      "id": -63847052
     },
     "JsonResult[Guid]": {
-      "result": true,
-      "data": "bac1f7df-e396-c07b-3baf-3d6ed68d83c0",
-      "message": "culpa ad elit",
-      "code": "Fail"
+      "result": false,
+      "message": "mollit sed cupidatat anim",
+      "code": "Success",
+      "data": "7dbf8c23-44b2-b93a-d82c-a0713c295452"
     },
     "List": []
   }

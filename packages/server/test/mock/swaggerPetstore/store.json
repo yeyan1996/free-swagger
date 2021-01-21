@@ -1,16 +1,17 @@
 {
   "GET /store/inventory": {
-    "Excepteur5": 64732592,
-    "irure_c0": -47205319,
-    "ullamco_57": -16460920
+    "eiusmod_2": 59450588,
+    "nostrud_8": -98104065,
+    "Lorem_6": -87951738,
+    "nostrud1": -20183386
   },
   "GET /store/order/:orderId": {
-    "petId": 77570572,
-    "status": "approved",
+    "petId": 56803033,
     "complete": false,
-    "quantity": 8852471,
-    "id": -94028787,
-    "shipDate": "1979-06-16T12:28:22.379Z"
+    "quantity": 97742034,
+    "id": 74425819,
+    "status": "approved",
+    "shipDate": "1986-08-10T19:38:22.174Z"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -18,11 +19,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "id": 68903706,
-    "petId": -26132438,
-    "status": "placed",
-    "complete": false,
-    "quantity": -76872915,
-    "shipDate": "2015-08-13T23:41:06.765Z"
+    "quantity": 10191407,
+    "id": 45805056,
+    "complete": true,
+    "petId": 64853471,
+    "shipDate": "1965-09-16T23:28:43.974Z",
+    "status": "delivered"
   }
 }

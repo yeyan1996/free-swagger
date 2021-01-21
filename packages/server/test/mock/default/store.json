@@ -1,17 +1,16 @@
 {
   "GET /store/inventory": {
-    "fugiat8": 9875322,
-    "enim_1e1": -3992252,
-    "est_732": 27428421,
-    "ea34b": -22789342
+    "cupidatat1": -94857743,
+    "reprehenderit_22": 14968021,
+    "officia_6": 72668464
   },
   "GET /store/order/:orderId": {
-    "quantity": 43363399,
-    "status": "approved",
-    "shipDate": "1987-03-07T08:18:54.419Z",
-    "id": -19228642,
-    "petId": -25382225,
-    "complete": false
+    "shipDate": "2015-01-16T10:51:30.791Z",
+    "id": 51400859,
+    "status": "placed",
+    "complete": false,
+    "quantity": 71846308,
+    "petId": 3122024
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -19,11 +18,11 @@
     "data": {}
   },
   "POST /store/order": {
+    "petId": 79282960,
+    "quantity": -14177889,
     "complete": false,
-    "shipDate": "1962-04-17T03:21:17.243Z",
-    "id": 48632293,
-    "petId": 23132458,
-    "quantity": 63210367,
-    "status": "delivered"
+    "status": "delivered",
+    "id": -17106009,
+    "shipDate": "1963-09-19T07:01:10.51Z"
   }
 }
