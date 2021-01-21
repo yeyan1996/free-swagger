@@ -1,8 +1,0 @@
-{
-  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
-    "result": false,
-    "code": "200",
-    "data": "b335cc3d-6d80-c749-cc5b-8d301287197d",
-    "message": "veniam sed"
-  }
-}

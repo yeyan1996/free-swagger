@@ -19,7 +19,9 @@ export const DEFAULT_HEAD_CODE_JS = `
 const DEFAULT_MOCK_CONFIG = {
   cookie: '',
   wrap: false,
-  mockRoot: path.resolve(process.cwd(), 'src/mock'),
+  mockRoot: global.__DEV__
+    ? path.resolve(__dirname, '../../test/mock/default')
+    : path.resolve(process.cwd(), 'src/mock'),
 }
 
 const getDefaultParams = (

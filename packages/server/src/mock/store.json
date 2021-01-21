@@ -1,12 +1,12 @@
 {
   "GET /store/inventory": {},
   "GET /store/order/:orderId": {
-    "id": 81981569,
-    "petId": -2838769,
-    "quantity": 51154789,
-    "shipDate": "1989-12-02T18:22:42.85Z",
-    "status": "placed",
-    "complete": false
+    "id": 8657453,
+    "petId": -65270486,
+    "quantity": 60898171,
+    "shipDate": "1978-01-31T17:23:14.853Z",
+    "status": "approved",
+    "complete": true
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -14,11 +14,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "id": -69866564,
-    "petId": 1448154,
-    "quantity": 14862518,
-    "shipDate": "1998-04-15T05:22:13.982Z",
-    "status": "approved",
+    "id": 37563367,
+    "petId": 15249950,
+    "quantity": 47347728,
+    "shipDate": "2014-12-11T00:51:15.799Z",
+    "status": "placed",
     "complete": true
   }
 }

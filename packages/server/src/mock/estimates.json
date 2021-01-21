@@ -1,22 +1,22 @@
 {
   "GET /estimates/price": [
     {
-      "product_id": "esse ex",
-      "currency_code": "esse commodo Excepteur et tempor",
-      "display_name": "ullamco officia ut cillum",
-      "estimate": "nostrud enim commodo",
-      "low_estimate": 23174871.62123148,
-      "high_estimate": 99704708.99454659,
-      "surge_multiplier": 356695.2662779093
+      "product_id": "cillum",
+      "currency_code": "irure ullamco elit",
+      "display_name": "ullamco in",
+      "estimate": "eu sint",
+      "low_estimate": 24087375.819696218,
+      "high_estimate": -90945362.30939339,
+      "surge_multiplier": -91395744.8440469
     }
   ],
   "GET /estimates/time": [
     {
-      "product_id": "ea eiusmod esse",
-      "description": "eu ut proident magna do",
-      "display_name": "minim proident nostrud",
-      "capacity": "ut in qui eiusmod laborum",
-      "image": "nostrud aute Excepteur"
+      "product_id": "incididunt aute in fugiat elit",
+      "description": "fugiat mollit commodo",
+      "display_name": "incididunt magna",
+      "capacity": "do",
+      "image": "sunt Excepteur Ut nisi"
     }
   ]
 }

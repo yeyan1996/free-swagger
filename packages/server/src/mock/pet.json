@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "velit pariatur exercitation dolore",
+    "name": "Lorem eu tempor qui magna",
     "photoUrls": [
-      "laboris nostrud ex quis Excepteur"
+      "in"
     ],
-    "id": -24451789,
+    "id": -98484137,
     "category": {
-      "id": 21949894,
-      "name": "fugiat Duis consectetur"
+      "id": 5280005,
+      "name": "officia do aliquip"
     },
     "tags": [
       {
-        "id": 74072919,
-        "name": "amet in dolor"
+        "id": 37667595,
+        "name": "veniam anim et"
       }
     ],
-    "status": "pending"
+    "status": "available"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "do",
-    "message": "est adipisicing"
+    "type": "aliqua nulla ut",
+    "message": "Excepteur laborum eu"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "culpa occaecat Ut non ut",
+      "name": "officia laboris irure magna minim",
       "photoUrls": [
-        "ut"
+        "laboris officia"
       ],
-      "id": 34926044,
+      "id": -50305293,
       "category": {
-        "id": -88132689,
-        "name": "labore voluptate anim sed"
+        "id": 16056620,
+        "name": "culpa minim eiusmod nisi sunt"
       },
       "tags": [
         {
-          "id": 90092674,
-          "name": "amet cillum eu est dolor"
+          "id": 13882080,
+          "name": "in occaecat irure"
         }
       ],
-      "status": "sold"
+      "status": "available"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "incididunt",
+      "name": "irure ut culpa eu dolor",
       "photoUrls": [
-        "id enim"
+        "Duis"
       ],
-      "id": -60339451,
+      "id": -6233491,
       "category": {
-        "id": 6445173,
-        "name": "culpa amet"
+        "id": 87004380,
+        "name": "cupidatat tempor aute ullamco velit"
       },
       "tags": [
         {
-          "id": 144144,
-          "name": "deserunt nulla nisi amet esse"
+          "id": 67533663,
+          "name": "nostrud"
         }
       ],
-      "status": "pending"
+      "status": "sold"
     }
   ]
 }
