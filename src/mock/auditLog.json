@@ -1,0 +1,92 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "Product": {
+      "product_id": "fugiat nulla",
+      "description": "nisi proident enim ipsum",
+      "display_name": "consectetur anim ad mollit",
+      "capacity": "pariatur in laboris dolor ut",
+      "image": "ut consequat aute"
+    },
+    "PriceEstimate": {
+      "product_id": "labore sit",
+      "currency_code": "laboris anim pariatur",
+      "display_name": "tempor minim dolor",
+      "estimate": "deserunt Excepteur",
+      "low_estimate": -13894075.240163863,
+      "high_estimate": -74783302.42743057,
+      "surge_multiplier": 86078301.10639423
+    },
+    "Profile": {
+      "first_name": "ullamco sunt Ut ut eiusmod",
+      "last_name": "dolor cillum",
+      "email": "elit ut voluptate non enim",
+      "picture": "qui",
+      "promo_code": "aliqua ut",
+      "role": "Admin"
+    },
+    "Activity": {
+      "uuid": "ut sed ex laboris in"
+    },
+    "Activities": {
+      "offset": -64696448,
+      "limit": -14154026,
+      "count": -42669963,
+      "history": [
+        {
+          "uuid": "Duis irure"
+        }
+      ]
+    },
+    "RoleType": "SetSms",
+    "CreateOrUpdateUserInput": {
+      "userId": -47619167,
+      "userRights": [
+        "Search"
+      ],
+      "cardNo": true
+    },
+    "Abc": {
+      "id": "irure commodo",
+      "isLow": false
+    },
+    "ArrayOfAbc": [
+      {
+        "id": "eu consectetur",
+        "isLow": false
+      }
+    ],
+    "NumberArrayEnumModel": {
+      "foo": [
+        1
+      ],
+      "bar": [
+        2
+      ]
+    },
+    "Error": {
+      "code": 27402530,
+      "message": "enim",
+      "fields": "non velit anim"
+    },
+    "PagedResultDto[AuditLogListDto]": {
+      "totalCount": -34060680,
+      "items": [
+        {
+          "userId": -35060990,
+          "id": -39210015
+        }
+      ]
+    },
+    "AuditLogListDto": {
+      "userId": 61785105,
+      "id": 51481213
+    },
+    "JsonResult[Guid]": {
+      "result": false,
+      "code": "UserIsBinded",
+      "data": "b32f4ecc-2f7f-38ab-3efd-b91550c2a926",
+      "message": "Ut dolore dolor"
+    },
+    "List": []
+  }
+}

@@ -1,8 +1,8 @@
-import { ConfigClient } from './src/utils'
+import { ClientConfig } from './src/utils'
 import { OpenAPIV2 } from 'openapi-types'
 
 declare function freeSwaggerClient(
-  config: ConfigClient,
+  config: ClientConfig,
   url?: string,
   method?: string
 ): string

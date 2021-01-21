@@ -23,6 +23,7 @@
     "lodash-es": "^4.17.15",
     "monaco-editor": "^0.20.0",
     "prettier": "^1.19.1",
+    "recursive-iterator": "^3.3.0",
     "swagger-parser": "^9.0.1",
     "vue": "^2.6.10"
   },

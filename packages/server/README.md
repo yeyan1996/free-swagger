@@ -102,7 +102,7 @@ freeSwagger({
 | templateFunction | 可选，模版函数                                  | (TemplateConfig):  string | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
 | chooseAll        | 可选，是否跳过选择 api 的步骤                   | boolean                   | -           | false                                          |
 | useJsDoc         | 可选，是否添加 jsdoc 注释                       | boolean                   |             | false                                          |
-| fileName         | 可选，生成 api 的文件名                         | (name): string            |             | name 为当前 swagger 中标注的 controller 名     |
+| filename         | 可选，生成 api 的文件名                         | (name:string): string            |             | name 为当前 swagger 中标注的 controller 名     |
 
 **TemplateConfig**
 

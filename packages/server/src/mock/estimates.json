@@ -1,0 +1,22 @@
+{
+  "GET /estimates/price": [
+    {
+      "product_id": "esse ex",
+      "currency_code": "esse commodo Excepteur et tempor",
+      "display_name": "ullamco officia ut cillum",
+      "estimate": "nostrud enim commodo",
+      "low_estimate": 23174871.62123148,
+      "high_estimate": 99704708.99454659,
+      "surge_multiplier": 356695.2662779093
+    }
+  ],
+  "GET /estimates/time": [
+    {
+      "product_id": "ea eiusmod esse",
+      "description": "eu ut proident magna do",
+      "display_name": "minim proident nostrud",
+      "capacity": "ut in qui eiusmod laborum",
+      "image": "nostrud aute Excepteur"
+    }
+  ]
+}

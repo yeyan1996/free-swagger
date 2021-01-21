@@ -4,169 +4,174 @@ import fse from 'fs-extra'
 import prettier from 'prettier'
 import { pick, mergeWith } from 'lodash'
 import { EOL } from 'os'
-import { jsTemplate, tsTemplate } from 'free-swagger-client'
-import { Config, MockConfig } from '../utils'
+import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-client'
+import { ServerConfig } from '../utils'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
 } from './index'
 import { execSync } from 'child_process'
-import camelcase from 'camelcase'
+
+type Type = 'client' | 'server' | 'mock'
 
 const EXPORT_DEFAULT = 'export default'
 
-// answer 继承自各自的 config
-
-// mock answer
-export type MockAnswer = Required<MockConfig<string>>
-// config answer
-export interface ConfigAnswer<T = string> extends Required<Config<string>> {
-  previousSource: string
-  shouldEditTemplate: boolean
-  customImportCodeJs: string
-  customImportCodeTs: string
-  jsTemplate: string
-  tsTemplate: string
-  apiChoices: { name: string; checked: boolean }[]
+export interface RcConfig {
+  client: Omit<ClientConfig<string>, 'filename'> & {
+    source: string
+    tsTemplate: string
+    jsTemplate: string
+  }
+  server: {
+    root: string
+    cookie: string
+    previousSource: string
+    apiChoices: { name: string; checked: boolean }[]
+    chooseAll: boolean
+    shouldEditTemplate: boolean
+    customImportCode: string
+    customImportCodeJs: string
+    customImportCodeTs: string
+  }
+  mock: {
+    mockRoot: string
+    wrap: boolean
+  }
 }
 
 class Rc {
   path: string
-  configData: ConfigAnswer
-  mockData: MockAnswer
+  configData: RcConfig
 
   constructor() {
     this.path = path.resolve(os.homedir(), '.free-swaggerrc.js')
     fse.ensureFileSync(this.path)
 
     const dataContent = fse.readFileSync(this.path, 'utf-8') || '{}'
-    // hack: 目的是取出 free-swaggerrc 中的代码片段
-    /*eslint-disable*/
-        let _obj = {};
-        eval(`_obj = ` + dataContent.replace(new RegExp(`^${EXPORT_DEFAULT}`), ""));
-        this.configData = {
-            ...this.getDefaultConfigAnswer(),
-            ...pick(_obj, Object.keys(this.getDefaultConfigAnswer()))
-        };
-        this.mockData = {
-            ...this.getDefaultMockAnswer(),
-            ...pick(_obj, Object.keys(this.getDefaultMockAnswer()))
-        }
+    // hack: 目的是取出 rc 中的代码片段
+    /* eslint-disable */
+    let _obj = {}
+    eval(`_obj = ${dataContent.replace(new RegExp(`^${EXPORT_DEFAULT}`), '')}`)
+    this.configData = {
+      ...this.getDefaultConfig(),
+      ...pick(_obj, Object.keys(this.getDefaultConfig())),
     }
+  }
 
-    // 获取 inquirer 默认回答
-    getDefaultConfigAnswer(): ConfigAnswer {
-        return {
-            previousSource: "",
-            source: "",
-            cookie: "",
-            root: path.resolve(process.cwd(), "src/api"),
-            lang: "js",
-            shouldEditTemplate:false,
-            customImportCode: "",
-            customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
-            customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
-            templateFunction: eval(tsTemplate),
-            tsTemplate: tsTemplate,
-            jsTemplate: jsTemplate,
-            apiChoices: [],
-            chooseAll: false,
-            useJsDoc: false,
-            fileName: (name: string) => camelcase(name)
-        };
+  // 获取默认 rc 文件
+  getDefaultConfig(): RcConfig {
+    return {
+      client: {
+        source: '',
+        lang: 'js',
+        templateFunction: eval(jsTemplate),
+        useJsDoc: true,
+        tsTemplate,
+        jsTemplate,
+      },
+      server: {
+        root: path.resolve(process.cwd(), 'src/api'),
+        cookie: '',
+        previousSource: '',
+        apiChoices: [],
+        chooseAll: false,
+        shouldEditTemplate: false,
+        customImportCode: '',
+        customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+        customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
+      },
+      mock: {
+        mockRoot: global.__DEV__
+          ? path.resolve(__dirname, '../../test/mock/default')
+          : path.resolve(process.cwd(), 'src/mock'),
+        wrap: false,
+      },
     }
+  }
 
-    getDefaultMockAnswer(): MockAnswer {
-        return {
-            source: "",
-            cookie: "",
-            mockRoot: global.__DEV__ ? path.resolve(__dirname, "../../test/mock/default") : path.resolve(process.cwd(), "mock"),
-            wrap: false,
-        };
+  // 从 rc 文件中生成 free-swagger 参数
+  createFreeSwaggerParams(): ServerConfig {
+    const { lang, tsTemplate, jsTemplate ,templateFunction} = this.configData.client
+    const { customImportCodeJs, customImportCodeTs } = this.configData.server
+    const defaultTemplateFunction = lang === 'ts' ? eval(tsTemplate) : eval(jsTemplate)
+    return {
+      ...pick(this.configData.client, [
+        'source',
+        'lang',
+        'useJsDoc',
+      ]),
+      ...pick(this.configData.server,['root',
+          'cookie']),
+      templateFunction,
+      ...pick(this.configData.server, ['chooseAll']),
+      customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
     }
+  }
 
-    // 获取默认配置项
-    getConfig(): Config {
-        return {
-            source: this.configData.source,
-            root: this.configData.root,
-            lang: this.configData.lang,
-            cookie: this.configData.cookie,
-            customImportCode:this.configData.lang === "ts" ? this.configData.customImportCodeTs : this.configData.customImportCode,
-            templateFunction: eval(
-                this.configData.lang === "ts" ? this.configData.tsTemplate : this.configData.jsTemplate
-            ),
-            useJsDoc:this.configData.useJsDoc,
-            chooseAll: this.configData.chooseAll
-        };
-    }
+  // 合并配置项
+  merge(answer: object, type: Type = 'client'): void {
+    // @ts-ignore
+    this.configData[type] = mergeWith(
+      this.configData[type],
+      answer,
+      (old, now) => {
+        if (now == null) return old
+      }
+    )
+  }
 
-    // 合并配置项
-    merge(answer: Partial<ConfigAnswer>): void {
-        this.configData = mergeWith(this.configData,answer,(old,now) => {
-            if(now == null) return old
-        })
-        // todo mockData 的 source 字段可能和 configData 的 source 字段重合，导致 source 被缓存没有更新
-        this.mockData = mergeWith(this.mockData,answer,(old,now) => {
-            if(now == null) return old
-        })
+  // 将配置项存储至 rc 文件
+  save(): void {
+    const data = JSON.stringify(this.configData)
+    // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
+    // 去除尾部分号，否则会报词法错误
+    let templateFunction = this.configData.client.templateFunction
+      ?.toString()
+      .replace(EOL, '')
+      .trim()
+    if (templateFunction?.endsWith(';')) {
+      templateFunction = templateFunction.slice(0, templateFunction.length - 1)
     }
+    const functionCode = `templateFunction: ${templateFunction}`
+    const index = data.search(/"source"/)
+    const prevCode = data.slice(0,index)
+    const afterCode = data.slice(index,data.length)
+    const code = prettier.format(`${EXPORT_DEFAULT} ${prevCode} ${functionCode}, ${afterCode}`, {
+      parser: 'babel',
+    })
+    fse.writeFileSync(this.path, code)
+  }
 
-    // 将配置项存储至 rc 文件
-    save(): void {
-        const data = JSON.stringify(mergeWith(this.configData,this.mockData,(old,now) => {
-            if(now == null) return old
-        }));
-        // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
-        // 去除尾部分号，否则会报词法错误
-        let templateFunction = this.configData.templateFunction
-            ?.toString()
-            .replace(EOL, "")
-            .trim();
-        if (templateFunction?.endsWith(";")) {
-            templateFunction = templateFunction.slice(0, templateFunction.length - 1);
-        }
-        const dataWithFunction =
-            data.slice(0, data.length - 1) +
-            "," +
-            `templateFunction:${templateFunction}}`;
-        const code = prettier.format(`${EXPORT_DEFAULT} ${dataWithFunction}`, {
-            parser: "babel"
-        });
-        fse.writeFileSync(this.path, code);
-    }
+  // 记录当前 source 和之前的 source
+  // 对比两者判断是否需要清空用户选择的 api 缓存记录
+  recordHash(newSource: string): void {
+    this.configData.server.previousSource = this.configData.client.source
+    this.configData.client.source = newSource
+  }
 
-    // 记录当前 source 和之前的 source
-    // 对比两者判断是否需要清空用户选择的 api 缓存记录
-    recordHash(newSource: string): void {
-        this.configData.previousSource = this.configData.source;
-        this.configData.source = newSource;
-    }
+  // 是否清空用户选择的 api 缓存记录
+  shouldRefreshCache(): boolean {
+    return (
+      this.configData.server.previousSource !== this.configData.client.source
+    )
+  }
 
-    // 是否清空用户选择的 api 缓存记录
-    shouldRefreshCache(): boolean {
-        return this.configData.previousSource !== this.configData.source;
-    }
+  // 重置为默认配置项
+  reset(): void {
+    this.configData = this.getDefaultConfig()
+    fse.unlinkSync(this.path)
+    this.save()
+  }
 
-    // 重置为默认配置项
-    reset(): void {
-        this.configData = this.getDefaultConfigAnswer();
-        this.mockData = this.getDefaultMockAnswer();
-        fse.unlinkSync(this.path);
-        this.save();
-    }
+  // 查看配置项
+  show(): void {
+    console.log(this.configData)
+  }
 
-    // 查看配置项
-    show(): void {
-        console.log(mergeWith(this.configData,this.mockData,(old,now) => {
-            if(now == null) return old
-        }));
-    }
-
-    // 打开编辑器编辑模版
-    edit(): void {
-        execSync(`code ${this.path}`);
-    }
+  // 打开编辑器编辑模版
+  edit(): void {
+    execSync(`code ${this.path}`, { stdio: 'inherit' })
+  }
 }
 
-export const rc = new Rc();
+export const rc = new Rc()

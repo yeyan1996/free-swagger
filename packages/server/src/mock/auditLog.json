@@ -1,0 +1,92 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "Product": {
+      "product_id": "irure exercitation ipsum",
+      "description": "Lorem dolore minim",
+      "display_name": "adipisicing cupidatat magna ut amet",
+      "capacity": "et non laborum",
+      "image": "voluptate consequat Ut"
+    },
+    "PriceEstimate": {
+      "product_id": "voluptate sunt minim",
+      "currency_code": "id sit",
+      "display_name": "Excepteur ex ipsum",
+      "estimate": "velit dolore mollit laborum dolor",
+      "low_estimate": 43073990.02820712,
+      "high_estimate": 2754632.001359433,
+      "surge_multiplier": -55715917.419082925
+    },
+    "Profile": {
+      "first_name": "non Excepteur dolor anim",
+      "last_name": "commodo Ut",
+      "email": "eiusmod ut anim mollit",
+      "picture": "pariatur adipisicing",
+      "promo_code": "voluptate aliquip",
+      "role": "Admin"
+    },
+    "Activity": {
+      "uuid": "laborum dolor consequat culpa officia"
+    },
+    "Activities": {
+      "offset": -77195456,
+      "limit": 66938810,
+      "count": 13448724,
+      "history": [
+        {
+          "uuid": "ipsum aliqua exercitation"
+        }
+      ]
+    },
+    "RoleType": "Admin",
+    "CreateOrUpdateUserInput": {
+      "userId": -72500093,
+      "userRights": [
+        "Auth"
+      ],
+      "cardNo": "sint proident non et ullamco"
+    },
+    "Abc": {
+      "id": "Ut fugiat nulla",
+      "isLow": true
+    },
+    "ArrayOfAbc": [
+      {
+        "id": "in",
+        "isLow": false
+      }
+    ],
+    "NumberArrayEnumModel": {
+      "foo": [
+        2
+      ],
+      "bar": [
+        2
+      ]
+    },
+    "Error": {
+      "code": 34966648,
+      "message": "dolore laboris non labore",
+      "fields": "minim eiusmod"
+    },
+    "PagedResultDto[AuditLogListDto]": {
+      "totalCount": -53134943,
+      "items": [
+        {
+          "userId": 4390551,
+          "id": -31785303
+        }
+      ]
+    },
+    "AuditLogListDto": {
+      "userId": -42006127,
+      "id": 74592748
+    },
+    "JsonResult[Guid]": {
+      "result": false,
+      "code": "Expired",
+      "data": "de2f1ab1-0477-88aa-8ce7-459df267d1cc",
+      "message": "et ut amet do"
+    },
+    "List": []
+  }
+}

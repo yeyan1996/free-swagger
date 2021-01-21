@@ -45,6 +45,7 @@ import {
   createApiIconsDom,
   createInterfaceIconDom
 } from "@/utils/manually-mount";
+import RecursiveIterator from "recursive-iterator";
 
 export default {
   name: "app",
@@ -97,7 +98,9 @@ export default {
         ? [...document.querySelectorAll("li.menuLi")]
         : [...controllerNode.nextSibling.querySelectorAll(".opblock")];
       apiNodeList.forEach(apiNode => {
-        state.isNewUi || this.injectApiIconsForApiNode(apiNode);
+        if (!state.isNewUi) {
+          this.injectApiIconsForApiNode(apiNode);
+        }
         this.bindClickApiHandlerForApiNode(apiNode, state.isNewUi);
       });
     },
@@ -124,13 +127,20 @@ export default {
       apiNode.addEventListener("click", e => {
         const apiTag = e.currentTarget;
         if (isNewUi) {
-          const summary = apiTag.querySelector(".menu-url")?.innerText;
-          const res = state.options.find(
-            item => item.collection.summary === summary
-          );
-          if (!res) return;
-          state.currentApi = res;
-          state.key = state.currentApi.key;
+          const hashurl = apiTag.dataset.hashurl;
+          const index = hashurl.lastIndexOf("/");
+          const apiName = hashurl.slice(index + 1, hashurl.length);
+          for (let { node, path } of new RecursiveIterator(
+            state.swagger.paths
+          )) {
+            if (node === apiName) {
+              const [url, method] = path;
+              const key = `${method} ${url} ${state.swagger.paths[url][method].summary}`;
+              state.key = key;
+              state.currentApi = state.options.find(item => item.key === key);
+              break;
+            }
+          }
         } else {
           const method = apiTag.querySelector(".opblock-summary-method")
             ?.innerText;
@@ -142,6 +152,7 @@ export default {
           state.key = key;
           state.currentApi = state.options.find(item => item.key === key);
         }
+        handleCopyApi();
       });
     },
     async bindClickEventForModel() {

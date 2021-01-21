@@ -1,0 +1,85 @@
+{
+  "GET /pet/:petId": {
+    "name": "velit pariatur exercitation dolore",
+    "photoUrls": [
+      "laboris nostrud ex quis Excepteur"
+    ],
+    "id": -24451789,
+    "category": {
+      "id": 21949894,
+      "name": "fugiat Duis consectetur"
+    },
+    "tags": [
+      {
+        "id": 74072919,
+        "name": "amet in dolor"
+      }
+    ],
+    "status": "pending"
+  },
+  "POST /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "DELETE /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet/:petId/uploadImage": {
+    "code": "200",
+    "type": "do",
+    "message": "est adipisicing"
+  },
+  "PUT /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "GET /pet/findByStatus": [
+    {
+      "name": "culpa occaecat Ut non ut",
+      "photoUrls": [
+        "ut"
+      ],
+      "id": 34926044,
+      "category": {
+        "id": -88132689,
+        "name": "labore voluptate anim sed"
+      },
+      "tags": [
+        {
+          "id": 90092674,
+          "name": "amet cillum eu est dolor"
+        }
+      ],
+      "status": "sold"
+    }
+  ],
+  "GET /pet/findByTags": [
+    {
+      "name": "incididunt",
+      "photoUrls": [
+        "id enim"
+      ],
+      "id": -60339451,
+      "category": {
+        "id": 6445173,
+        "name": "culpa amet"
+      },
+      "tags": [
+        {
+          "id": 144144,
+          "name": "deserunt nulla nisi amet esse"
+        }
+      ],
+      "status": "pending"
+    }
+  ]
+}

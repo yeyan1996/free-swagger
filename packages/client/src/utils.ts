@@ -8,8 +8,8 @@ import {
   formatGenericInterface,
 } from './parse/interface'
 
-export interface ConfigClient {
-  source: OpenAPIV2.Document
+export interface ClientConfig<T = OpenAPIV2.Document> {
+  source: T
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
   useJsDoc?: boolean

@@ -3,9 +3,15 @@ import path from 'path'
 import chalk from 'chalk'
 import ora from 'ora'
 import { OpenAPIV2 } from 'openapi-types'
-import { Config, isUrl, isPath, assertOpenApi2, MockConfig } from './utils'
-import { mergeDefaultConfig, mergeDefaultMockConfig } from './default'
-import { chooseApi } from './inquirer'
+import {
+  isUrl,
+  isPath,
+  assertOpenApi2,
+  MockConfig,
+  ServerConfig,
+} from './utils'
+import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
+import { chooseApi } from './bin/questions/server'
 import { pick } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
 import { compileInterfaces, compileJsDocs } from 'free-swagger-client'
@@ -20,7 +26,7 @@ export const spinner = ora().render()
 
 // parse swagger json
 const parse = async (
-  config: Config<OpenAPIV2.Document>
+  config: ServerConfig<OpenAPIV2.Document>
 ): Promise<{
   paths: ParsedPaths
 }> => {
@@ -31,7 +37,7 @@ const parse = async (
 
 // code generate
 const gen = async (
-  config: Required<Config<OpenAPIV2.Document>>,
+  config: Required<ServerConfig<OpenAPIV2.Document>>,
   dirPath: string,
   paths: ParsedPaths
 ): Promise<void> => {
@@ -55,7 +61,7 @@ const gen = async (
   ]): Promise<void> => {
     const apiCollectionPath = path.resolve(
       dirPath,
-      `${config.fileName?.(name) ?? name}.${config.lang}`
+      `${config.filename?.(name) ?? name}.${config.lang}`
     )
     fse.ensureFileSync(apiCollectionPath)
     const code = genPaths(apiCollection, config)
@@ -80,7 +86,7 @@ const normalizeSource = async (
 }
 
 // compile = parse + gen
-const compile = async (config: Required<Config>): Promise<any> => {
+const compile = async (config: Required<ServerConfig>): Promise<any> => {
   try {
     config.source = await normalizeSource(config.source, config.cookie)
     if (!assertOpenApi2(config)) {
@@ -110,9 +116,9 @@ const compile = async (config: Required<Config>): Promise<any> => {
 
 // freeSwagger = merge + compile
 const freeSwagger = async (
-  config: Config | string
+  config: ServerConfig | string
 ): Promise<OpenAPIV2.Document> => {
-  const mergedConfig = await mergeDefaultConfig(config)
+  const mergedConfig = await mergeDefaultParams(config)
   return await compile(mergedConfig)
 }
 
@@ -122,7 +128,7 @@ freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
   const source = await normalizeSource(mergedConfig.source, mergedConfig.cookie)
   await mock({ ...mergedConfig, source })
   spinner.succeed(
-    `mock 文件生成成功，文件根目录地址: ${chalk.green(
+    `mock 文件生成成功，路径: ${chalk.green(
       path.resolve(mergedConfig.mockRoot)
     )}`
   )
