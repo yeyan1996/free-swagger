@@ -12,7 +12,6 @@ export interface ServerConfig<T = string | OpenAPIV2.Document>
   cookie?: string
   root?: string
   customImportCode?: string
-  chooseAll?: boolean
   filename?(name: string): string
 }
 

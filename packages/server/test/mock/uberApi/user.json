@@ -3,27 +3,30 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "role": "User",
-      "email": "quis consectetur dolore in",
-      "last_name": "deserunt",
-      "picture": "dolore",
-      "first_name": "deserunt veniam Lorem qui ullamco",
-      "promo_code": "proident exercitation"
+      "promo_code": "consectetur in ea cillum id",
+      "last_name": "in elit",
+      "first_name": "in",
+      "picture": "sed non",
+      "email": "in",
+      "role": "SetSms"
     }
   },
   "GET /history": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "limit": -14672880,
       "history": [
         {
           "uuid": "eiusmod",
-          "ipsum91d": "eu in sed"
+          "exercitation019": -56058663,
+          "non3c": "pariatur aliqua laborum",
+          "occaecat4": true,
+          "Excepteur_23a": "culpa sit adipisicing"
         }
       ],
-      "count": 54655375,
-      "offset": -64789350
+      "offset": 40018931,
+      "count": -67046678,
+      "limit": -66741569
     }
   }
 }

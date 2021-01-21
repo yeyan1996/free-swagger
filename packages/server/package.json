@@ -4,6 +4,9 @@
 	"description": "openApi(swagger) Document Generator",
 	"main": "dist/main.js",
 	"types": "index.d.ts",
+	"bin": {
+		"free-swagger": "dist/bin.js"
+	},
 	"scripts": {
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix"

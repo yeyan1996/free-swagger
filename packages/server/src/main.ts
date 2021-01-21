@@ -11,7 +11,7 @@ import {
   ServerConfig,
 } from './utils'
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
-// import { pick } from 'lodash'
+import { isFunction } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
 import { compileInterfaces, compileJsDocs } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
@@ -85,7 +85,12 @@ const normalizeSource = async (
 }
 
 // compile = parse + gen
-const compile = async (config: Required<ServerConfig>): Promise<any> => {
+const compile = async (
+  config: Required<ServerConfig>,
+  events: {
+    onChooseApi?: (params: { paths: ParsedPaths }) => Promise<ParsedPaths>
+  } = {}
+): Promise<any> => {
   try {
     config.source = await normalizeSource(config.source, config.cookie)
     if (!assertOpenApi2(config)) {
@@ -97,12 +102,10 @@ const compile = async (config: Required<ServerConfig>): Promise<any> => {
     // parse
     const { paths } = await parse(config)
     spinner.succeed('api 文件解析完成')
-    const choosePaths = paths
 
-    // todo chooseApi 功能恢复
-    // config.chooseAll || global.__DEV__
-    //   ? paths
-    //   : pick(paths, ...(await chooseApi(paths)))
+    const choosePaths = isFunction(events?.onChooseApi)
+      ? await events?.onChooseApi?.({ paths })
+      : paths
 
     // gen
     await gen(config, config.root, choosePaths)

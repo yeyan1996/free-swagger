@@ -5,9 +5,10 @@ import fse from 'fs-extra'
 import commander from 'commander'
 import { rc } from '../default/rc'
 import mockQuestion from './questions/mock'
-import serverQuestion from './questions/server'
+import serverQuestion, { chooseApi } from './questions/server'
 import { source } from './questions/client'
 import { mock, MockConfig, compile } from 'free-swagger'
+import { pick } from 'lodash'
 
 export function init(cb?: Function): void {
   const packageJsonPath = path.resolve(__dirname, '../../package.json')
@@ -30,10 +31,13 @@ export function init(cb?: Function): void {
       const answer = await inquirer.prompt(mockQuestion)
       await mock((answer as unknown) as MockConfig)
     })
-    .option('-c, --config', '以配置项启动 free-swagger', async () => {
+    .option('-c, --config', '以配置项启动 free-swagger-cli', async () => {
       const answer = await inquirer.prompt(serverQuestion)
       rc.recordHash(answer.source)
-      await compile(rc.createFreeSwaggerParams())
+      await compile(rc.createFreeSwaggerParams(), {
+        onChooseApi: async ({ paths }) =>
+          pick(paths, ...(await chooseApi(paths))),
+      })
     })
     // 默认启动
     .action(async (command) => {

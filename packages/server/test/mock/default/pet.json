@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "dolor magna reprehenderit Lorem est",
+    "name": "laborum ullamco dolore",
     "photoUrls": [
-      "aliquip aute"
+      "enim minim amet"
     ],
     "status": "pending",
-    "id": 49459160,
-    "category": {
-      "name": "cupidatat",
-      "id": 36888305
-    },
     "tags": [
       {
-        "name": "minim",
-        "id": -35279035
+        "name": "proident",
+        "id": -53092274
       }
-    ]
+    ],
+    "category": {
+      "id": 34297957,
+      "name": "ad ipsum elit in in"
+    },
+    "id": 24564748
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "message": "nostrud veniam",
+    "message": "sint velit cillum laborum",
     "code": "200",
-    "type": "dolore culpa do sint anim"
+    "type": "in deserunt aliquip commodo tempor"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "eiusmod laboris ipsum laborum",
+      "name": "dolore dolor",
       "photoUrls": [
-        "occaecat do Lorem"
+        "Duis"
       ],
       "category": {
-        "name": "dolor incididunt irure",
-        "id": 26082654
+        "id": -10409842,
+        "name": "ea"
       },
-      "status": "pending",
-      "id": -32308731,
       "tags": [
         {
-          "id": -61273335,
-          "name": "officia"
+          "id": -49358599,
+          "name": "reprehenderit ut"
         }
-      ]
+      ],
+      "id": 73065501,
+      "status": "available"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Excepteur labore ullamco",
+      "name": "eiusmod dolor labore ad",
       "photoUrls": [
-        "Excepteur ex et"
-      ],
-      "id": 49975142,
-      "status": "pending",
-      "tags": [
-        {
-          "name": "pariatur anim Duis aliquip",
-          "id": -74705242
-        }
+        "et tempor"
       ],
       "category": {
-        "name": "ut incididunt ad",
-        "id": -16019436
-      }
+        "id": -78671679,
+        "name": "exercitation nulla"
+      },
+      "tags": [
+        {
+          "name": "ea",
+          "id": -59381737
+        }
+      ],
+      "status": "pending",
+      "id": 53915340
     }
   ]
 }

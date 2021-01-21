@@ -4,93 +4,93 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "description": "proident tempor adipisicing sint in",
-        "display_name": "sint ex ullamco",
-        "capacity": "cillum labore magna Ut",
-        "image": "sit dolor",
-        "product_id": "dolor eu Ut"
+        "description": "anim amet",
+        "product_id": "mollit do",
+        "display_name": "amet incididunt qui sunt laborum",
+        "capacity": "occaecat non nostrud",
+        "image": "minim sunt"
       },
       "PriceEstimate": {
-        "high_estimate": 29184584.111135826,
-        "currency_code": "dolor",
-        "display_name": "labore reprehenderit in dolore dolor",
-        "low_estimate": 77581504.63307229,
-        "product_id": "proident",
-        "surge_multiplier": -12033548.573327214,
-        "estimate": "enim"
+        "low_estimate": 77683029.12495378,
+        "surge_multiplier": -469691.8819052875,
+        "currency_code": "ea",
+        "display_name": "labore sed",
+        "high_estimate": 11996988.378597796,
+        "product_id": "nostrud nisi voluptate in",
+        "estimate": "in"
       },
       "Profile": {
-        "role": "User",
-        "promo_code": "esse aliqua est do",
-        "picture": "quis consectetur ea ipsum est",
-        "email": "consequat proident",
-        "first_name": "aliqua eu",
-        "last_name": "in ullamco ipsum eu"
+        "picture": "dolore ipsum consectetur minim id",
+        "first_name": "in proident",
+        "role": "SetSms",
+        "last_name": "est aliqua",
+        "email": "nisi ex incididunt Ut ut",
+        "promo_code": "ea anim"
       },
       "Activity": {
-        "uuid": "Excepteur",
-        "voluptate__af": -47328270.455746815
+        "uuid": "ad quis sunt nulla"
       },
       "Activities": {
-        "count": 33913289,
-        "offset": 19359676,
         "history": [
           {
-            "uuid": "in dolore amet sint commodo",
-            "dolor_f": 86488086
+            "uuid": "nisi minim",
+            "nostrud_4dd": -8913401,
+            "nisif": 63363748
           }
         ],
-        "limit": -96779863
+        "limit": 16162129,
+        "count": 44428134,
+        "offset": 57301666
       },
-      "RoleType": "Admin",
+      "RoleType": "SetSms",
       "CreateOrUpdateUserInput": {
-        "userId": -46835449,
+        "userId": -89168832,
         "userRights": [
-          "View"
+          "Search"
         ],
-        "cardNo": 1459143.520441234
+        "cardNo": false
       },
       "Abc": {
-        "isLow": true,
-        "id": "pariatur et laborum Duis"
+        "id": "veniam sit",
+        "isLow": true
       },
       "ArrayOfAbc": [
         {
-          "isLow": true,
-          "id": "eiusmod in ut cillum occaecat"
+          "isLow": false,
+          "id": "in magna consequat dolore"
         }
       ],
       "NumberArrayEnumModel": {
         "foo": [
-          8
+          1
         ],
         "bar": [
-          0
+          1
         ]
       },
       "Error": {
-        "fields": "dolor in",
-        "code": 76760867,
-        "message": "irure do ut eiusmod est"
+        "fields": "reprehenderit officia aliqua",
+        "message": "mollit ad cillum",
+        "code": -76578650
       },
       "PagedResultDto[AuditLogListDto]": {
+        "totalCount": 14164619,
         "items": [
           {
-            "id": -76674531,
-            "userId": 67768230
+            "userId": 73090074,
+            "id": -54071831
           }
-        ],
-        "totalCount": 51713515
+        ]
       },
       "AuditLogListDto": {
-        "userId": -1076472,
-        "id": -26310951
+        "userId": 93706581,
+        "id": -21592208
       },
       "JsonResult[Guid]": {
+        "data": "cac8afd2-cb62-a17b-3758-9cce54b8057c",
+        "message": "veniam",
         "result": true,
-        "message": "cupidatat id amet ut labore",
-        "data": "be9d572f-7787-d336-3819-62ec3a64c807",
-        "code": "InvalidAnonymousAccess"
+        "code": "Error"
       },
       "List": []
     }

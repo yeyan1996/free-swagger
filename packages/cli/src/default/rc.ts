@@ -13,7 +13,7 @@ import {
 import { execSync } from 'child_process'
 import camelcase from 'camelcase'
 
-type Type = 'client' | 'cli' | 'mock'
+type Type = 'client' | 'server' | 'mock'
 
 const EXPORT_DEFAULT = 'export default'
 
@@ -23,12 +23,11 @@ export interface RcConfig {
     tsTemplate: string
     jsTemplate: string
   }
-  cli: {
+  server: {
     root: string
     cookie: string
     previousSource: string
     apiChoices: { name: string; checked: boolean }[]
-    chooseAll: boolean
     shouldEditTemplate: boolean
     customImportCode: string
     customImportCodeJs: string
@@ -70,12 +69,11 @@ class Rc {
         tsTemplate,
         jsTemplate,
       },
-      cli: {
+      server: {
         root: path.resolve(process.cwd(), 'src/api'),
         cookie: '',
         previousSource: '',
         apiChoices: [],
-        chooseAll: false,
         shouldEditTemplate: false,
         customImportCode: '',
         customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
@@ -93,7 +91,7 @@ class Rc {
   // 从 rc 文件中生成 free-swagger-cli 参数
   createFreeSwaggerParams(): Required<ServerConfig> {
     const { lang, tsTemplate, jsTemplate ,templateFunction} = this.configData.client
-    const { customImportCodeJs, customImportCodeTs } = this.configData.cli
+    const { customImportCodeJs, customImportCodeTs } = this.configData.server
     return {
       ...pick(this.configData.client, [
         'source',
@@ -101,9 +99,8 @@ class Rc {
         'useJsDoc',
       ]),
       filename:name => camelcase(name),
-      ...pick(this.configData.cli,['root', 'cookie']),
+      ...pick(this.configData.server,['root', 'cookie']),
       templateFunction,
-      ...pick(this.configData.cli, ['chooseAll']),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
     }
   }
@@ -145,14 +142,14 @@ class Rc {
   // 记录当前 source 和之前的 source
   // 对比两者判断是否需要清空用户选择的 api 缓存记录
   recordHash(newSource: string): void {
-    this.configData.cli.previousSource = this.configData.client.source
+    this.configData.server.previousSource = this.configData.client.source
     this.configData.client.source = newSource
   }
 
   // 是否清空用户选择的 api 缓存记录
   shouldRefreshCache(): boolean {
     return (
-      this.configData.cli.previousSource !== this.configData.client.source
+      this.configData.server.previousSource !== this.configData.client.source
     )
   }
 

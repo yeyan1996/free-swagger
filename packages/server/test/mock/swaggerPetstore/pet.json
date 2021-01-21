@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "eu incididunt",
+    "name": "consequat proident Lorem fugiat",
     "photoUrls": [
-      "deserunt"
+      "pariatur fugiat in"
     ],
-    "id": -34298221,
-    "category": {
-      "id": -96614491,
-      "name": "proident in consectetur cupidatat aute"
-    },
     "tags": [
       {
-        "name": "velit",
-        "id": -32539606
+        "id": -82874791,
+        "name": "aliqua cupidatat dolore"
       }
     ],
-    "status": "available"
+    "category": {
+      "name": "elit in mollit sint adipisicing",
+      "id": -12972465
+    },
+    "id": 53930935,
+    "status": "sold"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "laboris occaecat magna veniam aute",
-    "message": "Excepteur commodo consectetur",
-    "code": "200"
+    "code": "200",
+    "message": "elit incididunt Lorem",
+    "type": "labore ea sint Duis"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "cillum",
+      "name": "sit veniam dolore mollit est",
       "photoUrls": [
-        "in"
+        "aliqua reprehenderit ad in"
       ],
-      "id": 40939060,
       "status": "sold",
-      "category": {
-        "name": "aute Lorem irure velit",
-        "id": 49302054
-      },
       "tags": [
         {
-          "name": "tempor ad labore nulla",
-          "id": 57570252
+          "name": "cillum tempor dolor fugiat voluptate",
+          "id": -1885704
         }
-      ]
+      ],
+      "category": {
+        "id": -57924707,
+        "name": "eu ipsum dolor"
+      },
+      "id": 23798466
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "velit veniam eu",
+      "name": "consectetur",
       "photoUrls": [
-        "proident"
+        "do magna consectetur"
       ],
+      "id": 51147600,
+      "category": {
+        "id": -3169810,
+        "name": "in"
+      },
+      "status": "pending",
       "tags": [
         {
-          "name": "eiusmod reprehenderit et amet",
-          "id": -97420065
+          "id": -99890171,
+          "name": "eiusmod ut laborum non"
         }
-      ],
-      "id": 73446920,
-      "status": "available",
-      "category": {
-        "name": "ut esse",
-        "id": -84030536
-      }
+      ]
     }
   ]
 }

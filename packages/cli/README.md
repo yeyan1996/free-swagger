@@ -66,7 +66,7 @@ npx free-swagger-cli --mock
 
 # 所有命令
 
-- `--config/-c` 以配置项启动 free-swagger
+- `--config/-c` 以配置项启动 free-swagger-cli
 
 > npx free-swagger-cli --config
 

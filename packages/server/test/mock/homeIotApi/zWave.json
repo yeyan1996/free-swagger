@@ -3,15 +3,15 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "do cillum elit"
+      "message": "culpa consequat sunt",
+      "code": "200"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "minim sit id",
+      "message": "elit commodo id labore irure",
       "code": "200"
     }
   },
@@ -19,17 +19,17 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "level": 62485141,
-      "name": "pariatur aute adipisicing",
-      "id": "sit fugiat reprehenderit aliquip",
-      "lastUpdate": "2011-08-03T11:59:53.56Z"
+      "level": -16229690,
+      "id": "cupidatat adipisicing",
+      "lastUpdate": "1949-07-16T19:21:32.802Z",
+      "name": "consequat"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "Duis et",
+      "message": "proident Duis est culpa dolore",
       "code": "200"
     }
   },
@@ -37,7 +37,7 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "Ut nulla aliquip",
+      "message": "aliquip nisi elit ad fugiat",
       "code": "200"
     }
   },
@@ -45,21 +45,21 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "zoneStatus": [
-        {
-          "lastUpdate": "1995-05-06T21:42:50.262Z",
-          "id": "Excepteur amet enim",
-          "name": "ex",
-          "level": 73646412
-        }
-      ],
       "zones": [
         {
-          "id": "dolor commodo enim sunt",
-          "deviceId": -75963481,
-          "zone": "eu reprehenderit",
-          "deviceType": "dimmer",
-          "name": "sunt sed dolor occaecat ipsum"
+          "deviceType": "switch",
+          "id": "aliqua ut ad commodo",
+          "deviceId": -86700091,
+          "zone": "Lorem et est minim adipisicing",
+          "name": "incididunt esse"
+        }
+      ],
+      "zoneStatus": [
+        {
+          "lastUpdate": "1949-01-23T01:20:05.165Z",
+          "level": 23562405,
+          "id": "laborum",
+          "name": "Lorem enim"
         }
       ]
     }
