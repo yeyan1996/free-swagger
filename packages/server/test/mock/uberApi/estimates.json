@@ -1,0 +1,30 @@
+{
+  "GET /estimates/price": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "low_estimate": -8180328.607817426,
+        "estimate": "enim irure",
+        "product_id": "eiusmod laborum",
+        "currency_code": "reprehenderit Ut eiusmod sed",
+        "high_estimate": -73118408.83666578,
+        "surge_multiplier": -50330905.65452083,
+        "display_name": "eu mollit"
+      }
+    ]
+  },
+  "GET /estimates/time": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "image": "Ut mollit Excepteur",
+        "display_name": "exercitation voluptate incididunt sunt",
+        "capacity": "do deserunt",
+        "description": "magna in commodo non ea",
+        "product_id": "sint in anim"
+      }
+    ]
+  }
+}

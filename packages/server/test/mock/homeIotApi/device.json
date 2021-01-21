@@ -1,0 +1,18 @@
+{
+  "GET /devices": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      "http://tYIKSDlTljwoWUiDrl.gtqtW4N,I-Us0NZr9Ew3DOBWsmpCUAZhJ"
+    ]
+  },
+  "POST /devices": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "msg": "xxx",
+      "data": {}
+    }
+  }
+}

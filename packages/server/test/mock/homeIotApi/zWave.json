@@ -1,0 +1,67 @@
+{
+  "POST /lighting/dimmers/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "mollit Ut dolore"
+    }
+  },
+  "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "message": "proident",
+      "code": "200"
+    }
+  },
+  "GET /lighting/switches/:deviceId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "name": "ut Excepteur voluptate",
+      "id": "qui",
+      "lastUpdate": "1966-06-19T19:33:22.732Z",
+      "level": -69218813
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "message": "aliquip culpa labore ullamco",
+      "code": "200"
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "message": "dolore ex veniam fugiat sed",
+      "code": "200"
+    }
+  },
+  "GET /lightingSummary": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "zoneStatus": [
+        {
+          "lastUpdate": "2015-12-05T14:57:47.866Z",
+          "id": "id proident culpa",
+          "level": -80627679,
+          "name": "culpa dolore voluptate veniam eu"
+        }
+      ],
+      "zones": [
+        {
+          "deviceType": "dimmer",
+          "deviceId": -94261631,
+          "id": "id sint quis sunt ea",
+          "zone": "adipisicing",
+          "name": "dolore fugiat elit voluptate"
+        }
+      ]
+    }
+  }
+}

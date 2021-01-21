@@ -1,0 +1,99 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "Product": {
+        "display_name": "deserunt Excepteur incididunt velit",
+        "image": "esse enim sit laborum",
+        "product_id": "Excepteur do ex",
+        "description": "mollit in",
+        "capacity": "ut Ut"
+      },
+      "PriceEstimate": {
+        "display_name": "enim",
+        "surge_multiplier": -19846657.629252374,
+        "high_estimate": -49032188.31135692,
+        "low_estimate": -71029138.31450395,
+        "estimate": "elit laboris ut nulla laborum",
+        "product_id": "eu commodo Lorem ipsum labore",
+        "currency_code": "sit"
+      },
+      "Profile": {
+        "last_name": "in proident amet",
+        "role": "User",
+        "promo_code": "ex sunt",
+        "picture": "do elit ea amet",
+        "first_name": "veniam ut",
+        "email": "magna ipsum sit minim"
+      },
+      "Activity": {
+        "uuid": "sint aliquip",
+        "laborum9": "deserunt"
+      },
+      "Activities": {
+        "history": [
+          {
+            "uuid": "velit irure ut veniam dolor",
+            "dolor4d6": -46630853,
+            "laborum_8c": -98919107
+          }
+        ],
+        "count": -72466551,
+        "limit": 55642364,
+        "offset": -49063977
+      },
+      "RoleType": "User",
+      "CreateOrUpdateUserInput": {
+        "userId": 94116404,
+        "userRights": [
+          "SystemManage"
+        ],
+        "cardNo": -62089588.26730107
+      },
+      "Abc": {
+        "id": "cillum",
+        "isLow": false
+      },
+      "ArrayOfAbc": [
+        {
+          "isLow": false,
+          "id": "irure ut adipisicing"
+        }
+      ],
+      "NumberArrayEnumModel": {
+        "foo": [
+          8
+        ],
+        "bar": [
+          2
+        ]
+      },
+      "Error": {
+        "code": -93999868,
+        "message": "Lorem reprehenderit proident",
+        "fields": "officia Excepteur ex quis mollit"
+      },
+      "PagedResultDto[AuditLogListDto]": {
+        "totalCount": -53733140,
+        "items": [
+          {
+            "userId": 56544167,
+            "id": 1313936
+          }
+        ]
+      },
+      "AuditLogListDto": {
+        "id": 36583763,
+        "userId": 37858436
+      },
+      "JsonResult[Guid]": {
+        "code": "Fail",
+        "result": false,
+        "data": "cf01e163-447e-d433-e65f-5eb5b07ffa15",
+        "message": "irure commodo"
+      },
+      "List": []
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "GET /estimates/price": [
+    {
+      "surge_multiplier": 26141986.514698476,
+      "display_name": "ex",
+      "high_estimate": 36495564.00608018,
+      "low_estimate": 46895384.2310738,
+      "currency_code": "esse laboris irure magna",
+      "estimate": "veniam fugiat dolor mollit",
+      "product_id": "commodo ea proident in"
+    }
+  ],
+  "GET /estimates/time": [
+    {
+      "image": "in Duis exercitation dolore",
+      "product_id": "exercitation consequat dolor",
+      "display_name": "in pariatur dolore nisi",
+      "description": "magna consequat officia est veniam",
+      "capacity": "eu dolor sit occaecat ut"
+    }
+  ]
+}

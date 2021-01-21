@@ -1,0 +1,15 @@
+{
+  "GET /products-test": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "capacity": "aliquip ullamco dolor",
+        "image": "minim",
+        "description": "fugiat nulla",
+        "product_id": "tempor est qui in dolore",
+        "display_name": "elit enim amet id"
+      }
+    ]
+  }
+}

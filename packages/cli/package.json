@@ -1,0 +1,49 @@
+{
+	"name": "free-swagger-cli",
+	"version": "3.0.0",
+	"description": "openApi(swagger) Document Generator",
+	"scripts": {
+		"build": "tsc",
+		"lint": "eslint **/*.ts --fix"
+	},
+	"keywords": [
+		"swagger",
+		"typescript"
+	],
+	"files": [
+		"dist/**",
+		"src/**",
+		"index.d.ts",
+		"README.md",
+		"LICENSE"
+	],
+	"repository": {
+		"url": "https://github.com/yeyan1996/free-swagger",
+		"type": "github"
+	},
+	"bin": {
+		"free-swagger-cli": "dist/bin/index.js"
+	},
+	"author": "yeyan1996",
+	"license": "MIT",
+	"dependencies": {
+		"@jsdevtools/ono": "^7.1.0",
+		"axios": "^0.21.1",
+		"call-me-maybe": "^1.0.1",
+		"camelcase": "^5.3.1",
+		"chalk": "^3.0.0",
+		"commander": "^4.1.0",
+		"free-swagger": "^3.0.0",
+		"free-swagger-client": "^3.0.0",
+		"fs-extra": "^8.1.0",
+		"inquirer": "^7.0.1",
+		"js-yaml": "^3.13.1",
+		"json-schema-faker": "^0.5.0-rcv.24",
+		"openapi-types": "^1.3.5",
+		"ora": "^4.0.3",
+		"prettier": "^2.0.5"
+	},
+	"devDependencies": {
+		"eslint": "^7.4.0"
+	}
+}

@@ -23,9 +23,6 @@
 		"url": "https://github.com/yeyan1996/free-swagger",
 		"type": "github"
 	},
-	"bin": {
-		"free-swagger": "dist/bin/index.js"
-	},
 	"author": "yeyan1996",
 	"license": "MIT",
 	"dependencies": {

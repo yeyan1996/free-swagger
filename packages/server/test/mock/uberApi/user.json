@@ -1,0 +1,29 @@
+{
+  "GET /me": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "email": "culpa laborum",
+      "role": "Admin",
+      "picture": "ut id magna",
+      "promo_code": "consequat",
+      "last_name": "adipisicing",
+      "first_name": "Excepteur qui ea eiusmod"
+    }
+  },
+  "GET /history": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "count": -15230559,
+      "limit": -34675558,
+      "history": [
+        {
+          "uuid": "quis ad Lorem",
+          "Duis_b7": "culpa ut"
+        }
+      ],
+      "offset": -69987875
+    }
+  }
+}

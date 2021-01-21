@@ -11,16 +11,15 @@ import {
   ServerConfig,
 } from './utils'
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
-import { chooseApi } from './bin/questions/server'
-import { pick } from 'lodash'
+// import { pick } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
 import { compileInterfaces, compileJsDocs } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
 import { genPaths } from './gen/path'
 import { fetchJSON } from './request'
-import { mock } from './mock'
 import { INTERFACE_PATH } from './gen/interface'
 import { JSDOC_PATH } from './gen/jsDoc'
+import { mock } from './mock'
 
 export const spinner = ora().render()
 
@@ -98,10 +97,13 @@ const compile = async (config: Required<ServerConfig>): Promise<any> => {
     // parse
     const { paths } = await parse(config)
     spinner.succeed('api 文件解析完成')
-    const choosePaths =
-      config.chooseAll || global.__DEV__
-        ? paths
-        : pick(paths, ...(await chooseApi(paths)))
+    const choosePaths = paths
+
+    // todo chooseApi 功能恢复
+    // config.chooseAll || global.__DEV__
+    //   ? paths
+    //   : pick(paths, ...(await chooseApi(paths)))
+
     // gen
     await gen(config, config.root, choosePaths)
     spinner.succeed(
@@ -133,4 +135,9 @@ freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
     )}`
   )
 }
+
+import * as utils from './utils'
+import * as defaults from './default'
+
+Object.assign(freeSwagger, utils, defaults)
 module.exports = freeSwagger

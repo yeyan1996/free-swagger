@@ -1,0 +1,85 @@
+{
+  "GET /pet/:petId": {
+    "name": "consectetur esse non commodo",
+    "photoUrls": [
+      "occaecat fugiat aliqua"
+    ],
+    "status": "pending",
+    "tags": [
+      {
+        "name": "officia",
+        "id": 29086624
+      }
+    ],
+    "id": -22084356,
+    "category": {
+      "name": "ea sed dolore",
+      "id": -68901580
+    }
+  },
+  "POST /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "DELETE /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet/:petId/uploadImage": {
+    "message": "esse Ut",
+    "type": "proident occaecat amet labore",
+    "code": "200"
+  },
+  "PUT /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "GET /pet/findByStatus": [
+    {
+      "name": "proident non",
+      "photoUrls": [
+        "ullamco ea Excepteur nulla"
+      ],
+      "category": {
+        "id": 46853543,
+        "name": "dolore laboris nulla"
+      },
+      "id": -31015441,
+      "status": "available",
+      "tags": [
+        {
+          "name": "est ex ut",
+          "id": 55278150
+        }
+      ]
+    }
+  ],
+  "GET /pet/findByTags": [
+    {
+      "name": "enim Duis ut Ut culpa",
+      "photoUrls": [
+        "dolore deserunt irure sit Lorem"
+      ],
+      "category": {
+        "name": "sunt eiusmod nisi",
+        "id": -89455953
+      },
+      "id": -29952911,
+      "tags": [
+        {
+          "name": "sint eu",
+          "id": -72103922
+        }
+      ],
+      "status": "pending"
+    }
+  ]
+}

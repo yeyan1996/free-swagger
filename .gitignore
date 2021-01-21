@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-/packages/server/test/mock
+/packages/cli/test/mock
+/packages/cli/dist
 /packages/server/dist
 /packages/client/dist
 

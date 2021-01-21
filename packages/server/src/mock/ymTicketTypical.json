@@ -1,8 +1,0 @@
-{
-  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
-    "result": true,
-    "code": "200",
-    "data": "d08a2472-0130-08a2-eaff-c3959ee2ae49",
-    "message": "laboris et voluptate minim"
-  }
-}

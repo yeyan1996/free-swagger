@@ -1,0 +1,12 @@
+{
+  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "result": true,
+      "code": "200",
+      "data": "6788500f-1c60-e198-3f26-87d75d6e73f8",
+      "message": "enim"
+    }
+  }
+}

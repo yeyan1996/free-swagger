@@ -1,0 +1,94 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "Product": {
+      "capacity": "velit",
+      "description": "officia qui",
+      "image": "do ad laboris aliquip",
+      "product_id": "sunt est ex ullamco",
+      "display_name": "occaecat culpa voluptate dolor"
+    },
+    "PriceEstimate": {
+      "low_estimate": -22181173.63444461,
+      "currency_code": "Duis est ad consequat officia",
+      "high_estimate": 59791053.68345109,
+      "product_id": "Duis irure",
+      "estimate": "esse sunt anim proident Excepteur",
+      "surge_multiplier": -23544433.103929132,
+      "display_name": "mollit"
+    },
+    "Profile": {
+      "promo_code": "sed dolor mollit",
+      "first_name": "Lorem tempor incididunt non ex",
+      "picture": "consectetur non occaecat",
+      "role": "User",
+      "email": "cillum",
+      "last_name": "nostrud"
+    },
+    "Activity": {
+      "uuid": "elit",
+      "Duisd": false
+    },
+    "Activities": {
+      "history": [
+        {
+          "uuid": "anim aliqua sunt",
+          "officia9bd": "labore consectetur minim occaecat nulla"
+        }
+      ],
+      "offset": -59419412,
+      "limit": -88836953,
+      "count": -8198231
+    },
+    "RoleType": "User",
+    "CreateOrUpdateUserInput": {
+      "userId": 47512422,
+      "userRights": [
+        "SetNetwork"
+      ],
+      "cardNo": 21057433
+    },
+    "Abc": {
+      "id": "laborum dolor nisi eiusmod aliquip",
+      "isLow": false
+    },
+    "ArrayOfAbc": [
+      {
+        "id": "ut enim laborum",
+        "isLow": true
+      }
+    ],
+    "NumberArrayEnumModel": {
+      "bar": [
+        2
+      ],
+      "foo": [
+        1
+      ]
+    },
+    "Error": {
+      "message": "cillum",
+      "code": -37017621,
+      "fields": "eiusmod in"
+    },
+    "PagedResultDto[AuditLogListDto]": {
+      "items": [
+        {
+          "userId": 20914106,
+          "id": 74748331
+        }
+      ],
+      "totalCount": 53511536
+    },
+    "AuditLogListDto": {
+      "id": 35516087,
+      "userId": 22870265
+    },
+    "JsonResult[Guid]": {
+      "data": "b851994a-3dc7-d420-09c1-16210e3bd340",
+      "message": "id consequat ipsum laboris",
+      "code": "UserSessionExpired",
+      "result": true
+    },
+    "List": []
+  }
+}
