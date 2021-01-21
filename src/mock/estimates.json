@@ -1,22 +1,22 @@
 {
   "GET /estimates/price": [
     {
-      "product_id": "id proident officia",
-      "currency_code": "in qui aliquip amet dolor",
-      "display_name": "Ut nisi exercitation in id",
-      "estimate": "in consequat consectetur",
-      "low_estimate": -94141829.13308476,
-      "high_estimate": -40929959.64713842,
-      "surge_multiplier": 69378675.9095695
+      "product_id": "Excepteur ipsum irure occaecat incididunt",
+      "currency_code": "Lorem ex aliquip cillum",
+      "display_name": "est amet ullamco",
+      "estimate": "exercitation",
+      "low_estimate": -68541738.8187108,
+      "high_estimate": 50245006.00444776,
+      "surge_multiplier": 61674097.822601676
     }
   ],
   "GET /estimates/time": [
     {
-      "product_id": "dolor occaecat do tempor",
-      "description": "dolor esse culpa occaecat cupidatat",
-      "display_name": "magna dolore",
-      "capacity": "dolore esse",
-      "image": "in"
+      "product_id": "ut magna Excepteur",
+      "description": "laborum eu",
+      "display_name": "magna consectetur laborum dolor",
+      "capacity": "eiusmod esse dolore quis",
+      "image": "in laborum"
     }
   ]
 }

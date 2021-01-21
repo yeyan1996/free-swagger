@@ -1,91 +1,91 @@
 {
   "GET /api/services/app/AuditLog/GetAuditLogs": {
     "Product": {
-      "product_id": "fugiat nulla",
-      "description": "nisi proident enim ipsum",
-      "display_name": "consectetur anim ad mollit",
-      "capacity": "pariatur in laboris dolor ut",
-      "image": "ut consequat aute"
+      "product_id": "in proident consectetur commodo",
+      "description": "irure",
+      "display_name": "incididunt",
+      "capacity": "Duis",
+      "image": "magna et ad"
     },
     "PriceEstimate": {
-      "product_id": "labore sit",
-      "currency_code": "laboris anim pariatur",
-      "display_name": "tempor minim dolor",
-      "estimate": "deserunt Excepteur",
-      "low_estimate": -13894075.240163863,
-      "high_estimate": -74783302.42743057,
-      "surge_multiplier": 86078301.10639423
+      "product_id": "sed commodo sit qui",
+      "currency_code": "sint",
+      "display_name": "sint",
+      "estimate": "enim dolore in veniam",
+      "low_estimate": 79559385.91891539,
+      "high_estimate": -15758641.3071571,
+      "surge_multiplier": -49668578.9494466
     },
     "Profile": {
-      "first_name": "ullamco sunt Ut ut eiusmod",
-      "last_name": "dolor cillum",
-      "email": "elit ut voluptate non enim",
-      "picture": "qui",
-      "promo_code": "aliqua ut",
-      "role": "Admin"
+      "first_name": "ut",
+      "last_name": "elit veniam sed consectetur irure",
+      "email": "non ut in commodo",
+      "picture": "nulla do magna",
+      "promo_code": "velit mollit nisi ut sunt",
+      "role": "User"
     },
     "Activity": {
-      "uuid": "ut sed ex laboris in"
+      "uuid": "occaecat do dolore culpa nostrud"
     },
     "Activities": {
-      "offset": -64696448,
-      "limit": -14154026,
-      "count": -42669963,
+      "offset": 18732798,
+      "limit": 23204898,
+      "count": -35226552,
       "history": [
         {
-          "uuid": "Duis irure"
+          "uuid": "Ut esse id laborum"
         }
       ]
     },
-    "RoleType": "SetSms",
+    "RoleType": "User",
     "CreateOrUpdateUserInput": {
-      "userId": -47619167,
+      "userId": 86916525,
       "userRights": [
-        "Search"
+        "Operate"
       ],
-      "cardNo": true
+      "cardNo": "voluptate minim ea"
     },
     "Abc": {
-      "id": "irure commodo",
+      "id": "nostrud id",
       "isLow": false
     },
     "ArrayOfAbc": [
       {
-        "id": "eu consectetur",
-        "isLow": false
+        "id": "aute occaecat",
+        "isLow": true
       }
     ],
     "NumberArrayEnumModel": {
       "foo": [
-        1
+        4
       ],
       "bar": [
         2
       ]
     },
     "Error": {
-      "code": 27402530,
-      "message": "enim",
-      "fields": "non velit anim"
+      "code": 7531434,
+      "message": "exercitation laborum deserunt",
+      "fields": "irure"
     },
     "PagedResultDto[AuditLogListDto]": {
-      "totalCount": -34060680,
+      "totalCount": 6236462,
       "items": [
         {
-          "userId": -35060990,
-          "id": -39210015
+          "userId": -87659759,
+          "id": 1988176
         }
       ]
     },
     "AuditLogListDto": {
-      "userId": 61785105,
-      "id": 51481213
+      "userId": 90269594,
+      "id": -69517941
     },
     "JsonResult[Guid]": {
-      "result": false,
-      "code": "UserIsBinded",
-      "data": "b32f4ecc-2f7f-38ab-3efd-b91550c2a926",
-      "message": "Ut dolore dolor"
+      "result": true,
+      "code": "InternalServerError",
+      "data": "d0b6bc6a-ca42-9ed6-c1ea-698c6edadd6b",
+      "message": "laboris velit nisi"
     },
     "List": []
   }
