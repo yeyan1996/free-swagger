@@ -1,0 +1,11 @@
+{
+  "GET /products": [
+    {
+      "description": "aute non occaecat",
+      "product_id": "deserunt occaecat ut dolor",
+      "image": "reprehenderit consequat",
+      "display_name": "incididunt",
+      "capacity": "enim labore"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "GET /user/:username": {
+    "email": "voluptate",
+    "username": "occaecat ipsum",
+    "password": "culpa deserunt non nulla eiusmod",
+    "userStatus": -36300870,
+    "phone": "consequat non Ut sunt",
+    "firstName": "mollit anim est sed dolore",
+    "lastName": "magna",
+    "id": -25484306
+  },
+  "PUT /user/:username": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "DELETE /user/:username": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "GET /user/login": "aute",
+  "GET /user/logout": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /user": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /user/createWithArray": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /user/createWithList": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "Product": {
+      "product_id": "fugiat sit amet elit occaecat",
+      "description": "sed culpa sunt",
+      "display_name": "magna est mollit ad",
+      "image": "tempor fugiat incididunt id commodo",
+      "capacity": "reprehenderit officia velit deserunt mollit"
+    },
+    "PriceEstimate": {
+      "display_name": "nisi commodo ad minim esse",
+      "estimate": "sint",
+      "low_estimate": -49914016.90644133,
+      "product_id": "dolore",
+      "surge_multiplier": 16799568.747520328,
+      "currency_code": "ullamco anim incididunt",
+      "high_estimate": -79521435.16556633
+    },
+    "Profile": {
+      "email": "id dolore",
+      "promo_code": "ex sit eiusmod",
+      "role": "User",
+      "picture": "laborum",
+      "last_name": "consequat Lorem laborum ullamco labore",
+      "first_name": "sint eu aute"
+    },
+    "Activity": {
+      "uuid": "consequat",
+      "sed2e1": -64363226,
+      "elit_57": "amet dolor ea voluptate"
+    },
+    "Activities": {
+      "count": -93284695,
+      "offset": 32377950,
+      "history": [
+        {
+          "uuid": "voluptate",
+          "Ut6": false
+        }
+      ],
+      "limit": -55634029
+    },
+    "RoleType": "User",
+    "CreateOrUpdateUserInput": {
+      "userId": -40899082,
+      "userRights": [
+        "SetNetwork"
+      ],
+      "cardNo": true
+    },
+    "Abc": {
+      "isLow": true,
+      "id": "sit in officia amet"
+    },
+    "ArrayOfAbc": [
+      {
+        "isLow": true,
+        "id": "magna ullamco"
+      }
+    ],
+    "NumberArrayEnumModel": {
+      "foo": [
+        4
+      ],
+      "bar": [
+        1
+      ]
+    },
+    "Error": {
+      "message": "irure Ut aute dolore in",
+      "code": -29105066,
+      "fields": "ut enim consectetur aute"
+    },
+    "PagedResultDto[AuditLogListDto]": {
+      "items": [
+        {
+          "userId": 95793293,
+          "id": -65171368
+        }
+      ],
+      "totalCount": 73246559
+    },
+    "AuditLogListDto": {
+      "userId": -24909553,
+      "id": 8040565
+    },
+    "JsonResult[Guid]": {
+      "code": "Fail",
+      "data": "71731dc1-3b86-631d-69ba-fb7636427dc5",
+      "result": true,
+      "message": "commodo"
+    },
+    "List": []
+  }
+}

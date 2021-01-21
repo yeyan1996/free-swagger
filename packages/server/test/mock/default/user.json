@@ -1,0 +1,22 @@
+{
+  "GET /me": {
+    "role": "User",
+    "promo_code": "adipisicing nisi mollit",
+    "first_name": "mollit ut proident pariatur Duis",
+    "picture": "magna",
+    "email": "pariatur",
+    "last_name": "dolore in"
+  },
+  "GET /history": {
+    "history": [
+      {
+        "uuid": "proident est eiusmod",
+        "sunt_aaf": "aute enim",
+        "ea_128": 32868809.546050936
+      }
+    ],
+    "limit": 40632164,
+    "offset": 93703817,
+    "count": 89424961
+  }
+}

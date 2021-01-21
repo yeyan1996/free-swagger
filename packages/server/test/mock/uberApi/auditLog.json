@@ -1,0 +1,102 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "Product": {
+        "description": "in officia laborum",
+        "image": "non dolor incididunt aute in",
+        "display_name": "id ullamco velit do",
+        "product_id": "commodo",
+        "capacity": "eiusmod ullamco esse non"
+      },
+      "PriceEstimate": {
+        "product_id": "consectetur esse",
+        "surge_multiplier": -78157170.28759876,
+        "currency_code": "Lorem ut deserunt Ut in",
+        "low_estimate": 3348676.834818542,
+        "estimate": "eiusmod dolor elit enim",
+        "display_name": "et labore dolor",
+        "high_estimate": 24196094.43345721
+      },
+      "Profile": {
+        "promo_code": "ut proident dolor et pariatur",
+        "first_name": "id anim dolor officia",
+        "role": "Admin",
+        "email": "fugiat",
+        "last_name": "Excepteur",
+        "picture": "Duis in"
+      },
+      "Activity": {
+        "uuid": "laboris",
+        "do_a5": false,
+        "iruref": -34699753,
+        "inc": true,
+        "dod": -42250182.83801321,
+        "Lorem_497": -14627395
+      },
+      "Activities": {
+        "offset": -41872381,
+        "history": [
+          {
+            "uuid": "veniam tempor dolore",
+            "estb6": "ut aliqua enim veniam"
+          }
+        ],
+        "limit": 23997393,
+        "count": 86430842
+      },
+      "RoleType": "SetSms",
+      "CreateOrUpdateUserInput": {
+        "userId": 14089124,
+        "userRights": [
+          "SetNetwork"
+        ],
+        "cardNo": "magna Ut nostrud quis"
+      },
+      "Abc": {
+        "id": "laborum nulla sunt commodo",
+        "isLow": true
+      },
+      "ArrayOfAbc": [
+        {
+          "id": "velit ad magna ea",
+          "isLow": true
+        }
+      ],
+      "NumberArrayEnumModel": {
+        "foo": [
+          2
+        ],
+        "bar": [
+          3
+        ]
+      },
+      "Error": {
+        "message": "aliquip ut",
+        "fields": "ad id",
+        "code": -77121933
+      },
+      "PagedResultDto[AuditLogListDto]": {
+        "totalCount": 9035806,
+        "items": [
+          {
+            "id": -87323584,
+            "userId": -15269778
+          }
+        ]
+      },
+      "AuditLogListDto": {
+        "id": 1480503,
+        "userId": 47306735
+      },
+      "JsonResult[Guid]": {
+        "code": "InvalidAnonymousAccess",
+        "message": "Duis elit",
+        "result": true,
+        "data": "3cf593da-2b77-3a8b-d8e4-07da6bf758bd"
+      },
+      "List": []
+    }
+  }
+}

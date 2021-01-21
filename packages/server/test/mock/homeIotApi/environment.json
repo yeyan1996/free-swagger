@@ -1,0 +1,88 @@
+{
+  "GET /temperature": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "zones": [
+        {
+          "id": 30510504,
+          "name": "ut",
+          "inputPosition": -34939298,
+          "zone": "Duis",
+          "outputPosition": -88028262
+        }
+      ],
+      "zoneStatus": [
+        {
+          "id": "laboris eiusmod officia",
+          "timestamp": "1966-07-18T10:52:35.258Z",
+          "value": 27771278.50596255,
+          "units": "fahrenheit",
+          "name": "et aliquip quis ullamco aliqua"
+        }
+      ]
+    }
+  },
+  "GET /temperature/forecast/:days": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "city": {
+        "id": 36417073,
+        "country": "amet labore mollit commodo elit",
+        "name": "dolore Duis sed",
+        "lon": 41333176.66388136,
+        "lat": 27522733.23137197
+      },
+      "values": [
+        {
+          "humidity": -96712296,
+          "pressure": -34233223.40346986,
+          "clouds": 94002287,
+          "temperature": {
+            "low": 2202845.7474855483,
+            "morning": 25803285.432830274,
+            "high": 59325716.66531384,
+            "day": 84215533.8393864,
+            "night": -52194401.893747866,
+            "evening": -56515434.26133467
+          },
+          "weather": {
+            "summary": "deserunt ipsum aliquip occaecat reprehenderit",
+            "description": "ut labore reprehenderit Lorem",
+            "icon": "ipsum esse"
+          },
+          "date": "2020-01-30T11:59:12.353Z",
+          "windSpeed": 4471771.882014602
+        }
+      ]
+    }
+  },
+  "GET /temperature/:zoneId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "id": "non occaecat adipisicing dolore sit",
+      "timestamp": "1963-11-16T01:11:28.708Z",
+      "value": 12522248.471168146,
+      "units": "fahrenheit",
+      "name": "nostrud dolor ipsum"
+    }
+  },
+  "GET /temperature/:zoneId/heater": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "state": "incididunt in ut",
+      "id": "fugiat in ullamco ut et"
+    }
+  },
+  "POST /temperature/:zoneId/heater/:state": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "sint dolor"
+    }
+  }
+}

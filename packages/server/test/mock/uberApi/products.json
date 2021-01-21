@@ -1,0 +1,15 @@
+{
+  "GET /products": {
+    "code": "200",
+    "msg": "xxx",
+    "data": [
+      {
+        "display_name": "velit magna",
+        "capacity": "aute",
+        "description": "proident consectetur",
+        "image": "dolore veniam",
+        "product_id": "deserunt aliqua"
+      }
+    ]
+  }
+}

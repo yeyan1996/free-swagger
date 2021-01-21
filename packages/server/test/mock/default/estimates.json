@@ -1,0 +1,22 @@
+{
+  "GET /estimates/price": [
+    {
+      "surge_multiplier": 57810955.16478279,
+      "display_name": "ex",
+      "product_id": "amet",
+      "estimate": "dolor in Lorem in labore",
+      "low_estimate": -5471085.122691125,
+      "high_estimate": 39238206.68905318,
+      "currency_code": "et"
+    }
+  ],
+  "GET /estimates/time": [
+    {
+      "description": "proident",
+      "image": "do tempor in non",
+      "display_name": "ipsum sit",
+      "product_id": "pariatur dolor Lorem ut veniam",
+      "capacity": "minim ut"
+    }
+  ]
+}

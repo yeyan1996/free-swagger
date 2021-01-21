@@ -1,0 +1,29 @@
+{
+  "GET /store/inventory": {
+    "enim_43_": 68482699,
+    "incididunt_4": -71764405,
+    "amet659": -68816070,
+    "cupidatat_d": -4831374
+  },
+  "GET /store/order/:orderId": {
+    "quantity": -74011441,
+    "complete": false,
+    "status": "approved",
+    "shipDate": "2004-04-18T23:27:21.566Z",
+    "petId": -23039273,
+    "id": -82752413
+  },
+  "DELETE /store/order/:orderId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /store/order": {
+    "petId": -49339246,
+    "status": "approved",
+    "shipDate": "2002-12-10T08:12:59.23Z",
+    "complete": true,
+    "id": 77503208,
+    "quantity": -44263307
+  }
+}

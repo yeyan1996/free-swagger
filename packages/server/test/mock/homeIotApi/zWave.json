@@ -1,0 +1,67 @@
+{
+  "POST /lighting/dimmers/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "message": "exercitation non anim dolor ut",
+      "code": "200"
+    }
+  },
+  "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "est Ut enim fugiat"
+    }
+  },
+  "GET /lighting/switches/:deviceId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "id": "do occaecat",
+      "level": 83721084,
+      "name": "id",
+      "lastUpdate": "1975-03-19T01:37:50.273Z"
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "ipsum in aute"
+    }
+  },
+  "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "code": "200",
+      "message": "id"
+    }
+  },
+  "GET /lightingSummary": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "zoneStatus": [
+        {
+          "lastUpdate": "1963-12-15T09:33:14.09Z",
+          "level": 76809306,
+          "id": "consectetur mollit aliqua in qui",
+          "name": "labore"
+        }
+      ],
+      "zones": [
+        {
+          "id": "anim ut",
+          "zone": "reprehenderit sed eu",
+          "deviceId": -76898765,
+          "deviceType": "dimmer",
+          "name": "pariatur Duis irure incididunt exercitation"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
+    "result": true,
+    "message": "aute commodo est dolore amet",
+    "data": "1a420d81-5e3f-371e-cb00-bb83e86f0ef9",
+    "code": "200"
+  }
+}

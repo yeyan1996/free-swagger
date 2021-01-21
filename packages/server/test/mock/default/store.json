@@ -1,0 +1,28 @@
+{
+  "GET /store/inventory": {
+    "deserunt7": -23163296,
+    "ullamco_b": 74589581,
+    "ex_5_": 82193645
+  },
+  "GET /store/order/:orderId": {
+    "complete": true,
+    "id": 14536622,
+    "status": "delivered",
+    "quantity": -67777723,
+    "shipDate": "1942-03-31T16:06:14.269Z",
+    "petId": 69117977
+  },
+  "DELETE /store/order/:orderId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /store/order": {
+    "shipDate": "1970-02-19T23:54:56.038Z",
+    "complete": true,
+    "status": "delivered",
+    "petId": 11227152,
+    "quantity": -66447749,
+    "id": -88616308
+  }
+}

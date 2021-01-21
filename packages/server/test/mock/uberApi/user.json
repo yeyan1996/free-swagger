@@ -1,0 +1,30 @@
+{
+  "GET /me": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "promo_code": "sed amet mollit",
+      "first_name": "anim ea pariatur",
+      "role": "Admin",
+      "last_name": "pariatur velit nulla anim",
+      "email": "sed qui",
+      "picture": "eiusmod"
+    }
+  },
+  "GET /history": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {
+      "offset": 70961528,
+      "history": [
+        {
+          "uuid": "elit dolore id",
+          "cillum_918": -72681704,
+          "ex_41": true
+        }
+      ],
+      "count": 91420761,
+      "limit": 69591873
+    }
+  }
+}

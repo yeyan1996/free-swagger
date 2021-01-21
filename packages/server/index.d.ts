@@ -8,4 +8,6 @@ declare function freeSwagger(
 declare function mock(config: MockConfig | string): Promise<void>
 
 export default freeSwagger
+export * from './src/utils'
+export * from './src/default'
 export { mock }
