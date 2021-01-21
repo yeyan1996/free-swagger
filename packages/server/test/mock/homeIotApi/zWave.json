@@ -3,42 +3,42 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "exercitation non anim dolor ut",
-      "code": "200"
+      "code": "200",
+      "message": "mollit Ut dolore"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "est Ut enim fugiat"
+      "message": "proident",
+      "code": "200"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "id": "do occaecat",
-      "level": 83721084,
-      "name": "id",
-      "lastUpdate": "1975-03-19T01:37:50.273Z"
+      "name": "ut Excepteur voluptate",
+      "id": "qui",
+      "lastUpdate": "1966-06-19T19:33:22.732Z",
+      "level": -69218813
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "ipsum in aute"
+      "message": "aliquip culpa labore ullamco",
+      "code": "200"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "id"
+      "message": "dolore ex veniam fugiat sed",
+      "code": "200"
     }
   },
   "GET /lightingSummary": {
@@ -47,19 +47,19 @@
     "data": {
       "zoneStatus": [
         {
-          "lastUpdate": "1963-12-15T09:33:14.09Z",
-          "level": 76809306,
-          "id": "consectetur mollit aliqua in qui",
-          "name": "labore"
+          "lastUpdate": "2015-12-05T14:57:47.866Z",
+          "id": "id proident culpa",
+          "level": -80627679,
+          "name": "culpa dolore voluptate veniam eu"
         }
       ],
       "zones": [
         {
-          "id": "anim ut",
-          "zone": "reprehenderit sed eu",
-          "deviceId": -76898765,
           "deviceType": "dimmer",
-          "name": "pariatur Duis irure incididunt exercitation"
+          "deviceId": -94261631,
+          "id": "id sint quis sunt ea",
+          "zone": "adipisicing",
+          "name": "dolore fugiat elit voluptate"
         }
       ]
     }

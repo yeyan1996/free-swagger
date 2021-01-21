@@ -11,13 +11,14 @@ import {
   ServerConfig,
 } from 'free-swagger'
 import { execSync } from 'child_process'
+import camelcase from 'camelcase'
 
 type Type = 'client' | 'cli' | 'mock'
 
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
-  client: Omit<ClientConfig<string>, 'filename'> & {
+  client: Omit<Required<ClientConfig<string>>, 'filename'> & {
     source: string
     tsTemplate: string
     jsTemplate: string
@@ -90,18 +91,17 @@ class Rc {
   }
 
   // 从 rc 文件中生成 free-swagger-cli 参数
-  createFreeSwaggerParams(): ServerConfig {
+  createFreeSwaggerParams(): Required<ServerConfig> {
     const { lang, tsTemplate, jsTemplate ,templateFunction} = this.configData.client
     const { customImportCodeJs, customImportCodeTs } = this.configData.cli
-    const defaultTemplateFunction = lang === 'ts' ? eval(tsTemplate) : eval(jsTemplate)
     return {
       ...pick(this.configData.client, [
         'source',
         'lang',
         'useJsDoc',
       ]),
-      ...pick(this.configData.cli,['root',
-          'cookie']),
+      filename:name => camelcase(name),
+      ...pick(this.configData.cli,['root', 'cookie']),
       templateFunction,
       ...pick(this.configData.cli, ['chooseAll']),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,

@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { isPath, isUrl } from 'free-swagger'
+import { isUrl, isPath } from 'free-swagger'
 import { rc } from '../../default/rc'
 
 const { configData } = rc
@@ -34,7 +34,7 @@ export const lang = {
 
 export const useJsDoc = {
   name: 'useJsDoc',
-  type: 'list',
+  type: 'input',
   message: '是否使用 Js Doc？（y/n）',
   default: configData.client.useJsDoc ? 'y' : 'n',
   when: ({ lang }: any) => lang === 'js',

@@ -3,10 +3,10 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "data": "72a09b32-3ba1-05f9-6adc-013bc1b97f8b",
-      "message": "labore amet laboris do nisi",
+      "result": true,
       "code": "200",
-      "result": false
+      "data": "6788500f-1c60-e198-3f26-87d75d6e73f8",
+      "message": "enim"
     }
   }
 }

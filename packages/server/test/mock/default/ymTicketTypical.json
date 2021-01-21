@@ -1,8 +1,8 @@
 {
   "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
+    "message": "proident nisi cupidatat pariatur",
+    "data": "547b763b-7da1-4132-f542-3caceb0be60c",
     "result": true,
-    "message": "aute commodo est dolore amet",
-    "data": "1a420d81-5e3f-371e-cb00-bb83e86f0ef9",
     "code": "200"
   }
 }

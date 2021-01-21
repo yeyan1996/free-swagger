@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "dolore pariatur ea",
+    "name": "aute cillum sed officia",
     "photoUrls": [
-      "voluptate"
+      "cillum ut laborum adipisicing esse"
     ],
+    "status": "pending",
+    "id": -7952382,
     "tags": [
       {
-        "id": -80658915,
-        "name": "sed Duis elit"
+        "name": "veniam fugiat ut",
+        "id": -26797228
       }
     ],
     "category": {
-      "name": "tempor ullamco Excepteur reprehenderit",
-      "id": 86425630
-    },
-    "status": "available",
-    "id": -54650859
+      "name": "irure",
+      "id": 57774114
+    }
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "code": "200",
-    "message": "exercitation deserunt id in magna",
-    "type": "cillum anim sint dolor"
+    "type": "sint sed minim labore",
+    "message": "tempor nisi Duis ad aliquip",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "in cillum mollit ut",
+      "name": "reprehenderit ullamco ut minim",
       "photoUrls": [
-        "consequat adipisicing"
+        "proident ad ipsum"
       ],
       "category": {
-        "name": "Lorem",
-        "id": 44726930
+        "name": "elit culpa eu",
+        "id": -19419309
       },
       "tags": [
         {
-          "name": "commodo in minim incididunt",
-          "id": -27549552
+          "id": -24311429,
+          "name": "aliquip Lorem quis proident irure"
         }
       ],
-      "id": 52215157,
-      "status": "available"
+      "id": -31093489,
+      "status": "sold"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Duis",
+      "name": "irure",
       "photoUrls": [
-        "laboris laborum aliquip"
+        "ipsum dolor"
       ],
+      "status": "available",
+      "id": 72984042,
+      "category": {
+        "name": "qui enim id",
+        "id": 68919935
+      },
       "tags": [
         {
-          "id": -84876665,
-          "name": "mollit labore minim sint"
+          "id": -78651259,
+          "name": "reprehenderit"
         }
-      ],
-      "category": {
-        "name": "ut velit",
-        "id": -7894521
-      },
-      "status": "pending",
-      "id": 9614982
+      ]
     }
   ]
 }

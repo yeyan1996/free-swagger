@@ -2,8 +2,6 @@
 	"name": "free-swagger-cli",
 	"version": "3.0.0",
 	"description": "openApi(swagger) Document Generator",
-	"main": "dist/main.js",
-	"types": "index.d.ts",
 	"scripts": {
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix"

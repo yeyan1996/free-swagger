@@ -2,6 +2,6 @@
   "PUT /crawler/v1/mapper/:id": {
     "code": "200",
     "msg": "xxx",
-    "data": "commodo mollit"
+    "data": "est culpa magna ut Lorem"
   }
 }

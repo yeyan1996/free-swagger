@@ -4,97 +4,94 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "description": "in officia laborum",
-        "image": "non dolor incididunt aute in",
-        "display_name": "id ullamco velit do",
-        "product_id": "commodo",
-        "capacity": "eiusmod ullamco esse non"
+        "display_name": "deserunt Excepteur incididunt velit",
+        "image": "esse enim sit laborum",
+        "product_id": "Excepteur do ex",
+        "description": "mollit in",
+        "capacity": "ut Ut"
       },
       "PriceEstimate": {
-        "product_id": "consectetur esse",
-        "surge_multiplier": -78157170.28759876,
-        "currency_code": "Lorem ut deserunt Ut in",
-        "low_estimate": 3348676.834818542,
-        "estimate": "eiusmod dolor elit enim",
-        "display_name": "et labore dolor",
-        "high_estimate": 24196094.43345721
+        "display_name": "enim",
+        "surge_multiplier": -19846657.629252374,
+        "high_estimate": -49032188.31135692,
+        "low_estimate": -71029138.31450395,
+        "estimate": "elit laboris ut nulla laborum",
+        "product_id": "eu commodo Lorem ipsum labore",
+        "currency_code": "sit"
       },
       "Profile": {
-        "promo_code": "ut proident dolor et pariatur",
-        "first_name": "id anim dolor officia",
-        "role": "Admin",
-        "email": "fugiat",
-        "last_name": "Excepteur",
-        "picture": "Duis in"
+        "last_name": "in proident amet",
+        "role": "User",
+        "promo_code": "ex sunt",
+        "picture": "do elit ea amet",
+        "first_name": "veniam ut",
+        "email": "magna ipsum sit minim"
       },
       "Activity": {
-        "uuid": "laboris",
-        "do_a5": false,
-        "iruref": -34699753,
-        "inc": true,
-        "dod": -42250182.83801321,
-        "Lorem_497": -14627395
+        "uuid": "sint aliquip",
+        "laborum9": "deserunt"
       },
       "Activities": {
-        "offset": -41872381,
         "history": [
           {
-            "uuid": "veniam tempor dolore",
-            "estb6": "ut aliqua enim veniam"
+            "uuid": "velit irure ut veniam dolor",
+            "dolor4d6": -46630853,
+            "laborum_8c": -98919107
           }
         ],
-        "limit": 23997393,
-        "count": 86430842
+        "count": -72466551,
+        "limit": 55642364,
+        "offset": -49063977
       },
-      "RoleType": "SetSms",
+      "RoleType": "User",
       "CreateOrUpdateUserInput": {
-        "userId": 14089124,
+        "userId": 94116404,
         "userRights": [
-          "SetNetwork"
+          "SystemManage"
         ],
-        "cardNo": "magna Ut nostrud quis"
+        "cardNo": -62089588.26730107
       },
       "Abc": {
-        "id": "laborum nulla sunt commodo",
-        "isLow": true
+        "id": "cillum",
+        "isLow": false
       },
       "ArrayOfAbc": [
         {
-          "id": "velit ad magna ea",
-          "isLow": true
+          "isLow": false,
+          "id": "irure ut adipisicing"
         }
       ],
       "NumberArrayEnumModel": {
         "foo": [
-          2
+          8
         ],
         "bar": [
-          3
+          2
         ]
       },
       "Error": {
-        "message": "aliquip ut",
-        "fields": "ad id",
-        "code": -77121933
+        "code": -93999868,
+        "message": "Lorem reprehenderit proident",
+        "fields": "officia Excepteur ex quis mollit"
       },
       "PagedResultDto[AuditLogListDto]": {
-        "totalCount": 9035806,
+        "totalCount": -53733140,
         "items": [
           {
-            "id": -87323584,
-            "userId": -15269778
+            "userId": 56544167,
+            "id": 1313936
           }
         ]
       },
       "AuditLogListDto": {
-        "id": 1480503,
-        "userId": 47306735
+        "id": 36583763,
+        "userId": 37858436
       },
       "JsonResult[Guid]": {
-        "code": "InvalidAnonymousAccess",
-        "message": "Duis elit",
-        "result": true,
-        "data": "3cf593da-2b77-3a8b-d8e4-07da6bf758bd"
+        "code": "Fail",
+        "result": false,
+        "data": "cf01e163-447e-d433-e65f-5eb5b07ffa15",
+        "message": "irure commodo"
       },
       "List": []
     }

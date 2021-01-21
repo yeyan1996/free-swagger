@@ -136,7 +136,8 @@ freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
   )
 }
 
-module.exports = freeSwagger
+import * as utils from './utils'
+import * as defaults from './default'
 
-export * from './utils'
-export * from './default'
+Object.assign(freeSwagger, utils, defaults)
+module.exports = freeSwagger

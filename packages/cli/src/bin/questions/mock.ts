@@ -32,14 +32,13 @@ export default [
   // },
   {
     name: 'wrap',
-    type: 'list',
-    choices: ['Y', 'N'],
+    type: 'input',
     message: `是否额外包裹一层标准接口返回格式？(${chalk.magenta(
       `e.g {code:"200",msg:xxx,data:xxx}`
-    )}) `,
-    default: configData.mock.wrap,
+    )}) (y/n) `,
+    default: configData.mock.wrap ? 'y' : 'n',
     validate: (input: string): boolean => {
-      rc.merge({ wrap: input }, 'mock')
+      rc.merge({ wrap: input === 'y' }, 'mock')
       rc.save()
       return true
     },
