@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "aute cillum sed officia",
+    "name": "eu incididunt",
     "photoUrls": [
-      "cillum ut laborum adipisicing esse"
+      "deserunt"
     ],
-    "status": "pending",
-    "id": -7952382,
+    "id": -34298221,
+    "category": {
+      "id": -96614491,
+      "name": "proident in consectetur cupidatat aute"
+    },
     "tags": [
       {
-        "name": "veniam fugiat ut",
-        "id": -26797228
+        "name": "velit",
+        "id": -32539606
       }
     ],
-    "category": {
-      "name": "irure",
-      "id": 57774114
-    }
+    "status": "available"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,8 +28,8 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "sint sed minim labore",
-    "message": "tempor nisi Duis ad aliquip",
+    "type": "laboris occaecat magna veniam aute",
+    "message": "Excepteur commodo consectetur",
     "code": "200"
   },
   "PUT /pet": {
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "reprehenderit ullamco ut minim",
+      "name": "cillum",
       "photoUrls": [
-        "proident ad ipsum"
+        "in"
       ],
+      "id": 40939060,
+      "status": "sold",
       "category": {
-        "name": "elit culpa eu",
-        "id": -19419309
+        "name": "aute Lorem irure velit",
+        "id": 49302054
       },
       "tags": [
         {
-          "id": -24311429,
-          "name": "aliquip Lorem quis proident irure"
+          "name": "tempor ad labore nulla",
+          "id": 57570252
         }
-      ],
-      "id": -31093489,
-      "status": "sold"
+      ]
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "irure",
+      "name": "velit veniam eu",
       "photoUrls": [
-        "ipsum dolor"
+        "proident"
       ],
-      "status": "available",
-      "id": 72984042,
-      "category": {
-        "name": "qui enim id",
-        "id": 68919935
-      },
       "tags": [
         {
-          "id": -78651259,
-          "name": "reprehenderit"
+          "name": "eiusmod reprehenderit et amet",
+          "id": -97420065
         }
-      ]
+      ],
+      "id": 73446920,
+      "status": "available",
+      "category": {
+        "name": "ut esse",
+        "id": -84030536
+      }
     }
   ]
 }

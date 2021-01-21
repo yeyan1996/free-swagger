@@ -1,15 +1,18 @@
 {
   "GET /store/inventory": {
-    "ex59b": -86549195,
-    "magna3": 29442053
+    "culpa_d": -86728773,
+    "et01_": -77037363,
+    "tempor_f97": -79533074,
+    "Excepteur_7": 59903569,
+    "tempor05": 69156887
   },
   "GET /store/order/:orderId": {
-    "quantity": 58561118,
-    "shipDate": "1983-12-07T16:51:01.731Z",
-    "status": "delivered",
+    "id": 96420968,
     "complete": true,
-    "id": 96395587,
-    "petId": 41474332
+    "status": "delivered",
+    "petId": -18733159,
+    "quantity": -61457978,
+    "shipDate": "1947-07-07T08:01:12.935Z"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -17,11 +20,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "petId": 59696975,
-    "quantity": 12186372,
-    "id": 88809269,
+    "complete": true,
     "status": "approved",
-    "shipDate": "1953-12-19T16:37:38.537Z",
-    "complete": true
+    "quantity": -82935138,
+    "id": -23995283,
+    "shipDate": "1942-11-28T09:17:28.876Z",
+    "petId": 67353042
   }
 }

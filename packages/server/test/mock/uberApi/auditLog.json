@@ -4,61 +4,60 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "display_name": "deserunt Excepteur incididunt velit",
-        "image": "esse enim sit laborum",
-        "product_id": "Excepteur do ex",
-        "description": "mollit in",
-        "capacity": "ut Ut"
+        "description": "proident tempor adipisicing sint in",
+        "display_name": "sint ex ullamco",
+        "capacity": "cillum labore magna Ut",
+        "image": "sit dolor",
+        "product_id": "dolor eu Ut"
       },
       "PriceEstimate": {
-        "display_name": "enim",
-        "surge_multiplier": -19846657.629252374,
-        "high_estimate": -49032188.31135692,
-        "low_estimate": -71029138.31450395,
-        "estimate": "elit laboris ut nulla laborum",
-        "product_id": "eu commodo Lorem ipsum labore",
-        "currency_code": "sit"
+        "high_estimate": 29184584.111135826,
+        "currency_code": "dolor",
+        "display_name": "labore reprehenderit in dolore dolor",
+        "low_estimate": 77581504.63307229,
+        "product_id": "proident",
+        "surge_multiplier": -12033548.573327214,
+        "estimate": "enim"
       },
       "Profile": {
-        "last_name": "in proident amet",
         "role": "User",
-        "promo_code": "ex sunt",
-        "picture": "do elit ea amet",
-        "first_name": "veniam ut",
-        "email": "magna ipsum sit minim"
+        "promo_code": "esse aliqua est do",
+        "picture": "quis consectetur ea ipsum est",
+        "email": "consequat proident",
+        "first_name": "aliqua eu",
+        "last_name": "in ullamco ipsum eu"
       },
       "Activity": {
-        "uuid": "sint aliquip",
-        "laborum9": "deserunt"
+        "uuid": "Excepteur",
+        "voluptate__af": -47328270.455746815
       },
       "Activities": {
+        "count": 33913289,
+        "offset": 19359676,
         "history": [
           {
-            "uuid": "velit irure ut veniam dolor",
-            "dolor4d6": -46630853,
-            "laborum_8c": -98919107
+            "uuid": "in dolore amet sint commodo",
+            "dolor_f": 86488086
           }
         ],
-        "count": -72466551,
-        "limit": 55642364,
-        "offset": -49063977
+        "limit": -96779863
       },
-      "RoleType": "User",
+      "RoleType": "Admin",
       "CreateOrUpdateUserInput": {
-        "userId": 94116404,
+        "userId": -46835449,
         "userRights": [
-          "SystemManage"
+          "View"
         ],
-        "cardNo": -62089588.26730107
+        "cardNo": 1459143.520441234
       },
       "Abc": {
-        "id": "cillum",
-        "isLow": false
+        "isLow": true,
+        "id": "pariatur et laborum Duis"
       },
       "ArrayOfAbc": [
         {
-          "isLow": false,
-          "id": "irure ut adipisicing"
+          "isLow": true,
+          "id": "eiusmod in ut cillum occaecat"
         }
       ],
       "NumberArrayEnumModel": {
@@ -66,32 +65,32 @@
           8
         ],
         "bar": [
-          2
+          0
         ]
       },
       "Error": {
-        "code": -93999868,
-        "message": "Lorem reprehenderit proident",
-        "fields": "officia Excepteur ex quis mollit"
+        "fields": "dolor in",
+        "code": 76760867,
+        "message": "irure do ut eiusmod est"
       },
       "PagedResultDto[AuditLogListDto]": {
-        "totalCount": -53733140,
         "items": [
           {
-            "userId": 56544167,
-            "id": 1313936
+            "id": -76674531,
+            "userId": 67768230
           }
-        ]
+        ],
+        "totalCount": 51713515
       },
       "AuditLogListDto": {
-        "id": 36583763,
-        "userId": 37858436
+        "userId": -1076472,
+        "id": -26310951
       },
       "JsonResult[Guid]": {
-        "code": "Fail",
-        "result": false,
-        "data": "cf01e163-447e-d433-e65f-5eb5b07ffa15",
-        "message": "irure commodo"
+        "result": true,
+        "message": "cupidatat id amet ut labore",
+        "data": "be9d572f-7787-d336-3819-62ec3a64c807",
+        "code": "InvalidAnonymousAccess"
       },
       "List": []
     }

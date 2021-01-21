@@ -1,15 +1,14 @@
 {
   "GET /store/inventory": {
-    "eiusmod208": -70523183,
-    "utb": -90024399
+    "sunt_e3": 50640345
   },
   "GET /store/order/:orderId": {
-    "quantity": 57110573,
-    "id": 4601216,
     "status": "delivered",
-    "shipDate": "1985-03-28T23:17:36.568Z",
-    "complete": false,
-    "petId": 85547414
+    "quantity": 58712849,
+    "complete": true,
+    "petId": 89233462,
+    "id": -23626803,
+    "shipDate": "2000-04-23T02:25:39.114Z"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -17,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "shipDate": "1941-12-27T10:27:44.401Z",
-    "id": 49340705,
-    "status": "delivered",
+    "id": 88724258,
     "complete": false,
-    "quantity": -53251105,
-    "petId": -65496418
+    "petId": -62787611,
+    "quantity": -78380029,
+    "status": "approved",
+    "shipDate": "1955-12-07T08:07:25.249Z"
   }
 }

@@ -4,14 +4,14 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "mollit Ut dolore"
+      "message": "do cillum elit"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "proident",
+      "message": "minim sit id",
       "code": "200"
     }
   },
@@ -19,17 +19,17 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "name": "ut Excepteur voluptate",
-      "id": "qui",
-      "lastUpdate": "1966-06-19T19:33:22.732Z",
-      "level": -69218813
+      "level": 62485141,
+      "name": "pariatur aute adipisicing",
+      "id": "sit fugiat reprehenderit aliquip",
+      "lastUpdate": "2011-08-03T11:59:53.56Z"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "aliquip culpa labore ullamco",
+      "message": "Duis et",
       "code": "200"
     }
   },
@@ -37,7 +37,7 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "dolore ex veniam fugiat sed",
+      "message": "Ut nulla aliquip",
       "code": "200"
     }
   },
@@ -47,19 +47,19 @@
     "data": {
       "zoneStatus": [
         {
-          "lastUpdate": "2015-12-05T14:57:47.866Z",
-          "id": "id proident culpa",
-          "level": -80627679,
-          "name": "culpa dolore voluptate veniam eu"
+          "lastUpdate": "1995-05-06T21:42:50.262Z",
+          "id": "Excepteur amet enim",
+          "name": "ex",
+          "level": 73646412
         }
       ],
       "zones": [
         {
+          "id": "dolor commodo enim sunt",
+          "deviceId": -75963481,
+          "zone": "eu reprehenderit",
           "deviceType": "dimmer",
-          "deviceId": -94261631,
-          "id": "id sint quis sunt ea",
-          "zone": "adipisicing",
-          "name": "dolore fugiat elit voluptate"
+          "name": "sunt sed dolor occaecat ipsum"
         }
       ]
     }

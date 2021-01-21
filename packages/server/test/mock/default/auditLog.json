@@ -1,93 +1,95 @@
 {
   "GET /api/services/app/AuditLog/GetAuditLogs": {
     "Product": {
-      "capacity": "velit",
-      "description": "officia qui",
-      "image": "do ad laboris aliquip",
-      "product_id": "sunt est ex ullamco",
-      "display_name": "occaecat culpa voluptate dolor"
+      "capacity": "voluptate Excepteur cupidatat dolor",
+      "product_id": "est",
+      "image": "adipisicing magna minim aliquip aliqua",
+      "display_name": "magna fugiat",
+      "description": "anim dolore"
     },
     "PriceEstimate": {
-      "low_estimate": -22181173.63444461,
-      "currency_code": "Duis est ad consequat officia",
-      "high_estimate": 59791053.68345109,
-      "product_id": "Duis irure",
-      "estimate": "esse sunt anim proident Excepteur",
-      "surge_multiplier": -23544433.103929132,
-      "display_name": "mollit"
+      "surge_multiplier": 99255986.65785822,
+      "currency_code": "in voluptate dolore",
+      "product_id": "velit fugiat anim",
+      "display_name": "in aliquip veniam non nisi",
+      "low_estimate": -18906599.807356983,
+      "estimate": "Duis",
+      "high_estimate": -19958069.880437985
     },
     "Profile": {
-      "promo_code": "sed dolor mollit",
-      "first_name": "Lorem tempor incididunt non ex",
-      "picture": "consectetur non occaecat",
-      "role": "User",
-      "email": "cillum",
-      "last_name": "nostrud"
+      "picture": "voluptate ex fugiat in exercitation",
+      "email": "consequat in occaecat sed",
+      "promo_code": "magna adipisicing ullamco laborum",
+      "last_name": "irure aute",
+      "role": "Admin",
+      "first_name": "non"
     },
     "Activity": {
-      "uuid": "elit",
-      "Duisd": false
+      "uuid": "incididunt aliqua tempor",
+      "nulla_6": -36264409,
+      "tempor_f": true
     },
     "Activities": {
       "history": [
         {
-          "uuid": "anim aliqua sunt",
-          "officia9bd": "labore consectetur minim occaecat nulla"
+          "uuid": "quis nisi Ut officia est",
+          "et_8": false,
+          "sinted2": -41968812.31895135
         }
       ],
-      "offset": -59419412,
-      "limit": -88836953,
-      "count": -8198231
+      "count": -92607284,
+      "offset": 4977912,
+      "limit": -27191143
     },
-    "RoleType": "User",
+    "RoleType": "Admin",
     "CreateOrUpdateUserInput": {
-      "userId": 47512422,
+      "userId": -79054542,
       "userRights": [
-        "SetNetwork"
+        "SetSms"
       ],
-      "cardNo": 21057433
+      "cardNo": "aute sit"
     },
     "Abc": {
-      "id": "laborum dolor nisi eiusmod aliquip",
+      "id": "irure",
       "isLow": false
     },
     "ArrayOfAbc": [
       {
-        "id": "ut enim laborum",
-        "isLow": true
+        "isLow": false,
+        "id": "amet"
       }
     ],
     "NumberArrayEnumModel": {
       "bar": [
-        2
+        3
       ],
       "foo": [
-        1
+        4
       ]
     },
     "Error": {
-      "message": "cillum",
-      "code": -37017621,
-      "fields": "eiusmod in"
+      "fields": "commodo cillum adipisicing et anim",
+      "code": 45454292,
+      "message": "deserunt"
     },
     "PagedResultDto[AuditLogListDto]": {
+      "totalCount": -84514708,
       "items": [
         {
-          "userId": 20914106,
-          "id": 74748331
+          "id": 57577490,
+          "userId": 79566368
         }
-      ],
-      "totalCount": 53511536
+      ]
     },
     "AuditLogListDto": {
-      "id": 35516087,
-      "userId": 22870265
+      "id": 7510090,
+      "userId": 75195396
     },
     "JsonResult[Guid]": {
-      "data": "b851994a-3dc7-d420-09c1-16210e3bd340",
-      "message": "id consequat ipsum laboris",
-      "code": "UserSessionExpired",
-      "result": true
+      "data": "b8947099-a815-1ffe-419a-c7b05d8a542a",
+      "code": "UserIsBinded",
+      "result": false,
+      "message": "aute veniam enim"
     },
     "List": []
   }
