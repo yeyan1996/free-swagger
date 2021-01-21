@@ -1,11 +1,11 @@
 {
   "GET /products": [
     {
-      "product_id": "in non ad",
-      "description": "sunt ut aliqua Ut",
-      "display_name": "non est consectetur anim",
-      "capacity": "consectetur dolore aliquip Duis",
-      "image": "do aliquip pariatur dolore"
+      "product_id": "Duis",
+      "description": "eu aliquip dolore velit",
+      "display_name": "esse in laboris",
+      "capacity": "pariatur",
+      "image": "nisi do proident"
     }
   ]
 }

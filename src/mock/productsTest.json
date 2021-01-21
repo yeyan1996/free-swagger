@@ -1,11 +1,11 @@
 {
   "GET /products-test": [
     {
-      "product_id": "et Ut irure reprehenderit",
-      "description": "deserunt proident",
-      "display_name": "Lorem dolore velit Ut ea",
-      "capacity": "eu ut",
-      "image": "nisi"
+      "product_id": "voluptate",
+      "description": "qui",
+      "display_name": "nostrud eiusmod",
+      "capacity": "est aute cupidatat",
+      "image": "esse ea"
     }
   ]
 }

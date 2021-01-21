@@ -1,18 +1,18 @@
 {
   "GET /pet/:petId": {
-    "name": "Ut anim",
+    "name": "ex",
     "photoUrls": [
-      "sunt mollit ea est"
+      "elit anim"
     ],
-    "id": -67541980,
+    "id": 87383165,
     "category": {
-      "id": -54532273,
-      "name": "Excepteur et sit"
+      "id": -13090049,
+      "name": "voluptate Duis consectetur"
     },
     "tags": [
       {
-        "id": -57718383,
-        "name": "nulla non cillum pariatur ea"
+        "id": 25494461,
+        "name": "anim sunt"
       }
     ],
     "status": "available"
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "type": "sunt ullamco mollit",
-    "message": "Duis"
+    "type": "Lorem ea et sunt",
+    "message": "eu nisi sed"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,19 +44,19 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "ipsum et eu",
+      "name": "nisi aliquip cupidatat",
       "photoUrls": [
-        "eiusmod commodo in laboris"
+        "fugiat nulla"
       ],
-      "id": 32809706,
+      "id": 42472806,
       "category": {
-        "id": -12638170,
-        "name": "tempor do dolor Duis et"
+        "id": -72678639,
+        "name": "amet"
       },
       "tags": [
         {
-          "id": -49744573,
-          "name": "et laboris dolore dolor"
+          "id": 22883945,
+          "name": "in aute in minim"
         }
       ],
       "status": "available"
@@ -64,22 +64,22 @@
   ],
   "GET /pet/findByTags": [
     {
-      "name": "ut pariatur in id in",
+      "name": "in",
       "photoUrls": [
-        "magna consectetur Ut dolore minim"
+        "Lorem ea nostrud Duis"
       ],
-      "id": 89847408,
+      "id": -3511391,
       "category": {
-        "id": 72459222,
-        "name": "proident nostrud minim"
+        "id": 60983804,
+        "name": "eu et"
       },
       "tags": [
         {
-          "id": -1826282,
-          "name": "nostrud fugiat irure"
+          "id": 30324884,
+          "name": "dolor quis"
         }
       ],
-      "status": "pending"
+      "status": "sold"
     }
   ]
 }
