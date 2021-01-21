@@ -1,0 +1,7 @@
+{
+  "POST /dev/uploadLngLat": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  }
+}

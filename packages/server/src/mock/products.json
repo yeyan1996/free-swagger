@@ -1,0 +1,11 @@
+{
+  "GET /products": [
+    {
+      "product_id": "eiusmod",
+      "description": "quis exercitation",
+      "display_name": "aliquip",
+      "capacity": "eiusmod amet fugiat ut incididunt",
+      "image": "est proident Excepteur non"
+    }
+  ]
+}

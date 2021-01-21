@@ -1,0 +1,20 @@
+{
+  "GET /me": {
+    "first_name": "ex Duis ad aliqua mollit",
+    "last_name": "deserunt adipisicing ea",
+    "email": "elit",
+    "picture": "veniam",
+    "promo_code": "sit",
+    "role": "User"
+  },
+  "GET /history": {
+    "offset": -77742102,
+    "limit": -4338989,
+    "count": -61873333,
+    "history": [
+      {
+        "uuid": "consequat in eu enim"
+      }
+    ]
+  }
+}

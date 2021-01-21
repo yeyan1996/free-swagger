@@ -1,0 +1,8 @@
+{
+  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
+    "result": false,
+    "code": "200",
+    "data": "8988d3dd-8b69-5b21-8ba4-af7ce9e32d3b",
+    "message": "labore"
+  }
+}

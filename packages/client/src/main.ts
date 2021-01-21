@@ -1,22 +1,22 @@
 import { genPath } from './gen/path'
 import { Method, parsePath } from './parse/path'
 import { OpenAPIV2 } from 'openapi-types'
-import { ConfigClient } from './utils'
+import { ClientConfig } from './utils'
 import { formatCode } from './utils'
-import { mergeDefaultConfig } from './default'
+import { mergeDefaultParams } from './default'
 import { compileInterfaces } from './compile/interface'
 import { compileJsDocs } from './compile/jsDoc'
 import { genJsDoc } from './gen/jsDoc'
 
 const freeSwaggerClient = (
-  config: ConfigClient,
+  config: ClientConfig,
   url?: string,
   method?: Method
 ): string => {
   const chooseAll = !url || !method
   if (chooseAll) return ''
 
-  const mergedConfig = mergeDefaultConfig(config)
+  const mergedConfig = mergeDefaultParams(config)
 
   // api 名字
   const name: OpenAPIV2.OperationObject['operationId'] =

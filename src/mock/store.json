@@ -1,0 +1,24 @@
+{
+  "GET /store/inventory": {},
+  "GET /store/order/:orderId": {
+    "id": -83700300,
+    "petId": -11999840,
+    "quantity": -49836251,
+    "shipDate": "1947-10-06T09:01:37.614Z",
+    "status": "placed",
+    "complete": true
+  },
+  "DELETE /store/order/:orderId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /store/order": {
+    "id": 7688581,
+    "petId": 24737268,
+    "quantity": -40728727,
+    "shipDate": "2000-06-15T22:52:46.361Z",
+    "status": "delivered",
+    "complete": true
+  }
+}

@@ -3,7 +3,7 @@
 
 import axios from "axios";
 
-export const UpdateMapper = (params, { id }) =>
+export const UpdateMapper = (_NOOP, { id }) =>
   axios.request({
     url: `/v1/crawler/v1/mapper/${id}`,
     method: "put",

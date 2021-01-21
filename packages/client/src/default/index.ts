@@ -1,9 +1,9 @@
-import { ConfigClient } from '../utils'
+import { ClientConfig } from '../utils'
 import { jsTemplate } from './template'
 
-export const mergeDefaultConfig = (
-  config: ConfigClient
-): Required<ConfigClient> => ({
+export const mergeDefaultParams = (
+  config: ClientConfig
+): Required<ClientConfig> => ({
   useJsDoc: false,
   lang: 'js',
   templateFunction: eval(jsTemplate),

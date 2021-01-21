@@ -1,0 +1,22 @@
+{
+  "GET /estimates/price": [
+    {
+      "product_id": "dolore magna eu culpa",
+      "currency_code": "dolor minim dolor laboris ut",
+      "display_name": "fugiat Ut magna",
+      "estimate": "Duis exercitation consectetur velit",
+      "low_estimate": 85227294.36970633,
+      "high_estimate": 71853052.51309577,
+      "surge_multiplier": -40816819.930218264
+    }
+  ],
+  "GET /estimates/time": [
+    {
+      "product_id": "Lorem dolor nisi",
+      "description": "reprehenderit tempor exercitation adipisicing",
+      "display_name": "cillum ullamco veniam incididunt minim",
+      "capacity": "sed",
+      "image": "ullamco officia incididunt anim pariatur"
+    }
+  ]
+}

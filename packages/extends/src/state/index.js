@@ -13,6 +13,8 @@ import {
 import { option, generate } from "json-schema-faker";
 
 const STORAGE_KEY = "SWAGGER-EXTENDS";
+const SUCCESS_CODE = "200";
+
 export const state = new Vue({
   data() {
     return {
@@ -31,7 +33,7 @@ export const state = new Vue({
       storage: {
         jsTemplate,
         tsTemplate,
-        useJsDoc: false, // 是否使用 js doc
+        useJsDoc: false,
         exportLanguage: "js",
         currentLanguage: "js"
       },
@@ -151,7 +153,6 @@ export const handleCopyFake = (
   method = state.currentApi.method,
   parsedSwagger = state.parsedSwagger
 ) => {
-  const SUCCESS_CODE = "200";
   option({
     useExamplesValue: true,
     useDefaultValue: true,

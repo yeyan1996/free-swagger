@@ -1,0 +1,85 @@
+{
+  "GET /pet/:petId": {
+    "name": "Ut anim",
+    "photoUrls": [
+      "sunt mollit ea est"
+    ],
+    "id": -67541980,
+    "category": {
+      "id": -54532273,
+      "name": "Excepteur et sit"
+    },
+    "tags": [
+      {
+        "id": -57718383,
+        "name": "nulla non cillum pariatur ea"
+      }
+    ],
+    "status": "available"
+  },
+  "POST /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "DELETE /pet/:petId": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet/:petId/uploadImage": {
+    "code": "200",
+    "type": "sunt ullamco mollit",
+    "message": "Duis"
+  },
+  "PUT /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "POST /pet": {
+    "code": "200",
+    "msg": "xxx",
+    "data": {}
+  },
+  "GET /pet/findByStatus": [
+    {
+      "name": "ipsum et eu",
+      "photoUrls": [
+        "eiusmod commodo in laboris"
+      ],
+      "id": 32809706,
+      "category": {
+        "id": -12638170,
+        "name": "tempor do dolor Duis et"
+      },
+      "tags": [
+        {
+          "id": -49744573,
+          "name": "et laboris dolore dolor"
+        }
+      ],
+      "status": "available"
+    }
+  ],
+  "GET /pet/findByTags": [
+    {
+      "name": "ut pariatur in id in",
+      "photoUrls": [
+        "magna consectetur Ut dolore minim"
+      ],
+      "id": 89847408,
+      "category": {
+        "id": 72459222,
+        "name": "proident nostrud minim"
+      },
+      "tags": [
+        {
+          "id": -1826282,
+          "name": "nostrud fugiat irure"
+        }
+      ],
+      "status": "pending"
+    }
+  ]
+}

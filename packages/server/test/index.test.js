@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
-// import inquirer from "inquirer";
+import inquirer from "inquirer";
 import freeSwagger from "../src/main";
-// import { init } from "../src/bin/init";
+import { init } from "../src/bin/init";
 import { rc } from "../src/default/rc";
 
 const wait = time =>

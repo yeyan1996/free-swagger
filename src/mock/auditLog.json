@@ -1,0 +1,92 @@
+{
+  "GET /api/services/app/AuditLog/GetAuditLogs": {
+    "Product": {
+      "product_id": "eiusmod dolor laborum sint ullamco",
+      "description": "sunt laboris",
+      "display_name": "aliquip",
+      "capacity": "ut",
+      "image": "tempor nulla"
+    },
+    "PriceEstimate": {
+      "product_id": "sed officia sint",
+      "currency_code": "aute ut",
+      "display_name": "eiusmod deserunt esse",
+      "estimate": "elit sed ut consectetur pariatur",
+      "low_estimate": -29403648.668187007,
+      "high_estimate": 87138817.04930618,
+      "surge_multiplier": 91748362.83960804
+    },
+    "Profile": {
+      "first_name": "sed aute in",
+      "last_name": "eiusmod elit",
+      "email": "deserunt cillum",
+      "picture": "incididunt dolore culpa",
+      "promo_code": "ea sit",
+      "role": "User"
+    },
+    "Activity": {
+      "uuid": "sit qui nisi irure"
+    },
+    "Activities": {
+      "offset": -70784452,
+      "limit": -22085720,
+      "count": 11942763,
+      "history": [
+        {
+          "uuid": "velit"
+        }
+      ]
+    },
+    "RoleType": "Admin",
+    "CreateOrUpdateUserInput": {
+      "userId": -95453214,
+      "userRights": [
+        "Delete"
+      ],
+      "cardNo": 65774827
+    },
+    "Abc": {
+      "id": "magna fugiat irure laboris",
+      "isLow": true
+    },
+    "ArrayOfAbc": [
+      {
+        "id": "incididunt",
+        "isLow": true
+      }
+    ],
+    "NumberArrayEnumModel": {
+      "foo": [
+        8
+      ],
+      "bar": [
+        2
+      ]
+    },
+    "Error": {
+      "code": -47870783,
+      "message": "laborum sunt cupidatat",
+      "fields": "nisi"
+    },
+    "PagedResultDto[AuditLogListDto]": {
+      "totalCount": 18071196,
+      "items": [
+        {
+          "userId": 28560688,
+          "id": 87410237
+        }
+      ]
+    },
+    "AuditLogListDto": {
+      "userId": -19335927,
+      "id": -30191919
+    },
+    "JsonResult[Guid]": {
+      "result": false,
+      "code": "InvalidAnonymousAccess",
+      "data": "95bc5b87-8f4f-ce52-3e10-168a0ccd6464",
+      "message": "enim consectetur magna ex ea"
+    },
+    "List": []
+  }
+}

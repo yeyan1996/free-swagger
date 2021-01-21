@@ -2,7 +2,7 @@
 
 exports[`freeSwaggerClient code fragment 1`] = `
 "// Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -302,7 +302,7 @@ export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>
 exports[`freeSwaggerClient ts code fragment with get method 1`] = `
 "// Find pet by ID
 export const getPetById = (
-  params: { [key: string]: never },
+  _NOOP: { [key: string]: never },
   {
     petId
   }: {

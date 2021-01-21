@@ -4,7 +4,7 @@
 import axios from "axios";
 
 // Get user by user name
-export const getUserByName = (params, { username }) =>
+export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: `/v2/user/${username}`,
     method: "get",
@@ -22,7 +22,7 @@ export const updateUser = (params, { username }) =>
   });
 
 // Delete user
-export const deleteUser = (params, { username }) =>
+export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: `/v2/user/${username}`,
     method: "delete",

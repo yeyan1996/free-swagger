@@ -4,7 +4,7 @@
 import axios from "axios";
 
 // Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: `/v2/pet/${petId}`,
     method: "get",
@@ -22,7 +22,7 @@ export const updatePetWithForm = (params, { petId }) =>
   });
 
 // Deletes a pet
-export const deletePet = (params, { petId }) =>
+export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: `/v2/pet/${petId}`,
     method: "delete",

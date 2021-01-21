@@ -7,7 +7,7 @@ exports[`pkg base option 1`] = `
 import axios from \\"axios\\";
 
 // Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -25,7 +25,7 @@ export const updatePetWithForm = (params, { petId }) =>
   });
 
 // Deletes a pet
-export const deletePet = (params, { petId }) =>
+export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"delete\\",
@@ -96,7 +96,7 @@ export const getInventory = () =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, { orderId }) =>
+export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"get\\",
@@ -105,7 +105,7 @@ export const getOrderById = (params, { orderId }) =>
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, { orderId }) =>
+export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"delete\\",
@@ -131,7 +131,7 @@ exports[`pkg base option 3`] = `
 import axios from \\"axios\\";
 
 // Get user by user name
-export const getUserByName = (params, { username }) =>
+export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"get\\",
@@ -149,7 +149,7 @@ export const updateUser = (params, { username }) =>
   });
 
 // Delete user
-export const deleteUser = (params, { username }) =>
+export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"delete\\",
@@ -569,7 +569,7 @@ import axios from \\"axios\\";
  **/
 
 // Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -599,7 +599,7 @@ export const updatePetWithForm = (params, { petId }) =>
  **/
 
 // Deletes a pet
-export const deletePet = (params, { petId }) =>
+export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"delete\\",
@@ -705,7 +705,7 @@ export const getInventory = () =>
  **/
 
 // Find purchase order by ID
-export const getOrderById = (params, { orderId }) =>
+export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"get\\",
@@ -720,7 +720,7 @@ export const getOrderById = (params, { orderId }) =>
  **/
 
 // Delete purchase order by ID
-export const deleteOrder = (params, { orderId }) =>
+export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"delete\\",
@@ -830,7 +830,7 @@ import axios from \\"axios\\";
  **/
 
 // Get user by user name
-export const getUserByName = (params, { username }) =>
+export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"get\\",
@@ -860,7 +860,7 @@ export const updateUser = (params, { username }) =>
  **/
 
 // Delete user
-export const deleteUser = (params, { username }) =>
+export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"delete\\",
@@ -975,7 +975,7 @@ exports[`pkg should work with only one json params 3`] = `
 
 import axios from \\"axios\\";
 
-export const UpdateMapper = (params, { id }) =>
+export const UpdateMapper = (_NOOP, { id }) =>
   axios.request({
     url: \`/v1/crawler/v1/mapper/\${id}\`,
     method: \\"put\\",
@@ -992,7 +992,7 @@ exports[`pkg should work with only one json params 4`] = `
 import axios from \\"axios\\";
 
 // Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -1010,7 +1010,7 @@ export const updatePetWithForm = (params, { petId }) =>
   });
 
 // Deletes a pet
-export const deletePet = (params, { petId }) =>
+export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"delete\\",
@@ -1081,7 +1081,7 @@ export const getInventory = () =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, { orderId }) =>
+export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"get\\",
@@ -1090,7 +1090,7 @@ export const getOrderById = (params, { orderId }) =>
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, { orderId }) =>
+export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"delete\\",
@@ -1116,7 +1116,7 @@ exports[`pkg should work with only one json params 6`] = `
 import axios from \\"axios\\";
 
 // Get user by user name
-export const getUserByName = (params, { username }) =>
+export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"get\\",
@@ -1134,7 +1134,7 @@ export const updateUser = (params, { username }) =>
   });
 
 // Delete user
-export const deleteUser = (params, { username }) =>
+export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"delete\\",
@@ -1245,7 +1245,7 @@ exports[`pkg should work with only one string params 3`] = `
 
 import axios from \\"axios\\";
 
-export const UpdateMapper = (params, { id }) =>
+export const UpdateMapper = (_NOOP, { id }) =>
   axios.request({
     url: \`/v1/crawler/v1/mapper/\${id}\`,
     method: \\"put\\",
@@ -1262,7 +1262,7 @@ exports[`pkg should work with only one string params 4`] = `
 import axios from \\"axios\\";
 
 // Find pet by ID
-export const getPetById = (params, { petId }) =>
+export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -1280,7 +1280,7 @@ export const updatePetWithForm = (params, { petId }) =>
   });
 
 // Deletes a pet
-export const deletePet = (params, { petId }) =>
+export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"delete\\",
@@ -1351,7 +1351,7 @@ export const getInventory = () =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, { orderId }) =>
+export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"get\\",
@@ -1360,7 +1360,7 @@ export const getOrderById = (params, { orderId }) =>
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, { orderId }) =>
+export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
     method: \\"delete\\",
@@ -1386,7 +1386,7 @@ exports[`pkg should work with only one string params 6`] = `
 import axios from \\"axios\\";
 
 // Get user by user name
-export const getUserByName = (params, { username }) =>
+export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"get\\",
@@ -1404,7 +1404,7 @@ export const updateUser = (params, { username }) =>
   });
 
 // Delete user
-export const deleteUser = (params, { username }) =>
+export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
     method: \\"delete\\",
@@ -1617,7 +1617,7 @@ exports[`pkg ts language 4`] = `
 import axios, { AxiosResponse } from \\"axios\\";
 
 export const UpdateMapper = (
-  params: { [key: string]: never },
+  _NOOP: { [key: string]: never },
   {
     id
   }: {

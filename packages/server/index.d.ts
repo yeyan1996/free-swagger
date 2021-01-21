@@ -1,8 +1,8 @@
 import { OpenAPIV2 } from 'openapi-types'
-import { Config, MockConfig } from './src/utils'
+import { ServerConfig, MockConfig } from './src/utils'
 
 declare function freeSwagger(
-  config: Config | string
+  config: ServerConfig | string
 ): Promise<OpenAPIV2.Document>
 
 declare function mock(config: MockConfig | string): Promise<void>

@@ -1,6 +1,6 @@
 import { genPath, formatCode, genJsDoc } from 'free-swagger-client'
 import { ApiCollection } from '../parse/path'
-import { Config } from '../utils'
+import { ServerConfig } from '../utils'
 import { uniq, isEmpty } from 'lodash'
 import { DEFAULT_HEAD_CODE_JS, DEFAULT_HEAD_CODE_TS } from '../default'
 import { INTERFACE_PATH } from './interface'
@@ -18,7 +18,7 @@ const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
 // 生成单个 controller（文件）中所有 api
 const genPaths = (
   apiCollection: ApiCollection,
-  config: Required<Config>
+  config: Required<ServerConfig>
 ): string => {
   let code = ''
   code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS

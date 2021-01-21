@@ -13,7 +13,7 @@ export const getInventory = () =>
   });
 
 // Find purchase order by ID
-export const getOrderById = (params, { orderId }) =>
+export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: `/v2/store/order/${orderId}`,
     method: "get",
@@ -22,7 +22,7 @@ export const getOrderById = (params, { orderId }) =>
   });
 
 // Delete purchase order by ID
-export const deleteOrder = (params, { orderId }) =>
+export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: `/v2/store/order/${orderId}`,
     method: "delete",

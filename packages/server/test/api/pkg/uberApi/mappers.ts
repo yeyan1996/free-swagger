@@ -5,7 +5,7 @@
 import axios, { AxiosResponse } from "axios";
 
 export const UpdateMapper = (
-  params: { [key: string]: never },
+  _NOOP: { [key: string]: never },
   {
     id
   }: {

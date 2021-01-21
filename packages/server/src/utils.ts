@@ -1,19 +1,19 @@
 import { OpenAPIV2 } from 'openapi-types'
-import { ConfigClient } from 'free-swagger-client'
+import { ClientConfig } from 'free-swagger-client'
 import fse from 'fs-extra'
 import camelcase from 'camelcase'
 import path from 'path'
 import chalk from 'chalk'
 import assert from 'assert'
 
-export interface Config<T = string | OpenAPIV2.Document>
-  extends Omit<ConfigClient, 'source'> {
+export interface ServerConfig<T = string | OpenAPIV2.Document>
+  extends Omit<ClientConfig, 'source'> {
   source: T
   cookie?: string
   root?: string
   customImportCode?: string
   chooseAll?: boolean
-  fileName?(name: string): string
+  filename?(name: string): string
 }
 
 export interface MockConfig<T = string | OpenAPIV2.Document> {
@@ -31,8 +31,8 @@ const isSwaggerDocument = (value: any): value is OpenAPIV2.Document =>
   !!value.swagger
 
 const assertOpenApi2 = (
-  config: Config
-): config is Config<OpenAPIV2.Document> => {
+  config: ServerConfig
+): config is ServerConfig<OpenAPIV2.Document> => {
   // @ts-ignore
   if (config.source?.swagger) {
     // @ts-ignore
