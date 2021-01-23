@@ -28,7 +28,7 @@ const buildInInterfaces: { [key: string]: { name: string; code: string } } = {
   Map: {
     name: 'JavaMap',
     code: `
-   export type JavaMap<T, U> = Record<string, U>
+   export type JavaMap<T, U> = Record<T, U>
   `,
   },
   List: {

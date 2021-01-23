@@ -71,18 +71,20 @@
           <!--代码编辑器-->
           <div id="textarea"></div>
 
-          <el-button
-            size="small"
-            @click="handleResetJs"
-            :disabled="state.storage.exportLanguage !== 'js'"
-            >重置为默认js模版</el-button
-          >
-          <el-button
-            size="small"
-            @click="handleResetTs"
-            :disabled="state.storage.exportLanguage !== 'ts'"
-            >重置为默认ts模版</el-button
-          >
+          <div class="mt-20">
+            <el-button
+              size="small"
+              @click="handleResetJs"
+              :disabled="state.storage.exportLanguage !== 'js'"
+              >重置为默认js模版</el-button
+            >
+            <el-button
+              size="small"
+              @click="handleResetTs"
+              :disabled="state.storage.exportLanguage !== 'ts'"
+              >重置为默认ts模版</el-button
+            >
+          </div>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleSubmit">保存</el-button>
@@ -97,7 +99,7 @@
 import { Message } from "element-ui";
 import { state } from "@/state";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
-import "monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution";
+
 import {
   // handleCopySchema,
   handleCopyInterface,
@@ -231,5 +233,9 @@ export default {
 
 ::v-deep .el-switch__label * {
   line-height: initial;
+}
+
+.mt-20 {
+  margin-top: 20px;
 }
 </style>

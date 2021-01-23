@@ -37,7 +37,7 @@ export const jsTemplate = `({
     )
      // 没有 query body 参数，有 path 参数
     .set(
-      ({ pathParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+      ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
       ({ pathParams, IPathParams }) => '_NOOP,'
     )  
     // 只有 path 参数
@@ -55,7 +55,7 @@ export const jsTemplate = `({
         \`{\${pathParams.join(',')}},\`
     )
     // 有 query 和 body 参数，有 path 参数
-    .set(multipleParamsCondition, \`pathParams,\`)
+    .set(multipleParamsCondition, \`_NOOP,\`)
     
   const thirdParamCodeMap = new Map()
     // 有 query 和 body 参数，有 path 参数
@@ -153,7 +153,7 @@ export const tsTemplate = `({
     )
     // 没有 query body 参数，有 path 参数
     .set(
-      ({ pathParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+      ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
       ({ pathParams, IPathParams }) => '_NOOP: {[key:string]: never},'
     )
      // 只有 path 参数
@@ -171,7 +171,7 @@ export const tsTemplate = `({
         \`{\${pathParams.join(',')}}: \${IPathParams},\`
     )
     // 有 query 和 body 参数，有 path 参数
-    .set(multipleParamsCondition, \`pathParams:{[key:string]: never},\`)
+    .set(multipleParamsCondition, \`_NOOP:{[key:string]: never},\`)
     
   const thirdParamCodeMap = new Map()
     // 有 query 和 body 参数，有 path 参数
@@ -219,7 +219,7 @@ export const tsTemplate = `({
 \${createParamCode(firstParamCodeMap)}
 \${createParamCode(secondParamCodeMap)}
 \${createParamCode(thirdParamCodeMap)}
-) => axios.request<\${IResponse || "any"},AxiosResponse<\${IResponse || "any"}>>({
+) => axios.request<\${IResponse || "any"}>({
      url: \\\`\${parsedUrl}\\\`,
      method: "\${method}",
      params:\${createParamCode(paramCodeMap, '{},')}

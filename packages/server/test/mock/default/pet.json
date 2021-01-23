@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "consequat nostrud dolor aute",
+    "name": "dolore elit irure",
     "photoUrls": [
-      "ipsum aliqua fugiat"
-    ],
-    "status": "sold",
-    "tags": [
-      {
-        "name": "Ut consectetur",
-        "id": 89401456
-      }
+      "esse irure"
     ],
     "category": {
-      "id": -50752086,
-      "name": "proident Duis officia qui"
+      "name": "eu culpa",
+      "id": -32958002
     },
-    "id": 45780342
+    "status": "pending",
+    "tags": [
+      {
+        "id": 73169185,
+        "name": "proident velit ut ipsum"
+      }
+    ],
+    "id": 20521909
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "in sit sunt reprehenderit",
-    "message": "ex",
-    "code": "200"
+    "code": "200",
+    "message": "pariatur laborum aliquip id",
+    "type": "eiusmod tempor nisi quis voluptate"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "dolore",
+      "name": "incididunt cillum commodo laborum Duis",
       "photoUrls": [
-        "nulla non"
+        "ut elit"
       ],
-      "status": "sold",
-      "id": 62687860,
       "category": {
-        "id": 72186219,
-        "name": "dolore consequat"
+        "name": "esse in",
+        "id": 54601545
       },
+      "id": 94787849,
       "tags": [
         {
-          "id": 69353058,
-          "name": "anim"
+          "name": "voluptate reprehenderit culpa consectetur Ut",
+          "id": -22890922
         }
-      ]
+      ],
+      "status": "available"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Lorem in",
+      "name": "do fugiat",
       "photoUrls": [
-        "non"
+        "minim"
       ],
-      "id": 73863839,
-      "status": "pending",
-      "category": {
-        "name": "ex ut",
-        "id": -86554577
-      },
+      "status": "sold",
       "tags": [
         {
-          "name": "officia",
-          "id": 69376330
+          "id": 32916595,
+          "name": "magna"
         }
-      ]
+      ],
+      "id": 19358472,
+      "category": {
+        "id": 43056001,
+        "name": "voluptate sed"
+      }
     }
   ]
 }

@@ -3,8 +3,8 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "Lorem",
-      "code": "200"
+      "code": "200",
+      "message": "aliqua non"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
@@ -12,32 +12,32 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "qui in"
+      "message": "ut in aliquip"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "name": "ex magna",
-      "id": "sunt tempor elit qui deserunt",
-      "level": -22499827,
-      "lastUpdate": "1995-02-05T07:04:07.654Z"
+      "level": 23298535,
+      "name": "dolore sed",
+      "lastUpdate": "1952-11-12T11:42:28.125Z",
+      "id": "et sit amet Ut cillum"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "in labore nisi reprehenderit enim",
-      "code": "200"
+      "code": "200",
+      "message": "pariatur aliqua ut"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "dolore",
+      "message": "dolor et ut veniam",
       "code": "200"
     }
   },
@@ -47,19 +47,19 @@
     "data": {
       "zoneStatus": [
         {
-          "level": -4336854,
-          "name": "aliquip id culpa",
-          "lastUpdate": "1967-06-01T02:43:26.613Z",
-          "id": "nulla ad aliqua fugiat"
+          "id": "amet aute ut",
+          "name": "commodo sit sunt fugiat aute",
+          "level": 16295321,
+          "lastUpdate": "1944-12-16T20:09:43.031Z"
         }
       ],
       "zones": [
         {
-          "id": "enim ea",
-          "zone": "ut mollit minim",
-          "deviceType": "dimmer",
-          "deviceId": 19522364,
-          "name": "enim est culpa"
+          "name": "id",
+          "zone": "pariatur laboris",
+          "id": "aliqua eu cupidatat",
+          "deviceId": 32101999,
+          "deviceType": "dimmer"
         }
       ]
     }

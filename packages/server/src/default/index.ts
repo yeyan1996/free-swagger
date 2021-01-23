@@ -3,7 +3,7 @@ import camelcase from 'camelcase'
 import { ServerConfig, isSwaggerDocument, MockConfig } from '../utils'
 import path from 'path'
 
-export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios,{ AxiosResponse } from "axios";`
+export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
 export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`
 export const DEFAULT_HEAD_CODE_TS = `
 /* eslint-disable */

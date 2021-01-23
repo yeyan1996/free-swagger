@@ -1,16 +1,14 @@
 {
   "GET /store/inventory": {
-    "cupidatat1": -94857743,
-    "reprehenderit_22": 14968021,
-    "officia_6": 72668464
+    "pariaturf74": 36750073
   },
   "GET /store/order/:orderId": {
-    "shipDate": "2015-01-16T10:51:30.791Z",
-    "id": 51400859,
-    "status": "placed",
+    "id": -2269221,
+    "shipDate": "2003-10-23T21:22:14.972Z",
     "complete": false,
-    "quantity": 71846308,
-    "petId": 3122024
+    "petId": 66588631,
+    "quantity": -77175624,
+    "status": "placed"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -18,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "petId": 79282960,
-    "quantity": -14177889,
+    "shipDate": "1960-10-24T15:42:27.679Z",
+    "status": "approved",
+    "petId": -73904334,
+    "id": -72597303,
     "complete": false,
-    "status": "delivered",
-    "id": -17106009,
-    "shipDate": "1963-09-19T07:01:10.51Z"
+    "quantity": -97172274
   }
 }

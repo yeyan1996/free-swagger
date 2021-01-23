@@ -1,93 +1,94 @@
 {
   "GET /api/services/app/AuditLog/GetAuditLogs": {
     "Product": {
-      "capacity": "in dolor consequat velit",
-      "description": "nostrud in",
-      "image": "irure dolore id",
-      "display_name": "ullamco nisi",
-      "product_id": "consectetur aliqua culpa incididunt"
+      "image": "in in ipsum esse",
+      "display_name": "consequat dolor",
+      "capacity": "in id ut",
+      "description": "Duis ad exercitation fugiat ut",
+      "product_id": "consequat"
     },
     "PriceEstimate": {
-      "product_id": "velit sint ea aliqua",
-      "surge_multiplier": -82877890.01848793,
-      "currency_code": "velit incididunt",
-      "low_estimate": 73242631.91999522,
-      "estimate": "velit voluptate",
-      "high_estimate": 90923381.1323702,
-      "display_name": "do sit laboris esse"
+      "low_estimate": -33370957.761195943,
+      "surge_multiplier": 51475405.90056425,
+      "display_name": "Duis laborum officia",
+      "estimate": "eiusmod fugiat veniam ut elit",
+      "high_estimate": -89172847.2400232,
+      "currency_code": "eu dolore",
+      "product_id": "laborum eu culpa in ullamco"
     },
     "Profile": {
-      "role": "Admin",
-      "promo_code": "laborum velit proident culpa esse",
-      "email": "eiusmod elit magna do Excepteur",
-      "picture": "nulla do reprehenderit dolore pariatur",
-      "first_name": "culpa aliquip ut occaecat magna",
-      "last_name": "ullamco Ut"
+      "last_name": "sint ipsum dolore eu veniam",
+      "role": "User",
+      "first_name": "cillum ut aliqua",
+      "picture": "velit aliqua esse est laborum",
+      "email": "commodo voluptate non proident",
+      "promo_code": "labore qui voluptate deserunt reprehenderit"
     },
     "Activity": {
-      "uuid": "minim id eu dolore esse"
+      "uuid": "est ad",
+      "ad9a": 69974257.05398718
     },
     "Activities": {
-      "count": -66276340,
-      "limit": 3266950,
-      "offset": -31282736,
+      "count": -3659687,
       "history": [
         {
-          "uuid": "reprehenderit ullamco dolore",
-          "deserunt_8e": 30809953,
-          "culpa_a": 52235838
+          "uuid": "deserunt ex",
+          "aliqua_70": 1710221.14859052,
+          "nostrud_7": 59660081.511491686
         }
-      ]
+      ],
+      "offset": 38737515,
+      "limit": 34897037
     },
-    "RoleType": "User",
+    "RoleType": "SetSms",
     "CreateOrUpdateUserInput": {
+      "userId": -26948361,
       "userRights": [
         "SystemManage"
       ],
-      "userId": 73468396,
-      "cardNo": false
+      "cardNo": -67604724
     },
     "Abc": {
-      "isLow": true,
-      "id": "culpa"
+      "isLow": false,
+      "id": "eu magna deserunt sint in"
     },
     "ArrayOfAbc": [
       {
-        "id": "dolor non qui nostrud",
-        "isLow": false
+        "isLow": true,
+        "id": "irure"
       }
     ],
     "NumberArrayEnumModel": {
-      "foo": [
+      "bar": [
         0
       ],
-      "bar": [
-        3
+      "foo": [
+        8
       ]
     },
     "Error": {
-      "fields": "non nulla laborum",
-      "code": 89087812,
-      "message": "elit incididunt ex aliquip"
+      "code": -93540419,
+      "fields": "aliquip dolor laborum enim ut",
+      "message": "et commodo labore est"
     },
     "PagedResultDto[AuditLogListDto]": {
-      "totalCount": 77437163,
       "items": [
         {
-          "id": -75325346,
-          "userId": -27048426
+          "userId": -49608293,
+          "id": 57281952
         }
-      ]
+      ],
+      "totalCount": -43677217
     },
     "AuditLogListDto": {
-      "userId": -38625492,
-      "id": -63847052
+      "userId": 15167520,
+      "id": -26513075
     },
     "JsonResult[Guid]": {
-      "result": false,
-      "message": "mollit sed cupidatat anim",
-      "code": "Success",
-      "data": "7dbf8c23-44b2-b93a-d82c-a0713c295452"
+      "data": "82cae6f6-9a07-b930-d878-d1f35eafae4b",
+      "message": "id",
+      "code": "Fail",
+      "result": false
     },
     "List": []
   }

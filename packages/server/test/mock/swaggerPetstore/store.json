@@ -1,17 +1,14 @@
 {
   "GET /store/inventory": {
-    "eiusmod_2": 59450588,
-    "nostrud_8": -98104065,
-    "Lorem_6": -87951738,
-    "nostrud1": -20183386
+    "quib90": -64259226
   },
   "GET /store/order/:orderId": {
-    "petId": 56803033,
-    "complete": false,
-    "quantity": 97742034,
-    "id": 74425819,
-    "status": "approved",
-    "shipDate": "1986-08-10T19:38:22.174Z"
+    "status": "placed",
+    "petId": 50467594,
+    "complete": true,
+    "quantity": -6086609,
+    "id": 6858190,
+    "shipDate": "1986-12-20T21:18:37.156Z"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -19,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "quantity": 10191407,
-    "id": 45805056,
+    "id": -88100207,
+    "shipDate": "1941-08-08T11:13:08.369Z",
+    "status": "delivered",
+    "petId": -90578316,
     "complete": true,
-    "petId": 64853471,
-    "shipDate": "1965-09-16T23:28:43.974Z",
-    "status": "delivered"
+    "quantity": 83674315
   }
 }

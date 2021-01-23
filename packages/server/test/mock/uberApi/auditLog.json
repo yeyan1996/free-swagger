@@ -4,97 +4,93 @@
     "msg": "xxx",
     "data": {
       "Product": {
-        "display_name": "et culpa tempor ut dolore",
-        "capacity": "mollit anim do tempor esse",
-        "image": "est incididunt sint",
-        "description": "fugiat",
-        "product_id": "dolore adipisicing"
+        "product_id": "veniam voluptate consectetur aliquip",
+        "capacity": "adipisicing commodo",
+        "image": "enim sunt ipsum do",
+        "display_name": "esse sunt amet eu",
+        "description": "minim pariatur adipisicing sint qui"
       },
       "PriceEstimate": {
-        "currency_code": "ex elit enim deserunt",
-        "display_name": "culpa dolor magna",
-        "surge_multiplier": 1069639.4021829665,
-        "high_estimate": -18263173.653637826,
-        "product_id": "ullamco labore est",
-        "estimate": "in",
-        "low_estimate": 55968266.42436206
+        "currency_code": "laborum velit anim laboris ex",
+        "low_estimate": -40452964.32489942,
+        "surge_multiplier": -40789357.148240365,
+        "estimate": "velit labore anim cillum",
+        "product_id": "in",
+        "display_name": "laboris ea est et irure",
+        "high_estimate": 52984976.60306701
       },
       "Profile": {
-        "picture": "eu in",
-        "role": "User",
-        "last_name": "enim",
-        "promo_code": "veniam",
-        "email": "amet et",
-        "first_name": "ex irure commodo"
+        "first_name": "commodo fugiat enim",
+        "picture": "aute ullamco ut",
+        "email": "aute Excepteur velit Lorem",
+        "promo_code": "ipsum in sint velit",
+        "role": "SetSms",
+        "last_name": "in"
       },
       "Activity": {
-        "uuid": "culpa fugiat occaecat",
-        "id_5": -63988227,
-        "exercitationf1": true,
-        "et7": "nisi"
+        "uuid": "ipsum elit non"
       },
       "Activities": {
-        "count": -21853946,
-        "offset": 10717523,
+        "offset": 35646692,
+        "count": -49553431,
+        "limit": -61305145,
         "history": [
           {
-            "uuid": "occaecat",
-            "consequat4_2": true,
-            "dolor_21": "reprehenderit amet",
-            "dolor_5f": -85335387
+            "uuid": "velit quis amet",
+            "cillum_c": 60437545,
+            "id_91_": 66785440.31626105
           }
-        ],
-        "limit": -89877618
+        ]
       },
-      "RoleType": "SetSms",
+      "RoleType": "Admin",
       "CreateOrUpdateUserInput": {
-        "userId": 75255756,
+        "userId": -92570090,
         "userRights": [
-          "SetNetwork"
+          "Delete"
         ],
-        "cardNo": false
+        "cardNo": "minim est"
       },
       "Abc": {
-        "id": "voluptate ea ut sunt",
+        "id": "consectetur ea",
         "isLow": false
       },
       "ArrayOfAbc": [
         {
-          "id": "eu et adipisicing",
-          "isLow": false
+          "isLow": false,
+          "id": "eiusmod deserunt occaecat ullamco reprehenderit"
         }
       ],
       "NumberArrayEnumModel": {
         "bar": [
-          0
+          3
         ],
         "foo": [
           8
         ]
       },
       "Error": {
-        "fields": "culpa",
-        "message": "dolore sunt nostrud dolore eiusmod",
-        "code": 71899937
+        "message": "nulla Lorem",
+        "fields": "et laborum",
+        "code": -18643073
       },
       "PagedResultDto[AuditLogListDto]": {
         "items": [
           {
-            "id": -78029275,
-            "userId": -4015441
+            "userId": 83487990,
+            "id": 41611886
           }
         ],
-        "totalCount": -47162768
+        "totalCount": -17332644
       },
       "AuditLogListDto": {
-        "userId": 39244495,
-        "id": 66660699
+        "id": -17168988,
+        "userId": 31339692
       },
       "JsonResult[Guid]": {
-        "message": "Lorem eu sed",
-        "code": "Timeout",
-        "data": "140d9834-5fd3-9cb6-a053-79b43a428bae",
-        "result": false
+        "data": "34252a25-12ce-1c4c-e4a1-dd07e9d93756",
+        "message": "tempor",
+        "code": "UserSessionExpired",
+        "result": true
       },
       "List": []
     }

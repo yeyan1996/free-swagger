@@ -40,8 +40,8 @@ describe("freeSwaggerClient", () => {
                 lang: "js",
                 useJsDoc:true
             },
-            "/pet/{petId}/uploadImage",
-            "post"
+            "/user/{username}/{qqq}",
+            "put"
         );
         expect(codeFragment).toMatchSnapshot();
     });

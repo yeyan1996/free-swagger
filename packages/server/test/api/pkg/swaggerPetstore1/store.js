@@ -3,7 +3,8 @@
 
 import axios from "axios";
 /**
- * @description Returns pet inventories by status  **/
+ * @description Returns pet inventories by status
+ **/
 
 // Returns pet inventories by status
 export const getInventory = () =>
@@ -15,7 +16,7 @@ export const getInventory = () =>
   });
 /**
  * @description Find purchase order by ID
- * @param {Object} params -never
+ * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.orderId -ID of pet that needs to be fetched
  **/
@@ -30,7 +31,7 @@ export const getOrderById = (_NOOP, { orderId }) =>
   });
 /**
  * @description Delete purchase order by ID
- * @param {Object} params -never
+ * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.orderId -ID of the order that needs to be deleted
  **/

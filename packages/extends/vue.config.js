@@ -4,6 +4,7 @@ const gitRevisionPlugin = new GitRevisionPlugin();
 const webpack = require("webpack");
 const pkg = require("./package.json");
 const UserScriptPlugin = require("./libs/user-script-webpack-plugin");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
   publicPath:
@@ -45,6 +46,7 @@ module.exports = {
       port: 8888
     },
     plugins: [
+      new MonacoWebpackPlugin(),
       new GitRevisionPlugin({
         commithashCommand: "rev-list --max-count=1 --no-merges HEAD",
         versionCommand: "describe --always --tags",
@@ -63,7 +65,7 @@ module.exports = {
         namespace: "http://tampermonkey.net/",
         description: pkg.description,
         version: pkg.version,
-        include: ["/swagger/"], // 设置脚本匹配网页正则
+        include: ["/swagger/", "/doc.html"], // 设置脚本匹配网页正则
         scriptName: "userScript.js"
       })
     ]

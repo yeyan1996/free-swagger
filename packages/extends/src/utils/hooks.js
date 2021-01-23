@@ -55,7 +55,6 @@ window.fetch = new Proxy(fetch, {
     const response = Reflect.apply(...args);
     response
       .then(async res => {
-        console.log("res", res);
         if (res.ok) {
           const apply = (target, response, args) => {
             const promise = Reflect.apply(target, response, args);

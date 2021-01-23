@@ -4,7 +4,7 @@
 import axios from "axios";
 /**
  * @description Find pet by ID
- * @param {Object} params -never
+ * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.petId -ID of pet to return
  **/
@@ -34,7 +34,7 @@ export const updatePetWithForm = (params, { petId }) =>
   });
 /**
  * @description Deletes a pet
- * @param {Object} params -never
+ * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.petId -Pet id to delete
  **/
@@ -92,8 +92,8 @@ export const addPet = (params) =>
  * @description Finds Pets by status 
  * @param {{
     "status": "available" | "pending" | "sold"
-}} params 
- **/
+}} params    
+**/
 
 // Finds Pets by status
 export const findPetsByStatus = (params) =>
@@ -108,8 +108,8 @@ export const findPetsByStatus = (params) =>
  * @description Finds Pets by tags 
  * @param {{
     "tags": string
-}} params 
- **/
+}} params    
+**/
 /**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>

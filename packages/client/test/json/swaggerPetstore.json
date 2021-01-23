@@ -373,7 +373,7 @@
         }
       }
     },
-    "/user/{username}": {
+    "/user/{username}/{qqq}": {
       "get": {
         "tags": ["user"],
         "summary": "Get user by user name",
@@ -414,11 +414,25 @@
             "type": "string"
           },
           {
+            "name": "qqq",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "Updated user object",
             "required": true,
             "schema": { "$ref": "#/definitions/User" }
+          },
+          {
+            "in": "query",
+            "name": "www",
+            "description": "Updated user object",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
