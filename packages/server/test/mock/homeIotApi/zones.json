@@ -3,7 +3,7 @@
     "code": "200",
     "msg": "xxx",
     "data": [
-      "deserunt esse magna aliqua sed"
+      "et"
     ]
   },
   "GET /zones/:zoneId/quiet": {

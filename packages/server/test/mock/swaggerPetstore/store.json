@@ -1,15 +1,14 @@
 {
   "GET /store/inventory": {
-    "nulla7a": 76599634,
-    "ipsum_09": 9899488
+    "reprehenderit_44d": -22532737
   },
   "GET /store/order/:orderId": {
-    "petId": 41932773,
+    "shipDate": "2003-05-20T08:52:53.901Z",
     "status": "delivered",
+    "quantity": 12328507,
     "complete": true,
-    "shipDate": "2004-04-15T15:56:44.113Z",
-    "quantity": -8036217,
-    "id": -83849780
+    "petId": -24660912,
+    "id": -55302956
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -17,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "id": 30345150,
-    "status": "placed",
-    "petId": 67462999,
-    "quantity": -80651558,
-    "shipDate": "1978-11-18T13:34:42.281Z",
-    "complete": false
+    "shipDate": "2019-05-20T23:56:48.971Z",
+    "id": 58254652,
+    "status": "approved",
+    "quantity": 27686410,
+    "complete": true,
+    "petId": 48750985
   }
 }

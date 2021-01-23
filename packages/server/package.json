@@ -8,6 +8,7 @@
 		"free-swagger": "dist/bin.js"
 	},
 	"scripts": {
+		"postinstall": "patch-package",
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix"
 	},
@@ -29,6 +30,7 @@
 	"author": "yeyan1996",
 	"license": "MIT",
 	"dependencies": {
+		"@apidevtools/json-schema-ref-parser": "9.0.7",
 		"@jsdevtools/ono": "^7.1.0",
 		"axios": "^0.21.1",
 		"call-me-maybe": "^1.0.1",
@@ -45,6 +47,8 @@
 		"prettier": "^2.0.5"
 	},
 	"devDependencies": {
-		"eslint": "^7.4.0"
-	}
+		"eslint": "^7.4.0",
+		"patch-package": "^6.2.2"
+	},
+	"gitHead": "2cbf8fce1b890c5dbfa4433397445bc263656093"
 }

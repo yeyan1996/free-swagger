@@ -3,96 +3,9 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "Product": {
-        "capacity": "ut sunt mollit dolor",
-        "display_name": "laborum id nulla amet",
-        "image": "magna",
-        "description": "enim aute cupidatat proident",
-        "product_id": "occaecat ad amet"
-      },
-      "PriceEstimate": {
-        "high_estimate": 15703531.725869894,
-        "display_name": "proident",
-        "surge_multiplier": -32933429.484805375,
-        "estimate": "Ut aliqua ad",
-        "product_id": "ea eu esse ut voluptate",
-        "currency_code": "esse voluptate",
-        "low_estimate": 31308577.132650316
-      },
-      "Profile": {
-        "email": "sit",
-        "role": "SetSms",
-        "last_name": "irure occaecat id ea",
-        "promo_code": "do sunt laborum",
-        "first_name": "enim tempor",
-        "picture": "officia Lorem quis nulla"
-      },
-      "Activity": {
-        "uuid": "velit do esse",
-        "in86b": 10198768.65626657,
-        "elit_cfa": false
-      },
-      "Activities": {
-        "history": [
-          {
-            "uuid": "laboris commodo sint ullamco"
-          }
-        ],
-        "offset": -36794315,
-        "count": -99431175,
-        "limit": -22552342
-      },
-      "RoleType": "Admin",
-      "CreateOrUpdateUserInput": {
-        "userId": 73237415,
-        "userRights": [
-          "SetSms"
-        ],
-        "cardNo": false
-      },
-      "Abc": {
-        "isLow": false,
-        "id": "proident"
-      },
-      "ArrayOfAbc": [
-        {
-          "isLow": true,
-          "id": "officia amet sit mollit dolor"
-        }
-      ],
-      "NumberArrayEnumModel": {
-        "foo": [
-          4
-        ],
-        "bar": [
-          2
-        ]
-      },
-      "Error": {
-        "code": 3222677,
-        "fields": "sed est",
-        "message": "consectetur officia anim laborum"
-      },
-      "PagedResultDto[AuditLogListDto]": {
-        "totalCount": 14655215,
-        "items": [
-          {
-            "userId": 28729771,
-            "id": 47137324
-          }
-        ]
-      },
-      "AuditLogListDto": {
-        "userId": -44106764,
-        "id": -45343998
-      },
-      "JsonResult[Guid]": {
-        "result": false,
-        "data": "9949784a-0a5b-14bd-3d44-96713e59e2dd",
-        "message": "ea occaecat",
-        "code": "InternalServerError"
-      },
-      "List": []
+      "code": "200",
+      "msg": "xxx",
+      "data": {}
     }
   }
 }

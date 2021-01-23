@@ -35,7 +35,7 @@ const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
   });
 };
 
-describe("pkg", () => {
+describe("server", () => {
   beforeAll(() => {
     global.__DEV__ = true
   });

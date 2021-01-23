@@ -1,20 +1,20 @@
 {
   "GET /pet/:petId": {
-    "name": "in cupidatat ea mollit",
+    "name": "nisi eiusmod non ex nostrud",
     "photoUrls": [
-      "enim nostrud voluptate"
+      "cupidatat ipsum"
     ],
-    "status": "pending",
+    "status": "sold",
+    "id": -41613614,
     "tags": [
       {
-        "id": -29369192,
-        "name": "magna reprehenderit sunt"
+        "name": "minim dolor laborum fugiat sit",
+        "id": -5819846
       }
     ],
-    "id": 5012422,
     "category": {
-      "id": -6524467,
-      "name": "laborum"
+      "id": -80964355,
+      "name": "ut aliqua sed ullamco voluptate"
     }
   },
   "POST /pet/:petId": {
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "dolor non sunt in esse",
-    "message": "velit aliqua",
-    "code": "200"
+    "code": "200",
+    "type": "amet ullamco incididunt",
+    "message": "veniam"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "officia sed incididunt deserunt ut",
+      "name": "nulla",
       "photoUrls": [
-        "consequat labore anim sit"
-      ],
-      "status": "pending",
-      "id": 10136665,
-      "tags": [
-        {
-          "id": 95186631,
-          "name": "tempor ex minim anim"
-        }
+        "proident"
       ],
       "category": {
-        "name": "in ut cupidatat non magna",
-        "id": 3447525
-      }
+        "name": "do in",
+        "id": -45521134
+      },
+      "tags": [
+        {
+          "id": -73624114,
+          "name": "id eiusmod Ut non"
+        }
+      ],
+      "status": "sold",
+      "id": 84266317
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "ea esse",
+      "name": "et ipsum deserunt",
       "photoUrls": [
-        "tempor eu nostrud"
+        "non consectetur eiusmod ullamco"
       ],
-      "id": -48793193,
+      "id": 57485546,
       "tags": [
         {
-          "id": -8874110,
-          "name": "eiusmod aliquip ipsum adipisicing ut"
+          "name": "occaecat",
+          "id": 20556545
         }
       ],
+      "status": "sold",
       "category": {
-        "name": "sed in sunt qui",
-        "id": -58959563
-      },
-      "status": "sold"
+        "name": "laborum deserunt",
+        "id": 19661228
+      }
     }
   ]
 }

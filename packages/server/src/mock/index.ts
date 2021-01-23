@@ -7,8 +7,7 @@ import path from 'path'
 import fse from 'fs-extra'
 import chalk from 'chalk'
 import camelcase from 'camelcase'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const SwaggerParser = require('../libs/json-schema-ref-parser/lib/index')
+import SwaggerParser from '@apidevtools/json-schema-ref-parser'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const jsf = require('json-schema-faker')
 
@@ -56,7 +55,9 @@ export const mock = async ({
     },
   })
   spinner.start('正在生成 mock 文件...\n')
+  // @ts-ignore
   const parsedSwagger = await SwaggerParser.dereference(source)
+  // @ts-ignore
   Object.entries<OpenAPIV2.PathItemObject>(parsedSwagger.paths).forEach(
     ([path, pathItemObject]) => {
       methods.forEach(async (method: Method) => {

@@ -3,27 +3,24 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "promo_code": "magna cupidatat dolore",
-      "role": "Admin",
-      "email": "officia ad dolor nostrud",
-      "last_name": "velit cillum veniam exercitation qui",
-      "picture": "consequat",
-      "first_name": "quis amet nostrud"
+      "email": "in eu ut ex",
+      "first_name": "sit nostrud mollit laborum qui",
+      "role": "User",
+      "last_name": "sunt esse commodo culpa",
+      "picture": "dolore fugiat",
+      "promo_code": "dolor"
     }
   },
   "GET /history": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "offset": -91713256,
-      "limit": -37965490,
-      "count": -83777397,
+      "limit": 47361220,
+      "offset": 50866708,
+      "count": 88948812,
       "history": [
         {
-          "uuid": "sed ipsum sunt",
-          "dolor2b9": -11425664.86078161,
-          "ipsumd0": 37531519.177665204,
-          "anim_d": 68009524.1111475
+          "uuid": "fugiat nulla"
         }
       ]
     }

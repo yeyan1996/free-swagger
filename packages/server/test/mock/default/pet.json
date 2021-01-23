@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "reprehenderit",
+    "name": "elit in",
     "photoUrls": [
-      "exercitation Ut qui"
+      "quis"
     ],
-    "id": -33792718,
     "tags": [
       {
-        "name": "Lorem incididunt velit nisi dolore",
-        "id": -26564550
+        "name": "cillum sint non commodo",
+        "id": -77276530
       }
     ],
     "status": "sold",
     "category": {
-      "id": 24660595,
-      "name": "quis aliqua dolore"
-    }
+      "name": "consectetur",
+      "id": 50652267
+    },
+    "id": -20536654
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,8 +28,8 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "message": "exercitation deserunt nostrud",
-    "type": "et minim Ut Lorem",
+    "message": "qui cillum",
+    "type": "aute sit et quis",
     "code": "200"
   },
   "PUT /pet": {
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "veniam sint",
+      "name": "enim voluptate",
       "photoUrls": [
-        "aute enim"
-      ],
-      "tags": [
-        {
-          "name": "incididunt",
-          "id": -91879798
-        }
+        "consectetur in adipisicing Ut quis"
       ],
       "category": {
-        "id": -69788755,
-        "name": "dolore Excepteur aute"
+        "name": "sit",
+        "id": 20262918
       },
-      "status": "available",
-      "id": 69314117
+      "id": 29323955,
+      "tags": [
+        {
+          "id": -67450315,
+          "name": "aliqua proident ea sit"
+        }
+      ],
+      "status": "pending"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Lorem commodo",
+      "name": "deserunt ut consectetur magna ullamco",
       "photoUrls": [
-        "officia dolor aute nostrud"
+        "elit dolore irure et proident"
       ],
       "tags": [
         {
-          "name": "laboris reprehenderit nisi",
-          "id": 39136209
+          "name": "anim nostrud in aute officia",
+          "id": 68075412
         }
       ],
-      "id": 47802061,
+      "status": "pending",
       "category": {
-        "name": "magna labore",
-        "id": 8083384
+        "id": 54958234,
+        "name": "cillum"
       },
-      "status": "sold"
+      "id": 5660033
     }
   ]
 }

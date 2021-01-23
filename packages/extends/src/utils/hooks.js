@@ -1,6 +1,6 @@
 import { Message } from "element-ui";
 import ah from "ajax-hook";
-import SwaggerParser from "@/libs/json-schema-ref-parser/lib/index";
+import SwaggerParser from "@apidevtools/json-schema-ref-parser";
 import { cloneDeep } from "lodash-es";
 import { wait } from "@/utils/index";
 import youngParse from "../libs/youngParse";
