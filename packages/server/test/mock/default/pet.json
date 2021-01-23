@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "proident ad in ea Lorem",
+    "name": "reprehenderit",
     "photoUrls": [
-      "aliquip"
+      "exercitation Ut qui"
     ],
-    "category": {
-      "id": 92578187,
-      "name": "officia voluptate"
-    },
-    "id": -54009233,
-    "status": "pending",
+    "id": -33792718,
     "tags": [
       {
-        "id": -66438910,
-        "name": "nulla aute Excepteur dolor"
+        "name": "Lorem incididunt velit nisi dolore",
+        "id": -26564550
       }
-    ]
+    ],
+    "status": "sold",
+    "category": {
+      "id": 24660595,
+      "name": "quis aliqua dolore"
+    }
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "code": "200",
-    "message": "proident esse ea",
-    "type": "dolore aute in cupidatat"
+    "message": "exercitation deserunt nostrud",
+    "type": "et minim Ut Lorem",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "mollit cillum anim labore ad",
+      "name": "veniam sint",
       "photoUrls": [
-        "incididunt qui velit voluptate"
+        "aute enim"
       ],
-      "id": 83475456,
-      "category": {
-        "id": -61948817,
-        "name": "in mollit nisi"
-      },
       "tags": [
         {
-          "id": -11823017,
-          "name": "fugiat"
+          "name": "incididunt",
+          "id": -91879798
         }
       ],
-      "status": "sold"
+      "category": {
+        "id": -69788755,
+        "name": "dolore Excepteur aute"
+      },
+      "status": "available",
+      "id": 69314117
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Duis",
+      "name": "Lorem commodo",
       "photoUrls": [
-        "cupidatat in dolore et"
+        "officia dolor aute nostrud"
       ],
-      "category": {
-        "name": "nulla eiusmod Ut in",
-        "id": 85511428
-      },
-      "status": "pending",
-      "id": -18640137,
       "tags": [
         {
-          "name": "sit quis non Excepteur",
-          "id": 60682311
+          "name": "laboris reprehenderit nisi",
+          "id": 39136209
         }
-      ]
+      ],
+      "id": 47802061,
+      "category": {
+        "name": "magna labore",
+        "id": 8083384
+      },
+      "status": "sold"
     }
   ]
 }

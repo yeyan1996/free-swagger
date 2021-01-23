@@ -3,63 +3,63 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "ea amet",
-      "code": "200"
+      "code": "200",
+      "message": "sint adipisicing aliquip"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "elit incididunt ipsum"
+      "message": "et occaecat commodo ad adipisicing",
+      "code": "200"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "level": 99439149,
-      "id": "aliqua laboris anim",
-      "name": "minim",
-      "lastUpdate": "2016-01-18T07:15:42.782Z"
+      "lastUpdate": "1964-05-13T09:40:32.577Z",
+      "id": "aliqua mollit",
+      "level": -82085183,
+      "name": "incididunt labore"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "officia in dolore culpa Duis"
+      "message": "et est ad pariatur non",
+      "code": "200"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "ipsum ut culpa magna",
-      "code": "200"
+      "code": "200",
+      "message": "anim laboris aliquip pariatur"
     }
   },
   "GET /lightingSummary": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "zoneStatus": [
-        {
-          "lastUpdate": "2011-03-05T09:26:53.011Z",
-          "id": "nostrud pariatur",
-          "name": "cupidatat proident culpa cillum laborum",
-          "level": 61309856
-        }
-      ],
       "zones": [
         {
-          "deviceId": -83243395,
-          "name": "ullamco irure",
-          "zone": "mollit laboris cupidatat",
-          "id": "magna",
-          "deviceType": "dimmer"
+          "deviceId": 45690553,
+          "deviceType": "switch",
+          "id": "dolor",
+          "zone": "voluptate occaecat velit",
+          "name": "elit"
+        }
+      ],
+      "zoneStatus": [
+        {
+          "level": -89753415,
+          "name": "cillum qui dolore aliqua id",
+          "lastUpdate": "1953-01-07T18:48:57.47Z",
+          "id": "id ipsum"
         }
       ]
     }

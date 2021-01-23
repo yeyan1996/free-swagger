@@ -1,14 +1,14 @@
 {
   "GET /store/inventory": {
-    "ea_8a": 9370623
+    "ut9": -74353132
   },
   "GET /store/order/:orderId": {
+    "petId": -87220205,
+    "quantity": -5579627,
+    "shipDate": "2020-06-15T11:00:44.961Z",
     "status": "delivered",
-    "petId": -48034793,
-    "id": -44560769,
-    "quantity": -73551437,
-    "complete": true,
-    "shipDate": "2016-09-29T13:16:15.694Z"
+    "id": 23038230,
+    "complete": false
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -16,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "quantity": -52722364,
-    "id": -68459520,
-    "petId": 65742225,
-    "status": "delivered",
-    "complete": true,
-    "shipDate": "1979-11-10T03:18:45.684Z"
+    "shipDate": "2000-02-18T18:44:31.963Z",
+    "petId": -13429831,
+    "quantity": 88619824,
+    "complete": false,
+    "id": 56701854,
+    "status": "approved"
   }
 }

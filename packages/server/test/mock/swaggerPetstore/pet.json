@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "dolor adipisicing quis aute aliquip",
+    "name": "in cupidatat ea mollit",
     "photoUrls": [
-      "tempor dolore"
+      "enim nostrud voluptate"
     ],
-    "id": -53119630,
+    "status": "pending",
     "tags": [
       {
-        "id": -6315604,
-        "name": "magna ad ea nulla consectetur"
+        "id": -29369192,
+        "name": "magna reprehenderit sunt"
       }
     ],
+    "id": 5012422,
     "category": {
-      "id": -68414302,
-      "name": "voluptate Ut ullamco"
-    },
-    "status": "pending"
+      "id": -6524467,
+      "name": "laborum"
+    }
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "code": "200",
-    "message": "id velit quis",
-    "type": "laboris id nostrud ad ut"
+    "type": "dolor non sunt in esse",
+    "message": "velit aliqua",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "aliquip cillum sunt",
+      "name": "officia sed incididunt deserunt ut",
       "photoUrls": [
-        "dolore veniam ut"
+        "consequat labore anim sit"
       ],
-      "category": {
-        "name": "tempor occaecat nostrud cupidatat enim",
-        "id": 25167980
-      },
-      "id": -52415355,
+      "status": "pending",
+      "id": 10136665,
       "tags": [
         {
-          "id": 44942780,
-          "name": "Ut"
+          "id": 95186631,
+          "name": "tempor ex minim anim"
         }
       ],
-      "status": "available"
+      "category": {
+        "name": "in ut cupidatat non magna",
+        "id": 3447525
+      }
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "ad",
+      "name": "ea esse",
       "photoUrls": [
-        "mollit quis"
+        "tempor eu nostrud"
       ],
-      "id": 31435478,
-      "status": "available",
-      "category": {
-        "name": "nulla magna ipsum",
-        "id": -57784217
-      },
+      "id": -48793193,
       "tags": [
         {
-          "id": 32106813,
-          "name": "enim adipisicing"
+          "id": -8874110,
+          "name": "eiusmod aliquip ipsum adipisicing ut"
         }
-      ]
+      ],
+      "category": {
+        "name": "sed in sunt qui",
+        "id": -58959563
+      },
+      "status": "sold"
     }
   ]
 }

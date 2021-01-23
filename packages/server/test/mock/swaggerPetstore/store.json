@@ -1,15 +1,15 @@
 {
   "GET /store/inventory": {
-    "aliqua_54b": 24506626,
-    "velit8": 22864793
+    "nulla7a": 76599634,
+    "ipsum_09": 9899488
   },
   "GET /store/order/:orderId": {
-    "shipDate": "2001-06-12T11:29:35.165Z",
-    "id": -66087637,
+    "petId": 41932773,
     "status": "delivered",
-    "petId": -42099654,
-    "quantity": 3200725,
-    "complete": true
+    "complete": true,
+    "shipDate": "2004-04-15T15:56:44.113Z",
+    "quantity": -8036217,
+    "id": -83849780
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -17,11 +17,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "petId": 13622841,
-    "quantity": -98651596,
-    "id": 28972011,
-    "complete": false,
-    "shipDate": "1980-08-02T16:25:40.846Z",
-    "status": "delivered"
+    "id": 30345150,
+    "status": "placed",
+    "petId": 67462999,
+    "quantity": -80651558,
+    "shipDate": "1978-11-18T13:34:42.281Z",
+    "complete": false
   }
 }
