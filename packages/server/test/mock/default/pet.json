@@ -1,19 +1,19 @@
 {
   "GET /pet/:petId": {
-    "name": "in consequat Ut ut",
+    "name": "proident ad in ea Lorem",
     "photoUrls": [
-      "eu minim"
+      "aliquip"
     ],
-    "status": "available",
     "category": {
-      "id": -35568829,
-      "name": "esse dolor"
+      "id": 92578187,
+      "name": "officia voluptate"
     },
-    "id": 66917474,
+    "id": -54009233,
+    "status": "pending",
     "tags": [
       {
-        "id": -723323,
-        "name": "ad sed dolor"
+        "id": -66438910,
+        "name": "nulla aute Excepteur dolor"
       }
     ]
   },
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "tempor",
-    "message": "cupidatat ad nostrud voluptate",
-    "code": "200"
+    "code": "200",
+    "message": "proident esse ea",
+    "type": "dolore aute in cupidatat"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "mollit fugiat Lorem veniam",
+      "name": "mollit cillum anim labore ad",
       "photoUrls": [
-        "Duis officia in"
+        "incididunt qui velit voluptate"
       ],
-      "id": -62590844,
-      "status": "pending",
+      "id": 83475456,
       "category": {
-        "id": -74627885,
-        "name": "et minim laborum ea"
+        "id": -61948817,
+        "name": "in mollit nisi"
       },
       "tags": [
         {
-          "id": -70920769,
-          "name": "dolore reprehenderit"
+          "id": -11823017,
+          "name": "fugiat"
         }
-      ]
+      ],
+      "status": "sold"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "labore minim",
+      "name": "Duis",
       "photoUrls": [
-        "id ut"
+        "cupidatat in dolore et"
       ],
-      "id": 55312408,
+      "category": {
+        "name": "nulla eiusmod Ut in",
+        "id": 85511428
+      },
+      "status": "pending",
+      "id": -18640137,
       "tags": [
         {
-          "id": 5998379,
-          "name": "Lorem sed sunt sint"
+          "name": "sit quis non Excepteur",
+          "id": 60682311
         }
-      ],
-      "status": "available",
-      "category": {
-        "id": 13664356,
-        "name": "fugiat ut minim ad"
-      }
+      ]
     }
   ]
 }

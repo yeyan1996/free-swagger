@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "laborum irure nisi ad est",
+    "name": "dolor adipisicing quis aute aliquip",
     "photoUrls": [
-      "voluptate"
+      "tempor dolore"
     ],
-    "id": -40232965,
-    "category": {
-      "name": "consequat",
-      "id": 93124744
-    },
-    "status": "sold",
+    "id": -53119630,
     "tags": [
       {
-        "name": "eiusmod consectetur exercitation",
-        "id": -69540364
+        "id": -6315604,
+        "name": "magna ad ea nulla consectetur"
       }
-    ]
+    ],
+    "category": {
+      "id": -68414302,
+      "name": "voluptate Ut ullamco"
+    },
+    "status": "pending"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "message": "ullamco minim ea esse consequat",
-    "type": "in id sint elit pariatur",
-    "code": "200"
+    "code": "200",
+    "message": "id velit quis",
+    "type": "laboris id nostrud ad ut"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "fugiat aute",
+      "name": "aliquip cillum sunt",
       "photoUrls": [
-        "consectetur"
+        "dolore veniam ut"
       ],
       "category": {
-        "id": -14982088,
-        "name": "mollit in tempor nulla"
+        "name": "tempor occaecat nostrud cupidatat enim",
+        "id": 25167980
       },
-      "id": 82830512,
+      "id": -52415355,
       "tags": [
         {
-          "name": "exercitation qui laboris",
-          "id": -77989057
+          "id": 44942780,
+          "name": "Ut"
         }
       ],
-      "status": "pending"
+      "status": "available"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "Duis exercitation ullamco nisi commodo",
+      "name": "ad",
       "photoUrls": [
-        "ut"
+        "mollit quis"
       ],
+      "id": 31435478,
       "status": "available",
+      "category": {
+        "name": "nulla magna ipsum",
+        "id": -57784217
+      },
       "tags": [
         {
-          "id": -1248574,
-          "name": "labore aliqua dolor anim"
+          "id": 32106813,
+          "name": "enim adipisicing"
         }
-      ],
-      "category": {
-        "name": "Lorem commodo",
-        "id": 42659901
-      },
-      "id": -58290600
+      ]
     }
   ]
 }

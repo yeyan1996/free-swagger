@@ -1,14 +1,15 @@
 {
   "GET /store/inventory": {
-    "amet_f": -69269578
+    "aliqua_54b": 24506626,
+    "velit8": 22864793
   },
   "GET /store/order/:orderId": {
-    "status": "placed",
-    "shipDate": "2017-04-07T07:45:35.341Z",
-    "complete": false,
-    "petId": -53098499,
-    "quantity": 70768303,
-    "id": 7251678
+    "shipDate": "2001-06-12T11:29:35.165Z",
+    "id": -66087637,
+    "status": "delivered",
+    "petId": -42099654,
+    "quantity": 3200725,
+    "complete": true
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -16,11 +17,11 @@
     "data": {}
   },
   "POST /store/order": {
+    "petId": 13622841,
+    "quantity": -98651596,
+    "id": 28972011,
     "complete": false,
-    "id": -76765550,
-    "quantity": 95543258,
-    "shipDate": "1989-10-22T02:20:48.365Z",
-    "petId": -92746888,
-    "status": "placed"
+    "shipDate": "1980-08-02T16:25:40.846Z",
+    "status": "delivered"
   }
 }

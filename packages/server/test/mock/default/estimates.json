@@ -1,22 +1,22 @@
 {
   "GET /estimates/price": [
     {
-      "currency_code": "labore",
-      "low_estimate": 63315076.212209046,
-      "product_id": "ex et cupidatat commodo dolor",
-      "high_estimate": -56044014.07319881,
-      "display_name": "non amet consequat Excepteur",
-      "estimate": "laboris",
-      "surge_multiplier": -31575457.865703702
+      "low_estimate": -16383339.549194038,
+      "display_name": "consectetur ad",
+      "product_id": "commodo",
+      "surge_multiplier": -21203162.111594945,
+      "high_estimate": 66973785.03346872,
+      "currency_code": "anim",
+      "estimate": "nisi dolore aliquip est"
     }
   ],
   "GET /estimates/time": [
     {
-      "display_name": "laborum labore irure consequat",
-      "capacity": "mollit elit reprehenderit dolore",
-      "image": "qui elit cupidatat",
-      "description": "aute do",
-      "product_id": "nostrud nulla"
+      "product_id": "eiusmod Duis",
+      "image": "sed est",
+      "display_name": "officia sit",
+      "capacity": "enim tempor exercitation",
+      "description": "laborum"
     }
   ]
 }

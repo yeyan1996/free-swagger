@@ -1,21 +1,20 @@
 {
   "GET /me": {
-    "last_name": "Lorem proident exercitation aliquip",
-    "email": "nulla adipisicing laboris aliquip",
-    "first_name": "tempor eu aute Duis",
-    "picture": "culpa in",
+    "last_name": "veniam",
+    "email": "labore Duis eu pariatur in",
     "role": "User",
-    "promo_code": "adipisicing commodo ullamco cupidatat"
+    "first_name": "cillum dolor officia ea",
+    "promo_code": "occaecat dolor exercitation anim",
+    "picture": "cillum exercitation aute"
   },
   "GET /history": {
-    "offset": -70965313,
-    "count": 91257669,
+    "limit": 15527222,
     "history": [
       {
-        "uuid": "enim Ut",
-        "pariatur_ec": "eiusmod commodo"
+        "uuid": "qui Ut id"
       }
     ],
-    "limit": -83432504
+    "count": 21035418,
+    "offset": -84232618
   }
 }
