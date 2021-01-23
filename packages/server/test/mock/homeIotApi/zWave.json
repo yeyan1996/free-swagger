@@ -3,7 +3,7 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "sunt dolore officia dolor",
+      "message": "pariatur",
       "code": "200"
     }
   },
@@ -11,33 +11,33 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "fugiat do anim enim",
-      "code": "200"
+      "code": "200",
+      "message": "adipisicing in"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "level": -43518579,
-      "id": "sit elit officia irure laboris",
-      "name": "consequat minim aliquip",
-      "lastUpdate": "1953-01-01T20:57:13.915Z"
+      "level": 26121155,
+      "name": "pariatur sunt officia",
+      "id": "anim irure",
+      "lastUpdate": "2012-04-26T22:59:20.433Z"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "ut ullamco officia do"
+      "message": "fugiat anim est amet",
+      "code": "200"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "do magna adipisicing velit",
+      "message": "occaecat nisi",
       "code": "200"
     }
   },
@@ -45,21 +45,21 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "zoneStatus": [
-        {
-          "level": 88986095,
-          "lastUpdate": "2007-11-02T15:12:28.741Z",
-          "id": "tempor irure",
-          "name": "voluptate Duis velit et sed"
-        }
-      ],
       "zones": [
         {
-          "deviceType": "switch",
-          "id": "aliquip occaecat deserunt",
-          "name": "eu tempor pariatur eiusmod",
-          "zone": "aliqua",
-          "deviceId": -13311266
+          "zone": "consectetur est",
+          "deviceType": "dimmer",
+          "id": "ea amet",
+          "name": "labore",
+          "deviceId": -28028405
+        }
+      ],
+      "zoneStatus": [
+        {
+          "lastUpdate": "2015-11-19T15:09:46.405Z",
+          "id": "occaecat amet proident deserunt tempor",
+          "level": -66174281,
+          "name": "aliqua in"
         }
       ]
     }

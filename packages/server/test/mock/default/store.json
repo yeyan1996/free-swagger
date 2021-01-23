@@ -1,16 +1,16 @@
 {
   "GET /store/inventory": {
-    "eu65": -99217109,
-    "consectetur_293": -59964983,
-    "ut75f": -56273363
+    "dolore__": 60880595,
+    "fugiat_0ae": -85075279,
+    "cupidatata8": -87470370
   },
   "GET /store/order/:orderId": {
-    "quantity": -24310213,
-    "status": "delivered",
-    "petId": -58107054,
+    "status": "placed",
     "complete": false,
-    "id": -61521791,
-    "shipDate": "2011-12-13T11:12:18.711Z"
+    "petId": 53938527,
+    "id": -89111616,
+    "shipDate": "1948-08-25T17:49:02.456Z",
+    "quantity": 69368916
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -18,11 +18,11 @@
     "data": {}
   },
   "POST /store/order": {
+    "id": 24831127,
+    "shipDate": "2012-08-11T04:15:02.899Z",
+    "status": "approved",
     "complete": true,
-    "id": 54914965,
-    "status": "delivered",
-    "petId": 41235724,
-    "shipDate": "2004-12-27T12:10:33.286Z",
-    "quantity": 186802
+    "petId": 77709718,
+    "quantity": -9680075
   }
 }

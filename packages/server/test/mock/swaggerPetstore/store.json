@@ -1,18 +1,14 @@
 {
   "GET /store/inventory": {
-    "essef6": 26831770,
-    "incididunt9": 22671430,
-    "nisi3": -75473091,
-    "aliqua_6": -68196829,
-    "enim_2": -16628757
+    "amet_f": -69269578
   },
   "GET /store/order/:orderId": {
-    "complete": true,
-    "status": "delivered",
-    "petId": -89851615,
-    "id": -60782991,
-    "quantity": 25891510,
-    "shipDate": "1972-12-14T09:58:02.861Z"
+    "status": "placed",
+    "shipDate": "2017-04-07T07:45:35.341Z",
+    "complete": false,
+    "petId": -53098499,
+    "quantity": 70768303,
+    "id": 7251678
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -20,11 +16,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "id": 77510922,
-    "status": "approved",
-    "petId": -21574876,
-    "complete": true,
-    "quantity": 62656000,
-    "shipDate": "1994-06-25T05:40:58.869Z"
+    "complete": false,
+    "id": -76765550,
+    "quantity": 95543258,
+    "shipDate": "1989-10-22T02:20:48.365Z",
+    "petId": -92746888,
+    "status": "placed"
   }
 }

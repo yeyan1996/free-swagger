@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "officia",
+    "name": "laborum irure nisi ad est",
     "photoUrls": [
-      "Lorem minim Excepteur nisi"
+      "voluptate"
     ],
+    "id": -40232965,
     "category": {
-      "id": 59171276,
-      "name": "do voluptate"
+      "name": "consequat",
+      "id": 93124744
     },
-    "status": "pending",
+    "status": "sold",
     "tags": [
       {
-        "name": "esse occaecat sunt dolore aliqua",
-        "id": 3754820
+        "name": "eiusmod consectetur exercitation",
+        "id": -69540364
       }
-    ],
-    "id": -51744747
+    ]
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "type": "ipsum quis",
-    "code": "200",
-    "message": "minim"
+    "message": "ullamco minim ea esse consequat",
+    "type": "in id sint elit pariatur",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "ex aliqua officia culpa amet",
+      "name": "fugiat aute",
       "photoUrls": [
-        "adipisicing"
+        "consectetur"
       ],
-      "status": "sold",
       "category": {
-        "name": "non",
-        "id": -28108227
+        "id": -14982088,
+        "name": "mollit in tempor nulla"
       },
+      "id": 82830512,
       "tags": [
         {
-          "name": "deserunt sint tempor veniam",
-          "id": 33869988
+          "name": "exercitation qui laboris",
+          "id": -77989057
         }
       ],
-      "id": 61218574
+      "status": "pending"
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "eu Duis aute incididunt",
+      "name": "Duis exercitation ullamco nisi commodo",
       "photoUrls": [
-        "cupidatat enim"
+        "ut"
       ],
-      "category": {
-        "id": -22191821,
-        "name": "commodo"
-      },
-      "status": "pending",
-      "id": -14654413,
+      "status": "available",
       "tags": [
         {
-          "id": -84050867,
-          "name": "ut in culpa"
+          "id": -1248574,
+          "name": "labore aliqua dolor anim"
         }
-      ]
+      ],
+      "category": {
+        "name": "Lorem commodo",
+        "id": 42659901
+      },
+      "id": -58290600
     }
   ]
 }

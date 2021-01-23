@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "amet officia in quis velit",
+    "name": "in consequat Ut ut",
     "photoUrls": [
-      "eiusmod velit cillum"
+      "eu minim"
     ],
+    "status": "available",
+    "category": {
+      "id": -35568829,
+      "name": "esse dolor"
+    },
+    "id": 66917474,
     "tags": [
       {
-        "name": "minim elit commodo",
-        "id": 8852607
+        "id": -723323,
+        "name": "ad sed dolor"
       }
-    ],
-    "category": {
-      "id": -68239151,
-      "name": "magna"
-    },
-    "id": -63590186,
-    "status": "available"
+    ]
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "code": "200",
-    "message": "exercitation laborum",
-    "type": "deserunt velit"
+    "type": "tempor",
+    "message": "cupidatat ad nostrud voluptate",
+    "code": "200"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "et",
+      "name": "mollit fugiat Lorem veniam",
       "photoUrls": [
-        "consequat ut laborum"
+        "Duis officia in"
       ],
-      "id": 60733828,
+      "id": -62590844,
+      "status": "pending",
+      "category": {
+        "id": -74627885,
+        "name": "et minim laborum ea"
+      },
       "tags": [
         {
-          "id": -76632596,
-          "name": "amet nulla sint ea"
+          "id": -70920769,
+          "name": "dolore reprehenderit"
         }
-      ],
-      "status": "available",
-      "category": {
-        "name": "adipisicing id sint",
-        "id": 21128224
-      }
+      ]
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "id in Excepteur",
+      "name": "labore minim",
       "photoUrls": [
-        "eu voluptate"
+        "id ut"
       ],
+      "id": 55312408,
       "tags": [
         {
-          "name": "dolore",
-          "id": 28574198
+          "id": 5998379,
+          "name": "Lorem sed sunt sint"
         }
       ],
-      "id": -39841445,
+      "status": "available",
       "category": {
-        "id": 4173880,
-        "name": "sed Excepteur occaecat"
-      },
-      "status": "available"
+        "id": 13664356,
+        "name": "fugiat ut minim ad"
+      }
     }
   ]
 }
