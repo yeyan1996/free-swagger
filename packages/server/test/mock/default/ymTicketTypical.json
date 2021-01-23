@@ -1,8 +1,0 @@
-{
-  "POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical": {
-    "result": false,
-    "code": "200",
-    "message": "magna",
-    "data": "209c293c-d8c4-04fe-7fd4-d5215f87c19c"
-  }
-}
