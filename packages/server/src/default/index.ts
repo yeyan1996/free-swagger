@@ -28,7 +28,7 @@ const getDefaultParams = (
   config: ServerConfig
 ): Required<Omit<ServerConfig, 'source'>> => ({
   root: global.__DEV__
-    ? path.resolve(__dirname, '../../test/api/pkg/default')
+    ? path.resolve(__dirname, '../../test/api/default')
     : path.resolve(process.cwd(), 'src/api'),
   cookie: '',
   customImportCode:

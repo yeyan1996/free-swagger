@@ -26,11 +26,11 @@ free-swagger-cli
 
 ![image-20200208153153194](https://tva1.sinaimg.cn/large/0082zybply1gbp11zc8jrj32bo0h842p.jpg)
 
-![image-20200110101830721](https://tva1.sinaimg.cn/large/006tNbRwgy1gar910l84dj30w2042jtc.jpg)
+![image-20210123144916640](https://tva1.sinaimg.cn/large/008eGmZEly1gmxmpjyhkoj30x005c76c.jpg)
 
 # 详细配置
 
-输出 ts 文件或者编辑模版等进一步功能，需要详细配置
+输出 ts 文件或者编辑模版等高级功能，需要详细配置
 
 ```shell
 npx free-swagger-cli --config
@@ -38,21 +38,35 @@ npx free-swagger-cli --config
 
 ![image-20200110105633434](https://tva1.sinaimg.cn/large/006tNbRwly1gara4kfyrmj30wq06yadw.jpg)
 
-在运行一次后 free-swagger 会记住用户的配置项，下次启动就无需携带 --config
+在运行一次后 free-swagger-cli 会记住用户上一次的配置项
+
+此外还支持项目级配置，运行 init 命令在项目下生成 .free-swaggerrc.js 文件，执行 free-swagger-cli 会优先读取当前目录的 rc 文件
+
+```shell
+npx free-swagger-cli --init
+```
+
+```shell
+npx free-swagger-cli
+```
+
+![image-20210123145506064](https://tva1.sinaimg.cn/large/008eGmZEly1gmxmvp6mwwj30vh0u0ali.jpg)
+
+![image-20210123145750587](https://tva1.sinaimg.cn/large/008eGmZEly1gmxmyipr35j30r407eq6h.jpg)
 
 # 默认模版
 
-free-swagger 基于内置了默认模版用于生成 api 代码片段，具体见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+free-swagger 基于内置了默认模版函数，用于生成 api 代码片段，详细参数见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
 
 # 生成 mock 文件
 
-除了生成 api，free-swagger 还可以生成 mock 文件
+除了生成 api，free-swagger-cli 还可以生成 mock 文件
 
 ```shell
 npx free-swagger-cli --mock
 ```
 
-和详细配置 free-swagger 步骤相似，输入一个 swagger 源，全量生成 mock 数据（json），配合其他 mock 工具实现本地 mock
+和详细配置 free-swagger-cli 步骤相似，输入一个 swagger 源，全量生成 mock 数据（json），配合其他 mock 工具实现本地 mock
 
 ![image-20200404175701656](https://tva1.sinaimg.cn/large/00831rSTly1gdhvyepnt8j32hi0u0u0x.jpg)
 
@@ -62,7 +76,7 @@ npx free-swagger-cli --mock
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1ge6dlcwtw5j30za0fijtq.jpg)
 
-**注意：free-swagger 只输出 mock 文件，不提供本地 mock 服务**
+**注意：free-swagger-cli 只输出 mock 文件，不提供本地 mock 服务**
 
 # 所有命令
 
@@ -86,6 +100,10 @@ npx free-swagger-cli --mock
 
 > npx free-swagger-cli --edit
 
+- `--init/-i` 初始化配置文件
+
+> npx free-swagger-cli --init
+
 - `--help/-h` output usage information
 
 > npx free-swagger-cli --help
@@ -102,10 +120,6 @@ npx free-swagger-cli --mock
 ![image-20200813131204090](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3w6jwgcj31h708ndob.jpg)
 
 或者直接将 swagger 源（json 文件）下载到本地，输入本地路径
-
-## 使用 npm 形式安装后，打包工具报错
-
-free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使用！
 
 ## 某些接口的 mock 文件没有生成
 

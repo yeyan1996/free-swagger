@@ -3,11 +3,11 @@ import chalk from 'chalk'
 import path from 'path'
 import fse from 'fs-extra'
 import commander from 'commander'
-import { rc } from '../default/rc'
+import { rc, RcConfig } from '../default/rc'
 import mockQuestion from './questions/mock'
 import serverQuestion, { chooseApi } from './questions/server'
 import { source } from './questions/client'
-import { mock, MockConfig, compile } from 'free-swagger'
+import { mock, compile } from 'free-swagger'
 import { pick } from 'lodash'
 
 export function init(cb?: Function): void {
@@ -27,24 +27,46 @@ export function init(cb?: Function): void {
     .option('-e --edit', '修改当前配置', () => {
       rc.edit()
     })
+    .option('-i --init', '生成初始化配置文件', () => {
+      rc.init()
+      console.log(chalk.green('生成初始化配置文件成功'))
+    })
     .option('-m --mock', '全量生成 mock 数据', async () => {
-      const answer = await inquirer.prompt(mockQuestion)
-      await mock((answer as unknown) as MockConfig)
+      const localRc = path.resolve(process.cwd(), '.free-swaggerrc.js')
+      if (fse.existsSync(localRc)) {
+        const rcConfig = require(path.resolve(
+          process.cwd(),
+          '.free-swaggerrc.js'
+        )) as RcConfig
+        console.log(chalk.green('读取项目配置文件成功'))
+        await mock(rc.createMockParams(rcConfig))
+      } else {
+        await inquirer.prompt(mockQuestion)
+        await mock(rc.createMockParams())
+      }
     })
     .option('-c, --config', '以配置项启动 free-swagger-cli', async () => {
-      const answer = await inquirer.prompt(serverQuestion)
-      rc.recordHash(answer.source)
+      await inquirer.prompt(serverQuestion)
       await compile(rc.createFreeSwaggerParams(), {
         onChooseApi: async ({ paths }) =>
           pick(paths, ...(await chooseApi(paths))),
       })
     })
     // 默认启动
-    .action(async (command) => {
-      if (!global.__DEV__ && command.rawArgs[2]) return
-      const answer: { source: string } = await inquirer.prompt([source])
-      rc.recordHash(answer.source)
-      await compile(rc.createFreeSwaggerParams())
+    .action(async ({ rawArgs }) => {
+      if (!global.__DEV__ && rawArgs[2]) return
+      const localRc = path.resolve(process.cwd(), '.free-swaggerrc.js')
+      if (fse.existsSync(localRc)) {
+        const rcConfig = require(path.resolve(
+          process.cwd(),
+          '.free-swaggerrc.js'
+        )) as RcConfig
+        console.log(chalk.green('读取项目配置文件成功'))
+        await compile(rc.createFreeSwaggerParams(rcConfig))
+      } else {
+        await inquirer.prompt([source])
+        await compile(rc.createFreeSwaggerParams())
+      }
       cb?.()
       return
     })

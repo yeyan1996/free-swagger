@@ -12,6 +12,7 @@ export const source = {
     if (!input) return '请输入 swagger 源'
     if (isUrl(input) || isPath(input)) {
       rc.merge({ source: input })
+      rc.recordHash(input)
       rc.save()
       return true
     }

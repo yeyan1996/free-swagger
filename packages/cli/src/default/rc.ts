@@ -2,12 +2,13 @@ import path from 'path'
 import os from 'os'
 import fse from 'fs-extra'
 import prettier from 'prettier'
-import { pick, mergeWith } from 'lodash'
+import { pick, mergeWith, omit } from 'lodash'
 import { EOL } from 'os'
 import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-client'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
+  MockConfig,
   ServerConfig,
 } from 'free-swagger'
 import { execSync } from 'child_process'
@@ -15,11 +16,11 @@ import camelcase from 'camelcase'
 
 type Type = 'client' | 'server' | 'mock'
 
+const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
   client: Omit<Required<ClientConfig<string>>, 'filename'> & {
-    source: string
     tsTemplate: string
     jsTemplate: string
   }
@@ -46,15 +47,21 @@ class Rc {
   constructor() {
     this.path = path.resolve(os.homedir(), '.free-swaggerrc.js')
     fse.ensureFileSync(this.path)
-
-    const dataContent = fse.readFileSync(this.path, 'utf-8') || '{}'
-    // hack: 目的是取出 rc 中的代码片段
-    /* eslint-disable */
-    let _obj = {}
-    eval(`_obj = ${dataContent.replace(new RegExp(`^${EXPORT_DEFAULT}`), '')}`)
+    let rcConfig
+    try {
+      rcConfig = require(this.path) as RcConfig
+    } catch (e) {
+      // 兼容
+      const content = fse.readFileSync(this.path, 'utf-8') || '{}'
+      fse.writeFileSync(
+        this.path,
+        content.replace(EXPORT_DEFAULT, MODULE_EXPORTS)
+      )
+      rcConfig = require(this.path) as RcConfig
+    }
     this.configData = {
       ...this.getDefaultConfig(),
-      ...pick(_obj, Object.keys(this.getDefaultConfig())),
+      ...pick(rcConfig),
     }
   }
 
@@ -62,7 +69,7 @@ class Rc {
   getDefaultConfig(): RcConfig {
     return {
       client: {
-        source: '',
+        source: 'https://petstore.swagger.io/v2/swagger.json',
         lang: 'js',
         templateFunction: eval(jsTemplate),
         useJsDoc: true,
@@ -89,19 +96,25 @@ class Rc {
   }
 
   // 从 rc 文件中生成 free-swagger-cli 参数
-  createFreeSwaggerParams(): Required<ServerConfig> {
-    const { lang, tsTemplate, jsTemplate ,templateFunction} = this.configData.client
-    const { customImportCodeJs, customImportCodeTs } = this.configData.server
+  createFreeSwaggerParams(
+    { client, server }: RcConfig = this.configData
+  ): Required<ServerConfig> {
+    const { lang, templateFunction } = client
+    const { customImportCodeJs, customImportCodeTs } = server
     return {
-      ...pick(this.configData.client, [
-        'source',
-        'lang',
-        'useJsDoc',
-      ]),
-      filename:name => camelcase(name),
-      ...pick(this.configData.server,['root', 'cookie']),
+      ...pick(client, ['source', 'lang', 'useJsDoc']),
+      ...pick(server, ['root', 'cookie']),
       templateFunction,
+      filename: (name) => camelcase(name),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
+    }
+  }
+
+  // 从 rc 文件中生成 mock 参数
+  createMockParams({ mock, client }: RcConfig = this.configData): MockConfig {
+    return {
+      ...pick(client, ['source']),
+      ...mock,
     }
   }
 
@@ -117,9 +130,8 @@ class Rc {
     )
   }
 
-  // 将配置项存储至 rc 文件
-  save(): void {
-    const data = JSON.stringify(this.configData)
+  private stringifyConfigData(rcConfig: RcConfig): string {
+    const data = JSON.stringify(rcConfig)
     // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
     // 去除尾部分号，否则会报词法错误
     let templateFunction = this.configData.client.templateFunction
@@ -131,12 +143,20 @@ class Rc {
     }
     const functionCode = `templateFunction: ${templateFunction}`
     const index = data.search(/"source"/)
-    const prevCode = data.slice(0,index)
-    const afterCode = data.slice(index,data.length)
-    const code = prettier.format(`${EXPORT_DEFAULT} ${prevCode} ${functionCode}, ${afterCode}`, {
-      parser: 'babel',
-    })
-    fse.writeFileSync(this.path, code)
+    const prevCode = data.slice(0, index)
+    const afterCode = data.slice(index, data.length)
+    return prettier.format(
+      `${MODULE_EXPORTS} ${prevCode} ${functionCode}, ${afterCode}`,
+      {
+        parser: 'babel',
+      }
+    )
+  }
+
+  // 将配置项存储至 rc 文件
+  save(targetPath = this.path): void {
+    const code = this.stringifyConfigData(this.configData)
+    fse.writeFileSync(targetPath, code)
   }
 
   // 记录当前 source 和之前的 source
@@ -168,6 +188,19 @@ class Rc {
   // 打开编辑器编辑模版
   edit(): void {
     execSync(`code ${this.path}`, { stdio: 'inherit' })
+  }
+
+  init(): void {
+    const rcConfig = this.getDefaultConfig()
+    fse.writeFileSync(
+      path.resolve(process.cwd(), '.free-swaggerrc.js'),
+      this.stringifyConfigData({
+        // @ts-ignore
+        client: omit(rcConfig.client, ['jsTemplate', 'tsTemplate']),
+        server: rcConfig.server,
+        mock: rcConfig.mock,
+      })
+    )
   }
 }
 

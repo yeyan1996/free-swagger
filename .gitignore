@@ -2,6 +2,7 @@
 node_modules
 /packages/cli/dist
 /packages/server/test/mock
+/packages/server/test/api
 /packages/server/dist
 /packages/client/dist
 

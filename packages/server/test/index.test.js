@@ -42,7 +42,7 @@ describe("server", () => {
 
   test("base option", async () => {
     const dirname = "swaggerPetstore";
-    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
+    const dirPath = path.resolve(__dirname, "api", dirname);
     await freeSwagger({
       source: require(`./json/${dirname}`),
       root: dirPath,
@@ -52,7 +52,7 @@ describe("server", () => {
 
   test("jsdoc", async () => {
     const dirname = "swaggerPetstore";
-    const dirPath = path.resolve(__dirname, "api", "pkg", dirname + "1");
+    const dirPath = path.resolve(__dirname, "api",dirname + "1");
     await freeSwagger({
       source: require(`./json/${dirname}`),
       root: dirPath,
@@ -64,7 +64,7 @@ describe("server", () => {
 
   test("ts language", async () => {
     const dirname = "uberApi";
-    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
+    const dirPath = path.resolve(__dirname, "api", dirname);
     await freeSwagger({
       source: require(`./json/${dirname}`),
       lang: "ts",
@@ -81,7 +81,7 @@ describe("server", () => {
 
   test("custom ts template", async () => {
     const dirname = "homeIotApi";
-    const dirPath = path.resolve(__dirname, "api", "pkg", dirname);
+    const dirPath = path.resolve(__dirname, "api",  dirname);
 
     await freeSwagger({
       source: require(`./json/${dirname}`),
@@ -156,13 +156,13 @@ describe("server", () => {
   test("should work with only one string params", async () => {
     const dirname = "swaggerPetstore1";
     await freeSwagger(path.resolve(__dirname, "json", `${dirname}.json`));
-    await assertFiles(path.resolve(__dirname, "api/pkg/default"), ["pet.js", "store.js", "user.js"],true);
+    await assertFiles(path.resolve(__dirname, "api/default"), ["pet.js", "store.js", "user.js"],true);
   });
 
   test("should work with only one json params", async () => {
     const dirname = "uberApi1";
     await freeSwagger(require(path.resolve(__dirname, "json", `${dirname}.json`)));
-    await assertFiles(path.resolve(__dirname, "api/pkg/default"), [
+    await assertFiles(path.resolve(__dirname, "api/default"), [
       "auditLog.js",
       "device.js",
       "mappers.js",

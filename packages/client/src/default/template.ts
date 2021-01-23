@@ -5,7 +5,7 @@ export const jsTemplate = `({
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
   deprecated,     // 是否废弃 {boolean}
-  pathParams,     // 路径参数 {Array[string]}
+  pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
   IPathParams     // 请求路径参数 ts 类型
@@ -23,12 +23,12 @@ export const jsTemplate = `({
     // 只有 query 参数，可能有 path 参数
     .set(
       ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
-      ({ IQueryParams }) => \`params,\`
+       \`params,\`
     )
     // 只有 body 参数，可能有 path 参数
     .set(
       ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
-      ({ IBodyParams }) => \`params,\`
+       \`params,\`
     )
     // 有 query 和 body 参数，可能有 path 参数
     .set(
@@ -38,7 +38,7 @@ export const jsTemplate = `({
      // 没有 query body 参数，有 path 参数
     .set(
       ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-      ({ pathParams, IPathParams }) => '_NOOP,'
+      '_NOOP,'
     )  
     // 只有 path 参数
     .set(
@@ -61,7 +61,7 @@ export const jsTemplate = `({
     // 有 query 和 body 参数，有 path 参数
     .set(
       multipleParamsCondition,
-      ({ IBodyParams }) => \`bodyParams,\`
+      \`bodyParams,\`
     )
     
   const paramCodeMap = new Map()
@@ -100,15 +100,15 @@ export const jsTemplate = `({
   \${deprecated ? \`/**deprecated*/\` : ""}
   \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
-\${createParamCode(firstParamCodeMap)}
-\${createParamCode(secondParamCodeMap)}
-\${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap)}
+    \${createParamCode(secondParamCodeMap)}
+    \${createParamCode(thirdParamCodeMap)}
 )  => axios.request({
-     url: \\\`\${parsedUrl}\\\`,
-     method: "\${method}",
-     params:\${createParamCode(paramCodeMap, '{},')}
-     data:\${createParamCode(dataCodeMap, '{},')}
-     \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
+         url: \\\`\${parsedUrl}\\\`,
+         method: "\${method}",
+         params:\${createParamCode(paramCodeMap, '{},')}
+         data:\${createParamCode(dataCodeMap, '{},')}
+         \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
  })\`;
 }
 `
@@ -120,7 +120,7 @@ export const tsTemplate = `({
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
   deprecated,     // 是否废弃 {boolean}
-  pathParams,     // 路径参数 {Array[string]}
+  pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
   IPathParams,     // 请求路径参数 ts 类型
@@ -154,7 +154,7 @@ export const tsTemplate = `({
     // 没有 query body 参数，有 path 参数
     .set(
       ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-      ({ pathParams, IPathParams }) => '_NOOP: {[key:string]: never},'
+      '_NOOP: {[key:string]: never},'
     )
      // 只有 path 参数
     .set(
@@ -216,15 +216,15 @@ export const tsTemplate = `({
   \${deprecated ? \`/**deprecated*/\` : ""}
   \${summary ? \`// \${summary}\` : ""}  
   export const \${name} = (
-\${createParamCode(firstParamCodeMap)}
-\${createParamCode(secondParamCodeMap)}
-\${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap)}
+    \${createParamCode(secondParamCodeMap)}
+    \${createParamCode(thirdParamCodeMap)}
 ) => axios.request<\${IResponse || "any"}>({
-     url: \\\`\${parsedUrl}\\\`,
-     method: "\${method}",
-     params:\${createParamCode(paramCodeMap, '{},')}
-     data:\${createParamCode(dataCodeMap, '{},')}
-     \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
+         url: \\\`\${parsedUrl}\\\`,
+         method: "\${method}",
+         params:\${createParamCode(paramCodeMap, '{},')}
+         data:\${createParamCode(dataCodeMap, '{},')}
+         \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
  })\`;
 }
 `

@@ -72,7 +72,7 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
      name,           // api 函数名 {string}
      responseType,   // 响应值种类，同 axios {string}
      deprecated,     // 是否废弃 {boolean}
-     pathParams,     // 路径参数 {Array[string]}
+     pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
      IPathParams     // 请求路径参数 ts 类型
@@ -104,7 +104,7 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
         )
         // 没有 query body 参数，有 path 参数
         .set(
-            ({ pathParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+            ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
             ({ pathParams, IPathParams }) => '_NOOP,'
         )
         // 只有 path 参数
@@ -122,7 +122,7 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
                 `{${pathParams.join(',')}},`
         )
         // 有 query 和 body 参数，有 path 参数
-        .set(multipleParamsCondition, `pathParams,`)
+        .set(multipleParamsCondition, `_NOOP,`)
 
     const thirdParamCodeMap = new Map()
         // 有 query 和 body 参数，有 path 参数
@@ -190,7 +190,7 @@ ${createParamCode(thirdParamCodeMap)}
      name,           // api 函数名 {string}
      responseType,   // 响应值种类，同 axios {string}
      deprecated,     // 是否废弃 {boolean}
-     pathParams,     // 路径参数 {Array[string]}
+     pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
      IPathParams,     // 请求路径参数 ts 类型
@@ -223,7 +223,7 @@ ${createParamCode(thirdParamCodeMap)}
         )
         // 没有 query body 参数，有 path 参数
         .set(
-            ({ pathParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+            ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
             ({ pathParams, IPathParams }) => '_NOOP: {[key:string]: never},'
         )
         // 只有 path 参数
@@ -241,7 +241,7 @@ ${createParamCode(thirdParamCodeMap)}
                 `{${pathParams.join(',')}}: ${IPathParams},`
         )
         // 有 query 和 body 参数，有 path 参数
-        .set(multipleParamsCondition, `pathParams:{[key:string]: never},`)
+        .set(multipleParamsCondition, `_NOOP:{[key:string]: never},`)
 
     const thirdParamCodeMap = new Map()
         // 有 query 和 body 参数，有 path 参数
@@ -289,7 +289,7 @@ ${createParamCode(thirdParamCodeMap)}
 ${createParamCode(firstParamCodeMap)}
 ${createParamCode(secondParamCodeMap)}
 ${createParamCode(thirdParamCodeMap)}
-) => axios.request<${IResponse || "any"},AxiosResponse<${IResponse || "any"}>>({
+) => axios.request<${IResponse || "any"}>({
      url: \`${parsedUrl}\`,
      method: "${method}",
      params:${createParamCode(paramCodeMap, '{},')}

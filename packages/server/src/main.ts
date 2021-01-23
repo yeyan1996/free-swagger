@@ -74,6 +74,9 @@ const normalizeSource = async (
   source: string | OpenAPIV2.Document,
   cookie?: string
 ): Promise<OpenAPIV2.Document> => {
+  if (!source) {
+    throw new Error('source 不存在，请检查配置文件')
+  }
   if (isUrl(source)) {
     return await fetchJSON(source, cookie)
   }
