@@ -1,14 +1,16 @@
 {
   "GET /store/inventory": {
-    "pariaturf74": 36750073
+    "eu65": -99217109,
+    "consectetur_293": -59964983,
+    "ut75f": -56273363
   },
   "GET /store/order/:orderId": {
-    "id": -2269221,
-    "shipDate": "2003-10-23T21:22:14.972Z",
+    "quantity": -24310213,
+    "status": "delivered",
+    "petId": -58107054,
     "complete": false,
-    "petId": 66588631,
-    "quantity": -77175624,
-    "status": "placed"
+    "id": -61521791,
+    "shipDate": "2011-12-13T11:12:18.711Z"
   },
   "DELETE /store/order/:orderId": {
     "code": "200",
@@ -16,11 +18,11 @@
     "data": {}
   },
   "POST /store/order": {
-    "shipDate": "1960-10-24T15:42:27.679Z",
-    "status": "approved",
-    "petId": -73904334,
-    "id": -72597303,
-    "complete": false,
-    "quantity": -97172274
+    "complete": true,
+    "id": 54914965,
+    "status": "delivered",
+    "petId": 41235724,
+    "shipDate": "2004-12-27T12:10:33.286Z",
+    "quantity": 186802
   }
 }

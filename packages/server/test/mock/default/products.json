@@ -1,11 +1,11 @@
 {
   "GET /products": [
     {
-      "product_id": "mollit",
-      "display_name": "magna",
-      "description": "in id eu",
-      "capacity": "dolor enim",
-      "image": "ea non proident officia"
+      "capacity": "pariatur",
+      "display_name": "enim",
+      "image": "sit commodo nostrud nulla dolor",
+      "description": "quis Duis anim velit",
+      "product_id": "nisi anim ea ut ipsum"
     }
   ]
 }

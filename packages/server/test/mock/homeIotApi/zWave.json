@@ -3,26 +3,26 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "aliqua non"
+      "message": "sunt dolore officia dolor",
+      "code": "200"
     }
   },
   "POST /lighting/dimmers/:deviceId/:value/timer/:timeunit": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "code": "200",
-      "message": "ut in aliquip"
+      "message": "fugiat do anim enim",
+      "code": "200"
     }
   },
   "GET /lighting/switches/:deviceId": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "level": 23298535,
-      "name": "dolore sed",
-      "lastUpdate": "1952-11-12T11:42:28.125Z",
-      "id": "et sit amet Ut cillum"
+      "level": -43518579,
+      "id": "sit elit officia irure laboris",
+      "name": "consequat minim aliquip",
+      "lastUpdate": "1953-01-01T20:57:13.915Z"
     }
   },
   "POST /lighting/switches/:deviceId/:value": {
@@ -30,14 +30,14 @@
     "msg": "xxx",
     "data": {
       "code": "200",
-      "message": "pariatur aliqua ut"
+      "message": "ut ullamco officia do"
     }
   },
   "POST /lighting/switches/:deviceId/:value/timer/:minutes": {
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "dolor et ut veniam",
+      "message": "do magna adipisicing velit",
       "code": "200"
     }
   },
@@ -47,19 +47,19 @@
     "data": {
       "zoneStatus": [
         {
-          "id": "amet aute ut",
-          "name": "commodo sit sunt fugiat aute",
-          "level": 16295321,
-          "lastUpdate": "1944-12-16T20:09:43.031Z"
+          "level": 88986095,
+          "lastUpdate": "2007-11-02T15:12:28.741Z",
+          "id": "tempor irure",
+          "name": "voluptate Duis velit et sed"
         }
       ],
       "zones": [
         {
-          "name": "id",
-          "zone": "pariatur laboris",
-          "id": "aliqua eu cupidatat",
-          "deviceId": 32101999,
-          "deviceType": "dimmer"
+          "deviceType": "switch",
+          "id": "aliquip occaecat deserunt",
+          "name": "eu tempor pariatur eiusmod",
+          "zone": "aliqua",
+          "deviceId": -13311266
         }
       ]
     }

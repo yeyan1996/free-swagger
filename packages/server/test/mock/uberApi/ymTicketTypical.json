@@ -3,9 +3,9 @@
     "code": "200",
     "msg": "xxx",
     "data": {
-      "message": "adipisicing",
-      "result": true,
-      "data": "819d069b-86ab-0786-a51a-40ce2f454d86",
+      "result": false,
+      "data": "352d8ef4-eab7-e0f0-5778-3bd86291e49f",
+      "message": "deserunt velit cupidatat labore",
       "code": "200"
     }
   }

@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "elit eiusmod",
+    "name": "officia",
     "photoUrls": [
-      "sint do sunt in"
+      "Lorem minim Excepteur nisi"
     ],
-    "id": -31396106,
+    "category": {
+      "id": 59171276,
+      "name": "do voluptate"
+    },
+    "status": "pending",
     "tags": [
       {
-        "id": 92562000,
-        "name": "aliquip"
+        "name": "esse occaecat sunt dolore aliqua",
+        "id": 3754820
       }
     ],
-    "status": "sold",
-    "category": {
-      "id": 72322947,
-      "name": "nisi irure tempor in"
-    }
+    "id": -51744747
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -28,9 +28,9 @@
     "data": {}
   },
   "POST /pet/:petId/uploadImage": {
-    "message": "magna reprehenderit incididunt ullamco non",
+    "type": "ipsum quis",
     "code": "200",
-    "type": "anim labore culpa nulla"
+    "message": "minim"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "Lorem dolore",
+      "name": "ex aliqua officia culpa amet",
       "photoUrls": [
-        "qui magna ad"
+        "adipisicing"
       ],
+      "status": "sold",
       "category": {
-        "name": "Excepteur ullamco nulla proident",
-        "id": 72672905
+        "name": "non",
+        "id": -28108227
       },
-      "status": "pending",
       "tags": [
         {
-          "name": "reprehenderit tempor officia non dolore",
-          "id": -36746198
+          "name": "deserunt sint tempor veniam",
+          "id": 33869988
         }
       ],
-      "id": -23767942
+      "id": 61218574
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "magna adipisicing velit eiusmod sit",
+      "name": "eu Duis aute incididunt",
       "photoUrls": [
-        "amet officia"
+        "cupidatat enim"
       ],
+      "category": {
+        "id": -22191821,
+        "name": "commodo"
+      },
+      "status": "pending",
+      "id": -14654413,
       "tags": [
         {
-          "id": 75764608,
-          "name": "do nisi fugiat aliquip sunt"
+          "id": -84050867,
+          "name": "ut in culpa"
         }
-      ],
-      "status": "available",
-      "id": 72487807,
-      "category": {
-        "name": "incididunt",
-        "id": 15242311
-      }
+      ]
     }
   ]
 }

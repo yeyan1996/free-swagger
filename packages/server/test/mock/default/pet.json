@@ -1,21 +1,21 @@
 {
   "GET /pet/:petId": {
-    "name": "dolore elit irure",
+    "name": "amet officia in quis velit",
     "photoUrls": [
-      "esse irure"
+      "eiusmod velit cillum"
     ],
-    "category": {
-      "name": "eu culpa",
-      "id": -32958002
-    },
-    "status": "pending",
     "tags": [
       {
-        "id": 73169185,
-        "name": "proident velit ut ipsum"
+        "name": "minim elit commodo",
+        "id": 8852607
       }
     ],
-    "id": 20521909
+    "category": {
+      "id": -68239151,
+      "name": "magna"
+    },
+    "id": -63590186,
+    "status": "available"
   },
   "POST /pet/:petId": {
     "code": "200",
@@ -29,8 +29,8 @@
   },
   "POST /pet/:petId/uploadImage": {
     "code": "200",
-    "message": "pariatur laborum aliquip id",
-    "type": "eiusmod tempor nisi quis voluptate"
+    "message": "exercitation laborum",
+    "type": "deserunt velit"
   },
   "PUT /pet": {
     "code": "200",
@@ -44,42 +44,42 @@
   },
   "GET /pet/findByStatus": [
     {
-      "name": "incididunt cillum commodo laborum Duis",
+      "name": "et",
       "photoUrls": [
-        "ut elit"
+        "consequat ut laborum"
       ],
-      "category": {
-        "name": "esse in",
-        "id": 54601545
-      },
-      "id": 94787849,
+      "id": 60733828,
       "tags": [
         {
-          "name": "voluptate reprehenderit culpa consectetur Ut",
-          "id": -22890922
+          "id": -76632596,
+          "name": "amet nulla sint ea"
         }
       ],
-      "status": "available"
+      "status": "available",
+      "category": {
+        "name": "adipisicing id sint",
+        "id": 21128224
+      }
     }
   ],
   "GET /pet/findByTags": [
     {
-      "name": "do fugiat",
+      "name": "id in Excepteur",
       "photoUrls": [
-        "minim"
+        "eu voluptate"
       ],
-      "status": "sold",
       "tags": [
         {
-          "id": 32916595,
-          "name": "magna"
+          "name": "dolore",
+          "id": 28574198
         }
       ],
-      "id": 19358472,
+      "id": -39841445,
       "category": {
-        "id": 43056001,
-        "name": "voluptate sed"
-      }
+        "id": 4173880,
+        "name": "sed Excepteur occaecat"
+      },
+      "status": "available"
     }
   ]
 }

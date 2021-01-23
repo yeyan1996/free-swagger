@@ -1,13 +1,13 @@
 {
   "GET /user/:username": {
-    "email": "exercitation incididunt",
-    "lastName": "amet",
-    "phone": "dolor dolore et non cillum",
-    "password": "aute occaecat reprehenderit amet consequat",
-    "firstName": "labore officia qui proident ad",
-    "id": -1233509,
-    "userStatus": -44146342,
-    "username": "id"
+    "firstName": "laboris amet esse sint quis",
+    "lastName": "eiusmod fugiat",
+    "username": "laborum dolore mollit",
+    "email": "nulla aliquip magna mollit laboris",
+    "phone": "commodo reprehenderit in magna dolor",
+    "password": "et do esse",
+    "id": 8348358,
+    "userStatus": -49829144
   },
   "PUT /user/:username": {
     "code": "200",
@@ -19,7 +19,7 @@
     "msg": "xxx",
     "data": {}
   },
-  "GET /user/login": "occaecat veniam cillum exercitation",
+  "GET /user/login": "magna aliqua ut esse Lorem",
   "GET /user/logout": {
     "code": "200",
     "msg": "xxx",
