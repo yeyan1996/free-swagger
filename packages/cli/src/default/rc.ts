@@ -2,7 +2,7 @@ import path from 'path'
 import os from 'os'
 import fse from 'fs-extra'
 import prettier from 'prettier'
-import { pick, mergeWith, omit } from 'lodash'
+import { pick, mergeWith } from 'lodash'
 import { EOL } from 'os'
 import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-client'
 import {
@@ -188,19 +188,6 @@ class Rc {
   // 打开编辑器编辑模版
   edit(): void {
     execSync(`code ${this.path}`, { stdio: 'inherit' })
-  }
-
-  init(): void {
-    const rcConfig = this.getDefaultConfig()
-    fse.writeFileSync(
-      path.resolve(process.cwd(), '.free-swaggerrc.js'),
-      this.stringifyConfigData({
-        // @ts-ignore
-        client: omit(rcConfig.client, ['jsTemplate', 'tsTemplate']),
-        server: rcConfig.server,
-        mock: rcConfig.mock,
-      })
-    )
   }
 }
 

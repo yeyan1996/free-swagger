@@ -40,20 +40,6 @@ npx free-swagger-cli --config
 
 在运行一次后 free-swagger-cli 会记住用户上一次的配置项
 
-此外还支持项目级配置，运行 init 命令在项目下生成 .free-swaggerrc.js 文件，执行 free-swagger-cli 会优先读取当前目录的 rc 文件
-
-```shell
-npx free-swagger-cli --init
-```
-
-```shell
-npx free-swagger-cli
-```
-
-![image-20210123145506064](https://tva1.sinaimg.cn/large/008eGmZEly1gmxmvp6mwwj30vh0u0ali.jpg)
-
-![image-20210123145750587](https://tva1.sinaimg.cn/large/008eGmZEly1gmxmyipr35j30r407eq6h.jpg)
-
 # 默认模版
 
 free-swagger 基于内置了默认模版函数，用于生成 api 代码片段，详细参数见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
@@ -99,10 +85,6 @@ npx free-swagger-cli --mock
 - `--edit/-e` 编辑当前配置
 
 > npx free-swagger-cli --edit
-
-- `--init/-i` 初始化配置文件
-
-> npx free-swagger-cli --init
 
 - `--help/-h` output usage information
 
