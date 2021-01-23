@@ -4,7 +4,7 @@
 
 根据 swagger 文档自动生成 api 文件，真正解放双手的工具
 
-[free-swagger 文档](./packages/cli/README.md)
+[free-swagger 文档](./packages/server/README.md)
 
 [free-swagger-cli 文档](./packages/cli/README.md)
 
