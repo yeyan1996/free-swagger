@@ -2,7 +2,9 @@
 
 ![Travis (.com)](https://img.shields.io/travis/com/yeyan1996/free-swagger-client)![](https://img.shields.io/npm/v/free-swagger-client)
 
-根据 swagger 文档自动生成前端接口代码片段
+输入 swagger 文档，返回接口代码片段
+
+free-swagger，free-swagger-cli，free-swagger-extend 是基于 free-swagger-client 封装的上层插件
 
 # 快速上手
 
@@ -40,18 +42,18 @@ export const addUsingPOST = params =>
 | source           | 必选，swagger 源          | json                     | -           | -                                    |
 | lang             | 可选，生成 api 语言       | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数            | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
-| useJsDoc         | 可选，是否添加 jsdoc 注释 | boolean                  |             | false                                |
+| useJsDoc         | 可选，是否添加 jsdoc 注释 | boolean                  |             | true                                |
 
 - TemplateConfig
 
 | 参数         | 说明                                 | 类型     | 可选值   | 默认值 |
 | ------------ | ------------------------------------ | -------- | -------- | ------ |
 | url          | 路径                                 | string   | -        | -      |
-| summary      | 注释，对应 swagger 源 summary        | string   | -        | -      |
-| method       | 方法                                 | string   | -        | -      |
-| name         | 名称，对应 swagger 源 operationId    | string   | -        | -      |
-| deprecated   | 是否废弃，对应 swagger 源 deprecated | boolean  | -        | -      |
-| responseType | 返回值类型                           | string   | 同 axios | -      |
+| summary      | 注释，对应 swagger 源 summary 字段      | string   | -        | -      |
+| method       | 接口请求方法                                 | string   | -        | -      |
+| name         | 名称，对应 swagger 源 operationId 字段   | string   | -        | -      |
+| deprecated   | 是否废弃，对应 swagger 源 deprecated 字段 | boolean  | -        | -      |
+| responseType | 返回值类型                           | string   | 同 axios responseType | -      |
 | pathParams   | 路径参数                             | string[] | -        |
 | IResponse    | 返回值接口类型                       | string   | -        | -      |
 | IQueryParams      | 请求值接口类型（请求参数）                      | string   | -        | -      |
@@ -60,7 +62,7 @@ export const addUsingPOST = params =>
 
 # 默认模版
 
-free-swagger-client 基于模版函数来生成最终的 api 代码，用户可以自定义模版函数，来满足不同需求，例如修改请求库，修改参数位置等等
+free-swagger-client 基于模版函数来生成最终的 api 代码，用户可以自定义模版函数，来满足不同需求，例如修改请求库名，修改参数位置，修改接口命名等等
 
 当导出语言为 js 时，默认 templateFunction 如下
 
