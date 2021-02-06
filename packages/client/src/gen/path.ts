@@ -46,7 +46,7 @@ const genIParams = ({
 const genPath = (
   api: Api,
   templateFunction: TemplateFunction,
-  useJsDoc = false
+  useJsDoc: boolean
 ): string => {
   const { IPathParams, IBodyParams, IQueryParams } = genIParams(api)
   return templateFunction({

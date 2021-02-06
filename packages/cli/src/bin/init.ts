@@ -1,4 +1,3 @@
-import inquirer from 'inquirer'
 import chalk from 'chalk'
 import path from 'path'
 import fse from 'fs-extra'
@@ -9,6 +8,7 @@ import serverQuestion, { chooseApi } from './questions/server'
 import { source } from './questions/client'
 import { mock, compile } from 'free-swagger'
 import { pick } from 'lodash'
+import { prompt } from '../inquirer'
 
 export function init(cb?: Function): void {
   const packageJsonPath = path.resolve(__dirname, '../../package.json')
@@ -28,11 +28,11 @@ export function init(cb?: Function): void {
       rc.edit()
     })
     .option('-m --mock', '全量生成 mock 数据', async () => {
-      await inquirer.prompt(mockQuestion)
+      await prompt(mockQuestion)
       await mock(rc.createMockParams())
     })
     .option('-c, --config', '以配置项启动 free-swagger-cli', async () => {
-      await inquirer.prompt(serverQuestion)
+      await prompt(serverQuestion)
       await compile(rc.createFreeSwaggerParams(), {
         onChooseApi: async ({ paths }) =>
           pick(paths, ...(await chooseApi(paths))),
@@ -41,7 +41,7 @@ export function init(cb?: Function): void {
     // 默认启动
     .action(async ({ rawArgs }) => {
       if (!global.__DEV__ && rawArgs[2]) return
-      await inquirer.prompt([source])
+      await prompt([source])
       await compile(rc.createFreeSwaggerParams())
       cb?.()
     })

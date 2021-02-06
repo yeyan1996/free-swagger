@@ -29,15 +29,13 @@ const freeSwaggerClient = (
     method!,
     config.source.paths[url!][method!]
   )
-  const code = genPath(
-    api,
-    mergedConfig.templateFunction,
-    mergedConfig.useJsDoc
-  )
+  const code = `\n${formatCode(mergedConfig.lang)(
+    genPath(api, mergedConfig.templateFunction, mergedConfig.useJsDoc)
+  )}`
   const jsDocCode =
     mergedConfig.useJsDoc && mergedConfig.lang === 'js' ? genJsDoc(api) : ''
 
-  return formatCode(mergedConfig.lang)(jsDocCode + code)
+  return jsDocCode + code
 }
 
 export default freeSwaggerClient

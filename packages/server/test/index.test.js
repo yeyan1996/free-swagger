@@ -58,8 +58,7 @@ describe("server", () => {
       root: dirPath,
       useJsDoc:true
     });
-    await assertFiles(dirPath, ["pet.js", "store.js","typedef", "user.js",
-    ]);
+    await assertFiles(dirPath, ["pet.js", "store.js","typedef", "user.js"]);
   });
 
   test("ts language", async () => {

@@ -23,12 +23,12 @@ const genPaths = (
   let code = ''
   code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS
   code += config.lang === 'ts' ? genImportInterfaceCode(apiCollection) : ''
-  code += config.customImportCode
+  code += `${config.customImportCode}\n`
   code += Object.values(apiCollection)
     .map(
       (api) =>
         (config.useJsDoc ? genJsDoc(api) : '') +
-        genPath(api, config.templateFunction)
+        genPath(api, config.templateFunction, config.useJsDoc)
     )
     .reduce((acc, cur) => acc + cur)
 

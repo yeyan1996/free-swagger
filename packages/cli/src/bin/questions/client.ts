@@ -2,8 +2,6 @@ import chalk from 'chalk'
 import { isUrl, isPath } from 'free-swagger'
 import { rc } from '../../default/rc'
 
-const { configData } = rc
-
 export const source = {
   name: 'source',
   message: `输入 swagger 源(${chalk.magenta('url/path')})`,
@@ -11,39 +9,38 @@ export const source = {
   validate: (input: string): boolean | string => {
     if (!input) return '请输入 swagger 源'
     if (isUrl(input) || isPath(input)) {
-      rc.merge({ source: input })
-      rc.recordHash(input)
-      rc.save()
       return true
     }
     return '输入的路径不合法或不存在'
+  },
+  callback: (input: string) => {
+    rc.merge({ source: input })
+    rc.recordHash(input)
+    rc.save()
   },
 }
 
 export const lang = {
   name: 'lang',
-  type: 'input',
-  message: '选择导出 api 的语言（js/ts）',
-  default: configData.client.lang,
-  validate: (input: 'js' | 'ts'): boolean | string => {
-    if (!['js', 'ts'].includes(input)) return '请输入正确语言 （js/ts）'
+  type: 'list',
+  message: '选择导出 api 的语言',
+  default: rc.configData.client.lang,
+  choices: ['js', 'ts'],
+  callback: (input: string) => {
     rc.merge({ lang: input })
     rc.save()
-    return true
   },
 }
 
 export const useJsDoc = {
   name: 'useJsDoc',
-  type: 'input',
-  message: '是否使用 Js Doc？（y/n）',
-  default: configData.client.useJsDoc ? 'y' : 'n',
+  type: 'confirm',
+  message: '是否使用 Js Doc？',
+  default: rc.configData.client.useJsDoc,
   when: ({ lang }: any) => lang === 'js',
-  validate: (input: any): boolean | string => {
-    if (!['y', 'n'].includes(input)) return '请选择结果（y/n）'
-    rc.merge({ useJsDoc: input === 'y' })
+  callback: (input: boolean) => {
+    rc.merge({ useJsDoc: input })
     rc.save()
-    return true
   },
 }
 
@@ -51,15 +48,17 @@ export const templateFunction = {
   name: 'templateFunction',
   type: 'editor',
   message: '输入模版函数',
-  validate: (input: string, answer: any): boolean => {
-    if (!input) return false
-    rc.merge(
-      answer.lang === 'ts' ? { tsTemplate: input } : { jsTemplate: input }
-    )
-    rc.merge({ templateFunction: eval(input) })
-    rc.save()
+  default: ({ lang }: any): string =>
+    lang === 'ts'
+      ? rc.configData.client.tsTemplate
+      : rc.configData.client.jsTemplate,
+  validate: (input: string) => {
+    if (!input) return '请输入模版函数'
     return true
   },
-  default: ({ lang }: any): string =>
-    lang === 'ts' ? configData.client.tsTemplate : configData.client.jsTemplate,
+  callback: (input: string, { lang }: any) => {
+    rc.merge(lang === 'ts' ? { tsTemplate: input } : { jsTemplate: input })
+    rc.merge({ templateFunction: eval(input) })
+    rc.save()
+  },
 }

@@ -6,8 +6,6 @@ import inquirer from 'inquirer'
 import { isUrl } from 'free-swagger'
 // import fse from 'fs-extra'
 
-const { configData } = rc
-
 const createChoices = (
   paths: ParsedPaths
 ): RcConfig['server']['apiChoices'] => {
@@ -41,17 +39,19 @@ export const chooseApi = async (paths: ParsedPaths): Promise<string[]> => {
         if (answer.length < 1) {
           return '至少选择一个 api 文件生成'
         }
+        return true
+      },
+      callback: (input: any[]) => {
         rc.merge(
           {
             apiChoices: Object.keys(paths).map((name) => ({
               name,
-              checked: answer.includes(name),
+              checked: input.includes(name),
             })),
           },
           'server'
         )
         rc.save()
-        return true
       },
     },
   ])
@@ -64,26 +64,27 @@ export const cookie = {
     'swagger源不需要鉴权则置空 e.g SESSION=xxx'
   )})`,
   when: ({ source }: any): boolean => isUrl(source!),
-  validate: (input: string): boolean => {
+  default: rc.configData.server.cookie,
+  callback: (input: string) => {
     rc.merge({ cookie: input }, 'server')
     rc.save()
-    return true
   },
-  default: rc.configData.server.cookie,
 }
 
 export const root = {
   name: 'root',
   message: '输入导出 api 的根目录',
-  default: configData.server.root,
+  default: rc.configData.server.root,
   validate: (input: string): boolean | string => {
     if (!input) {
       return '请输入导出 api 的根目录'
     } else {
-      rc.merge({ root: input }, 'server')
-      rc.save()
       return true
     }
+  },
+  callback: (input: string) => {
+    rc.merge({ root: input }, 'server')
+    rc.save()
   },
 }
 export default [
@@ -101,43 +102,36 @@ export default [
   useJsDoc,
   {
     name: 'shouldEditTemplate',
-    type: 'input',
-    default: 'n',
-    message: '是否需要编辑模版？(y/n)',
-    validate: (input: string, answers: any): boolean | string => {
-      if (!['y', 'n'].includes(input)) return '请选择结果（y/n）'
-      if (input === 'n') {
-        const { jsTemplate, tsTemplate } = rc.configData.client
-        rc.merge({
-          templateFunction:
-            answers.lang === 'js' ? eval(jsTemplate) : eval(tsTemplate),
-        })
-        rc.save()
-      }
-      return true
-    },
+    type: 'confirm',
+    default: false,
+    message: '是否需要编辑模版？',
   },
   {
     ...templateFunction,
-    when: ({ shouldEditTemplate }: any): boolean =>
-      shouldEditTemplate === 'n' ? false : shouldEditTemplate,
+    when: ({ shouldEditTemplate }: any): boolean => shouldEditTemplate,
   },
   {
     name: 'customImportCode',
     message: `输入自定义头语句(${chalk.magenta('自定义请求库路径')})`,
     default: ({ lang }: any): string =>
-      configData.server.customImportCode ||
-      (lang === 'ts'
-        ? configData.server.customImportCodeTs
-        : configData.server.customImportCodeJs),
+      lang === 'ts'
+        ? rc.configData.server.customImportCodeTs
+        : rc.configData.server.customImportCodeJs,
     validate: (input: string): boolean | string => {
       if (!input) {
         return '请输入自定义头语句'
       } else {
-        rc.merge({ customImportCode: input }, 'server')
-        rc.save()
         return true
       }
+    },
+    callback: (input: string, { lang }: any) => {
+      rc.merge({ customImportCode: input }, 'server')
+      if (lang === 'ts') {
+        rc.merge({ customImportCodeTs: input }, 'server')
+      } else {
+        rc.merge({ customImportCodeJs: input }, 'server')
+      }
+      rc.save()
     },
   },
 ]

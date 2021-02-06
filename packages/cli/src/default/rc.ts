@@ -61,7 +61,7 @@ class Rc {
     }
     this.configData = {
       ...this.getDefaultConfig(),
-      ...pick(rcConfig),
+      ...rcConfig,
     }
   }
 
