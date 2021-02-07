@@ -34,10 +34,6 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ![](./docs/生成mock数据.gif)
 
-## 展开所有 api 
-
-![](./docs/展开所有api.gif)
-
 # 安装使用
 
 free-swagger-extends 是基于 UserScript 用户脚本拓展插件 (跨平台的浏览器插件)开发的脚本工具. 因此使用前, 我们需要安装浏览器插件 Tampermonkey
