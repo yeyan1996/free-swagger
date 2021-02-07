@@ -16,20 +16,25 @@ const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
 }
 
 // 生成单个 controller（文件）中所有 api
+// todo 这里单独使用了 genJsDoc 和 genPath 考虑使用 free-swagger-client 重构？
 const genPaths = (
   apiCollection: ApiCollection,
   config: Required<ServerConfig>
 ): string => {
   let code = ''
   code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS
+  code += `\n`
   code += config.lang === 'ts' ? genImportInterfaceCode(apiCollection) : ''
   code += `${config.customImportCode}\n`
   code += Object.values(apiCollection)
-    .map(
-      (api) =>
-        (config.useJsDoc ? genJsDoc(api) : '') +
+    .map((api) => {
+      const code = formatCode(config.lang)(
         genPath(api, config.templateFunction, config.useJsDoc)
-    )
+      )
+      const jsDocCode =
+        config.useJsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'
+      return jsDocCode + code
+    })
     .reduce((acc, cur) => acc + cur)
 
   return formatCode(config.lang)(code)

@@ -187,7 +187,8 @@ ${Object.entries(api.pathParamsInterface)
   )} ${createParamCode(secondParamCodeMap)} ${createParamCode(
     thirdParamCodeMap
   )} 
-**/`
+**/
+`
 }
 
 export { genJsDocTypeDef, genJsDoc }

@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`freeSwaggerClient code fragment 1`] = `
-"
-// Find pet by ID
+"// Find pet by ID
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
@@ -36,8 +35,7 @@ export const updateUser = (queryParams, { username, qqq }, bodyParams) =>
 `;
 
 exports[`freeSwaggerClient code fragment2 1`] = `
-"
-// Add a new pet to the store
+"// Add a new pet to the store
 export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
@@ -294,8 +292,7 @@ exports[`freeSwaggerClient generate ts interface snippet 1`] = `
 exports[`freeSwaggerClient generate ts interface snippet width generic 1`] = `""`;
 
 exports[`freeSwaggerClient ts code fragment with generic 1`] = `
-"
-// companies
+"// companies
 export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>
   axios.request<PageInfo<JavaList<Qwe>>>({
     url: \`/base/companies\`,
@@ -307,8 +304,7 @@ export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>
 `;
 
 exports[`freeSwaggerClient ts code fragment with get method 1`] = `
-"
-// Find pet by ID
+"// Find pet by ID
 export const getPetById = (
   _NOOP: { [key: string]: never },
   {
@@ -327,8 +323,7 @@ export const getPetById = (
 `;
 
 exports[`freeSwaggerClient ts code fragment with post method 1`] = `
-"
-// uploads an image
+"// uploads an image
 export const uploadFile = (
   params: FormData,
   {
@@ -347,8 +342,7 @@ export const uploadFile = (
 `;
 
 exports[`freeSwaggerClient ts code fragment with special generic 1`] = `
-"
-// 新增或编辑标准票, 需走审批流程
+"// 新增或编辑标准票, 需走审批流程
 export const AddOrUpdateTicketTypical = () =>
   axios.request<JsonResult<Guid>>({
     url: \`/v1/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,

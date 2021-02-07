@@ -68,6 +68,7 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
+
 /**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
@@ -568,7 +569,6 @@ import axios from \\"axios\\";
  * @param {Object} pathParams
  * @param {number} pathParams.petId -ID of pet to return
  **/
-
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
@@ -576,13 +576,13 @@ export const getPetById = (_NOOP, { petId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
  * @param {number} pathParams.petId -ID of pet that needs to be updated
  **/
-
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
@@ -590,13 +590,13 @@ export const updatePetWithForm = (params, { petId }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Deletes a pet
  * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.petId -Pet id to delete
  **/
-
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
@@ -604,13 +604,13 @@ export const deletePet = (_NOOP, { petId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
  * @param {number} pathParams.petId -ID of pet to update
  **/
-
 export const uploadFile = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}/uploadImage\`,
@@ -618,11 +618,11 @@ export const uploadFile = (params, { petId }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Update an existing pet
  * @param {Pet} params -Pet object that needs to be added to the store
  **/
-
 export const updatePet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
@@ -630,11 +630,11 @@ export const updatePet = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Add a new pet to the store
  * @param {Pet} params -Pet object that needs to be added to the store
  **/
-
 export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
@@ -642,13 +642,13 @@ export const addPet = (params) =>
     params: {},
     data: params
   });
+
 /** 
  * @description Finds Pets by status 
  * @param {{
     \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
 }} params    
 **/
-
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
@@ -656,6 +656,7 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
+
 /** 
  * @deprecated
  * @description Finds Pets by tags 
@@ -663,7 +664,6 @@ export const findPetsByStatus = (params) =>
     \\"tags\\": string
 }} params    
 **/
-
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
@@ -683,7 +683,6 @@ import axios from \\"axios\\";
 /**
  * @description Returns pet inventories by status
  **/
-
 export const getInventory = () =>
   axios.request({
     url: \`/v2/store/inventory\`,
@@ -691,13 +690,13 @@ export const getInventory = () =>
     params: {},
     data: {}
   });
+
 /**
  * @description Find purchase order by ID
  * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.orderId -ID of pet that needs to be fetched
  **/
-
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
@@ -705,13 +704,13 @@ export const getOrderById = (_NOOP, { orderId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Delete purchase order by ID
  * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {number} pathParams.orderId -ID of the order that needs to be deleted
  **/
-
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
@@ -719,11 +718,11 @@ export const deleteOrder = (_NOOP, { orderId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Place an order for a pet
  * @param {Order} params -order placed for purchasing the pet
  **/
-
 export const placeOrder = (params) =>
   axios.request({
     url: \`/v2/store/order\`,
@@ -820,7 +819,6 @@ import axios from \\"axios\\";
  * @param {Object} pathParams
  * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
  **/
-
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
@@ -828,13 +826,13 @@ export const getUserByName = (_NOOP, { username }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Updated user
  * @param {User} params -Updated user object
  * @param {Object} pathParams
  * @param {string} pathParams.username -name that need to be updated
  **/
-
 export const updateUser = (params, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
@@ -842,13 +840,13 @@ export const updateUser = (params, { username }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Delete user
  * @param {Object} _NOOP -never
  * @param {Object} pathParams
  * @param {string} pathParams.username -The name that needs to be deleted
  **/
-
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
@@ -856,6 +854,7 @@ export const deleteUser = (_NOOP, { username }) =>
     params: {},
     data: {}
   });
+
 /** 
  * @description Logs user into the system 
  * @param {{
@@ -863,7 +862,6 @@ export const deleteUser = (_NOOP, { username }) =>
     \\"password\\": string
 }} params    
 **/
-
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
@@ -871,10 +869,10 @@ export const loginUser = (params) =>
     params: params,
     data: {}
   });
+
 /**
  * @description Logs out current logged in user session
  **/
-
 export const logoutUser = () =>
   axios.request({
     url: \`/v2/user/logout\`,
@@ -882,11 +880,11 @@ export const logoutUser = () =>
     params: {},
     data: {}
   });
+
 /**
  * @description Create user
  * @param {User} params -Created user object
  **/
-
 export const createUser = (params) =>
   axios.request({
     url: \`/v2/user\`,
@@ -894,11 +892,11 @@ export const createUser = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Creates list of users with given input array
  * @param {User[]} params -List of user object
  **/
-
 export const createUsersWithArrayInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithArray\`,
@@ -906,11 +904,11 @@ export const createUsersWithArrayInput = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Creates list of users with given input array
  * @param {User[]} params -List of user object
  **/
-
 export const createUsersWithListInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithList\`,
@@ -1038,6 +1036,7 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
+
 /**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
@@ -1308,6 +1307,7 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
+
 /**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>

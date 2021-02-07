@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { lang, source, templateFunction, useJsDoc } from './client'
 import { rc, RcConfig } from '../../default/rc'
 import { ParsedPaths } from 'free-swagger'
-import inquirer from 'inquirer'
+import { prompt } from '../index'
 import { isUrl } from 'free-swagger'
 // import fse from 'fs-extra'
 
@@ -28,7 +28,7 @@ const createChoices = (
 }
 
 export const chooseApi = async (paths: ParsedPaths): Promise<string[]> => {
-  const { choosePaths } = await inquirer.prompt([
+  const { choosePaths } = await prompt([
     {
       name: 'choosePaths',
       message: '选择需要新生成的 api 文件',

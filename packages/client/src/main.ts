@@ -29,9 +29,9 @@ const freeSwaggerClient = (
     method!,
     config.source.paths[url!][method!]
   )
-  const code = `\n${formatCode(mergedConfig.lang)(
+  const code = formatCode(mergedConfig.lang)(
     genPath(api, mergedConfig.templateFunction, mergedConfig.useJsDoc)
-  )}`
+  )
   const jsDocCode =
     mergedConfig.useJsDoc && mergedConfig.lang === 'js' ? genJsDoc(api) : ''
 
@@ -46,5 +46,3 @@ export * from './gen/path'
 export * from './gen/jsDoc'
 export * from './parse/path'
 export * from './parse/interface'
-
-// todo JavaMap

@@ -64,7 +64,9 @@ export const addUsingPOST = params =>
 
 free-swagger-client 基于模版函数来生成最终的 api 代码，用户可以自定义模版函数，来满足不同需求，例如修改请求库名，修改参数位置，修改接口命名等等
 
-当导出语言为 js 时，默认 templateFunction 如下
+以下是 free-swagger-client 提供的默认模版
+
+## jsTemplate
 
 ```javascript
 ({
@@ -182,7 +184,7 @@ ${createParamCode(thirdParamCodeMap)}
 }
 ```
 
-当导出语言为 ts 时，默认 templateFunction 如下
+## tsTemplate
 
 ```javascript
 ({
