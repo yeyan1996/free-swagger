@@ -80,9 +80,9 @@ free-swagger-extends 是基于 UserScript 用户脚本拓展插件 (跨平台的
 
 ## 匹配更多网址
 
-油猴脚本通过脚本中 `@include` 字段判断当前网页是否需要注入脚本的
+油猴脚本通过脚本中 `@include` 字段判断当前网页是否需要注入脚本
 
-添加 `@include` 字段，可以使得脚本匹配更多网址
+添加 `@include` 字段，使得脚本匹配更多网址
 
 ![image-20200710141651665](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglup2ejo9j308s0b7jsc.jpg)
 
