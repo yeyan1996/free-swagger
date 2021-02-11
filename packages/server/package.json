@@ -48,7 +48,18 @@
 		"prettier": "^2.0.5"
 	},
 	"devDependencies": {
-		"eslint": "^7.4.0"
+		"babel-jest": "^26.0.1",
+		"jest": "^26.0.1",
+		"ts-jest": "^26.1.0",
+		"typescript": "^3.7.4",
+		"eslint": "^7.4.0",
+		"@types/fs-extra": "^8.0.1",
+		"@typescript-eslint/eslint-plugin": "^2.14.0",
+		"@typescript-eslint/parser": "^2.14.0",
+		"eslint-config-prettier": "^6.7.0",
+		"eslint-plugin-prettier": "^3.1.1",
+		"@types/lodash": "^4.14.149",
+		"@types/inquirer": "^7.3.1"
 	},
 	"gitHead": "2cbf8fce1b890c5dbfa4433397445bc263656093"
 }
