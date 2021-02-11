@@ -28,6 +28,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@jsdevtools/ono": "^7.1.0",
+		"json-schema-faker": "^0.5.0-rcv.24",
 		"axios": "^0.21.1",
 		"call-me-maybe": "^1.0.1",
 		"camelcase": "^5.3.1",
@@ -38,13 +39,22 @@
 		"fs-extra": "^8.1.0",
 		"inquirer": "^7.0.1",
 		"js-yaml": "^3.13.1",
-		"json-schema-faker": "^0.5.0-rcv.24",
 		"openapi-types": "^1.3.5",
 		"ora": "^4.0.3",
 		"patch-package": "^6.2.2",
 		"prettier": "^2.0.5"
 	},
 	"devDependencies": {
-		"eslint": "^7.4.0"
+		"ts-jest": "^26.1.0",
+		"typescript": "^3.7.4",
+		"eslint": "^7.4.0",
+		"@typescript-eslint/eslint-plugin": "^2.14.0",
+		"@typescript-eslint/parser": "^2.14.0",
+		"@types/fs-extra": "^8.0.1",
+		"@types/prettier": "^2.0.1",
+		"eslint-config-prettier": "^6.7.0",
+		"eslint-plugin-prettier": "^3.1.1",
+		"@types/lodash": "^4.14.149",
+		"@types/inquirer": "^7.3.1"
 	}
 }

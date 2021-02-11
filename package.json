@@ -3,8 +3,8 @@
   "description": "openApi(swagger) Document Generator",
   "scripts": {
     "build": "lerna exec -- npm run build",
-    "test": "jest",
-    "lint": "lerna exec -- npm run lint"
+    "lint": "lerna exec -- npm run lint",
+    "test": "jest"
   },
   "keywords": [
     "swagger",
@@ -21,42 +21,8 @@
       "pre-commit": "npm run lint && npm run build && npm run test && git add ."
     }
   },
-  "dependencies": {
-    "@jsdevtools/ono": "^7.1.0",
-    "axios": "^0.21.1",
-    "camelcase": "^5.3.1",
-    "chalk": "^3.0.0",
-    "commander": "^4.1.0",
-    "fs-extra": "^8.1.0",
-    "inquirer": "^7.0.1",
-    "js-yaml": "^3.13.1",
-    "json-schema-faker": "^0.5.0-rcv.24",
-    "openapi-types": "^1.3.5",
-    "ora": "^4.0.3"
-  },
   "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/preset-typescript": "^7.8.3",
-    "@types/diff": "^4.0.2",
-    "@types/fs-extra": "^8.0.1",
-    "@types/inquirer": "^6.5.0",
-    "@types/jest": "^24.0.25",
-    "@types/lodash": "^4.14.149",
-    "@types/prettier": "^2.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
-    "babel-jest": "^26.0.1",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-prettier": "^3.1.1",
     "husky": "^4.0.0",
-    "jest": "^26.0.1",
-    "lerna": "^3.20.2",
-    "lodash": "^4.17.19",
-    "prettier": "^2.0.5",
-    "ts-jest": "^26.1.0",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.4"
+    "lerna": "^3.20.2"
   }
 }

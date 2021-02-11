@@ -10,6 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "camelcase": "^5.3.1",
     "@apidevtools/json-schema-ref-parser": "^9.0.7",
     "@jsdevtools/ono": "^7.1.2",
     "ajax-hook": "^1.8.3",
@@ -30,6 +31,7 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@jsdevtools/ono": "^7.1.0",
     "@vue/cli-plugin-babel": "^4.4.6",
     "@vue/cli-plugin-eslint": "^4.4.6",
     "@vue/cli-service": "^4.4.6",
