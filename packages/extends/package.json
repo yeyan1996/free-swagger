@@ -4,10 +4,15 @@
   "description": "swagger 油猴脚本扩展工具",
   "author": "yeyan1996",
   "scripts": {
-    "postinstall": "patch-package",
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "postinstall": "patch-package",
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint"
+    ]
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.7",
@@ -53,10 +58,5 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint"
-    ]
   }
 }
