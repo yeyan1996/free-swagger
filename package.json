@@ -1,6 +1,6 @@
 {
   "name": "free-swagger",
-  "description": "openApi(swagger) Document Generator",
+  "description": "swagger to front-end code",
   "keywords": [
     "swagger",
     "typescript",

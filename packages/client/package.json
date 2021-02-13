@@ -1,15 +1,7 @@
 {
   "name": "free-swagger-client",
   "version": "3.3.2",
-  "description": "openApi(swagger) Document Generator",
-  "keywords": [
-    "swagger",
-    "typescript"
-  ],
   "homepage": "https://github.com/yeyan1996/free-swagger#readme",
-  "bugs": {
-    "url": "https://github.com/yeyan1996/free-swagger/issues"
-  },
   "repository": {
     "type": "github",
     "url": "https://github.com/yeyan1996/free-swagger"

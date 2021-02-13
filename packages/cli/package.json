@@ -1,10 +1,11 @@
 {
 	"name": "free-swagger-cli",
 	"version": "3.5.2",
-	"description": "openApi(swagger) Document Generator",
+	"description": "swagger to front-end code",
 	"keywords": [
 		"swagger",
-		"typescript"
+		"typescript",
+		"jsDoc"
 	],
 	"repository": {
 		"type": "github",
