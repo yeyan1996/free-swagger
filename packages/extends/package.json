@@ -1,13 +1,13 @@
 {
   "name": "free-swagger-extends",
   "version": "3.5.2",
-  "description": "swagger 油猴脚本扩展工具",
+  "description": "swagger for tampermonkey",
   "author": "yeyan1996",
   "scripts": {
     "postinstall": "patch-package",
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.7",
@@ -50,13 +50,5 @@
     "svg-sprite-loader": "^4.3.0",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint"
-    ]
   }
 }

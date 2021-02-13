@@ -1,21 +1,23 @@
 {
 	"name": "free-swagger",
 	"version": "3.5.2",
-	"description": "openApi(swagger) Document Generator",
+	"description": "swagger to front-end code",
+	"keywords": [
+		"swagger",
+		"typescript",
+		"jsDoc"
+	],
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/yeyan1996/free-swagger"
+	},
+	"license": "MIT",
+	"author": "yeyan1996",
 	"main": "dist/main.js",
 	"types": "index.d.ts",
 	"bin": {
 		"free-swagger": "dist/bin.js"
 	},
-	"scripts": {
-		"postinstall": "patch-package",
-		"build": "tsc",
-		"lint": "eslint **/*.ts --fix"
-	},
-	"keywords": [
-		"swagger",
-		"typescript"
-	],
 	"files": [
 		"dist/**",
 		"src/**",
@@ -23,12 +25,12 @@
 		"README.md",
 		"LICENSE"
 	],
-	"repository": {
-		"url": "https://github.com/yeyan1996/free-swagger",
-		"type": "github"
+	"scripts": {
+		"postinstall": "patch-package",
+		"build": "tsc",
+		"lint": "eslint **/*.ts --fix",
+		"test": "jest"
 	},
-	"author": "yeyan1996",
-	"license": "MIT",
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "9.0.7",
 		"@jsdevtools/ono": "^7.1.0",
@@ -48,18 +50,19 @@
 		"prettier": "^2.0.5"
 	},
 	"devDependencies": {
-		"babel-jest": "^26.0.1",
-		"jest": "^26.0.1",
-		"ts-jest": "^26.1.0",
-		"typescript": "^3.7.4",
-		"eslint": "^7.4.0",
+		"@babel/preset-env": "^7.12.16",
 		"@types/fs-extra": "^8.0.1",
+		"@types/inquirer": "^7.3.1",
+		"@types/lodash": "^4.14.149",
 		"@typescript-eslint/eslint-plugin": "^2.14.0",
 		"@typescript-eslint/parser": "^2.14.0",
+		"babel-jest": "^26.0.1",
+		"eslint": "^7.4.0",
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-plugin-prettier": "^3.1.1",
-		"@types/lodash": "^4.14.149",
-		"@types/inquirer": "^7.3.1"
+		"jest": "^26.0.1",
+		"ts-jest": "^26.1.0",
+		"typescript": "^3.7.4"
 	},
 	"gitHead": "2cbf8fce1b890c5dbfa4433397445bc263656093"
 }

@@ -1,21 +1,23 @@
 {
   "name": "free-swagger",
-  "description": "openApi(swagger) Document Generator",
+  "description": "swagger to front-end code",
+  "keywords": [
+    "swagger",
+    "typescript",
+    "jsDoc"
+
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/yeyan1996/free-swagger"
+  },
+  "license": "MIT",
+  "author": "yeyan1996",
   "scripts": {
     "build": "lerna exec -- npm run build",
     "lint": "lerna exec -- npm run lint",
-    "test": "jest"
+    "test": "lerna exec -- npm run test"
   },
-  "keywords": [
-    "swagger",
-    "typescript"
-  ],
-  "repository": {
-    "url": "https://github.com/yeyan1996/free-swagger",
-    "type": "github"
-  },
-  "author": "yeyan1996",
-  "license": "MIT",
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run build && npm run test && git add ."

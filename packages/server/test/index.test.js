@@ -9,9 +9,10 @@ const wait = time =>
     }, time)
   );
 
-const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
+const assertFiles = async (dirPath, apiFilesList,exactlyEqual = true) => {
   const filesPath = fs.readdirSync(dirPath);
-  if(shouldInclude){
+  // 只要文件夹中包含改文件名就可以，不需要完全相符
+  if(exactlyEqual){
     apiFilesList.forEach(filePath => {
       expect(filesPath.includes(filePath)).toBe(true);
     })
@@ -155,7 +156,11 @@ describe("server", () => {
   test("should work with only one string params", async () => {
     const dirname = "swaggerPetstore1";
     await freeSwagger(path.resolve(__dirname, "json", `${dirname}.json`));
-    await assertFiles(path.resolve(__dirname, "api/default"), ["pet.js", "store.js", "user.js"],true);
+    await assertFiles(
+        path.resolve(__dirname, "api/default"),
+        ["pet.js", "store.js", "user.js"],
+        true
+    );
   });
 
   test("should work with only one json params", async () => {
