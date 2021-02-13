@@ -119,7 +119,7 @@ class Rc {
   }
 
   // 合并配置项
-  merge(answer: object, type: Type = 'client'): void {
+  merge(answer: Record<string, any>, type: Type = 'client'): void {
     // @ts-ignore
     this.configData[type] = mergeWith(
       this.configData[type],

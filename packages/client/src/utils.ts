@@ -81,15 +81,13 @@ const TYPE_MAP: { [key: string]: string } = {
   array: 'Array<any>',
 }
 
-const traverseTree = <T>(
+const traverseTree = <T extends Record<string, any>>(
   tree: T,
   cb: (node: T) => any,
   childrenKey = 'generics'
-) => {
+): void => {
   cb(tree)
-  // @ts-ignore
   if (tree[childrenKey]) {
-    // @ts-ignore
     tree[childrenKey].forEach((child: T) => {
       traverseTree(child, cb, childrenKey)
     })

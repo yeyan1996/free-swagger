@@ -35,10 +35,11 @@ module.exports = {
         arrowParens: 'always',
       },
     ],
-    '@typescript-eslint/explicit-function-return-type':'off', // 允许隐式返回值
+    '@typescript-eslint/explicit-module-boundary-types':'off', // 允许隐式返回值
     '@typescript-eslint/consistent-type-assertions': 'off', // 允许断言
     '@typescript-eslint/no-non-null-assertion': 'off', // 允许非空断言
-    '@typescript-eslint/ban-ts-ignore': 'off', // 允许 ts-ignore
+    '@typescript-eslint/ban-ts-comment': 'off', // 允许 ts-ignore
     '@typescript-eslint/no-explicit-any': 'off', // 允许 any
+    "@typescript-eslint/no-var-requires": "off"
   },
 }

@@ -1,0 +1,167 @@
+0 silly argv { _: [ 'bootstrap' ], lernaVersion: '3.22.1', '$0': 'lerna' }
+1 notice cli v3.22.1
+2 verbose rootPath /Users/bytedance/Desktop/free-swagger
+3 info versioning independent
+4 silly npmConfig {
+4 silly npmConfig   registry: undefined,
+4 silly npmConfig   npmClient: 'npm',
+4 silly npmConfig   npmClientArgs: [],
+4 silly npmConfig   mutex: undefined
+4 silly npmConfig }
+5 info Bootstrapping 4 packages
+6 verbose lifecycle preinstall
+7 silly lifecycle No script for "preinstall" in "free-swagger-client", continuing
+8 silly lifecycle No script for "preinstall" in "free-swagger-extends", continuing
+9 silly lifecycle No script for "preinstall" in "free-swagger", continuing
+10 silly lifecycle No script for "preinstall" in "free-swagger-cli", continuing
+11 silly hasDependencyInstalled free-swagger-cli @types/fs-extra
+12 silly hasDependencyInstalled free-swagger @types/fs-extra
+13 silly hasDependencyInstalled free-swagger-cli @types/inquirer
+14 silly hasDependencyInstalled free-swagger @types/inquirer
+15 silly hasDependencyInstalled free-swagger-cli @types/lodash
+16 silly hasDependencyInstalled free-swagger-client @types/lodash
+17 silly hasDependencyInstalled free-swagger @types/lodash
+18 silly hasDependencyInstalled free-swagger-cli @types/prettier
+19 silly hasDependencyInstalled free-swagger-cli @typescript-eslint/eslint-plugin
+20 silly hasDependencyInstalled free-swagger-client @typescript-eslint/eslint-plugin
+21 silly hasDependencyInstalled free-swagger @typescript-eslint/eslint-plugin
+22 silly hasDependencyInstalled free-swagger-cli @typescript-eslint/parser
+23 silly hasDependencyInstalled free-swagger-client @typescript-eslint/parser
+24 silly hasDependencyInstalled free-swagger @typescript-eslint/parser
+25 silly hasDependencyInstalled free-swagger-cli eslint
+26 silly hasDependencyInstalled free-swagger-client eslint
+27 silly hasDependencyInstalled free-swagger eslint
+28 silly hasDependencyInstalled free-swagger-extends eslint
+29 silly hasDependencyInstalled free-swagger-cli eslint-config-prettier
+30 silly hasDependencyInstalled free-swagger-client eslint-config-prettier
+31 silly hasDependencyInstalled free-swagger eslint-config-prettier
+32 silly hasDependencyInstalled free-swagger-cli eslint-plugin-prettier
+33 silly hasDependencyInstalled free-swagger-client eslint-plugin-prettier
+34 silly hasDependencyInstalled free-swagger eslint-plugin-prettier
+35 silly hasDependencyInstalled free-swagger-extends eslint-plugin-prettier
+36 silly hasDependencyInstalled free-swagger-cli typescript
+37 silly hasDependencyInstalled free-swagger-client typescript
+38 silly hasDependencyInstalled free-swagger typescript
+39 silly hasDependencyInstalled free-swagger-cli @jsdevtools/ono
+40 silly hasDependencyInstalled free-swagger @jsdevtools/ono
+41 silly hasDependencyInstalled free-swagger-extends @jsdevtools/ono
+42 silly hasDependencyInstalled free-swagger-cli axios
+43 silly hasDependencyInstalled free-swagger-client axios
+44 silly hasDependencyInstalled free-swagger-extends axios
+45 silly hasDependencyInstalled free-swagger axios
+46 silly hasDependencyInstalled free-swagger-cli call-me-maybe
+47 silly hasDependencyInstalled free-swagger-extends call-me-maybe
+48 silly hasDependencyInstalled free-swagger call-me-maybe
+49 silly hasDependencyInstalled free-swagger-cli camelcase
+50 silly hasDependencyInstalled free-swagger-client camelcase
+51 silly hasDependencyInstalled free-swagger-extends camelcase
+52 silly hasDependencyInstalled free-swagger camelcase
+53 silly hasDependencyInstalled free-swagger-cli chalk
+54 silly hasDependencyInstalled free-swagger chalk
+55 silly hasDependencyInstalled free-swagger-cli commander
+56 silly hasDependencyInstalled free-swagger commander
+57 silly hasDependencyInstalled free-swagger-cli fs-extra
+58 silly hasDependencyInstalled free-swagger fs-extra
+59 silly hasDependencyInstalled free-swagger-cli inquirer
+60 silly hasDependencyInstalled free-swagger inquirer
+61 silly hasDependencyInstalled free-swagger-cli js-yaml
+62 silly hasDependencyInstalled free-swagger-client js-yaml
+63 silly hasDependencyInstalled free-swagger js-yaml
+64 silly hasDependencyInstalled free-swagger-extends js-yaml
+65 silly hasDependencyInstalled free-swagger-cli json-schema-faker
+66 silly hasDependencyInstalled free-swagger-extends json-schema-faker
+67 silly hasDependencyInstalled free-swagger json-schema-faker
+68 silly hasDependencyInstalled free-swagger-cli openapi-types
+69 silly hasDependencyInstalled free-swagger-client openapi-types
+70 silly hasDependencyInstalled free-swagger openapi-types
+71 silly hasDependencyInstalled free-swagger-cli ora
+72 silly hasDependencyInstalled free-swagger ora
+73 silly hasDependencyInstalled free-swagger-cli patch-package
+74 silly hasDependencyInstalled free-swagger-extends patch-package
+75 silly hasDependencyInstalled free-swagger patch-package
+76 silly hasDependencyInstalled free-swagger-cli prettier
+77 silly hasDependencyInstalled free-swagger-client prettier
+78 silly hasDependencyInstalled free-swagger prettier
+79 silly hasDependencyInstalled free-swagger-extends prettier
+80 silly hasDependencyInstalled free-swagger-client @babel/preset-env
+81 silly hasDependencyInstalled free-swagger @babel/preset-env
+82 silly hasDependencyInstalled free-swagger-client babel-jest
+83 silly hasDependencyInstalled free-swagger babel-jest
+84 silly hasDependencyInstalled free-swagger-client jest
+85 silly hasDependencyInstalled free-swagger jest
+86 silly hasDependencyInstalled free-swagger-client ts-jest
+87 silly hasDependencyInstalled free-swagger ts-jest
+88 silly hasDependencyInstalled free-swagger-client lodash
+89 silly hasDependencyInstalled free-swagger-extends @vue/cli-plugin-babel
+90 silly hasDependencyInstalled free-swagger-extends @vue/cli-plugin-eslint
+91 silly hasDependencyInstalled free-swagger-extends @vue/cli-service
+92 silly hasDependencyInstalled free-swagger-extends @vue/eslint-config-prettier
+93 silly hasDependencyInstalled free-swagger-extends babel-eslint
+94 silly hasDependencyInstalled free-swagger-extends babel-plugin-component
+95 silly hasDependencyInstalled free-swagger-extends eslint-plugin-vue
+96 silly hasDependencyInstalled free-swagger-extends git-revision-webpack-plugin
+97 silly hasDependencyInstalled free-swagger-extends lint-staged
+98 silly hasDependencyInstalled free-swagger-extends monaco-editor-webpack-plugin
+99 silly hasDependencyInstalled free-swagger-extends node-sass
+100 silly hasDependencyInstalled free-swagger-extends sass-loader
+101 silly hasDependencyInstalled free-swagger-extends svg-sprite-loader
+102 silly hasDependencyInstalled free-swagger-extends vue-cli-plugin-element
+103 silly hasDependencyInstalled free-swagger-extends vue-template-compiler
+104 silly hasDependencyInstalled free-swagger-extends @apidevtools/json-schema-ref-parser
+105 silly hasDependencyInstalled free-swagger @apidevtools/json-schema-ref-parser
+106 silly hasDependencyInstalled free-swagger-extends ajax-hook
+107 silly hasDependencyInstalled free-swagger-extends core-js
+108 silly hasDependencyInstalled free-swagger-extends ejs
+109 silly hasDependencyInstalled free-swagger-extends element-ui
+110 silly hasDependencyInstalled free-swagger-extends generate-schema
+111 silly hasDependencyInstalled free-swagger-extends lodash-es
+112 silly hasDependencyInstalled free-swagger-extends monaco-editor
+113 silly hasDependencyInstalled free-swagger-extends recursive-iterator
+114 silly hasDependencyInstalled free-swagger-extends swagger-parser
+115 silly hasDependencyInstalled free-swagger-extends vue
+116 silly root dependencies {}
+117 silly leaf dependencies {}
+118 info Symlinking packages and binaries
+119 silly resolveSymlink /Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger-client
+120 verbose resolveSymlink [
+120 verbose resolveSymlink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger-client',
+120 verbose resolveSymlink   false
+120 verbose resolveSymlink ]
+121 warn EREPLACE_EXIST free-swagger-client is already installed for free-swagger-cli. Replacing with symlink...
+122 silly resolveSymlink /Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger
+123 verbose resolveSymlink [
+123 verbose resolveSymlink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger',
+123 verbose resolveSymlink   false
+123 verbose resolveSymlink ]
+124 warn EREPLACE_EXIST free-swagger is already installed for free-swagger-cli. Replacing with symlink...
+125 silly createSymlink [
+125 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/client',
+125 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger-client',
+125 silly createSymlink   'junction'
+125 silly createSymlink ]
+126 silly createSymbolicLink [
+126 silly createSymbolicLink   '../../client',
+126 silly createSymbolicLink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger-client',
+126 silly createSymbolicLink   'junction'
+126 silly createSymbolicLink ]
+127 silly createSymlink [
+127 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/server',
+127 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger',
+127 silly createSymlink   'junction'
+127 silly createSymlink ]
+128 silly createSymbolicLink [
+128 silly createSymbolicLink   '../../server',
+128 silly createSymbolicLink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/free-swagger',
+128 silly createSymbolicLink   'junction'
+128 silly createSymbolicLink ]
+129 silly createSymlink [
+129 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/server/dist/bin.js',
+129 silly createSymlink   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/.bin/free-swagger',
+129 silly createSymlink   'exec'
+129 silly createSymlink ]
+130 silly shShim [
+130 silly shShim   '/Users/bytedance/Desktop/free-swagger/packages/server/dist/bin.js',
+130 silly shShim   '/Users/bytedance/Desktop/free-swagger/packages/cli/node_modules/.bin/free-swagger',
+130 silly shShim   'file'
+130 silly shShim ]
+131 error
