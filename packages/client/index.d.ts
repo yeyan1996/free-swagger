@@ -12,13 +12,13 @@ declare function compileInterfaces(
   interfaceName?: string
 ): string
 
-declare function compileJsDocs(
+declare function compileJsDocTypes(
   source: OpenAPIV2.Document,
   interfaceName?: string
 ): string
 
 export default freeSwaggerClient
-export { compileInterfaces, compileJsDocs }
+export { compileInterfaces, compileJsDocTypes }
 export * from './src/default/template'
 export * from './src/utils'
 export * from './src/gen/path'

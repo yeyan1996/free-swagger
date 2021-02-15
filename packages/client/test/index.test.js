@@ -2,7 +2,7 @@ import freeSwaggerClient, {
   jsTemplate,
   tsTemplate,
   compileInterfaces,
-  compileJsDocs
+  compileJsDocTypes
 } from "../src/main";
 
 describe("freeSwaggerClient", () => {
@@ -32,7 +32,7 @@ describe("freeSwaggerClient", () => {
     expect(codeFragment).toMatchSnapshot();
   });
 
-    test("code fragment with jsdoc", () => {
+    test("code fragment with js doc", () => {
         const codeFragment = freeSwaggerClient(
             {
                 source: require("./json/swaggerPetstore"),
@@ -100,7 +100,7 @@ describe("freeSwaggerClient", () => {
     });
 
     test("generate full js doc", () => {
-        const codeFragment = compileJsDocs(require("./json/swaggerPetstore"));
+        const codeFragment = compileJsDocTypes(require("./json/swaggerPetstore"));
         expect(codeFragment).toMatchSnapshot();
     });
 

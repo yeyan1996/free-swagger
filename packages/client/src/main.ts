@@ -1,12 +1,9 @@
-import { genPath } from './gen/path'
-import { Method, parsePath } from './parse/path'
-import { OpenAPIV2 } from 'openapi-types'
+import { Method } from './parse/path'
 import { ClientConfig } from './utils'
-import { formatCode } from './utils'
 import { mergeDefaultParams } from './default'
 import { compileInterfaces } from './compile/interface'
-import { compileJsDocs } from './compile/jsDoc'
-import { genJsDoc } from './gen/jsDoc'
+import { compileJsDocTypes } from './compile/jsDoc'
+import { compilePath } from './compile/path'
 
 const freeSwaggerClient = (
   config: ClientConfig,
@@ -15,31 +12,13 @@ const freeSwaggerClient = (
 ): string => {
   const chooseAll = !url || !method
   if (chooseAll) return ''
-
   const mergedConfig = mergeDefaultParams(config)
-
-  // api 名字
-  const name: OpenAPIV2.OperationObject['operationId'] =
-    config.source.paths[url!][method!].operationId
-  if (!name) return ''
-
-  const api = parsePath(
-    name,
-    `${config.source.basePath}${url}`,
-    method!,
-    config.source.paths[url!][method!]
-  )
-  const code = formatCode(mergedConfig.lang)(
-    genPath(api, mergedConfig.templateFunction, mergedConfig.useJsDoc)
-  )
-  const jsDocCode =
-    mergedConfig.useJsDoc && mergedConfig.lang === 'js' ? genJsDoc(api) : ''
-
-  return jsDocCode + code
+  const { jsDocCode, code } = compilePath(mergedConfig, url!, method!)
+  return (config.useJsDoc && config.lang === 'js' ? jsDocCode : '') + code
 }
 
 export default freeSwaggerClient
-export { compileInterfaces, compileJsDocs }
+export { compileInterfaces, compileJsDocTypes }
 export * from './default/template'
 export * from './utils'
 export * from './gen/path'

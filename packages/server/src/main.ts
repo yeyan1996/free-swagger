@@ -13,7 +13,7 @@ import {
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
-import { compileInterfaces, compileJsDocs } from 'free-swagger-client'
+import { compileInterfaces, compileJsDocTypes } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
 import { genPaths } from './gen/path'
 import { fetchJSON } from './request'
@@ -50,7 +50,7 @@ const gen = async (
   if (config.lang === 'js' && config.useJsDoc) {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
-    await fse.writeFile(jsDocPath, compileJsDocs(config.source))
+    await fse.writeFile(jsDocPath, compileJsDocTypes(config.source))
   }
 
   // 生成 api
