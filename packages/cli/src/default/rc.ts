@@ -14,7 +14,7 @@ import {
 import { execSync } from 'child_process'
 import camelcase from 'camelcase'
 
-type Type = 'client' | 'server' | 'mock'
+type ConfigType = 'client' | 'server' | 'mock'
 
 const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
@@ -119,7 +119,7 @@ class Rc {
   }
 
   // 合并配置项
-  merge(answer: object, type: Type = 'client'): void {
+  merge(answer: Record<string, any>, type: ConfigType = 'client'): void {
     // @ts-ignore
     this.configData[type] = mergeWith(
       this.configData[type],

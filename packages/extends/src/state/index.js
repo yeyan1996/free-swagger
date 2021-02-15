@@ -186,7 +186,7 @@ export const handleCopyFake = (
 export const handleCopyInterface = (source = state.swagger, interfaceName) => {
   try {
     const hasGenerics =
-      interfaceName && parseInterfaceName(interfaceName).generics.length;
+      interfaceName && parseInterfaceName(interfaceName).generics?.length;
 
     if (hasGenerics) {
       Message.warning(

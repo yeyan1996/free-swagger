@@ -10,7 +10,7 @@ import { mock, compile } from 'free-swagger'
 import { pick } from 'lodash'
 import { prompt } from '../inquirer'
 
-export function init(cb?: Function): void {
+export function init(): void {
   const packageJsonPath = path.resolve(__dirname, '../../package.json')
   const pkg = JSON.parse(fse.readFileSync(packageJsonPath, 'utf-8'))
 
@@ -43,7 +43,6 @@ export function init(cb?: Function): void {
       if (!global.__DEV__ && rawArgs[2]) return
       await prompt([source])
       await compile(rc.createFreeSwaggerParams())
-      cb?.()
     })
     .allowUnknownOption()
     .parse(process.argv)
