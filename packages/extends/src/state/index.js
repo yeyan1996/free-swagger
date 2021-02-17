@@ -8,7 +8,7 @@ import {
   tsTemplate,
   compileInterfaces,
   parseInterfaceName,
-  compileJsDocs
+  compileJsDocTypeDefs
 } from "free-swagger-client";
 import { option, generate } from "json-schema-faker";
 
@@ -34,6 +34,7 @@ export const state = new Vue({
         jsTemplate,
         tsTemplate,
         useJsDoc: false,
+        useInterface: false,
         exportLanguage: "js",
         currentLanguage: "js"
       },
@@ -118,6 +119,7 @@ export const handleCopyApi = (
         source,
         lang: storage.currentLanguage,
         useJsDoc: storage.useJsDoc,
+        useInterface: storage.useInterface,
         templateFunction: eval(
           storage.currentLanguage === "js"
             ? storage.jsTemplate
@@ -204,7 +206,7 @@ export const handleCopyInterface = (source = state.swagger, interfaceName) => {
 
 export const handleCopyJsDoc = (source = state.swagger, interfaceName) => {
   try {
-    const code = compileJsDocs(source, interfaceName);
+    const code = compileJsDocTypeDefs(source, interfaceName);
     copyMessage(code);
   } catch (e) {
     console.log(e);

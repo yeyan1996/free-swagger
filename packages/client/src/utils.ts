@@ -8,11 +8,14 @@ import {
   formatGenericInterface,
 } from './parse/interface'
 
+const isWord = /^\w*$/
+
 export interface ClientConfig<T = OpenAPIV2.Document> {
   source: T
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
   useJsDoc?: boolean
+  useInterface?: boolean
 }
 
 export interface TemplateFunction {
@@ -33,7 +36,8 @@ export interface TemplateConfig {
   IPathParams: string
 }
 export interface ParsedSchemaObject {
-  type: string
+  type: string | string[] | undefined
+  formatType: string
   imports: string[]
   required: boolean
   description: string
@@ -97,8 +101,12 @@ const traverseTree = <T extends Record<string, any>>(
 // 获取 $ref 指向的类型
 // /definitions/ref -> ref
 const getRef = (ref: OpenAPIV2.ReferenceObject['$ref']): string => {
-  const propType = ref.slice(ref.lastIndexOf('/') + 1)
+  const propType = getOriginRef(ref)
   return formatGenericInterface(propType)
+}
+
+const getOriginRef = (ref: OpenAPIV2.ReferenceObject['$ref']): string => {
+  return ref.slice(ref.lastIndexOf('/') + 1)
 }
 
 const isRef = (schema?: any): schema is OpenAPIV2.ReferenceObject =>
@@ -111,6 +119,7 @@ const schemaToTsType = (
   if (!schema)
     return {
       type: 'any',
+      formatType: 'any',
       imports: [],
       isBinary: false,
       required: false,
@@ -118,12 +127,17 @@ const schemaToTsType = (
     }
   const imports: string[] = []
 
-  const recursive = (schema: OpenAPIV2.SchemaObject): string => {
+  const recursive = (
+    schema: OpenAPIV2.SchemaObject,
+    formatType = true
+  ): string => {
     if (schema.$ref) {
-      const isWord = /^\w*$/
-      const originRef = getRef(schema.$ref)
+      if (!formatType) {
+        return getOriginRef(schema.$ref)
+      }
+      const ref = getRef(schema.$ref)
       imports.push(
-        ...flatInterfaceName(originRef)
+        ...flatInterfaceName(ref)
           // 排除 ts 内置类型
           .filter((item) => !Object.values(TYPE_MAP).includes(item))
           // 排除一些特殊的泛型 Map<string,string>
@@ -133,38 +147,45 @@ const schemaToTsType = (
             buildInInterfaces[item] ? buildInInterfaces[item].name : item
           )
       )
-      return originRef
+      return ref
     }
     if (!schema.type) return 'any'
 
+    // 极小情况下的容错
+    if (Array.isArray(schema.type)) {
+      return JSON.stringify(schema.type)
+    }
+
+    if (!formatType) {
+      return schema.type
+    }
+
     if (schema.type === 'array' && schema.items) {
       return schema.items.enum
-        ? `(${recursive(schema.items)})[]`
-        : `${recursive(schema.items)}[]`
+        ? `(${recursive(schema.items, formatType)})[]`
+        : `${recursive(schema.items, formatType)}[]`
     }
     // todo 对 object 的响应 schema 做处理
     if (schema.type === 'object') {
       let type = ''
       if (!schema.properties) return 'object'
       Object.keys(schema.properties).forEach((key) => {
-        type += schema.properties ? recursive(schema.properties[key]) : ''
+        type += schema.properties
+          ? recursive(schema.properties[key], formatType)
+          : ''
       })
       return type
     }
     if (schema.enum) {
       return schema.enum.map((value) => `"${value}"`).join(' | ')
     }
-
-    // 极小情况下的容错
-    if (Array.isArray(schema.type)) {
-      return JSON.stringify(schema.type)
-    }
     // 基本类型
     return TYPE_MAP[schema.type]
   }
 
   return {
-    type: recursive(schema),
+    type: recursive(schema, false),
+    formatType: recursive(schema),
     imports,
     isBinary: schema.type === 'file',
     required: false,

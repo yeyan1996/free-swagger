@@ -1,14 +1,18 @@
 import { ParsedInterface } from '../..'
 
-const genInterface = ({ name, props, skipGenerate }: ParsedInterface): string =>
-  skipGenerate
-    ? ''
+const genInterface = ({
+  formatName,
+  props,
+  code,
+}: Required<ParsedInterface>): string =>
+  code
+    ? code
     : `
-    export interface ${name} {
+    export interface ${formatName} {
         ${Object.entries(props).map(
           ([propName, prop]) =>
             `
-            '${propName}' ${prop.required ? '' : '?'}: ${prop.type}  ${
+            '${propName}' ${prop.required ? '' : '?'}: ${prop.formatType}  ${
               prop.description && `// ${prop.description}`
             }
             `

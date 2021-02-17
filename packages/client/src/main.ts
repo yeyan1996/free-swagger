@@ -2,7 +2,7 @@ import { Method } from './parse/path'
 import { ClientConfig } from './utils'
 import { mergeDefaultParams } from './default'
 import { compileInterfaces } from './compile/interface'
-import { compileJsDocTypes } from './compile/jsDoc'
+import { compileJsDocTypeDefs } from './compile/jsDoc'
 import { compilePath } from './compile/path'
 
 const freeSwaggerClient = (
@@ -13,12 +13,27 @@ const freeSwaggerClient = (
   const chooseAll = !url || !method
   if (chooseAll) return ''
   const mergedConfig = mergeDefaultParams(config)
-  const { jsDocCode, code } = compilePath(mergedConfig, url!, method!)
-  return (config.useJsDoc && config.lang === 'js' ? jsDocCode : '') + code
+  const {
+    jsDocCode,
+    code,
+    queryInterfaceCode,
+    bodyInterfaceCode,
+    pathInterfaceCode,
+    responseInterfaceCode,
+  } = compilePath(mergedConfig, url!, method!)
+  return (
+    (config.useJsDoc && config.lang === 'js' ? jsDocCode : '') +
+    (config.useInterface && config.lang === 'ts'
+      ? `${
+          queryInterfaceCode + bodyInterfaceCode + pathInterfaceCode
+        }\n${responseInterfaceCode}`
+      : '') +
+    code
+  ).trim()
 }
 
 export default freeSwaggerClient
-export { compileInterfaces, compileJsDocTypes }
+export { compileInterfaces, compileJsDocTypeDefs }
 export * from './default/template'
 export * from './utils'
 export * from './gen/path'

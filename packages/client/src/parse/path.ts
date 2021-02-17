@@ -3,7 +3,7 @@ import { getResponseType, Response } from './response'
 import { getRequestType, Request } from './request'
 import { uniq } from 'lodash'
 
-export interface Api extends Request, Response {
+export interface ParsedApi extends Request, Response {
   deprecated: boolean
   summary: string
   url: string
@@ -30,7 +30,7 @@ const parsePath = (
     responses,
     deprecated = false,
   }: OpenAPIV2.OperationObject
-): Api => {
+): ParsedApi => {
   // 获取到接口的参数
   const {
     bodyParamsInterface,

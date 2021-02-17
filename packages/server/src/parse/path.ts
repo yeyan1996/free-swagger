@@ -1,5 +1,5 @@
 import { OpenAPIV2 } from 'openapi-types'
-import { parsePath, Api, Method } from 'free-swagger-client'
+import { parsePath, ParsedApi, Method } from 'free-swagger-client'
 import { hasChinese, pascalCase } from '../utils'
 import chalk from 'chalk'
 
@@ -19,7 +19,7 @@ export interface ParsedPaths {
 }
 
 export interface ApiCollection {
-  [pathName: string]: Api
+  [pathName: string]: ParsedApi
 }
 
 const parsePaths = (swagger: OpenAPIV2.Document): ParsedPaths => {

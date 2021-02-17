@@ -1,7 +1,7 @@
 import { OpenAPIV2 } from 'openapi-types'
 import {
-  schemaToTsType,
   ParsedSchemaObject,
+  schemaToTsType,
   traverseTree,
   TYPE_MAP,
   SPECIAL_CHARACTERS_MAP_OPEN,
@@ -13,14 +13,10 @@ type ParsedInterfaceProp = Omit<ParsedSchemaObject, 'isBinary'>
 
 export interface ParsedInterface {
   name: string
-  props: { [prop: string]: ParsedInterfaceProp }
-  hasGeneric?: boolean
-  skipGenerate?: boolean
-}
-
-export interface InterfaceNameItem {
-  name: string
-  generics?: InterfaceNameItem[]
+  formatName: string
+  props?: { [prop: string]: ParsedInterfaceProp }
+  generics?: ParsedInterface[]
+  code?: string
 }
 
 // 补充内建 Java 类型
@@ -39,25 +35,10 @@ const buildInInterfaces: { [key: string]: { name: string; code: string } } = {
   },
 }
 
-let map: { [key: string]: ParsedInterface } = {}
-let genericInterfaceMap: { [key: string]: ParsedInterface } = {}
-let recursiveMap: { [key: string]: ParsedInterface } = {}
-
-const findInterface = (interfaceName: string) =>
-  genericInterfaceMap[interfaceName] ||
-  map[interfaceName] ||
-  recursiveMap[interfaceName]
-
-const resetInterfaceMap = () => {
-  map = {}
-  genericInterfaceMap = {}
-  recursiveMap = {}
-}
-
 // 解析 interface
 // interface 名 => 树形数组
-const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
-  const stack: (InterfaceNameItem | string)[] = []
+const parseInterfaceName = (interfaceName: string): ParsedInterface => {
+  const stack: (ParsedInterface | string)[] = []
   let word = ''
   const isOpenCharacter = (character: string) =>
     Object.keys(SPECIAL_CHARACTERS_MAP_OPEN).includes(character)
@@ -83,12 +64,12 @@ const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
         word = ''
       }
       let lasted
-      const generics: InterfaceNameItem[] = []
+      const generics: ParsedInterface[] = []
       // @ts-ignore
       while (!isOpenCharacter(lasted) && stack.length > 0) {
         lasted = stack.pop()
         if (typeof lasted === 'string' && !isOpenCharacter(lasted)) {
-          generics.unshift({ name: lasted })
+          generics.unshift({ name: lasted, formatName: lasted })
         } else {
           // @ts-ignore
           if (!isOpenCharacter(lasted)) {
@@ -100,20 +81,24 @@ const parseInterfaceName = (interfaceName: string): InterfaceNameItem => {
       if (stack.length) {
         const name = stack.pop()
         if (typeof name === 'string') {
-          stack.push({ name, generics })
+          stack.push({
+            name,
+            formatName: generics?.length ? `${name}<T>` : name,
+            generics,
+          })
         }
       }
-      if (stack.length === 1) return stack[0] as InterfaceNameItem
+      if (stack.length === 1) return stack[0] as ParsedInterface
     } else {
       word += s
     }
   }
-  return { name: word }
+  return { name: word, formatName: word }
 }
 
 // 还原 interface
 // 树形数组 => interface 名
-const reduceInterfaceName = (tree: InterfaceNameItem): string => {
+const reduceInterfaceName = (tree: ParsedInterface): string => {
   if (tree.generics) {
     return `${tree.name}<${tree.generics
       .map((child) => reduceInterfaceName(child))
@@ -155,9 +140,10 @@ const parseProperties = (
   const res: { [key: string]: ParsedInterfaceProp } = {}
   Object.keys(properties).forEach((propertyKey) => {
     const schema = properties[propertyKey]
-    const { imports, type } = schemaToTsType(schema)
+    const { imports, type, formatType } = schemaToTsType(schema)
     res[propertyKey] = {
       type,
+      formatType,
       imports,
       required: requiredList?.includes(propertyKey) || false,
       description: schema.description || '',
@@ -178,82 +164,65 @@ const findGenericKey = (properties: {
   return Object.keys(properties)[index]
 }
 
-const shouldSkipGenerate = (interfaceName: string, noContext = false) => {
-  const res = parseInterfaceName(interfaceName)
-  // 没有泛型则直接不跳过生成
-  if (!res.generics?.length) {
-    return false
-  }
-  // 没有上下文的泛型直接跳过生成
-  if (noContext) return true
-  return flatInterfaceName(interfaceName).every(
-    (item) => TYPE_MAP[item] || map[item] || recursiveMap[item]
-  )
+const normalizeProperties = (
+  properties: { [key: string]: OpenAPIV2.SchemaObject },
+  required?: string[]
+) => {
+  // 从 definition 中找到替换为泛型的 key
+  const genericKey = findGenericKey(properties)
+  return genericKey
+    ? {
+        [genericKey]: {
+          type: properties[genericKey].type,
+          formatType: properties[genericKey].type === 'array' ? 'T[]' : 'T',
+          imports: [],
+          required: required?.includes(genericKey) || false,
+          description: properties[genericKey].description || '',
+        },
+        ...parseProperties(omit(properties, genericKey), required),
+      }
+    : parseProperties(properties, required)
 }
 
 const parseInterface = (
   definitions: OpenAPIV2.DefinitionsObject,
-  interfaceName: string,
-  recursive = false
-) => {
-  const currentMap = recursive ? recursiveMap : map
-  const res = parseInterfaceName(interfaceName)
-
-  const parsedInterface: ParsedInterface = {
-    name: res.generics?.length ? `${res.name}<T>` : res.name,
-    props: {},
-    hasGeneric: !!res.generics?.length,
-    skipGenerate: Object.keys(buildInInterfaces).includes(res.name),
+  interfaceName: string
+): Required<ParsedInterface> => {
+  const parsedInterface = parseInterfaceName(interfaceName)
+  if (!definitions[interfaceName]) {
+    throw new Error(`can not find ${interfaceName} in definitions`)
   }
-
-  if (parsedInterface.skipGenerate) return parsedInterface
-
-  const { properties, required } = definitions[interfaceName]
-  if (!properties) return parsedInterface
-
-  if (parsedInterface.hasGeneric) {
-    if (genericInterfaceMap[res.name]) {
-      parsedInterface.skipGenerate = true
-      return
+  const { properties: topProperties, required: topRequired } = definitions[
+    interfaceName
+  ]
+  if (topProperties) {
+    if (parsedInterface.generics?.length) {
+      traverseTree(parsedInterface, (node) => {
+        if (buildInInterfaces[node.name]) {
+          node.code = buildInInterfaces[node.name].code
+          return
+        }
+        if (definitions[node.name]) {
+          const { properties, required } = definitions[node.name]
+          if (!properties) return
+          node.props = normalizeProperties(properties, required)
+        } else {
+          node.props = normalizeProperties(topProperties, topRequired)
+        }
+      })
     } else {
-      const genericKey = findGenericKey(properties)
-      parsedInterface.props = genericKey
-        ? {
-            [genericKey]: {
-              type: properties[genericKey].type === 'array' ? 'T[]' : 'T',
-              imports: [],
-              required: required?.includes(genericKey) || false,
-              description: properties[genericKey].description || '',
-            },
-            ...parseProperties(omit(properties, genericKey), required),
-          }
-        : parseProperties(properties, required)
-      // 如果是包含泛型的接口，则删除 recursiveMap/map 中的类型
-      // todo 更好的实现方式？
-      if (recursiveMap[res.name]) {
-        delete recursiveMap[res.name]
-      }
-      if (map[res.name]) {
-        delete map[res.name]
-      }
-      genericInterfaceMap[res.name] = parsedInterface
-      return
+      parsedInterface.props = parseProperties(topProperties, topRequired)
     }
+  } else {
+    parsedInterface.props = normalizeProperties(definitions[interfaceName])
   }
-  parsedInterface.props = parseProperties(properties, required)
-  currentMap[res.name] = parsedInterface
+  return parsedInterface as Required<ParsedInterface>
 }
 
 export {
-  map,
-  recursiveMap,
-  genericInterfaceMap,
   buildInInterfaces,
   parseInterfaceName,
   parseInterface,
-  shouldSkipGenerate,
-  findInterface,
-  resetInterfaceMap,
   flatInterfaceName,
   formatGenericInterface,
 }

@@ -2,8 +2,11 @@ import { genPath, formatCode, genJsDoc } from 'free-swagger-client'
 import { ApiCollection } from '../parse/path'
 import { ServerConfig } from '../utils'
 import { uniq, isEmpty } from 'lodash'
-import { DEFAULT_HEAD_CODE_JS, DEFAULT_HEAD_CODE_TS } from '../default'
-import { INTERFACE_PATH } from './interface'
+import {
+  DEFAULT_HEAD_CODE_JS,
+  DEFAULT_HEAD_CODE_TS,
+  INTERFACE_PATH,
+} from '../default'
 
 const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   const importsInterface = uniq(

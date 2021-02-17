@@ -20,7 +20,7 @@ const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
-  client: Omit<Required<ClientConfig<string>>, 'filename'> & {
+  client: Omit<Required<ClientConfig<string>>, 'filename' | 'useInterface'> & {
     tsTemplate: string
     jsTemplate: string
   }

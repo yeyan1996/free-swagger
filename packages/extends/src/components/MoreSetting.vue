@@ -19,6 +19,16 @@
             ></el-switch>
           </div>
         </el-dropdown-item>
+        <el-dropdown-item>
+          <div @click.stop>
+            <span class="js-doc-text">Interface</span>
+            <el-switch
+              v-model="state.storage.useInterface"
+              active-text="开"
+              inactive-text="关"
+            ></el-switch>
+          </div>
+        </el-dropdown-item>
         <el-dropdown-item @click.native="handleCopyJsDoc()"
           >复制 JS Doc（JS）</el-dropdown-item
         >

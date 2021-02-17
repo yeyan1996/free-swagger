@@ -14,6 +14,7 @@ const getResponseType = (responses: {
     return {
       responseInterface: {
         type: '',
+        formatType: '',
         imports: [],
         required: false,
         description: '',

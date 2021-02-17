@@ -1,28 +1,28 @@
 import { OpenAPIV2 } from 'openapi-types'
 // 不要缩写，否则会找不到 map/genericInterfaceMap/recursiveMap
-import {
-  map,
-  genericInterfaceMap,
-  recursiveMap,
-  findInterface,
-  parseInterface,
-  resetInterfaceMap,
-  shouldSkipGenerate,
-} from '../parse/interface'
-import { genJsDocTypeDef } from '../..'
+import { parseInterface, ParsedInterface } from '../parse/interface'
+import { genJsDocTypeDef, traverseTree } from '../..'
 import { DEFAULT_HEAD_JS_DOC_TYPES } from '../default'
 
-const compileJsDocType = (
+const compileJsDocTypeDef = (
   source: OpenAPIV2.Document,
   interfaceName: string,
-  noContext = false
+  contextMap?: Map<string, ParsedInterface>
 ): string => {
-  if (!source.definitions || shouldSkipGenerate(interfaceName, noContext))
-    return ''
-  parseInterface(source.definitions, interfaceName)
-
+  const res = parseInterface(source.definitions!, interfaceName)
+  let code = ''
   try {
-    return genJsDocTypeDef(findInterface(interfaceName))
+    traverseTree(res!, (node) => {
+      if (contextMap) {
+        if (contextMap.has(node.name)) {
+          return
+        } else {
+          contextMap.set(node.name, node)
+        }
+      }
+      code += `${genJsDocTypeDef(node)}\n`
+    })
+    return code
   } catch (e) {
     console.warn(`jsDoc: ${interfaceName} 生成失败，检查是否符合 swagger 规范`)
     console.warn(e)
@@ -33,40 +33,23 @@ const compileJsDocType = (
 }
 
 // 生成全量 jsDoc type 代码
-const compileJsDocTypes = (
+const compileJsDocTypeDefs = (
   source: OpenAPIV2.Document,
   interfaceName?: string
 ): string => {
   if (!source.definitions) return ''
-  resetInterfaceMap()
 
   if (interfaceName) {
-    return compileJsDocType(source, interfaceName, true)
+    return compileJsDocTypeDef(source, interfaceName)
   } else {
-    Object.keys(source.definitions).forEach((key) => {
-      parseInterface(source.definitions!, key)
-    })
+    const contextMap = new Map<string, ParsedInterface>()
 
-    const jsDocTypesCode = Object.keys(map).reduce(
-      (acc, cur) => acc + compileJsDocType(source, cur),
-      ''
-    )
-    const recursiveJsDocTypesCode = Object.keys(recursiveMap).reduce(
-      (acc, cur) => acc + genJsDocTypeDef(recursiveMap[cur]),
-      ''
-    )
+    const interfaceCode = Object.keys(source.definitions).reduce((acc, cur) => {
+      return acc + compileJsDocTypeDef(source, cur, contextMap)
+    }, '')
 
-    const jsDocTypesWithGenericCode = Object.keys(genericInterfaceMap).reduce(
-      (acc, cur) => acc + genJsDocTypeDef(genericInterfaceMap[cur]),
-      ''
-    )
-    return (
-      DEFAULT_HEAD_JS_DOC_TYPES +
-      jsDocTypesWithGenericCode +
-      jsDocTypesCode +
-      recursiveJsDocTypesCode
-    )
+    return DEFAULT_HEAD_JS_DOC_TYPES + interfaceCode
   }
 }
 
-export { compileJsDocTypes, compileJsDocType }
+export { compileJsDocTypeDefs, compileJsDocTypeDef }
