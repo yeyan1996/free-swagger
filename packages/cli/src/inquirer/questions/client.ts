@@ -30,15 +30,13 @@ export const lang = {
     rc.merge({
       lang: input,
     })
-    if (input === 'js') {
-      rc.merge({
-        jsTemplate: rc.configData.client.templateFunction.toString(),
-      })
-    } else {
-      rc.merge({
-        tsTemplate: rc.configData.client.templateFunction.toString(),
-      })
-    }
+    rc.merge({
+      templateFunction: eval(
+        input === 'ts'
+          ? rc.configData.client.tsTemplate
+          : rc.configData.client.jsTemplate
+      ),
+    })
     rc.save()
   },
 }

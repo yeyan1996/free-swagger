@@ -32,7 +32,7 @@ export const jsTemplate = `({
     // 有 query 和 body 参数，可能有 path 参数
     .set(
       multipleParamsCondition,
-      ({ IQueryParams }) => \`queryParams,\`
+      () => \`queryParams,\`
     )
      // 没有 query body 参数，有 path 参数
     .set(
@@ -42,7 +42,7 @@ export const jsTemplate = `({
     // 只有 path 参数
     .set(
       ({ pathParams }) => pathParams.length,
-      ({ pathParams, IPathParams }) =>
+      ({ pathParams }) =>
         \`{\${pathParams.join(',')}},\`
     )
     
@@ -50,7 +50,7 @@ export const jsTemplate = `({
     // 有 path 参数
     .set(
       ({ pathParams }) => pathParams.length,
-      ({ pathParams, IPathParams }) =>
+      ({ pathParams }) =>
         \`{\${pathParams.join(',')}},\`
     )
     // 有 query 和 body 参数，有 path 参数

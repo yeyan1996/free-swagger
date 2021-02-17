@@ -63,6 +63,18 @@ class Rc {
       ...this.getDefaultConfig(),
       ...rcConfig,
     }
+    this.assignTemplate()
+  }
+
+  // 合并用户通过 free-swagger-cli -e 手动编辑的模版
+  assignTemplate() {
+    const { templateFunction, lang } = this.configData.client
+    if (lang === 'js') {
+      this.merge({ jsTemplate: templateFunction.toString() })
+    } else {
+      this.merge({ tsTemplate: templateFunction.toString() })
+    }
+    this.save()
   }
 
   // 获取默认 rc 文件
