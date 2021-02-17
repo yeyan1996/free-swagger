@@ -105,6 +105,16 @@ export default [
     type: 'confirm',
     default: false,
     message: '是否需要编辑模版？',
+    callback: (_: any, { lang }: any) => {
+      rc.merge({
+        templateFunction: eval(
+          lang === 'ts'
+            ? rc.configData.client.tsTemplate
+            : rc.configData.client.jsTemplate
+        ),
+      })
+      rc.save()
+    },
   },
   {
     ...templateFunction,

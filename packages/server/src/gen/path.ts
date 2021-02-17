@@ -1,4 +1,9 @@
-import { genPath, formatCode, genJsDoc } from 'free-swagger-client'
+import {
+  genPath,
+  formatCode,
+  genJsDoc,
+  ClientConfig,
+} from 'free-swagger-client'
 import { ApiCollection } from '../parse/path'
 import { ServerConfig } from '../utils'
 import { uniq, isEmpty } from 'lodash'
@@ -29,7 +34,7 @@ const genPaths = (
   code += Object.values(apiCollection)
     .map((api) => {
       const code = formatCode(config.lang)(
-        genPath(api, config.templateFunction, config.useJsDoc)
+        genPath(api, config as Required<ClientConfig>)
       )
       const jsDocCode =
         config.useJsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'

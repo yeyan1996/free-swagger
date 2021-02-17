@@ -27,7 +27,18 @@ export const lang = {
   default: rc.configData.client.lang,
   choices: ['js', 'ts'],
   callback: (input: string) => {
-    rc.merge({ lang: input })
+    rc.merge({
+      lang: input,
+    })
+    if (input === 'js') {
+      rc.merge({
+        jsTemplate: rc.configData.client.templateFunction.toString(),
+      })
+    } else {
+      rc.merge({
+        tsTemplate: rc.configData.client.templateFunction.toString(),
+      })
+    }
     rc.save()
   },
 }
