@@ -70,7 +70,6 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
   axios.request({
@@ -1053,7 +1052,6 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
   axios.request({
@@ -1331,7 +1329,6 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/**deprecated*/
 // Finds Pets by tags
 export const findPetsByTags = (params) =>
   axios.request({

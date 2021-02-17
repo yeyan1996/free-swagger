@@ -25,9 +25,7 @@ const compilePath = (
     config.source.paths[url!][method!]
   )
 
-  const code = formatCode(config.lang)(
-    genPath(parsedApi, config.templateFunction, config.useJsDoc)
-  )
+  const code = formatCode(config.lang)(genPath(parsedApi, config))
   const jsDocCode = genJsDoc(parsedApi)
 
   // const interfaceCode = compileInterface(config.source)

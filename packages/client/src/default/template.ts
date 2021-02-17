@@ -4,7 +4,6 @@ export const jsTemplate = `({
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
-  deprecated,     // 是否废弃 {boolean}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
@@ -97,7 +96,6 @@ export const jsTemplate = `({
   }
  
   return \`
-  \${deprecated ? \`/**deprecated*/\` : ""}
   \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
     \${createParamCode(firstParamCodeMap)}
@@ -119,7 +117,6 @@ export const tsTemplate = `({
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
-  deprecated,     // 是否废弃 {boolean}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
@@ -213,8 +210,7 @@ export const tsTemplate = `({
   }
  
   return \`
-  \${deprecated ? \`/**deprecated*/\` : ""}
-  \${summary ? \`// \${summary}\` : ""}  
+  \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
     \${createParamCode(firstParamCodeMap)}
     \${createParamCode(secondParamCodeMap)}
