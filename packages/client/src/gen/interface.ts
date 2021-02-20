@@ -7,10 +7,8 @@ const genInterface = ({ name, props, skipGenerate }: ParsedInterface): string =>
     export interface ${name} {
         ${Object.entries(props).map(
           ([propName, prop]) =>
-            `
-            '${propName}' ${prop.required ? '' : '?'}: ${prop.type}  ${
-              prop.description && `// ${prop.description}`
-            }
+            `${prop.description ? `\n// ${prop.description}` : ''}
+            '${propName}' ${prop.required ? '' : '?'}: ${prop.type} 
             `
         )}
       }
