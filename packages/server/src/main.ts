@@ -13,12 +13,11 @@ import {
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
-import { compileInterfaces, compileJsDocTypes } from 'free-swagger-client'
+import { compileInterfaces, compileJsDocTypeDefs } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
 import { genPaths } from './gen/path'
 import { fetchJSON } from './request'
-import { INTERFACE_PATH } from './gen/interface'
-import { JSDOC_PATH } from './gen/jsDoc'
+import { INTERFACE_PATH, JSDOC_PATH } from './default'
 import { mock } from './mock'
 
 export const spinner = ora().render()
@@ -44,13 +43,19 @@ const gen = async (
   if (config.lang === 'ts') {
     const interfacePath = path.resolve(dirPath, INTERFACE_PATH)
     fse.ensureFileSync(interfacePath)
-    await fse.writeFile(interfacePath, compileInterfaces(config.source))
+    await fse.writeFile(
+      interfacePath,
+      compileInterfaces({ source: config.source })
+    )
   }
 
   if (config.lang === 'js' && config.useJsDoc) {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
-    await fse.writeFile(jsDocPath, compileJsDocTypes(config.source))
+    await fse.writeFile(
+      jsDocPath,
+      compileJsDocTypeDefs({ source: config.source })
+    )
   }
 
   // 生成 api

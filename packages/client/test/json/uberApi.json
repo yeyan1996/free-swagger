@@ -707,7 +707,9 @@
         "data": {
           "format": "uuid",
           "description": "数据",
-          "type": "string"
+          "schema": {
+            "$ref": "#/definitions/Guid"
+          }
         },
         "message": {
           "description": "消息",

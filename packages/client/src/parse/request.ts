@@ -14,22 +14,28 @@ const parseParameter = (
   parametersImports: string[]
 ): ParsedSchemaObject => {
   const imports: string[] = []
-  let type = ''
+  let type = parameter.type
+  let formatType = ''
   let isBinary = false
+  let ref = ''
   // 引用类型
   if (parameter.schema || parameter.items) {
     const parsedSchemaObject = schemaToTsType(
       parameter.schema || parameter.items
     )
     type = parsedSchemaObject.type
+    ref = parsedSchemaObject.ref
+    formatType = parsedSchemaObject.formatType
     isBinary = !!parsedSchemaObject.isBinary
     imports.push(...parsedSchemaObject.imports)
     parametersImports.push(...parsedSchemaObject.imports)
   } else {
-    type = TYPE_MAP[parameter.type] // 基本类型
+    formatType = TYPE_MAP[parameter.type] // 基本类型
   }
   return {
     type,
+    ref,
+    formatType,
     imports,
     isBinary,
     description: parameter.description || '',
@@ -46,11 +52,11 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
       bodyParamsInterface: {},
     }
 
-  const pathParamsInterface: { [key: string]: ParsedSchemaObject } = {}
-  const queryParamsInterface: { [key: string]: ParsedSchemaObject } = {}
+  const pathParamsInterface: Record<string, ParsedSchemaObject> = {}
+  const queryParamsInterface: Record<string, ParsedSchemaObject> = {}
   let bodyParamsInterface: ParsedSchemaObject = <ParsedSchemaObject>{}
   const imports: string[] = []
-  ;(<OpenAPIV2.Parameter[]>paramsSchema).forEach((parameter) => {
+  ;(paramsSchema as OpenAPIV2.Parameter[]).forEach((parameter) => {
     // 引用类型定义
     switch (parameter.in) {
       case 'path':
@@ -64,8 +70,10 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
         break
       case 'formData':
         bodyParamsInterface = {
-          type: 'FormData',
+          type: parameter.type,
+          formatType: 'FormData',
           imports: [],
+          ref: '',
           isBinary: true,
           description: '',
           required: true,

@@ -1,24 +1,23 @@
 import { isParsedSchemaObject, ParsedInterface, ParsedSchema } from '../..'
-import { Api } from '../..'
+import { ParsedApi } from '../..'
 import { isEmpty } from 'lodash'
 
-const genJsDocTypeDef = ({
-  name,
-  props,
-  skipGenerate,
-}: ParsedInterface): string => {
-  return skipGenerate
-    ? ''
+const genJsDocTypeDef = ({ name, props, code }: ParsedInterface): string => {
+  return code
+    ? code
     : `
 /**
  * @typedef {
  *   {
-${Object.entries(props)
-  .map(
-    ([propName, prop]) => ` *     '${propName}': ${prop.type}
+${
+  props &&
+  Object.entries(props)
+    .map(
+      ([propName, prop]) => ` *     '${propName}': ${prop.formatType}
 `
-  )
-  .join('')} *   }
+    )
+    .join('')
+} *   }
  * } ${name}
 **/
 `
@@ -43,14 +42,14 @@ const genJsDocSchema = (paramsInterface?: ParsedSchema): string => {
   if (!paramsInterface || isEmpty(paramsInterface)) return ''
 
   if (isParsedSchemaObject(paramsInterface)) {
-    return paramsInterface.type
+    return paramsInterface.formatType
   } else {
     return `{
     ${Object.entries(paramsInterface)
       .map(
         ([propName, prop], index) =>
           // format
-          `${index !== 0 ? '    ' : ''}"${propName}": ${prop.type}`
+          `${index !== 0 ? '    ' : ''}"${propName}": ${prop.formatType}`
       )
       .join('\n')}
 }`
@@ -61,7 +60,7 @@ const genIParams = ({
   pathParamsInterface,
   queryParamsInterface,
   bodyParamsInterface,
-}: Api): {
+}: ParsedApi): {
   IPathParams: string
   IQueryParams: string
   IBodyParams: string
@@ -71,7 +70,7 @@ const genIParams = ({
   IPathParams: genJsDocSchema(pathParamsInterface),
 })
 
-const genJsDoc = (api: Api): string => {
+const genJsDoc = (api: ParsedApi): string => {
   const { IBodyParams, IQueryParams, IPathParams } = genIParams(api)
   const pathCode = IPathParams
     ? `\n * @param {Object} pathParams
@@ -79,7 +78,7 @@ ${Object.entries(api.pathParamsInterface)
   .map(
     ([propName, prop]) =>
       // format
-      ` * @param {${prop.type}} pathParams.${propName} ${
+      ` * @param {${prop.formatType}} pathParams.${propName} ${
         prop.description ? `-${prop.description}` : ''
       }`
   )

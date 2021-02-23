@@ -98,9 +98,9 @@ export const jsTemplate = `({
   return \`
   \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
-    \${createParamCode(firstParamCodeMap)}
-    \${createParamCode(secondParamCodeMap)}
-    \${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    \${createParamCode(secondParamCodeMap) /* path | null */}
+    \${createParamCode(thirdParamCodeMap) /* body | null */}
 )  => axios.request({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",
@@ -151,7 +151,7 @@ export const tsTemplate = `({
     // 没有 query body 参数，有 path 参数
     .set(
       ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-      '_NOOP: {[key:string]: never},'
+      '_NOOP: Record<string,never>,'
     )
      // 只有 path 参数
     .set(
@@ -212,9 +212,9 @@ export const tsTemplate = `({
   return \`
   \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
-    \${createParamCode(firstParamCodeMap)}
-    \${createParamCode(secondParamCodeMap)}
-    \${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    \${createParamCode(secondParamCodeMap) /* path | null */}
+    \${createParamCode(thirdParamCodeMap) /* body | null */}
 ) => axios.request<\${IResponse || "any"}>({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",

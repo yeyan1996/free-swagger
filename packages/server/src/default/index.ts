@@ -18,6 +18,10 @@ export const DEFAULT_HEAD_CODE_JS = `
 // @see https://www.npmjs.com/package/free-swagger
 
 `
+
+export const INTERFACE_PATH = './interface/index.ts' // interface 的相对路径
+export const JSDOC_PATH = './typedef/index.js' // jsdoc 的相对路径
+
 const DEFAULT_MOCK_CONFIG = {
   cookie: '',
   wrap: false,

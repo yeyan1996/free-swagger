@@ -8,11 +8,14 @@ import {
   formatGenericInterface,
 } from './parse/interface'
 
+const isWord = /^\w*$/
+
 export interface ClientConfig<T = OpenAPIV2.Document> {
   source: T
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
   useJsDoc?: boolean
+  useInterface?: boolean
 }
 
 export interface TemplateFunction {
@@ -33,28 +36,27 @@ export interface TemplateConfig {
   IPathParams: string
 }
 export interface ParsedSchemaObject {
-  type: string
+  type: string | string[] | undefined // 原始 type，对应 swagger 中的 type
+  formatType: string // 最终展示的 type
+  ref: string // 用于标识引用，定位 definitions 中对应 interface，对应未 format 的 $ref 属性
   imports: string[]
   required: boolean
   description: string
   isBinary?: boolean
-  isGeneric?: boolean
 }
 
 export type ParsedSchema =
-  | {
-      [key: string]: ParsedSchemaObject
-    }
+  | Record<string, ParsedSchemaObject>
   | ParsedSchemaObject
 
-const SPECIAL_CHARACTERS_MAP_OPEN: { [key: string]: string } = {
+const SPECIAL_CHARACTERS_MAP_OPEN: Record<string, string> = {
   '«': '<',
   '[': '<',
   '{': '<',
   '<': '<',
 }
 
-const SPECIAL_CHARACTERS_MAP_CLOSE: { [key: string]: string } = {
+const SPECIAL_CHARACTERS_MAP_CLOSE: Record<string, string> = {
   '»': '>',
   ']': '>',
   '}': '>',
@@ -62,7 +64,7 @@ const SPECIAL_CHARACTERS_MAP_CLOSE: { [key: string]: string } = {
 }
 
 // openApi 类型 => ts 类型
-const TYPE_MAP: { [key: string]: string } = {
+const TYPE_MAP: Record<string, string> = {
   boolean: 'boolean',
   bool: 'boolean',
   Boolean: 'boolean',
@@ -83,34 +85,54 @@ const TYPE_MAP: { [key: string]: string } = {
 
 const traverseTree = <T extends Record<string, any>>(
   tree: T,
-  cb: (node: T) => any,
+  cb: (node: T, index: number, top: T) => any,
   childrenKey = 'generics'
 ): void => {
-  cb(tree)
-  if (tree[childrenKey]) {
-    tree[childrenKey].forEach((child: T) => {
-      traverseTree(child, cb, childrenKey)
-    })
+  const top = tree
+  let index = 0
+  const recursive = (
+    tree: T,
+    cb: (node: T, index: number, top: T) => any,
+    childrenKey = 'generics'
+  ) => {
+    cb(tree, index, top)
+    index++
+    if (tree[childrenKey]) {
+      tree[childrenKey].forEach((child: T) => {
+        traverseTree(child, cb, childrenKey)
+      })
+    }
   }
+  recursive(tree, cb, childrenKey)
 }
 
-// 获取 $ref 指向的类型
-// /definitions/ref -> ref
+// 提取 $ref 中的 interface
+// /definitions/Qwe«A» -> Qwe«A»
+const extractInterfaceNameByRef = (
+  ref: OpenAPIV2.ReferenceObject['$ref']
+): string => {
+  return ref.slice(ref.lastIndexOf('/') + 1)
+}
+
+// 提取 $ref 中的 interface 并格式化
+// /definitions/Qwe«A» -> Qwe<A>
 const getRef = (ref: OpenAPIV2.ReferenceObject['$ref']): string => {
-  const propType = ref.slice(ref.lastIndexOf('/') + 1)
-  return formatGenericInterface(propType)
+  const interfaceName = extractInterfaceNameByRef(ref)
+  return formatGenericInterface(interfaceName)
 }
 
 const isRef = (schema?: any): schema is OpenAPIV2.ReferenceObject =>
   schema && !!schema.$ref
 
-// 找到 schema 对应的 Ts 类型 & 找到需要导入的 interface 名
+// 找到 schema 对应的 TS 类型 & 找到需要导入的 interface 名
 const schemaToTsType = (
   schema?: OpenAPIV2.SchemaObject
 ): ParsedSchemaObject => {
   if (!schema)
     return {
       type: 'any',
+      ref: '',
+      formatType: 'any',
       imports: [],
       isBinary: false,
       required: false,
@@ -118,53 +140,73 @@ const schemaToTsType = (
     }
   const imports: string[] = []
 
-  const recursive = (schema: OpenAPIV2.SchemaObject): string => {
+  const recursive = (
+    schema: OpenAPIV2.SchemaObject,
+    formatType = true
+  ): string => {
     if (schema.$ref) {
-      const isWord = /^\w*$/
-      const originRef = getRef(schema.$ref)
+      if (!formatType) {
+        return extractInterfaceNameByRef(schema.$ref)
+      }
+      const ref = getRef(schema.$ref)
       imports.push(
-        ...flatInterfaceName(originRef)
+        ...flatInterfaceName(ref)
           // 排除 ts 内置类型
           .filter((item) => !Object.values(TYPE_MAP).includes(item))
           // 排除一些特殊的泛型 Map<string,string>
           .filter((item) => isWord.test(item))
           // 如果是 Java 内建类型则转换成自定义泛型
           .map((item) =>
-            buildInInterfaces[item] ? buildInInterfaces[item].name : item
+            buildInInterfaces[item] ? buildInInterfaces[item].formatName : item
           )
       )
-      return originRef
+      return ref
     }
     if (!schema.type) return 'any'
 
+    // 极小情况下的容错
+    if (Array.isArray(schema.type)) {
+      return JSON.stringify(schema.type)
+    }
+
+    if (!formatType) {
+      return schema.type
+    }
+
     if (schema.type === 'array' && schema.items) {
       return schema.items.enum
-        ? `(${recursive(schema.items)})[]`
-        : `${recursive(schema.items)}[]`
+        ? `(${recursive(schema.items, formatType)})[]`
+        : `${recursive(schema.items, formatType)}[]`
     }
     // todo 对 object 的响应 schema 做处理
     if (schema.type === 'object') {
       let type = ''
       if (!schema.properties) return 'object'
       Object.keys(schema.properties).forEach((key) => {
-        type += schema.properties ? recursive(schema.properties[key]) : ''
+        type += schema.properties
+          ? recursive(schema.properties[key], formatType)
+          : ''
       })
       return type
     }
     if (schema.enum) {
       return schema.enum.map((value) => `"${value}"`).join(' | ')
     }
-
-    // 极小情况下的容错
-    if (Array.isArray(schema.type)) {
-      return JSON.stringify(schema.type)
-    }
     // 基本类型
     return TYPE_MAP[schema.type]
   }
 
+  let ref = ''
+  if (schema.type === 'array' && schema.items?.$ref) {
+    ref = extractInterfaceNameByRef(schema.items.$ref)
+  } else if (schema.$ref) {
+    ref = extractInterfaceNameByRef(schema.$ref)
+  }
+
   return {
-    type: recursive(schema),
+    type: recursive(schema, false),
+    formatType: recursive(schema),
+    ref,
     imports,
     isBinary: schema.type === 'file',
     required: false,
@@ -185,6 +227,7 @@ export {
   formatCode,
   formatGenericInterface,
   getRef,
+  extractInterfaceNameByRef,
   isRef,
   schemaToTsType,
   traverseTree,

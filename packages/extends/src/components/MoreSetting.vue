@@ -4,12 +4,9 @@
       <el-button type="primary" size="mini">
         更多配置<i class="el-icon-arrow-down el-icon--right"></i>
       </el-button>
-
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="dialog = true"
-          >编辑模版</el-dropdown-item
-        >
-        <el-dropdown-item>
+        <div class="top-area">
+          <div>snippet 附加功能</div>
           <div @click.stop>
             <span class="js-doc-text">JS Doc</span>
             <el-switch
@@ -18,26 +15,37 @@
               inactive-text="关"
             ></el-switch>
           </div>
-        </el-dropdown-item>
+          <div @click.stop>
+            <span class="js-doc-text">Interface</span>
+            <el-switch
+              v-model="state.storage.useInterface"
+              active-text="开"
+              inactive-text="关"
+            ></el-switch>
+          </div>
+        </div>
+        <el-dropdown-item @click.native="dialog = true"
+          >编辑模版</el-dropdown-item
+        >
         <el-dropdown-item @click.native="handleCopyJsDoc()"
-          >复制 JS Doc（JS）</el-dropdown-item
+          >复制全量 JS Doc（JS）</el-dropdown-item
         >
         <el-dropdown-item @click.native="handleCopyInterface()"
-          >复制 Interface（TS）</el-dropdown-item
+          >复制全量 Interface（TS）</el-dropdown-item
         >
         <!--        <el-dropdown-item @click.native="handleCopySchema"-->
         <!--          >复制响应数据schema</el-dropdown-item-->
         <!--        >-->
-        <el-dropdown-item
-          @click.native="openAllController"
-          v-if="!state.isNewUi"
-          >展开全部 api</el-dropdown-item
-        >
-        <el-dropdown-item
-          @click.native="closeAllController"
-          v-if="!state.isNewUi"
-          >收起全部 api</el-dropdown-item
-        >
+        <!--        <el-dropdown-item-->
+        <!--          @click.native="openAllController"-->
+        <!--          v-if="!state.isNewUi"-->
+        <!--          >展开全部 api</el-dropdown-item-->
+        <!--        >-->
+        <!--        <el-dropdown-item-->
+        <!--          @click.native="closeAllController"-->
+        <!--          v-if="!state.isNewUi"-->
+        <!--          >收起全部 api</el-dropdown-item-->
+        <!--        >-->
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -237,5 +245,19 @@ export default {
 
 .mt-20 {
   margin-top: 20px;
+}
+
+.top-area {
+  color: #606266;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dee0e3;
+  > div {
+    cursor: default;
+    display: flex;
+    line-height: 35px;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 </style>

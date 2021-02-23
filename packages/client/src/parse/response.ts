@@ -13,7 +13,9 @@ const getResponseType = (responses: {
   if (!responses[SUCCESS_CODE]) {
     return {
       responseInterface: {
+        ref: '',
         type: '',
+        formatType: '',
         imports: [],
         required: false,
         description: '',
