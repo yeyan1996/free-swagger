@@ -69,7 +69,6 @@ freeSwagger({
 | templateFunction | 可选，模版函数                                  | (config:TemplateConfig):  string | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
 | filename         | 可选，生成 api 的文件名                         | (name:string): string            | -           | name 为当前 swagger 中标注的 controller 名     |
 | useJsDoc         | 可选，是否添加 jsdoc 注释                       | boolean                          | -           | false                                          |
-|                  |                                                 |                                  |             |                                                |
 
 **TemplateConfig**
 
@@ -142,7 +141,6 @@ mock({
 | cookie   | 可选，用于给作为 url 的 swagger 源鉴权的 cookie              | string      | -      | -               |
 | mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + "/mock" |
 | wrap     | 可选，是否额外包裹一层标准接口返回格式 e.g {code:"200",msg:xxx,data:xxx} | boolean     | -      | false           |
-|          |                                                              |             |        |                 |
 
 # 常见问题
 

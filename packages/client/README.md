@@ -4,7 +4,7 @@
 
 输入 swagger 文档，返回接口代码片段
 
-free-swagger，free-swagger-cli，free-swagger-extend 是基于 free-swagger-client 封装的上层插件
+free-swagger，free-swagger-cli，free-swagger-extend 都是基于 free-swagger-client 封装的上层插件
 
 # 快速上手
 
@@ -42,8 +42,8 @@ export const addUsingPOST = params =>
 | source           | 必选，swagger 源            | json                     | -           | -                                    |
 | lang             | 可选，生成 api 语言         | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数              | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
-| useJsDoc         | 可选，是否添加 jsdoc 注释   | boolean                  |             | false                                |
-| useInterface     | 可选，是否添加 ts interface | boolean                  |             | false                                |
+| useJsDoc         | 可选，snippet 附加 jsdoc 注释   | boolean                  |             | false                                |
+| useInterface     | 可选，snippet 附加 interface | boolean                  |             | false                                |
 
 - TemplateConfig
 
@@ -169,9 +169,9 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
     return `
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (
-${createParamCode(firstParamCodeMap)}
-${createParamCode(secondParamCodeMap)}
-${createParamCode(thirdParamCodeMap)}
+${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+${createParamCode(secondParamCodeMap) /* path | null */}
+${createParamCode(thirdParamCodeMap) /* body | null */}
 )  => axios.request({
      url: \`${parsedUrl}\`,
      method: "${method}",
@@ -286,9 +286,9 @@ ${createParamCode(thirdParamCodeMap)}
     return `
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (
-${createParamCode(firstParamCodeMap)}
-${createParamCode(secondParamCodeMap)}
-${createParamCode(thirdParamCodeMap)}
+${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+${createParamCode(secondParamCodeMap) /* path | null */}
+${createParamCode(thirdParamCodeMap) /* body | null */}
 ) => axios.request<${IResponse || "any"}>({
      url: \`${parsedUrl}\`,
      method: "${method}",

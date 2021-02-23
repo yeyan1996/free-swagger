@@ -50,5 +50,6 @@
     "svg-sprite-loader": "^4.3.0",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "gitHead": "7ea598373cdfbe6d3d7bb11c7f5c5c6302a5dbea"
 }
