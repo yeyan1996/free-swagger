@@ -53,7 +53,6 @@ export const addUsingPOST = params =>
 | summary      | 注释，对应 swagger 源 summary 字段      | string   | -        | -      |
 | method       | 接口请求方法                                 | string   | -        | -      |
 | name         | 名称，对应 swagger 源 operationId 字段   | string   | -        | -      |
-| deprecated   | 是否废弃，对应 swagger 源 deprecated 字段 | boolean  | -        | -      |
 | responseType | 返回值类型                           | string   | 同 axios responseType | -      |
 | pathParams   | 路径参数                             | string[] | -        |
 | IResponse    | 返回值接口类型                       | string   | -        | -      |
@@ -76,7 +75,6 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
      method,         // 请求方法 {string}
      name,           // api 函数名 {string}
      responseType,   // 响应值种类，同 axios {string}
-     deprecated,     // 是否废弃 {boolean}
      pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
@@ -169,7 +167,6 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
     }
 
     return `
-  ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (
 ${createParamCode(firstParamCodeMap)}
@@ -194,7 +191,6 @@ ${createParamCode(thirdParamCodeMap)}
      method,         // 请求方法 {string}
      name,           // api 函数名 {string}
      responseType,   // 响应值种类，同 axios {string}
-     deprecated,     // 是否废弃 {boolean}
      pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
@@ -288,7 +284,6 @@ ${createParamCode(thirdParamCodeMap)}
     }
 
     return `
-  ${deprecated ? `/**deprecated*/` : ""}
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (
 ${createParamCode(firstParamCodeMap)}

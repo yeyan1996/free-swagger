@@ -196,7 +196,7 @@ export const handleCopyInterface = (source = state.swagger, interfaceName) => {
       );
       return;
     }
-    const code = compileInterfaces(source, interfaceName);
+    const code = compileInterfaces({ source, interfaceName });
     copyMessage(code);
   } catch (e) {
     console.log(e);
@@ -206,7 +206,7 @@ export const handleCopyInterface = (source = state.swagger, interfaceName) => {
 
 export const handleCopyJsDoc = (source = state.swagger, interfaceName) => {
   try {
-    const code = compileJsDocTypeDefs(source, interfaceName);
+    const code = compileJsDocTypeDefs({ source, interfaceName });
     copyMessage(code);
   } catch (e) {
     console.log(e);

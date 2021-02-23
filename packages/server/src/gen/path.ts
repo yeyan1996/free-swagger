@@ -31,9 +31,7 @@ const genPaths = (
   code += `${config.customImportCode}\n`
   code += Object.values(apiCollection)
     .map((api) => {
-      const code = formatCode(config.lang)(
-        genPath(api, config.templateFunction, config.useJsDoc)
-      )
+      const code = formatCode(config.lang)(genPath(api, config))
       const jsDocCode =
         config.useJsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'
       return jsDocCode + code

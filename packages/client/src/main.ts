@@ -29,7 +29,7 @@ const freeSwaggerClient = (
         }\n${responseInterfaceCode}`
       : '') +
     code
-  ).trim()
+  )
 }
 
 export default freeSwaggerClient

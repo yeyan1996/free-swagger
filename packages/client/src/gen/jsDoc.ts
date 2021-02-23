@@ -2,23 +2,22 @@ import { isParsedSchemaObject, ParsedInterface, ParsedSchema } from '../..'
 import { ParsedApi } from '../..'
 import { isEmpty } from 'lodash'
 
-const genJsDocTypeDef = ({
-  name,
-  props,
-  code,
-}: Required<ParsedInterface>): string => {
+const genJsDocTypeDef = ({ name, props, code }: ParsedInterface): string => {
   return code
     ? code
     : `
 /**
  * @typedef {
  *   {
-${Object.entries(props)
-  .map(
-    ([propName, prop]) => ` *     '${propName}': ${prop.formatType}
+${
+  props &&
+  Object.entries(props)
+    .map(
+      ([propName, prop]) => ` *     '${propName}': ${prop.formatType}
 `
-  )
-  .join('')} *   }
+    )
+    .join('')
+} *   }
  * } ${name}
 **/
 `

@@ -43,13 +43,19 @@ const gen = async (
   if (config.lang === 'ts') {
     const interfacePath = path.resolve(dirPath, INTERFACE_PATH)
     fse.ensureFileSync(interfacePath)
-    await fse.writeFile(interfacePath, compileInterfaces(config.source))
+    await fse.writeFile(
+      interfacePath,
+      compileInterfaces({ source: config.source })
+    )
   }
 
   if (config.lang === 'js' && config.useJsDoc) {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
-    await fse.writeFile(jsDocPath, compileJsDocTypeDefs(config.source))
+    await fse.writeFile(
+      jsDocPath,
+      compileJsDocTypeDefs({ source: config.source })
+    )
   }
 
   // 生成 api

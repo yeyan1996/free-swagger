@@ -1,7 +1,6 @@
 import {
   ClientConfig,
   formatCode,
-  genIParams,
   genJsDoc,
   genPath,
   Method,
@@ -9,6 +8,7 @@ import {
 } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
 import { compileInterface } from './interface'
+import { isString } from 'lodash'
 
 const compilePath = (
   config: Required<ClientConfig>,
@@ -30,30 +30,50 @@ const compilePath = (
     paths[url][method]
   )
 
-  const code = formatCode(config.lang)(
-    genPath(parsedApi, config.templateFunction, config.useJsDoc)
-  )
-
+  const code = formatCode(config.lang)(genPath(parsedApi, config))
+  // TODO: 为啥用 gen 不用 compile?
   const jsDocCode = genJsDoc(parsedApi)
 
-  const { IQueryParams, IBodyParams, IPathParams } = genIParams(parsedApi)
-
-  const queryInterfaceCode = definitions![IQueryParams]
-    ? compileInterface(config.source, IQueryParams)
+  const queryInterfaceName = isString(parsedApi.queryParamsInterface.type)
+    ? parsedApi.queryParamsInterface.type
     : ''
-  const bodyInterfaceCode = definitions![IBodyParams]
-    ? compileInterface(config.source, IBodyParams)
+  const bodyInterfaceName = isString(parsedApi.bodyParamsInterface.type)
+    ? parsedApi.bodyParamsInterface.type
     : ''
-  const pathInterfaceCode = definitions![IPathParams]
-    ? compileInterface(config.source, IPathParams)
+  const pathInterfaceName = isString(parsedApi.pathParamsInterface.type)
+    ? parsedApi.pathParamsInterface.type
     : ''
-
-  const responseType =
-    typeof parsedApi.responseInterface.type === 'string'
-      ? parsedApi.responseInterface.type
-      : ''
-  const responseInterfaceCode = definitions![responseType]
-    ? compileInterface(config.source, responseType)
+  const responseInterfaceName = isString(parsedApi.responseInterface.type)
+    ? parsedApi.responseInterface.type
+    : ''
+  const contextMap = new Map()
+  const queryInterfaceCode = definitions![queryInterfaceName]
+    ? compileInterface({
+        source: config.source,
+        interfaceName: queryInterfaceName,
+        contextMap,
+      })
+    : ''
+  const bodyInterfaceCode = definitions![bodyInterfaceName]
+    ? compileInterface({
+        source: config.source,
+        interfaceName: bodyInterfaceName,
+        contextMap,
+      })
+    : ''
+  const pathInterfaceCode = definitions![pathInterfaceName]
+    ? compileInterface({
+        source: config.source,
+        interfaceName: pathInterfaceName,
+        contextMap,
+      })
+    : ''
+  const responseInterfaceCode = definitions![responseInterfaceName]
+    ? compileInterface({
+        source: config.source,
+        interfaceName: responseInterfaceName,
+        contextMap,
+      })
     : ''
 
   // todo 重构 compile 目录下，各个文件的函数的返回值

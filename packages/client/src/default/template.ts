@@ -4,7 +4,6 @@ export const jsTemplate = `({
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
-  deprecated,     // 是否废弃 {boolean}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
@@ -33,7 +32,7 @@ export const jsTemplate = `({
     // 有 query 和 body 参数，可能有 path 参数
     .set(
       multipleParamsCondition,
-      ({ IQueryParams }) => \`queryParams,\`
+      () => \`queryParams,\`
     )
      // 没有 query body 参数，有 path 参数
     .set(
@@ -43,7 +42,7 @@ export const jsTemplate = `({
     // 只有 path 参数
     .set(
       ({ pathParams }) => pathParams.length,
-      ({ pathParams, IPathParams }) =>
+      ({ pathParams }) =>
         \`{\${pathParams.join(',')}},\`
     )
     
@@ -51,7 +50,7 @@ export const jsTemplate = `({
     // 有 path 参数
     .set(
       ({ pathParams }) => pathParams.length,
-      ({ pathParams, IPathParams }) =>
+      ({ pathParams }) =>
         \`{\${pathParams.join(',')}},\`
     )
     // 有 query 和 body 参数，有 path 参数
@@ -97,12 +96,11 @@ export const jsTemplate = `({
   }
  
   return \`
-  \${deprecated ? \`/**deprecated*/\` : ""}
   \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
-    \${createParamCode(firstParamCodeMap)}
-    \${createParamCode(secondParamCodeMap)}
-    \${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    \${createParamCode(secondParamCodeMap) /* path | null */}
+    \${createParamCode(thirdParamCodeMap) /* body | null */}
 )  => axios.request({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",
@@ -119,7 +117,6 @@ export const tsTemplate = `({
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
   responseType,   // 响应值种类，同 axios {string}
-  deprecated,     // 是否废弃 {boolean}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
@@ -154,7 +151,7 @@ export const tsTemplate = `({
     // 没有 query body 参数，有 path 参数
     .set(
       ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-      '_NOOP: {[key:string]: never},'
+      '_NOOP: Record<string,never>,'
     )
      // 只有 path 参数
     .set(
@@ -213,12 +210,11 @@ export const tsTemplate = `({
   }
  
   return \`
-  \${deprecated ? \`/**deprecated*/\` : ""}
-  \${summary ? \`// \${summary}\` : ""}  
+  \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
-    \${createParamCode(firstParamCodeMap)}
-    \${createParamCode(secondParamCodeMap)}
-    \${createParamCode(thirdParamCodeMap)}
+    \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    \${createParamCode(secondParamCodeMap) /* path | null */}
+    \${createParamCode(thirdParamCodeMap) /* body | null */}
 ) => axios.request<\${IResponse || "any"}>({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",

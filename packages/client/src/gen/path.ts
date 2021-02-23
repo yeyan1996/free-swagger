@@ -1,4 +1,9 @@
-import { ParsedSchemaObject, ParsedSchema, TemplateFunction } from '../utils'
+import {
+  ParsedSchemaObject,
+  ParsedSchema,
+  ClientConfig,
+  TemplateFunction,
+} from '../utils'
 import { isEmpty } from 'lodash'
 import { ParsedApi } from '../..'
 
@@ -45,22 +50,21 @@ const genIParams = ({
 
 const genPath = (
   api: ParsedApi,
-  templateFunction: TemplateFunction,
-  useJsDoc: boolean
+  config: Pick<Required<ClientConfig>, 'templateFunction' | 'useJsDoc' | 'lang'>
 ): string => {
   const { IPathParams, IBodyParams, IQueryParams } = genIParams(api)
-  return templateFunction({
+  return config.templateFunction({
     name: api.name,
     method: api.method,
     url: api.url,
-    pathParams: Object.keys(api.pathParamsInterface),
+    responseType: api.responseInterface.isBinary ? 'blob' : 'json',
+    deprecated: api.deprecated,
+    summary: config.useJsDoc && config.lang === 'js' ? '' : api.summary,
     IResponse: api.responseInterface.formatType,
+    pathParams: Object.keys(api.pathParamsInterface),
     IQueryParams,
     IBodyParams,
     IPathParams,
-    responseType: api.responseInterface.isBinary ? 'blob' : 'json',
-    deprecated: useJsDoc ? false : api.deprecated,
-    summary: useJsDoc ? '' : api.summary,
   })
 }
 

@@ -1,36 +1,36 @@
 import freeSwaggerClient, {
-  jsTemplate,
-  tsTemplate,
-  compileInterfaces,
-  compileJsDocTypeDefs
+    jsTemplate,
+    tsTemplate,
+    compileInterfaces,
+    compileJsDocTypeDefs
 } from "../src/main";
 
 describe("freeSwaggerClient", () => {
-  test("code fragment", () => {
-    const codeFragment = freeSwaggerClient(
-      {
-        source: require("./json/swaggerPetstore"),
-        templateFunction: eval(jsTemplate),
-        lang: "js"
-      },
-      "/pet/{petId}",
-      "get"
-    );
-    expect(codeFragment).toMatchSnapshot();
-  });
+    test("code fragment", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(jsTemplate),
+                lang: "js"
+            },
+            "/pet/{petId}",
+            "get"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
-  test("code fragment2", () => {
-    const codeFragment = freeSwaggerClient(
-      {
-        source: require("./json/swaggerPetstore"),
-        templateFunction: eval(jsTemplate),
-        lang: "js"
-      },
-      "/pet",
-      "post"
-    );
-    expect(codeFragment).toMatchSnapshot();
-  });
+    test("code fragment2", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(jsTemplate),
+                lang: "js"
+            },
+            "/pet",
+            "post"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
     test("code fragment with js doc", () => {
         const codeFragment = freeSwaggerClient(
@@ -38,7 +38,7 @@ describe("freeSwaggerClient", () => {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
                 lang: "js",
-                useJsDoc:true
+                useJsDoc: true
             },
             "/user/{username}/{qqq}",
             "put"
@@ -46,31 +46,31 @@ describe("freeSwaggerClient", () => {
         expect(codeFragment).toMatchSnapshot();
     });
 
-  test("ts code fragment with get method", () => {
-    const codeFragment = freeSwaggerClient(
-      {
-        source: require("./json/swaggerPetstore"),
-        templateFunction: eval(tsTemplate),
-        lang: "ts"
-      },
-      "/pet/{petId}",
-      "get"
-    );
-    expect(codeFragment).toMatchSnapshot();
-  });
+    test("ts code fragment with get method", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(tsTemplate),
+                lang: "ts"
+            },
+            "/pet/{petId}",
+            "get"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
-  test("ts code fragment with post method", () => {
-    const codeFragment = freeSwaggerClient(
-      {
-        source: require("./json/swaggerPetstore"),
-        templateFunction: eval(tsTemplate),
-        lang: "ts"
-      },
-      "/pet/{petId}/uploadImage",
-      "post"
-    );
-    expect(codeFragment).toMatchSnapshot();
-  });
+    test("ts code fragment with post method", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(tsTemplate),
+                lang: "ts"
+            },
+            "/pet/{petId}/uploadImage",
+            "post"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
     test("ts code fragment with interface", () => {
         const codeFragment = freeSwaggerClient(
@@ -105,7 +105,8 @@ describe("freeSwaggerClient", () => {
             {
                 source: require("./json/uberApi.json"),
                 templateFunction: eval(tsTemplate),
-                lang: "ts"
+                lang: "ts",
+                useInterface: true
             },
             "/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical",
             "post"
@@ -114,39 +115,43 @@ describe("freeSwaggerClient", () => {
     });
 
     test("generate full js doc", () => {
-        const codeFragment = compileJsDocTypeDefs(require("./json/swaggerPetstore"));
+        const codeFragment = compileJsDocTypeDefs({source: require("./json/swaggerPetstore")});
         expect(codeFragment).toMatchSnapshot();
     });
 
 
-  test("generate full ts interface", () => {
-    const codeFragment = compileInterfaces(require("./json/swaggerPetstore"));
-    expect(codeFragment).toMatchSnapshot();
-  });
+    test("generate full ts interface", () => {
+        const codeFragment = compileInterfaces({source: require("./json/swaggerPetstore")});
+        expect(codeFragment).toMatchSnapshot();
+    });
 
     test("generate full ts interface with generic", () => {
-        const codeFragment = compileInterfaces(require("./json/generic.json"));
+        const codeFragment = compileInterfaces({source: require("./json/generic.json")});
         expect(codeFragment).toMatchSnapshot();
     });
 
     test("generate full ts interface with special generic", () => {
-        const codeFragment = compileInterfaces(require("./json/uberApi.json"));
+        const codeFragment = compileInterfaces({source: require("./json/uberApi.json")});
         expect(codeFragment).toMatchSnapshot();
     });
 
 
     test("generate ts interface snippet", () => {
-    const codeFragment = compileInterfaces(
-      require("./json/swaggerPetstore"),
-      "Category"
-    );
-    expect(codeFragment).toMatchSnapshot();
-  });
+        const codeFragment = compileInterfaces(
+            {
+                source: require("./json/swaggerPetstore"),
+                interfaceName: "Category"
+            }
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
 
     test("generate ts interface snippet width generic", () => {
         const codeFragment = compileInterfaces(
-            require("./json/generic.json"),
-            "PageInfo«List«Qwe»»"
+            {
+                source: require("./json/generic.json"),
+                interfaceName: "PageInfo«List«Qwe»»"
+            }
         );
         expect(codeFragment).toMatchSnapshot();
     });

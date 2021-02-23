@@ -14,13 +14,17 @@ const parseParameter = (
   parametersImports: string[]
 ): ParsedSchemaObject => {
   const imports: string[] = []
+  let type = parameter.type
   let formatType = ''
   let isBinary = false
+  let ref = ''
   // 引用类型
   if (parameter.schema || parameter.items) {
     const parsedSchemaObject = schemaToTsType(
       parameter.schema || parameter.items
     )
+    type = parsedSchemaObject.type
+    ref = parsedSchemaObject.ref
     formatType = parsedSchemaObject.formatType
     isBinary = !!parsedSchemaObject.isBinary
     imports.push(...parsedSchemaObject.imports)
@@ -29,7 +33,8 @@ const parseParameter = (
     formatType = TYPE_MAP[parameter.type] // 基本类型
   }
   return {
-    type: parameter.type,
+    type,
+    ref,
     formatType,
     imports,
     isBinary,
@@ -47,8 +52,8 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
       bodyParamsInterface: {},
     }
 
-  const pathParamsInterface: { [key: string]: ParsedSchemaObject } = {}
-  const queryParamsInterface: { [key: string]: ParsedSchemaObject } = {}
+  const pathParamsInterface: Record<string, ParsedSchemaObject> = {}
+  const queryParamsInterface: Record<string, ParsedSchemaObject> = {}
   let bodyParamsInterface: ParsedSchemaObject = <ParsedSchemaObject>{}
   const imports: string[] = []
   ;(paramsSchema as OpenAPIV2.Parameter[]).forEach((parameter) => {
@@ -68,6 +73,7 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
           type: parameter.type,
           formatType: 'FormData',
           imports: [],
+          ref: '',
           isBinary: true,
           description: '',
           required: true,
