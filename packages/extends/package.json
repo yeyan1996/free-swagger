@@ -2,6 +2,15 @@
   "name": "free-swagger-extends",
   "version": "4.0.1",
   "description": "free-swagger for tampermonkey",
+  "keywords": [
+    "swagger",
+    "tampermonkey"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/yeyan1996/free-swagger"
+  },
+  "license": "MIT",
   "author": "yeyan1996",
   "scripts": {
     "postinstall": "patch-package",

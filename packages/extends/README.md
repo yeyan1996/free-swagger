@@ -1,5 +1,8 @@
 # free-swagger-extends
 
+![](https://img.shields.io/npm/v/free-swagger-extends)
+
+
 根据 swagger 文档自动生成前端接口代码片段
 
 free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client) 开发的油猴脚本，增强浏览器端对于 swagger 文档的处理行为

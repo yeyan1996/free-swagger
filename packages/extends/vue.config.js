@@ -65,7 +65,7 @@ module.exports = {
         namespace: "http://tampermonkey.net/",
         description: pkg.description,
         version: pkg.version,
-        include: ["swagger", "/doc.html"], // 设置脚本匹配网页正则
+        include: ["/swagger", "/doc.html"], // 设置脚本匹配网页正则
         scriptName: "userScript.js"
       })
     ]
