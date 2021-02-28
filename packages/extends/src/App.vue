@@ -1,19 +1,32 @@
 <template>
-  <div @click="collapse = !collapse" v-if="collapse" class="collapse">
-    <i class="el-icon-setting"></i>
+  <div @click="collapse = !collapse" v-if="collapse" class="collapse close">
+    <svg-icon name="code"></svg-icon>
   </div>
 
   <div id="extends-app" v-else>
     <api-options ref="apiOptions"></api-options>
     <div class="operation-container">
-      <el-link @click="handleCopyPath()" :underline="false">复制url</el-link>
-      <el-link @click="handleCopyApi()" :underline="false">复制snippet</el-link>
-      <el-link @click="handleCopyFake()" :underline="false"
-        >复制模拟数据</el-link
-      >
+      <el-button type="primary" @click="handleCopyApi()" class="copy-code">
+        <div class="flex justify-center">
+          <svg-icon name="copy-white"></svg-icon>
+          <span class="ml-3">复制代码块</span>
+        </div>
+      </el-button>
+      <div class="divider"></div>
+      <el-link @click="handleCopyPath()" :underline="false">
+        <svg-icon name="copy-gray" class="copy"></svg-icon>
+        <span class="ml-3">复制url</span>
+      </el-link>
+      <div class="divider"></div>
+      <el-link @click="handleCopyFake()" :underline="false">
+        <svg-icon name="copy-gray" class="copy"></svg-icon>
+        <span class="ml-3">复制模拟数据</span>
+      </el-link>
+      <div class="divider"></div>
       <div class="switch-container">
-        <span class="text">语言：</span>
+        <span class="text">语言</span>
         <el-switch
+          class="ml-10"
           v-model="state.storage.currentLanguage"
           active-value="ts"
           inactive-value="js"
@@ -26,11 +39,13 @@
       </div>
     </div>
 
-    <div class="collapse">
-      <div class="right">
-        <more-setting class="more-setting"></more-setting>
-      </div>
-      <i class="el-icon-caret-left" @click="collapse = !collapse"></i>
+    <div class="collapse open">
+      <more-setting class="more-setting"></more-setting>
+      <svg-icon
+        name="collapse"
+        @click="collapse = !collapse"
+        class="collapse-icon"
+      ></svg-icon>
     </div>
   </div>
 </template>
@@ -176,28 +191,19 @@ export default {
 
 <style lang="scss" scoped>
 .collapse {
-  height: 50px;
-  position: fixed;
-  right: 10px;
-  bottom: -3px;
   display: flex;
   justify-content: center;
   align-items: center;
-  > i {
-    font-size: 20px;
-    color: #409eff;
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 .operation-container {
-  min-width: 600px;
+  min-width: 520px;
   display: flex;
   align-items: center;
-  > a {
-    margin-right: 15px;
-  }
 }
 #extends-app {
+  height: 55px;
+  align-items: center;
   display: flex;
   position: fixed;
   z-index: 100;
@@ -205,29 +211,17 @@ export default {
   bottom: 0;
   width: 100%;
   padding: 10px;
-  background-color: #f1f1f1;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 2px 1px rgba(0, 0, 0, 0.12);
 }
 
 .switch-container {
   display: flex;
   align-items: center;
-  margin-right: 20px;
   .text {
     font-weight: bold;
     color: #606266;
     font-size: 14px;
-  }
-}
-
-.right {
-  width: 100% !important;
-  margin-right: 20px;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .more-setting {
-    margin-right: 20px;
   }
 }
 
@@ -241,5 +235,39 @@ export default {
 
 ::v-deep .el-switch__label--right {
   color: #409eff !important;
+}
+
+.divider {
+  margin: 0 12px;
+  border-left: 1px solid #bdbdbd;
+  height: 27px;
+}
+
+.open {
+  position: fixed;
+  margin-right: 25px;
+  right: 0;
+  .collapse-icon {
+    margin-left: 25px;
+    font-size: 30px;
+  }
+}
+
+.copy-code {
+  width: 135px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.close {
+  position: fixed;
+  right: 17px;
+  bottom: 3px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2f80ed;
+  font-size: 25px;
 }
 </style>

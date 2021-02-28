@@ -42,7 +42,7 @@ const compileInterface = ({
       if (TYPE_MAP[node.name] || !node.props) {
         return
       }
-      // 复制 snippet 的 interface 时，递归生成依赖的所有 interface
+      // 复制代码块的 interface 时，递归生成依赖的所有 interface
       code += Object.values(node.props)
         .filter((prop) => prop.ref)
         .reduce(

@@ -1,38 +1,49 @@
 <template>
   <div class="more-setting">
     <el-dropdown placement="top">
-      <el-button type="primary" size="mini">
-        更多配置<i class="el-icon-arrow-down el-icon--right"></i>
+      <el-button size="mini" plain>
+        <div class="flex items-center">
+          <svg-icon name="setting" class="text-16"></svg-icon>
+          <span class="ml-3">更多配置</span>
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </div>
       </el-button>
       <el-dropdown-menu slot="dropdown">
         <div class="top-area">
-          <div>snippet 附加功能</div>
-          <div @click.stop>
-            <span class="js-doc-text">JS Doc</span>
-            <el-switch
-              v-model="state.storage.useJsDoc"
-              active-text="开"
-              inactive-text="关"
-            ></el-switch>
-          </div>
-          <div @click.stop>
-            <span class="js-doc-text">Interface</span>
-            <el-switch
-              v-model="state.storage.useInterface"
-              active-text="开"
-              inactive-text="关"
-            ></el-switch>
-          </div>
+          <template v-if="state.storage.currentLanguage === 'js'">
+            <div @click.stop class="switch">
+              <span class="js-doc-text normal">代码块 JS Doc</span>
+              <el-switch
+                v-model="state.storage.useJsDoc"
+                active-text="开"
+                inactive-text="关"
+              ></el-switch>
+            </div>
+            <el-dropdown-item @click.native="handleCopyJsDoc()" class="normal">
+              复制全量 JS Doc
+            </el-dropdown-item>
+          </template>
+          <template v-else>
+            <div @click.stop class="switch">
+              <span class="js-doc-text normal">代码块 Interface</span>
+              <el-switch
+                v-model="state.storage.useInterface"
+                active-text="开"
+                inactive-text="关"
+              ></el-switch>
+            </div>
+            <el-dropdown-item
+              @click.native="handleCopyInterface()"
+              class="normal"
+            >
+              复制全量 Interface
+            </el-dropdown-item>
+          </template>
         </div>
         <el-dropdown-item @click.native="dialog = true"
           >编辑模版</el-dropdown-item
         >
-        <el-dropdown-item @click.native="handleCopyJsDoc()"
-          >复制全量 JS Doc（JS）</el-dropdown-item
-        >
-        <el-dropdown-item @click.native="handleCopyInterface()"
-          >复制全量 Interface（TS）</el-dropdown-item
-        >
+
         <!--        <el-dropdown-item @click.native="handleCopySchema"-->
         <!--          >复制响应数据schema</el-dropdown-item-->
         <!--        >-->
@@ -54,17 +65,27 @@
       center
       :modal-append-to-body="false"
       width="1000px"
-      title="编辑 snippet 模版"
+      title="编辑代码块模版"
     >
       <el-form :model="form" label-width="80px">
         <el-form-item label="模版语言">
-          <el-select
-            v-model="state.storage.exportLanguage"
-            @change="handleLangChange"
-          >
-            <el-option label="javascript" value="js"></el-option>
-            <el-option label="typescript" value="ts"></el-option>
-          </el-select>
+          <div class="flex justify-between">
+            <el-select
+              v-model="state.storage.exportLanguage"
+              @change="handleLangChange"
+            >
+              <el-option label="javascript" value="js"></el-option>
+              <el-option label="typescript" value="ts"></el-option>
+            </el-select>
+
+            <el-button
+              size="small"
+              @click="handleResetTemplate"
+              type="warning"
+              plain
+              >重置为默认模版</el-button
+            >
+          </div>
         </el-form-item>
         <el-form-item>
           <span slot="label">
@@ -78,25 +99,12 @@
           >
           <!--代码编辑器-->
           <div id="textarea"></div>
-
-          <div class="mt-20">
-            <el-button
-              size="small"
-              @click="handleResetJs"
-              :disabled="state.storage.exportLanguage !== 'js'"
-              >重置为默认js模版</el-button
-            >
-            <el-button
-              size="small"
-              @click="handleResetTs"
-              :disabled="state.storage.exportLanguage !== 'ts'"
-              >重置为默认ts模版</el-button
-            >
-          </div>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleSubmit">保存</el-button>
-          <el-button @click="dialog = false">取消</el-button>
+          <div class="btn-container">
+            <el-button @click="dialog = false">取消</el-button>
+            <el-button type="primary" @click="handleSubmit">保存</el-button>
+          </div>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -197,13 +205,14 @@ export default {
       );
       blockList.forEach(block => block.firstChild.click());
     },
-    async handleResetJs() {
-      this.form.jsTemplate = jsTemplate;
-      this.instance?.setValue(jsTemplate);
-    },
-    async handleResetTs() {
-      this.form.tsTemplate = tsTemplate;
-      this.instance?.setValue(tsTemplate);
+    async handleResetTemplate() {
+      if (state.storage.exportLanguage === "js") {
+        this.form.jsTemplate = jsTemplate;
+        this.instance?.setValue(jsTemplate);
+      } else {
+        this.form.tsTemplate = tsTemplate;
+        this.instance?.setValue(tsTemplate);
+      }
     },
     handleLink() {
       window.open(
@@ -222,6 +231,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.normal {
+  font-size: 14px;
+}
 .more-setting {
   display: inline-block;
 }
@@ -249,7 +261,6 @@ export default {
 
 .top-area {
   color: #606266;
-  padding: 0 20px;
   margin-bottom: 10px;
   border-bottom: 1px solid #dee0e3;
   > div {
@@ -258,6 +269,21 @@ export default {
     line-height: 35px;
     align-items: center;
     justify-content: space-between;
+  }
+  .title {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+  .switch {
+    padding: 0 20px;
+  }
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-right: 70px;
+  .el-button {
+    width: 135px;
   }
 }
 </style>

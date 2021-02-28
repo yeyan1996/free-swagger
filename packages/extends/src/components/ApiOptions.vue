@@ -188,8 +188,17 @@ export default {
     text-overflow: ellipsis;
   }
 }
+.search,
+::v-deep .el-input.el-input.el-input {
+  height: 100%;
+  width: 550px;
+}
+
 .search {
-  width: 400px;
   margin-right: 12px;
+}
+
+::v-deep input {
+  height: 100% !important;
 }
 </style>
