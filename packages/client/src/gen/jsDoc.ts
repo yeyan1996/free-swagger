@@ -5,8 +5,7 @@ import { isEmpty } from 'lodash'
 const genJsDocTypeDef = ({ name, props, code }: ParsedInterface): string => {
   return code
     ? code
-    : `
-/**
+    : `/**
  * @typedef {
  *   {
 ${
@@ -56,25 +55,21 @@ const genJsDocSchema = (paramsInterface?: ParsedSchema): string => {
   }
 }
 
-const genIParams = ({
-  pathParamsInterface,
+const genJsDoc = ({
   queryParamsInterface,
   bodyParamsInterface,
-}: ParsedApi): {
-  IPathParams: string
-  IQueryParams: string
-  IBodyParams: string
-} => ({
-  IQueryParams: genJsDocSchema(queryParamsInterface),
-  IBodyParams: genJsDocSchema(bodyParamsInterface),
-  IPathParams: genJsDocSchema(pathParamsInterface),
-})
-
-const genJsDoc = (api: ParsedApi): string => {
-  const { IBodyParams, IQueryParams, IPathParams } = genIParams(api)
+  pathParamsInterface,
+  deprecated,
+  summary,
+}: ParsedApi): string => {
+  const { IBodyParams, IQueryParams, IPathParams } = {
+    IQueryParams: genJsDocSchema(queryParamsInterface),
+    IBodyParams: genJsDocSchema(bodyParamsInterface),
+    IPathParams: genJsDocSchema(pathParamsInterface),
+  }
   const pathCode = IPathParams
     ? `\n * @param {Object} pathParams
-${Object.entries(api.pathParamsInterface)
+${Object.entries(pathParamsInterface)
   .map(
     ([propName, prop]) =>
       // format
@@ -143,13 +138,13 @@ ${Object.entries(api.pathParamsInterface)
   ) => {
     let code = defaultCode
     for (const [condition, codeFunction] of conditionMap.entries()) {
-      const queryDescription = api.queryParamsInterface.description
-        ? `-${api.queryParamsInterface.description}`
+      const queryDescription = queryParamsInterface.description
+        ? `-${queryParamsInterface.description}`
         : ''
-      const bodyDescription = api.bodyParamsInterface.description
-        ? `-${api.bodyParamsInterface.description}`
+      const bodyDescription = bodyParamsInterface.description
+        ? `-${bodyParamsInterface.description}`
         : ''
-      const pathParams = Object.keys(api.pathParamsInterface)
+      const pathParams = Object.keys(pathParamsInterface)
 
       const res = condition({
         IQueryParams,
@@ -174,14 +169,13 @@ ${Object.entries(api.pathParamsInterface)
     return code
   }
 
-  return `
-/** ${
-    api.deprecated
+  return `/** ${
+    deprecated
       ? `
  * @deprecated`
       : ''
   }
- * @description ${api.summary} ${createParamCode(
+ * @description ${summary} ${createParamCode(
     firstParamCodeMap
   )} ${createParamCode(secondParamCodeMap)} ${createParamCode(
     thirdParamCodeMap

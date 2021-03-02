@@ -37,3 +37,40 @@
 .custom-highlight-anime {
   animation: highlight 5s infinite;
 }
+
+.el-button--primary.el-button--primary.el-button--primary{
+  background: #2F80ED !important;
+}
+
+.el-button.el-button.el-button{
+  padding:6px 16px;
+  height:35px;
+}
+
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+
+.ml-3{
+  margin-left: 3px;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.text-16{
+  font-size: 16px;
+}

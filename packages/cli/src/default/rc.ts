@@ -20,7 +20,10 @@ const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
-  client: Omit<Required<ClientConfig<string>>, 'filename' | 'useInterface'> & {
+  client: Omit<
+    Required<ClientConfig<string>>,
+    'filename' | 'interface' | 'typedef' | 'recursive'
+  > & {
     tsTemplate: string
     jsTemplate: string
   }
@@ -84,7 +87,7 @@ class Rc {
         source: 'https://petstore.swagger.io/v2/swagger.json',
         lang: 'js',
         templateFunction: eval(jsTemplate),
-        useJsDoc: true,
+        jsDoc: true,
         tsTemplate,
         jsTemplate,
       },
@@ -107,14 +110,14 @@ class Rc {
     }
   }
 
-  // 从 rc 文件中生成 free-swagger-cli 参数
+  // 从 rc 文件中生成 free-swagger-client 参数
   createFreeSwaggerParams(
     { client, server }: RcConfig = this.configData
   ): Required<ServerConfig> {
     const { lang, templateFunction } = client
     const { customImportCodeJs, customImportCodeTs } = server
     return {
-      ...pick(client, ['source', 'lang', 'useJsDoc']),
+      ...pick(client, ['source', 'lang', 'jsDoc']),
       ...pick(server, ['root', 'cookie']),
       templateFunction,
       filename: (name) => camelcase(name),

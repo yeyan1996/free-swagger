@@ -7,15 +7,17 @@ import {
   parsePath,
 } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
-import { compileInterface } from './interface'
 import { isString } from 'lodash'
+import { compileJsDocTypeDefs } from './jsDoc'
+import { compileInterfaces } from './interface'
 
 const compilePath = (
   config: Required<ClientConfig>,
   url: string,
   method: Method
 ) => {
-  const { definitions, paths, basePath } = config.source
+  const { source } = config
+  const { definitions, paths, basePath } = source
   // api 名字
   const name: OpenAPIV2.OperationObject['operationId'] =
     paths[url][method].operationId
@@ -30,9 +32,8 @@ const compilePath = (
     paths[url][method]
   )
 
-  const code = formatCode(config.lang)(genPath(parsedApi, config))
-  // TODO: 为啥用 gen 不用 compile?
-  const jsDocCode = genJsDoc(parsedApi)
+  const code = genPath(parsedApi, config)
+  const jsDocCode = genJsDoc(parsedApi) // js doc 和生成普通 code 的入参相同
 
   const queryInterfaceName = isString(parsedApi.queryParamsInterface.type)
     ? parsedApi.queryParamsInterface.type
@@ -46,45 +47,79 @@ const compilePath = (
   const responseInterfaceName = isString(parsedApi.responseInterface.type)
     ? parsedApi.responseInterface.type
     : ''
-  const contextMap = new Map()
+
+  const contextMapInterface = new Map()
   const queryInterfaceCode = definitions![queryInterfaceName]
-    ? compileInterface({
-        source: config.source,
+    ? compileInterfaces({
+        source,
         interfaceName: queryInterfaceName,
-        contextMap,
+        contextMap: contextMapInterface,
+        recursive: config.recursive,
       })
     : ''
   const bodyInterfaceCode = definitions![bodyInterfaceName]
-    ? compileInterface({
-        source: config.source,
+    ? compileInterfaces({
+        source,
         interfaceName: bodyInterfaceName,
-        contextMap,
+        contextMap: contextMapInterface,
+        recursive: config.recursive,
       })
     : ''
   const pathInterfaceCode = definitions![pathInterfaceName]
-    ? compileInterface({
-        source: config.source,
+    ? compileInterfaces({
+        source,
         interfaceName: pathInterfaceName,
-        contextMap,
+        contextMap: contextMapInterface,
+        recursive: config.recursive,
       })
     : ''
   const responseInterfaceCode = definitions![responseInterfaceName]
-    ? compileInterface({
-        source: config.source,
+    ? compileInterfaces({
+        source,
         interfaceName: responseInterfaceName,
-        contextMap,
+        contextMap: contextMapInterface,
+        recursive: config.recursive,
+      })
+    : ''
+
+  const contextMapJsDoc = new Map()
+  const queryJsDocCode = definitions![queryInterfaceName]
+    ? compileJsDocTypeDefs({
+        source,
+        interfaceName: queryInterfaceName,
+        contextMap: contextMapJsDoc,
+        recursive: config.recursive,
+      })
+    : ''
+  const bodyJsDocCode = definitions![bodyInterfaceName]
+    ? compileJsDocTypeDefs({
+        source,
+        interfaceName: bodyInterfaceName,
+        contextMap: contextMapJsDoc,
+        recursive: config.recursive,
+      })
+    : ''
+  const pathJsDocCode = definitions![pathInterfaceName]
+    ? compileJsDocTypeDefs({
+        source,
+        interfaceName: pathInterfaceName,
+        contextMap: contextMapJsDoc,
+        recursive: config.recursive,
       })
     : ''
 
   // todo 重构 compile 目录下，各个文件的函数的返回值
   return {
-    code,
+    code: formatCode(config.lang)(code),
     jsDocCode,
     parsedApi,
     queryInterfaceCode,
     bodyInterfaceCode,
     pathInterfaceCode,
     responseInterfaceCode,
+    queryJsDocCode,
+    bodyJsDocCode,
+    pathJsDocCode,
   }
 }
 

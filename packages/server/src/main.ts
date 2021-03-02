@@ -49,7 +49,7 @@ const gen = async (
     )
   }
 
-  if (config.lang === 'js' && config.useJsDoc) {
+  if (config.lang === 'js' && config.jsDoc) {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
     await fse.writeFile(

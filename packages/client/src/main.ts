@@ -20,16 +20,41 @@ const freeSwaggerClient = (
     bodyInterfaceCode,
     pathInterfaceCode,
     responseInterfaceCode,
+    queryJsDocCode,
+    bodyJsDocCode,
+    pathJsDocCode,
   } = compilePath(mergedConfig, url!, method!)
-  return (
-    (config.useJsDoc && config.lang === 'js' ? jsDocCode : '') +
-    (config.useInterface && config.lang === 'ts'
-      ? `${
-          queryInterfaceCode + bodyInterfaceCode + pathInterfaceCode
-        }\n${responseInterfaceCode}`
-      : '') +
-    code
-  )
+
+  const useJsDoc = config.jsDoc && config.lang === 'js'
+  const useInterface = config.interface && config.lang === 'ts'
+
+  if (useJsDoc) {
+    if (config.typedef) {
+      return (
+        [queryJsDocCode, bodyJsDocCode, pathJsDocCode]
+          .filter(Boolean)
+          .join(`\n`) + ['\n', jsDocCode, code].join('')
+      )
+    } else {
+      return [jsDocCode, code].join('')
+    }
+  }
+  if (useInterface) {
+    if (config.interface) {
+      return [
+        queryInterfaceCode,
+        bodyInterfaceCode,
+        pathInterfaceCode,
+        responseInterfaceCode,
+        code,
+      ]
+        .filter(Boolean)
+        .join(`\n`)
+    } else {
+      return code
+    }
+  }
+  return code
 }
 
 export default freeSwaggerClient

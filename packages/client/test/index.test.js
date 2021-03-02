@@ -38,7 +38,38 @@ describe("freeSwaggerClient", () => {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
                 lang: "js",
-                useJsDoc: true
+                jsDoc: true,
+            },
+            "/user/{username}/{qqq}",
+            "put"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
+
+    test("code fragment with js doc and typedef", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(jsTemplate),
+                lang: "js",
+                jsDoc: true,
+                typedef:true
+            },
+            "/user/{username}/{qqq}",
+            "put"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
+
+    test("code fragment with js doc and recursive typedef", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/swaggerPetstore"),
+                templateFunction: eval(jsTemplate),
+                lang: "js",
+                jsDoc: true,
+                typedef:true,
+                recursive:true
             },
             "/user/{username}/{qqq}",
             "put"
@@ -78,7 +109,22 @@ describe("freeSwaggerClient", () => {
                 source: require("./json/generic.json"),
                 templateFunction: eval(tsTemplate),
                 lang: "ts",
-                useInterface: true
+                interface: true,
+            },
+            "/companies",
+            "get"
+        );
+        expect(codeFragment).toMatchSnapshot();
+    });
+
+    test("ts code fragment with recursive interface", () => {
+        const codeFragment = freeSwaggerClient(
+            {
+                source: require("./json/generic.json"),
+                templateFunction: eval(tsTemplate),
+                lang: "ts",
+                interface: true,
+                recursive:true
             },
             "/companies",
             "get"
@@ -106,7 +152,8 @@ describe("freeSwaggerClient", () => {
                 source: require("./json/uberApi.json"),
                 templateFunction: eval(tsTemplate),
                 lang: "ts",
-                useInterface: true
+                interface: true,
+                recursive:true
             },
             "/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical",
             "post"

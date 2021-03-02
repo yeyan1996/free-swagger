@@ -7,7 +7,7 @@ import chalk from 'chalk'
 import assert from 'assert'
 
 export interface ServerConfig<T = string | OpenAPIV2.Document>
-  extends Omit<ClientConfig, 'source' | 'useInterface'> {
+  extends Omit<ClientConfig, 'source' | 'interface' | 'typedef' | 'recursive'> {
   source: T
   cookie?: string
   root?: string

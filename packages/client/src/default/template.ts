@@ -12,10 +12,10 @@ export const jsTemplate = `({
   // js template
 
   // 处理路径参数 \`/pet/{id}\` => \`/pet/\${id}\`
- const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
+  const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
 
   // 有 query 和 body 参数
- const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
+  const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
     IQueryParams && IBodyParams
     
   const firstParamCodeMap = new Map()
@@ -120,16 +120,16 @@ export const tsTemplate = `({
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
-  IPathParams,     // 请求路径参数 ts 类型
+  IPathParams,    // 请求路径参数 ts 类型
   IResponse,      // 响应参数 ts 类型
 }) => {
   // ts template
 
   // 处理路径参数 \`/pet/{id}\` => \`/pet/\${id}\`
- const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
+  const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
  
- // 有 query 和 body 参数
- const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
+  // 有 query 和 body 参数
+  const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
     IQueryParams && IBodyParams
     
   const firstParamCodeMap = new Map()

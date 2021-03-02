@@ -33,8 +33,8 @@ export const state = new Vue({
       storage: {
         jsTemplate,
         tsTemplate,
-        useJsDoc: false,
-        useInterface: false,
+        jsDoc: false,
+        interface: false,
         exportLanguage: "js",
         currentLanguage: "js"
       },
@@ -118,8 +118,10 @@ export const handleCopyApi = (
       {
         source,
         lang: storage.currentLanguage,
-        useJsDoc: storage.useJsDoc,
-        useInterface: storage.useInterface,
+        jsDoc: storage.jsDoc,
+        typedef: storage.typedef,
+        interface: storage.interface,
+        recursive: storage.recursive,
         templateFunction: eval(
           storage.currentLanguage === "js"
             ? storage.jsTemplate
@@ -187,15 +189,6 @@ export const handleCopyFake = (
 
 export const handleCopyInterface = (source = state.swagger, interfaceName) => {
   try {
-    const hasGenerics =
-      interfaceName && parseInterfaceName(interfaceName).generics?.length;
-
-    if (hasGenerics) {
-      Message.warning(
-        "复制失败，interface 片段会丢失上下文，请选择复制 interface"
-      );
-      return;
-    }
     const code = compileInterfaces({ source, interfaceName });
     copyMessage(code);
   } catch (e) {
@@ -204,7 +197,10 @@ export const handleCopyInterface = (source = state.swagger, interfaceName) => {
   }
 };
 
-export const handleCopyJsDoc = (source = state.swagger, interfaceName) => {
+export const handleCopyJsDocTypeDef = (
+  source = state.swagger,
+  interfaceName
+) => {
   try {
     const code = compileJsDocTypeDefs({ source, interfaceName });
     copyMessage(code);

@@ -1,9 +1,9 @@
 import { createDom } from "./dom-utils";
 
 const cdnList = [
-  "https://sf16-eacdn-tos.pstatp.com/obj/eaoffice/prettier/standalone.js",
-  "https://sf16-eacdn-tos.pstatp.com/obj/eaoffice/prettier/parser-babylon.js",
-  "https://sf16-eacdn-tos.pstatp.com/obj/eaoffice/prettier/parser-typescript.js"
+  "https://unpkg.com/prettier@2.2.1/standalone.js",
+  "https://unpkg.com/prettier@2.2.1/parser-babel.js",
+  "https://unpkg.com/prettier@2.2.1/parser-typescript.js"
 ];
 
 export const start = (mountElementId, prepareFns = []) =>
