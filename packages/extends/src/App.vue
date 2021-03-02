@@ -195,6 +195,7 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background: white;
 }
 .operation-container {
   min-width: 520px;
@@ -245,7 +246,7 @@ export default {
 
 .open {
   position: fixed;
-  margin-right: 25px;
+  padding-right: 25px;
   right: 0;
   .collapse-icon {
     margin-left: 25px;

@@ -1,35 +1,10 @@
-import { OpenAPIV2 } from 'openapi-types'
-import { ParsedInterface } from '../parse/interface'
-import { compileInterface, compileInterfaces } from './interface'
+import { CompileTypes, compileTypes } from './type'
 
-const compileJsDocTypeDef = ({
-  source,
-  interfaceName,
-  contextMap,
-}: {
-  source: OpenAPIV2.Document
-  interfaceName: string
-  contextMap: Map<string, ParsedInterface>
-}): string =>
-  compileInterface({
-    source,
-    interfaceName,
-    contextMap,
-    compileType: 'jsDoc',
+// 生成全量/部分 jsDoc type 代码
+const compileJsDocTypeDefs: CompileTypes = (arg) =>
+  compileTypes({
+    ...arg,
+    type: 'jsDoc',
   })
 
-// 生成全量 jsDoc type 代码
-const compileJsDocTypeDefs = ({
-  source,
-  interfaceName,
-}: {
-  source: OpenAPIV2.Document
-  interfaceName?: string
-}): string =>
-  compileInterfaces({
-    source,
-    interfaceName,
-    compileType: 'jsDoc',
-  })
-
-export { compileJsDocTypeDefs, compileJsDocTypeDef }
+export { compileJsDocTypeDefs }

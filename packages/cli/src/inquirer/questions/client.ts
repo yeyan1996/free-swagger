@@ -41,14 +41,14 @@ export const lang = {
   },
 }
 
-export const useJsDoc = {
-  name: 'useJsDoc',
+export const jsDoc = {
+  name: 'jsDoc',
   type: 'confirm',
   message: '是否使用 Js Doc？',
-  default: rc.configData.client.useJsDoc,
+  default: rc.configData.client.jsDoc,
   when: ({ lang }: any) => lang === 'js',
   callback: (input: boolean) => {
-    rc.merge({ useJsDoc: input })
+    rc.merge({ jsDoc: input ? 'simple' : false })
     rc.save()
   },
 }

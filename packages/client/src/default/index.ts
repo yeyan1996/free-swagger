@@ -1,13 +1,15 @@
 import { ClientConfig } from '../utils'
-import { jsTemplate } from './template'
+import { jsTemplate, tsTemplate } from './template'
 
 export const mergeDefaultParams = (
   config: ClientConfig
 ): Required<ClientConfig> => ({
-  useJsDoc: false,
-  useInterface: false,
+  recursive: false,
+  jsDoc: false,
+  interface: false,
+  typedef: false,
   lang: 'js',
-  templateFunction: eval(jsTemplate),
+  templateFunction: config.lang === 'js' ? eval(jsTemplate) : eval(tsTemplate),
   ...config,
 })
 

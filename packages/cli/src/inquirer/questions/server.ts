@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { lang, source, templateFunction, useJsDoc } from './client'
+import { lang, source, templateFunction, jsDoc } from './client'
 import { rc, RcConfig } from '../../default/rc'
 import { ParsedPaths } from 'free-swagger'
 import { prompt } from '../index'
@@ -99,7 +99,7 @@ export default [
   //   message: ({ root }: any) => `${root} 目录已存在，是否覆盖？`,
   // },
   lang,
-  useJsDoc,
+  jsDoc,
   {
     name: 'shouldEditTemplate',
     type: 'confirm',

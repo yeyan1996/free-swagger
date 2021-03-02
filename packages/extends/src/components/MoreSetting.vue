@@ -14,20 +14,47 @@
             <div @click.stop class="switch">
               <span class="js-doc-text normal">代码块 JS Doc</span>
               <el-switch
-                v-model="state.storage.useJsDoc"
+                v-model="state.storage.jsDoc"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
             </div>
-            <el-dropdown-item @click.native="handleCopyJsDoc()" class="normal">
-              复制全量 JS Doc
+            <div @click.stop class="switch">
+              <span class="js-doc-text normal">代码块 JS Doc typedef</span>
+              <el-switch
+                v-model="state.storage.typedef"
+                active-text="开"
+                inactive-text="关"
+              ></el-switch>
+            </div>
+            <div @click.stop class="switch">
+              <span class="js-doc-text normal">递归复制依赖</span>
+              <el-switch
+                v-model="state.storage.recursive"
+                active-text="开"
+                inactive-text="关"
+              ></el-switch>
+            </div>
+            <el-dropdown-item
+              @click.native="handleCopyJsDocTypeDef()"
+              class="normal"
+            >
+              复制全量 JS Doc typedef
             </el-dropdown-item>
           </template>
           <template v-else>
             <div @click.stop class="switch">
               <span class="js-doc-text normal">代码块 Interface</span>
               <el-switch
-                v-model="state.storage.useInterface"
+                v-model="state.storage.interface"
+                active-text="开"
+                inactive-text="关"
+              ></el-switch>
+            </div>
+            <div @click.stop class="switch">
+              <span class="js-doc-text normal">递归复制依赖</span>
+              <el-switch
+                v-model="state.storage.recursive"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
@@ -119,7 +146,7 @@ import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 import {
   // handleCopySchema,
   handleCopyInterface,
-  handleCopyJsDoc
+  handleCopyJsDocTypeDef
 } from "../state";
 import { jsTemplate, tsTemplate } from "free-swagger-client";
 
@@ -168,7 +195,7 @@ export default {
   },
   methods: {
     // handleCopySchema,
-    handleCopyJsDoc,
+    handleCopyJsDocTypeDef,
     handleCopyInterface,
     handleInput(value) {
       if (state.storage.exportLanguage === "js") {

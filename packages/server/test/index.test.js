@@ -51,13 +51,13 @@ describe("server", () => {
     await assertFiles(dirPath, ["pet.js", "store.js", "user.js"]);
   });
 
-  test("jsdoc", async () => {
+  test("simple jsdoc", async () => {
     const dirname = "swaggerPetstore";
     const dirPath = path.resolve(__dirname, "api",dirname + "1");
     await freeSwagger({
       source: require(`./json/${dirname}`),
       root: dirPath,
-      useJsDoc:true
+      jsDoc:'simple'
     });
     await assertFiles(dirPath, ["pet.js", "store.js","typedef", "user.js"]);
   });

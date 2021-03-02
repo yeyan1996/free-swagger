@@ -33,7 +33,7 @@ const genPaths = (
     .map((api) => {
       const code = formatCode(config.lang)(genPath(api, config))
       const jsDocCode =
-        config.useJsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'
+        config.jsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'
       return jsDocCode + code
     })
     .reduce((acc, cur) => acc + cur)

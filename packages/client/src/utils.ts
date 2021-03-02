@@ -14,8 +14,11 @@ export interface ClientConfig<T = OpenAPIV2.Document> {
   source: T
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
-  useJsDoc?: boolean
-  useInterface?: boolean
+  jsDoc?: boolean
+  // type
+  typedef?: boolean
+  interface?: boolean
+  recursive?: boolean
 }
 
 export interface TemplateFunction {

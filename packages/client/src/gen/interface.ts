@@ -13,6 +13,7 @@ const genInterface = ({ formatName, props, code }: ParsedInterface): string =>
             `
           )
         }
-      }`
+      }
+`
 
 export { genInterface }

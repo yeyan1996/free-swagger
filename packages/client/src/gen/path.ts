@@ -1,9 +1,4 @@
-import {
-  ParsedSchemaObject,
-  ParsedSchema,
-  ClientConfig,
-  TemplateFunction,
-} from '../utils'
+import { ParsedSchemaObject, ParsedSchema, ClientConfig } from '../utils'
 import { isEmpty } from 'lodash'
 import { ParsedApi } from '../..'
 
@@ -34,38 +29,30 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
   }
 }
 
-const genIParams = ({
-  pathParamsInterface,
-  queryParamsInterface,
-  bodyParamsInterface,
-}: ParsedApi): {
-  IPathParams: string
-  IQueryParams: string
-  IBodyParams: string
-} => ({
-  IQueryParams: genParsedSchema(queryParamsInterface),
-  IBodyParams: genParsedSchema(bodyParamsInterface),
-  IPathParams: genParsedSchema(pathParamsInterface),
-})
-
 const genPath = (
   api: ParsedApi,
-  config: Pick<Required<ClientConfig>, 'templateFunction' | 'useJsDoc' | 'lang'>
+  config: Pick<Required<ClientConfig>, 'templateFunction' | 'jsDoc' | 'lang'>
 ): string => {
-  const { IPathParams, IBodyParams, IQueryParams } = genIParams(api)
-  return config.templateFunction({
-    name: api.name,
-    method: api.method,
-    url: api.url,
-    responseType: api.responseInterface.isBinary ? 'blob' : 'json',
-    deprecated: api.deprecated,
-    summary: config.useJsDoc && config.lang === 'js' ? '' : api.summary,
-    IResponse: api.responseInterface.formatType,
-    pathParams: Object.keys(api.pathParamsInterface),
-    IQueryParams,
-    IBodyParams,
-    IPathParams,
-  })
+  const { IPathParams, IBodyParams, IQueryParams } = {
+    IQueryParams: genParsedSchema(api.queryParamsInterface),
+    IBodyParams: genParsedSchema(api.bodyParamsInterface),
+    IPathParams: genParsedSchema(api.pathParamsInterface),
+  }
+  return `${config
+    .templateFunction({
+      name: api.name,
+      method: api.method,
+      url: api.url,
+      responseType: api.responseInterface.isBinary ? 'blob' : 'json',
+      deprecated: api.deprecated,
+      summary: config.jsDoc && config.lang === 'js' ? '' : api.summary,
+      IResponse: api.responseInterface.formatType,
+      pathParams: Object.keys(api.pathParamsInterface),
+      IQueryParams,
+      IBodyParams,
+      IPathParams,
+    })
+    .trim()}\n`
 }
 
-export { genPath, isParsedSchemaObject, genIParams }
+export { genPath, isParsedSchemaObject }

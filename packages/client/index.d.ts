@@ -1,34 +1,16 @@
 import { ClientConfig } from './src/utils'
-import { OpenAPIV2 } from 'openapi-types'
-import { CompileType } from './src/compile/interface'
+import { CompileTypesParams } from './src/compile/type'
 
 declare function freeSwaggerClient(
   config: ClientConfig,
   url?: string,
   method?: string
 ): string
-
-declare function compileInterfaces({
-  source,
-  interfaceName,
-  compileType,
-}: {
-  source: OpenAPIV2.Document
-  interfaceName?: string
-  compileType?: CompileType
-}): string
-
-declare function compileJsDocTypeDefs({
-  source,
-  interfaceName,
-  compileType,
-}: {
-  source: OpenAPIV2.Document
-  interfaceName?: string
-  compileType?: CompileType
-}): string
+declare function compileInterfaces(params: CompileTypesParams): string
+declare function compileJsDocTypeDefs(params: CompileTypesParams): string
 
 export default freeSwaggerClient
+
 export { compileInterfaces, compileJsDocTypeDefs }
 export * from './src/default/template'
 export * from './src/utils'

@@ -9,7 +9,7 @@ import {
   extractInterfaceNameByRef,
 } from '../utils'
 import { clone } from 'lodash'
-import { CompileType } from '../compile/interface'
+import { Type } from '../compile/type'
 
 type ParsedInterfaceProp = Omit<ParsedSchemaObject, 'isBinary'>
 
@@ -270,7 +270,7 @@ const normalizeProperties = (
 const parseInterface = (
   definitions: OpenAPIV2.DefinitionsObject,
   interfaceName: string,
-  compileType: CompileType
+  type: Type
 ): ParsedInterface => {
   if (!definitions[interfaceName]) {
     throw new Error(`can not find ${interfaceName} in definitions`)
@@ -288,7 +288,7 @@ const parseInterface = (
   if (buildInInterface) {
     return {
       code:
-        compileType === 'interface'
+        type === 'interface'
           ? buildInInterface.code
           : buildInInterface.jsDocCode,
       ...parsedInterface,
@@ -300,7 +300,7 @@ const parseInterface = (
 
   // 枚举类型
   if (!topProps) {
-    if (compileType === 'interface') {
+    if (type === 'interface') {
       return {
         code: `export type ${interfaceName} = ${
           schemaToTsType(definitions[interfaceName]).formatType
@@ -325,7 +325,7 @@ const parseInterface = (
       // 内建 interface
       if (buildInInterface) {
         node.code =
-          compileType === 'interface'
+          type === 'interface'
             ? buildInInterface.code
             : buildInInterface.jsDocCode
       } else if (definitions[node.name]) {
