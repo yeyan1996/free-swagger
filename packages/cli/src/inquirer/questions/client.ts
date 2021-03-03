@@ -48,7 +48,7 @@ export const jsDoc = {
   default: rc.configData.client.jsDoc,
   when: ({ lang }: any) => lang === 'js',
   callback: (input: boolean) => {
-    rc.merge({ jsDoc: input ? 'simple' : false })
+    rc.merge({ jsDoc: input })
     rc.save()
   },
 }

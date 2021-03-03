@@ -8,7 +8,7 @@ import {
 } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
 import { isString } from 'lodash'
-import { compileJsDocTypeDefs } from './jsDoc'
+import { compileJsDocTypedefs } from './jsDoc'
 import { compileInterfaces } from './interface'
 
 const compilePath = (
@@ -55,7 +55,7 @@ const compilePath = (
         interfaceName: queryInterfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,
-      })
+      }).code
     : ''
   const bodyInterfaceCode = definitions![bodyInterfaceName]
     ? compileInterfaces({
@@ -63,7 +63,7 @@ const compilePath = (
         interfaceName: bodyInterfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,
-      })
+      }).code
     : ''
   const pathInterfaceCode = definitions![pathInterfaceName]
     ? compileInterfaces({
@@ -71,7 +71,7 @@ const compilePath = (
         interfaceName: pathInterfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,
-      })
+      }).code
     : ''
   const responseInterfaceCode = definitions![responseInterfaceName]
     ? compileInterfaces({
@@ -79,33 +79,33 @@ const compilePath = (
         interfaceName: responseInterfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,
-      })
+      }).code
     : ''
 
   const contextMapJsDoc = new Map()
   const queryJsDocCode = definitions![queryInterfaceName]
-    ? compileJsDocTypeDefs({
+    ? compileJsDocTypedefs({
         source,
         interfaceName: queryInterfaceName,
         contextMap: contextMapJsDoc,
         recursive: config.recursive,
-      })
+      }).code
     : ''
   const bodyJsDocCode = definitions![bodyInterfaceName]
-    ? compileJsDocTypeDefs({
+    ? compileJsDocTypedefs({
         source,
         interfaceName: bodyInterfaceName,
         contextMap: contextMapJsDoc,
         recursive: config.recursive,
-      })
+      }).code
     : ''
   const pathJsDocCode = definitions![pathInterfaceName]
-    ? compileJsDocTypeDefs({
+    ? compileJsDocTypedefs({
         source,
         interfaceName: pathInterfaceName,
         contextMap: contextMapJsDoc,
         recursive: config.recursive,
-      })
+      }).code
     : ''
 
   // todo 重构 compile 目录下，各个文件的函数的返回值

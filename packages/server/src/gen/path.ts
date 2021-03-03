@@ -18,6 +18,9 @@ const genImportInterfaceCode = (apiCollection: ApiCollection): string => {
   return `import {${importsInterface.join(',')}} from "${INTERFACE_PATH}";`
 }
 
+// const genImportCode = (imports: string[]): string =>
+//   `import {${imports.join(',')}} from "${INTERFACE_PATH}";`
+
 // 生成单个 controller（文件）中所有 api
 // todo 这里单独使用了 genJsDoc 和 genPath 考虑使用 free-swagger-client 重构？
 const genPaths = (

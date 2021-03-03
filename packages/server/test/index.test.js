@@ -57,7 +57,7 @@ describe("server", () => {
     await freeSwagger({
       source: require(`./json/${dirname}`),
       root: dirPath,
-      jsDoc:'simple'
+      jsDoc:true
     });
     await assertFiles(dirPath, ["pet.js", "store.js","typedef", "user.js"]);
   });

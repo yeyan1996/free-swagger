@@ -2,7 +2,7 @@ import { Method } from './parse/path'
 import { ClientConfig } from './utils'
 import { mergeDefaultParams } from './default'
 import { compileInterfaces } from './compile/interface'
-import { compileJsDocTypeDefs } from './compile/jsDoc'
+import { compileJsDocTypedefs } from './compile/jsDoc'
 import { compilePath } from './compile/path'
 
 const freeSwaggerClient = (
@@ -58,7 +58,7 @@ const freeSwaggerClient = (
 }
 
 export default freeSwaggerClient
-export { compileInterfaces, compileJsDocTypeDefs }
+export { compileInterfaces, compileJsDocTypedefs }
 export * from './default/template'
 export * from './utils'
 export * from './gen/path'

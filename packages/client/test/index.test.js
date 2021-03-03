@@ -2,7 +2,7 @@ import freeSwaggerClient, {
     jsTemplate,
     tsTemplate,
     compileInterfaces,
-    compileJsDocTypeDefs
+    compileJsDocTypedefs
 } from "../src/main";
 
 describe("freeSwaggerClient", () => {
@@ -162,29 +162,29 @@ describe("freeSwaggerClient", () => {
     });
 
     test("generate full js doc", () => {
-        const codeFragment = compileJsDocTypeDefs({source: require("./json/swaggerPetstore")});
+        const {code:codeFragment} = compileJsDocTypedefs({source: require("./json/swaggerPetstore")});
         expect(codeFragment).toMatchSnapshot();
     });
 
 
     test("generate full ts interface", () => {
-        const codeFragment = compileInterfaces({source: require("./json/swaggerPetstore")});
+        const {code:codeFragment} = compileInterfaces({source: require("./json/swaggerPetstore")});
         expect(codeFragment).toMatchSnapshot();
     });
 
     test("generate full ts interface with generic", () => {
-        const codeFragment = compileInterfaces({source: require("./json/generic.json")});
+        const {code:codeFragment} = compileInterfaces({source: require("./json/generic.json")});
         expect(codeFragment).toMatchSnapshot();
     });
 
     test("generate full ts interface with special generic", () => {
-        const codeFragment = compileInterfaces({source: require("./json/uberApi.json")});
+        const {code:codeFragment} = compileInterfaces({source: require("./json/uberApi.json")});
         expect(codeFragment).toMatchSnapshot();
     });
 
 
     test("generate ts interface snippet", () => {
-        const codeFragment = compileInterfaces(
+        const {code:codeFragment} = compileInterfaces(
             {
                 source: require("./json/swaggerPetstore"),
                 interfaceName: "Category"
@@ -194,7 +194,7 @@ describe("freeSwaggerClient", () => {
     });
 
     test("generate ts interface snippet width generic", () => {
-        const codeFragment = compileInterfaces(
+        const {code:codeFragment} = compileInterfaces(
             {
                 source: require("./json/generic.json"),
                 interfaceName: "PageInfo«List«Qwe»»"

@@ -13,7 +13,7 @@ import {
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction } from 'lodash'
 import { ApiCollection, parsePaths } from './parse/path'
-import { compileInterfaces, compileJsDocTypeDefs } from 'free-swagger-client'
+import { compileInterfaces, compileJsDocTypedefs } from 'free-swagger-client'
 import { ParsedPaths } from './parse/path'
 import { genPaths } from './gen/path'
 import { fetchJSON } from './request'
@@ -23,11 +23,11 @@ import { mock } from './mock'
 export const spinner = ora().render()
 
 // parse swagger json
-const parse = async (
+const parse = (
   config: ServerConfig<OpenAPIV2.Document>
-): Promise<{
+): {
   paths: ParsedPaths
-}> => {
+} => {
   fse.ensureDirSync(config.root!)
   const paths = parsePaths(config.source)
   return { paths }
@@ -45,7 +45,7 @@ const gen = async (
     fse.ensureFileSync(interfacePath)
     await fse.writeFile(
       interfacePath,
-      compileInterfaces({ source: config.source })
+      compileInterfaces({ source: config.source }).code
     )
   }
 
@@ -54,7 +54,7 @@ const gen = async (
     fse.ensureFileSync(jsDocPath)
     await fse.writeFile(
       jsDocPath,
-      compileJsDocTypeDefs({ source: config.source })
+      compileJsDocTypedefs({ source: config.source }).code
     )
   }
 

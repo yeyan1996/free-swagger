@@ -7,8 +7,7 @@ import {
   jsTemplate,
   tsTemplate,
   compileInterfaces,
-  parseInterfaceName,
-  compileJsDocTypeDefs
+  compileJsDocTypedefs
 } from "free-swagger-client";
 import { option, generate } from "json-schema-faker";
 
@@ -189,7 +188,7 @@ export const handleCopyFake = (
 
 export const handleCopyInterface = (source = state.swagger, interfaceName) => {
   try {
-    const code = compileInterfaces({ source, interfaceName });
+    const { code } = compileInterfaces({ source, interfaceName });
     copyMessage(code);
   } catch (e) {
     console.log(e);
@@ -202,7 +201,7 @@ export const handleCopyJsDocTypeDef = (
   interfaceName
 ) => {
   try {
-    const code = compileJsDocTypeDefs({ source, interfaceName });
+    const { code } = compileJsDocTypedefs({ source, interfaceName });
     copyMessage(code);
   } catch (e) {
     console.log(e);

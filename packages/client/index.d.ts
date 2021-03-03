@@ -6,12 +6,16 @@ declare function freeSwaggerClient(
   url?: string,
   method?: string
 ): string
-declare function compileInterfaces(params: CompileTypesParams): string
-declare function compileJsDocTypeDefs(params: CompileTypesParams): string
+declare function compileInterfaces(
+  params: CompileTypesParams
+): { code: string; imports: string[] }
+declare function compileJsDocTypedefs(
+  params: CompileTypesParams
+): { code: string; imports: string[] }
 
 export default freeSwaggerClient
 
-export { compileInterfaces, compileJsDocTypeDefs }
+export { compileInterfaces, compileJsDocTypedefs }
 export * from './src/default/template'
 export * from './src/utils'
 export * from './src/gen/path'
