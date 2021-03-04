@@ -167,7 +167,6 @@ export default {
           state.key = key;
           state.currentApi = state.options.find(item => item.key === key);
         }
-        handleCopyApi();
       });
     },
     async bindClickEventForModel() {

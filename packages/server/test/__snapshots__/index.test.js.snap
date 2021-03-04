@@ -1140,6 +1140,7 @@ exports[`server simple jsdoc 1`] = `
 // @see https://www.npmjs.com/package/free-swagger
 
 import axios from \\"axios\\";
+
 /**
  * @description Find pet by ID
  * @param {Object} _NOOP -never
@@ -1153,6 +1154,7 @@ export const getPetById = (_NOOP, { petId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Updates a pet in the store with form data
  * @param {FormData} params
@@ -1166,6 +1168,7 @@ export const updatePetWithForm = (params, { petId }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Deletes a pet
  * @param {Object} _NOOP -never
@@ -1179,6 +1182,7 @@ export const deletePet = (_NOOP, { petId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description uploads an image
  * @param {FormData} params
@@ -1192,6 +1196,7 @@ export const uploadFile = (params, { petId }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Update an existing pet
  * @param {Pet} params -Pet object that needs to be added to the store
@@ -1203,6 +1208,7 @@ export const updatePet = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Add a new pet to the store
  * @param {Pet} params -Pet object that needs to be added to the store
@@ -1214,6 +1220,7 @@ export const addPet = (params) =>
     params: {},
     data: params
   });
+
 /** 
  * @description Finds Pets by status 
  * @param {{
@@ -1227,6 +1234,7 @@ export const findPetsByStatus = (params) =>
     params: params,
     data: {}
   });
+
 /** 
  * @deprecated
  * @description Finds Pets by tags 
@@ -1250,6 +1258,7 @@ exports[`server simple jsdoc 2`] = `
 // @see https://www.npmjs.com/package/free-swagger
 
 import axios from \\"axios\\";
+
 /**
  * @description Returns pet inventories by status
  **/
@@ -1260,6 +1269,7 @@ export const getInventory = () =>
     params: {},
     data: {}
   });
+
 /**
  * @description Find purchase order by ID
  * @param {Object} _NOOP -never
@@ -1273,6 +1283,7 @@ export const getOrderById = (_NOOP, { orderId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Delete purchase order by ID
  * @param {Object} _NOOP -never
@@ -1286,6 +1297,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Place an order for a pet
  * @param {Order} params -order placed for purchasing the pet
@@ -1380,6 +1392,7 @@ exports[`server simple jsdoc 4`] = `
 // @see https://www.npmjs.com/package/free-swagger
 
 import axios from \\"axios\\";
+
 /**
  * @description Get user by user name
  * @param {Object} _NOOP -never
@@ -1393,6 +1406,7 @@ export const getUserByName = (_NOOP, { username }) =>
     params: {},
     data: {}
   });
+
 /**
  * @description Updated user
  * @param {User} params -Updated user object
@@ -1406,6 +1420,7 @@ export const updateUser = (params, { username }) =>
     params: {},
     data: params
   });
+
 /**
  * @description Delete user
  * @param {Object} _NOOP -never
@@ -1419,6 +1434,7 @@ export const deleteUser = (_NOOP, { username }) =>
     params: {},
     data: {}
   });
+
 /** 
  * @description Logs user into the system 
  * @param {{
@@ -1433,6 +1449,7 @@ export const loginUser = (params) =>
     params: params,
     data: {}
   });
+
 /**
  * @description Logs out current logged in user session
  **/
@@ -1443,6 +1460,7 @@ export const logoutUser = () =>
     params: {},
     data: {}
   });
+
 /**
  * @description Create user
  * @param {User} params -Created user object
@@ -1454,6 +1472,7 @@ export const createUser = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Creates list of users with given input array
  * @param {User[]} params -List of user object
@@ -1465,6 +1484,7 @@ export const createUsersWithArrayInput = (params) =>
     params: {},
     data: params
   });
+
 /**
  * @description Creates list of users with given input array
  * @param {User[]} params -List of user object

@@ -88,18 +88,18 @@ describe("server", () => {
       root: dirPath,
       lang: "ts",
       templateFunction: ({
-                           url,
-                           summary,
-                           method,
-                           name,
-                           responseType,
-                           deprecated,
-                           pathParams,
-                           IResponse,
-                           IQueryParams,
-                           IBodyParams,
-                           IPathParams
-                         }) => {
+       url,
+       summary,
+       method,
+       name,
+       responseType,
+       deprecated,
+       pathParams,
+       IResponse,
+       IQueryParams,
+       IBodyParams,
+       IPathParams
+     }) => {
         // 处理路径参数
         // `/pet/{id}` => `/pet/${id}`
         const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');

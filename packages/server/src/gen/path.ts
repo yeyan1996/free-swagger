@@ -31,13 +31,14 @@ const genPaths = (
   code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS
   code += `\n`
   code += config.lang === 'ts' ? genImportInterfaceCode(apiCollection) : ''
-  code += `${config.customImportCode}\n`
+  code += `${config.customImportCode}`
+  code += `\n\n`
   code += Object.values(apiCollection)
     .map((api) => {
       const code = formatCode(config.lang)(genPath(api, config))
       const jsDocCode =
         config.jsDoc && config.lang === 'js' ? genJsDoc(api) : '\n'
-      return jsDocCode + code
+      return `${jsDocCode + code}\n`
     })
     .reduce((acc, cur) => acc + cur)
 

@@ -108,7 +108,7 @@ const compile = async (
     fse.ensureDirSync(config.root)
 
     // parse
-    const { paths } = await parse(config)
+    const { paths } = parse(config)
     spinner.succeed('api 文件解析完成')
 
     const choosePaths = isFunction(events?.onChooseApi)

@@ -32,8 +32,9 @@ export const state = new Vue({
       storage: {
         jsTemplate,
         tsTemplate,
-        jsDoc: false,
+        jsDoc: true,
         interface: false,
+        recursive: true,
         exportLanguage: "js",
         currentLanguage: "js"
       },
