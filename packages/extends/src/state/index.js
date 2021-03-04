@@ -34,7 +34,8 @@ export const state = new Vue({
         tsTemplate,
         jsDoc: true,
         interface: false,
-        recursive: true,
+        typedef: false,
+        recursive: false,
         exportLanguage: "js",
         currentLanguage: "js"
       },
