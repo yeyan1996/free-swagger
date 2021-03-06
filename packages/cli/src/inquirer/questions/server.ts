@@ -1,13 +1,12 @@
 import chalk from 'chalk'
-import { lang, source, templateFunction, jsDoc } from './client'
+import { lang, source, templateFunction } from './client'
 import { rc, RcConfig } from '../../default/rc'
-import { ParsedPaths } from 'free-swagger'
+import { ParsedPathsObject } from 'free-swagger'
 import { prompt } from '../index'
 import { isUrl } from 'free-swagger'
-// import fse from 'fs-extra'
 
 const createChoices = (
-  paths: ParsedPaths
+  paths: ParsedPathsObject
 ): RcConfig['server']['apiChoices'] => {
   const chooseAllChoices = Object.keys(paths).map((name) => ({
     name,
@@ -27,7 +26,9 @@ const createChoices = (
   })
 }
 
-export const chooseApi = async (paths: ParsedPaths): Promise<string[]> => {
+export const chooseApi = async (
+  paths: ParsedPathsObject
+): Promise<string[]> => {
   const { choosePaths } = await prompt([
     {
       name: 'choosePaths',
@@ -91,15 +92,7 @@ export default [
   source,
   cookie,
   root,
-  // {
-  //   name: 'overwriteDirectory',
-  //   type: 'confirm',
-  //   default: false,
-  //   when: ({ root }: any): boolean => fse.existsSync(root),
-  //   message: ({ root }: any) => `${root} 目录已存在，是否覆盖？`,
-  // },
   lang,
-  jsDoc,
   {
     name: 'shouldEditTemplate',
     type: 'confirm',

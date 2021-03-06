@@ -8,8 +8,10 @@ import {
   SPECIAL_CHARACTERS_MAP_CLOSE,
   extractInterfaceNameByRef,
 } from '../utils'
-import { clone } from 'lodash'
+import { clone, uniq, flatten } from 'lodash'
 import { Type } from '../compile/type'
+
+const isWord = /^\w*$/
 
 type ParsedInterfaceProp = Omit<ParsedSchemaObject, 'isBinary'>
 
@@ -127,7 +129,7 @@ const reduceInterfaceName = (tree: ParsedInterface): string => {
   }
 }
 
-// 取出 interface 中所有 interfaceName （排除泛型名）
+// 取出 interface 中所有 interfaceName
 const flatInterfaceName = (interfaceName: string) => {
   const interfaceNames: string[] = []
   traverseTree(parseInterfaceName(interfaceName), (interfaceNameItem) => {
@@ -135,6 +137,25 @@ const flatInterfaceName = (interfaceName: string) => {
   })
   return interfaceNames
 }
+
+// 过滤需导入的 interface
+// import {A} from 'xxx'
+const uniqInterfaceNameImports = (imports: string[]) =>
+  uniq(
+    flatten(
+      imports.map((item) =>
+        flatInterfaceName(item)
+          // 排除 ts 内置类型
+          .filter((item) => !Object.values(TYPE_MAP).includes(item))
+          // 排除一些特殊的泛型 Map<string,string>
+          .filter((item) => isWord.test(item))
+          // 如果是 Java 内建类型则转换成自定义泛型
+          .map((item) =>
+            buildInInterfaces[item] ? buildInInterfaces[item].formatName : item
+          )
+      )
+    )
+  )
 
 // 是否根据 prefix + generic 生成 prefix 的 interface
 // 例如 PagedResultDto[AuditLogListDto] 在 definitions 中已定义
@@ -178,12 +199,11 @@ const parseProperties = (
   const res: Record<string, ParsedInterfaceProp> = {}
   Object.keys(properties).forEach((propertyKey) => {
     const schema = properties[propertyKey]
-    const { imports, type, formatType, ref } = schemaToTsType(schema)
+    const { type, formatType, ref } = schemaToTsType(schema)
     res[propertyKey] = {
       type,
       formatType,
       ref,
-      imports,
       required: required?.includes(propertyKey) || false,
       description: schema.description || '',
     }
@@ -259,7 +279,6 @@ const normalizeProperties = (
           ? `${GENERIC_LIST[index]}[]`
           : GENERIC_LIST[index],
       ref: res[key].ref,
-      imports: [],
       required: required?.includes(key) || false,
       description: properties[key].description || '',
     }
@@ -272,9 +291,6 @@ const parseInterface = (
   interfaceName: string,
   type: Type
 ): ParsedInterface => {
-  if (!definitions[interfaceName]) {
-    throw new Error(`can not find ${interfaceName} in definitions`)
-  }
   const parsedInterface = parseInterfaceName(interfaceName)
   const {
     properties: topProperties,
@@ -366,4 +382,5 @@ export {
   parseInterface,
   flatInterfaceName,
   formatGenericInterface,
+  uniqInterfaceNameImports,
 }

@@ -87,61 +87,10 @@ describe("server", () => {
       source: require(`./json/${dirname}`),
       root: dirPath,
       lang: "ts",
-      templateFunction: ({
-       url,
-       summary,
-       method,
-       name,
-       responseType,
-       deprecated,
-       pathParams,
-       IResponse,
-       IQueryParams,
-       IBodyParams,
-       IPathParams
-     }) => {
-        // 处理路径参数
-        // `/pet/{id}` => `/pet/${id}`
-        const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
-
-        const onlyIQueryParams = IQueryParams && !IBodyParams
-        const onlyIBodyParams = IBodyParams && !IQueryParams
-        const multipleParams = IQueryParams && IBodyParams
-
-        return `
-  ${deprecated ? `/**deprecated*/` : ""}
-  ${summary ? `// ${summary}` : ""}  
-  export const ${name} = (${
-  onlyIQueryParams
-    ? `params: ${IQueryParams},`
-    : onlyIBodyParams 
-    ? `params: ${IBodyParams},`
-    : multipleParams
-    ? `params: ${IQueryParams},`
-    // no params
-    :  IPathParams
-    ? "params:{[key:string]: never},"
-    : ""
-}${
-  pathParams.length ? `{${pathParams.join(",")}}: ${IPathParams},` : multipleParams ? "pathParams:{[key:string]: never}," : ""
-}${
-  multipleParams
-    ? `bodyParams: ${IBodyParams}`
-    : ""
-}) => http.request<${IResponse || "any"},AxiosResponse<${IResponse ||
-"any"}>>({
-     url: \`${parsedUrl}\`,
-     method: "${method}",
-     params:${`${ multipleParams ? "queryParams" : IQueryParams ? "params," : "{},"}`}
-     data:${`${ multipleParams ? "bodyParams" : IBodyParams ? "params," : "{},"}`}
-     ${responseType === "json" ? "" : `responseType: ${responseType}`}
- })`;
-},
       customImportCode: `
             import {AxiosResponse} from 'axios'
             import http from 'http'
-        `
-        ,
+`,
     });
 
     await assertFiles(dirPath, [

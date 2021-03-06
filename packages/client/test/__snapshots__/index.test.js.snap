@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`freeSwaggerClient code fragment 1`] = `
-"// Find pet by ID
-export const getPetById = (_NOOP, { petId }) =>
+"export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
     method: \\"get\\",
@@ -106,8 +105,7 @@ export const updateUser = (queryParams, { username, qqq }, bodyParams) =>
 `;
 
 exports[`freeSwaggerClient code fragment2 1`] = `
-"// Add a new pet to the store
-export const addPet = (params) =>
+"export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
     method: \\"post\\",

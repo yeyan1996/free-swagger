@@ -7,7 +7,7 @@ import {
   parsePath,
 } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
-import { isString } from 'lodash'
+import { isString, uniq } from 'lodash'
 import { compileJsDocTypedefs } from './jsDoc'
 import { compileInterfaces } from './interface'
 
@@ -49,38 +49,27 @@ const compilePath = (
     : ''
 
   const contextMapInterface = new Map()
-  const queryInterfaceCode = definitions![queryInterfaceName]
-    ? compileInterfaces({
+  const imports: string[] = []
+
+  const collectImports = (interfaceName: string) => {
+    if (definitions![interfaceName]) {
+      const { code, imports: interfaceImports } = compileInterfaces({
         source,
-        interfaceName: queryInterfaceName,
+        interfaceName: interfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,
-      }).code
-    : ''
-  const bodyInterfaceCode = definitions![bodyInterfaceName]
-    ? compileInterfaces({
-        source,
-        interfaceName: bodyInterfaceName,
-        contextMap: contextMapInterface,
-        recursive: config.recursive,
-      }).code
-    : ''
-  const pathInterfaceCode = definitions![pathInterfaceName]
-    ? compileInterfaces({
-        source,
-        interfaceName: pathInterfaceName,
-        contextMap: contextMapInterface,
-        recursive: config.recursive,
-      }).code
-    : ''
-  const responseInterfaceCode = definitions![responseInterfaceName]
-    ? compileInterfaces({
-        source,
-        interfaceName: responseInterfaceName,
-        contextMap: contextMapInterface,
-        recursive: config.recursive,
-      }).code
-    : ''
+      })
+      imports.push(...interfaceImports)
+      return code
+    } else {
+      return ''
+    }
+  }
+
+  const queryInterfaceCode = collectImports(queryInterfaceName)
+  const pathInterfaceCode = collectImports(pathInterfaceName)
+  const bodyInterfaceCode = collectImports(bodyInterfaceName)
+  const responseInterfaceCode = collectImports(responseInterfaceName)
 
   const contextMapJsDoc = new Map()
   const queryJsDocCode = definitions![queryInterfaceName]
@@ -108,9 +97,9 @@ const compilePath = (
       }).code
     : ''
 
-  // todo 重构 compile 目录下，各个文件的函数的返回值
   return {
     code: formatCode(config.lang)(code),
+    imports: uniq(imports),
     jsDocCode,
     parsedApi,
     queryInterfaceCode,

@@ -14,16 +14,12 @@ export const methods: Method[] = [
   'patch',
 ]
 
-export interface ParsedPaths {
-  [controllerName: string]: ApiCollection
-}
+export type ParsedPaths = Pick<ParsedApi, 'url' | 'method'>[]
+export type ParsedPathsObject = Record<string, ParsedPaths>
 
-export interface ApiCollection {
-  [pathName: string]: ParsedApi
-}
-
-const parsePaths = (swagger: OpenAPIV2.Document): ParsedPaths => {
-  const requestClasses: ParsedPaths = {}
+// 解析 swagger paths 字段
+const parsePaths = (swagger: OpenAPIV2.Document): ParsedPathsObject => {
+  const parsedPathsObject: ParsedPathsObject = {}
 
   Object.entries<OpenAPIV2.PathItemObject>(swagger.paths).forEach(
     ([path, pathItemObject]) => {
@@ -50,32 +46,28 @@ const parsePaths = (swagger: OpenAPIV2.Document): ParsedPaths => {
         }
 
         // 含有中文则使用 description 作为文件名
-        let controllerName = ''
+        let filename = ''
         if (hasChinese(operationObject.tags[0])) {
           const tag = swagger.tags!.find(
             (tag: OpenAPIV2.TagObject) => tag.name === operationObject.tags![0]
           )
           if (!tag) return
-          controllerName = tag.description
-            ? pascalCase(tag.description)
-            : tag.name
+          filename = tag.description ? pascalCase(tag.description) : tag.name
         } else {
-          controllerName = pascalCase(operationObject.tags[0])
+          filename = pascalCase(operationObject.tags[0])
         }
 
-        if (!requestClasses[controllerName]) {
-          requestClasses[controllerName] = {}
+        if (!parsedPathsObject[filename]) {
+          parsedPathsObject[filename] = []
         }
-        requestClasses[controllerName][operationObject.operationId] = parsePath(
-          operationObject.operationId,
-          `${swagger.basePath}${path}`,
+        parsedPathsObject[filename].push({
+          url: path,
           method,
-          operationObject
-        )
+        })
       })
     }
   )
-  return requestClasses
+  return parsedPathsObject
 }
 
 export { parsePaths, parsePath }

@@ -23,6 +23,7 @@
               <span class="js-doc-text normal">代码块 JS Doc typedef</span>
               <el-switch
                 v-model="state.storage.typedef"
+                @change="handleToggleRecursive"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
@@ -31,6 +32,7 @@
               <span class="js-doc-text normal">递归复制依赖</span>
               <el-switch
                 v-model="state.storage.recursive"
+                :disabled="!state.storage.typedef"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
@@ -47,6 +49,7 @@
               <span class="js-doc-text normal">代码块 Interface</span>
               <el-switch
                 v-model="state.storage.interface"
+                @change="handleToggleRecursive"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
@@ -55,6 +58,7 @@
               <span class="js-doc-text normal">递归复制依赖</span>
               <el-switch
                 v-model="state.storage.recursive"
+                :disabled="!state.storage.interface"
                 active-text="开"
                 inactive-text="关"
               ></el-switch>
@@ -197,6 +201,11 @@ export default {
     // handleCopySchema,
     handleCopyJsDocTypeDef,
     handleCopyInterface,
+    handleToggleRecursive(val) {
+      if (!val) {
+        state.storage.recursive = false;
+      }
+    },
     handleInput(value) {
       if (state.storage.exportLanguage === "js") {
         this.form.jsTemplate = value;

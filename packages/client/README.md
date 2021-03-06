@@ -43,6 +43,7 @@ export const addUsingPOST = params =>
 | lang             | 可选，生成 api 语言         | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数              | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
 | jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | false                                |
+| typedef | 可选，代码块附加 js doc typedef | boolean |  | false |
 | interface     | 可选，代码块附加 interface | boolean                 |  -          | false                                |
 | recursive | 递归解析 jsDoc/interface 的依赖 | boolean | - | false |
 
@@ -65,7 +66,9 @@ export const addUsingPOST = params =>
 
 free-swagger-client 基于模版函数来生成最终的 api 代码，用户可以自定义模版函数，来满足不同需求，例如修改请求库名，修改参数位置，修改接口命名等等
 
-以下是 free-swagger-client 提供的默认模版
+以下为 free-swagger-client 提供的默认模版
+
+https://github.com/yeyan1996/free-swagger/blob/master/packages/client/src/default/template.ts
 
 ## jsTemplate
 
@@ -81,7 +84,12 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
      IBodyParams,    // 请求体参数 ts 类型
      IPathParams     // 请求路径参数 ts 类型
  }) => {
-    // js template
+    /**
+      * js 代码模版
+    **/ 
+      
+    // debugger
+    // 可通过 debugger 调试模版
 
     // 处理路径参数 `/pet/{id}` => `/pet/${id}`
     const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
@@ -198,7 +206,12 @@ ${createParamCode(thirdParamCodeMap) /* body | null */}
      IPathParams,     // 请求路径参数 ts 类型
      IResponse,      // 响应参数 ts 类型
  }) => {
-    // ts template
+    /**
+      * ts 代码模版
+    **/ 
+      
+    // debugger
+    // 可通过 debugger 调试模版
 
     // 处理路径参数 `/pet/{id}` => `/pet/${id}`
     const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');

@@ -2,13 +2,7 @@ import { OpenAPIV2 } from 'openapi-types'
 import prettier from 'prettier/standalone'
 import parserTypescript from 'prettier/parser-typescript'
 import parserBabel from 'prettier/parser-babel'
-import {
-  buildInInterfaces,
-  flatInterfaceName,
-  formatGenericInterface,
-} from './parse/interface'
-
-const isWord = /^\w*$/
+import { formatGenericInterface } from './parse/interface'
 
 export interface ClientConfig<T = OpenAPIV2.Document> {
   source: T
@@ -42,7 +36,6 @@ export interface ParsedSchemaObject {
   type: string | string[] | undefined // 原始 type，对应 swagger 中的 type
   formatType: string // 最终展示的 type
   ref: string // 用于标识引用，定位 definitions 中对应 interface，对应未 format 的 $ref 属性
-  imports: string[]
   required: boolean
   description: string
   isBinary?: boolean
@@ -136,13 +129,10 @@ const schemaToTsType = (
       type: 'any',
       ref: '',
       formatType: 'any',
-      imports: [],
       isBinary: false,
       required: false,
       description: '',
     }
-  const imports: string[] = []
-
   const recursive = (
     schema: OpenAPIV2.SchemaObject,
     formatType = true
@@ -151,19 +141,7 @@ const schemaToTsType = (
       if (!formatType) {
         return extractInterfaceNameByRef(schema.$ref)
       }
-      const ref = getRef(schema.$ref)
-      imports.push(
-        ...flatInterfaceName(ref)
-          // 排除 ts 内置类型
-          .filter((item) => !Object.values(TYPE_MAP).includes(item))
-          // 排除一些特殊的泛型 Map<string,string>
-          .filter((item) => isWord.test(item))
-          // 如果是 Java 内建类型则转换成自定义泛型
-          .map((item) =>
-            buildInInterfaces[item] ? buildInInterfaces[item].formatName : item
-          )
-      )
-      return ref
+      return getRef(schema.$ref)
     }
     if (!schema.type) return 'any'
 
@@ -210,7 +188,6 @@ const schemaToTsType = (
     type: recursive(schema, false),
     formatType: recursive(schema),
     ref,
-    imports,
     isBinary: schema.type === 'file',
     required: false,
     description: '',

@@ -58,10 +58,12 @@ const freeSwaggerClient = (
 }
 
 export default freeSwaggerClient
-export { compileInterfaces, compileJsDocTypedefs }
 export * from './default/template'
 export * from './utils'
 export * from './gen/path'
 export * from './gen/jsDoc'
 export * from './parse/path'
 export * from './parse/interface'
+export * from './compile/interface'
+export * from './compile/jsDoc'
+export * from './compile/path'

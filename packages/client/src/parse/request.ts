@@ -6,14 +6,9 @@ export interface Request {
   pathParamsInterface: ParsedSchema
   queryParamsInterface: ParsedSchema
   bodyParamsInterface: ParsedSchema
-  imports: string[]
 }
 
-const parseParameter = (
-  parameter: OpenAPIV2.Parameter,
-  parametersImports: string[]
-): ParsedSchemaObject => {
-  const imports: string[] = []
+const parseParameter = (parameter: OpenAPIV2.Parameter): ParsedSchemaObject => {
   let type = parameter.type
   let formatType = ''
   let isBinary = false
@@ -27,8 +22,6 @@ const parseParameter = (
     ref = parsedSchemaObject.ref
     formatType = parsedSchemaObject.formatType
     isBinary = !!parsedSchemaObject.isBinary
-    imports.push(...parsedSchemaObject.imports)
-    parametersImports.push(...parsedSchemaObject.imports)
   } else {
     formatType = TYPE_MAP[parameter.type] // 基本类型
   }
@@ -36,7 +29,6 @@ const parseParameter = (
     type,
     ref,
     formatType,
-    imports,
     isBinary,
     description: parameter.description || '',
     required: parameter.required || false,
@@ -46,7 +38,6 @@ const parseParameter = (
 const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
   if (!paramsSchema || paramsSchema.some(isRef))
     return {
-      imports: [],
       pathParamsInterface: {},
       queryParamsInterface: {},
       bodyParamsInterface: {},
@@ -55,24 +46,20 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
   const pathParamsInterface: Record<string, ParsedSchemaObject> = {}
   const queryParamsInterface: Record<string, ParsedSchemaObject> = {}
   let bodyParamsInterface: ParsedSchemaObject = <ParsedSchemaObject>{}
-  const imports: string[] = []
+
   ;(paramsSchema as OpenAPIV2.Parameter[]).forEach((parameter) => {
     // 引用类型定义
     switch (parameter.in) {
       case 'path':
-        pathParamsInterface[parameter.name] = parseParameter(parameter, imports)
+        pathParamsInterface[parameter.name] = parseParameter(parameter)
         break
       case 'query':
-        queryParamsInterface[parameter.name] = parseParameter(
-          parameter,
-          imports
-        )
+        queryParamsInterface[parameter.name] = parseParameter(parameter)
         break
       case 'formData':
         bodyParamsInterface = {
           type: parameter.type,
           formatType: 'FormData',
-          imports: [],
           ref: '',
           isBinary: true,
           description: '',
@@ -80,14 +67,13 @@ const getRequestType = (paramsSchema?: OpenAPIV2.Parameters): Request => {
         }
         break
       case 'body':
-        bodyParamsInterface = parseParameter(parameter, imports)
+        bodyParamsInterface = parseParameter(parameter)
         break
       default:
         return
     }
   })
   return {
-    imports,
     pathParamsInterface,
     bodyParamsInterface,
     queryParamsInterface,
