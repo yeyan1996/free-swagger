@@ -1,13 +1,12 @@
 import { OpenAPIV2 } from 'openapi-types'
 import { getResponseType, Response } from './response'
 import { getRequestType, Request } from './request'
-import { uniq } from 'lodash'
 
 export interface ParsedApi extends Request, Response {
   deprecated: boolean
   summary: string
   url: string
-  method: string
+  method: Method
   name: string
 }
 export type Method =
@@ -36,13 +35,11 @@ const parsePath = (
     bodyParamsInterface,
     queryParamsInterface,
     pathParamsInterface,
-    imports: requestImports,
   } = getRequestType(parameters)
 
   const { responseInterface } = getResponseType(responses)
 
   return {
-    imports: uniq([...requestImports, ...responseInterface.imports]),
     summary,
     deprecated,
     url,

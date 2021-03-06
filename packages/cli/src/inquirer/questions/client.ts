@@ -41,18 +41,6 @@ export const lang = {
   },
 }
 
-export const jsDoc = {
-  name: 'jsDoc',
-  type: 'confirm',
-  message: '是否使用 Js Doc？',
-  default: rc.configData.client.jsDoc,
-  when: ({ lang }: any) => lang === 'js',
-  callback: (input: boolean) => {
-    rc.merge({ jsDoc: input })
-    rc.save()
-  },
-}
-
 export const templateFunction = {
   name: 'templateFunction',
   type: 'editor',

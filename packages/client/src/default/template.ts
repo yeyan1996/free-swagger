@@ -3,13 +3,18 @@ export const jsTemplate = `({
   summary,        // 注释 {string}
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
-  responseType,   // 响应值种类，同 axios {string}
+  responseType,   // 响应值种类，同 axios responseType {string}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
   IPathParams     // 请求路径参数 ts 类型
 }) => {
-  // js template
+  /**
+   * js 代码模版
+  **/ 
+  
+  // debugger
+  // 可通过 debugger 调试模版
 
   // 处理路径参数 \`/pet/{id}\` => \`/pet/\${id}\`
   const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
@@ -96,12 +101,11 @@ export const jsTemplate = `({
   }
  
   return \`
-  \${summary ? \`// \${summary}\` : ""}
   export const \${name} = (
     \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
     \${createParamCode(secondParamCodeMap) /* path | null */}
     \${createParamCode(thirdParamCodeMap) /* body | null */}
-)  => axios.request({
+) => axios.request({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",
          params:\${createParamCode(paramCodeMap, '{},')}
@@ -116,15 +120,20 @@ export const tsTemplate = `({
   summary,        // 注释 {string}
   method,         // 请求方法 {string}
   name,           // api 函数名 {string}
-  responseType,   // 响应值种类，同 axios {string}
+  responseType,   // 响应值种类，同 axios responseType {string}
   pathParams,     // 路径参数 {Array<string>}
   IQueryParams,   // 请求查询参数 ts 类型
   IBodyParams,    // 请求体参数 ts 类型
   IPathParams,    // 请求路径参数 ts 类型
   IResponse,      // 响应参数 ts 类型
 }) => {
-  // ts template
-
+  /**
+   * ts 代码模版
+  **/ 
+  
+  // debugger
+  // 可通过 debugger 调试模版
+  
   // 处理路径参数 \`/pet/{id}\` => \`/pet/\${id}\`
   const parsedUrl = url.replace(/{(.*?)}/g, '\${$1}'); 
  

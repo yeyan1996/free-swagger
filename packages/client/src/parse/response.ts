@@ -16,7 +16,6 @@ const getResponseType = (responses: {
         ref: '',
         type: '',
         formatType: '',
-        imports: [],
         required: false,
         description: '',
         isBinary: false,

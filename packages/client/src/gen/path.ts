@@ -31,7 +31,7 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
 
 const genPath = (
   api: ParsedApi,
-  config: Pick<Required<ClientConfig>, 'templateFunction' | 'jsDoc' | 'lang'>
+  config: Pick<Required<ClientConfig>, 'templateFunction' | 'lang'>
 ): string => {
   const { IPathParams, IBodyParams, IQueryParams } = {
     IQueryParams: genParsedSchema(api.queryParamsInterface),
@@ -45,7 +45,7 @@ const genPath = (
       url: api.url,
       responseType: api.responseInterface.isBinary ? 'blob' : 'json',
       deprecated: api.deprecated,
-      summary: config.jsDoc && config.lang === 'js' ? '' : api.summary,
+      summary: api.summary,
       IResponse: api.responseInterface.formatType,
       pathParams: Object.keys(api.pathParamsInterface),
       IQueryParams,

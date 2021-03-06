@@ -2,7 +2,6 @@ import chalk from 'chalk'
 import { source } from './client'
 import { cookie } from './server'
 import { rc } from '../../default/rc'
-// import fse from 'fs-extra'
 
 export default [
   source,
@@ -23,13 +22,6 @@ export default [
       rc.save()
     },
   },
-  // {
-  //   name: 'overwriteDirectory',
-  //   type: 'confirm',
-  //   default: false,
-  //   when: ({ mockRoot }: any): boolean => fse.existsSync(root),
-  //   message: ({ mockRoot }: any) => `${root} 目录已存在，是否覆盖？`,
-  // },
   {
     name: 'wrap',
     type: 'confirm',

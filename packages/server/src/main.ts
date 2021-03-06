@@ -10,34 +10,49 @@ import {
   MockConfig,
   ServerConfig,
 } from './utils'
-import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
-import { isFunction } from 'lodash'
-import { ApiCollection, parsePaths } from './parse/path'
-import { compileInterfaces, compileJsDocTypedefs } from 'free-swagger-client'
-import { ParsedPaths } from './parse/path'
-import { genPaths } from './gen/path'
+import {
+  mergeDefaultParams,
+  mergeDefaultMockConfig,
+  DEFAULT_HEAD_CODE_TS,
+  DEFAULT_HEAD_CODE_JS,
+} from './default'
+import { isFunction, uniq } from 'lodash'
+import { ParsedPathsObject, ParsedPaths, parsePaths } from './parse/path'
+import {
+  compileInterfaces,
+  compileJsDocTypedefs,
+  formatCode,
+  compilePath,
+} from 'free-swagger-client'
 import { fetchJSON } from './request'
 import { INTERFACE_PATH, JSDOC_PATH } from './default'
 import { mock } from './mock'
 
 export const spinner = ora().render()
 
+// 使用 free-swagger 时传入 free-swagger-client 的部分参数固定
+const DEFAULT_PARAMS = {
+  jsDoc: true,
+  interface: false,
+  recursive: false,
+  typedef: false,
+}
+
 // parse swagger json
 const parse = (
   config: ServerConfig<OpenAPIV2.Document>
 ): {
-  paths: ParsedPaths
+  parsedPathsObject: ParsedPathsObject
 } => {
   fse.ensureDirSync(config.root!)
-  const paths = parsePaths(config.source)
-  return { paths }
+  return { parsedPathsObject: parsePaths(config.source) }
 }
 
 // code generate
 const gen = async (
   config: Required<ServerConfig<OpenAPIV2.Document>>,
   dirPath: string,
-  paths: ParsedPaths
+  pathsObject: ParsedPathsObject
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === 'ts') {
@@ -49,7 +64,8 @@ const gen = async (
     )
   }
 
-  if (config.lang === 'js' && config.jsDoc) {
+  // 生成 js doc type
+  if (config.lang === 'js') {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
     await fse.writeFile(
@@ -58,21 +74,50 @@ const gen = async (
     )
   }
 
-  // 生成 api
-  const genApi = async ([name, apiCollection]: [
+  // 生成单个 api 文件
+  const genApi = async ([filename, parsedPaths]: [
     string,
-    ApiCollection
+    ParsedPaths
   ]): Promise<void> => {
     const apiCollectionPath = path.resolve(
       dirPath,
-      `${config.filename?.(name) ?? name}.${config.lang}`
+      `${config.filename?.(filename) ?? filename}.${config.lang}`
     )
     fse.ensureFileSync(apiCollectionPath)
-    const code = genPaths(apiCollection, config)
-    await fse.writeFile(apiCollectionPath, code)
+    let code = ''
+    const imports: string[] = []
+    code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS
+    code += `\n`
+
+    let apisCode = ''
+    parsedPaths.forEach((parsedPath) => {
+      const { jsDocCode, code, imports: apiImports } = compilePath(
+        {
+          ...config,
+          ...DEFAULT_PARAMS,
+        },
+        parsedPath.url,
+        parsedPath.method
+      )
+      imports.push(...apiImports)
+      if (config.lang === 'js') {
+        apisCode += jsDocCode + code
+      } else {
+        apisCode += code
+      }
+      apisCode += `\n`
+    })
+    code +=
+      config.lang === 'ts' && imports.length
+        ? `import {${uniq(imports).join(',')}} from "${INTERFACE_PATH}";`
+        : ''
+    code += `${config.customImportCode}\n\n`
+    code += apisCode
+
+    await fse.writeFile(apiCollectionPath, formatCode(config.lang)(code))
   }
 
-  Object.entries(paths).forEach(genApi)
+  Object.entries(pathsObject).forEach(genApi)
 }
 
 const normalizeSource = async (
@@ -96,7 +141,9 @@ const normalizeSource = async (
 const compile = async (
   config: Required<ServerConfig>,
   events: {
-    onChooseApi?: (params: { paths: ParsedPaths }) => Promise<ParsedPaths>
+    onChooseApi?: (params: {
+      paths: ParsedPathsObject
+    }) => Promise<ParsedPathsObject>
   } = {}
 ): Promise<any> => {
   try {
@@ -108,12 +155,12 @@ const compile = async (
     fse.ensureDirSync(config.root)
 
     // parse
-    const { paths } = parse(config)
+    const { parsedPathsObject } = parse(config)
     spinner.succeed('api 文件解析完成')
 
     const choosePaths = isFunction(events?.onChooseApi)
-      ? await events?.onChooseApi?.({ paths })
-      : paths
+      ? await events?.onChooseApi?.({ paths: parsedPathsObject })
+      : parsedPathsObject
 
     // gen
     await gen(config, config.root, choosePaths)

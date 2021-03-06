@@ -1,10 +1,16 @@
 // 不要缩写，否则会找不到 map/genericInterfaceMap/recursiveMap
-import { ParsedInterface, parseInterface } from '../parse/interface'
+import {
+  flatInterfaceName,
+  formatGenericInterface,
+  ParsedInterface,
+  parseInterface,
+  uniqInterfaceNameImports,
+} from '../parse/interface'
 import { formatCode, traverseTree, TYPE_MAP } from '../utils'
 import { genInterface } from '../gen/interface'
 import { DEFAULT_HEAD_INTERFACE, DEFAULT_HEAD_JS_DOC_TYPES } from '../default'
 import { genJsDocTypeDef } from '../..'
-import { uniq } from 'lodash'
+import { uniq, flatten } from 'lodash'
 import { OpenAPIV2 } from 'openapi-types'
 
 export type Type = 'jsDoc' | 'interface'
@@ -43,12 +49,6 @@ const compileType: CompileType = ({
   let code = ''
   try {
     traverseTree(res, (node) => {
-      // 收集依赖
-      if (node.props) {
-        Object.values(node.props).forEach((value) => {
-          imports.push(...value.imports)
-        })
-      }
       if (contextMap.has(node.name)) {
         return
       } else {
@@ -69,16 +69,16 @@ const compileType: CompileType = ({
         code += Object.values(node.props)
           .filter((prop) => prop.ref)
           .reduce((acc, prop) => {
-            const recursiveCode = compileType({
+            const { code } = compileType({
               source,
               interfaceName: prop.ref,
               contextMap,
               type,
               recursive,
               imports,
-            }).code
-            if (recursiveCode) {
-              return `${acc + recursiveCode}\n`
+            })
+            if (code) {
+              return `${acc + code}\n`
             } else {
               return acc
             }
@@ -89,7 +89,10 @@ const compileType: CompileType = ({
           ? `${formatCode('ts')(genInterface(node))}\n`
           : `${genJsDocTypeDef(node)}\n`
     })
-    return { code: code ? `${code.trim()}\n` : code, imports: uniq(imports) }
+    return {
+      code: code ? `${code.trim()}\n` : code,
+      imports: uniqInterfaceNameImports(imports),
+    }
   } catch (e) {
     console.warn(
       `${
@@ -103,7 +106,7 @@ const compileType: CompileType = ({
       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范
     
 `,
-      imports: uniq(imports),
+      imports: uniqInterfaceNameImports(imports),
     }
   }
 }
@@ -122,6 +125,7 @@ const compileTypes: CompileTypes = ({
   // 单个 type
   if (interfaceName) {
     const map = contextMap ?? new Map<string, ParsedInterface>()
+    imports.push(interfaceName)
     return compileType({
       recursive,
       source,
@@ -134,6 +138,7 @@ const compileTypes: CompileTypes = ({
     // 全量 type
     const contextMap = new Map<string, ParsedInterface>()
     const interfaceCode = Object.keys(source.definitions).reduce((acc, cur) => {
+      imports.push(cur)
       const { code } = compileType({
         recursive,
         source,
@@ -152,7 +157,10 @@ const compileTypes: CompileTypes = ({
       type === 'interface'
         ? formatCode('ts')(`${DEFAULT_HEAD_INTERFACE}\n${interfaceCode}`).trim()
         : `${DEFAULT_HEAD_JS_DOC_TYPES}\n${interfaceCode}`.trim()
-    return { code, imports: uniq(imports) }
+    return {
+      code,
+      imports: uniqInterfaceNameImports(imports),
+    }
   }
 }
 
