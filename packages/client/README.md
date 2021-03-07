@@ -45,7 +45,7 @@ export const addUsingPOST = params =>
 | jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | false                                |
 | typedef | 可选，代码块附加 js doc typedef | boolean |  | false |
 | interface     | 可选，代码块附加 interface | boolean                 |  -          | false                                |
-| recursive | 递归解析 jsDoc/interface 的依赖 | boolean | - | false |
+| recursive | 可选，递归解析 jsDoc/interface 的依赖 | boolean | - | false |
 
 - TemplateConfig
 
@@ -70,7 +70,7 @@ free-swagger-client 基于模版函数来生成最终的 api 代码，用户可�
 
 https://github.com/yeyan1996/free-swagger/blob/master/packages/client/src/default/template.ts
 
-## jsTemplate
+## js 代码模版
 
 ```javascript
 ({
@@ -98,90 +98,90 @@ https://github.com/yeyan1996/free-swagger/blob/master/packages/client/src/defaul
     const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
         IQueryParams && IBodyParams
 
-    const firstParamCodeMap = new Map()
-        // 只有 query 参数，可能有 path 参数
-        .set(
-            ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
-            ({ IQueryParams }) => `params,`
-        )
-        // 只有 body 参数，可能有 path 参数
-        .set(
-            ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
-            ({ IBodyParams }) => `params,`
-        )
-        // 有 query 和 body 参数，可能有 path 参数
-        .set(
-            multipleParamsCondition,
-            ({ IQueryParams }) => `queryParams,`
-        )
-        // 没有 query body 参数，有 path 参数
-        .set(
-            ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-            ({ pathParams, IPathParams }) => '_NOOP,'
-        )
-        // 只有 path 参数
-        .set(
-            ({ pathParams }) => pathParams.length,
-            ({ pathParams, IPathParams }) =>
-                `{${pathParams.join(',')}},`
-        )
+  const firstParamCodeMap = new Map()
+      // 只有 query 参数，可能有 path 参数
+      .set(
+        ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
+         `params,`
+      )
+      // 只有 body 参数，可能有 path 参数
+      .set(
+        ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
+         `params,`
+      )
+      // 有 query 和 body 参数，可能有 path 参数
+      .set(
+        multipleParamsCondition,
+        () => `queryParams,`
+      )
+       // 没有 query body 参数，有 path 参数
+      .set(
+        ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+        '_NOOP,'
+      )  
+      // 只有 path 参数
+      .set(
+        ({ pathParams }) => pathParams.length,
+        ({ pathParams }) =>
+          `{${pathParams.join(',')}},`
+      )
 
     const secondParamCodeMap = new Map()
         // 有 path 参数
         .set(
-            ({ pathParams }) => pathParams.length,
-            ({ pathParams, IPathParams }) =>
-                `{${pathParams.join(',')}},`
+          ({ pathParams }) => pathParams.length,
+          ({ pathParams }) =>
+            `{${pathParams.join(',')}},`
         )
         // 有 query 和 body 参数，有 path 参数
         .set(multipleParamsCondition, `_NOOP,`)
-
-    const thirdParamCodeMap = new Map()
+        
+      const thirdParamCodeMap = new Map()
         // 有 query 和 body 参数，有 path 参数
         .set(
-            multipleParamsCondition,
-            ({ IBodyParams }) => `bodyParams,`
+          multipleParamsCondition,
+          `bodyParams,`
         )
-
-    const paramCodeMap = new Map()
+        
+      const paramCodeMap = new Map()
         .set(multipleParamsCondition, 'queryParams,')
         .set(({ IQueryParams }) => !!IQueryParams, 'params,')
-
-    const dataCodeMap = new Map()
+        
+      const dataCodeMap = new Map()
         .set(multipleParamsCondition, 'bodyParams,')
         .set(({ IBodyParams }) => !!IBodyParams, 'params,')
-
-    const createParamCode = (conditionMap, defaultCode = '') => {
+    
+      const createParamCode = (conditionMap, defaultCode = '') => {
         let code = defaultCode
         for (const [condition, codeFunction] of conditionMap.entries()) {
-            const res = condition({
-                IQueryParams,
-                IBodyParams,
-                pathParams,
-            })
-            if (res) {
-                code =
-                    typeof codeFunction === 'string'
-                        ? codeFunction
-                        : codeFunction({
-                            IQueryParams,
-                            IBodyParams,
-                            IPathParams,
-                            pathParams,
-                        })
-                break
-            }
+          const res = condition({
+            IQueryParams,
+            IBodyParams,
+            pathParams,
+          })
+          if (res) {
+            code =
+              typeof codeFunction === 'string'
+                ? codeFunction
+                : codeFunction({
+                    IQueryParams,
+                    IBodyParams,
+                    IPathParams,
+                    pathParams,
+                  })
+            break
+          }
         }
         return code
-    }
-
+      }
+     
     return `
   ${summary ? `// ${summary}` : ""}
   export const ${name} = (
-${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
-${createParamCode(secondParamCodeMap) /* path | null */}
-${createParamCode(thirdParamCodeMap) /* body | null */}
-)  => axios.request({
+    ${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    ${createParamCode(secondParamCodeMap) /* path | null */}
+    ${createParamCode(thirdParamCodeMap) /* body | null */}
+) => axios.request({
      url: \`${parsedUrl}\`,
      method: "${method}",
      params:${createParamCode(paramCodeMap, '{},')}
@@ -191,7 +191,7 @@ ${createParamCode(thirdParamCodeMap) /* body | null */}
 }
 ```
 
-## tsTemplate
+## ts 代码模版
 
 ```javascript
 ({
@@ -214,95 +214,95 @@ ${createParamCode(thirdParamCodeMap) /* body | null */}
     // 可通过 debugger 调试模版
 
     // 处理路径参数 `/pet/{id}` => `/pet/${id}`
-    const parsedUrl = url.replace(/{(.*?)}/g, '${$1}');
-
-    // 有 query 和 body 参数
-    const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
+      const parsedUrl = url.replace(/{(.*?)}/g, '${$1}'); 
+     
+      // 有 query 和 body 参数
+      const multipleParamsCondition = ({ IQueryParams, IBodyParams }) =>
         IQueryParams && IBodyParams
-
-    const firstParamCodeMap = new Map()
+        
+      const firstParamCodeMap = new Map()
         // 只有 query 参数，可能有 path 参数
         .set(
-            ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
-            ({ IQueryParams }) => `params: ${IQueryParams},`
+          ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
+          ({ IQueryParams }) => `params: ${IQueryParams},`
         )
         // 只有 body 参数，可能有 path 参数
         .set(
-            ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
-            ({ IBodyParams }) => `params: ${IBodyParams},`
+          ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
+          ({ IBodyParams }) => `params: ${IBodyParams},`
         )
         // 有 query 和 body 参数，可能有 path 参数
         .set(
-            multipleParamsCondition,
-            ({ IQueryParams }) => `queryParams: ${IQueryParams},`
+          multipleParamsCondition,
+          ({ IQueryParams }) => `queryParams: ${IQueryParams},`
         )
         // 没有 query body 参数，有 path 参数
         .set(
-            ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
-            ({ pathParams, IPathParams }) => '_NOOP: {[key:string]: never},'
+          ({ IQueryParams,pathParams,IBodyParams }) => !IBodyParams && !IQueryParams && pathParams.length,
+          '_NOOP: Record<string,never>,'
         )
-        // 只有 path 参数
+         // 只有 path 参数
         .set(
-            ({ pathParams }) => pathParams.length,
-            ({ pathParams, IPathParams }) =>
-                `{${pathParams.join(',')}}: ${IPathParams},`
+          ({ pathParams }) => pathParams.length,
+          ({ pathParams, IPathParams }) =>
+            `{${pathParams.join(',')}}: ${IPathParams},`
         )
-
-    const secondParamCodeMap = new Map()
+        
+      const secondParamCodeMap = new Map()
         // 有 path 参数
         .set(
-            ({ pathParams }) => pathParams.length,
-            ({ pathParams, IPathParams }) =>
-                `{${pathParams.join(',')}}: ${IPathParams},`
+          ({ pathParams }) => pathParams.length,
+          ({ pathParams, IPathParams }) =>
+            `{${pathParams.join(',')}}: ${IPathParams},`
         )
         // 有 query 和 body 参数，有 path 参数
         .set(multipleParamsCondition, `_NOOP:{[key:string]: never},`)
-
-    const thirdParamCodeMap = new Map()
+        
+      const thirdParamCodeMap = new Map()
         // 有 query 和 body 参数，有 path 参数
         .set(
-            multipleParamsCondition,
-            ({ IBodyParams }) => `bodyParams: ${IBodyParams},`
+          multipleParamsCondition,
+          ({ IBodyParams }) => `bodyParams: ${IBodyParams},`
         )
-
-    const paramCodeMap = new Map()
+        
+      const paramCodeMap = new Map()
         .set(multipleParamsCondition, 'queryParams,')
         .set(({ IQueryParams }) => !!IQueryParams, 'params,')
-
-    const dataCodeMap = new Map()
+        
+      const dataCodeMap = new Map()
         .set(multipleParamsCondition, 'bodyParams,')
         .set(({ IBodyParams }) => !!IBodyParams, 'params,')
-
-    const createParamCode = (conditionMap, defaultCode = '') => {
+    
+      const createParamCode = (conditionMap, defaultCode = '') => {
         let code = defaultCode
         for (const [condition, codeFunction] of conditionMap.entries()) {
-            const res = condition({
-                IQueryParams,
-                IBodyParams,
-                pathParams,
-            })
-            if (res) {
-                code =
-                    typeof codeFunction === 'string'
-                        ? codeFunction
-                        : codeFunction({
-                            IQueryParams,
-                            IBodyParams,
-                            IPathParams,
-                            pathParams,
-                        })
-                break
-            }
+          const res = condition({
+            IQueryParams,
+            IBodyParams,
+            pathParams,
+          })
+          if (res) {
+            code =
+              typeof codeFunction === 'string'
+                ? codeFunction
+                : codeFunction({
+                    IQueryParams,
+                    IBodyParams,
+                    IPathParams,
+                    pathParams,
+                  })
+            break
+          }
         }
         return code
-    }
+      }
 
     return `
   ${summary ? `// ${summary}` : ""}  
   export const ${name} = (
-${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
-${createParamCode(secondParamCodeMap) /* path | null */}
-${createParamCode(thirdParamCodeMap) /* body | null */}
+    ${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
+    ${createParamCode(secondParamCodeMap) /* path | null */}
+    ${createParamCode(thirdParamCodeMap) /* body | null */}
 ) => axios.request<${IResponse || "any"}>({
      url: \`${parsedUrl}\`,
      method: "${method}",

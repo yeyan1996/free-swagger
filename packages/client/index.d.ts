@@ -1,9 +1,10 @@
 import { ClientConfig } from './src/utils'
+import { Method } from './src/parse/path'
 
 declare function freeSwaggerClient(
   config: ClientConfig,
   url?: string,
-  method?: string
+  method?: Method
 ): string
 
 export default freeSwaggerClient
