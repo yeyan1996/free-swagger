@@ -3,7 +3,7 @@ import ah from "ajax-hook";
 import SwaggerParser from "@apidevtools/json-schema-ref-parser";
 import { cloneDeep } from "lodash-es";
 import { wait } from "@/utils/index";
-import youngParse from "../libs/youngParse";
+import youngParse from "./youngParse";
 
 let ok = false;
 

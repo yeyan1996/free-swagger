@@ -105,6 +105,40 @@ export const state = new Vue({
   }
 });
 
+export const handleCopyType = (
+  path = state.currentApi.path,
+  method = state.currentApi.method,
+  source = state.swagger
+) => {
+  try {
+    if (!path) {
+      throw new Error();
+    }
+    const storage = state.storage;
+    const codeFragment = freeSwaggerClient(
+      {
+        source,
+        lang: storage.currentLanguage,
+        jsDoc: storage.jsDoc,
+        typedef: true,
+        interface: true,
+        recursive: storage.recursive,
+        templateFunction: eval(
+          storage.currentLanguage === "js"
+            ? storage.jsTemplate
+            : storage.tsTemplate
+        )
+      },
+      path,
+      method
+    );
+    copyMessage(codeFragment);
+  } catch (e) {
+    Message.error("复制失败，请检查选择的 api 或模版");
+    console.log(e);
+  }
+};
+
 export const handleCopyApi = (
   path = state.currentApi.path,
   method = state.currentApi.method,
@@ -120,9 +154,6 @@ export const handleCopyApi = (
         source,
         lang: storage.currentLanguage,
         jsDoc: storage.jsDoc,
-        typedef: storage.typedef,
-        interface: storage.interface,
-        recursive: storage.recursive,
         templateFunction: eval(
           storage.currentLanguage === "js"
             ? storage.jsTemplate

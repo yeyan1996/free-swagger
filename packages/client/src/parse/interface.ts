@@ -7,6 +7,7 @@ import {
   SPECIAL_CHARACTERS_MAP_OPEN,
   SPECIAL_CHARACTERS_MAP_CLOSE,
   extractInterfaceNameByRef,
+  getRef,
 } from '../utils'
 import { clone, uniq, flatten } from 'lodash'
 import { Type } from '../compile/type'
@@ -211,7 +212,15 @@ const parseProperties = (
   return res
 }
 
-// 找到一个 interface 中泛型占位符的那个属性名
+/**
+ * @description 找到一个 interface 中泛型占位符的那个属性名（小概率存在多个属性）
+ * @example
+ * interface ExampleInterface<A> {
+ *    a:A  <- 属性名为 a
+ *    b:string
+ *    c:string
+ * }
+ **/
 const findGenericKeys = (
   properties: Record<string, OpenAPIV2.SchemaObject>,
   parsedInterface: ParsedInterface
@@ -219,7 +228,10 @@ const findGenericKeys = (
   const res: string[] = []
   const keys = Object.keys(properties)
   const notGeneric = (generic: string) => TYPE_MAP[generic]
+
   parsedInterface.generics?.forEach((item) => {
+    const restInterfaceName = reduceInterfaceName(item)
+
     // 非泛型只能找 interface 的 props 中第一个匹配的属性名作为占位符了
     // 例如 List<string> 中的 string
     if (notGeneric(item.name)) {
@@ -249,10 +261,9 @@ const findGenericKeys = (
       const index = keys.findIndex((key) => {
         return (
           // 泛型为类对象
-          extractInterfaceNameByRef(properties[key].$ref ?? '') === item.name ||
+          getRef(properties[key].$ref ?? '') === restInterfaceName ||
           // 泛型为类列表
-          extractInterfaceNameByRef(properties[key].items?.$ref ?? '') ===
-            item.name
+          getRef(properties[key].items?.$ref ?? '') === restInterfaceName
         )
       })
       if (index < 0) return

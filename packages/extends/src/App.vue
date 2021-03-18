@@ -13,6 +13,15 @@
         </div>
       </el-button>
       <div class="divider"></div>
+      <el-link @click="handleCopyType()" :underline="false">
+        <svg-icon name="copy-gray" class="copy"></svg-icon>
+        <span class="ml-3">{{
+          state.storage.currentLanguage === "js"
+            ? "复制 JS Doc typedef"
+            : "复制 Interface"
+        }}</span>
+      </el-link>
+      <div class="divider"></div>
       <el-link @click="handleCopyPath()" :underline="false">
         <svg-icon name="copy-gray" class="copy"></svg-icon>
         <span class="ml-3">复制url</span>
@@ -55,7 +64,12 @@ import { wait } from "@/utils";
 import { state } from "@/state";
 import MoreSetting from "@/components/MoreSetting";
 import ApiOptions from "@/components/ApiOptions";
-import { handleCopyApi, handleCopyPath, handleCopyFake } from "@/state";
+import {
+  handleCopyApi,
+  handleCopyPath,
+  handleCopyFake,
+  handleCopyType
+} from "@/state";
 import {
   createApiIconsDom,
   createInterfaceIconDom
@@ -86,6 +100,7 @@ export default {
     }
   },
   methods: {
+    handleCopyType,
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
@@ -254,7 +269,6 @@ export default {
 }
 
 .copy-code {
-  width: 135px;
   &:hover {
     opacity: 0.8;
   }
@@ -269,5 +283,6 @@ export default {
   border-radius: 50%;
   background: #2f80ed;
   font-size: 25px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <el-tooltip content="复制interface">
+  <el-tooltip content="复制 Interface">
     <svg-icon
       name="ts"
       @click.stop="handleCopyInterface(state.swagger, interfaceName)"
