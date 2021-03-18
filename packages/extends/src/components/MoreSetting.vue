@@ -13,29 +13,11 @@
           <template v-if="state.storage.currentLanguage === 'js'">
             <div @click.stop class="switch">
               <span class="js-doc-text normal">代码块 JS Doc</span>
-              <el-switch
-                v-model="state.storage.jsDoc"
-                active-text="开"
-                inactive-text="关"
-              ></el-switch>
-            </div>
-            <div @click.stop class="switch">
-              <span class="js-doc-text normal">代码块 JS Doc typedef</span>
-              <el-switch
-                v-model="state.storage.typedef"
-                @change="handleToggleRecursive"
-                active-text="开"
-                inactive-text="关"
-              ></el-switch>
+              <el-switch v-model="state.storage.jsDoc"></el-switch>
             </div>
             <div @click.stop class="switch">
               <span class="js-doc-text normal">递归复制依赖</span>
-              <el-switch
-                v-model="state.storage.recursive"
-                :disabled="!state.storage.typedef"
-                active-text="开"
-                inactive-text="关"
-              ></el-switch>
+              <el-switch v-model="state.storage.recursive"></el-switch>
             </div>
             <el-dropdown-item
               @click.native="handleCopyJsDocTypeDef()"
@@ -46,22 +28,8 @@
           </template>
           <template v-else>
             <div @click.stop class="switch">
-              <span class="js-doc-text normal">代码块 Interface</span>
-              <el-switch
-                v-model="state.storage.interface"
-                @change="handleToggleRecursive"
-                active-text="开"
-                inactive-text="关"
-              ></el-switch>
-            </div>
-            <div @click.stop class="switch">
               <span class="js-doc-text normal">递归复制依赖</span>
-              <el-switch
-                v-model="state.storage.recursive"
-                :disabled="!state.storage.interface"
-                active-text="开"
-                inactive-text="关"
-              ></el-switch>
+              <el-switch v-model="state.storage.recursive"></el-switch>
             </div>
             <el-dropdown-item
               @click.native="handleCopyInterface()"
@@ -71,7 +39,7 @@
             </el-dropdown-item>
           </template>
         </div>
-        <el-dropdown-item @click.native="dialog = true"
+        <el-dropdown-item @click.native="handleOpenDialog"
           >编辑模版</el-dropdown-item
         >
 
@@ -205,6 +173,10 @@ export default {
       if (!val) {
         state.storage.recursive = false;
       }
+    },
+    handleOpenDialog() {
+      state.storage.exportLanguage = state.storage.currentLanguage;
+      this.dialog = true;
     },
     handleInput(value) {
       if (state.storage.exportLanguage === "js") {

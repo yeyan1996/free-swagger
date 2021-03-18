@@ -1,8 +1,6 @@
 import { Method } from './parse/path'
 import { ClientConfig } from './utils'
 import { mergeDefaultParams } from './default'
-import { compileInterfaces } from './compile/interface'
-import { compileJsDocTypedefs } from './compile/jsDoc'
 import { compilePath } from './compile/path'
 
 const freeSwaggerClient = (
@@ -25,35 +23,27 @@ const freeSwaggerClient = (
     pathJsDocCode,
   } = compilePath(mergedConfig, url!, method!)
 
-  const useJsDoc = config.jsDoc && config.lang === 'js'
-  const useInterface = config.interface && config.lang === 'ts'
+  if (config.typedef && config.lang === 'js') {
+    return [queryJsDocCode, bodyJsDocCode, pathJsDocCode]
+      .filter(Boolean)
+      .join(`\n`)
+  }
 
-  if (useJsDoc) {
-    if (config.typedef) {
-      return (
-        [queryJsDocCode, bodyJsDocCode, pathJsDocCode]
-          .filter(Boolean)
-          .join(`\n`) + ['\n', jsDocCode, code].join('')
-      )
-    } else {
-      return [jsDocCode, code].join('')
-    }
+  if (config.interface && config.lang === 'ts') {
+    return [
+      queryInterfaceCode,
+      bodyInterfaceCode,
+      pathInterfaceCode,
+      responseInterfaceCode,
+    ]
+      .filter(Boolean)
+      .join(`\n`)
   }
-  if (useInterface) {
-    if (config.interface) {
-      return [
-        queryInterfaceCode,
-        bodyInterfaceCode,
-        pathInterfaceCode,
-        responseInterfaceCode,
-        code,
-      ]
-        .filter(Boolean)
-        .join(`\n`)
-    } else {
-      return code
-    }
+
+  if (config.jsDoc && config.lang === 'js') {
+    return jsDocCode + code
   }
+
   return code
 }
 
