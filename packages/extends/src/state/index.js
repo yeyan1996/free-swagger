@@ -132,6 +132,10 @@ export const handleCopyType = (
       path,
       method
     );
+    if (!codeFragment) {
+      Message.warning("没有可生成的类型代码");
+      return;
+    }
     copyMessage(codeFragment);
   } catch (e) {
     Message.error("复制失败，请检查选择的 api 或模版");

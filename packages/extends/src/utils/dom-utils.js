@@ -32,7 +32,7 @@ export function highlightDOM(el, highlightClass, timeout = 3000) {
 
 export const copyMessage = message => {
   if (!message) {
-    throw new Error();
+    throw new Error("无内容");
   }
   if (typeof message === "object") {
     message = JSON.stringify(message);
