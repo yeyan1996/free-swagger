@@ -1,5 +1,6 @@
 export const retry = async ({
   cb,
+  time = 500,
   retryNumber = 10,
   endCondition = () => {},
   success = () => {},
@@ -15,7 +16,7 @@ export const retry = async ({
     error();
     return;
   }
-  await wait();
+  await wait(time);
   await retry({
     cb,
     endCondition,

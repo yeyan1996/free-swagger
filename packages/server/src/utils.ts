@@ -14,6 +14,7 @@ export interface ServerConfig<T = string | OpenAPIV2.Document>
   source: T
   cookie?: string
   root?: string
+  jsDoc?: boolean
   customImportCode?: string
   filename?(name: string): string
 }

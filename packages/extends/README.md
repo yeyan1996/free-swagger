@@ -17,33 +17,39 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ![](./docs/api搜索.gif)
 
+## 复制 api 代码片段
+
+![](./docs/复制代码片段.gif)
+
+## 复制/递归复制 interface/typedef
+
+![](./docs/复制 interface.gif)
+
 ## 复制 api  路径	
 
 ![](./docs/复制api路径.gif)
 
-## 生成 api 代码片段
-
-![](./docs/复制代码片段.gif)
-
-## 生成 jsdoc
-
-![](./docs/生成jsDoc.gif)
-
-## 生成 typescript interface 
-
-![](./docs/生成interface.gif)
-
-## 生成 mock 数据
+## 复制 mock 数据
 
 ![](./docs/生成mock数据.gif)
 
-# 安装使用
+## 复制全量 typedef
+
+![](./docs/生成jsDoc.gif)
+
+## 复制全量 interface 
+
+![](./docs/生成interface.gif)
+
+
+
+# 安装 & 使用
 
 free-swagger-extends 是基于 UserScript 用户脚本拓展插件 (跨平台的浏览器插件)开发的脚本工具. 因此使用前, 我们需要安装浏览器插件 Tampermonkey
 
-## 安装猴油插件
+## 安装油猴插件
 
-在 chorme 的拓展工具中心搜索关键字 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+在 chrome 的拓展工具中心搜索关键字 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
 ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/1248c584810d48f3905b09d4f03e7938~tplv-em5hxbkur4-noop.image?width=1200&height=837)
 
@@ -95,16 +101,16 @@ free-swagger-extends 是基于 UserScript 用户脚本拓展插件 (跨平台的
 
 free-swagger-extends 基于 free-swagger-client，通过模版生成代码片段
 
-模版使用 axios 作为请求库，生成的代码片段如下
+默认使用 axios 作为模版，生成的代码片段如下
 
 ![image-20200710151113242](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglw9mu3i8j30c603r3ys.jpg)
 
-通过编辑模版，可以自定义生成的代码片段，例如将 axios.request 改成 request
+通过编辑模版，可以自定义生成的代码片段，通过改变入参位置、切换请求库名来适配任意请求库的结构
 
-![image-20200710151217540](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglwavq4q4j3124056t9h.jpg)
+例如将 axios.request 改成 request，示例如下
 
-![image-20200710151319940](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglwbxbwtoj30s10jc411.jpg)
+![image-20210320170732104](https://tva1.sinaimg.cn/large/008eGmZEly1goqhen1j98j32jk0cgdin.jpg)
 
-![image-20200710151641774](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglwfby4fbj30rm0ix76p.jpg)
+![image-20210320170350749](https://tva1.sinaimg.cn/large/008eGmZEly1goqhasp1hsj31a30u0q9u.jpg)
 
-模版接受多个参数，可以自由组合成想要的格式，更多技巧参考 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+模版函数接受多个参数，可以自由组合成想要的代码片段，详细使用方式参考 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)

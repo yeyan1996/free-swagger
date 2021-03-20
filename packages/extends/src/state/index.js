@@ -17,6 +17,7 @@ const SUCCESS_CODE = "200";
 export const state = new Vue({
   data() {
     return {
+      uiExist: false,
       url: "",
       dialog: false,
       key: "",

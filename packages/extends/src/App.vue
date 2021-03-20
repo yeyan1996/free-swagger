@@ -3,7 +3,7 @@
     <svg-icon name="code"></svg-icon>
   </div>
 
-  <div id="extends-app" v-else>
+  <div id="extends-app" v-else v-loading="loading">
     <api-options ref="apiOptions"></api-options>
     <div class="operation-container">
       <el-button type="primary" @click="handleCopyApi()" class="copy-code">
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { wait } from "@/utils";
+import { retry, wait } from "@/utils";
 import { state } from "@/state";
 import MoreSetting from "@/components/MoreSetting";
 import ApiOptions from "@/components/ApiOptions";
@@ -75,6 +75,8 @@ import {
   createInterfaceIconDom
 } from "@/utils/manually-mount";
 import RecursiveIterator from "recursive-iterator";
+import { assignSwagger } from "@/utils/hooks";
+import axios from "axios";
 
 export default {
   name: "app",
@@ -88,6 +90,11 @@ export default {
       collapse: false
     };
   },
+  computed: {
+    loading() {
+      return !state.options.length;
+    }
+  },
   watch: {
     async "state.domLoaded"(isLoaded) {
       if (!isLoaded) return;
@@ -97,13 +104,47 @@ export default {
         await this.bindClickEventForController();
         await this.bindClickEventForModel();
       }
+    },
+    // 第一次使用插件时插件可能加载比较慢，导致请求没有被拦截
+    // 此时主动更新 swagger 数据
+    "state.uiExist": {
+      async handler(newVal) {
+        if (!newVal || state.isNewUi || state.swagger) return;
+        const configs = window.ui.getConfigs();
+        const url = configs.urls?.[0].url || configs.url;
+        if (!url) return;
+        const { data } = await axios.get(url);
+        if (!state.swagger) {
+          await assignSwagger(data, url);
+        }
+      },
+      immediate: true
     }
+  },
+  mounted() {
+    this.checkUiExist();
   },
   methods: {
     handleCopyType,
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
+    // 适用旧 swagger 文档
+    // 判断是否存在全局 ui 对象
+    checkUiExist() {
+      let uiExist;
+      retry({
+        cb: async () => {
+          uiExist = !!window.ui;
+        },
+        endCondition: () => uiExist,
+        retryNumber: 20,
+        time: 1000,
+        success: () => {
+          state.uiExist = true;
+        }
+      });
+    },
     // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件
     async bindClickEventForController() {
       await wait();
@@ -124,9 +165,9 @@ export default {
     async injectForController(controllerNode, isNewUi = false) {
       if (!controllerNode && !isNewUi) return;
       await wait(0);
-      const apiNodeList = isNewUi
-        ? [...document.querySelectorAll("li.menuLi")]
-        : [...controllerNode.nextSibling.querySelectorAll(".opblock")];
+      const apiNodeList = [
+        ...document.querySelectorAll(isNewUi ? "li.menuLi" : ".opblock")
+      ];
       apiNodeList.forEach(apiNode => {
         if (!state.isNewUi) {
           this.injectApiIconsForApiNode(apiNode);
@@ -157,9 +198,9 @@ export default {
       apiNode.addEventListener("click", e => {
         const apiTag = e.currentTarget;
         if (isNewUi) {
-          const hashurl = apiTag.dataset.hashurl;
-          const index = hashurl.lastIndexOf("/");
-          const apiName = hashurl.slice(index + 1, hashurl.length);
+          const hashUrl = apiTag.dataset.hashUrl;
+          const index = hashUrl.lastIndexOf("/");
+          const apiName = hashUrl.slice(index + 1, hashUrl.length);
           for (let { node, path } of new RecursiveIterator(
             state.swagger.paths
           )) {
@@ -174,13 +215,16 @@ export default {
         } else {
           const method = apiTag.querySelector(".opblock-summary-method")
             ?.innerText;
-          const path = apiTag.querySelector(".opblock-summary-path")?.innerText;
+          const path = apiTag
+            .querySelector(".opblock-summary-path")
+            ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
           const summary = apiTag.querySelector(".opblock-summary-description")
             ?.innerText;
           if (!method || !path || !summary) return;
-          const key = method.toLowerCase() + " " + path + " " + summary;
-          state.key = key;
-          state.currentApi = state.options.find(item => item.key === key);
+          state.currentApi = state.options.find(
+            item => item.method === method.toLowerCase() && item.path === path
+          );
+          state.key = state.currentApi.key;
         }
       });
     },

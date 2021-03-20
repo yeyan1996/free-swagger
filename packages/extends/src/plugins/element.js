@@ -12,7 +12,8 @@ import {
   FormItem,
   Input,
   Tooltip,
-  Switch
+  Switch,
+  Loading
 } from "element-ui";
 
 Vue.use(Button);
@@ -28,3 +29,4 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Tooltip);
 Vue.use(Switch);
+Vue.use(Loading);

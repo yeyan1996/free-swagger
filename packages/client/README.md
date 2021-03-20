@@ -42,7 +42,7 @@ export const addUsingPOST = params =>
 | source           | 必选，swagger 源            | json                     | -           | -                                    |
 | lang             | 可选，生成 api 语言         | string                   | "js" / "ts" | "js"                                 |
 | templateFunction | 可选，模版函数              | Function(TemplateConfig) | -           | 返回一个模版，用于生成自定义代码片段 |
-| jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | false                                |
+| jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | true                                |
 | typedef | 可选，代码块附加 js doc typedef | boolean |  | false |
 | interface     | 可选，代码块附加 interface | boolean                 |  -          | false                                |
 | recursive | 可选，递归解析 jsDoc/interface 的依赖 | boolean | - | false |

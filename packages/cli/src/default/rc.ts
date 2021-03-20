@@ -22,7 +22,7 @@ const EXPORT_DEFAULT = 'export default'
 export interface RcConfig {
   client: Omit<
     Required<ClientConfig<string>>,
-    'filename' | 'interface' | 'typedef' | 'recursive' | 'jsDoc'
+    'filename' | 'interface' | 'typedef' | 'recursive'
   > & {
     tsTemplate: string
     jsTemplate: string
@@ -86,6 +86,7 @@ class Rc {
       client: {
         source: 'https://petstore.swagger.io/v2/swagger.json',
         lang: 'js',
+        jsDoc: true,
         templateFunction: eval(jsTemplate),
         tsTemplate,
         jsTemplate,
@@ -116,7 +117,7 @@ class Rc {
     const { lang, templateFunction } = client
     const { customImportCodeJs, customImportCodeTs } = server
     return {
-      ...pick(client, ['source', 'lang']),
+      ...pick(client, ['source', 'lang', 'jsDoc']),
       ...pick(server, ['root', 'cookie']),
       templateFunction,
       filename: (name) => camelcase(name),

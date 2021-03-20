@@ -31,8 +31,7 @@ import { mock } from './mock'
 export const spinner = ora().render()
 
 // 使用 free-swagger 时传入 free-swagger-client 的部分参数固定
-const DEFAULT_PARAMS = {
-  jsDoc: true,
+const DEFAULT_CLIENT_PARAMS = {
   interface: false,
   recursive: false,
   typedef: false,
@@ -94,7 +93,7 @@ const gen = async (
       const { jsDocCode, code, imports: apiImports } = compilePath(
         {
           ...config,
-          ...DEFAULT_PARAMS,
+          ...DEFAULT_CLIENT_PARAMS,
         },
         parsedPath.url,
         parsedPath.method

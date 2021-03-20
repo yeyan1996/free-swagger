@@ -42,6 +42,7 @@ const getDefaultParams = (
       ? DEFAULT_CUSTOM_IMPORT_CODE_TS
       : DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: 'js',
+  jsDoc: true,
   templateFunction: eval(jsTemplate),
   filename: (name) => camelcase(name),
 })
