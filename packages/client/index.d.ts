@@ -10,6 +10,7 @@ declare function freeSwaggerClient(
 export default freeSwaggerClient
 
 export * from './src/default/template'
+export * from './src/default/index'
 export * from './src/utils'
 export * from './src/gen/path'
 export * from './src/gen/jsDoc'

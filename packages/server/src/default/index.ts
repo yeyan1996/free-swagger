@@ -2,6 +2,7 @@ import { TemplateFunction, tsTemplate, jsTemplate } from 'free-swagger-client'
 import camelcase from 'camelcase'
 import { ServerConfig, isSwaggerDocument, MockConfig } from '../utils'
 import path from 'path'
+import { OpenAPIV2 } from 'openapi-types'
 
 export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
 export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`
@@ -30,26 +31,21 @@ const DEFAULT_MOCK_CONFIG = {
     : path.resolve(process.cwd(), 'src/mock'),
 }
 
-const getDefaultParams = (
-  config: ServerConfig
-): Required<Omit<ServerConfig, 'source'>> => ({
+export const getDefaultParams = (): Required<Omit<ServerConfig, 'source'>> => ({
   root: global.__DEV__
     ? path.resolve(__dirname, '../../test/api/default')
     : path.resolve(process.cwd(), 'src/api'),
   cookie: '',
-  customImportCode:
-    config.lang === 'ts'
-      ? DEFAULT_CUSTOM_IMPORT_CODE_TS
-      : DEFAULT_CUSTOM_IMPORT_CODE_JS,
+  customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: 'js',
   jsDoc: true,
   templateFunction: eval(jsTemplate),
   filename: (name) => camelcase(name),
 })
 
-export const mergeDefaultParams = async (
+export const mergeDefaultParams = (
   config: ServerConfig | string
-): Promise<Required<ServerConfig>> => {
+): Required<ServerConfig> => {
   let mergedConfig: ServerConfig = <ServerConfig>{}
 
   if (typeof config === 'string') {
@@ -63,15 +59,17 @@ export const mergeDefaultParams = async (
   let templateFunction: TemplateFunction
   if (mergedConfig.templateFunction) {
     templateFunction = mergedConfig.templateFunction
-  } else if (!mergedConfig.lang) {
-    templateFunction = eval(jsTemplate)
   } else {
     templateFunction =
       mergedConfig.lang === 'ts' ? eval(tsTemplate) : eval(jsTemplate)
   }
 
   return {
-    ...getDefaultParams(mergedConfig),
+    ...getDefaultParams(),
+    customImportCode:
+      mergedConfig.lang === 'ts'
+        ? DEFAULT_CUSTOM_IMPORT_CODE_TS
+        : DEFAULT_CUSTOM_IMPORT_CODE_JS,
     templateFunction,
     ...mergedConfig,
   }

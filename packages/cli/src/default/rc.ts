@@ -8,6 +8,7 @@ import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-client'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
+  mergeDefaultParams,
   MockConfig,
   ServerConfig,
 } from 'free-swagger'
@@ -84,12 +85,12 @@ class Rc {
   getDefaultConfig(): RcConfig {
     return {
       client: {
-        source: 'https://petstore.swagger.io/v2/swagger.json',
-        lang: 'js',
-        jsDoc: true,
-        templateFunction: eval(jsTemplate),
-        tsTemplate,
+        ...(pick(
+          mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json'),
+          ['lang', 'jsDoc', 'templateFunction']
+        ) as Required<ServerConfig<string>>),
         jsTemplate,
+        tsTemplate,
       },
       server: {
         root: path.resolve(process.cwd(), 'src/api'),
@@ -114,12 +115,11 @@ class Rc {
   createFreeSwaggerParams(
     { client, server }: RcConfig = this.configData
   ): Required<ServerConfig> {
-    const { lang, templateFunction } = client
+    const { lang } = client
     const { customImportCodeJs, customImportCodeTs } = server
     return {
-      ...pick(client, ['source', 'lang', 'jsDoc']),
+      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction']),
       ...pick(server, ['root', 'cookie']),
-      templateFunction,
       filename: (name) => camelcase(name),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
     }

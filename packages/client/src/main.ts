@@ -49,6 +49,7 @@ const freeSwaggerClient = (
 
 export default freeSwaggerClient
 export * from './default/template'
+export * from './default/index'
 export * from './utils'
 export * from './gen/path'
 export * from './gen/jsDoc'
