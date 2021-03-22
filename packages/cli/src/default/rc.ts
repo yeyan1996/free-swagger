@@ -83,6 +83,10 @@ class Rc {
 
   // 获取默认 rc 文件
   getDefaultConfig(): RcConfig {
+    console.log(
+      123,
+      mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json')
+    )
     return {
       client: {
         ...(pick(
