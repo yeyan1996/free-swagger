@@ -83,15 +83,11 @@ class Rc {
 
   // 获取默认 rc 文件
   getDefaultConfig(): RcConfig {
-    console.log(
-      123,
-      mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json')
-    )
     return {
       client: {
         ...(pick(
           mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json'),
-          ['lang', 'jsDoc', 'templateFunction']
+          ['source', 'lang', 'jsDoc', 'templateFunction']
         ) as Required<ServerConfig<string>>),
         jsTemplate,
         tsTemplate,
@@ -162,6 +158,11 @@ class Rc {
     }
     const functionCode = `templateFunction: ${templateFunction}`
     const index = data.search(/"source"/)
+    if (index === -1) {
+      throw new Error(
+        '找不到 source 属性，运行 free-swagger-cli -r 重置 rc 文件'
+      )
+    }
     const prevCode = data.slice(0, index)
     const afterCode = data.slice(index, data.length)
     return prettier.format(
