@@ -1,0 +1,1334 @@
+39 error Error: Command failed: git commit -F /private/var/folders/gh/16c1yvx16n9_ktd0gv3rl02r0000gp/T/d51c482e-b833-47b4-aa7b-dcadfd13767b/lerna-commit.txt
+39 error husky > pre-commit (node v12.13.1)
+39 error
+39 error > free-swagger@ lint /Users/bytedance/Desktop/free-swagger
+39 error > lerna exec -- npm run lint
+39 error
+39 error lerna notice cli v3.22.1
+39 error lerna info versioning independent
+39 error lerna info Executing command in 4 packages: "npm run lint"
+39 error
+39 error > free-swagger-client@4.3.1 lint /Users/bytedance/Desktop/free-swagger/packages/client
+39 error > eslint **/*.ts --fix
+39 error
+39 error
+39 error > free-swagger-extends@4.3.4 lint /Users/bytedance/Desktop/free-swagger/packages/extends
+39 error > vue-cli-service lint
+39 error
+39 error
+39 error > free-swagger@4.3.1 lint /Users/bytedance/Desktop/free-swagger/packages/server
+39 error > eslint **/*.ts --fix
+39 error
+39 error
+39 error > free-swagger-cli@4.3.3 lint /Users/bytedance/Desktop/free-swagger/packages/cli
+39 error > eslint **/*.ts --fix
+39 error
+39 error  DONE  No lint errors found!
+39 error lerna success exec Executed command in 4 packages: "npm run lint"
+39 error
+39 error > free-swagger@ build /Users/bytedance/Desktop/free-swagger
+39 error > lerna exec -- npm run build
+39 error
+39 error lerna notice cli v3.22.1
+39 error lerna info versioning independent
+39 error lerna info Executing command in 4 packages: "npm run build"
+39 error
+39 error > free-swagger-client@4.3.1 build /Users/bytedance/Desktop/free-swagger/packages/client
+39 error > tsc
+39 error
+39 error
+39 error > free-swagger-extends@4.3.4 build /Users/bytedance/Desktop/free-swagger/packages/extends
+39 error > vue-cli-service build
+39 error
+39 error
+39 error > free-swagger@4.3.1 build /Users/bytedance/Desktop/free-swagger/packages/server
+39 error > tsc
+39 error
+39 error
+39 error -  Building for production...
+39 error
+39 error > free-swagger-cli@4.3.3 build /Users/bytedance/Desktop/free-swagger/packages/cli
+39 error > tsc
+39 error
+39 error  WARNING  Compiled with 2 warnings4:31:04 PM
+39 error
+39 error  warning
+39 error
+39 error asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+39 error This can impact web performance.
+39 error Assets:
+39 error   html.worker.js (535 KiB)
+39 error   css.worker.js (829 KiB)
+39 error   ts.worker.js (4.17 MiB)
+39 error   js/app.d4032b12.js (837 KiB)
+39 error   js/chunk-0b65ffb6.f3a7fdb8.js (712 KiB)
+39 error   js/chunk-30597b4a.0eb98ea2.js (413 KiB)
+39 error   js/chunk-31b81f8f.70459b80.js (499 KiB)
+39 error   js/chunk-3c93e64d.34351e16.js (2.36 MiB)
+39 error
+39 error  warning
+39 error
+39 error entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+39 error Entrypoints:
+39 error   app (837 KiB)
+39 error       js/app.d4032b12.js
+39 error
+39 error
+39 error   File                                  Size               Gzipped
+39 error
+39 error   dist/ts.worker.js                     4265.44 KiB        943.95 KiB
+39 error   dist/js/chunk-3c93e64d.34351e16.js    2421.75 KiB        641.90 KiB
+39 error   dist/js/app.d4032b12.js               837.21 KiB         277.53 KiB
+39 error   dist/css.worker.js                    829.02 KiB         177.59 KiB
+39 error   dist/js/chunk-0b65ffb6.f3a7fdb8.js    712.25 KiB         139.43 KiB
+39 error   dist/html.worker.js                   535.39 KiB         136.41 KiB
+39 error   dist/js/chunk-31b81f8f.70459b80.js    499.10 KiB         143.10 KiB
+39 error   dist/js/chunk-30597b4a.0eb98ea2.js    412.57 KiB         95.28 KiB
+39 error   dist/json.worker.js                   232.21 KiB         69.42 KiB
+39 error   dist/editor.worker.js                 118.32 KiB         39.27 KiB
+39 error   dist/js/chunk-e13e4362.ca927f79.js    109.91 KiB         29.25 KiB
+39 error   dist/js/chunk-0d7df62a.e27ee5d3.js    37.97 KiB          9.06 KiB
+39 error   dist/js/chunk-2d22502a.79050227.js    25.98 KiB          6.65 KiB
+39 error   dist/js/chunk-0c95a623.74d6f352.js    24.10 KiB          6.53 KiB
+39 error   dist/js/chunk-2d0aeb45.8c5db0e0.js    18.19 KiB          4.37 KiB
+39 error   dist/js/chunk-2d0ae937.dddc3b44.js    17.84 KiB          6.41 KiB
+39 error   dist/js/chunk-2d0b6187.89557801.js    17.25 KiB          6.19 KiB
+39 error   dist/js/chunk-2d0d2f22.6fe79351.js    16.57 KiB          4.79 KiB
+39 error   dist/js/chunk-2d20f745.599b8a8e.js    14.19 KiB          5.04 KiB
+39 error   dist/js/chunk-2d0bcec1.411f3779.js    11.54 KiB          4.25 KiB
+39 error   dist/js/chunk-2d226775.b16bd190.js    11.42 KiB          4.23 KiB
+39 error   dist/js/chunk-2d0a3577.a28c980f.js    9.45 KiB           3.56 KiB
+39 error   dist/js/chunk-2d2295e9.ab1d37e9.js    8.33 KiB           2.54 KiB
+39 error   dist/js/chunk-2d0abc00.15856d80.js    8.25 KiB           2.07 KiB
+39 error   dist/js/chunk-2d0c0494.115e6260.js    8.09 KiB           3.06 KiB
+39 error   dist/js/chunk-2d0e57ec.23d2913b.js    7.87 KiB           2.05 KiB
+39 error   dist/js/chunk-2d0cf16e.ad921531.js    7.70 KiB           2.40 KiB
+39 error   dist/js/chunk-2d0a40c8.1356e1b6.js    7.26 KiB           2.66 KiB
+39 error   dist/js/chunk-2d2138c7.5d2ccad4.js    7.24 KiB           2.22 KiB
+39 error   dist/js/chunk-2d0c86e3.c14ff875.js    7.18 KiB           2.08 KiB
+39 error   dist/js/chunk-2d0e4fe5.eaa76f35.js    7.01 KiB           2.61 KiB
+39 error   dist/js/chunk-2d0c46d1.22d49e50.js    6.31 KiB           1.41 KiB
+39 error   dist/js/chunk-2d0bff92.d59ac7b0.js    6.29 KiB           1.73 KiB
+39 error   dist/js/chunk-2d0f0a11.9dbbb6df.js    5.87 KiB           1.53 KiB
+39 error   dist/js/chunk-7532b3ea.c098a6dc.js    5.86 KiB           2.06 KiB
+39 error   dist/js/chunk-2d0d7e63.d59e9c3b.js    5.68 KiB           2.05 KiB
+39 error   dist/js/chunk-2d0e22d6.0d5655a1.js    5.03 KiB           2.03 KiB
+39 error   dist/js/chunk-2d22ca58.220263f5.js    4.94 KiB           1.92 KiB
+39 error   dist/js/chunk-2d22c171.5ac0d3b4.js    4.82 KiB           1.94 KiB
+39 error   dist/js/chunk-2d0b2762.01369112.js    4.74 KiB           1.65 KiB
+39 error   dist/js/chunk-2d237ee7.e6d3fcbb.js    4.46 KiB           1.73 KiB
+39 error   dist/js/chunk-2d20ff23.0bbbe453.js    4.44 KiB           1.19 KiB
+39 error   dist/js/chunk-2d21b84a.ae6f861f.js    4.41 KiB           1.38 KiB
+39 error   dist/js/chunk-2d21dcd2.6fb195a2.js    4.25 KiB           1.74 KiB
+39 error   dist/js/chunk-2d0de971.70523bc1.js    4.21 KiB           1.65 KiB
+39 error   dist/js/chunk-2d0d056d.f95f1e5a.js    3.92 KiB           1.77 KiB
+39 error   dist/js/chunk-2d0bdf38.4f49285a.js    3.89 KiB           1.39 KiB
+39 error   dist/js/chunk-2d238465.2577af0d.js    3.86 KiB           1.75 KiB
+39 error   dist/js/chunk-2d0bb267.bb6d3923.js    3.83 KiB           1.42 KiB
+39 error   dist/js/chunk-2d0c512b.778bf5d1.js    3.74 KiB           1.39 KiB
+39 error   dist/js/chunk-2d0a3196.b32bb0b7.js    3.54 KiB           1.49 KiB
+39 error   dist/js/chunk-2d21f327.9a8cbd2a.js    3.53 KiB           1.32 KiB
+39 error   dist/js/chunk-2d216f3b.fb30a14d.js    3.51 KiB           1.37 KiB
+39 error   dist/js/chunk-2d0ea098.7215bb3b.js    3.50 KiB           1.48 KiB
+39 error   dist/js/chunk-2d0aab07.701375c5.js    3.49 KiB           1.24 KiB
+39 error   dist/js/chunk-2d221814.6e6d73f5.js    3.39 KiB           1.47 KiB
+39 error   dist/js/chunk-2d208ac5.85fe5f4b.js    3.22 KiB           1.38 KiB
+39 error   dist/js/chunk-2d22c2b8.d0c72880.js    3.19 KiB           1.37 KiB
+39 error   dist/js/chunk-2d0e6c86.c0856675.js    2.95 KiB           1.40 KiB
+39 error   dist/js/chunk-2d221a34.f920e9ba.js    2.94 KiB           1.33 KiB
+39 error   dist/js/chunk-2d0a43df.2f140f4d.js    2.93 KiB           1.34 KiB
+39 error   dist/js/chunk-2d0e6553.11a1c0ca.js    2.89 KiB           1.17 KiB
+39 error   dist/js/chunk-2d0c0a09.8a5d026a.js    2.80 KiB           1.19 KiB
+39 error   dist/js/chunk-2d0d61fd.1b41151f.js    2.73 KiB           1.21 KiB
+39 error   dist/js/chunk-2d0e542a.5c2e34ff.js    2.62 KiB           1.16 KiB
+39 error   dist/js/chunk-2d0af08c.315697cb.js    2.55 KiB           1.10 KiB
+39 error   dist/js/chunk-2d0dda4e.40c052fa.js    2.41 KiB           0.95 KiB
+39 error   dist/js/chunk-2d0e1fbe.1ff6bd9b.js    2.38 KiB           1.08 KiB
+39 error   dist/js/chunk-2d0aa90c.40622e71.js    2.24 KiB           1.05 KiB
+39 error   dist/js/chunk-2d217e5b.29d8e041.js    2.10 KiB           0.94 KiB
+39 error   dist/js/chunk-2d229411.eeb33856.js    2.02 KiB           0.94 KiB
+39 error   dist/js/chunk-2d221799.5afd9262.js    1.98 KiB           0.93 KiB
+39 error   dist/js/chunk-2d0afa49.1877412b.js    1.85 KiB           0.70 KiB
+39 error   dist/js/chunk-2d2311f7.6277f166.js    1.83 KiB           0.89 KiB
+39 error   dist/js/chunk-2d2214b3.c6b28fdb.js    1.81 KiB           0.85 KiB
+39 error   dist/js/chunk-2d0e1b57.15edb8eb.js    1.75 KiB           0.84 KiB
+39 error   dist/js/chunk-2d0d0645.54e8b1f4.js    1.73 KiB           0.65 KiB
+39 error   dist/js/chunk-2d209408.52527139.js    1.41 KiB           0.56 KiB
+39 error   dist/js/chunk-2d0c4313.ead46746.js    1.10 KiB           0.57 KiB
+39 error   dist/js/chunk-2d0ba136.a8f6aefc.js    0.86 KiB           0.36 KiB
+39 error   dist/userScript.js                    0.67 KiB           0.42 KiB
+39 error
+39 error   Images and other types of assets omitted.
+39 error
+39 error  DONE  Build complete. The dist directory is ready to be deployed.
+39 error  INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+39 error
+39 error lerna success exec Executed command in 4 packages: "npm run build"
+39 error
+39 error > free-swagger@ test /Users/bytedance/Desktop/free-swagger
+39 error > lerna exec -- npm run test
+39 error
+39 error lerna notice cli v3.22.1
+39 error lerna info versioning independent
+39 error lerna info Executing command in 4 packages: "npm run test"
+39 error
+39 error > free-swagger-client@4.3.1 test /Users/bytedance/Desktop/free-swagger/packages/client
+39 error > jest
+39 error
+39 error PASS test/index.test.js
+39 error   ● Console
+39 error
+39 error     console.warn
+39 error       interfaceName: Order 生成失败，检查是否符合 swagger 规范
+39 error
+39 error        95 |     }
+39 error        96 |   } catch (e) {
+39 error     >  97 |     console.warn(
+39 error           |             ^
+39 error        98 |       `${
+39 error        99 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error
+39 error       at compileType (src/compile/type.ts:97:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/index.test.js:171:37)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ';' expected. (4:28)
+39 error         2 |
+39 error         3 | // Order Status
+39 error       > 4 |             'status' ?: "["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]"
+39 error           |                            ^
+39 error         5 |
+39 error         6 |       }
+39 error         7 |
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:198:12
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:89:32
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:94:5)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:102:3)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:51:5)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:140:59)
+39 error           at compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/interface.ts:5:3)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/client/test/index.test.js:171:37)
+39 error           at Object.asyncJestTest (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+39 error           at new Promise (<anonymous>)
+39 error           at mapper (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+39 error           at processTicksAndRejections (internal/process/task_queues.js:93:5) {
+39 error         loc: { start: { line: 4, column: 28 } },
+39 error         codeFrame: '  2 |         \n' +
+39 error           '  3 | // Order Status\n' +
+39 error           `> 4 |             'status' ?: "["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]"\n` +
+39 error           '    |                            ^\n' +
+39 error           '  5 |             \n' +
+39 error           '  6 |       }\n' +
+39 error           '  7 | '
+39 error       }
+39 error
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error       101 |     )
+39 error     > 102 |     console.warn(e)
+39 error           |             ^
+39 error       103 |     return {
+39 error       104 |       code: `// ${
+39 error       105 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error
+39 error       at compileType (src/compile/type.ts:102:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/index.test.js:171:37)
+39 error
+39 error PASS test/special.test.js (5.053 s)
+39 error   ● Console
+39 error
+39 error     console.warn
+39 error       interfaceName: MessageNotifyBo 生成失败，检查是否符合 swagger 规范
+39 error
+39 error        95 |     }
+39 error        96 |   } catch (e) {
+39 error     >  97 |     console.warn(
+39 error           |             ^
+39 error        98 |       `${
+39 error        99 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error
+39 error       at compileType (src/compile/type.ts:97:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/special.test.js:8:37)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (16:35)
+39 error         14 |             ,
+39 error         15 | // 触发方式可多选
+39 error       > 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         17 |             ,
+39 error         18 | // 被通知参数
+39 error         19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:198:12
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:89:32
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:94:5)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:102:3)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:51:5)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:140:59)
+39 error           at compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/interface.ts:5:3)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/client/test/special.test.js:8:37)
+39 error           at Object.asyncJestTest (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+39 error           at new Promise (<anonymous>)
+39 error           at mapper (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+39 error           at processTicksAndRejections (internal/process/task_queues.js:93:5) {
+39 error         loc: { start: { line: 16, column: 35 } },
+39 error         codeFrame: '  14 |             ,\n' +
+39 error           '  15 | // 触发方式可多选\n' +
+39 error           `> 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  17 |             ,\n' +
+39 error           '  18 | // 被通知参数\n' +
+39 error           `  19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error       101 |     )
+39 error     > 102 |     console.warn(e)
+39 error           |             ^
+39 error       103 |     return {
+39 error       104 |       code: `// ${
+39 error       105 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error
+39 error       at compileType (src/compile/type.ts:102:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/special.test.js:8:37)
+39 error
+39 error     console.warn
+39 error       interfaceName: MessageNotifyDetailBo 生成失败，检查是否符合 swagger 规范
+39 error
+39 error        95 |     }
+39 error        96 |   } catch (e) {
+39 error     >  97 |     console.warn(
+39 error           |             ^
+39 error        98 |       `${
+39 error        99 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error
+39 error       at compileType (src/compile/type.ts:97:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/special.test.js:8:37)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (19:35)
+39 error         17 |             ,
+39 error         18 | // 触发方式可多选
+39 error       > 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         20 |             ,
+39 error         21 | // 被通知参数
+39 error         22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:198:12
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:89:32
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:94:5)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/src/utils.ts:102:3)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:51:5)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/type.ts:140:59)
+39 error           at compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/src/compile/interface.ts:5:3)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/client/test/special.test.js:8:37)
+39 error           at Object.asyncJestTest (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+39 error           at new Promise (<anonymous>)
+39 error           at mapper (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+39 error           at processTicksAndRejections (internal/process/task_queues.js:93:5) {
+39 error         loc: { start: { line: 19, column: 35 } },
+39 error         codeFrame: '  17 |             ,\n' +
+39 error           '  18 | // 触发方式可多选\n' +
+39 error           `> 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  20 |             ,\n' +
+39 error           '  21 | // 被通知参数\n' +
+39 error           `  22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       100 |       }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+39 error       101 |     )
+39 error     > 102 |     console.warn(e)
+39 error           |             ^
+39 error       103 |     return {
+39 error       104 |       code: `// ${
+39 error       105 |         type === 'interface' ? 'interfaceName' : 'jsDoc'
+39 error
+39 error       at compileType (src/compile/type.ts:102:13)
+39 error       at src/compile/type.ts:142:24
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (src/compile/type.ts:140:59)
+39 error       at compileInterfaces (src/compile/interface.ts:5:3)
+39 error       at Object.<anonymous> (test/special.test.js:8:37)
+39 error
+39 error
+39 error Test Suites: 2 passed, 2 total
+39 error Tests:       26 passed, 26 total
+39 error Snapshots:   26 passed, 26 total
+39 error Time:        8.139 s
+39 error Ran all test suites.
+39 error
+39 error > free-swagger-extends@4.3.4 test /Users/bytedance/Desktop/free-swagger/packages/extends
+39 error > echo 'Error: no test specified'
+39 error
+39 error
+39 error > free-swagger@4.3.1 test /Users/bytedance/Desktop/free-swagger/packages/server
+39 error > jest
+39 error
+39 error Error: no test specified
+39 error ⠋ - 正在生成 mock 文件...
+39 error
+39 error ✔ mock 文件生成成功，路径: /Users/bytedance/Desktop/free-swagger/packages/server/test/mock/swaggerPetstore
+39 error - 正在生成 mock 文件...
+39 error
+39 error ⠋ ✔ mock 文件生成成功，路径: /Users/bytedance/Desktop/free-swagger/packages/server/test/mock/homeIotApi
+39 error - 正在生成 mock 文件...
+39 error
+39 error ✔ mock 文件生成成功，路径: /Users/bytedance/Desktop/free-swagger/packages/server/test/mock/uberApi
+39 error - 正在生成 api 文件...
+39 error - 正在生成 mock 文件...
+39 error
+39 error ✔ api 文件解析完成
+39 error ✔ mock 文件生成成功，路径: /Users/bytedance/Desktop/free-swagger/packages/server/test/mock/default
+39 error - 正在生成 mock 文件...
+39 error
+39 error ⠋ ✔ mock 文件生成成功，路径: /Users/bytedance/Desktop/free-swagger/packages/server/test/mock/default
+39 error PASS test/mock.test.js (6.166 s)
+39 error   ● Console
+39 error
+39 error     console.log
+39 error       GET /pet/:petId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /pet/:petId/uploadImage 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /pet/findByStatus 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /pet/findByTags 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /store/inventory 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /store/order/:orderId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /store/order 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /user/:username 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /user/login 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /devices 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /lighting/dimmers/:deviceId/:value 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /lighting/dimmers/:deviceId/:value/timer/:timeunit 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /lighting/switches/:deviceId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /lighting/switches/:deviceId/:value 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /lighting/switches/:deviceId/:value/timer/:minutes 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /lightingSummary 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /temperature 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /temperature/forecast/:days 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /temperature/:zoneId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /temperature/:zoneId/heater 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /temperature/:zoneId/heater/:state 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /zones 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.warn
+39 error
+39 error       Error resolving $ref pointer "/Users/bytedance/Desktop/free-swagger/packages/server/#/definitions/IPagedResult[AuditLogListDto]".
+39 error       Token "IPagedResult[AuditLogListDto]" does not exist.
+39 error
+39 error       at Pointer.Object.<anonymous>.Pointer.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/pointer.js:96:15)
+39 error       at $Ref.Object.<anonymous>.$Ref.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/ref.js:115:20)
+39 error       at $Refs.Object.<anonymous>.$Refs._resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/refs.js:156:15)
+39 error       at dereference$Ref (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:134:23)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:62:28)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error
+39 error     console.warn
+39 error
+39 error       Error resolving $ref pointer "/Users/bytedance/Desktop/free-swagger/packages/server/#/definitions/List%3CVoid%3E".
+39 error       Token "List<Void>" does not exist.
+39 error
+39 error       at Pointer.Object.<anonymous>.Pointer.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/pointer.js:96:15)
+39 error       at $Ref.Object.<anonymous>.$Ref.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/ref.js:115:20)
+39 error       at $Refs.Object.<anonymous>.$Refs._resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/refs.js:156:15)
+39 error       at dereference$Ref (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:134:23)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:62:28)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error
+39 error     console.log
+39 error       GET /products-test 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /products 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/price 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/time 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /me 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /history 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       PUT /crawler/v1/mapper/:id 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /pet/:petId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /pet/:petId/uploadImage 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /pet/findByStatus 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /pet/findByTags 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /store/inventory 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /store/order/:orderId 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /store/order 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /user/:username 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /user/login 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.warn
+39 error
+39 error       Error resolving $ref pointer "/Users/bytedance/Desktop/free-swagger/packages/server/#/definitions/IPagedResult[AuditLogListDto]".
+39 error       Token "IPagedResult[AuditLogListDto]" does not exist.
+39 error
+39 error       at Pointer.Object.<anonymous>.Pointer.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/pointer.js:96:15)
+39 error       at $Ref.Object.<anonymous>.$Ref.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/ref.js:115:20)
+39 error       at $Refs.Object.<anonymous>.$Refs._resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/refs.js:156:15)
+39 error       at dereference$Ref (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:134:23)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:62:28)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error
+39 error     console.warn
+39 error
+39 error       Error resolving $ref pointer "/Users/bytedance/Desktop/free-swagger/packages/server/#/definitions/List%3CVoid%3E".
+39 error       Token "List<Void>" does not exist.
+39 error
+39 error       at Pointer.Object.<anonymous>.Pointer.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/pointer.js:96:15)
+39 error       at $Ref.Object.<anonymous>.$Ref.resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/ref.js:115:20)
+39 error       at $Refs.Object.<anonymous>.$Refs._resolve (node_modules/@apidevtools/json-schema-ref-parser/lib/refs.js:156:15)
+39 error       at dereference$Ref (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:134:23)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:62:28)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error       at crawl (node_modules/@apidevtools/json-schema-ref-parser/lib/dereference.js:71:30)
+39 error
+39 error     console.log
+39 error       GET /products-test 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /products 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/price 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/time 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /me 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /history 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       PUT /crawler/v1/mapper/:id 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       POST /api/services/app/YmTicketTypical/AddOrUpdateTicketTypical 生成成功
+39 error
+39 error       at createMockSchema (src/mock/index.ts:30:13)
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/swaggerPetstore
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/swaggerPetstore1
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/uberApi
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/homeIotApi
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/default
+39 error - 正在生成 api 文件...
+39 error ✔ api 文件解析完成
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/default
+39 error PASS test/index.test.js (9.362 s)
+39 error   ● Console
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       GET /products-test 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /products 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/price 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/time 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /me 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /history 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.log
+39 error       GET /products-test 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /products 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/price 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /estimates/time 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /me 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error     console.log
+39 error       GET /history 的 operationId 不存在,无法生成该 api
+39 error
+39 error       at src/parse/path.ts:31:19
+39 error           at Array.forEach (<anonymous>)
+39 error           at Array.forEach (<anonymous>)
+39 error
+39 error ✔ api 文件生成成功，文件根目录地址: /Users/bytedance/Desktop/free-swagger/packages/server/test/api/company
+39 error FAIL test/special.test.js (16.134 s)
+39 error   ● Console
+39 error
+39 error     console.log
+39 error       openApi version: 2.0
+39 error
+39 error       at Object.assertOpenApi2 (src/utils.ts:43:13)
+39 error
+39 error     console.warn
+39 error       interfaceName: MessageNotifyBo 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       62 |     }
+39 error       63 |     catch (e) {
+39 error     > 64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error          |                 ^
+39 error       65 |         console.warn(e);
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       at compileType (../client/dist/compile/type.js:64:17)
+39 error       at reduce (../client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:92:63)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at gen (src/main.ts:62:7)
+39 error       at compile (src/main.ts:165:11)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (16:35)
+39 error         14 |             ,
+39 error         15 | // 触发方式可多选
+39 error       > 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         17 |             ,
+39 error         18 | // 被通知参数
+39 error         19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:135:61
+39 error           at cb (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:55:26)
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:49:9)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:57:5)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:16:17)
+39 error           at reduce (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:92:63)
+39 error           at Object.compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/interface.js:5:44)
+39 error           at gen (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:62:7)
+39 error           at compile (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:165:11)
+39 error           at processTicksAndRejections (internal/process/task_queues.js:93:5)
+39 error           at freeSwagger (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:181:10)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/server/test/special.test.js:39:5) {
+39 error         loc: { start: { line: 16, column: 35 } },
+39 error         codeFrame: '  14 |             ,\n' +
+39 error           '  15 | // 触发方式可多选\n' +
+39 error           `> 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  17 |             ,\n' +
+39 error           '  18 | // 被通知参数\n' +
+39 error           `  19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       63 |     catch (e) {
+39 error       64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error     > 65 |         console.warn(e);
+39 error          |                 ^
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error       68 |
+39 error
+39 error       at compileType (../client/dist/compile/type.js:65:17)
+39 error       at reduce (../client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:92:63)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at gen (src/main.ts:62:7)
+39 error       at compile (src/main.ts:165:11)
+39 error
+39 error     console.warn
+39 error       interfaceName: MessageNotifyDetailBo 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       62 |     }
+39 error       63 |     catch (e) {
+39 error     > 64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error          |                 ^
+39 error       65 |         console.warn(e);
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       at compileType (../client/dist/compile/type.js:64:17)
+39 error       at reduce (../client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:92:63)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at gen (src/main.ts:62:7)
+39 error       at compile (src/main.ts:165:11)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (19:35)
+39 error         17 |             ,
+39 error         18 | // 触发方式可多选
+39 error       > 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         20 |             ,
+39 error         21 | // 被通知参数
+39 error         22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:135:61
+39 error           at cb (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:55:26)
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:49:9)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:57:5)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:16:17)
+39 error           at reduce (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:92:63)
+39 error           at Object.compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/interface.js:5:44)
+39 error           at gen (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:62:7)
+39 error           at compile (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:165:11)
+39 error           at processTicksAndRejections (internal/process/task_queues.js:93:5)
+39 error           at freeSwagger (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:181:10)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/server/test/special.test.js:39:5) {
+39 error         loc: { start: { line: 19, column: 35 } },
+39 error         codeFrame: '  17 |             ,\n' +
+39 error           '  18 | // 触发方式可多选\n' +
+39 error           `> 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  20 |             ,\n' +
+39 error           '  21 | // 被通知参数\n' +
+39 error           `  22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       63 |     catch (e) {
+39 error       64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error     > 65 |         console.warn(e);
+39 error          |                 ^
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error       68 |
+39 error
+39 error       at compileType (../client/dist/compile/type.js:65:17)
+39 error       at reduce (../client/dist/compile/type.js:94:30)
+39 error           at Array.reduce (<anonymous>)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:92:63)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at gen (src/main.ts:62:7)
+39 error       at compile (src/main.ts:165:11)
+39 error
+39 error     console.warn
+39 error       interfaceName: PlainResult«MessageNotifyDetailBo» 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       62 |     }
+39 error       63 |     catch (e) {
+39 error     > 64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error          |                 ^
+39 error       65 |         console.warn(e);
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       at compileType (../client/dist/compile/type.js:64:17)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:81:16)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at collectImports (../client/dist/compile/path.js:34:69)
+39 error       at Object.compilePath (../client/dist/compile/path.js:50:35)
+39 error       at src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error       at genApi (src/main.ts:92:17)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (19:35)
+39 error         17 |             ,
+39 error         18 | // 触发方式可多选
+39 error       > 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         20 |             ,
+39 error         21 | // 被通知参数
+39 error         22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:135:61
+39 error           at cb (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:55:26)
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:49:9)
+39 error           at traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:57:5)
+39 error           at forEach (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:53:17)
+39 error           at Array.forEach (<anonymous>)
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:52:31)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:57:5)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:16:17)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:81:16)
+39 error           at Object.compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/interface.js:5:44)
+39 error           at collectImports (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/path.js:34:69)
+39 error           at Object.compilePath (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/path.js:50:35)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error           at genApi (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:92:17)
+39 error           at Array.forEach (<anonymous>)
+39 error           at gen (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:119:31)
+39 error           at compile (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:165:5)
+39 error           at freeSwagger (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:181:10)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/server/test/special.test.js:39:5) {
+39 error         loc: { start: { line: 19, column: 35 } },
+39 error         codeFrame: '  17 |             ,\n' +
+39 error           '  18 | // 触发方式可多选\n' +
+39 error           `> 19 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  20 |             ,\n' +
+39 error           '  21 | // 被通知参数\n' +
+39 error           `  22 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       63 |     catch (e) {
+39 error       64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error     > 65 |         console.warn(e);
+39 error          |                 ^
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error       68 |
+39 error
+39 error       at compileType (../client/dist/compile/type.js:65:17)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:81:16)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at collectImports (../client/dist/compile/path.js:34:69)
+39 error       at Object.compilePath (../client/dist/compile/path.js:50:35)
+39 error       at src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error       at genApi (src/main.ts:92:17)
+39 error
+39 error     console.warn
+39 error       interfaceName: MessageNotifyBo 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       62 |     }
+39 error       63 |     catch (e) {
+39 error     > 64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error          |                 ^
+39 error       65 |         console.warn(e);
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error
+39 error       at compileType (../client/dist/compile/type.js:64:17)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:81:16)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at collectImports (../client/dist/compile/path.js:34:69)
+39 error       at Object.compilePath (../client/dist/compile/path.js:49:31)
+39 error       at src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error       at genApi (src/main.ts:92:17)
+39 error
+39 error     console.warn
+39 error       SyntaxError: ')' expected. (16:35)
+39 error         14 |             ,
+39 error         15 | // 触发方式可多选
+39 error       > 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]
+39 error            |                                   ^
+39 error         17 |             ,
+39 error         18 | // 被通知参数
+39 error         19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]
+39 error           at e (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:411)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/parser-typescript.js:1:3072809)
+39 error           at Object.parse (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:104576)
+39 error           at ts (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:117386)
+39 error           at us (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:15:119853)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37266
+39 error           at Object.format (/Users/bytedance/Desktop/free-swagger/packages/client/node_modules/prettier/standalone.js:55:37349)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:135:61
+39 error           at cb (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:55:26)
+39 error           at recursive (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:49:9)
+39 error           at Object.traverseTree (/Users/bytedance/Desktop/free-swagger/packages/client/dist/utils.js:57:5)
+39 error           at compileType (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:16:17)
+39 error           at Object.compileTypes (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/type.js:81:16)
+39 error           at Object.compileInterfaces (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/interface.js:5:44)
+39 error           at collectImports (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/path.js:34:69)
+39 error           at Object.compilePath (/Users/bytedance/Desktop/free-swagger/packages/client/dist/compile/path.js:49:31)
+39 error           at /Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error           at genApi (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:92:17)
+39 error           at Array.forEach (<anonymous>)
+39 error           at gen (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:119:31)
+39 error           at compile (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:165:5)
+39 error           at freeSwagger (/Users/bytedance/Desktop/free-swagger/packages/server/src/main.ts:181:10)
+39 error           at Object.<anonymous> (/Users/bytedance/Desktop/free-swagger/packages/server/test/special.test.js:39:5) {
+39 error         loc: { start: { line: 16, column: 35 } },
+39 error         codeFrame: '  14 |             ,\n' +
+39 error           '  15 | // 触发方式可多选\n' +
+39 error           `> 16 |             'message_mode' ?: ("["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]")[]\n` +
+39 error           '     |                                   ^\n' +
+39 error           '  17 |             ,\n' +
+39 error           '  18 | // 被通知参数\n' +
+39 error           `  19 |             'notified_params' ?: ("["employee_id1"" | ""employee_id2"]")[]`
+39 error       }
+39 error
+39 error       63 |     catch (e) {
+39 error       64 |         console.warn(`${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范`);
+39 error     > 65 |         console.warn(e);
+39 error          |                 ^
+39 error       66 |         return {
+39 error       67 |             code: `// ${type === 'interface' ? 'interfaceName' : 'jsDoc'}: ${interfaceName} 生成失败，检查是否符合 swagger 规范
+39 error       68 |
+39 error
+39 error       at compileType (../client/dist/compile/type.js:65:17)
+39 error       at Object.compileTypes (../client/dist/compile/type.js:81:16)
+39 error       at Object.compileInterfaces (../client/dist/compile/interface.js:5:44)
+39 error       at collectImports (../client/dist/compile/path.js:34:69)
+39 error       at Object.compilePath (../client/dist/compile/path.js:49:31)
+39 error       at src/main.ts:93:56
+39 error           at Array.forEach (<anonymous>)
+39 error       at genApi (src/main.ts:92:17)
+39 error
+39 error   ● special server › company json for typescript
+39 error
+39 error     : Timeout - Async callback was not invoked within the 5000 ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000 ms timeout specified by jest.setTimeout.Error:
+39 error
+39 error       34 |   });
+39 error       35 |
+39 error     > 36 |   test("company json for typescript", async () => {
+39 error          |   ^
+39 error       37 |     const dirname = "company";
+39 error       38 |     const dirPath = path.resolve(__dirname, "api", dirname);
+39 error       39 |     await freeSwagger({
+39 error
+39 error       at new Spec (node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
+39 error       at Suite.<anonymous> (test/special.test.js:36:3)
+39 error       at Object.<anonymous> (test/special.test.js:31:1)
+39 error
+39 error Test Suites: 1 failed, 2 passed, 3 total
+39 error Tests:       1 failed, 11 passed, 12 total
+39 error Snapshots:   34 passed, 34 total
+39 error Time:        19.023 s
+39 error Ran all test suites.
+39 error npm ERR! code ELIFECYCLE
+39 error npm ERR! errno 1
+39 error npm ERR! free-swagger@4.3.1 test: `jest`
+39 error npm ERR! Exit status 1
+39 error npm ERR!
+39 error npm ERR! Failed at the free-swagger@4.3.1 test script.
+39 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+39 error
+39 error npm ERR! A complete log of this run can be found in:
+39 error npm ERR!     /Users/bytedance/.npm/_logs/2021-04-02T08_31_43_535Z-debug.log
+39 error lerna ERR! npm run test exited 1 in 'free-swagger'
+39 error lerna ERR! npm run test exited 1 in 'free-swagger'
+39 error npm ERR! code ELIFECYCLE
+39 error npm ERR! errno 1
+39 error npm ERR! free-swagger@ test: `lerna exec -- npm run test`
+39 error npm ERR! Exit status 1
+39 error npm ERR!
+39 error npm ERR! Failed at the free-swagger@ test script.
+39 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+39 error
+39 error npm ERR! A complete log of this run can be found in:
+39 error npm ERR!     /Users/bytedance/.npm/_logs/2021-04-02T08_31_43_577Z-debug.log
+39 error husky > pre-commit hook failed (add --no-verify to bypass)
+39 error
+39 error     at makeError (/Users/bytedance/Desktop/free-swagger/node_modules/execa/index.js:174:9)
+39 error     at /Users/bytedance/Desktop/free-swagger/node_modules/execa/index.js:278:16
+39 error     at processTicksAndRejections (internal/process/task_queues.js:93:5)
