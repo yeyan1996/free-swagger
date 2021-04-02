@@ -198,7 +198,7 @@ export default {
       apiNode.addEventListener("click", e => {
         const apiTag = e.currentTarget;
         if (isNewUi) {
-          const hashUrl = apiTag.dataset.hashUrl;
+          const hashUrl = apiTag.dataset.hashurl;
           const index = hashUrl.lastIndexOf("/");
           const apiName = hashUrl.slice(index + 1, hashUrl.length);
           for (let { node, path } of new RecursiveIterator(
