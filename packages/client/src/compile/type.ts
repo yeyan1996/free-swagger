@@ -111,7 +111,7 @@ const compileType: CompileType = ({
   }
 }
 
-// 生成全量 interface/jsDoc 代码
+// 生成单个/全量 interface/jsDoc 代码
 const compileTypes: CompileTypes = ({
   source,
   interfaceName,

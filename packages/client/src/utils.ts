@@ -95,7 +95,7 @@ const traverseTree = <T extends Record<string, any>>(
     index++
     if (tree[childrenKey]) {
       tree[childrenKey].forEach((child: T) => {
-        traverseTree(child, cb, childrenKey)
+        recursive(child, cb, childrenKey)
       })
     }
   }

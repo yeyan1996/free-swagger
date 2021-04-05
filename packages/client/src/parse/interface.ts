@@ -9,7 +9,7 @@ import {
   extractInterfaceNameByRef,
   getRef,
 } from '../utils'
-import { clone, uniq, flatten } from 'lodash'
+import { cloneDeep, uniq, flatten } from 'lodash'
 import { Type } from '../compile/type'
 
 const isWord = /^\w*$/
@@ -281,7 +281,7 @@ const normalizeProperties = (
 ): Record<string, ParsedInterfaceProp> => {
   // 从 definition 中找到替换为泛型的 key
   // const genericKey = findGenericKey(properties)
-  const res = clone(parseProperties(properties, required))
+  const res = cloneDeep(parseProperties(properties, required))
   genericKeys.forEach((key, index) => {
     res[key] = {
       type: properties[key].type,
@@ -346,7 +346,7 @@ const parseInterface = (
 
   // interface 存在泛型
   if (parsedInterface.generics?.length) {
-    traverseTree(parsedInterface, (node) => {
+    traverseTree(parsedInterface, (node, index) => {
       // definitions 中存在 Map«string,object»
       const buildInInterface = buildInInterfaces[node.name]
       // 内建 interface
@@ -356,8 +356,20 @@ const parseInterface = (
             ? buildInInterface.code
             : buildInInterface.jsDocCode
       } else if (definitions[node.name]) {
-        // 定义的 interface
-        const { properties, required } = definitions[node.name]
+        /**
+         * @description 在 definitions 中已定义的 interface
+         * @description
+         * 如果是最顶层的 definition，优先使用 prefix + generic 的定义
+         * 没有则回退到 prefix 的定义
+         * 因为 prefix + generic 可能会标示出泛型位置，而 prefix 不一定有
+         * @example
+         * 解析 ListResult«AppBo»
+         * 优先查找 ListResult«AppBo»，没有则回退到 ListResult
+         **/
+        const { properties, required } =
+          index === 0 && definitions[interfaceName]
+            ? definitions[interfaceName]
+            : definitions[node.name]
         if (!properties) return
         node.props = normalizeProperties(
           properties,
