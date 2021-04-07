@@ -47,13 +47,6 @@ export default {
   data: () => ({
     state
   }),
-  watch: {
-    "state.options"(now) {
-      if (!now.length) return;
-      state.key = now[0].key;
-      this.handleSearch(state.key);
-    }
-  },
   methods: {
     handleCopyApi,
     findControllerDom({ isNewUi, controller }) {
