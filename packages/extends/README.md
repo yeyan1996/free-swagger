@@ -23,7 +23,7 @@ free-swagger-extends 基于 [free-swagger-client](https://www.npmjs.com/package/
 
 ## 复制/递归复制 interface/typedef
 
-![](./docs/复制 interface.gif)
+![](./docs/复制interface.gif)
 
 ## 复制 api  路径	
 
