@@ -8,7 +8,7 @@ const genInterface = ({ formatName, props, code }: ParsedInterface): string =>
           props &&
           Object.entries(props).map(
             ([propName, prop]) =>
-              `${prop.description ? `\n// ${prop.description}` : ''}
+              `${prop.description ? `\n/** ${prop.description} */` : ''}
             '${propName}' ${prop.required ? '' : '?'}: ${prop.formatType}
             `
           )

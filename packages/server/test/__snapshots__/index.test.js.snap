@@ -513,7 +513,7 @@ export interface TemperatureSummary {
 }
 
 export interface TemperatureZone {
-  // the unique identifier for the zone
+  /** the unique identifier for the zone */
   id: number;
   name: string;
   inputPosition?: number;
@@ -522,15 +522,15 @@ export interface TemperatureZone {
 }
 
 export interface TemperatueZoneStatus {
-  // the unique identifier for the zone
+  /** the unique identifier for the zone */
   id: string;
-  // the name of the zone
+  /** the name of the zone */
   name?: string;
-  // the temperature in the zone
+  /** the temperature in the zone */
   value: number;
-  // the temperature units
+  /** the temperature units */
   units?: \\"celsius\\" | \\"fahrenheit\\";
-  // the timestamp when the temperature was measured
+  /** the timestamp when the temperature was measured */
   timestamp: string;
 }
 
@@ -2092,7 +2092,7 @@ exports[`server ts language 2`] = `
 
 import axios from \\"axios\\";
 
-// 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
+/** 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象 */
 export const uploadLngLatUsingPOST = (params: JavaList<void>) =>
   axios.request<any>({
     url: \`/v1/dev/uploadLngLat\`,
@@ -2110,60 +2110,60 @@ exports[`server ts language 3`] = `
 // @see https://www.npmjs.com/package/free-swagger-client
 
 export interface Product {
-  // Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+  /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles. */
   product_id?: string;
-  // Description of product.
+  /** Description of product. */
   description?: string;
-  // Display name of product.
+  /** Display name of product. */
   display_name?: string;
-  // Capacity of product. For example, 4 people.
+  /** Capacity of product. For example, 4 people. */
   capacity?: string;
-  // Image URL representing the product.
+  /** Image URL representing the product. */
   image?: string;
 }
 
 export interface PriceEstimate {
-  // Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
+  /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles */
   product_id?: string;
-  // [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
+  /** [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code. */
   currency_code?: string;
-  // Display name of product.
+  /** Display name of product. */
   display_name?: string;
-  // Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+  /** Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI. */
   estimate?: string;
-  // Lower bound of the estimated price.
+  /** Lower bound of the estimated price. */
   low_estimate?: number;
-  // Upper bound of the estimated price.
+  /** Upper bound of the estimated price. */
   high_estimate?: number;
-  // Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
+  /** Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier. */
   surge_multiplier?: number;
 }
 
 export interface Profile {
-  // First name of the Uber user.
+  /** First name of the Uber user. */
   first_name?: string;
-  // Last name of the Uber user.
+  /** Last name of the Uber user. */
   last_name?: string;
-  // Email address of the Uber user
+  /** Email address of the Uber user */
   email?: string;
-  // Image URL of the Uber user.
+  /** Image URL of the Uber user. */
   picture?: string;
-  // Promo code of the Uber user.
+  /** Promo code of the Uber user. */
   promo_code?: string;
   role?: RoleType;
 }
 
 export interface Activity {
-  // Unique identifier for the activity
+  /** Unique identifier for the activity */
   uuid?: string;
 }
 
 export interface Activities {
-  // Position in pagination.
+  /** Position in pagination. */
   offset?: number;
-  // Number of items to retrieve (100 max).
+  /** Number of items to retrieve (100 max). */
   limit?: number;
-  // Total number of items available.
+  /** Total number of items available. */
   count?: number;
   history?: Activity[];
 }
@@ -2171,9 +2171,9 @@ export interface Activities {
 export type RoleType = \\"Admin\\" | \\"User\\" | \\"SetSms\\";
 
 export interface CreateOrUpdateUserInput {
-  // 用户ID(ID来自User表)
+  /** 用户ID(ID来自User表) */
   userId?: number;
-  // 用户权限
+  /** 用户权限 */
   userRights?: (
     | \\"View\\"
     | \\"Operate\\"
@@ -2218,9 +2218,9 @@ export interface AuditLogListDto {
 }
 
 export interface JsonResult<T> {
-  // 结果
+  /** 结果 */
   result?: boolean;
-  // 代码
+  /** 代码 */
   code?:
     | \\"Success\\"
     | \\"Timeout\\"
@@ -2231,9 +2231,9 @@ export interface JsonResult<T> {
     | \\"InvalidAnonymousAccess\\"
     | \\"UserSessionExpired\\"
     | \\"UserIsBinded\\";
-  // 数据
+  /** 数据 */
   data?: string;
-  // 消息
+  /** 消息 */
   message?: string;
 }"
 `;
@@ -2272,7 +2272,7 @@ exports[`server ts language 5`] = `
 import { JsonResult, Guid } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
 
-// 新增或编辑标准票, 需走审批流程
+/** 新增或编辑标准票, 需走审批流程 */
 export const AddOrUpdateTicketTypical = () =>
   axios.request<JsonResult<Guid>>({
     url: \`/v1/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,

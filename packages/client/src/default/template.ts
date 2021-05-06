@@ -219,7 +219,7 @@ export const tsTemplate = `({
   }
  
   return \`
-  \${summary ? \`// \${summary}\` : ""}
+  \${summary ? \`/** \${summary} */\` : ""}
   export const \${name} = (
     \${createParamCode(firstParamCodeMap) /* query | body | NOOP */}
     \${createParamCode(secondParamCodeMap) /* path | null */}
