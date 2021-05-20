@@ -75,7 +75,7 @@ const TYPE_MAP: Record<string, string> = {
   file: 'Blob',
   formData: 'FormData',
   Void: 'void',
-  object: 'object',
+  object: 'Record<string | number | symbol, any>',
   array: 'Array<any>',
 }
 
@@ -162,7 +162,7 @@ const schemaToTsType = (
     // todo 对 object 的响应 schema 做处理
     if (schema.type === 'object') {
       let type = ''
-      if (!schema.properties) return 'object'
+      if (!schema.properties) return 'Record<string | number | symbol, any>'
       Object.keys(schema.properties).forEach((key) => {
         type += schema.properties
           ? recursive(schema.properties[key], formatType)
