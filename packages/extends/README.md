@@ -99,7 +99,7 @@ free-swagger-extends 是基于 UserScript 用户脚本拓展插件 (跨平台的
 
 ## 更新
 
-点击设置，勾选检查更新，输入更新 url  https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/userScript.js，即可收到脚本更新消息
+点击设置，勾选检查更新，输入更新 url https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/userScript.js 即可收到脚本更新消息
 
 ![image-20210411155119953](https://tva1.sinaimg.cn/large/008eGmZEgy1gpfuu772bcj30ry0agmy6.jpg)
 
