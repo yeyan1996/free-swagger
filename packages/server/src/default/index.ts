@@ -2,7 +2,6 @@ import { TemplateFunction, tsTemplate, jsTemplate } from 'free-swagger-client'
 import camelcase from 'camelcase'
 import { ServerConfig, isSwaggerDocument, MockConfig } from '../utils'
 import path from 'path'
-import { OpenAPIV2 } from 'openapi-types'
 
 export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
 export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`

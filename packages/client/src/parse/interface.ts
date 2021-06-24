@@ -80,6 +80,7 @@ const parseInterfaceName = (interfaceName: string): ParsedInterface => {
     } else if (isCloseCharacter(s)) {
       // 遇到闭合标签，找到距离最近的开合标签之间的所有泛型，拼接，组成 generics 数组
       // 思路参考函数参数优先级
+      // 深度遍历到最底层的参数，从下往上合并参数
       // f(a,b,f(c,d,f(f(e),g)))
       if (word) {
         stack.push(word)

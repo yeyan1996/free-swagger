@@ -1,7 +1,5 @@
 // 不要缩写，否则会找不到 map/genericInterfaceMap/recursiveMap
 import {
-  flatInterfaceName,
-  formatGenericInterface,
   ParsedInterface,
   parseInterface,
   uniqInterfaceNameImports,
@@ -10,8 +8,10 @@ import { formatCode, traverseTree, TYPE_MAP } from '../utils'
 import { genInterface } from '../gen/interface'
 import { DEFAULT_HEAD_INTERFACE, DEFAULT_HEAD_JS_DOC_TYPES } from '../default'
 import { genJsDocTypeDef } from '../..'
-import { uniq, flatten } from 'lodash'
 import { OpenAPIV2 } from 'openapi-types'
+import chalk from 'chalk'
+
+const isNode = typeof window === 'undefined'
 
 export type Type = 'jsDoc' | 'interface'
 export type CompileTypesParams = {
@@ -94,12 +94,15 @@ const compileType: CompileType = ({
       imports: uniqInterfaceNameImports(imports),
     }
   } catch (e) {
-    console.warn(
-      `${
-        type === 'interface' ? 'interfaceName' : 'jsDoc'
-      }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
-    )
-    console.warn(e)
+    const error = `${
+      type === 'interface' ? 'interfaceName' : 'jsDoc'
+    }: ${interfaceName} 生成失败，检查是否符合 swagger 规范`
+    if (isNode) {
+      console.log(chalk.yellow(error))
+    } else {
+      console.warn(error)
+      console.warn(e)
+    }
     return {
       code: `// ${
         type === 'interface' ? 'interfaceName' : 'jsDoc'

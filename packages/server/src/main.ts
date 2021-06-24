@@ -127,7 +127,7 @@ const normalizeSource = async (
     throw new Error('source 不存在，请检查配置文件')
   }
   if (isUrl(source)) {
-    return await fetchJSON(source, cookie)
+    return fetchJSON(source, cookie)
   }
   if (isPath(source)) {
     const sourcePath = path.resolve(process.cwd(), source)
@@ -178,7 +178,7 @@ const freeSwagger = async (
   config: ServerConfig | string
 ): Promise<OpenAPIV2.Document> => {
   const mergedConfig = await mergeDefaultParams(config)
-  return await compile(mergedConfig)
+  return compile(mergedConfig)
 }
 
 freeSwagger.compile = compile
