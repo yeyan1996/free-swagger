@@ -37,8 +37,8 @@ export const state = new Vue({
         interface: false,
         typedef: false,
         recursive: false,
-        exportLanguage: "js",
-        currentLanguage: "js"
+        exportLanguage: "ts",
+        currentLanguage: "ts"
       },
       isNewUi: false,
       domLoaded: false, // swagger 文档 dom 渲染完毕
