@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "__MSG_extName__",
-  "homepage_url": "http://localhost:8080/",
-  "description": "A Vue Browser Extension",
+  "name": "free-swagger",
+  "homepage_url": "https://github.com/yeyan1996/free-swagger",
+  "description": "chrome extension for free-swagger",
   "default_locale": "en",
+  "omnibox": { "keyword" : "swagger" },
   "permissions": [
     "tabs",
     "activeTab",
@@ -11,8 +12,6 @@
     "*://*/*"
   ],
   "icons": {
-    "16": "icons/16.png",
-    "48": "icons/48.png",
     "128": "icons/128.png"
   },
   "background": {
@@ -28,11 +27,9 @@
     }
   ],
   "browser_action": {
-    "default_popup": "popup.html",
-    "default_title": "__MSG_extName__",
+    "default_title": "free-swagger",
     "default_icon": {
-      "19": "icons/19.png",
-      "38": "icons/38.png"
+      "128": "icons/128.png"
     }
   }
 }
