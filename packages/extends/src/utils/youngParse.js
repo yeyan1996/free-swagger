@@ -14,6 +14,7 @@ export default string => {
     try {
       eval(string);
     } catch (e) {
+      console.error(string);
       Message.error({
         duration: 10000,
         message: `json 结构解析失败，错误原因： ${e}`

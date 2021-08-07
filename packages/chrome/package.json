@@ -1,0 +1,52 @@
+{
+  "name": "free-swagger-chrome",
+  "version": "1.0.0",
+  "private": true,
+  "description": "chrome extension for free-swagger",
+  "author": "zhouhaolei <zhouhaolei@bytedance.com>",
+  "scripts": {
+    "serve": "vue-cli-service build --mode development --watch",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.154",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "prettier": "^2.2.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-browser-extension": "~0.25.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "bugs": {
+    "url": "https://github.com/yeyan1996/free-swagger/issues"
+  },
+  "homepage": "https://github.com/yeyan1996/free-swagger#readme",
+  "keywords": [
+    "swagger",
+    "chrome-extension"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeyan1996/free-swagger.git"
+  }
+}
