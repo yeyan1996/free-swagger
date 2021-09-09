@@ -42,20 +42,6 @@
         <el-dropdown-item @click.native="handleOpenDialog"
           >编辑模版</el-dropdown-item
         >
-
-        <!--        <el-dropdown-item @click.native="handleCopySchema"-->
-        <!--          >复制响应数据schema</el-dropdown-item-->
-        <!--        >-->
-        <!--        <el-dropdown-item-->
-        <!--          @click.native="openAllController"-->
-        <!--          v-if="!state.isNewUi"-->
-        <!--          >展开全部 api</el-dropdown-item-->
-        <!--        >-->
-        <!--        <el-dropdown-item-->
-        <!--          @click.native="closeAllController"-->
-        <!--          v-if="!state.isNewUi"-->
-        <!--          >收起全部 api</el-dropdown-item-->
-        <!--        >-->
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -113,16 +99,10 @@
 <script>
 import { Message } from "element-ui";
 import { state } from "@/state";
+import { handleCopyInterface, handleCopyJsDocTypeDef } from "../state";
+import { jsTemplate, tsTemplate } from "free-swagger-client";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 
-import {
-  // handleCopySchema,
-  handleCopyInterface,
-  handleCopyJsDocTypeDef
-} from "../state";
-import { jsTemplate, tsTemplate } from "free-swagger-client";
-
-const SUCCESS_CODE = 200;
 export default {
   name: "MoreSetting",
   data() {
@@ -166,14 +146,8 @@ export default {
     }
   },
   methods: {
-    // handleCopySchema,
     handleCopyJsDocTypeDef,
     handleCopyInterface,
-    handleToggleRecursive(val) {
-      if (!val) {
-        state.storage.recursive = false;
-      }
-    },
     handleOpenDialog() {
       state.storage.exportLanguage = state.storage.currentLanguage;
       this.dialog = true;
@@ -194,24 +168,6 @@ export default {
       this.instance?.setValue(
         exportLanguage === "js" ? this.form.jsTemplate : this.form.tsTemplate
       );
-    },
-    openAllController() {
-      if (state.isNewUi) {
-        return Message.error("新 swagger ui 无法使用该功能");
-      }
-      const blockList = document.querySelectorAll(
-        ".opblock-tag-section:not(.is-open)"
-      );
-      blockList.forEach(block => block.firstChild.click());
-    },
-    closeAllController() {
-      if (state.isNewUi) {
-        return Message.error("新 swagger ui 无法使用该功能");
-      }
-      const blockList = document.querySelectorAll(
-        ".opblock-tag-section.is-open"
-      );
-      blockList.forEach(block => block.firstChild.click());
     },
     async handleResetTemplate() {
       if (state.storage.exportLanguage === "js") {

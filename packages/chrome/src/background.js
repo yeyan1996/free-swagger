@@ -32,16 +32,16 @@ const set = (key, val) => {
 };
 
 const setOpen = (key) => {
-  return set(key, { isOpen: true, isClose: false, active: false });
+  return set(key, { isOpen: true });
 };
 
 const setClose = (key) => {
-  return set(key, { isOpen: false, isClose: true, active: false });
+  return set(key, { isOpen: false });
 };
 
 const iconClick = (tab) => {
   const item = get(tab.id);
-  if (!item || item.isClose) {
+  if (!item || !item.isOpen) {
     setOpen(tab.id);
   } else {
     setClose(tab.id);
@@ -64,12 +64,16 @@ const setIcon = ({ tabId }) => {
 };
 
 chrome.runtime.onMessage.addListener((request, sender) => {
+  setIcon({ tabId: sender.tab.id });
+  console.log("request", request);
+  console.log("sender", sender);
   if (request.type === "SIGN_CONNECT") {
-    setIcon({ tabId: sender.tab.id });
     const item = get(sender.tab.id);
-    if (!item || item.isClose) return;
+    console.log("item", item);
+    if (!item || !item.isOpen) return;
     chrome.tabs.executeScript({
       code: `
+        console.log('free-swagger-chrome start')
         const url =
           'https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/userScript.js'
         const script = document.createElement('script')

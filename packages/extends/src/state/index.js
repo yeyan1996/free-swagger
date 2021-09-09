@@ -9,6 +9,7 @@ import {
   compileInterfaces,
   compileJsDocTypedefs
 } from "free-swagger-client";
+import { retry } from "@/utils";
 import { option, generate } from "json-schema-faker";
 
 const STORAGE_KEY = "SWAGGER-EXTENDS";
@@ -17,7 +18,6 @@ const SUCCESS_CODE = "200";
 export const state = new Vue({
   data() {
     return {
-      uiExist: false,
       url: "",
       dialog: false,
       key: "",
@@ -41,7 +41,6 @@ export const state = new Vue({
         currentLanguage: "ts"
       },
       isNewUi: false,
-      domLoaded: false, // swagger 文档 dom 渲染完毕
       swagger: null,
       parsedSwagger: null // 解析所有 ref 后的 swagger 对象
     };
@@ -102,6 +101,12 @@ export const state = new Vue({
 
     this.storage = defaults(storage, this.storage, (oldVal, newVal) => {
       if (oldVal === "") return newVal;
+    });
+
+    retry({
+      cb: () => {
+        this.isNewUi = !window.ui;
+      }
     });
   }
 });
@@ -244,21 +249,5 @@ export const handleCopyJsDocTypeDef = (
   } catch (e) {
     console.log(e);
     Message.error("复制失败，请检查选择的 api");
-  }
-};
-
-export const handleCopySchema = (
-  path = state.currentApi.path,
-  method = state.currentApi.method,
-  parsedSwagger = state.parsedSwagger
-) => {
-  try {
-    const { schema } = parsedSwagger.paths[path][method].responses[
-      SUCCESS_CODE
-    ];
-    copyMessage(schema);
-  } catch (e) {
-    console.log(e);
-    Message.error("复制失败，请检查选择的 api 或模版");
   }
 };
