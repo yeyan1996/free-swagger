@@ -1,6 +1,6 @@
 {
 	"name": "free-swagger-cli",
-	"version": "4.3.8",
+	"version": "4.4.0",
 	"description": "swagger to front-end code",
 	"keywords": [
 		"swagger",
@@ -34,8 +34,8 @@
 		"camelcase": "^5.3.1",
 		"chalk": "^3.0.0",
 		"commander": "^4.1.0",
-		"free-swagger": "^4.3.6",
-		"free-swagger-client": "^4.3.5",
+		"free-swagger": "^4.4.0",
+		"free-swagger-client": "^4.4.0",
 		"fs-extra": "^8.1.0",
 		"inquirer": "^7.0.1",
 		"js-yaml": "^3.13.1",
