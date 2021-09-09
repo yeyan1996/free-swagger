@@ -20,6 +20,7 @@ export type CompileTypesParams = {
   interfaceName?: string
   type?: Type
   recursive?: boolean
+  url?: string
 }
 export type CompileTypeParams = Required<
   Required<Pick<CompileTypesParams, 'source' | 'contextMap' | 'interfaceName'>>
@@ -121,6 +122,7 @@ const compileTypes: CompileTypes = ({
   type = 'interface',
   contextMap,
   recursive,
+  url,
 }) => {
   // 收集依赖
   const imports: string[] = []
@@ -158,8 +160,14 @@ const compileTypes: CompileTypes = ({
     }, '')
     const code =
       type === 'interface'
-        ? formatCode('ts')(`${DEFAULT_HEAD_INTERFACE}\n${interfaceCode}`).trim()
-        : `${DEFAULT_HEAD_JS_DOC_TYPES}\n${interfaceCode}`.trim()
+        ? formatCode('ts')(
+            `${DEFAULT_HEAD_INTERFACE}${
+              url ? `// source ${url}` : ''
+            }\n${interfaceCode}`
+          ).trim()
+        : `${DEFAULT_HEAD_JS_DOC_TYPES}${
+            url ? `// source ${url}` : ''
+          }\n${interfaceCode}`.trim()
     return {
       code,
       imports: uniqInterfaceNameImports(imports),

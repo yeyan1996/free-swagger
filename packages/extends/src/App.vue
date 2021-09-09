@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { retry, wait } from "@/utils";
+import { waitUntil } from "@/utils";
 import { state } from "@/state";
 import MoreSetting from "@/components/MoreSetting";
 import ApiOptions from "@/components/ApiOptions";
@@ -96,20 +96,11 @@ export default {
     }
   },
   watch: {
-    async "state.domLoaded"(isLoaded) {
-      if (!isLoaded) return;
-      if (state.isNewUi) {
-        await this.injectForController(undefined, true);
-      } else {
-        await this.bindClickEventForController();
-        await this.bindClickEventForModel();
-      }
-    },
     // 第一次使用插件时插件可能加载比较慢，导致请求没有被拦截
     // 此时主动更新 swagger 数据
-    "state.uiExist": {
-      async handler(newVal) {
-        if (!newVal || state.isNewUi || state.swagger) return;
+    "state.isNewUi": {
+      async handler() {
+        if (!window.ui || state.swagger) return;
         const configs = window.ui.getConfigs();
         const url = configs.urls?.[0].url || configs.url;
         if (!url) return;
@@ -121,127 +112,137 @@ export default {
       immediate: true
     }
   },
-  mounted() {
-    this.checkUiExist();
+  async mounted() {
+    if (!state.isNewUi) {
+      Promise.all([
+        this.bindClickEventForController(),
+        this.bindClickEventForModel(),
+        this.injectIconsForApiNodeList()
+      ]);
+    }
+    this.bindApiHandlerForApiNodeList();
   },
   methods: {
     handleCopyType,
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
-    // 适用旧 swagger 文档
-    // 判断是否存在全局 ui 对象
-    checkUiExist() {
-      let uiExist;
-      retry({
-        cb: async () => {
-          uiExist = !!window.ui;
-        },
-        endCondition: () => uiExist,
-        retryNumber: 20,
-        time: 1000,
-        success: () => {
-          state.uiExist = true;
-        }
-      });
-    },
-    // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件
+    // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件（老版本）
     async bindClickEventForController() {
-      await wait();
-      const controllerNodeList = [...document.querySelectorAll(".opblock-tag")];
-      // 给所有 controller 节点绑定事件，注入 icons
-      controllerNodeList.forEach(controllerNode =>
-        controllerNode.addEventListener("click", e => {
-          this.injectForController(e.currentTarget);
-        })
+      // 确保 DOM 节点存在
+      await waitUntil(
+        () => [...(document.querySelectorAll(".opblock-tag") ?? [])].length
       );
-      // // 锚点跳转时给当前锚点的 controller 节点注入 icons
+      const controllerNodeList = [...document.querySelectorAll(".opblock-tag")];
+      // 锚点跳转时给当前锚点的 controller 节点注入 icons
       const [openedControllerNode] = controllerNodeList.filter(node =>
         node.parentNode.classList.contains("is-open")
       );
-      await this.injectForController(openedControllerNode);
-    },
-    // 注入 icon + 绑定点击事件
-    async injectForController(controllerNode, isNewUi = false) {
-      if (!controllerNode && !isNewUi) return;
-      await wait(0);
-      const apiNodeList = [
-        ...document.querySelectorAll(isNewUi ? "li.menuLi" : ".opblock")
-      ];
-      apiNodeList.forEach(apiNode => {
-        if (!state.isNewUi) {
-          this.injectApiIconsForApiNode(apiNode);
-        }
-        this.bindClickApiHandlerForApiNode(apiNode, state.isNewUi);
-      });
-    },
-    // 注入 icons
-    injectApiIconsForApiNode(apiNode) {
-      apiNode.style.position = "relative";
-      const method = apiNode.querySelector(".opblock-summary-method")
-        ?.innerText;
-      const path = apiNode
-        .querySelector(".opblock-summary-path")
-        ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
-      const summary = apiNode.querySelector(".opblock-summary-description")
-        ?.innerText;
-      if (!method || !path || !summary) return;
-      const apiIconsNode = createApiIconsDom(
-        path,
-        method.toLowerCase(),
-        summary
+      // 给所有 controller 节点绑定事件，注入 icons
+      (openedControllerNode
+        ? [...controllerNodeList, openedControllerNode]
+        : controllerNodeList
+      ).forEach(controllerNode =>
+        controllerNode.addEventListener("click", e => {
+          this.bindApiHandlerForApiNodeList(e.currentTarget);
+          this.injectIconsForApiNodeList(e.currentTarget);
+        })
       );
-      apiNode.appendChild(apiIconsNode);
     },
-    // 绑定点击 api 事件
-    bindClickApiHandlerForApiNode(apiNode, isNewUi = false) {
-      apiNode.addEventListener("click", e => {
-        const apiTag = e.currentTarget;
-        if (isNewUi) {
-          const hashUrl = apiTag.dataset.hashurl;
-          const index = hashUrl.lastIndexOf("/");
-          const apiName = hashUrl.slice(index + 1, hashUrl.length);
-          for (let { node, path } of new RecursiveIterator(
-            state.swagger.paths
-          )) {
-            if (node === apiName) {
-              const [url, method] = path;
-              const key = `${method} ${url} ${state.swagger.paths[url][method].summary}`;
-              state.key = key;
-              state.currentApi = state.options.find(item => item.key === key);
-              break;
-            }
-          }
+    // 获取当前文档流里的 apiNode
+    async getApiNodeList(controllerNode) {
+      const _getApiNodeList = () => {
+        debugger;
+        if (state.isNewUi) {
+          return [...document.querySelectorAll("li.menuLi")];
         } else {
-          const method = apiTag.querySelector(".opblock-summary-method")
-            ?.innerText;
-          const path = apiTag
-            .querySelector(".opblock-summary-path")
-            ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
-          const summary = apiTag.querySelector(".opblock-summary-description")
-            ?.innerText;
-          if (!method || !path || !summary) return;
-          state.currentApi = state.options.find(
-            item => item.method === method.toLowerCase() && item.path === path
-          );
-          state.key = state.currentApi.key;
+          if (controllerNode) {
+            return [...controllerNode.parentNode.querySelectorAll(".opblock")];
+          } else {
+            return [...document.querySelectorAll(".opblock")];
+          }
         }
+      };
+      // 确保 apiNode 存在
+      await waitUntil(() => _getApiNodeList().length);
+      return _getApiNodeList();
+    },
+    // 给每个 apiNode 绑定点击 api 事件
+    async bindApiHandlerForApiNodeList(controllerNode) {
+      const apiNodeList = await this.getApiNodeList(controllerNode);
+      apiNodeList.forEach(apiNode => {
+        apiNode.addEventListener("click", this.apiNodeHandler);
       });
     },
-    async bindClickEventForModel() {
-      await this.$nextTick();
-      document
-        .querySelector(".models")
-        ?.firstChild?.addEventListener("click", this.modelTagHandler);
+    apiNodeHandler(e) {
+      const apiTag = e.currentTarget;
+      if (state.isNewUi) {
+        const hashUrl = apiTag.dataset.hashurl;
+        const index = hashUrl.lastIndexOf("/");
+        const apiName = hashUrl.slice(index + 1, hashUrl.length);
+        for (let { node, path } of new RecursiveIterator(state.swagger.paths)) {
+          if (node === apiName) {
+            const [url, method] = path;
+            const key = `${method} ${url} ${state.swagger.paths[url][method].summary}`;
+            state.key = key;
+            state.currentApi = state.options.find(item => item.key === key);
+            break;
+          }
+        }
+      } else {
+        const method = apiTag.querySelector(".opblock-summary-method")
+          ?.innerText;
+        const path = apiTag
+          .querySelector(".opblock-summary-path")
+          ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
+        const summary = apiTag.querySelector(".opblock-summary-description")
+          ?.innerText;
+        if (!method || !path || !summary) return;
+        state.currentApi = state.options.find(
+          item => item.method === method.toLowerCase() && item.path === path
+        );
+        state.key = state.currentApi.key;
+      }
+    },
+    // 注入 icons（老版本）
+    async injectIconsForApiNodeList(controllerNode) {
+      const apiNodeList = await this.getApiNodeList(controllerNode);
+      apiNodeList.forEach(apiNode => {
+        apiNode.style.position = "relative";
+        const method = apiNode.querySelector(".opblock-summary-method")
+          ?.innerText;
+        const path = apiNode
+          .querySelector(".opblock-summary-path")
+          ?.innerText.replace(/\u200B/g, ""); // 替换零宽空白
+        const summary = apiNode.querySelector(".opblock-summary-description")
+          ?.innerText;
+        if (!method || !path || !summary) return;
+        const apiIconsNode = createApiIconsDom(
+          path,
+          method.toLowerCase(),
+          summary
+        );
+        apiNode.appendChild(apiIconsNode);
+      });
     },
     async modelTagHandler() {
-      await wait(0);
+      await waitUntil(
+        () => [...(document.querySelectorAll(".model-container") ?? [])].length
+      );
       const modelNodeList = [...document.querySelectorAll(".model-container")];
       modelNodeList.forEach(node => {
         node.style.position = "relative";
         const interfaceNode = createInterfaceIconDom(node.innerText);
         node.appendChild(interfaceNode);
       });
+    },
+    // 给所有 model 绑定 TS icon（复制 interface）（老版本）
+    async bindClickEventForModel() {
+      await waitUntil(() => document.querySelector(".models"));
+      document
+        .querySelector(".models")
+        .firstChild?.addEventListener("click", this.modelTagHandler);
+      await this.modelTagHandler();
     }
   }
 };

@@ -40,15 +40,43 @@
 <script>
 import { state, handleCopyApi } from "@/state";
 import { highlightDOM } from "@/utils/dom-utils";
-import { retry } from "@/utils";
+import { retry, waitUntil } from "@/utils";
+
+const createIdByHash = hash => {
+  const arr = hash?.split("/") ?? [];
+  return {
+    tag: arr[arr.length - 2] ?? "",
+    operationId: arr[arr.length - 1] ?? ""
+  };
+};
+
+const findKeyByHash = hash => {
+  const { tag, operationId } = createIdByHash(hash);
+  const item = state.options.find(
+    item =>
+      encodeURIComponent(item.tag) === tag &&
+      encodeURIComponent(item.collection.operationId) === operationId
+  );
+  return item?.key ?? "";
+};
 
 export default {
   name: "ApiOptions",
   data: () => ({
     state
   }),
+  mounted() {
+    this.initOption();
+  },
   methods: {
     handleCopyApi,
+    async initOption() {
+      await waitUntil(() => state.options.length);
+      const key = findKeyByHash(location.hash);
+      if (key) {
+        await this.handleSearch(key);
+      }
+    },
     findControllerDom({ isNewUi, controller }) {
       const selector = isNewUi
         ? `[title="${controller}"]`
@@ -78,7 +106,8 @@ export default {
       if (isNewUi) {
         apiDom.click();
       } else {
-        apiDom.classList.contains("is-open") || apiDom.firstChild.click();
+        apiDom.classList.contains("is-open") ||
+          apiDom.querySelector("button")?.click();
       }
     },
     // 展开一个 api
@@ -99,33 +128,35 @@ export default {
       this.clickApiDom(apiDom);
       return { apiDom, controllerDom };
     },
-    async handleSearch(key) {
+    async handleSearch(key, echo = false) {
+      state.key = key;
       state.currentApi = state.options.find(item => item.key === key);
       handleCopyApi(
         state.currentApi.path,
         state.currentApi.method,
         state.swagger
       );
-      let apiDom;
-      await retry({
-        cb: async () => {
-          const { controller, operationId } = state.currentApi.collection;
-          const res = await this.expandApiCollapse({ controller, operationId });
-          await this.$nextTick();
-          state.isNewUi = !window.ui;
-          if (res) {
-            apiDom = res.apiDom;
-            apiDom.scrollIntoView({ behavior: "smooth" });
-            highlightDOM(apiDom, "custom-highlight-anime");
-          }
-        },
-        endCondition: () => apiDom,
-        retryNumber: 10,
-        success: () => {
-          state.domLoaded = true;
-        },
-        error: () => console.error("Error: 请输入 dom 节点")
-      });
+      // 通过 change 事件触发时，显示高亮
+      if (!echo) {
+        await retry({
+          cb: async () => {
+            const { controller, operationId } = state.currentApi.collection;
+            const res = await this.expandApiCollapse({
+              controller,
+              operationId
+            });
+            await this.$nextTick();
+            if (res) {
+              const apiDom = res.apiDom;
+              apiDom.scrollIntoView({ behavior: "smooth" });
+              highlightDOM(apiDom, "custom-highlight-anime");
+              return apiDom;
+            }
+          },
+          retryNumber: 10,
+          error: () => console.error("Error: 请输入 dom 节点")
+        });
+      }
     }
   }
 };

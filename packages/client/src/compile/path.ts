@@ -55,6 +55,7 @@ const compilePath = (
     if (definitions![interfaceName]) {
       const { code, imports: interfaceImports } = compileInterfaces({
         source,
+        url,
         interfaceName: interfaceName,
         contextMap: contextMapInterface,
         recursive: config.recursive,

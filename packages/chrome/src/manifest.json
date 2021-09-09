@@ -6,7 +6,6 @@
   "default_locale": "en",
   "omnibox": { "keyword" : "swagger" },
   "permissions": [
-    "tabs",
     "activeTab",
     "<all_urls>",
     "*://*/*"

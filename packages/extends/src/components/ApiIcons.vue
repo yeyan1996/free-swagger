@@ -53,7 +53,7 @@ export default {
 .api-icons {
   position: absolute;
   top: 11px;
-  right: 55px;
+  right: 85px;
   width: 160px;
   display: flex;
   justify-content: flex-end;

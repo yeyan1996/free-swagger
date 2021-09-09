@@ -10,6 +10,7 @@
 
 [free-swagger-cli 文档](./packages/cli/README.md)
 
-[free-swagger-extends 文档](./packages/extends/README.md)
+[free-swagger-chrome 文档](./packages/chrome/README.md)
 
 [free-swagger-client 文档](./packages/client/README.md)
+
