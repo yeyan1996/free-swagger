@@ -40,7 +40,7 @@ export const state = new Vue({
         exportLanguage: "ts",
         currentLanguage: "ts"
       },
-      isNewUi: false,
+      isNewUi: null,
       swagger: null,
       parsedSwagger: null // 解析所有 ref 后的 swagger 对象
     };
@@ -105,8 +105,15 @@ export const state = new Vue({
 
     retry({
       cb: () => {
-        this.isNewUi = !window.ui;
-      }
+        // 新 UI
+        if (window.SwaggerBootstrapUi) {
+          this.isNewUi = true;
+        } else if (window.ui) {
+          // 老 UI
+          this.isNewUi = false;
+        }
+      },
+      endCondition: () => this.isNewUi != null
     });
   }
 });

@@ -2,6 +2,7 @@
 
 ![](https://img.shields.io/npm/v/free-swagger-extends)
 
+**推荐使用接入更简单的 [free-swagger-chrome](../chrome/README.md)**
 
 根据 swagger 文档自动生成前端接口代码片段
 

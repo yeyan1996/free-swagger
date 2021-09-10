@@ -99,34 +99,37 @@ export default {
     // 第一次使用插件时插件可能加载比较慢，导致请求没有被拦截
     // 此时主动更新 swagger 数据
     "state.isNewUi": {
-      async handler() {
-        if (!window.ui || state.swagger) return;
-        const configs = window.ui.getConfigs();
-        const url = configs.urls?.[0].url || configs.url;
-        if (!url) return;
-        const { data } = await axios.get(url);
-        if (!state.swagger) {
-          await assignSwagger(data, url);
+      async handler(newVal) {
+        if (newVal == null) return;
+        await this.initSwagger();
+        if (!newVal) {
+          Promise.all([
+            this.bindClickEventForController(),
+            this.bindClickEventForModel(),
+            this.injectIconsForApiNodeList()
+          ]);
         }
+        this.bindApiHandlerForApiNodeList();
       },
       immediate: true
     }
   },
-  async mounted() {
-    if (!state.isNewUi) {
-      Promise.all([
-        this.bindClickEventForController(),
-        this.bindClickEventForModel(),
-        this.injectIconsForApiNodeList()
-      ]);
-    }
-    this.bindApiHandlerForApiNodeList();
-  },
+  async mounted() {},
   methods: {
     handleCopyType,
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
+    async initSwagger() {
+      if (state.isNewUi === true || state.swagger) return;
+      const configs = window.ui.getConfigs();
+      const url = configs.urls?.[0].url || configs.url;
+      if (!url) return;
+      const { data } = await axios.get(url);
+      if (!state.swagger) {
+        return assignSwagger(data, url);
+      }
+    },
     // 给每个 controller 的 tag （展开行的 dom 节点）绑定事件（老版本）
     async bindClickEventForController() {
       // 确保 DOM 节点存在
@@ -152,7 +155,6 @@ export default {
     // 获取当前文档流里的 apiNode
     async getApiNodeList(controllerNode) {
       const _getApiNodeList = () => {
-        debugger;
         if (state.isNewUi) {
           return [...document.querySelectorAll("li.menuLi")];
         } else {

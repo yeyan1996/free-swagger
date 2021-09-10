@@ -53,26 +53,24 @@ const setIcon = ({ tabId }) => {
   if (!tabId) return;
   const item = get(tabId);
   // 开启 icon
-  if (item?.isOpen)
-    return chrome.browserAction.setIcon({
+  if (item?.isOpen) {
+    chrome.browserAction.setIcon({
       path: "https://z3.ax1x.com/2021/08/08/fQE0qs.png",
     });
+    return;
+  }
   // 关闭 icon
   chrome.browserAction.setIcon({
     path: "https://z3.ax1x.com/2021/08/08/fQEYPf.png",
   });
 };
 
-chrome.runtime.onMessage.addListener((request, sender) => {
-  setIcon({ tabId: sender.tab.id });
-  console.log("request", request);
-  console.log("sender", sender);
-  if (request.type === "SIGN_CONNECT") {
-    const item = get(sender.tab.id);
-    console.log("item", item);
-    if (!item || !item.isOpen) return;
-    chrome.tabs.executeScript({
-      code: `
+const update = (tabId) => {
+  setIcon({ tabId });
+  const item = get(tabId);
+  if (!item || !item.isOpen) return;
+  chrome.tabs.executeScript({
+    code: `
         console.log('free-swagger-chrome start')
         const url =
           'https://cdn.jsdelivr.net/npm/free-swagger-extends/dist/userScript.js'
@@ -80,12 +78,17 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         script.setAttribute('src', url)
         document.getElementsByTagName('head')[0].appendChild(script)
 `,
-    });
-  }
-});
+  });
+};
 
 chrome.browserAction.onClicked.removeListener(iconClick);
 chrome.browserAction.onClicked.addListener(iconClick);
 
 chrome.tabs.onActivated.removeListener(setIcon);
 chrome.tabs.onActivated.addListener(setIcon);
+
+chrome.tabs.onCreated.removeListener(update);
+chrome.tabs.onCreated.addListener(update);
+
+chrome.tabs.onUpdated.removeListener(update);
+chrome.tabs.onUpdated.addListener(update);
