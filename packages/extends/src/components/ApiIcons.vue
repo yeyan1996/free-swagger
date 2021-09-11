@@ -1,17 +1,17 @@
 <template>
   <div class="api-icons">
-    <el-tooltip content="复制url">
-      <svg-icon
-        name="url"
-        @click.stop="handleCopyPath(path, method)"
-        class="url"
-      ></svg-icon>
-    </el-tooltip>
     <el-tooltip content="复制代码块">
       <svg-icon
         name="snippet"
         @click.stop="handleCopyApi(path, method)"
         class="snippet"
+      ></svg-icon>
+    </el-tooltip>
+    <el-tooltip content="复制url">
+      <svg-icon
+        name="url"
+        @click.stop="handleCopyPath(path, method)"
+        class="url"
       ></svg-icon>
     </el-tooltip>
     <el-tooltip content="复制模拟数据">
