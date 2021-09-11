@@ -35,7 +35,7 @@
 		"chalk": "^3.0.0",
 		"commander": "^4.1.0",
 		"free-swagger": "^4.4.0",
-		"free-swagger-client": "^4.4.0",
+		"free-swagger-core": "^4.4.0",
 		"fs-extra": "^8.1.0",
 		"inquirer": "^7.0.1",
 		"js-yaml": "^3.13.1",

@@ -4,7 +4,7 @@ import fse from 'fs-extra'
 import prettier from 'prettier'
 import { pick, mergeWith } from 'lodash'
 import { EOL } from 'os'
-import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-client'
+import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-core'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
@@ -111,7 +111,7 @@ class Rc {
     }
   }
 
-  // 从 rc 文件中生成 free-swagger-client 参数
+  // 从 rc 文件中生成 free-swagger-core 参数
   createFreeSwaggerParams(
     { client, server }: RcConfig = this.configData
   ): Required<ServerConfig> {

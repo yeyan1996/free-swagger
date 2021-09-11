@@ -1,25 +1,25 @@
 .DS_Store
 node_modules
 
-# client
-/packages/client/dist
-/packages/client/test/json/company.json
-/packages/client/test/special.test.js
-/packages/client/test/__snapshots__/special.test.js.snap
+# core
+/packages/core/dist
+/packages/core/test/json/company.json
+/packages/core/test/special.test.js
+/packages/core/test/__snapshots__/special.test.js.snap
 
 # cli
 /packages/cli/dist
 
-# server
-/packages/server/test/mock
-/packages/server/test/api
-/packages/server/test/json/company.json
-/packages/server/test/special.test.js
-/packages/server/test/__snapshots__/special.test.js.snap
-/packages/server/dist
+# api
+/packages/api/test/mock
+/packages/api/test/api
+/packages/api/test/json/company.json
+/packages/api/test/special.test.js
+/packages/api/test/__snapshots__/special.test.js.snap
+/packages/api/dist
 
-# chrome
-/packages/chrome/dist
+# extension
+/packages/extension/dist
 
 # local env files
 .env.local

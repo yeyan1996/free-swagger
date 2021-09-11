@@ -42,7 +42,7 @@ npx free-swagger-cli --config
 
 # 默认模版
 
-free-swagger 基于内置了默认模版函数，用于生成 api 代码片段，详细参数见 [free-swagger-client](https://www.npmjs.com/package/free-swagger-client)
+free-swagger 基于内置了默认模版函数，用于生成 api 代码片段，详细参数见 [free-swagger-core](https://www.npmjs.com/package/free-swagger-core)
 
 # 生成 mock 文件
 

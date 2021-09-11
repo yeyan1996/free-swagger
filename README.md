@@ -6,13 +6,13 @@
 
 支持 js/ts 两种语言，自动生成出参/入参的类型定义
 
-[free-swagger 文档](./packages/server/README.md)
+[free-swagger 文档](./packages/api/README.md)
 
 [free-swagger-cli 文档](./packages/cli/README.md)
 
-[free-swagger-chrome 文档](./packages/chrome/README.md)
+[free-swagger-extension 文档](./packages/extension/README.md)
 
-[free-swagger-extends 文档](./packages/extends/README.md)
+[free-swagger-userscript 文档](./packages/userscript/README.md)
 
-[free-swagger-client 文档](./packages/client/README.md)
+[free-swagger-core 文档](./packages/core/README.md)
 
