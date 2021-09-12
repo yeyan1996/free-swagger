@@ -68,7 +68,7 @@ const setIcon = ({ tabId }) => {
 const update = (tabId) => {
   setIcon({ tabId });
   const item = get(tabId);
-  if (!item || !item.isOpen) return;
+  if (!item || item.isOpen) return;
   chrome.tabs.executeScript({
     code: `
         console.log('free-swagger-extension start')
