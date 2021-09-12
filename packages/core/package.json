@@ -1,12 +1,15 @@
 {
   "name": "free-swagger-core",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "homepage": "https://github.com/yeyan1996/free-swagger#readme",
   "repository": {
     "type": "github",
     "url": "https://github.com/yeyan1996/free-swagger"
   },
-  "keywords": ["swagger", "typescript"],
+  "keywords": [
+    "swagger",
+    "typescript"
+  ],
   "license": "MIT",
   "author": "yeyan1996",
   "main": "dist/main.js",
