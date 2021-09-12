@@ -110,17 +110,22 @@ export const mergeDefaultParams = async (
   }
 }
 
-export const mergeDefaultMockConfig = (
+export const mergeDefaultMockConfig = async (
   config: MockConfig | string
-): Required<MockConfig> => {
+): Promise<Required<MockConfig<OpenAPIV2.Document>>> => {
   const mergedConfig: MockConfig = <MockConfig>{}
 
-  if (typeof config === 'string') {
-    mergedConfig.source = config
-  } else if (isSwaggerDocument(config)) {
+  if (typeof config === 'string' || isSwaggerDocument(config)) {
     mergedConfig.source = config
   } else {
-    return { ...DEFAULT_MOCK_CONFIG, ...config }
+    mergedConfig.source = config.source
   }
+
+  mergedConfig.source = await normalizeSource(
+    mergedConfig.source,
+    mergedConfig.cookie
+  )
+
+  // @ts-ignore
   return { ...DEFAULT_MOCK_CONFIG, ...mergedConfig }
 }

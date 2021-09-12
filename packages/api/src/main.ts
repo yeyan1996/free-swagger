@@ -9,7 +9,6 @@ import {
   mergeDefaultMockConfig,
   DEFAULT_HEAD_CODE_TS,
   DEFAULT_HEAD_CODE_JS,
-  normalizeSource,
 } from './default'
 import { isFunction, uniq } from 'lodash'
 import { ParsedPathsObject, ParsedPaths, parsePaths } from './parse/path'
@@ -156,9 +155,8 @@ const freeSwagger = async (
 }
 
 freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
-  const mergedConfig = mergeDefaultMockConfig(config)
-  const source = await normalizeSource(mergedConfig.source, mergedConfig.cookie)
-  await mock({ ...mergedConfig, source })
+  const mergedConfig = await mergeDefaultMockConfig(config)
+  await mock(mergedConfig)
   spinner.succeed(
     `mock 文件生成成功，路径: ${chalk.green(
       path.resolve(mergedConfig.mockRoot)
