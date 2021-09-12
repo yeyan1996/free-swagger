@@ -19,6 +19,7 @@ export const createTagsByPaths = (
     )
   ).map((item) => ({ name: item }))
 
+// 合并默认参数
 export const mergeDefaultParams = (
   config: CoreConfig
 ): Required<CoreConfig> => {
@@ -36,7 +37,7 @@ export const mergeDefaultParams = (
     recursive: false,
     lang: 'js',
     templateFunction:
-      config.lang === 'js' ? eval(jsTemplate) : eval(tsTemplate),
+      config.lang === 'ts' ? eval(tsTemplate) : eval(jsTemplate),
     ...config,
     source: mergedSource,
   }

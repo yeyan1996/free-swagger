@@ -3,7 +3,7 @@ import path from 'path'
 import chalk from 'chalk'
 import ora from 'ora'
 import { OpenAPIV2 } from 'openapi-types'
-import { isUrl, isPath, assertOpenApi2, MockConfig, ApiConfig } from './utils'
+import { assertOpenApi2, MockConfig, ApiConfig } from './utils'
 import {
   mergeDefaultParams,
   mergeDefaultMockConfig,
@@ -15,10 +15,9 @@ import { ParsedPathsObject, ParsedPaths, parsePaths } from './parse/path'
 import {
   compileInterfaces,
   compileJsDocTypedefs,
-  formatCode,
   compilePath,
+  formatCode,
 } from 'free-swagger-core'
-import { fetchJSON } from './request'
 import { INTERFACE_PATH, JSDOC_PATH } from './default'
 import { mock } from './mock'
 
@@ -58,7 +57,7 @@ const gen = async (
     )
   }
 
-  // 生成 js doc type
+  // 生成 typedef
   if (config.lang === 'js') {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
@@ -115,42 +114,27 @@ const gen = async (
   Object.entries(pathsObject).forEach(genApi)
 }
 
-const normalizeSource = async (
-  source: string | OpenAPIV2.Document,
-  cookie?: string
-): Promise<OpenAPIV2.Document> => {
-  if (!source) {
-    throw new Error('source 不存在，请检查配置文件')
-  }
-  if (isUrl(source)) {
-    return fetchJSON(source, cookie)
-  }
-  if (isPath(source)) {
-    const sourcePath = path.resolve(process.cwd(), source)
-    return JSON.parse(await fse.readFile(sourcePath, 'utf-8'))
-  }
-  return source
-}
-
-// compile = parse + gen
-const compile = async (
-  config: Required<ApiConfig>,
+// freeSwagger = merge + parse + gen
+const freeSwagger = async (
+  config: ApiConfig | string,
   events: {
     onChooseApi?: (params: {
       paths: ParsedPathsObject
     }) => Promise<ParsedPathsObject>
   } = {}
-): Promise<any> => {
+): Promise<OpenAPIV2.Document> => {
+  // merge
+  const mergedConfig = await mergeDefaultParams(config)
+
   try {
-    config.source = await normalizeSource(config.source, config.cookie)
-    if (!assertOpenApi2(config)) {
+    if (!assertOpenApi2(mergedConfig)) {
       throw new Error('文档解析错误，请使用 openApi2 规范的文档')
     }
     spinner.start('正在生成 api 文件...')
-    fse.ensureDirSync(config.root)
+    fse.ensureDirSync(mergedConfig.root)
 
     // parse
-    const { parsedPathsObject } = parse(config)
+    const { parsedPathsObject } = parse(mergedConfig)
     spinner.succeed('api 文件解析完成')
 
     const choosePaths = isFunction(events?.onChooseApi)
@@ -158,30 +142,21 @@ const compile = async (
       : parsedPathsObject
 
     // gen
-    await gen(config, config.root, choosePaths)
+    await gen(mergedConfig, mergedConfig.root, choosePaths)
     spinner.succeed(
-      `api 文件生成成功，文件根目录地址: ${chalk.green(config.root)}`
+      `api 文件生成成功，文件根目录地址: ${chalk.green(mergedConfig.root)}`
     )
-    return config.source
+
+    return mergedConfig.source
   } catch (e) {
     spinner.fail(`${chalk.red('api 文件生成失败')}`)
     throw new Error(e)
   }
 }
 
-// freeSwagger = merge + compile
-const freeSwagger = async (
-  config: ApiConfig | string
-): Promise<OpenAPIV2.Document> => {
-  const mergedConfig = await mergeDefaultParams(config)
-  return compile(mergedConfig)
-}
-
-freeSwagger.compile = compile
 freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
-  const mergedConfig = mergeDefaultMockConfig(config)
-  const source = await normalizeSource(mergedConfig.source, mergedConfig.cookie)
-  await mock({ ...mergedConfig, source })
+  const mergedConfig = await mergeDefaultMockConfig(config)
+  await mock(mergedConfig)
   spinner.succeed(
     `mock 文件生成成功，路径: ${chalk.green(
       path.resolve(mergedConfig.mockRoot)

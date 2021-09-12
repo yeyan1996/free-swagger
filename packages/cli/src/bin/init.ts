@@ -6,7 +6,7 @@ import { rc } from '../default/rc'
 import mockQuestion from '../inquirer/questions/mock'
 import serverQuestion, { chooseApi } from '../inquirer/questions/api'
 import { source } from '../inquirer/questions/core'
-import { mock, compile } from 'free-swagger'
+import freeSwagger, { mock } from 'free-swagger'
 import { pick } from 'lodash'
 import { prompt } from '../inquirer'
 
@@ -33,7 +33,7 @@ export function init(): void {
     })
     .option('-c, --config', '以配置项启动 free-swagger-cli', async () => {
       await prompt(serverQuestion)
-      await compile(rc.createFreeSwaggerParams(), {
+      await freeSwagger(rc.createFreeSwaggerParams(), {
         onChooseApi: async ({ paths }) =>
           pick(paths, ...(await chooseApi(paths))),
       })
@@ -42,7 +42,7 @@ export function init(): void {
     .action(async ({ rawArgs }) => {
       if (!global.__DEV__ && rawArgs[2]) return
       await prompt([source])
-      await compile(rc.createFreeSwaggerParams())
+      await freeSwagger(rc.createFreeSwaggerParams())
     })
     .allowUnknownOption()
     .parse(process.argv)
