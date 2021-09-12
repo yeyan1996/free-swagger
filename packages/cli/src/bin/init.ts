@@ -13,7 +13,6 @@ import { prompt } from '../inquirer'
 export function init(): void {
   const packageJsonPath = path.resolve(__dirname, '../../package.json')
   const pkg = JSON.parse(fse.readFileSync(packageJsonPath, 'utf-8'))
-
   commander
     .version(pkg.version)
     .usage('')
@@ -38,7 +37,7 @@ export function init(): void {
           pick(paths, ...(await chooseApi(paths))),
       })
     })
-    // 默认启动
+    // 无参数启动
     .action(async ({ rawArgs }) => {
       if (!global.__DEV__ && rawArgs[2]) return
       await prompt([source])

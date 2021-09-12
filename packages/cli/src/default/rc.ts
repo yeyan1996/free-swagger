@@ -85,10 +85,10 @@ class Rc {
   getDefaultConfig(): RcConfig {
     return {
       client: {
-        ...(pick(
-          mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json'),
-          ['source', 'lang', 'jsDoc', 'templateFunction']
-        ) as Required<ApiConfig<string>>),
+        source: 'https://petstore.swagger.io/v2/swagger.json',
+        lang: 'js',
+        jsDoc: true,
+        templateFunction: eval(jsTemplate),
         jsTemplate,
         tsTemplate,
       },
@@ -117,9 +117,8 @@ class Rc {
   ): Required<ApiConfig> {
     const { lang } = client
     const { customImportCodeJs, customImportCodeTs } = server
-    // @ts-ignore
     return {
-      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction', '_url']),
+      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction']),
       ...pick(server, ['root', 'cookie']),
       filename: (name) => camelcase(name),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,

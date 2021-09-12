@@ -24,6 +24,7 @@
 		"LICENSE"
 	],
 	"scripts": {
+		"serve": "tsc -w",
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix"
 	},
