@@ -59,7 +59,8 @@ const gen = async (
     fse.ensureFileSync(interfacePath)
     await fse.writeFile(
       interfacePath,
-      compileInterfaces({ source: config.source }).code
+      // @ts-ignore
+      compileInterfaces({ source: config.source, url: config._url }).code
     )
   }
 
@@ -69,7 +70,8 @@ const gen = async (
     fse.ensureFileSync(jsDocPath)
     await fse.writeFile(
       jsDocPath,
-      compileJsDocTypedefs({ source: config.source }).code
+      // @ts-ignore
+      compileJsDocTypedefs({ source: config.source, url: config._url }).code
     )
   }
 

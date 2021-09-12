@@ -17,8 +17,8 @@
         <svg-icon name="copy-gray" class="copy"></svg-icon>
         <span class="ml-3">{{
           state.storage.currentLanguage === "js"
-            ? "复制 JS Doc typedef"
-            : "复制 Interface"
+            ? "复制 typedef"
+            : "复制 interface"
         }}</span>
       </el-link>
       <div class="divider"></div>
@@ -114,7 +114,6 @@ export default {
       immediate: true
     }
   },
-  async mounted() {},
   methods: {
     handleCopyType,
     handleCopyApi,

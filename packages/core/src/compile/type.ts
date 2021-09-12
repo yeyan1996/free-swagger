@@ -163,11 +163,11 @@ const compileTypes: CompileTypes = ({
         ? formatCode('ts')(
             `${DEFAULT_HEAD_INTERFACE}${
               url ? `// source ${url}` : ''
-            }\n${interfaceCode}`
+            }\n\n${interfaceCode}`
           ).trim()
         : `${DEFAULT_HEAD_JS_DOC_TYPES}${
             url ? `// source ${url}` : ''
-          }\n${interfaceCode}`.trim()
+          }\n\n${interfaceCode}`.trim()
     return {
       code,
       imports: uniqInterfaceNameImports(imports),

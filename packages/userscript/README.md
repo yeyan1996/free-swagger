@@ -1,4 +1,4 @@
-# **推荐使用接入更简单的 [free-swagger-extension](../extension/README.md)**
+# **推荐使用接入更简单的 [浏览器插件版本](../extension/README.md)**
 
 # free-swagger-userscript
 

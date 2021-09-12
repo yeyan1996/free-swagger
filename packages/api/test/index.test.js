@@ -36,7 +36,7 @@ const assertFiles = async (dirPath, apiFilesList,exactlyEqual = true) => {
   });
 };
 
-describe("server", () => {
+describe("api test", () => {
   beforeAll(() => {
     global.__DEV__ = true
   });

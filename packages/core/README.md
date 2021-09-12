@@ -4,8 +4,6 @@
 
 输入 swagger 文档，返回接口代码片段
 
-free-swagger，free-swagger-cli，free-swagger-extend 都是基于 free-swagger-core 封装的上层插件
-
 # 快速上手
 
 ```javascript

@@ -128,19 +128,18 @@ export const handleCopyType = (
       throw new Error();
     }
     const storage = state.storage;
+    const isJS = storage.currentLanguage === "js";
+    const isTS = storage.currentLanguage === "ts";
+
     const codeFragment = freeSwaggerClient(
       {
         source,
         lang: storage.currentLanguage,
         jsDoc: storage.jsDoc,
-        typedef: true,
-        interface: true,
+        typedef: isJS,
+        interface: isTS,
         recursive: storage.recursive,
-        templateFunction: eval(
-          storage.currentLanguage === "js"
-            ? storage.jsTemplate
-            : storage.tsTemplate
-        )
+        templateFunction: eval(isJS ? storage.jsTemplate : storage.tsTemplate)
       },
       path,
       method
@@ -236,9 +235,13 @@ export const handleCopyFake = (
   }
 };
 
-export const handleCopyInterface = (source = state.swagger, interfaceName) => {
+export const handleCopyInterface = (
+  source = state.swagger,
+  url = state.url,
+  interfaceName
+) => {
   try {
-    const { code } = compileInterfaces({ source, interfaceName });
+    const { code } = compileInterfaces({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);
@@ -248,10 +251,11 @@ export const handleCopyInterface = (source = state.swagger, interfaceName) => {
 
 export const handleCopyJsDocTypeDef = (
   source = state.swagger,
+  url = state.url,
   interfaceName
 ) => {
   try {
-    const { code } = compileJsDocTypedefs({ source, interfaceName });
+    const { code } = compileJsDocTypedefs({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);

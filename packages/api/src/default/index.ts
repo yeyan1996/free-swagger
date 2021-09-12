@@ -1,6 +1,6 @@
 import { TemplateFunction, tsTemplate, jsTemplate } from 'free-swagger-core'
 import camelcase from 'camelcase'
-import { ServerConfig, isSwaggerDocument, MockConfig } from '../utils'
+import { ServerConfig, isSwaggerDocument, MockConfig, isUrl } from '../utils'
 import path from 'path'
 
 export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
@@ -53,6 +53,12 @@ export const mergeDefaultParams = (
     mergedConfig.source = config
   } else {
     mergedConfig = config
+  }
+
+  // 给 interface/jsdoc 添加来源，便于回溯
+  if (isUrl(mergedConfig.source)) {
+    // @ts-ignore
+    mergedConfig._url = mergedConfig.source
   }
 
   let templateFunction: TemplateFunction

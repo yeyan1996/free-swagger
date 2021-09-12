@@ -5,7 +5,7 @@ import freeSwaggerClient, {
     compileJsDocTypedefs
 } from "../src/main";
 
-describe("freeSwaggerClient", () => {
+describe("core test", () => {
     test("code fragment", () => {
         const codeFragment = freeSwaggerClient(
             {

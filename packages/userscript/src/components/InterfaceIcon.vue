@@ -2,7 +2,7 @@
   <el-tooltip content="复制 Interface">
     <svg-icon
       name="ts"
-      @click.stop="handleCopyInterface(state.swagger, interfaceName)"
+      @click.stop="handleCopyInterface(state.swagger, state.url, interfaceName)"
     ></svg-icon>
   </el-tooltip>
 </template>

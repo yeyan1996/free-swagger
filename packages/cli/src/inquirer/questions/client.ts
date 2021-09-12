@@ -14,7 +14,7 @@ export const source = {
     return '输入的路径不合法或不存在'
   },
   callback: (input: string) => {
-    rc.merge({ source: input })
+    rc.merge(isUrl(input) ? { source: input, _url: input } : { source: input })
     rc.recordHash(input)
     rc.save()
   },

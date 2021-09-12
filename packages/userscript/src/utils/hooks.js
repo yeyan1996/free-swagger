@@ -8,10 +8,9 @@ import youngParse from "./youngParse";
 let ok = false;
 
 export const assignSwagger = async (swagger, url) => {
-  const module = await import("@/state");
-  const { state } = module;
+  const { state } = await import("@/state");
   try {
-    if (!swagger.swagger) return;
+    if (!swagger?.swagger) return;
     ok = true;
     state.swagger = swagger;
     state.url = url;

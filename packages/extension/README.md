@@ -46,13 +46,15 @@ free-swagger-extension 基于 [free-swagger-core](https://www.npmjs.com/package/
 
 ![image-20210909155022801](https://tva1.sinaimg.cn/large/008i3skNly1guafdp37xuj61ni0iuwfz02.jpg)
 
-安装后，点击右上角 free-swagger 的图标
+安装后，在需要应用插件的 swagger 文档里，点击右上角 free-swagger 的图标
 
 ![image-20210909155257618](https://tva1.sinaimg.cn/large/008i3skNly1guafgcfz96j60f004g3yp02.jpg)
 
-这时你会在网页下放发现多了一个操作栏, 祝贺您获得了 swagger-ui 的拓展能力
+这时你会在网页下放发现多了一个操作栏,并且 free-swagger 图标被激活，祝贺您获得了 swagger-ui 的拓展能力
 
 ![image-20200710141538427](https://tva1.sinaimg.cn/large/007S8ZIlgy1gglunsmdorj313a0qi777.jpg)
+
+再次点击图标即可关闭插件功能
 
 # 编辑模版
 

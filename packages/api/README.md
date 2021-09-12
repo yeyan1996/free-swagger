@@ -48,10 +48,10 @@ npm run swagger
 ```javascript
 // swagger.js
 const freeSwagger = require("free-swagger");
-const json = 
+const json = require("./swagger.json")
 
 freeSwagger({
-  source: require("./swagger.json"),
+  source: json,
   customImportCode: "import http from './request'", // 假设请求库在 ./request
   lang: "js"
 });

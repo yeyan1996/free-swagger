@@ -117,8 +117,9 @@ class Rc {
   ): Required<ServerConfig> {
     const { lang } = client
     const { customImportCodeJs, customImportCodeTs } = server
+    // @ts-ignore
     return {
-      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction']),
+      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction', '_url']),
       ...pick(server, ['root', 'cookie']),
       filename: (name) => camelcase(name),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,

@@ -29,7 +29,7 @@ const assertFiles = async (dirPath, apiFilesList,shouldInclude = false) => {
   });
 };
 
-describe("mock", () => {
+describe("mock test", () => {
   test("has mock.js", async () => {
     const dirname = "swaggerPetstore";
     const dirPath = path.resolve(__dirname, "mock", dirname);
