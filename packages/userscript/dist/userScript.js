@@ -3,7 +3,7 @@
 // @name  free-swagger-userscript
 // @namespace  http://tampermonkey.net/
 // @description  free-swagger for tampermonkey
-// @version  5.0.1
+// @version  5.1.0
 
 // @include  /swagger
 // @include  /doc.html
@@ -25,5 +25,5 @@ function createScripTag(src) {
     document.body.append(createDom("script", {src}));
 }
 
-createScripTag("https://cdn.jsdelivr.net/npm/free-swagger-userscript/dist/js/app.b1805e38.js")
+createScripTag("https://cdn.jsdelivr.net/npm/free-swagger-userscript/dist/js/app.9e7680b0.js")
 //  createScripTag("http://localhost:8888/js/app.js") // 本地调试用
