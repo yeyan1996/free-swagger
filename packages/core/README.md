@@ -7,9 +7,9 @@
 # 快速上手
 
 ```javascript
-import freeSwaggerClient from "free-swagger-core";
+import freeSwaggerCore from "free-swagger-core";
 
-const code = freeSwaggerClient(config, url, method);
+const code = freeSwaggerCore(config, url, method);
 console.log(code);
 
 `

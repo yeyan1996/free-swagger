@@ -1,9 +1,9 @@
 import Vue from "vue";
 import { Message } from "element-ui";
 import { copyMessage } from "@/utils/dom-utils";
-import { defaults } from "lodash-es";
+import { defaults, flattenDeep, groupBy } from "lodash-es";
 import {
-  default as freeSwaggerClient,
+  default as freeSwaggerCore,
   jsTemplate,
   tsTemplate,
   compileInterfaces,
@@ -49,9 +49,7 @@ export const state = new Vue({
     options() {
       if (!this.swagger) return [];
       const options = [];
-      const sortOptions = [];
       const paths = this.swagger.paths;
-      const tags = this.swagger.tags;
       Object.keys(paths).forEach(path => {
         Object.keys(paths[path]).forEach(method => {
           const { tags, summary, description, operationId } = paths[path][
@@ -71,19 +69,8 @@ export const state = new Vue({
           });
         });
       });
-      // 根据 Tags 排序
-      tags.forEach(tagItem => {
-        let index;
-        do {
-          index = options.findIndex(
-            optionItem => optionItem.tag === tagItem.name
-          );
-          if (index < 0) return;
-          sortOptions.push(options[index]);
-          options.splice(index, 1);
-        } while (index >= 0);
-      });
-      return sortOptions;
+      // 根据 Tags 分组排序
+      return flattenDeep(Object.values(groupBy(options, o => o.tag)));
     }
   },
   watch: {
@@ -105,7 +92,7 @@ export const state = new Vue({
 
     retry({
       cb: () => {
-        // 新 UI
+        // 新 UI（bytedance only）
         if (window.SwaggerBootstrapUi) {
           this.isNewUi = true;
         } else if (window.ui) {
@@ -131,7 +118,7 @@ export const handleCopyType = (
     const isJS = storage.currentLanguage === "js";
     const isTS = storage.currentLanguage === "ts";
 
-    const codeFragment = freeSwaggerClient(
+    const codeFragment = freeSwaggerCore(
       {
         source,
         lang: storage.currentLanguage,
@@ -165,7 +152,7 @@ export const handleCopyApi = (
       throw new Error();
     }
     const storage = state.storage;
-    const codeFragment = freeSwaggerClient(
+    const codeFragment = freeSwaggerCore(
       {
         source,
         lang: storage.currentLanguage,
@@ -224,7 +211,7 @@ export const handleCopyFake = (
     } else {
       mockSchema = {
         code: SUCCESS_CODE,
-        msg: "xxx",
+        msg: "ok",
         data: {}
       };
     }

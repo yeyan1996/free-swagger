@@ -1,17 +1,46 @@
-import { ClientConfig } from '../utils'
+import { CoreConfig } from '../utils'
 import { jsTemplate, tsTemplate } from './template'
+import { OpenAPIV2 } from 'openapi-types'
+import { sortBy, uniq, flattenDeep, mapKeys } from 'lodash'
+
+export const createTagsByPaths = (
+  paths: OpenAPIV2.PathsObject
+): OpenAPIV2.TagObject[] =>
+  // @ts-ignore
+  sortBy(
+    uniq(
+      flattenDeep(
+        Object.values(paths).map((item: OpenAPIV2.PathItemObject) =>
+          Object.values(item).map(
+            (item: OpenAPIV2.OperationObject) => item.tags
+          )
+        )
+      ).filter(Boolean)
+    )
+  ).map((item) => ({ name: item }))
 
 export const mergeDefaultParams = (
-  config: ClientConfig
-): Required<ClientConfig> => ({
-  jsDoc: true,
-  interface: false,
-  typedef: false,
-  recursive: false,
-  lang: 'js',
-  templateFunction: config.lang === 'js' ? eval(jsTemplate) : eval(tsTemplate),
-  ...config,
-})
+  config: CoreConfig
+): Required<CoreConfig> => {
+  const mergedSource = {
+    ...config.source,
+    tags: config.source.tags ?? createTagsByPaths(config.source.paths),
+    definitions: mapKeys(config.source.definitions, (value, key) =>
+      key.replace('.', '')
+    ),
+  }
+  return {
+    jsDoc: true,
+    interface: false,
+    typedef: false,
+    recursive: false,
+    lang: 'js',
+    templateFunction:
+      config.lang === 'js' ? eval(jsTemplate) : eval(tsTemplate),
+    ...config,
+    source: mergedSource,
+  }
+}
 
 export const DEFAULT_HEAD_INTERFACE = `/* eslint-disable */
 // @ts-nocheck

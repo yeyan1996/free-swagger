@@ -27,15 +27,6 @@ const parsePaths = (swagger: OpenAPIV2.Document): ParsedPathsObject => {
         const operationObject = pathItemObject[method]
         if (!operationObject) return
 
-        if (!operationObject.operationId) {
-          console.log(
-            chalk.yellow(
-              `${method.toUpperCase()} ${path} 的 operationId 不存在,无法生成该 api`
-            )
-          )
-          return
-        }
-
         if (!operationObject.tags?.[0]) {
           console.log(
             chalk.yellow(

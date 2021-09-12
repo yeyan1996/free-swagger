@@ -4,58 +4,64 @@
   </div>
 
   <div id="extends-app" v-else v-loading="loading">
-    <api-options ref="apiOptions"></api-options>
-    <div class="operation-container">
-      <el-button type="primary" @click="handleCopyApi()" class="copy-code">
-        <div class="flex justify-center">
-          <svg-icon name="copy-white"></svg-icon>
-          <span class="ml-3">复制代码块</span>
+    <template v-if="state.options.length">
+      <api-options ref="apiOptions"></api-options>
+      <div class="operation-container">
+        <el-button type="primary" @click="handleCopyApi()" class="copy-code">
+          <div class="flex justify-center">
+            <svg-icon name="copy-white"></svg-icon>
+            <span class="ml-3">复制代码块</span>
+          </div>
+        </el-button>
+        <div class="divider"></div>
+        <el-link @click="handleCopyType()" :underline="false">
+          <svg-icon name="copy-gray" class="copy"></svg-icon>
+          <span class="ml-3">{{
+            state.storage.currentLanguage === "js"
+              ? "复制 typedef"
+              : "复制 interface"
+          }}</span>
+        </el-link>
+        <div class="divider"></div>
+        <el-link @click="handleCopyPath()" :underline="false">
+          <svg-icon name="copy-gray" class="copy"></svg-icon>
+          <span class="ml-3">复制url</span>
+        </el-link>
+        <div class="divider"></div>
+        <el-link @click="handleCopyFake()" :underline="false">
+          <svg-icon name="copy-gray" class="copy"></svg-icon>
+          <span class="ml-3">复制模拟数据</span>
+        </el-link>
+        <div class="divider"></div>
+        <div class="switch-container">
+          <span class="text">语言</span>
+          <el-switch
+            class="ml-10"
+            v-model="state.storage.currentLanguage"
+            active-value="ts"
+            inactive-value="js"
+            active-color="#409eff"
+            inactive-color="#ecac0f"
+            active-text="TS"
+            inactive-text="JS"
+          >
+          </el-switch>
         </div>
-      </el-button>
-      <div class="divider"></div>
-      <el-link @click="handleCopyType()" :underline="false">
-        <svg-icon name="copy-gray" class="copy"></svg-icon>
-        <span class="ml-3">{{
-          state.storage.currentLanguage === "js"
-            ? "复制 typedef"
-            : "复制 interface"
-        }}</span>
-      </el-link>
-      <div class="divider"></div>
-      <el-link @click="handleCopyPath()" :underline="false">
-        <svg-icon name="copy-gray" class="copy"></svg-icon>
-        <span class="ml-3">复制url</span>
-      </el-link>
-      <div class="divider"></div>
-      <el-link @click="handleCopyFake()" :underline="false">
-        <svg-icon name="copy-gray" class="copy"></svg-icon>
-        <span class="ml-3">复制模拟数据</span>
-      </el-link>
-      <div class="divider"></div>
-      <div class="switch-container">
-        <span class="text">语言</span>
-        <el-switch
-          class="ml-10"
-          v-model="state.storage.currentLanguage"
-          active-value="ts"
-          inactive-value="js"
-          active-color="#409eff"
-          inactive-color="#ecac0f"
-          active-text="TS"
-          inactive-text="JS"
-        >
-        </el-switch>
       </div>
-    </div>
-
-    <div class="collapse open">
-      <more-setting class="more-setting"></more-setting>
-      <svg-icon
-        name="collapse"
-        @click="collapse = !collapse"
-        class="collapse-icon"
-      ></svg-icon>
-    </div>
+      <div class="collapse open">
+        <more-setting class="more-setting"></more-setting>
+        <svg-icon
+          name="collapse"
+          @click="collapse = !collapse"
+          class="collapse-icon"
+        ></svg-icon>
+      </div>
+    </template>
+    <template v-else>
+      <div @click="handleReload" class="fail">
+        插件加载失败，请刷新页面重试
+      </div>
+    </template>
   </div>
 </template>
 
@@ -87,13 +93,9 @@ export default {
   data() {
     return {
       state,
-      collapse: false
+      collapse: false,
+      loading: true
     };
-  },
-  computed: {
-    loading() {
-      return !state.options.length;
-    }
   },
   watch: {
     // 第一次使用插件时插件可能加载比较慢，导致请求没有被拦截
@@ -112,6 +114,17 @@ export default {
         this.bindApiHandlerForApiNodeList();
       },
       immediate: true
+    },
+    "state.options": {
+      handler(newVal) {
+        if (newVal.length) {
+          this.loading = false;
+        }
+        setTimeout(() => {
+          this.loading = false;
+        }, 5000);
+      },
+      immediate: true
     }
   },
   methods: {
@@ -119,6 +132,9 @@ export default {
     handleCopyApi,
     handleCopyPath,
     handleCopyFake,
+    handleReload() {
+      location.reload();
+    },
     async initSwagger() {
       if (state.isNewUi === true || state.swagger) return;
       const configs = window.ui.getConfigs();
@@ -330,5 +346,11 @@ export default {
   background: #2f80ed;
   font-size: 25px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.fail {
+  margin-left: 30px;
+  color: #409eff;
+  cursor: pointer;
 }
 </style>

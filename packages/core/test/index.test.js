@@ -1,4 +1,4 @@
-import freeSwaggerClient, {
+import freeSwaggerCore, {
     jsTemplate,
     tsTemplate,
     compileInterfaces,
@@ -7,7 +7,7 @@ import freeSwaggerClient, {
 
 describe("core test", () => {
     test("code fragment", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
@@ -20,7 +20,7 @@ describe("core test", () => {
     });
 
     test("code fragment2", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
@@ -33,7 +33,7 @@ describe("core test", () => {
     });
 
     test("code fragment with js doc", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
@@ -47,7 +47,7 @@ describe("core test", () => {
     });
 
     test("code fragment with js doc and typedef", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
@@ -62,7 +62,7 @@ describe("core test", () => {
     });
 
     test("code fragment with js doc and recursive typedef", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(jsTemplate),
@@ -78,7 +78,7 @@ describe("core test", () => {
     });
 
     test("ts code fragment with get method", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(tsTemplate),
@@ -91,7 +91,7 @@ describe("core test", () => {
     });
 
     test("ts code fragment with post method", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/swaggerPetstore"),
                 templateFunction: eval(tsTemplate),
@@ -104,7 +104,7 @@ describe("core test", () => {
     });
 
     test("ts code fragment with interface", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/generic.json"),
                 templateFunction: eval(tsTemplate),
@@ -118,7 +118,7 @@ describe("core test", () => {
     });
 
     test("ts code fragment with recursive interface", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/generic.json"),
                 templateFunction: eval(tsTemplate),
@@ -133,7 +133,7 @@ describe("core test", () => {
     });
 
     test("ts code fragment with generic", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/generic.json"),
                 templateFunction: eval(tsTemplate),
@@ -147,7 +147,7 @@ describe("core test", () => {
 
 
     test("ts code fragment with special generic", () => {
-        const codeFragment = freeSwaggerClient(
+        const codeFragment = freeSwaggerCore(
             {
                 source: require("./json/uberApi.json"),
                 templateFunction: eval(tsTemplate),

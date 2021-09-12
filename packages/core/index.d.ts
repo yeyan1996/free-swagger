@@ -1,13 +1,13 @@
-import { ClientConfig } from './src/utils'
+import { CoreConfig } from './src/utils'
 import { Method } from './src/parse/path'
 
-declare function freeSwaggerClient(
-  config: ClientConfig,
+declare function freeSwaggerCore(
+  config: CoreConfig,
   url?: string,
   method?: Method
 ): string
 
-export default freeSwaggerClient
+export default freeSwaggerCore
 
 export * from './src/default/template'
 export * from './src/default/index'

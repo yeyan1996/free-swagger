@@ -1,14 +1,14 @@
 import { OpenAPIV2 } from 'openapi-types'
-import { ClientConfig } from 'free-swagger-core'
+import { CoreConfig } from 'free-swagger-core'
 import fse from 'fs-extra'
 import camelcase from 'camelcase'
 import path from 'path'
 import chalk from 'chalk'
 import assert from 'assert'
 
-export interface ServerConfig<T = string | OpenAPIV2.Document>
+export interface ApiConfig<T = string | OpenAPIV2.Document>
   extends Omit<
-    ClientConfig,
+    CoreConfig,
     'source' | 'interface' | 'typedef' | 'recursive' | 'jsDoc'
   > {
   source: T
@@ -34,8 +34,8 @@ const isSwaggerDocument = (value: any): value is OpenAPIV2.Document =>
   !!value.swagger
 
 const assertOpenApi2 = (
-  config: ServerConfig
-): config is ServerConfig<OpenAPIV2.Document> => {
+  config: ApiConfig
+): config is ApiConfig<OpenAPIV2.Document> => {
   // @ts-ignore
   if (config.source?.swagger) {
     // @ts-ignore

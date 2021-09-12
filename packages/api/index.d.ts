@@ -1,14 +1,14 @@
 import { OpenAPIV2 } from 'openapi-types'
-import { ServerConfig, MockConfig } from './src/utils'
+import { ApiConfig, MockConfig } from './src/utils'
 import { ParsedPathsObject } from './src/parse/path'
 
 declare function freeSwagger(
-  config: ServerConfig | string
+  config: ApiConfig | string
 ): Promise<OpenAPIV2.Document>
 
 declare function mock(config: MockConfig | string): Promise<void>
 declare function compile(
-  config: Required<ServerConfig>,
+  config: Required<ApiConfig>,
   events?: {
     onChooseApi?: (params: {
       paths: ParsedPathsObject

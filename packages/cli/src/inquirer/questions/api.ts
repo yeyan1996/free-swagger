@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { lang, source, templateFunction } from './client'
+import { lang, source, templateFunction } from './core'
 import { rc, RcConfig } from '../../default/rc'
 import { ParsedPathsObject } from 'free-swagger'
 import { prompt } from '../index'

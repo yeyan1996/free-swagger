@@ -4,7 +4,7 @@ import parserTypescript from 'prettier/parser-typescript'
 import parserBabel from 'prettier/parser-babel'
 import { formatGenericInterface } from './parse/interface'
 
-export interface ClientConfig<T = OpenAPIV2.Document> {
+export interface CoreConfig<T = OpenAPIV2.Document> {
   source: T
   templateFunction?: TemplateFunction
   lang?: 'js' | 'ts'
@@ -107,7 +107,7 @@ const traverseTree = <T extends Record<string, any>>(
 const extractInterfaceNameByRef = (
   ref: OpenAPIV2.ReferenceObject['$ref']
 ): string => {
-  return ref.slice(ref.lastIndexOf('/') + 1)
+  return ref.slice(ref.lastIndexOf('/') + 1).replace('.', '')
 }
 
 // 提取 $ref 中的 interface 并格式化

@@ -1,6 +1,6 @@
 import { TemplateFunction, tsTemplate, jsTemplate } from 'free-swagger-core'
 import camelcase from 'camelcase'
-import { ServerConfig, isSwaggerDocument, MockConfig, isUrl } from '../utils'
+import { ApiConfig, isSwaggerDocument, MockConfig, isUrl } from '../utils'
 import path from 'path'
 
 export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
@@ -30,7 +30,7 @@ const DEFAULT_MOCK_CONFIG = {
     : path.resolve(process.cwd(), 'src/mock'),
 }
 
-export const getDefaultParams = (): Required<Omit<ServerConfig, 'source'>> => ({
+export const getDefaultParams = (): Required<Omit<ApiConfig, 'source'>> => ({
   root: global.__DEV__
     ? path.resolve(__dirname, '../../test/api/default')
     : path.resolve(process.cwd(), 'src/api'),
@@ -43,9 +43,9 @@ export const getDefaultParams = (): Required<Omit<ServerConfig, 'source'>> => ({
 })
 
 export const mergeDefaultParams = (
-  config: ServerConfig | string
-): Required<ServerConfig> => {
-  let mergedConfig: ServerConfig = <ServerConfig>{}
+  config: ApiConfig | string
+): Required<ApiConfig> => {
+  let mergedConfig: ApiConfig = <ApiConfig>{}
 
   if (typeof config === 'string') {
     mergedConfig.source = config

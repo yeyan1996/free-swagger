@@ -1,15 +1,16 @@
 import { Method } from './parse/path'
-import { ClientConfig } from './utils'
+import { CoreConfig } from './utils'
 import { mergeDefaultParams } from './default'
 import { compilePath } from './compile/path'
 
-const freeSwaggerClient = (
-  config: ClientConfig,
+const freeSwaggerCore = (
+  config: CoreConfig,
   url?: string,
   method?: Method
 ): string => {
   const chooseAll = !url || !method
   if (chooseAll) return ''
+
   const mergedConfig = mergeDefaultParams(config)
   const {
     jsDocCode,
@@ -47,7 +48,7 @@ const freeSwaggerClient = (
   return code
 }
 
-export default freeSwaggerClient
+export default freeSwaggerCore
 export * from './default/template'
 export * from './default/index'
 export * from './utils'

@@ -1,29 +1,32 @@
 import {
-  ClientConfig,
+  CoreConfig,
   formatCode,
   genJsDoc,
   genPath,
   Method,
   parsePath,
 } from '../..'
-import { OpenAPIV2 } from 'openapi-types'
-import { isString, uniq } from 'lodash'
+import { isString, uniq, capitalize, last } from 'lodash'
 import { compileJsDocTypedefs } from './jsDoc'
 import { compileInterfaces } from './interface'
+import camelcase from 'camelcase'
+
+export const createDefaultApiName = (url: string, method: Method): string => {
+  return `${camelcase(last(url.split('/')) ?? '')}By${capitalize(method)}`
+}
 
 const compilePath = (
-  config: Required<ClientConfig>,
+  config: Required<CoreConfig>,
   url: string,
   method: Method
 ) => {
   const { source } = config
   const { definitions, paths, basePath } = source
-  // api 名字
-  const name: OpenAPIV2.OperationObject['operationId'] =
-    paths[url][method].operationId
-  if (!name) {
-    throw new Error(`can not find name ${name}`)
-  }
+
+  const operationObject = paths[url][method]
+  // 接口函数名
+  const name: string =
+    operationObject.operationId ?? createDefaultApiName(url, method)
 
   const parsedApi = parsePath(
     name,

@@ -1,4 +1,4 @@
-import { ParsedSchemaObject, ParsedSchema, ClientConfig } from '../utils'
+import { ParsedSchemaObject, ParsedSchema, CoreConfig } from '../utils'
 import { isEmpty } from 'lodash'
 import { ParsedApi } from '../..'
 
@@ -31,7 +31,7 @@ const genParsedSchema = (paramsInterface?: ParsedSchema): string => {
 
 const genPath = (
   api: ParsedApi,
-  config: Pick<Required<ClientConfig>, 'templateFunction' | 'lang'>
+  config: Pick<Required<CoreConfig>, 'templateFunction' | 'lang'>
 ): string => {
   const { IPathParams, IBodyParams, IQueryParams } = {
     IQueryParams: genParsedSchema(api.queryParamsInterface),

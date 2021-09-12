@@ -1,6 +1,6 @@
 import chalk from 'chalk'
-import { source } from './client'
-import { cookie } from './server'
+import { source } from './core'
+import { cookie } from './api'
 import { rc } from '../../default/rc'
 
 export default [

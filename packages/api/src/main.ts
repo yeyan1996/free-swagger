@@ -3,13 +3,7 @@ import path from 'path'
 import chalk from 'chalk'
 import ora from 'ora'
 import { OpenAPIV2 } from 'openapi-types'
-import {
-  isUrl,
-  isPath,
-  assertOpenApi2,
-  MockConfig,
-  ServerConfig,
-} from './utils'
+import { isUrl, isPath, assertOpenApi2, MockConfig, ApiConfig } from './utils'
 import {
   mergeDefaultParams,
   mergeDefaultMockConfig,
@@ -39,7 +33,7 @@ const DEFAULT_CLIENT_PARAMS = {
 
 // parse swagger json
 const parse = (
-  config: ServerConfig<OpenAPIV2.Document>
+  config: ApiConfig<OpenAPIV2.Document>
 ): {
   parsedPathsObject: ParsedPathsObject
 } => {
@@ -49,7 +43,7 @@ const parse = (
 
 // code generate
 const gen = async (
-  config: Required<ServerConfig<OpenAPIV2.Document>>,
+  config: Required<ApiConfig<OpenAPIV2.Document>>,
   dirPath: string,
   pathsObject: ParsedPathsObject
 ): Promise<void> => {
@@ -140,7 +134,7 @@ const normalizeSource = async (
 
 // compile = parse + gen
 const compile = async (
-  config: Required<ServerConfig>,
+  config: Required<ApiConfig>,
   events: {
     onChooseApi?: (params: {
       paths: ParsedPathsObject
@@ -177,7 +171,7 @@ const compile = async (
 
 // freeSwagger = merge + compile
 const freeSwagger = async (
-  config: ServerConfig | string
+  config: ApiConfig | string
 ): Promise<OpenAPIV2.Document> => {
   const mergedConfig = await mergeDefaultParams(config)
   return compile(mergedConfig)

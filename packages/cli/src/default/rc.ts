@@ -4,13 +4,13 @@ import fse from 'fs-extra'
 import prettier from 'prettier'
 import { pick, mergeWith } from 'lodash'
 import { EOL } from 'os'
-import { ClientConfig, jsTemplate, tsTemplate } from 'free-swagger-core'
+import { CoreConfig, jsTemplate, tsTemplate } from 'free-swagger-core'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
   mergeDefaultParams,
   MockConfig,
-  ServerConfig,
+  ApiConfig,
 } from 'free-swagger'
 import { execSync } from 'child_process'
 import camelcase from 'camelcase'
@@ -22,7 +22,7 @@ const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
   client: Omit<
-    Required<ClientConfig<string>>,
+    Required<CoreConfig<string>>,
     'filename' | 'interface' | 'typedef' | 'recursive'
   > & {
     tsTemplate: string
@@ -88,7 +88,7 @@ class Rc {
         ...(pick(
           mergeDefaultParams('https://petstore.swagger.io/v2/swagger.json'),
           ['source', 'lang', 'jsDoc', 'templateFunction']
-        ) as Required<ServerConfig<string>>),
+        ) as Required<ApiConfig<string>>),
         jsTemplate,
         tsTemplate,
       },
@@ -114,7 +114,7 @@ class Rc {
   // 从 rc 文件中生成 free-swagger-core 参数
   createFreeSwaggerParams(
     { client, server }: RcConfig = this.configData
-  ): Required<ServerConfig> {
+  ): Required<ApiConfig> {
     const { lang } = client
     const { customImportCodeJs, customImportCodeTs } = server
     // @ts-ignore
