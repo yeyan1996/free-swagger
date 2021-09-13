@@ -83,10 +83,8 @@ export default {
         : `#operations-tag-${controller}`;
       return document.querySelector(selector);
     },
-    findApiDom({ controllerDom, isNewUi, operationId }) {
-      const selector = isNewUi
-        ? `[data-hashurl$="${operationId}"]`
-        : `[id$="${operationId}"]`;
+    findApiDom({ controllerDom, isNewUi, id }) {
+      const selector = isNewUi ? `[data-hashurl$="${id}"]` : `[id$="${id}"]`;
       return isNewUi
         ? controllerDom.querySelector(selector)
         : controllerDom.parentNode.querySelector(selector);
@@ -111,7 +109,8 @@ export default {
       }
     },
     // 展开一个 api
-    async expandApiCollapse({ controller, operationId }) {
+    async expandApiCollapse({ collection, path, method }) {
+      const { controller, operationId } = collection;
       const controllerDom = this.findControllerDom({
         isNewUi: state.isNewUi,
         controller
@@ -119,10 +118,17 @@ export default {
       if (!controllerDom) return false;
       this.openControllerDom(controllerDom, state.isNewUi);
       await this.$nextTick();
+      const id =
+        operationId ??
+        // 生成默认 id
+        // /a/b/c -> a_b_c
+        `operations-${controller}-${method}_${path
+          .replace(/\//g, "_")
+          .slice(1, path.length)}`;
       const apiDom = this.findApiDom({
         isNewUi: state.isNewUi,
         controllerDom,
-        operationId
+        id
       });
       if (!apiDom) return false;
       this.clickApiDom(apiDom);
@@ -140,11 +146,7 @@ export default {
       if (!echo) {
         await retry({
           cb: async () => {
-            const { controller, operationId } = state.currentApi.collection;
-            const res = await this.expandApiCollapse({
-              controller,
-              operationId
-            });
+            const res = await this.expandApiCollapse(state.currentApi);
             await this.$nextTick();
             if (res) {
               const apiDom = res.apiDom;

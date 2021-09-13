@@ -128,7 +128,7 @@ const freeSwagger = async (
     if (!assertOpenApi2(mergedConfig)) {
       throw new Error('文档解析错误，请使用 openApi2 规范的文档')
     }
-    spinner.start('正在生成 api 文件...')
+    spinner.start('正在生成文件...')
     fse.ensureDirSync(mergedConfig.root)
 
     let choosePaths

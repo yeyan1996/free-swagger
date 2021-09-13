@@ -10,7 +10,7 @@ export interface Response {
 const getResponseType = (responses: {
   [responseCode: string]: OpenAPIV2.ResponseObject
 }): Response => {
-  if (!responses[SUCCESS_CODE]) {
+  if (!responses?.[SUCCESS_CODE]) {
     return {
       responseInterface: {
         ref: '',
