@@ -17,9 +17,7 @@ import {
 import { INTERFACE_PATH, JSDOC_PATH } from './default'
 import { mock } from './mock'
 
-export const spinner = ora().render()
-
-// 使用 free-swagger 时传入 free-swagger-core 的部分参数固定
+// 使用 free-swagger/free-swagger-cli 时传入 free-swagger-core 的部分参数固定
 const DEFAULT_CORE_PARAMS = {
   interface: false,
   recursive: false,
@@ -121,6 +119,8 @@ const freeSwagger = async (
     }) => Promise<ParsedPathsObject>
   } = {}
 ): Promise<OpenAPIV2.Document> => {
+  const spinner = ora().render()
+
   // merge + normalize
   const mergedConfig = await mergeDefaultParams(config)
 
@@ -156,6 +156,9 @@ const freeSwagger = async (
 }
 
 freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
+  const spinner = ora().render()
+  spinner.start('正在生成 mock 文件...\n')
+
   const mergedConfig = await mergeDefaultMockConfig(config)
   await mock(mergedConfig)
   spinner.succeed(

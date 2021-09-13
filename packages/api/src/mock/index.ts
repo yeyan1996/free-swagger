@@ -1,7 +1,6 @@
 import { OpenAPIV2 } from 'openapi-types'
 import { Method } from 'free-swagger-core'
 import { pascalCase, hasChinese, MockConfig } from '../utils'
-import { spinner } from '../main'
 import { methods } from '../parse/path'
 import path from 'path'
 import fse from 'fs-extra'
@@ -54,7 +53,6 @@ export const mock = async ({
       type: 'array',
     },
   })
-  spinner.start('正在生成 mock 文件...\n')
   // @ts-ignore
   const parsedSwagger = await SwaggerParser.dereference(source)
   // @ts-ignore
