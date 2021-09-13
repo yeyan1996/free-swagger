@@ -6,7 +6,11 @@ import {
 } from '../parse/interface'
 import { formatCode, traverseTree, TYPE_MAP } from '../utils'
 import { genInterface } from '../gen/interface'
-import { DEFAULT_HEAD_INTERFACE, DEFAULT_HEAD_JS_DOC_TYPES } from '../default'
+import {
+  DEFAULT_HEAD_CODE,
+  normalizeDefinitionName,
+  normalizeSource,
+} from '../default'
 import { genJsDocTypeDef } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
 import chalk from 'chalk'
@@ -34,7 +38,7 @@ export type CompileType = (
   params: CompileTypeParams
 ) => { code: string; imports: string[] }
 
-// 生成单个 interface 代码
+// 生成单个 interface/typedef 代码
 const compileType: CompileType = ({
   source,
   interfaceName, // origin interface name
@@ -124,17 +128,20 @@ const compileTypes: CompileTypes = ({
   recursive,
   url,
 }) => {
+  const normalizedSource = normalizeSource(source)
   // 收集依赖
   const imports: string[] = []
-  if (!source.definitions) return { code: '', imports }
+  if (!normalizedSource.definitions) return { code: '', imports }
+
   // 单个 type
   if (interfaceName) {
     const map = contextMap ?? new Map<string, ParsedInterface>()
-    imports.push(interfaceName)
+    const normalizedInterfaceName = normalizeDefinitionName(interfaceName)
+    imports.push(normalizedInterfaceName)
     return compileType({
       recursive,
-      source,
-      interfaceName,
+      source: normalizedSource,
+      interfaceName: normalizedInterfaceName,
       imports,
       type,
       contextMap: map,
@@ -142,34 +149,35 @@ const compileTypes: CompileTypes = ({
   } else {
     // 全量 type
     const contextMap = new Map<string, ParsedInterface>()
-    const interfaceCode = Object.keys(source.definitions).reduce((acc, cur) => {
-      imports.push(cur)
-      const { code } = compileType({
-        recursive,
-        source,
-        interfaceName: cur,
-        contextMap,
-        imports,
-        type,
-      })
-      if (code) {
-        return `${acc + code}\n`
-      } else {
-        return acc
-      }
-    }, '')
-    const code =
-      type === 'interface'
-        ? formatCode('ts')(
-            `${DEFAULT_HEAD_INTERFACE}${
-              url ? `// source ${url}` : ''
-            }\n\n${interfaceCode}`
-          ).trim()
-        : `${DEFAULT_HEAD_JS_DOC_TYPES}${
-            url ? `// source ${url}` : ''
-          }\n\n${interfaceCode}`.trim()
+    const interfaceCode = Object.keys(normalizedSource.definitions).reduce(
+      (acc, cur) => {
+        imports.push(cur)
+        const { code } = compileType({
+          recursive,
+          source: normalizedSource,
+          interfaceName: cur,
+          contextMap,
+          imports,
+          type,
+        })
+        if (code) {
+          return `${acc + code}\n`
+        } else {
+          return acc
+        }
+      },
+      ''
+    )
+    const originCode = `${DEFAULT_HEAD_CODE}
+${url ? `// source ${url}` : ''}
+
+${interfaceCode}`
+
+    const formattedCode =
+      type === 'interface' ? formatCode('ts')(originCode) : originCode
+
     return {
-      code,
+      code: formattedCode.trim(),
       imports: uniqInterfaceNameImports(imports),
     }
   }

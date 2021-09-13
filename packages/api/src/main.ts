@@ -4,18 +4,14 @@ import chalk from 'chalk'
 import ora from 'ora'
 import { OpenAPIV2 } from 'openapi-types'
 import { assertOpenApi2, MockConfig, ApiConfig } from './utils'
-import {
-  mergeDefaultParams,
-  mergeDefaultMockConfig,
-  DEFAULT_HEAD_CODE_TS,
-  DEFAULT_HEAD_CODE_JS,
-} from './default'
+import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction, uniq } from 'lodash'
 import { ParsedPathsObject, ParsedPaths, parsePaths } from './parse/path'
 import {
   compileInterfaces,
   compileJsDocTypedefs,
   compilePath,
+  DEFAULT_HEAD_CODE,
   formatCode,
 } from 'free-swagger-core'
 import { INTERFACE_PATH, JSDOC_PATH } from './default'
@@ -24,7 +20,7 @@ import { mock } from './mock'
 export const spinner = ora().render()
 
 // 使用 free-swagger 时传入 free-swagger-core 的部分参数固定
-const DEFAULT_CLIENT_PARAMS = {
+const DEFAULT_CORE_PARAMS = {
   interface: false,
   recursive: false,
   typedef: false,
@@ -78,17 +74,15 @@ const gen = async (
       `${config.filename?.(filename) ?? filename}.${config.lang}`
     )
     fse.ensureFileSync(apiCollectionPath)
-    let code = ''
+    let code = `${DEFAULT_HEAD_CODE}\n\n`
     const imports: string[] = []
-    code += config.lang === 'ts' ? DEFAULT_HEAD_CODE_TS : DEFAULT_HEAD_CODE_JS
-    code += `\n`
 
     let apisCode = ''
     parsedPaths.forEach((parsedPath) => {
       const { jsDocCode, code, imports: apiImports } = compilePath(
         {
           ...config,
-          ...DEFAULT_CLIENT_PARAMS,
+          ...DEFAULT_CORE_PARAMS,
         },
         parsedPath.url,
         parsedPath.method
@@ -111,7 +105,11 @@ const gen = async (
     await fse.writeFile(apiCollectionPath, formatCode(config.lang)(code))
   }
 
-  Object.entries(pathsObject).forEach(genApi)
+  // typeOnly 只生成 interface/typedef
+  // 不生成接口代码
+  if (!config.typeOnly) {
+    Object.entries(pathsObject).forEach(genApi)
+  }
 }
 
 // freeSwagger = merge + parse + gen
@@ -123,7 +121,7 @@ const freeSwagger = async (
     }) => Promise<ParsedPathsObject>
   } = {}
 ): Promise<OpenAPIV2.Document> => {
-  // merge
+  // merge + normalize
   const mergedConfig = await mergeDefaultParams(config)
 
   try {

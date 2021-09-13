@@ -4,7 +4,7 @@ import fse from 'fs-extra'
 import commander from 'commander'
 import { rc } from '../default/rc'
 import mockQuestion from '../inquirer/questions/mock'
-import serverQuestion, { chooseApi } from '../inquirer/questions/api'
+import apiQuestion, { chooseApi } from '../inquirer/questions/api'
 import { source } from '../inquirer/questions/core'
 import freeSwagger, { mock } from 'free-swagger'
 import { pick } from 'lodash'
@@ -31,7 +31,7 @@ export function init(): void {
       await mock(rc.createMockParams())
     })
     .option('-c, --config', '以配置项启动 free-swagger-cli', async () => {
-      await prompt(serverQuestion)
+      await prompt(apiQuestion)
       await freeSwagger(rc.createFreeSwaggerParams(), {
         onChooseApi: async ({ paths }) =>
           pick(paths, ...(await chooseApi(paths))),

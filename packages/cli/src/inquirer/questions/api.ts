@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { lang, source, templateFunction } from './core'
+import { lang, source, templateFunction, typeOnly } from './core'
 import { rc, RcConfig } from '../../default/rc'
 import { ParsedPathsObject } from 'free-swagger'
 import { prompt } from '../index'
@@ -7,12 +7,12 @@ import { isUrl } from 'free-swagger'
 
 const createChoices = (
   paths: ParsedPathsObject
-): RcConfig['server']['apiChoices'] => {
+): RcConfig['api']['apiChoices'] => {
   const chooseAllChoices = Object.keys(paths).map((name) => ({
     name,
     checked: true,
   }))
-  const apiChoices = rc.configData.server.apiChoices
+  const apiChoices = rc.configData.api.apiChoices
   if (!apiChoices.length || rc.shouldRefreshCache()) return chooseAllChoices
 
   // 根据之前的缓存设置选项
@@ -50,7 +50,7 @@ export const chooseApi = async (
               checked: input.includes(name),
             })),
           },
-          'server'
+          'api'
         )
         rc.save()
       },
@@ -65,9 +65,9 @@ export const cookie = {
     'swagger源不需要鉴权则置空 e.g SESSION=xxx'
   )})`,
   when: ({ source }: any): boolean => isUrl(source!),
-  default: rc.configData.server.cookie,
+  default: rc.configData.api.cookie,
   callback: (input: string) => {
-    rc.merge({ cookie: input }, 'server')
+    rc.merge({ cookie: input }, 'api')
     rc.save()
   },
 }
@@ -75,7 +75,7 @@ export const cookie = {
 export const root = {
   name: 'root',
   message: '输入导出 api 的根目录',
-  default: rc.configData.server.root,
+  default: rc.configData.api.root,
   validate: (input: string): boolean | string => {
     if (!input) {
       return '请输入导出 api 的根目录'
@@ -84,7 +84,7 @@ export const root = {
     }
   },
   callback: (input: string) => {
-    rc.merge({ root: input }, 'server')
+    rc.merge({ root: input }, 'api')
     rc.save()
   },
 }
@@ -93,6 +93,7 @@ export default [
   cookie,
   root,
   lang,
+  typeOnly,
   {
     name: 'shouldEditTemplate',
     type: 'confirm',
@@ -108,8 +109,8 @@ export default [
     message: `输入自定义头语句(${chalk.magenta('自定义请求库路径')})`,
     default: ({ lang }: any): string =>
       lang === 'ts'
-        ? rc.configData.server.customImportCodeTs
-        : rc.configData.server.customImportCodeJs,
+        ? rc.configData.api.customImportCodeTs
+        : rc.configData.api.customImportCodeJs,
     validate: (input: string): boolean | string => {
       if (!input) {
         return '请输入自定义头语句'
@@ -118,11 +119,11 @@ export default [
       }
     },
     callback: (input: string, { lang }: any) => {
-      rc.merge({ customImportCode: input }, 'server')
+      rc.merge({ customImportCode: input }, 'api')
       if (lang === 'ts') {
-        rc.merge({ customImportCodeTs: input }, 'server')
+        rc.merge({ customImportCodeTs: input }, 'api')
       } else {
-        rc.merge({ customImportCodeJs: input }, 'server')
+        rc.merge({ customImportCodeJs: input }, 'api')
       }
       rc.save()
     },

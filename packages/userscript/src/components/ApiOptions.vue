@@ -154,7 +154,7 @@ export default {
             }
           },
           retryNumber: 10,
-          error: () => console.error("Error: 请输入 dom 节点")
+          error: () => console.error("Error: 未监测到匹配的 dom 节点")
         });
       }
     }

@@ -3,6 +3,7 @@ import prettier from 'prettier/standalone'
 import parserTypescript from 'prettier/parser-typescript'
 import parserBabel from 'prettier/parser-babel'
 import { formatGenericInterface } from './parse/interface'
+import { normalizeDefinitionName } from './default'
 
 export interface CoreConfig<T = OpenAPIV2.Document> {
   source: T
@@ -107,7 +108,7 @@ const traverseTree = <T extends Record<string, any>>(
 const extractInterfaceNameByRef = (
   ref: OpenAPIV2.ReferenceObject['$ref']
 ): string => {
-  return ref.slice(ref.lastIndexOf('/') + 1).replace('.', '')
+  return normalizeDefinitionName(ref.slice(ref.lastIndexOf('/') + 1))
 }
 
 // 提取 $ref 中的 interface 并格式化
@@ -159,16 +160,13 @@ const schemaToTsType = (
         ? `(${recursive(schema.items, formatType)})[]`
         : `${recursive(schema.items, formatType)}[]`
     }
-    // todo 对 object 的响应 schema 做处理
+
     if (schema.type === 'object') {
-      let type = ''
       if (!schema.properties) return 'Record<string | number | symbol, any>'
-      Object.keys(schema.properties).forEach((key) => {
-        type += schema.properties
-          ? recursive(schema.properties[key], formatType)
-          : ''
-      })
-      return type
+      return `{${Object.entries(schema.properties).reduce((acc, cur) => {
+        const [key, value] = cur
+        return `${acc}${key}: ${recursive(value, formatType)};`
+      }, '')}}`
     }
     if (schema.enum) {
       return schema.enum.map((value) => `"${value}"`).join(' | ')

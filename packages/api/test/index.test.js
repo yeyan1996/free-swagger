@@ -122,4 +122,17 @@ describe("api test", () => {
       "ymTicketTypical.js"
     ],true);
   });
+
+  test("type only", async () => {
+    const dirname = "uberApi1";
+    const dirPath = path.resolve(__dirname, "api", dirname + "TypeOnly")
+    await freeSwagger({
+      source: require(`./json/${dirname}`),
+      root:dirPath ,
+      typeOnly: true,
+      jsDoc: true
+    });
+    const file = fs.readFileSync(path.resolve(dirPath,'typedef/index.js'), "utf-8");
+    expect(file).toMatchSnapshot();
+  });
 });

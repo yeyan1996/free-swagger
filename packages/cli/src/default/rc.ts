@@ -8,27 +8,27 @@ import { CoreConfig, jsTemplate, tsTemplate } from 'free-swagger-core'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
-  mergeDefaultParams,
   MockConfig,
   ApiConfig,
 } from 'free-swagger'
 import { execSync } from 'child_process'
 import camelcase from 'camelcase'
 
-type ConfigType = 'client' | 'server' | 'mock'
+type ConfigType = 'core' | 'api' | 'mock'
 
 const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
-  client: Omit<
+  core: Omit<
     Required<CoreConfig<string>>,
     'filename' | 'interface' | 'typedef' | 'recursive'
   > & {
     tsTemplate: string
     jsTemplate: string
+    typeOnly: boolean
   }
-  server: {
+  api: {
     root: string
     cookie: string
     previousSource: string
@@ -72,7 +72,7 @@ class Rc {
 
   // 合并用户通过 free-swagger-cli -e 手动编辑的模版
   assignTemplate() {
-    const { templateFunction, lang } = this.configData.client
+    const { templateFunction, lang } = this.configData.core
     if (lang === 'js') {
       this.merge({ jsTemplate: templateFunction.toString() })
     } else {
@@ -84,15 +84,16 @@ class Rc {
   // 获取默认 rc 文件
   getDefaultConfig(): RcConfig {
     return {
-      client: {
+      core: {
         source: 'https://petstore.swagger.io/v2/swagger.json',
         lang: 'js',
         jsDoc: true,
         templateFunction: eval(jsTemplate),
         jsTemplate,
         tsTemplate,
+        typeOnly: false,
       },
-      server: {
+      api: {
         root: path.resolve(process.cwd(), 'src/api'),
         cookie: '',
         previousSource: '',
@@ -113,28 +114,34 @@ class Rc {
 
   // 从 rc 文件中生成 free-swagger-core 参数
   createFreeSwaggerParams(
-    { client, server }: RcConfig = this.configData
+    { core, api }: RcConfig = this.configData
   ): Required<ApiConfig> {
-    const { lang } = client
-    const { customImportCodeJs, customImportCodeTs } = server
+    const { lang } = core
+    const { customImportCodeJs, customImportCodeTs } = api
     return {
-      ...pick(client, ['source', 'lang', 'jsDoc', 'templateFunction']),
-      ...pick(server, ['root', 'cookie']),
+      ...pick(core, [
+        'source',
+        'lang',
+        'jsDoc',
+        'templateFunction',
+        'typeOnly',
+      ]),
+      ...pick(api, ['root', 'cookie']),
       filename: (name) => camelcase(name),
       customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
     }
   }
 
   // 从 rc 文件中生成 mock 参数
-  createMockParams({ mock, client }: RcConfig = this.configData): MockConfig {
+  createMockParams({ mock, core }: RcConfig = this.configData): MockConfig {
     return {
-      ...pick(client, ['source']),
+      ...pick(core, ['source']),
       ...mock,
     }
   }
 
   // 合并配置项
-  merge(answer: Record<string, any>, type: ConfigType = 'client'): void {
+  merge(answer: Record<string, any>, type: ConfigType = 'core'): void {
     // @ts-ignore
     this.configData[type] = mergeWith(
       this.configData[type],
@@ -149,7 +156,7 @@ class Rc {
     const data = JSON.stringify(rcConfig)
     // hack: 由于 JSON.stringify 不能保存函数，这里手动将函数拼接并写入 rc 文件
     // 去除尾部分号，否则会报词法错误
-    let templateFunction = this.configData.client.templateFunction
+    let templateFunction = this.configData.core.templateFunction
       ?.toString()
       .replace(EOL, '')
       .trim()
@@ -182,15 +189,13 @@ class Rc {
   // 记录当前 source 和之前的 source
   // 对比两者判断是否需要清空用户选择的 api 缓存记录
   recordHash(newSource: string): void {
-    this.configData.server.previousSource = this.configData.client.source
-    this.configData.client.source = newSource
+    this.configData.api.previousSource = this.configData.core.source
+    this.configData.core.source = newSource
   }
 
   // 是否清空用户选择的 api 缓存记录
   shouldRefreshCache(): boolean {
-    return (
-      this.configData.server.previousSource !== this.configData.client.source
-    )
+    return this.configData.api.previousSource !== this.configData.core.source
   }
 
   // 重置为默认配置项

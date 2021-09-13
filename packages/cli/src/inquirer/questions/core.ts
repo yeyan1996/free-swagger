@@ -5,7 +5,7 @@ import { rc } from '../../default/rc'
 export const source = {
   name: 'source',
   message: `输入 swagger 源(${chalk.magenta('url/path')})`,
-  default: rc.configData.client.source,
+  default: rc.configData.core.source,
   validate: (input: string): boolean | string => {
     if (!input) return '请输入 swagger 源'
     if (isUrl(input) || isPath(input)) {
@@ -24,7 +24,7 @@ export const lang = {
   name: 'lang',
   type: 'list',
   message: '选择导出 api 的语言',
-  default: rc.configData.client.lang,
+  default: rc.configData.core.lang,
   choices: ['js', 'ts'],
   callback: (input: string) => {
     rc.merge({
@@ -33,10 +33,22 @@ export const lang = {
     rc.merge({
       templateFunction: eval(
         input === 'ts'
-          ? rc.configData.client.tsTemplate
-          : rc.configData.client.jsTemplate
+          ? rc.configData.core.tsTemplate
+          : rc.configData.core.jsTemplate
       ),
     })
+    rc.save()
+  },
+}
+
+export const typeOnly = {
+  name: 'typeOnly',
+  type: 'list',
+  choices: ['全部', '仅 interface/typedef'],
+  default: '全部',
+  message: '更新范围',
+  callback: (input: string) => {
+    rc.merge({ typeOnly: input !== '全部' })
     rc.save()
   },
 }
@@ -47,8 +59,8 @@ export const templateFunction = {
   message: '输入模版函数',
   default: ({ lang }: any): string =>
     lang === 'ts'
-      ? rc.configData.client.tsTemplate
-      : rc.configData.client.jsTemplate,
+      ? rc.configData.core.tsTemplate
+      : rc.configData.core.jsTemplate,
   validate: (input: string) => {
     if (!input) return '请输入模版函数'
     return true

@@ -17,6 +17,7 @@ export interface ApiConfig<T = string | OpenAPIV2.Document>
   jsDoc?: boolean
   customImportCode?: string
   filename?(name: string): string
+  typeOnly?: boolean
 }
 
 export interface MockConfig<T = string | OpenAPIV2.Document> {

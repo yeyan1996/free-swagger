@@ -337,9 +337,11 @@ const parseInterface = (
       }
     } else {
       return {
-        code: `export type ${interfaceName} = ${
-          schemaToTsType(definitions[interfaceName]).formatType
-        }`,
+        code: `/**
+  * @typedef {(${
+    schemaToTsType(definitions[interfaceName]).formatType
+  })} ${interfaceName}
+**/`,
         ...parsedInterface,
       }
     }
