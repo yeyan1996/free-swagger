@@ -99,14 +99,17 @@ export default [
     type: 'confirm',
     default: false,
     message: '是否需要编辑模版？',
+    when: ({ typeOnly }: any): boolean => typeOnly === false,
   },
   {
     ...templateFunction,
-    when: ({ shouldEditTemplate }: any): boolean => shouldEditTemplate,
+    when: ({ shouldEditTemplate, typeOnly }: any): boolean =>
+      shouldEditTemplate && typeOnly === false,
   },
   {
     name: 'customImportCode',
     message: `输入自定义头语句(${chalk.magenta('自定义请求库路径')})`,
+    when: ({ typeOnly }: any): boolean => typeOnly === false,
     default: ({ lang }: any): string =>
       lang === 'ts'
         ? rc.configData.api.customImportCodeTs

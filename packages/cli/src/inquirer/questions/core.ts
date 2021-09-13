@@ -44,11 +44,20 @@ export const lang = {
 export const typeOnly = {
   name: 'typeOnly',
   type: 'list',
-  choices: ['全部', '仅 interface/typedef'],
-  default: '全部',
+  choices: [
+    {
+      name: '全部',
+      value: false,
+    },
+    {
+      name: '仅 interface/typedef',
+      value: true,
+    },
+  ],
+  default: rc.configData.core.typeOnly,
   message: '更新范围',
-  callback: (input: string) => {
-    rc.merge({ typeOnly: input !== '全部' })
+  callback: (input: boolean) => {
+    rc.merge({ typeOnly: input })
     rc.save()
   },
 }

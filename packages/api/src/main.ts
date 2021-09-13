@@ -40,7 +40,7 @@ const parse = (
 const gen = async (
   config: Required<ApiConfig<OpenAPIV2.Document>>,
   dirPath: string,
-  pathsObject: ParsedPathsObject
+  pathsObject?: ParsedPathsObject
 ): Promise<void> => {
   // 生成 interface
   if (config.lang === 'ts') {
@@ -108,7 +108,7 @@ const gen = async (
   // typeOnly 只生成 interface/typedef
   // 不生成接口代码
   if (!config.typeOnly) {
-    Object.entries(pathsObject).forEach(genApi)
+    Object.entries(pathsObject!).forEach(genApi)
   }
 }
 
@@ -131,13 +131,16 @@ const freeSwagger = async (
     spinner.start('正在生成 api 文件...')
     fse.ensureDirSync(mergedConfig.root)
 
+    let choosePaths
     // parse
-    const { parsedPathsObject } = parse(mergedConfig)
-    spinner.succeed('api 文件解析完成')
+    if (!mergedConfig.typeOnly) {
+      const { parsedPathsObject } = parse(mergedConfig)
+      spinner.succeed('api 文件解析完成')
 
-    const choosePaths = isFunction(events?.onChooseApi)
-      ? await events?.onChooseApi?.({ paths: parsedPathsObject })
-      : parsedPathsObject
+      choosePaths = isFunction(events?.onChooseApi)
+        ? await events?.onChooseApi?.({ paths: parsedPathsObject })
+        : parsedPathsObject
+    }
 
     // gen
     await gen(mergedConfig, mergedConfig.root, choosePaths)
