@@ -47,5 +47,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yeyan1996/free-swagger.git"
-  }
+  },
+  "gitHead": "74d8d330597c53940722df356254883634bf53f8"
 }
