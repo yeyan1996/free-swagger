@@ -60,6 +60,7 @@ export const mock = async ({
     ([path, pathItemObject]) => {
       methods.forEach(async (method: Method) => {
         const key = `${method.toUpperCase()} ${parsedUrl(path)}`
+        // @ts-ignore
         const operationObject = pathItemObject[method]
         if (!operationObject) return
 

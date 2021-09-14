@@ -62,9 +62,13 @@ export const addUsingPOST = params =>
 
 # 默认模版
 
-free-swagger-core 基于模版函数来生成最终的 api 代码，用户可以自定义模版函数，来满足不同需求，例如修改请求库名，修改参数位置，修改接口命名等等
+free-swagger-core 基于模版函数来生成最终的 api 代码
+
+用户可以自定义模版函数，来满足不同需求，例如修改请求库名，修改参数位置，修改接口命名等等
 
 以下为 free-swagger-core 提供的默认模版
+
+`之所以模版比较复杂，是因为要考虑不同情况，例如 url 中包含路径参数，入参的数量和结构等，但用户不需要关心具体实现，只需自由组合返回的字符串`
 
 https://github.com/yeyan1996/free-swagger/blob/master/packages/core/src/default/template.ts
 
@@ -76,7 +80,7 @@ https://github.com/yeyan1996/free-swagger/blob/master/packages/core/src/default/
      summary,        // 注释 {string}
      method,         // 请求方法 {string}
      name,           // api 函数名 {string}
-     responseType,   // 响应值种类，同 axios {string}
+     responseType,   // 响应值种类，同 axios responseType {string}
      pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
@@ -182,10 +186,10 @@ https://github.com/yeyan1996/free-swagger/blob/master/packages/core/src/default/
 ) => axios.request({
      url: \`${parsedUrl}\`,
      method: "${method}",
-     params:${createParamCode(paramCodeMap, '{},')}
-     data:${createParamCode(dataCodeMap, '{},')}
+     params: ${createParamCode(paramCodeMap, '{},')}
+     data: ${createParamCode(dataCodeMap, '{},')}
      ${responseType === "json" ? "" : `responseType: ${responseType},`}
- })`;
+ })`
 }
 ```
 
@@ -197,11 +201,11 @@ https://github.com/yeyan1996/free-swagger/blob/master/packages/core/src/default/
      summary,        // 注释 {string}
      method,         // 请求方法 {string}
      name,           // api 函数名 {string}
-     responseType,   // 响应值种类，同 axios {string}
+     responseType,   // 响应值种类，同 axios responseType {string}
      pathParams,     // 路径参数 {Array<string>}
      IQueryParams,   // 请求查询参数 ts 类型
      IBodyParams,    // 请求体参数 ts 类型
-     IPathParams,     // 请求路径参数 ts 类型
+     IPathParams,    // 请求路径参数 ts 类型
      IResponse,      // 响应参数 ts 类型
  }) => {
     /**
@@ -304,9 +308,9 @@ https://github.com/yeyan1996/free-swagger/blob/master/packages/core/src/default/
 ) => axios.request<${IResponse || "any"}>({
      url: \`${parsedUrl}\`,
      method: "${method}",
-     params:${createParamCode(paramCodeMap, '{},')}
-     data:${createParamCode(dataCodeMap, '{},')}
+     params: ${createParamCode(paramCodeMap, '{},')}
+     data: ${createParamCode(dataCodeMap, '{},')}
      ${responseType === "json" ? "" : `responseType: ${responseType},`}
- })`;
+ })`
 }
 ```

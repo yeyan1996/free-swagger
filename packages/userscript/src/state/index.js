@@ -37,8 +37,8 @@ export const state = new Vue({
         interface: false,
         typedef: false,
         recursive: false,
-        exportLanguage: "ts",
-        currentLanguage: "ts"
+        exportLanguage: "js",
+        currentLanguage: "js"
       },
       isNewUi: null,
       swagger: null,

@@ -108,8 +108,8 @@ export const jsTemplate = `({
 ) => axios.request({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",
-         params:\${createParamCode(paramCodeMap, '{},')}
-         data:\${createParamCode(dataCodeMap, '{},')}
+         params: \${createParamCode(paramCodeMap, '{},')}
+         data: \${createParamCode(dataCodeMap, '{},')}
          \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
  })\`;
 }
@@ -227,8 +227,8 @@ export const tsTemplate = `({
 ) => axios.request<\${IResponse || "any"}>({
          url: \\\`\${parsedUrl}\\\`,
          method: "\${method}",
-         params:\${createParamCode(paramCodeMap, '{},')}
-         data:\${createParamCode(dataCodeMap, '{},')}
+         params: \${createParamCode(paramCodeMap, '{},')}
+         data: \${createParamCode(dataCodeMap, '{},')}
          \${responseType === "json" ? "" : \`responseType: \${responseType},\`}
  })\`;
 }

@@ -143,6 +143,18 @@ mock({
 | mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + "/mock" |
 | wrap     | 可选，是否额外包裹一层标准接口返回格式 e.g {code:"200",msg:xxx,data:xxx} | boolean     | -      | false           |
 
+# demo
+仓库地址: https://github.com/yeyan1996/free-swagger-demo
+
+```shell
+git clone https://github.com/yeyan1996/free-swagger-demo
+cd free-swagger-demo
+npm i
+```
+```shell
+npm run swagger
+```
+
 # 常见问题
 
 ## 文档解析错误，请使用 openApi2 规范的文档

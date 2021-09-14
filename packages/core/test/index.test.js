@@ -6,6 +6,10 @@ import freeSwaggerCore, {
 } from "../src/main";
 
 describe("core test", () => {
+    beforeAll(() => {
+        Date.now = jest.fn(() => 1482363367071);
+    });
+
     test("code fragment", () => {
         const codeFragment = freeSwaggerCore(
             {

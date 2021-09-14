@@ -7,7 +7,7 @@ import {
 import { formatCode, traverseTree, TYPE_MAP } from '../utils'
 import { genInterface } from '../gen/interface'
 import {
-  DEFAULT_HEAD_CODE,
+  createDefaultHeadCode,
   normalizeDefinitionName,
   normalizeSource,
 } from '../default'
@@ -168,8 +168,12 @@ const compileTypes: CompileTypes = ({
       },
       ''
     )
-    const originCode = `${DEFAULT_HEAD_CODE}
-${url ? `// source ${url}` : ''}
+    const originCode = `${createDefaultHeadCode({
+      url,
+      description: source.info.description,
+      title: source.info.title,
+      version: source.info.version,
+    })}
 
 ${interfaceCode}`
 
