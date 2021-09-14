@@ -1,6 +1,6 @@
 {
   "name": "free-swagger-extension",
-  "version": "5.1.7",
+  "version": "5.1.8",
   "description": "chrome extension for free-swagger",
   "author": "zhouhaolei <zhouhaolei@bytedance.com>",
   "scripts": {
@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@types/chrome": "0.0.154",
