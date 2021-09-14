@@ -1,4 +1,5 @@
 const KEY = "FREE_SWAGGER_CHROME";
+const { isObject } = require("lodash");
 
 const getMap = () => {
   const map = localStorage.getItem(KEY);
@@ -27,7 +28,8 @@ const get = (key) => {
 
 const set = (key, val) => {
   const map = getMap();
-  const newMap = map ? { ...map, [key]: val } : { [key]: val };
+  const item = isObject(map?.[key]) ? { ...map[key], ...val } : val;
+  const newMap = map ? { ...map, [key]: item } : { [key]: val };
   return localStorage.setItem(KEY, JSON.stringify(newMap));
 };
 
@@ -35,8 +37,12 @@ const setOpen = (key) => {
   return set(key, { isOpen: true });
 };
 
+const setActive = (key) => {
+  return set(key, { isActive: true });
+};
+
 const setClose = (key) => {
-  return set(key, { isOpen: false });
+  return set(key, { isOpen: false, isActive: false });
 };
 
 const iconClick = (tab) => {
@@ -68,7 +74,11 @@ const setIcon = ({ tabId }) => {
 const update = (tabId) => {
   setIcon({ tabId });
   const item = get(tabId);
-  if (!item || item.isOpen) return;
+  // active 和 open 的区别在于
+  // 当用户点击图标打开插件时 open=true active=false
+  // 执行插件代码时 open=true active=true
+  if (!item || !item.isOpen || item.isActive) return;
+  setActive(tabId);
   chrome.tabs.executeScript({
     code: `
         console.log('free-swagger-extension start')
