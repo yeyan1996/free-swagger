@@ -38,6 +38,7 @@ const assertFiles = async (dirPath, apiFilesList,exactlyEqual = true) => {
 
 describe("api test", () => {
   beforeAll(() => {
+    Date.now = jest.fn(() => 1482363367071);
     global.__DEV__ = true
   });
 

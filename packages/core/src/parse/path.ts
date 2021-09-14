@@ -18,6 +18,7 @@ export type Method =
   | 'options'
   | 'patch'
   | 'delete'
+  | string
 
 const parsePath = (
   name: string,

@@ -212,6 +212,7 @@ class Rc {
 
   // 打开编辑器编辑模版
   edit(): void {
+    console.log(`code ${this.path}`)
     execSync(`code ${this.path}`, { stdio: 'inherit' })
   }
 }

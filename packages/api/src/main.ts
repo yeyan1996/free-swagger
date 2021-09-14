@@ -6,12 +6,12 @@ import { OpenAPIV2 } from 'openapi-types'
 import { assertOpenApi2, MockConfig, ApiConfig } from './utils'
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction, uniq } from 'lodash'
-import { ParsedPathsObject, ParsedPaths, parsePaths } from './parse/path'
+import { ParsedPathsObject, ParsedPaths, groupByTag } from './parse/path'
 import {
   compileInterfaces,
   compileJsDocTypedefs,
   compilePath,
-  DEFAULT_HEAD_CODE,
+  createDefaultHeadCode,
   formatCode,
 } from 'free-swagger-core'
 import { INTERFACE_PATH, JSDOC_PATH } from './default'
@@ -22,16 +22,6 @@ const DEFAULT_CORE_PARAMS = {
   interface: false,
   recursive: false,
   typedef: false,
-}
-
-// parse swagger json
-const parse = (
-  config: ApiConfig<OpenAPIV2.Document>
-): {
-  parsedPathsObject: ParsedPathsObject
-} => {
-  fse.ensureDirSync(config.root!)
-  return { parsedPathsObject: parsePaths(config.source) }
 }
 
 // code generate
@@ -72,7 +62,16 @@ const gen = async (
       `${config.filename?.(filename) ?? filename}.${config.lang}`
     )
     fse.ensureFileSync(apiCollectionPath)
-    let code = `${DEFAULT_HEAD_CODE}\n\n`
+    let code = `${createDefaultHeadCode({
+      // @ts-ignore
+      url: config._url,
+      description: config.source.info.description,
+      title: config.source.info.title,
+      version: config.source.info.version,
+      fileDescription:
+        config.source.tags?.find((tagItem) => tagItem.name === filename)
+          ?.description ?? '',
+    })}\n\n`
     const imports: string[] = []
 
     let apisCode = ''
@@ -105,8 +104,8 @@ const gen = async (
 
   // typeOnly 只生成 interface/typedef
   // 不生成接口代码
-  if (!config.typeOnly) {
-    Object.entries(pathsObject!).forEach(genApi)
+  if (!config.typeOnly && pathsObject) {
+    Object.entries(pathsObject).forEach(genApi)
   }
 }
 
@@ -134,9 +133,9 @@ const freeSwagger = async (
     let choosePaths
     // parse
     if (!mergedConfig.typeOnly) {
-      const { parsedPathsObject } = parse(mergedConfig)
+      fse.ensureDirSync(mergedConfig.root)
+      const parsedPathsObject = groupByTag(mergedConfig.source)
       spinner.succeed('api 文件解析完成')
-
       choosePaths = isFunction(events?.onChooseApi)
         ? await events?.onChooseApi?.({ paths: parsedPathsObject })
         : parsedPathsObject
