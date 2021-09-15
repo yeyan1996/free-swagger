@@ -15,8 +15,10 @@ free-swagger 基于 [free-swagger-core](https://www.npmjs.com/package/free-swagg
 
 ## 项目使用
 
+demo: https://github.com/yeyan1996/free-swagger-demo
+
 ```javascript
-// swagger.js
+// swagger.config.js
 const freeSwagger = require("free-swagger");
 
 freeSwagger("https://petstore.swagger.io/v2/swagger.json");
@@ -29,14 +31,14 @@ freeSwagger("https://petstore.swagger.io/v2/swagger.json");
 之后在 nodejs 中运行当前脚本
 
 ```
-node swagger.js
+node swagger.config.js
 ```
 
 或者绑定为 npm script
 
 ```
 // package.json
-"swagger": "node swagger.js"
+"swagger": "node swagger.config.js"
 ```
 
 ```
@@ -46,7 +48,7 @@ npm run swagger
 还可以接收一个对象，进行详细配置
 
 ```javascript
-// swagger.js
+// swagger.config.js
 const freeSwagger = require("free-swagger");
 const json = require("./swagger.json")
 
@@ -96,8 +98,10 @@ free-swagger 基于内置了默认模版用于生成 api 代码片段，具体�
 
 ## 项目使用
 
+demo: https://github.com/yeyan1996/free-swagger-demo
+
 ```javascript
-// swagger-mock.js
+// swagger-mock.config.js
 const { mock } = require("free-swagger");
 
 mock("https://petstore.swagger.io/v2/swagger.json");
@@ -108,14 +112,14 @@ mock("https://petstore.swagger.io/v2/swagger.json");
 之后在 nodejs 中运行当前脚本
 
 ```
-node swagger-mock.js
+node swagger-mock.config.js
 ```
 
 或者绑定为 npm script
 
 ```
 // package.json
-"mock": "node swagger-mock.js"
+"mock": "node swagger-mock.config.js"
 ```
 
 ```
@@ -125,7 +129,7 @@ npm run mock
 mock 功能同样支持详细配置
 
 ```javascript
-// swagger-mock.js
+// swagger-mock.config.js
 const { mock } = require("free-swagger");
 
 mock({
@@ -143,23 +147,11 @@ mock({
 | mockRoot | 可选，生成 mock 文件的根路径                                 | string      | -      | 当前路径 + "/mock" |
 | wrap     | 可选，是否额外包裹一层标准接口返回格式 e.g {code:"200",msg:xxx,data:xxx} | boolean     | -      | false           |
 
-# demo
-仓库地址: https://github.com/yeyan1996/free-swagger-demo
-
-```shell
-git clone https://github.com/yeyan1996/free-swagger-demo
-cd free-swagger-demo
-npm i
-```
-```shell
-npm run swagger
-```
-
 # 常见问题
 
 ## 文档解析错误，请使用 openApi2 规范的文档
 
-  ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
+![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
 
 可能是输入的 swagger 源需要权限访问，所以默认无法访问
 为此 free-swagger 提供了 cookie 选项，输入可以访问到对应 swagger 源的 cookie 
