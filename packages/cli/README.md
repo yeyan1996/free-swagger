@@ -6,13 +6,13 @@ free-swagger-cli 基于 [free-swagger](https://www.npmjs.com/package/free-swagge
 
 # 快速上手
 
-### npx(推荐)
+## npx(推荐)
 
 ```shell
 npx free-swagger-cli
 ```
 
-### npm
+## npm
 
 ```shell
 npm i free-swagger-cli -g
