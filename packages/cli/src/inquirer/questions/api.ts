@@ -4,6 +4,7 @@ import { rc, RcConfig } from '../../default/rc'
 import { ParsedPathsObject } from 'free-swagger'
 import { prompt } from '../index'
 import { isUrl } from 'free-swagger'
+import path from 'path'
 
 const createChoices = (
   paths: ParsedPathsObject
@@ -75,7 +76,7 @@ export const cookie = {
 export const root = {
   name: 'root',
   message: '输入导出 api 的根目录',
-  default: rc.configData.api.root,
+  default: rc.configData.api.root || path.resolve(process.cwd(), 'src/api'),
   validate: (input: string): boolean | string => {
     if (!input) {
       return '请输入导出 api 的根目录'

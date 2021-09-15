@@ -94,7 +94,7 @@ class Rc {
         typeOnly: false,
       },
       api: {
-        root: path.resolve(process.cwd(), 'src/api'),
+        root: '',
         cookie: '',
         previousSource: '',
         apiChoices: [],
