@@ -1,6 +1,6 @@
 {
   "name": "free-swagger-userscript",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "free-swagger for tampermonkey",
   "keywords": [
     "swagger",
