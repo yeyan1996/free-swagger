@@ -151,9 +151,11 @@ mock({
 
 ## swagger 文档不规范，请检查参数格式
 
-* 当前 swagger 源需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
+当前 swagger 源可能需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
 
 ![image-20200813131204090](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3w6jwgcj31h708ndob.jpg)
+
+或者直接将 swagger 源下载到本地，输入文件路径
 
 ## 使用 npm 形式安装后，打包工具报错
 

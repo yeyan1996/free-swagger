@@ -92,12 +92,9 @@ npx free-swagger-cli --mock
 
 # 常见问题
 
-## 文档解析错误，请使用 openApi2 规范的文档
+## swagger 文档不规范，请检查参数格式
 
-![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
-
-* 非 openApi2 规范的 Swagger 文档，请使用 Swagger 官方工具转换为 openApi2 规范
-* 当前 swagger 源需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
+当前 swagger 源可能需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
 
 ![image-20200813131204090](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3w6jwgcj31h708ndob.jpg)
 
