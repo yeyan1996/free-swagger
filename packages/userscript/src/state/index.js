@@ -222,13 +222,13 @@ export const handleCopyFake = (
   }
 };
 
-export const handleCopyInterface = (
+export const handleCopyInterface = async (
   source = state.swagger,
   url = state.url,
   interfaceName
 ) => {
   try {
-    const { code } = compileInterfaces({ source, interfaceName, url });
+    const { code } = await compileInterfaces({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);
@@ -236,13 +236,13 @@ export const handleCopyInterface = (
   }
 };
 
-export const handleCopyJsDocTypeDef = (
+export const handleCopyJsDocTypeDef = async (
   source = state.swagger,
   url = state.url,
   interfaceName
 ) => {
   try {
-    const { code } = compileJsDocTypedefs({ source, interfaceName, url });
+    const { code } = await compileJsDocTypedefs({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);
