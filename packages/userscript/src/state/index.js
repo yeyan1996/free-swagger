@@ -142,7 +142,7 @@ export const handleCopyType = async (
   }
 };
 
-export const handleCopyApi = (
+export const handleCopyApi = async (
   path = state.currentApi.path,
   method = state.currentApi.method,
   source = state.swagger
@@ -152,7 +152,7 @@ export const handleCopyApi = (
       throw new Error();
     }
     const storage = state.storage;
-    const codeFragment = freeSwaggerCore(
+    const codeFragment = await freeSwaggerCore(
       {
         source,
         lang: storage.currentLanguage,

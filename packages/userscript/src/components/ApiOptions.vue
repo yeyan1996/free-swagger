@@ -150,8 +150,11 @@ export default {
             await this.$nextTick();
             if (res) {
               const apiDom = res.apiDom;
-              apiDom.scrollIntoView({ behavior: "smooth" });
-              highlightDOM(apiDom, "custom-highlight-anime");
+              // 不设置定时器可能会滚不了。。
+              setTimeout(() => {
+                apiDom.scrollIntoView({ behavior: "smooth" });
+                highlightDOM(apiDom, "custom-highlight-anime");
+              });
               return apiDom;
             }
           },
