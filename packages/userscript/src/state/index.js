@@ -105,20 +105,20 @@ export const state = new Vue({
   }
 });
 
-export const handleCopyType = (
+export const handleCopyType = async (
   path = state.currentApi.path,
   method = state.currentApi.method,
   source = state.swagger
 ) => {
   try {
     if (!path) {
-      throw new Error();
+      throw new Error("请选择 path");
     }
     const storage = state.storage;
     const isJS = storage.currentLanguage === "js";
     const isTS = storage.currentLanguage === "ts";
 
-    const codeFragment = freeSwaggerCore(
+    const codeFragment = await freeSwaggerCore(
       {
         source,
         lang: storage.currentLanguage,
@@ -222,13 +222,13 @@ export const handleCopyFake = (
   }
 };
 
-export const handleCopyInterface = (
+export const handleCopyInterface = async (
   source = state.swagger,
   url = state.url,
   interfaceName
 ) => {
   try {
-    const { code } = compileInterfaces({ source, interfaceName, url });
+    const { code } = await compileInterfaces({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);
@@ -236,13 +236,13 @@ export const handleCopyInterface = (
   }
 };
 
-export const handleCopyJsDocTypeDef = (
+export const handleCopyJsDocTypeDef = async (
   source = state.swagger,
   url = state.url,
   interfaceName
 ) => {
   try {
-    const { code } = compileJsDocTypedefs({ source, interfaceName, url });
+    const { code } = await compileJsDocTypedefs({ source, interfaceName, url });
     copyMessage(code);
   } catch (e) {
     console.log(e);

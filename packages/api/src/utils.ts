@@ -15,7 +15,7 @@ export interface ApiConfig<T = string | OpenAPIV2.Document>
   cookie?: string
   root?: string
   jsDoc?: boolean
-  customImportCode?: string
+  header?: string
   filename?(name: string): string
   typeOnly?: boolean
 }
@@ -29,25 +29,25 @@ export interface MockConfig<T = string | OpenAPIV2.Document> {
 
 const isUrl = (url: string | OpenAPIV2.Document): url is string =>
   typeof url === 'string' && url.startsWith('http')
-const isPath = (url: string | OpenAPIV2.Document): url is string =>
-  typeof url === 'string' && fse.existsSync(path.resolve(process.cwd(), url))
-const isSwaggerDocument = (value: any): value is OpenAPIV2.Document =>
-  !!value.swagger
 
-const assertOpenApi2 = (
-  config: ApiConfig
-): config is ApiConfig<OpenAPIV2.Document> => {
-  // @ts-ignore
-  if (config.source?.swagger) {
-    // @ts-ignore
-    const version = config.source.swagger
-    console.log('openApi version:', chalk.yellow(version))
-    assert(version.startsWith('2.', 0))
-    return true
+// 是否是一个文件路径
+const checkAndNormalizePath = (
+  url: string | OpenAPIV2.Document
+): string | false => {
+  if (typeof url !== 'string') {
+    return false
+  }
+  const filepath = path.isAbsolute(url) ? url : path.resolve(process.cwd(), url)
+  if (fse.existsSync(filepath)) {
+    return filepath
+  } else if (fse.existsSync(`${filepath}.json`)) {
+    return `${filepath}.json`
   } else {
     return false
   }
 }
+const isSwaggerDocument = (value: any): value is OpenAPIV2.Document =>
+  !!value.swagger || !!value.openapi
 
 const pascalCase = (str: string): string =>
   camelcase(str, {
@@ -59,8 +59,7 @@ const hasChinese = (str: string): boolean =>
 
 export {
   isUrl,
-  isPath,
-  assertOpenApi2,
+  checkAndNormalizePath,
   pascalCase,
   hasChinese,
   isSwaggerDocument,

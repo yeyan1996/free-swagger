@@ -19,12 +19,11 @@ const assertFiles = async (dirPath, apiFilesList,exactlyEqual = true) => {
   }else{
     expect(filesPath).toEqual(apiFilesList);
   }
-  await wait(100);
   filesPath.forEach(filename => {
     if(filename === 'interface'){
-    const file = fs.readFileSync(path.resolve(dirPath, filename,'index.ts'), "utf-8");
-    expect(file).toMatchSnapshot();
-        return
+      const file = fs.readFileSync(path.resolve(dirPath, filename,'index.ts'), "utf-8");
+      expect(file).toMatchSnapshot();
+      return
     }
     if(filename === 'typedef'){
       const file = fs.readFileSync(path.resolve(dirPath, filename,'index.js'), "utf-8");
@@ -88,9 +87,8 @@ describe("api test", () => {
       source: require(`./json/${dirname}`),
       root: dirPath,
       lang: "ts",
-      customImportCode: `
-            import {AxiosResponse} from 'axios'
-            import http from 'http'
+      header: `import { AxiosResponse } from 'axios'
+import http from 'http'
 `,
     });
 
@@ -104,24 +102,47 @@ describe("api test", () => {
   });
 
   test("should work with only one string params", async () => {
+    global.__PATH__ = path.resolve(__dirname, "api/defaultString")
     const dirname = "swaggerPetstore1";
     await freeSwagger(path.resolve(__dirname, "json", `${dirname}.json`));
     await assertFiles(
-        path.resolve(__dirname, "api/default"),
+        global.__PATH__ ,
         ["pet.js", "store.js", "user.js"],
         true
     );
+    global.__PATH__ = ''
+  });
+
+  test("error params", async () => {
+    try {
+      await freeSwagger("/a/b/c")
+    } catch (e) {
+      expect(e.message).toBe("swagger 文档不规范，请检查参数格式")
+    }
+  });
+
+  test("should work in openApi3", async () => {
+    const dirPath = path.resolve(__dirname, `api`,'openApi3')
+    await freeSwagger({source: path.resolve(__dirname, "json", 'openApi3'),root: dirPath });
+    await assertFiles(dirPath, [
+      "device.js",
+      "environment.js",
+      "zones.js",
+      "zWave.js"
+    ]);
   });
 
   test("should work with only one json params", async () => {
+    global.__PATH__ = path.resolve(__dirname, "api/defaultJson")
     const dirname = "uberApi1";
     await freeSwagger(require(path.resolve(__dirname, "json", `${dirname}.json`)));
-    await assertFiles(path.resolve(__dirname, "api/default"), [
+    await assertFiles(global.__PATH__, [
       "auditLog.js",
       "device.js",
       "mappers.js",
       "ymTicketTypical.js"
     ],true);
+    global.__PATH__ = ''
   });
 
   test("type only", async () => {

@@ -3,15 +3,15 @@ import { CoreConfig } from './utils'
 import { mergeDefaultParams } from './default'
 import { compilePath } from './compile/path'
 
-const freeSwaggerCore = (
+const freeSwaggerCore = async (
   config: CoreConfig,
   url?: string,
   method?: Method
-): string => {
+): Promise<string> => {
   const chooseAll = !url || !method
   if (chooseAll) return ''
 
-  const mergedConfig = mergeDefaultParams(config)
+  const mergedConfig = await mergeDefaultParams(config)
   const {
     jsDocCode,
     code,
@@ -22,7 +22,7 @@ const freeSwaggerCore = (
     queryJsDocCode,
     bodyJsDocCode,
     pathJsDocCode,
-  } = compilePath(mergedConfig, url!, method!)
+  } = await compilePath(mergedConfig, url!, method!)
 
   if (config.typedef && config.lang === 'js') {
     return [queryJsDocCode, bodyJsDocCode, pathJsDocCode]

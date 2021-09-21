@@ -5,7 +5,7 @@ declare function freeSwaggerCore(
   config: CoreConfig,
   url?: string,
   method?: Method
-): string
+): Promise<string>
 
 export default freeSwaggerCore
 

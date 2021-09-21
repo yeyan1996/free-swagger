@@ -54,7 +54,7 @@ const json = require("./swagger.json")
 
 freeSwagger({
   source: json,
-  customImportCode: "import http from './request'", // 假设请求库在 ./request
+  header: "import http from './request'", // 假设请求库在 ./request
   lang: "js"
 });
 ```
@@ -63,10 +63,10 @@ freeSwagger({
 
 | 参数             | 说明                                            | 类型                             | 可选值      | 默认值                                         |
 | ---------------- | ----------------------------------------------- | -------------------------------- | ----------- | ---------------------------------------------- |
-| source           | 必选，swagger 源（url/文件路径/json 文件）      | string/json                      | -           | -                                              |
+| source           | 必选，swagger 源（url/filename/json）      | string/json                      | -           | -                                              |
 | cookie           | 可选，用于给作为 url 的 swagger 源鉴权的 cookie | string                           | -           | -                                              |
 | root             | 可选，生成 api 的根路径                         | string                           | -           | 当前路径 + "/src/api"                          |
-| customImportCode | 可选，自定义头部代码                            | string                           | -           | "import axios from 'axios'"                    |
+| header | 可选，自定义头部代码                            | string                           | -           | "import axios from 'axios'"                    |
 | lang             | 可选，生成 api 语言                             | string                           | "js" / "ts" | "js"                                           |
 | jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | true     |
 | templateFunction | 可选，模版函数                                  | (config:TemplateConfig):  string | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
@@ -149,14 +149,13 @@ mock({
 
 # 常见问题
 
-## 文档解析错误，请使用 openApi2 规范的文档
+## swagger 文档不规范，请检查参数格式
 
-![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
+当前 swagger 源可能需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
 
-可能是输入的 swagger 源需要权限访问，所以默认无法访问
-为此 free-swagger 提供了 cookie 选项，输入可以访问到对应 swagger 源的 cookie 
+![image-20200813131204090](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3w6jwgcj31h708ndob.jpg)
 
-或者直接将 swagger 源下载到本地，输入本地路径/ json文件
+或者直接将 swagger 源下载到本地，输入文件路径
 
 ## 使用 npm 形式安装后，打包工具报错
 
@@ -164,6 +163,6 @@ free-swagger 是 node 包，包含 node api，请勿在任何前端页面中使�
 
 ## 某些接口的 mock 文件没有生成
 
-不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会对他们作出警告
+不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会作出警告
 
 ![image-20200813131308925](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3x90jy1j31i60egju8.jpg)
