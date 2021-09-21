@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { isUrl, isPath } from 'free-swagger'
+import { isUrl, checkAndNormalizePath } from 'free-swagger'
 import { rc } from '../../default/rc'
 
 export const source = {
@@ -8,7 +8,7 @@ export const source = {
   default: rc.configData.core.source,
   validate: (input: string): boolean | string => {
     if (!input) return '请输入 swagger 源'
-    if (isUrl(input) || isPath(input)) {
+    if (isUrl(input) || !!checkAndNormalizePath(input)) {
       return true
     }
     return '输入的路径不合法或不存在'

@@ -108,13 +108,11 @@ export default [
       shouldEditTemplate && typeOnly === false,
   },
   {
-    name: 'customImportCode',
+    name: 'header',
     message: `输入自定义头语句(${chalk.magenta('自定义请求库路径')})`,
     when: ({ typeOnly }: any): boolean => typeOnly === false,
     default: ({ lang }: any): string =>
-      lang === 'ts'
-        ? rc.configData.api.customImportCodeTs
-        : rc.configData.api.customImportCodeJs,
+      lang === 'ts' ? rc.configData.api.headerTs : rc.configData.api.headerJs,
     validate: (input: string): boolean | string => {
       if (!input) {
         return '请输入自定义头语句'
@@ -123,11 +121,11 @@ export default [
       }
     },
     callback: (input: string, { lang }: any) => {
-      rc.merge({ customImportCode: input }, 'api')
+      rc.merge({ header: input }, 'api')
       if (lang === 'ts') {
-        rc.merge({ customImportCodeTs: input }, 'api')
+        rc.merge({ headerTs: input }, 'api')
       } else {
-        rc.merge({ customImportCodeJs: input }, 'api')
+        rc.merge({ headerJs: input }, 'api')
       }
       rc.save()
     },

@@ -3,7 +3,7 @@ import path from 'path'
 import chalk from 'chalk'
 import ora from 'ora'
 import { OpenAPIV2 } from 'openapi-types'
-import { assertOpenApi2, MockConfig, ApiConfig } from './utils'
+import { MockConfig, ApiConfig } from './utils'
 import { mergeDefaultParams, mergeDefaultMockConfig } from './default'
 import { isFunction, uniq } from 'lodash'
 import { ParsedPathsObject, ParsedPaths, groupByTag } from './parse/path'
@@ -37,7 +37,8 @@ const gen = async (
     await fse.writeFile(
       interfacePath,
       // @ts-ignore
-      compileInterfaces({ source: config.source, url: config._url }).code
+      (await compileInterfaces({ source: config.source, url: config._url }))
+        .code
     )
   }
 
@@ -48,7 +49,8 @@ const gen = async (
     await fse.writeFile(
       jsDocPath,
       // @ts-ignore
-      compileJsDocTypedefs({ source: config.source, url: config._url }).code
+      (await compileJsDocTypedefs({ source: config.source, url: config._url }))
+        .code
     )
   }
 
@@ -75,8 +77,9 @@ const gen = async (
     const imports: string[] = []
 
     let apisCode = ''
-    parsedPaths.forEach((parsedPath) => {
-      const { jsDocCode, code, imports: apiImports } = compilePath(
+
+    for (const parsedPath of parsedPaths) {
+      const { jsDocCode, code, imports: apiImports } = await compilePath(
         {
           ...config,
           ...DEFAULT_CORE_PARAMS,
@@ -91,12 +94,13 @@ const gen = async (
         apisCode += code
       }
       apisCode += `\n`
-    })
+    }
+
     code +=
       config.lang === 'ts' && imports.length
         ? `import {${uniq(imports).join(',')}} from "${INTERFACE_PATH}";`
         : ''
-    code += `${config.customImportCode}\n\n`
+    code += `${config.header}\n\n`
     code += apisCode
 
     await fse.writeFile(apiCollectionPath, formatCode(config.lang)(code))
@@ -120,13 +124,10 @@ const freeSwagger = async (
 ): Promise<OpenAPIV2.Document> => {
   const spinner = ora().render()
 
-  // merge + normalize
-  const mergedConfig = await mergeDefaultParams(config)
-
   try {
-    if (!assertOpenApi2(mergedConfig)) {
-      throw new Error('文档解析错误，请使用 openApi2 规范的文档')
-    }
+    // merge + normalize
+    const mergedConfig = await mergeDefaultParams(config)
+
     spinner.start('正在生成文件...')
     fse.ensureDirSync(mergedConfig.root)
 
@@ -150,14 +151,13 @@ const freeSwagger = async (
     return mergedConfig.source
   } catch (e) {
     spinner.fail(`${chalk.red('api 文件生成失败')}`)
-    throw new Error(e)
+    throw e
   }
 }
 
 freeSwagger.mock = async (config: MockConfig | string): Promise<void> => {
   const spinner = ora().render()
   spinner.start('正在生成 mock 文件...\n')
-
   const mergedConfig = await mergeDefaultMockConfig(config)
   await mock(mergedConfig)
   spinner.succeed(

@@ -4,7 +4,7 @@ import {
   MockConfig,
   isSwaggerDocument,
   isUrl,
-  isPath,
+  checkAndNormalizePath,
 } from '../utils'
 import { mergeDefaultParams as mergeDefaultParamsCore } from 'free-swagger-core'
 import camelcase from 'camelcase'
@@ -23,16 +23,16 @@ const DEFAULT_MOCK_CONFIG = {
   cookie: '',
   wrap: false,
   mockRoot: global.__DEV__
-    ? path.resolve(__dirname, '../../test/mock/default')
+    ? global.__PATH__ || path.resolve(__dirname, '../../test/mock/default')
     : path.resolve(process.cwd(), 'src/mock'),
 }
 
 export const getDefaultParams = (): Required<Omit<ApiConfig, 'source'>> => ({
   root: global.__DEV__
-    ? path.resolve(__dirname, '../../test/api/default')
+    ? global.__PATH__ || path.resolve(__dirname, '../../test/api/default')
     : path.resolve(process.cwd(), 'src/api'),
   cookie: '',
-  customImportCode: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+  header: DEFAULT_CUSTOM_IMPORT_CODE_JS,
   lang: 'js',
   jsDoc: true,
   templateFunction: eval(jsTemplate),
@@ -40,7 +40,8 @@ export const getDefaultParams = (): Required<Omit<ApiConfig, 'source'>> => ({
   typeOnly: false,
 })
 
-export const normalizeSource = async (
+// 加载本地/远程 swagger
+export const loadSwaggerDocument = async (
   source: string | OpenAPIV2.Document,
   cookie?: string
 ): Promise<OpenAPIV2.Document> => {
@@ -49,71 +50,75 @@ export const normalizeSource = async (
   }
   if (isUrl(source)) {
     return fetchJSON(source, cookie)
+  } else if (checkAndNormalizePath(source)) {
+    const filepath = checkAndNormalizePath(source) as string
+    return JSON.parse(await fse.readFile(filepath, 'utf-8'))
+  } else {
+    return source
   }
-  if (isPath(source)) {
-    const sourcePath = path.resolve(process.cwd(), source)
-    return JSON.parse(await fse.readFile(sourcePath, 'utf-8'))
-  }
-  return source
 }
 
 // api 侧合并 + 格式化默认参数
 export const mergeDefaultParams = async (
   config: ApiConfig | string
-): Promise<Required<ApiConfig>> => {
-  let mergedConfig: ApiConfig = {} as ApiConfig
+): Promise<Required<ApiConfig<OpenAPIV2.Document>>> => {
+  let mergedConfig: ApiConfig<OpenAPIV2.Document | string> = {} as ApiConfig<
+    OpenAPIV2.Document | string
+  >
 
-  if (typeof config === 'string') {
-    mergedConfig.source = config
-  } else if (isSwaggerDocument(config)) {
-    mergedConfig.source = config
+  const processSource = async (source: string | OpenAPIV2.Document) => {
+    // 给 interface/jsdoc 添加来源，便于回溯
+    if (isUrl(source)) {
+      // @ts-ignore
+      mergedConfig._url = config
+    }
+    // 请求源文件/加载 json 模块，并重写
+    mergedConfig.source = await loadSwaggerDocument(source, mergedConfig.cookie)
+  }
+
+  // 只传 url 参数 | 只传 json 参数
+  if (typeof config === 'string' || isSwaggerDocument(config)) {
+    await processSource(config)
   } else {
+    // 传了完整的 config
     mergedConfig = config
+    if (typeof mergedConfig.source === 'string') {
+      await processSource(mergedConfig.source)
+    }
   }
 
-  // 给 interface/jsdoc 添加来源，便于回溯
-  if (isUrl(mergedConfig.source)) {
-    // @ts-ignore
-    mergedConfig._url = mergedConfig.source
+  if (!isSwaggerDocument(mergedConfig.source)) {
+    throw new Error('swagger 文档不规范，请检查参数格式')
   }
-
-  // 请求源文件/加载 json 模块，并重写
-  mergedConfig.source = await normalizeSource(
-    mergedConfig.source,
-    mergedConfig.cookie
-  )
 
   // 合并 core 的默认参数
-  mergedConfig = mergeDefaultParamsCore(
+  mergedConfig = await mergeDefaultParamsCore(
     mergedConfig as ApiConfig<OpenAPIV2.Document>
   )
 
   return {
     ...getDefaultParams(),
-    customImportCode:
+    header:
       mergedConfig.lang === 'ts'
         ? DEFAULT_CUSTOM_IMPORT_CODE_TS
         : DEFAULT_CUSTOM_IMPORT_CODE_JS,
-    ...mergedConfig,
+    ...(mergedConfig as ApiConfig<OpenAPIV2.Document>),
   }
 }
 
 export const mergeDefaultMockConfig = async (
   config: MockConfig | string
 ): Promise<Required<MockConfig<OpenAPIV2.Document>>> => {
-  const mergedConfig: MockConfig = <MockConfig>{}
+  let mergedConfig: MockConfig = <MockConfig>{}
 
   if (typeof config === 'string' || isSwaggerDocument(config)) {
-    mergedConfig.source = config
+    mergedConfig.source = await loadSwaggerDocument(config, mergedConfig.cookie)
   } else {
-    mergedConfig.source = config.source
+    mergedConfig = config
   }
 
-  mergedConfig.source = await normalizeSource(
-    mergedConfig.source,
-    mergedConfig.cookie
-  )
-
-  // @ts-ignore
-  return { ...DEFAULT_MOCK_CONFIG, ...mergedConfig }
+  return {
+    ...DEFAULT_MOCK_CONFIG,
+    ...(mergedConfig as ApiConfig<OpenAPIV2.Document>),
+  }
 }

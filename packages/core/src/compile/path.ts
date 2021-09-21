@@ -15,7 +15,7 @@ export const createDefaultApiName = (url: string, method: Method): string => {
   return `${camelcase(last(url.split('/')) ?? '')}By${capitalize(method)}`
 }
 
-const compilePath = (
+const compilePath = async (
   config: Required<CoreConfig>,
   url: string,
   method: Method
@@ -54,9 +54,9 @@ const compilePath = (
   const contextMapInterface = new Map()
   const imports: string[] = []
 
-  const collectImports = (interfaceName: string) => {
+  const collectImports = async (interfaceName: string) => {
     if (definitions![interfaceName]) {
-      const { code, imports: interfaceImports } = compileInterfaces({
+      const { code, imports: interfaceImports } = await compileInterfaces({
         source,
         url,
         interfaceName: interfaceName,
@@ -70,35 +70,41 @@ const compilePath = (
     }
   }
 
-  const queryInterfaceCode = collectImports(queryInterfaceName)
-  const pathInterfaceCode = collectImports(pathInterfaceName)
-  const bodyInterfaceCode = collectImports(bodyInterfaceName)
-  const responseInterfaceCode = collectImports(responseInterfaceName)
+  const queryInterfaceCode = await collectImports(queryInterfaceName)
+  const pathInterfaceCode = await collectImports(pathInterfaceName)
+  const bodyInterfaceCode = await collectImports(bodyInterfaceName)
+  const responseInterfaceCode = await collectImports(responseInterfaceName)
 
   const contextMapJsDoc = new Map()
   const queryJsDocCode = definitions![queryInterfaceName]
-    ? compileJsDocTypedefs({
-        source,
-        interfaceName: queryInterfaceName,
-        contextMap: contextMapJsDoc,
-        recursive: config.recursive,
-      }).code
+    ? (
+        await compileJsDocTypedefs({
+          source,
+          interfaceName: queryInterfaceName,
+          contextMap: contextMapJsDoc,
+          recursive: config.recursive,
+        })
+      ).code
     : ''
   const bodyJsDocCode = definitions![bodyInterfaceName]
-    ? compileJsDocTypedefs({
-        source,
-        interfaceName: bodyInterfaceName,
-        contextMap: contextMapJsDoc,
-        recursive: config.recursive,
-      }).code
+    ? (
+        await compileJsDocTypedefs({
+          source,
+          interfaceName: bodyInterfaceName,
+          contextMap: contextMapJsDoc,
+          recursive: config.recursive,
+        })
+      ).code
     : ''
   const pathJsDocCode = definitions![pathInterfaceName]
-    ? compileJsDocTypedefs({
-        source,
-        interfaceName: pathInterfaceName,
-        contextMap: contextMapJsDoc,
-        recursive: config.recursive,
-      }).code
+    ? (
+        await compileJsDocTypedefs({
+          source,
+          interfaceName: pathInterfaceName,
+          contextMap: contextMapJsDoc,
+          recursive: config.recursive,
+        })
+      ).code
     : ''
 
   return {

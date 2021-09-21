@@ -105,20 +105,20 @@ export const state = new Vue({
   }
 });
 
-export const handleCopyType = (
+export const handleCopyType = async (
   path = state.currentApi.path,
   method = state.currentApi.method,
   source = state.swagger
 ) => {
   try {
     if (!path) {
-      throw new Error();
+      throw new Error("请选择 path");
     }
     const storage = state.storage;
     const isJS = storage.currentLanguage === "js";
     const isTS = storage.currentLanguage === "ts";
 
-    const codeFragment = freeSwaggerCore(
+    const codeFragment = await freeSwaggerCore(
       {
         source,
         lang: storage.currentLanguage,

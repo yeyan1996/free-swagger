@@ -9,8 +9,7 @@
 ```javascript
 import freeSwaggerCore from "free-swagger-core";
 
-const code = freeSwaggerCore(config, url, method);
-console.log(code);
+freeSwaggerCore(config, url, method).then(code => console.log(code))
 
 `
 // 增加属性

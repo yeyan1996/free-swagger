@@ -22,7 +22,7 @@ npm i free-swagger-cli -g
 free-swagger-cli
 ```
 
-之后需要输入 swagger 源，可以是 url，也可以是本地的 json 文件的相对/绝对路径
+之后需要输入 swagger 源，可以是 url，也可以是本地的 json 文件的路径
 
 ![image-20200208153153194](https://tva1.sinaimg.cn/large/0082zybply1gbp11zc8jrj32bo0h842p.jpg)
 
@@ -94,17 +94,17 @@ npx free-swagger-cli --mock
 
 ## 文档解析错误，请使用 openApi2 规范的文档
 
-  ![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
+![image.png](https://p-vcloud.byteimg.com/tos-cn-i-em5hxbkur4/c3be996f638947ac9fda47cc594994fa~tplv-em5hxbkur4-noop.image?width=1430&height=174)
 
-可能是输入的 swagger 源需要权限访问，所以默认无法访问
-为此 free-swagger 提供了 cookie 选项，填入可以访问到对应 swagger 源的 cookie 
+* 非 openApi2 规范的 Swagger 文档，请使用 Swagger 官方工具转换为 openApi2 规范
+* 当前 swagger 源需要鉴权，free-swagger 提供了 cookie 选项，填入有权限的 cookie
 
 ![image-20200813131204090](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3w6jwgcj31h708ndob.jpg)
 
-或者直接将 swagger 源（json 文件）下载到本地，输入本地路径
+或者直接将 swagger 源下载到本地，输入文件路径
 
 ## 某些接口的 mock 文件没有生成
 
-不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会对他们作出警告
+不规范的 swagger 文档可能会导致部分 mock 数据丢失，free-swagger 会作出警告
 
 ![image-20200813131308925](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp3x90jy1j31i60egju8.jpg)

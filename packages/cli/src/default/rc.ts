@@ -34,9 +34,9 @@ export interface RcConfig {
     previousSource: string
     apiChoices: { name: string; checked: boolean }[]
     shouldEditTemplate: boolean
-    customImportCode: string
-    customImportCodeJs: string
-    customImportCodeTs: string
+    header: string
+    headerJs: string
+    headerTs: string
   }
   mock: {
     mockRoot: string
@@ -99,14 +99,12 @@ class Rc {
         previousSource: '',
         apiChoices: [],
         shouldEditTemplate: false,
-        customImportCode: '',
-        customImportCodeJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
-        customImportCodeTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
+        header: '',
+        headerJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
+        headerTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
       },
       mock: {
-        mockRoot: global.__DEV__
-          ? path.resolve(__dirname, '../../test/mock/default')
-          : path.resolve(process.cwd(), 'src/mock'),
+        mockRoot: '',
         wrap: false,
       },
     }
@@ -117,7 +115,7 @@ class Rc {
     { core, api }: RcConfig = this.configData
   ): Required<ApiConfig> {
     const { lang } = core
-    const { customImportCodeJs, customImportCodeTs } = api
+    const { headerJs, headerTs } = api
     return {
       ...pick(core, [
         'source',
@@ -128,7 +126,7 @@ class Rc {
       ]),
       ...pick(api, ['root', 'cookie']),
       filename: (name) => camelcase(name),
-      customImportCode: lang === 'ts' ? customImportCodeTs : customImportCodeJs,
+      header: lang === 'ts' ? headerTs : headerJs,
     }
   }
 

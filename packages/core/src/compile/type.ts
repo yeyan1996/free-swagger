@@ -10,6 +10,7 @@ import {
   createDefaultHeadCode,
   normalizeDefinitionName,
   normalizeSource,
+  transformSource,
 } from '../default'
 import { genJsDocTypeDef } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
@@ -33,7 +34,7 @@ export type CompileTypeParams = Required<
 
 export type CompileTypes = (
   params: CompileTypesParams
-) => { code: string; imports: string[] }
+) => Promise<{ code: string; imports: string[] }>
 export type CompileType = (
   params: CompileTypeParams
 ) => { code: string; imports: string[] }
@@ -120,7 +121,7 @@ const compileType: CompileType = ({
 }
 
 // 生成单个/全量 interface/jsDoc 代码
-const compileTypes: CompileTypes = ({
+const compileTypes: CompileTypes = async ({
   source,
   interfaceName,
   type = 'interface',
@@ -128,7 +129,7 @@ const compileTypes: CompileTypes = ({
   recursive,
   url,
 }) => {
-  const normalizedSource = normalizeSource(source)
+  const normalizedSource = normalizeSource(await transformSource(source))
   // 收集依赖
   const imports: string[] = []
   if (!normalizedSource.definitions) return { code: '', imports }

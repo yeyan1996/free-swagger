@@ -3,6 +3,8 @@ import { jsTemplate, tsTemplate } from './template'
 import { OpenAPIV2 } from 'openapi-types'
 import { sortBy, uniq, flattenDeep, mapKeys, upperFirst } from 'lodash'
 import dayjs from 'dayjs'
+// @ts-ignore
+import Converter from 'api-spec-converter'
 
 export const createTagsByPaths = (
   paths: OpenAPIV2.PathsObject
@@ -36,11 +38,27 @@ export const normalizeSource = (source: OpenAPIV2.Document) => ({
   definitions: normalizeDefinitions(source.definitions!),
 })
 
+// openapi3 -> openapi2
+export const transformSource = async (source: OpenAPIV2.Document) => {
+  // @ts-ignore
+  if (source.openapi) {
+    return (
+      await Converter.convert({
+        from: 'openapi_3',
+        to: 'swagger_2',
+        source,
+      })
+    ).spec
+  } else {
+    return source
+  }
+}
+
 // 合并默认参数
-export const mergeDefaultParams = (
+export const mergeDefaultParams = async (
   config: CoreConfig
-): Required<CoreConfig> => {
-  const normalizedSource = normalizeSource(config.source)
+): Promise<Required<CoreConfig>> => {
+  const normalizedSource = normalizeSource(await transformSource(config.source))
   return {
     jsDoc: true,
     interface: false,

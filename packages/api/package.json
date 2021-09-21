@@ -26,6 +26,7 @@
 		"LICENSE"
 	],
 	"scripts": {
+		"serve": "tsc -w",
 		"postinstall": "patch-package",
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix",
