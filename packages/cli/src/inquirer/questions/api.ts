@@ -113,13 +113,6 @@ export default [
     when: ({ typeOnly }: any): boolean => typeOnly === false,
     default: ({ lang }: any): string =>
       lang === 'ts' ? rc.configData.api.headerTs : rc.configData.api.headerJs,
-    validate: (input: string): boolean | string => {
-      if (!input) {
-        return '请输入自定义头语句'
-      } else {
-        return true
-      }
-    },
     callback: (input: string, { lang }: any) => {
       rc.merge({ header: input }, 'api')
       if (lang === 'ts') {

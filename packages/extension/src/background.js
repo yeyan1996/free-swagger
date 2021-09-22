@@ -37,12 +37,8 @@ const setOpen = (key) => {
   return set(key, { isOpen: true });
 };
 
-const setActive = (key) => {
-  return set(key, { isActive: true });
-};
-
 const setClose = (key) => {
-  return set(key, { isOpen: false, isActive: false });
+  return set(key, { isOpen: false });
 };
 
 const iconClick = (tab) => {
@@ -74,19 +70,17 @@ const setIcon = ({ tabId }) => {
 const update = (tabId) => {
   setIcon({ tabId });
   const item = get(tabId);
-  // active 和 open 的区别在于
-  // 当用户点击图标打开插件时 open=true active=false
-  // 执行插件代码时 open=true active=true
-  if (!item || !item.isOpen || item.isActive) return;
-  setActive(tabId);
+  if (!item || !item.isOpen) return;
   chrome.tabs.executeScript({
     code: `
-        console.log('free-swagger-extension start')
-        const url =
-          'https://cdn.jsdelivr.net/npm/free-swagger-userscript/dist/userScript.js'
-        const script = document.createElement('script')
-        script.setAttribute('src', url)
-        document.getElementsByTagName('head')[0].appendChild(script)
+        if(!window.FREE_SWAGGER_EXTENSION_ACTIVE) {
+          window.FREE_SWAGGER_EXTENSION_ACTIVE = true
+          const url =
+            'https://cdn.jsdelivr.net/npm/free-swagger-userscript/dist/userScript.js'
+          const script = document.createElement('script')
+          script.setAttribute('src', url)
+          document.getElementsByTagName('head')[0].appendChild(script)
+        }
 `,
   });
 };
