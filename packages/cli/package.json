@@ -26,7 +26,8 @@
 	"scripts": {
 		"serve": "tsc -w",
 		"build": "tsc",
-		"lint": "eslint **/*.ts --fix"
+		"lint": "eslint **/*.ts --fix",
+		"debug": "free-swagger-cli"
 	},
 	"dependencies": {
 		"@jsdevtools/ono": "^7.1.0",

@@ -4,12 +4,14 @@ import fse from 'fs-extra'
 import prettier from 'prettier'
 import { pick, mergeWith } from 'lodash'
 import { EOL } from 'os'
-import { CoreConfig, jsTemplate, tsTemplate } from 'free-swagger-core'
+import { jsTemplate, tsTemplate } from 'free-swagger-core'
 import {
   DEFAULT_CUSTOM_IMPORT_CODE_JS,
   DEFAULT_CUSTOM_IMPORT_CODE_TS,
+  DEFAULT_MOCK_CONFIG,
   MockConfig,
   ApiConfig,
+  getDefaultParams,
 } from 'free-swagger'
 import { execSync } from 'child_process'
 import camelcase from 'camelcase'
@@ -20,28 +22,21 @@ const MODULE_EXPORTS = 'module.exports ='
 const EXPORT_DEFAULT = 'export default'
 
 export interface RcConfig {
-  core: Omit<
-    Required<CoreConfig<string>>,
-    'filename' | 'interface' | 'typedef' | 'recursive'
+  core: Pick<
+    Required<ApiConfig<string>>,
+    'source' | 'lang' | 'jsDoc' | 'templateFunction' | 'typeOnly'
   > & {
     tsTemplate: string
     jsTemplate: string
-    typeOnly: boolean
   }
-  api: {
-    root: string
-    cookie: string
+  api: Pick<Required<ApiConfig<string>>, 'root' | 'cookie' | 'header'> & {
     previousSource: string
     apiChoices: { name: string; checked: boolean }[]
     shouldEditTemplate: boolean
-    header: string
     headerJs: string
     headerTs: string
   }
-  mock: {
-    mockRoot: string
-    wrap: boolean
-  }
+  mock: Omit<MockConfig, 'source'>
 }
 
 class Rc {
@@ -81,32 +76,29 @@ class Rc {
     this.save()
   }
 
-  // 获取默认 rc 文件
+  // 获取默认 rc 参数
   getDefaultConfig(): RcConfig {
     return {
       core: {
+        ...pick(getDefaultParams(), [
+          'lang',
+          'jsDoc',
+          'templateFunction',
+          'typeOnly',
+        ]),
         source: 'https://petstore.swagger.io/v2/swagger.json',
-        lang: 'js',
-        jsDoc: true,
-        templateFunction: eval(jsTemplate),
         jsTemplate,
         tsTemplate,
-        typeOnly: false,
       },
       api: {
-        root: '',
-        cookie: '',
+        ...pick(getDefaultParams(), ['root', 'cookie', 'header']),
         previousSource: '',
         apiChoices: [],
         shouldEditTemplate: false,
-        header: '',
         headerJs: DEFAULT_CUSTOM_IMPORT_CODE_JS,
         headerTs: DEFAULT_CUSTOM_IMPORT_CODE_TS,
       },
-      mock: {
-        mockRoot: '',
-        wrap: false,
-      },
+      mock: DEFAULT_MOCK_CONFIG,
     }
   }
 
