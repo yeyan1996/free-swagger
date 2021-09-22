@@ -3,8 +3,6 @@ import { CoreConfig } from 'free-swagger-core'
 import fse from 'fs-extra'
 import camelcase from 'camelcase'
 import path from 'path'
-import chalk from 'chalk'
-import assert from 'assert'
 
 export interface ApiConfig<T = string | OpenAPIV2.Document>
   extends Omit<
