@@ -19,7 +19,7 @@ export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`
 export const INTERFACE_PATH = './interface/index.ts' // interface 的相对路径
 export const JSDOC_PATH = './typedef/index.js' // jsdoc 的相对路径
 
-const DEFAULT_MOCK_CONFIG = {
+export const DEFAULT_MOCK_CONFIG = {
   cookie: '',
   wrap: false,
   mockRoot: global.__DEV__

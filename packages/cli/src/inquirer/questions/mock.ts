@@ -2,7 +2,6 @@ import chalk from 'chalk'
 import { source } from './core'
 import { cookie } from './api'
 import { rc } from '../../default/rc'
-import path from 'path'
 
 export default [
   source,
@@ -10,8 +9,7 @@ export default [
   {
     name: 'mockRoot',
     message: '输入导出 mock 文件的目录',
-    default:
-      rc.configData.mock.mockRoot || path.resolve(process.cwd(), 'src/mock'),
+    default: rc.configData.mock.mockRoot,
     validate: (input: string): boolean | string => {
       if (!input) {
         return '请输入导出 mock 文件的目录'
