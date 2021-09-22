@@ -15,9 +15,6 @@
 	"author": "yeyan1996",
 	"main": "dist/main.js",
 	"types": "index.d.ts",
-	"bin": {
-		"free-swagger": "dist/bin.js"
-	},
 	"files": [
 		"dist/**",
 		"src/**",
