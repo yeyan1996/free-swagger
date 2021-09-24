@@ -1,5 +1,20 @@
-const KEY = "FREE_SWAGGER_CHROME";
+const KEY = "FREE_SWAGGER_EXTENSION";
 const { isObject } = require("lodash");
+
+const createIdByTab = (tab) => {
+  const { origin, pathname } = new URL(tab.url);
+  return `${origin + pathname}`;
+};
+
+const findIdByUrl = (url) => {
+  if (!url) return "";
+  const { origin, pathname } = new URL(url);
+  return (
+    Object.keys(getMap() ?? {}).find((item) =>
+      item.startsWith(origin + pathname)
+    ) ?? ""
+  );
+};
 
 const getMap = () => {
   const map = localStorage.getItem(KEY);
@@ -33,27 +48,33 @@ const set = (key, val) => {
   return localStorage.setItem(KEY, JSON.stringify(newMap));
 };
 
+const remove = (key) => {
+  const map = getMap() ?? {};
+  delete map[key];
+  return localStorage.setItem(KEY, JSON.stringify(map));
+};
+
 const setOpen = (key) => {
   return set(key, { isOpen: true });
 };
 
 const setClose = (key) => {
-  return set(key, { isOpen: false });
+  return remove(key);
 };
 
 const iconClick = (tab) => {
-  const item = get(tab.id);
+  const id = findIdByUrl(tab.url);
+  const item = get(id);
   if (!item || !item.isOpen) {
-    setOpen(tab.id);
+    setOpen(createIdByTab(tab));
   } else {
-    setClose(tab.id);
+    setClose(createIdByTab(tab));
   }
   chrome.tabs.reload(tab.id);
 };
 
-const setIcon = ({ tabId }) => {
-  if (!tabId) return;
-  const item = get(tabId);
+const updateIcon = (id) => {
+  const item = get(id);
   // 开启 icon
   if (item?.isOpen) {
     chrome.browserAction.setIcon({
@@ -67,9 +88,10 @@ const setIcon = ({ tabId }) => {
   });
 };
 
-const update = (tabId) => {
-  setIcon({ tabId });
-  const item = get(tabId);
+const update = (tab) => {
+  const id = findIdByUrl(tab.url);
+  updateIcon(id);
+  const item = get(id);
   if (!item || !item.isOpen) return;
   chrome.tabs.executeScript({
     code: `
@@ -85,14 +107,33 @@ const update = (tabId) => {
   });
 };
 
+const onActivated = async () => {
+  chrome.tabs.query(
+    {
+      active: true,
+      currentWindow: true,
+    },
+    ([currentTab]) => {
+      return update(currentTab);
+    }
+  );
+};
+
+const onCreated = (tab) => {
+  return update(tab);
+};
+const onUpdated = (tabId, statusObj, tab) => {
+  return update(tab);
+};
+
 chrome.browserAction.onClicked.removeListener(iconClick);
 chrome.browserAction.onClicked.addListener(iconClick);
 
-chrome.tabs.onActivated.removeListener(setIcon);
-chrome.tabs.onActivated.addListener(setIcon);
+chrome.tabs.onActivated.removeListener(onActivated);
+chrome.tabs.onActivated.addListener(onActivated);
 
-chrome.tabs.onCreated.removeListener(update);
-chrome.tabs.onCreated.addListener(update);
+chrome.tabs.onCreated.removeListener(onCreated);
+chrome.tabs.onCreated.addListener(onCreated);
 
-chrome.tabs.onUpdated.removeListener(update);
-chrome.tabs.onUpdated.addListener(update);
+chrome.tabs.onUpdated.removeListener(onUpdated);
+chrome.tabs.onUpdated.addListener(onUpdated);
