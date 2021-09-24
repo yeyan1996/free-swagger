@@ -91,7 +91,8 @@ class Rc {
         tsTemplate,
       },
       api: {
-        ...pick(getDefaultParams(), ['root', 'cookie', 'header']),
+        ...pick(getDefaultParams(), ['root', 'header']),
+        cookie: 'session=MY_SESSION',
         previousSource: '',
         apiChoices: [],
         shouldEditTemplate: false,

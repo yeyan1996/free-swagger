@@ -62,7 +62,7 @@ export const chooseApi = async (
 export const cookie = {
   name: 'cookie',
   message: `输入用于鉴权的cookie(${chalk.magenta(
-    'swagger源不需要鉴权则置空 e.g SESSION=xxx'
+    'swagger源不需要鉴权则置空'
   )})`,
   when: ({ source }: any): boolean => isUrl(source!),
   default: rc.configData.api.cookie,
