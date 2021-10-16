@@ -71,7 +71,7 @@ freeSwagger({
 | jsDoc         | 可选，代码块附加 jsdoc 注释   | boolean                  |  -           | true     |
 | templateFunction | 可选，模版函数                                  | (config:TemplateConfig):  string | -           | 返回一个模版，用于自定义代码片段，参考底部示例 |
 | filename         | 可选，生成 api 的文件名                         | (name:string): string            | -           | name 为当前 swagger 中标注的 controller 名     |
-| typeOnly | 可选，只生成 interface/typedef | boolean |  | false |
+| typeOnly | 可选，只生成 interface/typedof | boolean |  | false |
 
 **TemplateConfig**
 
