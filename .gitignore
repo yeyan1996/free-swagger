@@ -12,7 +12,6 @@ node_modules
 
 # api
 /packages/api/test/mock
-/packages/api/test/api
 /packages/api/test/json/company.json
 /packages/api/test/special.test.js
 /packages/api/test/__snapshots__/special.test.js.snap

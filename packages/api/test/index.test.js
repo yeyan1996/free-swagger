@@ -2,13 +2,6 @@ import path from "path";
 import fs from "fs";
 import freeSwagger from "../src/main";
 
-const wait = time =>
-  new Promise(resolve =>
-    setTimeout(() => {
-      resolve();
-    }, time)
-  );
-
 const assertFiles = async (dirPath, apiFilesList,exactlyEqual = true) => {
   const filesPath = fs.readdirSync(dirPath);
   // 只要文件夹中包含改文件名就可以，不需要完全相符
