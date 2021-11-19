@@ -25,7 +25,7 @@ export const getZones = () =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/

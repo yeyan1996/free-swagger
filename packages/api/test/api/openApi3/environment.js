@@ -25,7 +25,7 @@ export const temperatureSummary = () =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {number} pathParams.days
  **/
@@ -39,7 +39,7 @@ export const getForecast = (_NOOP, { days }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/
@@ -53,7 +53,7 @@ export const getZoneTemperature = (_NOOP, { zoneId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/
@@ -67,7 +67,7 @@ export const getHeaterState = (_NOOP, { zoneId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  * @param {string} pathParams.state

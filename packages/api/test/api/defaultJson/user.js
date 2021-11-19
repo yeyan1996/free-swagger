@@ -23,13 +23,12 @@ export const meByGet = () =>
     data: {}
   });
 
-/** 
- * @description User Activity 
- * @param {{
-    "offset": number
-    "limit": number
-}} params    
-**/
+/**
+ * @description User Activity
+ * @param {Object} params
+ * @param {number} params.offset - Offset the list of returned results by this amount. Default is zero.
+ * @param {number} params.limit - Number of items to retrieve. Default is 5, maximum is 100.
+ **/
 export const historyByGet = (params) =>
   axios.request({
     url: `/v1/history`,

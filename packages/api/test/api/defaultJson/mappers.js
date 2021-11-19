@@ -14,7 +14,7 @@ import axios from "axios";
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.id
  **/

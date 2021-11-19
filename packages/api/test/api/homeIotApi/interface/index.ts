@@ -10,6 +10,7 @@
  * @date 2016-12-22 07:36
  **/
 
+/** ok */
 export interface LightingSummary {
   zones?: LightingZone[];
   zoneStatus?: LightingZoneStatus[];
@@ -23,6 +24,7 @@ export interface LightingZone {
   zone?: string;
 }
 
+/** the status of the lighting zone. */
 export interface LightingZoneStatus {
   id?: string;
   name?: string;
@@ -30,11 +32,13 @@ export interface LightingZoneStatus {
   level?: number;
 }
 
+/** ok */
 export interface TemperatureSummary {
   zones?: TemperatureZone[];
   zoneStatus?: TemperatueZoneStatus[];
 }
 
+/** a single temperature zone */
 export interface TemperatureZone {
   /** the unique identifier for the zone */
   id: number;
@@ -44,6 +48,7 @@ export interface TemperatureZone {
   zone?: string;
 }
 
+/** status of a single zone */
 export interface TemperatueZoneStatus {
   /** the unique identifier for the zone */
   id: string;

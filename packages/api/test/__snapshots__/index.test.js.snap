@@ -18,9 +18,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Find pet by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return
+ * @param {number} pathParams.petId - ID of pet to return
  **/
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
@@ -34,7 +34,7 @@ export const getPetById = (_NOOP, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated
+ * @param {number} pathParams.petId - ID of pet that needs to be updated
  **/
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
@@ -46,9 +46,9 @@ export const updatePetWithForm = (params, { petId }) =>
 
 /**
  * @description Deletes a pet
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete
+ * @param {number} pathParams.petId - Pet id to delete
  **/
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
@@ -62,7 +62,7 @@ export const deletePet = (_NOOP, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
+ * @param {number} pathParams.petId - ID of pet to update
  **/
 export const uploadFile = (params, { petId }) =>
   axios.request({
@@ -74,7 +74,7 @@ export const uploadFile = (params, { petId }) =>
 
 /**
  * @description Add a new pet to the store
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const addPet = (params) =>
   axios.request({
@@ -86,7 +86,7 @@ export const addPet = (params) =>
 
 /**
  * @description Update an existing pet
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const updatePet = (params) =>
   axios.request({
@@ -96,12 +96,11 @@ export const updatePet = (params) =>
     data: params
   });
 
-/** 
- * @description Finds Pets by status 
- * @param {{
-    \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
-}} params    
-**/
+/**
+ * @description Finds Pets by status
+ * @param {Object} params
+ * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
@@ -110,13 +109,12 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/** 
+/**
  * @deprecated
- * @description Finds Pets by tags 
- * @param {{
-    \\"tags\\": string
-}} params    
-**/
+ * @description Finds Pets by tags
+ * @param {Object} params
+ * @param {string} params.tags - Tags to filter by
+ **/
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
@@ -156,9 +154,9 @@ export const getInventory = () =>
 
 /**
  * @description Find purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ * @param {number} pathParams.orderId - ID of pet that needs to be fetched
  **/
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
@@ -170,9 +168,9 @@ export const getOrderById = (_NOOP, { orderId }) =>
 
 /**
  * @description Delete purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ * @param {number} pathParams.orderId - ID of the order that needs to be deleted
  **/
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
@@ -184,7 +182,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 
 /**
  * @description Place an order for a pet
- * @param {Order} params -order placed for purchasing the pet
+ * @param {Order} params - order placed for purchasing the pet
  **/
 export const placeOrder = (params) =>
   axios.request({
@@ -210,72 +208,54 @@ exports[`api test base option 3`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Category
+ * @typedef Category
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'category': Category
- *     'name': string
- *     'photoUrls': string[]
- *     'tags': Tag[]
- *     'status': \\"available\\" | \\"pending\\" | \\"sold\\"
- *   }
- * } Pet
+ * @typedef Pet
+ * @property {number} id
+ * @property {Category} category
+ * @property {string} name
+ * @property {string[]} photoUrls
+ * @property {Tag[]} tags
+ * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Tag
+ * @typedef Tag
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'type': string
- *     'message': string
- *   }
- * } ApiResponse
+ * @typedef ApiResponse
+ * @property {number} code
+ * @property {string} type
+ * @property {string} message
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'petId': number
- *     'quantity': number
- *     'shipDate': string
- *     'status': \\"placed\\" | \\"approved\\" | \\"delivered\\"
- *     'complete': boolean
- *   }
- * } Order
+ * @typedef Order
+ * @property {number} id
+ * @property {number} petId
+ * @property {number} quantity
+ * @property {string} shipDate
+ * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {boolean} complete
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'username': string
- *     'firstName': string
- *     'lastName': string
- *     'email': string
- *     'password': string
- *     'phone': string
- *     'userStatus': number
- *   }
- * } User
+ * @typedef User
+ * @property {number} id
+ * @property {string} username
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} email
+ * @property {string} password
+ * @property {string} phone
+ * @property {number} userStatus - User Status
 **/"
 `;
 
@@ -297,9 +277,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Get user by user name
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ * @param {string} pathParams.username - The name that needs to be fetched. Use user1 for testing.
  **/
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
@@ -311,9 +291,9 @@ export const getUserByName = (_NOOP, { username }) =>
 
 /**
  * @description Updated user
- * @param {User} params -Updated user object
+ * @param {User} params - Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated
+ * @param {string} pathParams.username - name that need to be updated
  **/
 export const updateUser = (params, { username }) =>
   axios.request({
@@ -325,9 +305,9 @@ export const updateUser = (params, { username }) =>
 
 /**
  * @description Delete user
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted
+ * @param {string} pathParams.username - The name that needs to be deleted
  **/
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
@@ -337,13 +317,12 @@ export const deleteUser = (_NOOP, { username }) =>
     data: {}
   });
 
-/** 
- * @description Logs user into the system 
- * @param {{
-    \\"username\\": string
-    \\"password\\": string
-}} params    
-**/
+/**
+ * @description Logs user into the system
+ * @param {Object} params
+ * @param {string} params.username - The user name for login
+ * @param {string} params.password - The password for login in clear text
+ **/
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
@@ -365,7 +344,7 @@ export const logoutUser = () =>
 
 /**
  * @description Create user
- * @param {User} params -Created user object
+ * @param {User} params - Created user object
  **/
 export const createUser = (params) =>
   axios.request({
@@ -377,7 +356,7 @@ export const createUser = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithArrayInput = (params) =>
   axios.request({
@@ -389,7 +368,7 @@ export const createUsersWithArrayInput = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithListInput = (params) =>
   axios.request({
@@ -544,6 +523,7 @@ exports[`api test custom ts template 3`] = `
  * @date 2016-12-22 07:36
  **/
 
+/** ok */
 export interface LightingSummary {
   zones?: LightingZone[];
   zoneStatus?: LightingZoneStatus[];
@@ -557,6 +537,7 @@ export interface LightingZone {
   zone?: string;
 }
 
+/** the status of the lighting zone. */
 export interface LightingZoneStatus {
   id?: string;
   name?: string;
@@ -564,11 +545,13 @@ export interface LightingZoneStatus {
   level?: number;
 }
 
+/** ok */
 export interface TemperatureSummary {
   zones?: TemperatureZone[];
   zoneStatus?: TemperatueZoneStatus[];
 }
 
+/** a single temperature zone */
 export interface TemperatureZone {
   /** the unique identifier for the zone */
   id: number;
@@ -578,6 +561,7 @@ export interface TemperatureZone {
   zone?: string;
 }
 
+/** status of a single zone */
 export interface TemperatueZoneStatus {
   /** the unique identifier for the zone */
   id: string;
@@ -824,13 +808,12 @@ exports[`api test should work in openApi3 1`] = `
 
 import axios from \\"axios\\";
 
-/** 
- * @description  
- * @param {{
-    \\"skip\\": number
-    \\"limit\\": number
-}} params    
-**/
+/**
+ * @description
+ * @param {Object} params
+ * @param {number} params.skip - number of records to skip
+ * @param {number} params.limit - max number of records to return
+ **/
 export const getDevices = (params) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/devices\`,
@@ -881,7 +864,7 @@ export const temperatureSummary = () =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {number} pathParams.days
  **/
@@ -895,7 +878,7 @@ export const getForecast = (_NOOP, { days }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/
@@ -909,7 +892,7 @@ export const getZoneTemperature = (_NOOP, { zoneId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/
@@ -923,7 +906,7 @@ export const getHeaterState = (_NOOP, { zoneId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  * @param {string} pathParams.state
@@ -952,164 +935,119 @@ exports[`api test should work in openApi3 3`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'zones': LightingZone[]
- *     'zoneStatus': LightingZoneStatus[]
- *   }
- * } LightingSummary
+ * @typedef LightingSummary - ok
+ * @property {LightingZone[]} zones
+ * @property {LightingZoneStatus[]} zoneStatus
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'name': string
- *     'deviceId': number
- *     'deviceType': \\"dimmer\\" | \\"switch\\"
- *     'zone': string
- *   }
- * } LightingZone
+ * @typedef LightingZone
+ * @property {string} id
+ * @property {string} name
+ * @property {number} deviceId
+ * @property {\\"dimmer\\" | \\"switch\\"} deviceType
+ * @property {string} zone
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'name': string
- *     'lastUpdate': string
- *     'level': number
- *   }
- * } LightingZoneStatus
+ * @typedef LightingZoneStatus - the status of the lighting zone.
+ * @property {string} id
+ * @property {string} name
+ * @property {string} lastUpdate
+ * @property {number} level
 **/
 
 /**
- * @typedef {
- *   {
- *     'zones': TemperatureZone[]
- *     'zoneStatus': TemperatueZoneStatus[]
- *   }
- * } TemperatureSummary
+ * @typedef TemperatureSummary - ok
+ * @property {TemperatureZone[]} zones
+ * @property {TemperatueZoneStatus[]} zoneStatus
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *     'inputPosition': number
- *     'outputPosition': number
- *     'zone': string
- *   }
- * } TemperatureZone
+ * @typedef TemperatureZone - a single temperature zone
+ * @property {number} id - the unique identifier for the zone
+ * @property {string} name
+ * @property {number} inputPosition
+ * @property {number} outputPosition
+ * @property {string} zone
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'name': string
- *     'value': number
- *     'units': \\"celsius\\" | \\"fahrenheit\\"
- *     'timestamp': string
- *   }
- * } TemperatueZoneStatus
+ * @typedef TemperatueZoneStatus - status of a single zone
+ * @property {string} id - the unique identifier for the zone
+ * @property {string} name - the name of the zone
+ * @property {number} value - the temperature in the zone
+ * @property {\\"celsius\\" | \\"fahrenheit\\"} units - the temperature units
+ * @property {string} timestamp - the timestamp when the temperature was measured
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'message': string
- *   }
- * } ApiResponse
+ * @typedef ApiResponse
+ * @property {number} code
+ * @property {string} message
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'state': string
- *   }
- * } HeaterState
+ * @typedef HeaterState
+ * @property {string} id
+ * @property {string} state
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'name': string
- *     'lastUpdate': string
- *     'level': number
- *   }
- * } DeviceState
+ * @typedef DeviceState
+ * @property {string} id
+ * @property {string} name
+ * @property {string} lastUpdate
+ * @property {number} level
 **/
 
 /**
- * @typedef {
- *   {
- *     'city': City
- *     'values': Forecast[]
- *   }
- * } ForecastResponse
+ * @typedef ForecastResponse
+ * @property {City} city
+ * @property {Forecast[]} values
 **/
 
 /**
- * @typedef {
- *   {
- *     'date': string
- *     'pressure': number
- *     'humidity': number
- *     'windSpeed': number
- *     'clouds': number
- *     'temperature': ForecastTemperature
- *     'weather': WeatherForecast
- *   }
- * } Forecast
+ * @typedef Forecast
+ * @property {string} date
+ * @property {number} pressure
+ * @property {number} humidity
+ * @property {number} windSpeed
+ * @property {number} clouds
+ * @property {ForecastTemperature} temperature
+ * @property {WeatherForecast} weather
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *     'lat': number
- *     'lon': number
- *     'country': string
- *   }
- * } City
+ * @typedef City
+ * @property {number} id
+ * @property {string} name
+ * @property {number} lat
+ * @property {number} lon
+ * @property {string} country
 **/
 
 /**
- * @typedef {
- *   {
- *     'low': number
- *     'high': number
- *     'morning': number
- *     'day': number
- *     'evening': number
- *     'night': number
- *   }
- * } ForecastTemperature
+ * @typedef ForecastTemperature
+ * @property {number} low
+ * @property {number} high
+ * @property {number} morning
+ * @property {number} day
+ * @property {number} evening
+ * @property {number} night
 **/
 
 /**
- * @typedef {
- *   {
- *     'summary': string
- *     'description': string
- *     'icon': string
- *   }
- * } WeatherForecast
+ * @typedef WeatherForecast
+ * @property {string} summary
+ * @property {string} description
+ * @property {string} icon
 **/
 
 /**
- * @typedef {
- *   {
- *     'uri': string
- *     'id': string
- *   }
- * } DeviceRegistrationInfo
+ * @typedef DeviceRegistrationInfo
+ * @property {string} uri
+ * @property {string} id
 **/"
 `;
 
@@ -1130,7 +1068,7 @@ import axios from \\"axios\\";
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {number} pathParams.value
@@ -1143,16 +1081,15 @@ export const setDimmer = (_NOOP, { deviceId, value }) =>
     data: {}
   });
 
-/** 
- * @description  
- * @param {{
-    \\"units\\": string
-}} params  
+/**
+ * @description
+ * @param {Object} params
+ * @param {string} params.units
  * @param {Object} pathParams
- * @param {string} pathParams.deviceId 
- * @param {number} pathParams.value 
- * @param {number} pathParams.timeunit   
-**/
+ * @param {string} pathParams.deviceId
+ * @param {number} pathParams.value
+ * @param {number} pathParams.timeunit
+ **/
 export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/dimmers/\${deviceId}/\${value}/timer/\${timeunit}\`,
@@ -1163,7 +1100,7 @@ export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  **/
@@ -1177,7 +1114,7 @@ export const getSwitchState = (_NOOP, { deviceId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {string} pathParams.value
@@ -1192,7 +1129,7 @@ export const setSwitch = (_NOOP, { deviceId, value }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {string} pathParams.value
@@ -1247,7 +1184,7 @@ export const getZones = () =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.zoneId
  **/
@@ -1276,12 +1213,11 @@ exports[`api test should work with only one json params 1`] = `
 
 import axios from \\"axios\\";
 
-/** 
- * @description  
- * @param {{
-    \\"StartDate\\": string
-}} params    
-**/
+/**
+ * @description
+ * @param {Object} params
+ * @param {string} params.StartDate
+ **/
 export const GetAuditLogs = (params) =>
   axios.request({
     url: \`/v1/api/services/app/AuditLog/GetAuditLogs\`,
@@ -1309,7 +1245,7 @@ import axios from \\"axios\\";
 
 /**
  * @description 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
- * @param {JavaList<void>} params -设备地理坐标信息集合
+ * @param {JavaList<void>} params - 设备地理坐标信息集合
  **/
 export const uploadLngLatUsingPOST = (params) =>
   axios.request({
@@ -1336,15 +1272,14 @@ exports[`api test should work with only one json params 3`] = `
 
 import axios from \\"axios\\";
 
-/** 
- * @description Price Estimates 
- * @param {{
-    \\"start_latitude\\": number
-    \\"start_longitude\\": number
-    \\"end_latitude\\": number
-    \\"end_longitude\\": number
-}} params    
-**/
+/**
+ * @description Price Estimates
+ * @param {Object} params
+ * @param {number} params.start_latitude - Latitude component of start location.
+ * @param {number} params.start_longitude - Longitude component of start location.
+ * @param {number} params.end_latitude - Latitude component of end location.
+ * @param {number} params.end_longitude - Longitude component of end location.
+ **/
 export const priceByGet = (params) =>
   axios.request({
     url: \`/v1/estimates/price\`,
@@ -1353,15 +1288,14 @@ export const priceByGet = (params) =>
     data: {}
   });
 
-/** 
- * @description Time Estimates 
- * @param {{
-    \\"start_latitude\\": number
-    \\"start_longitude\\": number
-    \\"customer_uuid\\": string
-    \\"product_id\\": string
-}} params    
-**/
+/**
+ * @description Time Estimates
+ * @param {Object} params
+ * @param {number} params.start_latitude - Latitude component of start location.
+ * @param {number} params.start_longitude - Longitude component of start location.
+ * @param {string} params.customer_uuid - Unique customer identifier to be used for experience customization.
+ * @param {string} params.product_id - Unique identifier representing a specific product for a given latitude & longitude.
+ **/
 export const timeByGet = (params) =>
   axios.request({
     url: \`/v1/estimates/time\`,
@@ -1389,7 +1323,7 @@ import axios from \\"axios\\";
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.id
  **/
@@ -1418,13 +1352,12 @@ exports[`api test should work with only one json params 5`] = `
 
 import axios from \\"axios\\";
 
-/** 
- * @description Product Types 
- * @param {{
-    \\"latitude\\": number
-    \\"longitude\\": number
-}} params    
-**/
+/**
+ * @description Product Types
+ * @param {Object} params
+ * @param {number} params.latitude - Latitude component of location.
+ * @param {number} params.longitude - Longitude component of location.
+ **/
 export const productsByGet = (params) =>
   axios.request({
     url: \`/v1/products\`,
@@ -1450,13 +1383,12 @@ exports[`api test should work with only one json params 6`] = `
 
 import axios from \\"axios\\";
 
-/** 
- * @description Product Types 
- * @param {{
-    \\"latitude\\": number
-    \\"longitude\\": number
-}} params    
-**/
+/**
+ * @description Product Types
+ * @param {Object} params
+ * @param {number} params.latitude - Latitude component of location.
+ * @param {number} params.longitude - Longitude component of location.
+ **/
 export const productsTestByGet = (params) =>
   axios.request({
     url: \`/v1/products-test\`,
@@ -1481,135 +1413,99 @@ exports[`api test should work with only one json params 7`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'product_id': string
- *     'description': string
- *     'display_name': string
- *     'capacity': string
- *     'image': string
- *   }
- * } Product
+ * @typedef Product
+ * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+ * @property {string} description - Description of product.
+ * @property {string} display_name - Display name of product.
+ * @property {string} capacity - Capacity of product. For example, 4 people.
+ * @property {string} image - Image URL representing the product.
 **/
 
 /**
- * @typedef {
- *   {
- *     'product_id': string
- *     'currency_code': string
- *     'display_name': string
- *     'estimate': string
- *     'low_estimate': number
- *     'high_estimate': number
- *     'surge_multiplier': number
- *   }
- * } PriceEstimate
+ * @typedef PriceEstimate
+ * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
+ * @property {string} currency_code - [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
+ * @property {string} display_name - Display name of product.
+ * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+ * @property {number} low_estimate - Lower bound of the estimated price.
+ * @property {number} high_estimate - Upper bound of the estimated price.
+ * @property {number} surge_multiplier - Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
 **/
 
 /**
- * @typedef {
- *   {
- *     'first_name': string
- *     'last_name': string
- *     'email': string
- *     'picture': string
- *     'promo_code': string
- *     'role': RoleType
- *   }
- * } Profile
+ * @typedef Profile
+ * @property {string} first_name - First name of the Uber user.
+ * @property {string} last_name - Last name of the Uber user.
+ * @property {string} email - Email address of the Uber user
+ * @property {string} picture - Image URL of the Uber user.
+ * @property {string} promo_code - Promo code of the Uber user.
+ * @property {RoleType} role
 **/
 
 /**
- * @typedef {
- *   {
- *     'uuid': string
- *   }
- * } Activity
+ * @typedef Activity
+ * @property {string} uuid - Unique identifier for the activity
 **/
 
 /**
- * @typedef {
- *   {
- *     'offset': number
- *     'limit': number
- *     'count': number
- *     'history': Activity[]
- *   }
- * } Activities
+ * @typedef Activities
+ * @property {number} offset - Position in pagination.
+ * @property {number} limit - Number of items to retrieve (100 max).
+ * @property {number} count - Total number of items available.
+ * @property {Activity[]} history
 **/
 
 /**
-  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType
+  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType - Enumeration of Role Type
 **/
 
 /**
- * @typedef {
- *   {
- *     'userId': number
- *     'userRights': (\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]
- *   }
- * } CreateOrUpdateUserInput
+ * @typedef CreateOrUpdateUserInput
+ * @property {number} userId - 用户ID(ID来自User表)
+ * @property {(\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]} userRights - 用户权限
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'isLow': boolean
- *   }
- * } Abc
+ * @typedef Abc
+ * @property {string} id
+ * @property {boolean} isLow
 **/
 
 /**
-  * @typedef {(Abc[])} ArrayOfAbc
+  * @typedef {(Abc[])} ArrayOfAbc 
 **/
 
 /**
- * @typedef {
- *   {
- *     'foo': (\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]
- *     'bar': (\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]
- *   }
- * } NumberArrayEnumModel
+ * @typedef NumberArrayEnumModel
+ * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]} foo
+ * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]} bar
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'message': string
- *     'fields': string
- *   }
- * } Error
+ * @typedef Error
+ * @property {number} code
+ * @property {string} message
+ * @property {string} fields
 **/
 
 /**
- * @typedef {
- *   {
- *     'totalCount': number
- *     'items': T[]
- *   }
- * } PagedResultDto
+ * @typedef PagedResultDto
+ * @property {number} totalCount
+ * @property {T[]} items
 **/
 
 /**
- * @typedef {
- *   {
- *     'userId': number
- *     'id': number
- *   }
- * } AuditLogListDto
+ * @typedef AuditLogListDto
+ * @property {number} userId
+ * @property {number} id
 **/
 
 /**
- * @typedef {
- *   {
- *     'result': boolean
- *     'code': \\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"
- *     'data': string
- *     'message': string
- *   }
- * } JsonResult
+ * @typedef JsonResult - 接口返回结果
+ * @property {boolean} result - 结果
+ * @property {\\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"} code - 代码
+ * @property {string} data - 数据
+ * @property {string} message - 消息
 **/"
 `;
 
@@ -1639,13 +1535,12 @@ export const meByGet = () =>
     data: {}
   });
 
-/** 
- * @description User Activity 
- * @param {{
-    \\"offset\\": number
-    \\"limit\\": number
-}} params    
-**/
+/**
+ * @description User Activity
+ * @param {Object} params
+ * @param {number} params.offset - Offset the list of returned results by this amount. Default is zero.
+ * @param {number} params.limit - Number of items to retrieve. Default is 5, maximum is 100.
+ **/
 export const historyByGet = (params) =>
   axios.request({
     url: \`/v1/history\`,
@@ -1702,9 +1597,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Find pet by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return
+ * @param {number} pathParams.petId - ID of pet to return
  **/
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
@@ -1718,7 +1613,7 @@ export const getPetById = (_NOOP, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated
+ * @param {number} pathParams.petId - ID of pet that needs to be updated
  **/
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
@@ -1730,9 +1625,9 @@ export const updatePetWithForm = (params, { petId }) =>
 
 /**
  * @description Deletes a pet
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete
+ * @param {number} pathParams.petId - Pet id to delete
  **/
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
@@ -1746,7 +1641,7 @@ export const deletePet = (_NOOP, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
+ * @param {number} pathParams.petId - ID of pet to update
  **/
 export const uploadFile = (params, { petId }) =>
   axios.request({
@@ -1758,7 +1653,7 @@ export const uploadFile = (params, { petId }) =>
 
 /**
  * @description Add a new pet to the store
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const addPet = (params) =>
   axios.request({
@@ -1770,7 +1665,7 @@ export const addPet = (params) =>
 
 /**
  * @description Update an existing pet
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const updatePet = (params) =>
   axios.request({
@@ -1780,12 +1675,11 @@ export const updatePet = (params) =>
     data: params
   });
 
-/** 
- * @description Finds Pets by status 
- * @param {{
-    \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
-}} params    
-**/
+/**
+ * @description Finds Pets by status
+ * @param {Object} params
+ * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
@@ -1794,13 +1688,12 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/** 
+/**
  * @deprecated
- * @description Finds Pets by tags 
- * @param {{
-    \\"tags\\": string
-}} params    
-**/
+ * @description Finds Pets by tags
+ * @param {Object} params
+ * @param {string} params.tags - Tags to filter by
+ **/
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
@@ -1840,9 +1733,9 @@ export const getInventory = () =>
 
 /**
  * @description Find purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ * @param {number} pathParams.orderId - ID of pet that needs to be fetched
  **/
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
@@ -1854,9 +1747,9 @@ export const getOrderById = (_NOOP, { orderId }) =>
 
 /**
  * @description Delete purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ * @param {number} pathParams.orderId - ID of the order that needs to be deleted
  **/
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
@@ -1868,7 +1761,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 
 /**
  * @description Place an order for a pet
- * @param {Order} params -order placed for purchasing the pet
+ * @param {Order} params - order placed for purchasing the pet
  **/
 export const placeOrder = (params) =>
   axios.request({
@@ -1894,72 +1787,54 @@ exports[`api test should work with only one string params 3`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Category
+ * @typedef Category
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'category': Category
- *     'name': string
- *     'photoUrls': string[]
- *     'tags': Tag[]
- *     'status': \\"available\\" | \\"pending\\" | \\"sold\\"
- *   }
- * } Pet
+ * @typedef Pet
+ * @property {number} id
+ * @property {Category} category
+ * @property {string} name
+ * @property {string[]} photoUrls
+ * @property {Tag[]} tags
+ * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Tag
+ * @typedef Tag
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'type': string
- *     'message': string
- *   }
- * } ApiResponse
+ * @typedef ApiResponse
+ * @property {number} code
+ * @property {string} type
+ * @property {string} message
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'petId': number
- *     'quantity': number
- *     'shipDate': string
- *     'status': \\"placed\\" | \\"approved\\" | \\"delivered\\"
- *     'complete': boolean
- *   }
- * } Order
+ * @typedef Order
+ * @property {number} id
+ * @property {number} petId
+ * @property {number} quantity
+ * @property {string} shipDate
+ * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {boolean} complete
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'username': string
- *     'firstName': string
- *     'lastName': string
- *     'email': string
- *     'password': string
- *     'phone': string
- *     'userStatus': number
- *   }
- * } User
+ * @typedef User
+ * @property {number} id
+ * @property {string} username
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} email
+ * @property {string} password
+ * @property {string} phone
+ * @property {number} userStatus - User Status
 **/"
 `;
 
@@ -1981,9 +1856,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Get user by user name
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ * @param {string} pathParams.username - The name that needs to be fetched. Use user1 for testing.
  **/
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
@@ -1995,9 +1870,9 @@ export const getUserByName = (_NOOP, { username }) =>
 
 /**
  * @description Updated user
- * @param {User} params -Updated user object
+ * @param {User} params - Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated
+ * @param {string} pathParams.username - name that need to be updated
  **/
 export const updateUser = (params, { username }) =>
   axios.request({
@@ -2009,9 +1884,9 @@ export const updateUser = (params, { username }) =>
 
 /**
  * @description Delete user
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted
+ * @param {string} pathParams.username - The name that needs to be deleted
  **/
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
@@ -2021,13 +1896,12 @@ export const deleteUser = (_NOOP, { username }) =>
     data: {}
   });
 
-/** 
- * @description Logs user into the system 
- * @param {{
-    \\"username\\": string
-    \\"password\\": string
-}} params    
-**/
+/**
+ * @description Logs user into the system
+ * @param {Object} params
+ * @param {string} params.username - The user name for login
+ * @param {string} params.password - The password for login in clear text
+ **/
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
@@ -2049,7 +1923,7 @@ export const logoutUser = () =>
 
 /**
  * @description Create user
- * @param {User} params -Created user object
+ * @param {User} params - Created user object
  **/
 export const createUser = (params) =>
   axios.request({
@@ -2061,7 +1935,7 @@ export const createUser = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithArrayInput = (params) =>
   axios.request({
@@ -2073,7 +1947,7 @@ export const createUsersWithArrayInput = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithListInput = (params) =>
   axios.request({
@@ -2103,9 +1977,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Find pet by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return
+ * @param {number} pathParams.petId - ID of pet to return
  **/
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
@@ -2119,7 +1993,7 @@ export const getPetById = (_NOOP, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated
+ * @param {number} pathParams.petId - ID of pet that needs to be updated
  **/
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
@@ -2131,9 +2005,9 @@ export const updatePetWithForm = (params, { petId }) =>
 
 /**
  * @description Deletes a pet
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete
+ * @param {number} pathParams.petId - Pet id to delete
  **/
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
@@ -2147,7 +2021,7 @@ export const deletePet = (_NOOP, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
+ * @param {number} pathParams.petId - ID of pet to update
  **/
 export const uploadFile = (params, { petId }) =>
   axios.request({
@@ -2159,7 +2033,7 @@ export const uploadFile = (params, { petId }) =>
 
 /**
  * @description Add a new pet to the store
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const addPet = (params) =>
   axios.request({
@@ -2171,7 +2045,7 @@ export const addPet = (params) =>
 
 /**
  * @description Update an existing pet
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const updatePet = (params) =>
   axios.request({
@@ -2181,12 +2055,11 @@ export const updatePet = (params) =>
     data: params
   });
 
-/** 
- * @description Finds Pets by status 
- * @param {{
-    \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"
-}} params    
-**/
+/**
+ * @description Finds Pets by status
+ * @param {Object} params
+ * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
@@ -2195,13 +2068,12 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/** 
+/**
  * @deprecated
- * @description Finds Pets by tags 
- * @param {{
-    \\"tags\\": string
-}} params    
-**/
+ * @description Finds Pets by tags
+ * @param {Object} params
+ * @param {string} params.tags - Tags to filter by
+ **/
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
@@ -2241,9 +2113,9 @@ export const getInventory = () =>
 
 /**
  * @description Find purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ * @param {number} pathParams.orderId - ID of pet that needs to be fetched
  **/
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
@@ -2255,9 +2127,9 @@ export const getOrderById = (_NOOP, { orderId }) =>
 
 /**
  * @description Delete purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ * @param {number} pathParams.orderId - ID of the order that needs to be deleted
  **/
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
@@ -2269,7 +2141,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 
 /**
  * @description Place an order for a pet
- * @param {Order} params -order placed for purchasing the pet
+ * @param {Order} params - order placed for purchasing the pet
  **/
 export const placeOrder = (params) =>
   axios.request({
@@ -2295,72 +2167,54 @@ exports[`api test simple jsdoc 3`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Category
+ * @typedef Category
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'category': Category
- *     'name': string
- *     'photoUrls': string[]
- *     'tags': Tag[]
- *     'status': \\"available\\" | \\"pending\\" | \\"sold\\"
- *   }
- * } Pet
+ * @typedef Pet
+ * @property {number} id
+ * @property {Category} category
+ * @property {string} name
+ * @property {string[]} photoUrls
+ * @property {Tag[]} tags
+ * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Tag
+ * @typedef Tag
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'type': string
- *     'message': string
- *   }
- * } ApiResponse
+ * @typedef ApiResponse
+ * @property {number} code
+ * @property {string} type
+ * @property {string} message
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'petId': number
- *     'quantity': number
- *     'shipDate': string
- *     'status': \\"placed\\" | \\"approved\\" | \\"delivered\\"
- *     'complete': boolean
- *   }
- * } Order
+ * @typedef Order
+ * @property {number} id
+ * @property {number} petId
+ * @property {number} quantity
+ * @property {string} shipDate
+ * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {boolean} complete
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'username': string
- *     'firstName': string
- *     'lastName': string
- *     'email': string
- *     'password': string
- *     'phone': string
- *     'userStatus': number
- *   }
- * } User
+ * @typedef User
+ * @property {number} id
+ * @property {string} username
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} email
+ * @property {string} password
+ * @property {string} phone
+ * @property {number} userStatus - User Status
 **/"
 `;
 
@@ -2382,9 +2236,9 @@ import axios from \\"axios\\";
 
 /**
  * @description Get user by user name
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ * @param {string} pathParams.username - The name that needs to be fetched. Use user1 for testing.
  **/
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
@@ -2396,9 +2250,9 @@ export const getUserByName = (_NOOP, { username }) =>
 
 /**
  * @description Updated user
- * @param {User} params -Updated user object
+ * @param {User} params - Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated
+ * @param {string} pathParams.username - name that need to be updated
  **/
 export const updateUser = (params, { username }) =>
   axios.request({
@@ -2410,9 +2264,9 @@ export const updateUser = (params, { username }) =>
 
 /**
  * @description Delete user
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted
+ * @param {string} pathParams.username - The name that needs to be deleted
  **/
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
@@ -2422,13 +2276,12 @@ export const deleteUser = (_NOOP, { username }) =>
     data: {}
   });
 
-/** 
- * @description Logs user into the system 
- * @param {{
-    \\"username\\": string
-    \\"password\\": string
-}} params    
-**/
+/**
+ * @description Logs user into the system
+ * @param {Object} params
+ * @param {string} params.username - The user name for login
+ * @param {string} params.password - The password for login in clear text
+ **/
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
@@ -2450,7 +2303,7 @@ export const logoutUser = () =>
 
 /**
  * @description Create user
- * @param {User} params -Created user object
+ * @param {User} params - Created user object
  **/
 export const createUser = (params) =>
   axios.request({
@@ -2462,7 +2315,7 @@ export const createUser = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithArrayInput = (params) =>
   axios.request({
@@ -2474,7 +2327,7 @@ export const createUsersWithArrayInput = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithListInput = (params) =>
   axios.request({
@@ -2654,6 +2507,7 @@ export interface Activities {
   history?: Activity[];
 }
 
+/** Enumeration of Role Type */
 export type RoleType = \\"Admin\\" | \\"User\\" | \\"SetSms\\";
 
 export interface CreateOrUpdateUserInput {
@@ -2703,6 +2557,7 @@ export interface AuditLogListDto {
   id?: number;
 }
 
+/** 接口返回结果 */
 export interface JsonResult<T> {
   /** 结果 */
   result?: boolean;
@@ -2885,134 +2740,98 @@ exports[`api test type only 1`] = `
 **/
 
 /**
- * @typedef {
- *   {
- *     'product_id': string
- *     'description': string
- *     'display_name': string
- *     'capacity': string
- *     'image': string
- *   }
- * } Product
+ * @typedef Product
+ * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+ * @property {string} description - Description of product.
+ * @property {string} display_name - Display name of product.
+ * @property {string} capacity - Capacity of product. For example, 4 people.
+ * @property {string} image - Image URL representing the product.
 **/
 
 /**
- * @typedef {
- *   {
- *     'product_id': string
- *     'currency_code': string
- *     'display_name': string
- *     'estimate': string
- *     'low_estimate': number
- *     'high_estimate': number
- *     'surge_multiplier': number
- *   }
- * } PriceEstimate
+ * @typedef PriceEstimate
+ * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
+ * @property {string} currency_code - [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
+ * @property {string} display_name - Display name of product.
+ * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+ * @property {number} low_estimate - Lower bound of the estimated price.
+ * @property {number} high_estimate - Upper bound of the estimated price.
+ * @property {number} surge_multiplier - Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
 **/
 
 /**
- * @typedef {
- *   {
- *     'first_name': string
- *     'last_name': string
- *     'email': string
- *     'picture': string
- *     'promo_code': string
- *     'role': RoleType
- *   }
- * } Profile
+ * @typedef Profile
+ * @property {string} first_name - First name of the Uber user.
+ * @property {string} last_name - Last name of the Uber user.
+ * @property {string} email - Email address of the Uber user
+ * @property {string} picture - Image URL of the Uber user.
+ * @property {string} promo_code - Promo code of the Uber user.
+ * @property {RoleType} role
 **/
 
 /**
- * @typedef {
- *   {
- *     'uuid': string
- *   }
- * } Activity
+ * @typedef Activity
+ * @property {string} uuid - Unique identifier for the activity
 **/
 
 /**
- * @typedef {
- *   {
- *     'offset': number
- *     'limit': number
- *     'count': number
- *     'history': Activity[]
- *   }
- * } Activities
+ * @typedef Activities
+ * @property {number} offset - Position in pagination.
+ * @property {number} limit - Number of items to retrieve (100 max).
+ * @property {number} count - Total number of items available.
+ * @property {Activity[]} history
 **/
 
 /**
-  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType
+  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType - Enumeration of Role Type
 **/
 
 /**
- * @typedef {
- *   {
- *     'userId': number
- *     'userRights': (\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]
- *   }
- * } CreateOrUpdateUserInput
+ * @typedef CreateOrUpdateUserInput
+ * @property {number} userId - 用户ID(ID来自User表)
+ * @property {(\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]} userRights - 用户权限
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': string
- *     'isLow': boolean
- *   }
- * } Abc
+ * @typedef Abc
+ * @property {string} id
+ * @property {boolean} isLow
 **/
 
 /**
-  * @typedef {(Abc[])} ArrayOfAbc
+  * @typedef {(Abc[])} ArrayOfAbc 
 **/
 
 /**
- * @typedef {
- *   {
- *     'foo': (\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]
- *     'bar': (\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]
- *   }
- * } NumberArrayEnumModel
+ * @typedef NumberArrayEnumModel
+ * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]} foo
+ * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]} bar
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'message': string
- *     'fields': string
- *   }
- * } Error
+ * @typedef Error
+ * @property {number} code
+ * @property {string} message
+ * @property {string} fields
 **/
 
 /**
- * @typedef {
- *   {
- *     'totalCount': number
- *     'items': T[]
- *   }
- * } PagedResultDto
+ * @typedef PagedResultDto
+ * @property {number} totalCount
+ * @property {T[]} items
 **/
 
 /**
- * @typedef {
- *   {
- *     'userId': number
- *     'id': number
- *   }
- * } AuditLogListDto
+ * @typedef AuditLogListDto
+ * @property {number} userId
+ * @property {number} id
 **/
 
 /**
- * @typedef {
- *   {
- *     'result': boolean
- *     'code': \\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"
- *     'data': string
- *     'message': string
- *   }
- * } JsonResult
+ * @typedef JsonResult - 接口返回结果
+ * @property {boolean} result - 结果
+ * @property {\\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"} code - 代码
+ * @property {string} data - 数据
+ * @property {string} message - 消息
 **/"
 `;

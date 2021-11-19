@@ -12,13 +12,12 @@
 
 import axios from "axios";
 
-/** 
- * @description  
- * @param {{
-    "skip": number
-    "limit": number
-}} params    
-**/
+/**
+ * @description
+ * @param {Object} params
+ * @param {number} params.skip - number of records to skip
+ * @param {number} params.limit - max number of records to return
+ **/
 export const getDevices = (params) =>
   axios.request({
     url: `/yeyan1996/IOT/1.0.0/devices`,

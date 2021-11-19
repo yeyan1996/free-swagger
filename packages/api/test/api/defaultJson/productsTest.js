@@ -12,13 +12,12 @@
 
 import axios from "axios";
 
-/** 
- * @description Product Types 
- * @param {{
-    "latitude": number
-    "longitude": number
-}} params    
-**/
+/**
+ * @description Product Types
+ * @param {Object} params
+ * @param {number} params.latitude - Latitude component of location.
+ * @param {number} params.longitude - Longitude component of location.
+ **/
 export const productsTestByGet = (params) =>
   axios.request({
     url: `/v1/products-test`,
