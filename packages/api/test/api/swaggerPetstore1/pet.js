@@ -15,9 +15,9 @@ import axios from "axios";
 
 /**
  * @description Find pet by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to return
+ * @param {number} pathParams.petId - ID of pet to return
  **/
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
@@ -31,7 +31,7 @@ export const getPetById = (_NOOP, { petId }) =>
  * @description Updates a pet in the store with form data
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet that needs to be updated
+ * @param {number} pathParams.petId - ID of pet that needs to be updated
  **/
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
@@ -43,9 +43,9 @@ export const updatePetWithForm = (params, { petId }) =>
 
 /**
  * @description Deletes a pet
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.petId -Pet id to delete
+ * @param {number} pathParams.petId - Pet id to delete
  **/
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
@@ -59,7 +59,7 @@ export const deletePet = (_NOOP, { petId }) =>
  * @description uploads an image
  * @param {FormData} params
  * @param {Object} pathParams
- * @param {number} pathParams.petId -ID of pet to update
+ * @param {number} pathParams.petId - ID of pet to update
  **/
 export const uploadFile = (params, { petId }) =>
   axios.request({
@@ -71,7 +71,7 @@ export const uploadFile = (params, { petId }) =>
 
 /**
  * @description Add a new pet to the store
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const addPet = (params) =>
   axios.request({
@@ -83,7 +83,7 @@ export const addPet = (params) =>
 
 /**
  * @description Update an existing pet
- * @param {Pet} params -Pet object that needs to be added to the store
+ * @param {Pet} params - Pet object that needs to be added to the store
  **/
 export const updatePet = (params) =>
   axios.request({
@@ -93,12 +93,11 @@ export const updatePet = (params) =>
     data: params
   });
 
-/** 
- * @description Finds Pets by status 
- * @param {{
-    "status": "available" | "pending" | "sold"
-}} params    
-**/
+/**
+ * @description Finds Pets by status
+ * @param {Object} params
+ * @param {"available" | "pending" | "sold"} params.status - Status values that need to be considered for filter
+ **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: `/v2/pet/findByStatus`,
@@ -107,13 +106,12 @@ export const findPetsByStatus = (params) =>
     data: {}
   });
 
-/** 
+/**
  * @deprecated
- * @description Finds Pets by tags 
- * @param {{
-    "tags": string
-}} params    
-**/
+ * @description Finds Pets by tags
+ * @param {Object} params
+ * @param {string} params.tags - Tags to filter by
+ **/
 export const findPetsByTags = (params) =>
   axios.request({
     url: `/v2/pet/findByTags`,

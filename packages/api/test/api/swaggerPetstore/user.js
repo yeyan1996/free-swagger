@@ -15,9 +15,9 @@ import axios from "axios";
 
 /**
  * @description Get user by user name
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be fetched. Use user1 for testing.
+ * @param {string} pathParams.username - The name that needs to be fetched. Use user1 for testing.
  **/
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
@@ -29,9 +29,9 @@ export const getUserByName = (_NOOP, { username }) =>
 
 /**
  * @description Updated user
- * @param {User} params -Updated user object
+ * @param {User} params - Updated user object
  * @param {Object} pathParams
- * @param {string} pathParams.username -name that need to be updated
+ * @param {string} pathParams.username - name that need to be updated
  **/
 export const updateUser = (params, { username }) =>
   axios.request({
@@ -43,9 +43,9 @@ export const updateUser = (params, { username }) =>
 
 /**
  * @description Delete user
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {string} pathParams.username -The name that needs to be deleted
+ * @param {string} pathParams.username - The name that needs to be deleted
  **/
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
@@ -55,13 +55,12 @@ export const deleteUser = (_NOOP, { username }) =>
     data: {}
   });
 
-/** 
- * @description Logs user into the system 
- * @param {{
-    "username": string
-    "password": string
-}} params    
-**/
+/**
+ * @description Logs user into the system
+ * @param {Object} params
+ * @param {string} params.username - The user name for login
+ * @param {string} params.password - The password for login in clear text
+ **/
 export const loginUser = (params) =>
   axios.request({
     url: `/v2/user/login`,
@@ -83,7 +82,7 @@ export const logoutUser = () =>
 
 /**
  * @description Create user
- * @param {User} params -Created user object
+ * @param {User} params - Created user object
  **/
 export const createUser = (params) =>
   axios.request({
@@ -95,7 +94,7 @@ export const createUser = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithArrayInput = (params) =>
   axios.request({
@@ -107,7 +106,7 @@ export const createUsersWithArrayInput = (params) =>
 
 /**
  * @description Creates list of users with given input array
- * @param {User[]} params -List of user object
+ * @param {User[]} params - List of user object
  **/
 export const createUsersWithListInput = (params) =>
   axios.request({

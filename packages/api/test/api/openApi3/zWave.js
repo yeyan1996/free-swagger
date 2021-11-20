@@ -14,7 +14,7 @@ import axios from "axios";
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {number} pathParams.value
@@ -27,16 +27,15 @@ export const setDimmer = (_NOOP, { deviceId, value }) =>
     data: {}
   });
 
-/** 
- * @description  
- * @param {{
-    "units": string
-}} params  
+/**
+ * @description
+ * @param {Object} params
+ * @param {string} params.units
  * @param {Object} pathParams
- * @param {string} pathParams.deviceId 
- * @param {number} pathParams.value 
- * @param {number} pathParams.timeunit   
-**/
+ * @param {string} pathParams.deviceId
+ * @param {number} pathParams.value
+ * @param {number} pathParams.timeunit
+ **/
 export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
   axios.request({
     url: `/yeyan1996/IOT/1.0.0/lighting/dimmers/${deviceId}/${value}/timer/${timeunit}`,
@@ -47,7 +46,7 @@ export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  **/
@@ -61,7 +60,7 @@ export const getSwitchState = (_NOOP, { deviceId }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {string} pathParams.value
@@ -76,7 +75,7 @@ export const setSwitch = (_NOOP, { deviceId, value }) =>
 
 /**
  * @description
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
  * @param {string} pathParams.deviceId
  * @param {string} pathParams.value

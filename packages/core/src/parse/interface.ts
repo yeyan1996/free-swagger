@@ -22,6 +22,7 @@ export interface ParsedInterface {
   props?: { [prop: string]: ParsedInterfaceProp }
   generics?: ParsedInterface[]
   code?: string
+  description?: string
 }
 
 const GENERIC_LIST = ['T', 'U', 'V']
@@ -309,7 +310,9 @@ const parseInterface = (
     allOf,
     // additionalProperties: topAdditionalProperties,
     required: topRequired,
+    description,
   } = definitions[interfaceName]
+  parsedInterface.description = description
 
   // definitions 中存在 Map«string,object»
   const buildInInterface = buildInInterfaces[parsedInterface.name]
@@ -330,7 +333,9 @@ const parseInterface = (
   if (!topProps) {
     if (type === 'interface') {
       return {
-        code: `export type ${interfaceName} = ${
+        code: `${
+          description ? `/** ${description} */\n` : ''
+        }export type ${interfaceName} = ${
           schemaToTsType(definitions[interfaceName]).formatType
         }`,
         ...parsedInterface,
@@ -340,7 +345,7 @@ const parseInterface = (
         code: `/**
   * @typedef {(${
     schemaToTsType(definitions[interfaceName]).formatType
-  })} ${interfaceName}
+  })} ${interfaceName} ${description ? `- ${description}` : ''}
 **/`,
         ...parsedInterface,
       }

@@ -26,9 +26,9 @@ export const getInventory = () =>
 
 /**
  * @description Find purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of pet that needs to be fetched
+ * @param {number} pathParams.orderId - ID of pet that needs to be fetched
  **/
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
@@ -40,9 +40,9 @@ export const getOrderById = (_NOOP, { orderId }) =>
 
 /**
  * @description Delete purchase order by ID
- * @param {Object} _NOOP -never
+ * @param {Object} _NOOP - never
  * @param {Object} pathParams
- * @param {number} pathParams.orderId -ID of the order that needs to be deleted
+ * @param {number} pathParams.orderId - ID of the order that needs to be deleted
  **/
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
@@ -54,7 +54,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 
 /**
  * @description Place an order for a pet
- * @param {Order} params -order placed for purchasing the pet
+ * @param {Order} params - order placed for purchasing the pet
  **/
 export const placeOrder = (params) =>
   axios.request({

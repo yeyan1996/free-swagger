@@ -12,15 +12,14 @@
 
 import axios from "axios";
 
-/** 
- * @description Price Estimates 
- * @param {{
-    "start_latitude": number
-    "start_longitude": number
-    "end_latitude": number
-    "end_longitude": number
-}} params    
-**/
+/**
+ * @description Price Estimates
+ * @param {Object} params
+ * @param {number} params.start_latitude - Latitude component of start location.
+ * @param {number} params.start_longitude - Longitude component of start location.
+ * @param {number} params.end_latitude - Latitude component of end location.
+ * @param {number} params.end_longitude - Longitude component of end location.
+ **/
 export const priceByGet = (params) =>
   axios.request({
     url: `/v1/estimates/price`,
@@ -29,15 +28,14 @@ export const priceByGet = (params) =>
     data: {}
   });
 
-/** 
- * @description Time Estimates 
- * @param {{
-    "start_latitude": number
-    "start_longitude": number
-    "customer_uuid": string
-    "product_id": string
-}} params    
-**/
+/**
+ * @description Time Estimates
+ * @param {Object} params
+ * @param {number} params.start_latitude - Latitude component of start location.
+ * @param {number} params.start_longitude - Longitude component of start location.
+ * @param {string} params.customer_uuid - Unique customer identifier to be used for experience customization.
+ * @param {string} params.product_id - Unique identifier representing a specific product for a given latitude & longitude.
+ **/
 export const timeByGet = (params) =>
   axios.request({
     url: `/v1/estimates/time`,

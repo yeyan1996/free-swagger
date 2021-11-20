@@ -11,70 +11,52 @@
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Category
+ * @typedef Category
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'category': Category
- *     'name': string
- *     'photoUrls': string[]
- *     'tags': Tag[]
- *     'status': "available" | "pending" | "sold"
- *   }
- * } Pet
+ * @typedef Pet
+ * @property {number} id
+ * @property {Category} category
+ * @property {string} name
+ * @property {string[]} photoUrls
+ * @property {Tag[]} tags
+ * @property {"available" | "pending" | "sold"} status - pet status in the store
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'name': string
- *   }
- * } Tag
+ * @typedef Tag
+ * @property {number} id
+ * @property {string} name
 **/
 
 /**
- * @typedef {
- *   {
- *     'code': number
- *     'type': string
- *     'message': string
- *   }
- * } ApiResponse
+ * @typedef ApiResponse
+ * @property {number} code
+ * @property {string} type
+ * @property {string} message
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'petId': number
- *     'quantity': number
- *     'shipDate': string
- *     'status': "placed" | "approved" | "delivered"
- *     'complete': boolean
- *   }
- * } Order
+ * @typedef Order
+ * @property {number} id
+ * @property {number} petId
+ * @property {number} quantity
+ * @property {string} shipDate
+ * @property {"placed" | "approved" | "delivered"} status - Order Status
+ * @property {boolean} complete
 **/
 
 /**
- * @typedef {
- *   {
- *     'id': number
- *     'username': string
- *     'firstName': string
- *     'lastName': string
- *     'email': string
- *     'password': string
- *     'phone': string
- *     'userStatus': number
- *   }
- * } User
+ * @typedef User
+ * @property {number} id
+ * @property {string} username
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} email
+ * @property {string} password
+ * @property {string} phone
+ * @property {number} userStatus - User Status
 **/

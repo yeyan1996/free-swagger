@@ -2,22 +2,28 @@ import { isParsedSchemaObject, ParsedInterface, ParsedSchema } from '../..'
 import { ParsedApi } from '../..'
 import { isEmpty } from 'lodash'
 
-const genJsDocTypeDef = ({ name, props, code }: ParsedInterface): string => {
+const genJsDocTypeDef = ({
+  name,
+  props,
+  code,
+  description,
+}: ParsedInterface): string => {
   return code
     ? code
     : `/**
- * @typedef {
- *   {
+ * @typedef ${name}${description ? ` - ${description}` : ''}
 ${
   props &&
   Object.entries(props)
     .map(
-      ([propName, prop]) => ` *     '${propName}': ${prop.formatType}
+      ([propName, prop]) => ` * @property {${prop.formatType}} ${propName}${
+        prop.description ? ` - ${prop.description}` : ''
+      }
 `
     )
     .join('')
-} *   }
- * } ${name}
+    .trimEnd()
+}
 **/
 `
 }
@@ -35,24 +41,33 @@ type CodeFunction = (params: {
   pathParams: any
   queryDescription: any
   bodyDescription: any
+  queryParamsInterface: ParsedSchema
+  pathParamsInterface: ParsedSchema
+  bodyParamsInterface: ParsedSchema
 }) => string
 
 const genJsDocSchema = (paramsInterface?: ParsedSchema): string => {
   if (!paramsInterface || isEmpty(paramsInterface)) return ''
-
   if (isParsedSchemaObject(paramsInterface)) {
     return paramsInterface.formatType
   } else {
-    return `{
-    ${Object.entries(paramsInterface)
-      .map(
-        ([propName, prop], index) =>
-          // format
-          `${index !== 0 ? '    ' : ''}"${propName}": ${prop.formatType}`
-      )
-      .join('\n')}
-}`
+    return 'Object'
   }
+}
+
+const genJsDocPropertyCode = (
+  paramsInterface: ParsedSchema,
+  paramsName = 'params'
+): string => {
+  if (isParsedSchemaObject(paramsInterface)) return ''
+  return Object.entries(paramsInterface)
+    .map(
+      ([propName, prop]) => `
+ * @param {${prop.formatType}} ${paramsName}.${propName} ${
+        prop.description ? `- ${prop.description}` : ''
+      }`
+    )
+    .join('')
 }
 
 const genJsDoc = ({
@@ -68,16 +83,10 @@ const genJsDoc = ({
     IPathParams: genJsDocSchema(pathParamsInterface),
   }
   const pathCode = IPathParams
-    ? `\n * @param {Object} pathParams
-${Object.entries(pathParamsInterface)
-  .map(
-    ([propName, prop]) =>
-      // format
-      ` * @param {${prop.formatType}} pathParams.${propName} ${
-        prop.description ? `-${prop.description}` : ''
-      }`
-  )
-  .join('\n')}`
+    ? `\n * @param {Object} pathParams${genJsDocPropertyCode(
+        pathParamsInterface,
+        'pathParams'
+      )}`
     : ''
 
   // 有 query 和 body 参数
@@ -88,26 +97,33 @@ ${Object.entries(pathParamsInterface)
     // 只有 query 参数，可能有 path 参数
     .set(
       ({ IQueryParams, IBodyParams }) => IQueryParams && !IBodyParams,
-      ({ IQueryParams, queryDescription }) =>
-        `\n * @param {${IQueryParams}} params ${queryDescription}`
+      ({ IQueryParams, queryDescription, queryParamsInterface }) =>
+        `\n * @param {${IQueryParams}} params ${queryDescription}${genJsDocPropertyCode(
+          queryParamsInterface
+        )}`
     )
     // 只有 body 参数，可能有 path 参数
     .set(
       ({ IQueryParams, IBodyParams }) => IBodyParams && !IQueryParams,
-      ({ IBodyParams, bodyDescription }) =>
-        `\n * @param {${IBodyParams}} params ${bodyDescription}`
+      ({ IBodyParams, bodyDescription, bodyParamsInterface }) =>
+        `\n * @param {${IBodyParams}} params ${bodyDescription}${genJsDocPropertyCode(
+          bodyParamsInterface
+        )}`
     )
     // 有 query 和 body 参数，可能有 path 参数
     .set(
       multipleParamsCondition,
-      ({ IQueryParams, queryDescription }) =>
-        `\n * @param {${IQueryParams}} queryParams ${queryDescription}`
+      ({ IQueryParams, queryDescription, queryParamsInterface }) =>
+        `\n * @param {${IQueryParams}} queryParams ${queryDescription}${genJsDocPropertyCode(
+          queryParamsInterface,
+          'queryParams'
+        )}`
     )
     // 没有 query body 参数，有 path 参数
     .set(
       ({ IQueryParams, pathParams, IBodyParams }) =>
         !IBodyParams && !IQueryParams && pathParams.length,
-      '\n * @param {Object} _NOOP -never'
+      '\n * @param {Object} _NOOP - never'
     )
     // 只有 path 参数
     .set(
@@ -122,14 +138,17 @@ ${Object.entries(pathParamsInterface)
       () => pathCode
     )
     // 有 query 和 body 参数，有 path 参数
-    .set(multipleParamsCondition, '\n * @param {Object} _NOOP -never')
+    .set(multipleParamsCondition, '\n * @param {Object} _NOOP - never')
 
   const thirdParamCodeMap = new Map<Condition, CodeFunction>()
     // 有 query 和 body 参数，有 path 参数
     .set(
       multipleParamsCondition,
-      ({ IBodyParams, bodyDescription }) =>
-        `\n * @param {${IBodyParams}} bodyParams ${bodyDescription}`
+      ({ IBodyParams, bodyDescription, bodyParamsInterface }) =>
+        `\n * @param {${IBodyParams}} bodyParams ${bodyDescription}${genJsDocPropertyCode(
+          bodyParamsInterface,
+          'bodyParams'
+        )}`
     )
 
   const createParamCode = (
@@ -139,10 +158,10 @@ ${Object.entries(pathParamsInterface)
     let code = defaultCode
     for (const [condition, codeFunction] of conditionMap.entries()) {
       const queryDescription = queryParamsInterface.description
-        ? `-${queryParamsInterface.description}`
+        ? `- ${queryParamsInterface.description}`
         : ''
       const bodyDescription = bodyParamsInterface.description
-        ? `-${bodyParamsInterface.description}`
+        ? `- ${bodyParamsInterface.description}`
         : ''
       const pathParams = Object.keys(pathParamsInterface)
 
@@ -162,6 +181,9 @@ ${Object.entries(pathParamsInterface)
                 pathParams,
                 queryDescription,
                 bodyDescription,
+                queryParamsInterface,
+                pathParamsInterface,
+                bodyParamsInterface,
               })
         break
       }

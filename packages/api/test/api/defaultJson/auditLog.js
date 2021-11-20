@@ -12,12 +12,11 @@
 
 import axios from "axios";
 
-/** 
- * @description  
- * @param {{
-    "StartDate": string
-}} params    
-**/
+/**
+ * @description
+ * @param {Object} params
+ * @param {string} params.StartDate
+ **/
 export const GetAuditLogs = (params) =>
   axios.request({
     url: `/v1/api/services/app/AuditLog/GetAuditLogs`,

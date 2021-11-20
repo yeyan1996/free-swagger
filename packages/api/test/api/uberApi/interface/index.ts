@@ -69,6 +69,7 @@ export interface Activities {
   history?: Activity[];
 }
 
+/** Enumeration of Role Type */
 export type RoleType = "Admin" | "User" | "SetSms";
 
 export interface CreateOrUpdateUserInput {
@@ -118,6 +119,7 @@ export interface AuditLogListDto {
   id?: number;
 }
 
+/** 接口返回结果 */
 export interface JsonResult<T> {
   /** 结果 */
   result?: boolean;
