@@ -220,7 +220,7 @@ export default {
 .search,
 ::v-deep .el-input.el-input.el-input {
   height: 100%;
-  width: 550px;
+  flex: 1;
 }
 
 .search {

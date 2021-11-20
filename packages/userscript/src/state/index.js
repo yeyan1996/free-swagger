@@ -105,6 +105,7 @@ export const state = new Vue({
   }
 });
 
+// 复制单个接口的所有 interface/typedef
 export const handleCopyType = async (
   path = state.currentApi.path,
   method = state.currentApi.method,
@@ -222,6 +223,7 @@ export const handleCopyFake = (
   }
 };
 
+// 复制全量/单个 interface
 export const handleCopyInterface = async (
   source = state.swagger,
   url = state.url,
@@ -236,6 +238,7 @@ export const handleCopyInterface = async (
   }
 };
 
+// 复制全量/单个 typedef
 export const handleCopyJsDocTypeDef = async (
   source = state.swagger,
   url = state.url,

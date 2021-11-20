@@ -423,21 +423,14 @@ export const getPetById = (
 `;
 
 exports[`core test ts code fragment with interface 1`] = `
-"export interface PageInfo<T> {
-  list?: T[];
-  \\"page-num\\"?: number;
-  pageSize?: number;
-  pages?: number;
-  total?: number;
-}
-
-export type JavaList<T> = Array<T>;
-
-export interface Qwe {
-  /** aaa注释 */
-  aaa?: string;
-  /** bbb注释 */
-  bbb?: string;
+"export interface Pet {
+  id?: number;
+  category?: Category;
+  name: string;
+  photoUrls: string[];
+  tags?: Tag[];
+  /** pet status in the store */
+  status?: \\"available\\" | \\"pending\\" | \\"sold\\";
 }
 "
 `;

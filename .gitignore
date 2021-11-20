@@ -19,6 +19,7 @@ node_modules
 
 # extension
 /packages/extension/dist
+/packages/extension/artifacts
 
 # local env files
 .env.local

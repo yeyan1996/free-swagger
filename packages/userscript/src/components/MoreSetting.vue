@@ -3,7 +3,7 @@
     <el-dropdown placement="top">
       <el-button size="mini" plain>
         <div class="flex items-center">
-          <svg-icon name="setting" class="text-16"></svg-icon>
+          <i class="el-icon-setting text-16"></i>
           <span class="ml-3">更多配置</span>
           <i class="el-icon-arrow-down el-icon--right"></i>
         </div>

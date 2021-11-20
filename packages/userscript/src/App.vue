@@ -1,67 +1,68 @@
 <template>
-  <div @click="collapse = !collapse" v-if="collapse" class="collapse close">
-    <svg-icon name="code"></svg-icon>
-  </div>
-
-  <div id="extends-app" v-else v-loading="loading">
-    <template v-if="state.options.length">
-      <api-options ref="apiOptions"></api-options>
-      <div class="operation-container">
-        <el-button type="primary" @click="handleCopyApi()" class="copy-code">
-          <div class="flex justify-center">
-            <svg-icon name="copy-white"></svg-icon>
-            <span class="ml-3">复制代码块</span>
+  <div>
+    <div @click="collapse = !collapse" v-show="collapse" class="collapse close">
+      <svg-icon name="code"></svg-icon>
+    </div>
+    <div id="extends-app" v-show="!collapse" v-loading="loading">
+      <template v-if="state.options.length">
+        <api-options ref="apiOptions"></api-options>
+        <div class="operation-container">
+          <el-button type="primary" @click="handleCopyApi()" class="copy-code">
+            <div class="flex justify-center">
+              <svg-icon name="copy-white"></svg-icon>
+              <span class="ml-3">复制代码块</span>
+            </div>
+          </el-button>
+          <div class="divider"></div>
+          <el-link @click="handleCopyType()" :underline="false">
+            <svg-icon name="copy-gray" class="copy"></svg-icon>
+            <span class="ml-3">{{
+              state.storage.currentLanguage === "js"
+                ? "复制 typedef"
+                : "复制 interface"
+            }}</span>
+          </el-link>
+          <div class="divider"></div>
+          <el-link @click="handleCopyPath()" :underline="false">
+            <svg-icon name="copy-gray" class="copy"></svg-icon>
+            <span class="ml-3">复制url</span>
+          </el-link>
+          <div class="divider"></div>
+          <el-link @click="handleCopyFake()" :underline="false">
+            <svg-icon name="copy-gray" class="copy"></svg-icon>
+            <span class="ml-3">复制模拟数据</span>
+          </el-link>
+          <div class="divider"></div>
+          <div class="switch-container">
+            <span class="text">语言</span>
+            <el-switch
+              class="ml-10"
+              v-model="state.storage.currentLanguage"
+              active-value="ts"
+              inactive-value="js"
+              active-color="#409eff"
+              inactive-color="#ecac0f"
+              active-text="TS"
+              inactive-text="JS"
+            >
+            </el-switch>
           </div>
-        </el-button>
-        <div class="divider"></div>
-        <el-link @click="handleCopyType()" :underline="false">
-          <svg-icon name="copy-gray" class="copy"></svg-icon>
-          <span class="ml-3">{{
-            state.storage.currentLanguage === "js"
-              ? "复制 typedef"
-              : "复制 interface"
-          }}</span>
-        </el-link>
-        <div class="divider"></div>
-        <el-link @click="handleCopyPath()" :underline="false">
-          <svg-icon name="copy-gray" class="copy"></svg-icon>
-          <span class="ml-3">复制url</span>
-        </el-link>
-        <div class="divider"></div>
-        <el-link @click="handleCopyFake()" :underline="false">
-          <svg-icon name="copy-gray" class="copy"></svg-icon>
-          <span class="ml-3">复制模拟数据</span>
-        </el-link>
-        <div class="divider"></div>
-        <div class="switch-container">
-          <span class="text">语言</span>
-          <el-switch
-            class="ml-10"
-            v-model="state.storage.currentLanguage"
-            active-value="ts"
-            inactive-value="js"
-            active-color="#409eff"
-            inactive-color="#ecac0f"
-            active-text="TS"
-            inactive-text="JS"
-          >
-          </el-switch>
+          <div class="ml-10 flex items-center">
+            <more-setting class="more-setting"></more-setting>
+            <svg-icon
+              name="collapse"
+              @click="collapse = !collapse"
+              class="collapse-icon"
+            ></svg-icon>
+          </div>
         </div>
-      </div>
-      <div class="collapse open">
-        <more-setting class="more-setting"></more-setting>
-        <svg-icon
-          name="collapse"
-          @click="collapse = !collapse"
-          class="collapse-icon"
-        ></svg-icon>
-      </div>
-    </template>
-    <template v-else>
-      <div @click="handleReload" class="fail">
-        插件加载失败，点击刷新页面重试
-      </div>
-    </template>
+      </template>
+      <template v-else>
+        <div @click="handleReload" class="fail">
+          插件加载失败，点击刷新页面重试
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -274,12 +275,13 @@ export default {
   background: white;
 }
 .operation-container {
-  min-width: 520px;
+  min-width: 800px;
   display: flex;
   align-items: center;
 }
 #extends-app {
   height: 55px;
+  justify-content: space-between;
   align-items: center;
   display: flex;
   position: fixed;
@@ -320,25 +322,20 @@ export default {
   height: 27px;
 }
 
-.open {
-  position: fixed;
-  padding-right: 25px;
-  right: 0;
-  .collapse-icon {
-    margin-left: 25px;
-    font-size: 30px;
-  }
-}
-
 .copy-code {
   &:hover {
     opacity: 0.8;
   }
 }
 
+.collapse-icon {
+  margin-left: 10px;
+  font-size: 30px;
+}
+
 .close {
   position: fixed;
-  right: 17px;
+  right: 4px;
   bottom: 3px;
   width: 50px;
   height: 50px;

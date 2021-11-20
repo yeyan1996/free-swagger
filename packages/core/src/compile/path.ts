@@ -24,6 +24,9 @@ const compilePath = async (
   const { definitions, paths, basePath } = source
 
   const operationObject = paths[url][method]
+  if (!operationObject) {
+    throw new Error('未找到目标')
+  }
   // 接口函数名
   const name: string =
     operationObject.operationId ?? createDefaultApiName(url, method)
@@ -38,17 +41,17 @@ const compilePath = async (
   const code = genPath(parsedApi, config)
   const jsDocCode = genJsDoc(parsedApi) // js doc 和生成普通 code 的入参相同
 
-  const queryInterfaceName = isString(parsedApi.queryParamsInterface.type)
-    ? parsedApi.queryParamsInterface.type
+  const queryInterfaceName = isString(parsedApi.queryParamsInterface.ref)
+    ? parsedApi.queryParamsInterface.ref
     : ''
-  const bodyInterfaceName = isString(parsedApi.bodyParamsInterface.type)
-    ? parsedApi.bodyParamsInterface.type
+  const bodyInterfaceName = isString(parsedApi.bodyParamsInterface.ref)
+    ? parsedApi.bodyParamsInterface.ref
     : ''
-  const pathInterfaceName = isString(parsedApi.pathParamsInterface.type)
-    ? parsedApi.pathParamsInterface.type
+  const pathInterfaceName = isString(parsedApi.pathParamsInterface.ref)
+    ? parsedApi.pathParamsInterface.ref
     : ''
-  const responseInterfaceName = isString(parsedApi.responseInterface.type)
-    ? parsedApi.responseInterface.type
+  const responseInterfaceName = isString(parsedApi.responseInterface.ref)
+    ? parsedApi.responseInterface.ref
     : ''
 
   const contextMapInterface = new Map()

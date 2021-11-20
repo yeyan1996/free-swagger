@@ -151,10 +151,6 @@ const schemaToTsType = (
       return JSON.stringify(schema.type)
     }
 
-    if (!formatType) {
-      return schema.type
-    }
-
     if (schema.type === 'array' && schema.items) {
       return schema.items.enum
         ? `(${recursive(schema.items, formatType)})[]`
@@ -170,6 +166,10 @@ const schemaToTsType = (
     }
     if (schema.enum) {
       return schema.enum.map((value) => `"${value}"`).join(' | ')
+    }
+
+    if (!formatType) {
+      return schema.type
     }
     // 基本类型
     return TYPE_MAP[schema.type]

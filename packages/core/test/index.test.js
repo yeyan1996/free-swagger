@@ -110,12 +110,12 @@ describe("core test", () => {
     test("ts code fragment with interface", async () => {
         const codeFragment = await freeSwaggerCore(
             {
-                source: require("./json/generic.json"),
+                source: require("./json/swaggerPetstore"),
                 templateFunction: eval(tsTemplate),
                 lang: "ts",
                 interface: true,
             },
-            "/companies",
+            "/pet/findByStatus",
             "get"
         );
         expect(codeFragment).toMatchSnapshot();

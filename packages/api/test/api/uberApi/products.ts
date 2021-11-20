@@ -10,6 +10,7 @@
  * @date 2016-12-22 07:36
  **/
 
+import { Product } from "./interface/index.ts";
 import axios from "axios";
 
 /** Product Types */
