@@ -26,6 +26,7 @@ export const assignSwagger = async (swagger, url) => {
 // ajax hooks
 ah.hookAjax({
   open(_, xhr) {
+    if (ok) return;
     setTimeout(async () => {
       await wait();
       try {
