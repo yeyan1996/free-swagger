@@ -10,7 +10,7 @@ let ok = false;
 export const assignSwagger = async (swagger, url) => {
   const { state } = await import("@/state");
   try {
-    if (!swagger?.swagger) return;
+    if (!((swagger?.swagger || swagger?.openapi) && swagger?.paths)) return;
     ok = true;
     state.swagger = swagger;
     state.url = url;
@@ -26,6 +26,7 @@ export const assignSwagger = async (swagger, url) => {
 // ajax hooks
 ah.hookAjax({
   open(_, xhr) {
+    if (ok) return;
     setTimeout(async () => {
       await wait();
       try {

@@ -48,7 +48,7 @@ export const mock = async ({
   } = {}
 
   /**补充缺失的 definitions*/
-  Object.assign(source.definitions, {
+  Object.assign(source.definitions ?? {}, {
     List: {
       type: 'array',
     },
@@ -76,6 +76,7 @@ export const mock = async ({
         // 含有中文则使用 description 作为文件名
         let controllerName = ''
         if (hasChinese(operationObject.tags[0])) {
+          // @ts-ignore
           const tag = parsedSwagger.tags!.find(
             (tag: OpenAPIV2.TagObject) => tag.name === operationObject.tags![0]
           )
