@@ -76,7 +76,8 @@ export const mock = async ({
         // 含有中文则使用 description 作为文件名
         let controllerName = ''
         if (hasChinese(operationObject.tags[0])) {
-          const tag = parsedSwagger.tags!.find(
+          // @ts-ignore
+          const tag = parsedSwagger?.tags?.find(
             (tag: OpenAPIV2.TagObject) => tag.name === operationObject.tags![0]
           )
           if (!tag) return
