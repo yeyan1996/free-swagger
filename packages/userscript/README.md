@@ -121,3 +121,41 @@ free-swagger-userscript 基于 free-swagger-core，通过模版生成代码片�
 ![image-20210320170350749](https://tva1.sinaimg.cn/large/008eGmZEly1goqhasp1hsj31a30u0q9u.jpg)
 
 模版函数接受多个参数，可以自由组合成想要的代码片段，详细使用方式参考 [free-swagger-core](https://www.npmjs.com/package/free-swagger-core)
+
+# 源码调试
+
+```shell
+npm run serve
+```
+
+复制下面脚本到 tampermonkey
+```shell
+// ==UserScript==
+// @author  yeyan1996
+// @name  free-swagger-userscript
+// @namespace  http://tampermonkey.net/
+// @description  free-swagger for tampermonkey
+// @version  5.3.4
+
+// @include  /swagger
+// @include  /doc.html
+
+// ==/UserScript==
+
+
+// 创建 DOM 节点
+function createDom(type, props, style) {
+    const dom = document.createElement(type)
+    Object.assign(dom, props)
+    Object.assign(dom.style, style)
+    return dom
+}
+
+
+// 创建 script 标签
+function createScripTag(src) {
+    document.body.append(createDom("script", {src}));
+}
+
+createScripTag("http://localhost:8888/js/app.js") // 本地调试用
+```
