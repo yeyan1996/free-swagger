@@ -1,6 +1,6 @@
 import Vue from "vue";
 import { start, injectCdn } from "@/utils/monkey-starter";
-import "@/style/index.scss";
+import "@/style/index.css";
 import "@/icons";
 import "./plugins/element.js";
 import "@/utils/hooks";
@@ -17,7 +17,7 @@ start(selectorId, [injectCdn]).then(async () => {
 });
 
 window.SWAGGER_EXTENDS_VERSION = {
-  BRANCH,
-  COMMITHASH,
-  VERSION
+  BRANCH: BRANCH,
+  COMMITHASH: COMMITHASH,
+  VERSION: VERSION
 };

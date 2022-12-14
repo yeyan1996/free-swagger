@@ -3,6 +3,7 @@ import ora from 'ora'
 import axios from 'axios'
 import http from 'http'
 import https from 'https'
+import { isPlainObject } from 'lodash'
 
 const PORT = 9998
 function isEncoded(uri: string) {
@@ -63,13 +64,13 @@ export const fetchJSON = async (
       // 普通数据则直接请求
       res = await axios.get(url)
     }
-    if (typeof res.data !== 'object') {
-      throw new Error('返回的数据不是 json')
+    if (!isPlainObject(res.data)) {
+      throw new Error(`请求 ${url} 失败，返回的数据不是 json`)
     }
     spinner.succeed('请求结束')
     return res.data
   } catch (e) {
-    spinner.fail('请求失败，可能没有接口权限或者返回格式不正确')
-    throw new Error(e)
+    spinner.fail(`请求 ${url} 失败，可能没有接口权限或者返回格式不正确`)
+    throw e
   }
 }

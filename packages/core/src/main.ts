@@ -10,7 +10,6 @@ const freeSwaggerCore = async (
 ): Promise<string> => {
   const chooseAll = !url || !method
   if (chooseAll) return ''
-
   const mergedConfig = await mergeDefaultParams(config)
   const {
     jsDocCode,

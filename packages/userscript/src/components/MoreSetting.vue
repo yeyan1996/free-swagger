@@ -10,34 +10,26 @@
       </el-button>
       <el-dropdown-menu slot="dropdown">
         <div class="top-area">
-          <template v-if="state.storage.currentLanguage === 'js'">
-            <div @click.stop class="switch">
-              <span class="js-doc-text normal">代码块 JS Doc</span>
-              <el-switch v-model="state.storage.jsDoc"></el-switch>
-            </div>
-            <div @click.stop class="switch">
-              <span class="js-doc-text normal">递归复制依赖</span>
-              <el-switch v-model="state.storage.recursive"></el-switch>
-            </div>
-            <el-dropdown-item
-              @click.native="handleCopyJsDocTypeDef()"
-              class="normal"
+          <div @click.stop class="switch" v-if="isJS">
+            <span class="js-doc-text normal">代码块 JS Doc</span>
+            <el-switch v-model="state.storage.jsDoc"></el-switch>
+          </div>
+
+          <div @click.stop class="switch">
+            <span class="js-doc-text normal"
+              >{{ isJS ? "typedef" : "interface" }} 递归复制依赖</span
             >
-              复制全量 JS Doc typedef
-            </el-dropdown-item>
-          </template>
-          <template v-else>
-            <div @click.stop class="switch">
-              <span class="js-doc-text normal">递归复制依赖</span>
-              <el-switch v-model="state.storage.recursive"></el-switch>
-            </div>
-            <el-dropdown-item
-              @click.native="handleCopyInterface()"
-              class="normal"
-            >
-              复制全量 Interface
-            </el-dropdown-item>
-          </template>
+            <el-switch v-model="state.storage.recursive"></el-switch>
+          </div>
+
+          <el-dropdown-item
+            @click.native="
+              () => (isJS ? handleCopyJsDocTypeDef() : handleCopyInterface())
+            "
+            class="normal"
+          >
+            {{ isJS ? "复制全量 typedef" : "复制全量 interface" }}
+          </el-dropdown-item>
         </div>
         <el-dropdown-item @click.native="handleOpenDialog"
           >编辑模版</el-dropdown-item
@@ -99,7 +91,12 @@
 <script>
 import { Message } from "element-ui";
 import { state } from "@/state";
-import { handleCopyInterface, handleCopyJsDocTypeDef } from "../state";
+import {
+  handleCopyInterface,
+  handleCopyJsDocTypeDef,
+  handleCopyPath,
+  handleCopyFake
+} from "@/state";
 import { jsTemplate, tsTemplate } from "free-swagger-core";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 
@@ -115,6 +112,11 @@ export default {
         tsTemplate: ""
       }
     };
+  },
+  computed: {
+    isJS() {
+      return this.state.storage.currentLanguage === "js";
+    }
   },
   watch: {
     dialog: {
@@ -148,6 +150,8 @@ export default {
   methods: {
     handleCopyJsDocTypeDef,
     handleCopyInterface,
+    handleCopyPath,
+    handleCopyFake,
     handleOpenDialog() {
       state.storage.exportLanguage = state.storage.currentLanguage;
       this.dialog = true;
@@ -191,18 +195,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .normal {
   font-size: 14px;
 }
 .more-setting {
   display: inline-block;
 }
-.el-icon-question {
-  &:hover {
-    cursor: pointer;
-    color: #409eff;
-  }
+.el-icon-question:hover {
+  cursor: pointer;
+  color: #409eff;
 }
 #textarea {
   height: 400px;
@@ -224,27 +226,27 @@ export default {
   color: #606266;
   margin-bottom: 10px;
   border-bottom: 1px solid #dee0e3;
-  > div {
-    cursor: default;
-    display: flex;
-    line-height: 35px;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .title {
-    font-size: 14px;
-    padding: 0 20px;
-  }
-  .switch {
-    padding: 0 20px;
-  }
 }
+
+.top-area > div {
+  cursor: default;
+  display: flex;
+  line-height: 35px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.switch {
+  padding: 0 20px;
+}
+
 .btn-container {
   display: flex;
   justify-content: center;
   margin-right: 70px;
-  .el-button {
-    width: 135px;
-  }
+}
+
+.btn-container .el-button {
+  width: 135px;
 }
 </style>

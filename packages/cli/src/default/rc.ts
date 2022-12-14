@@ -197,7 +197,7 @@ class Rc {
   }
 
   // 查看配置项
-  show(): void {
+  print(): void {
     console.log(this.configData)
   }
 

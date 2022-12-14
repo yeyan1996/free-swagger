@@ -21,7 +21,7 @@ export function init(): void {
       console.log(chalk.green('重置配置项成功'))
     })
     .option('-s --show', '显示当前配置', () => {
-      rc.show()
+      rc.print()
     })
     .option('-e --edit', '修改当前配置', () => {
       rc.edit()

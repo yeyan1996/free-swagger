@@ -14,6 +14,7 @@
             </div>
           </el-button>
           <div class="divider"></div>
+
           <el-link @click="handleCopyType()" :underline="false">
             <svg-icon name="copy-gray" class="copy"></svg-icon>
             <span class="ml-3">{{
@@ -25,7 +26,7 @@
           <div class="divider"></div>
           <el-link @click="handleCopyPath()" :underline="false">
             <svg-icon name="copy-gray" class="copy"></svg-icon>
-            <span class="ml-3">复制url</span>
+            <span class="ml-3">复制 url</span>
           </el-link>
           <div class="divider"></div>
           <el-link @click="handleCopyFake()" :underline="false">
@@ -33,20 +34,16 @@
             <span class="ml-3">复制模拟数据</span>
           </el-link>
           <div class="divider"></div>
-          <div class="switch-container">
-            <span class="text">语言</span>
-            <el-switch
-              class="ml-10"
-              v-model="state.storage.currentLanguage"
-              active-value="ts"
-              inactive-value="js"
-              active-color="#409eff"
-              inactive-color="#ecac0f"
-              active-text="TS"
-              inactive-text="JS"
-            >
-            </el-switch>
-          </div>
+          <el-switch
+            v-model="state.storage.currentLanguage"
+            active-value="ts"
+            inactive-value="js"
+            active-color="#409eff"
+            inactive-color="#ecac0f"
+            active-text="TS"
+            inactive-text="JS"
+          >
+          </el-switch>
           <div class="ml-10 flex items-center">
             <more-setting class="more-setting"></more-setting>
             <svg-icon
@@ -266,7 +263,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .collapse {
   display: flex;
   justify-content: center;
@@ -275,7 +272,7 @@ export default {
   background: white;
 }
 .operation-container {
-  min-width: 800px;
+  min-width: 600px;
   display: flex;
   align-items: center;
 }
@@ -292,16 +289,6 @@ export default {
   padding: 10px;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 2px 1px rgba(0, 0, 0, 0.12);
-}
-
-.switch-container {
-  display: flex;
-  align-items: center;
-  .text {
-    font-weight: bold;
-    color: #606266;
-    font-size: 14px;
-  }
 }
 
 ::v-deep .el-switch__label * {
@@ -322,10 +309,8 @@ export default {
   height: 27px;
 }
 
-.copy-code {
-  &:hover {
-    opacity: 0.8;
-  }
+.copy-code:hover {
+  opacity: 0.8;
 }
 
 .collapse-icon {

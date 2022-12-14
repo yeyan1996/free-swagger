@@ -13,7 +13,7 @@
 import axios from "axios";
 
 /** 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象 */
-export const uploadLngLatUsingPOST = (params: JavaList<void>) =>
+export const uploadLngLatUsingPOST = (params: SwaggerList<void>) =>
   axios.request<any>({
     url: `/v1/dev/uploadLngLat`,
     method: "post",

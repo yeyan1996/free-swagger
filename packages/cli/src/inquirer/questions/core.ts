@@ -25,7 +25,10 @@ export const lang = {
   type: 'list',
   message: '选择导出 api 的语言',
   default: rc.configData.core.lang,
-  choices: ['js', 'ts'],
+  choices: [
+    { name: 'javascript', value: 'js' },
+    { name: 'typescript', value: 'ts' },
+  ],
   callback: (input: string) => {
     rc.merge({
       lang: input,
@@ -44,18 +47,21 @@ export const lang = {
 export const typeOnly = {
   name: 'typeOnly',
   type: 'list',
-  choices: [
-    {
-      name: '全部',
-      value: false,
-    },
-    {
-      name: '仅 interface/typedef',
-      value: true,
-    },
-  ],
+  message: '选择代码更新范围',
+  choices: () => {
+    const lang = rc.configData.core.lang
+    return [
+      {
+        name: `${lang === 'ts' ? 'interface' : 'typedef'} + api`,
+        value: false,
+      },
+      {
+        name: lang === 'ts' ? 'interface' : 'typedef',
+        value: true,
+      },
+    ]
+  },
   default: rc.configData.core.typeOnly,
-  message: '更新范围',
   callback: (input: boolean) => {
     rc.merge({ typeOnly: input })
     rc.save()

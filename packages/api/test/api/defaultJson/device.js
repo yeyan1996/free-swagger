@@ -14,7 +14,7 @@ import axios from "axios";
 
 /**
  * @description 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
- * @param {JavaList<void>} params - 设备地理坐标信息集合
+ * @param {SwaggerList<void>} params - 设备地理坐标信息集合
  **/
 export const uploadLngLatUsingPOST = (params) =>
   axios.request({

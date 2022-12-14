@@ -7,7 +7,7 @@
         class="snippet"
       ></svg-icon>
     </el-tooltip>
-    <el-tooltip content="复制url">
+    <el-tooltip content="复制 url">
       <svg-icon
         name="url"
         @click.stop="handleCopyPath(path, method)"
@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .api-icons {
   position: absolute;
   top: 11px;

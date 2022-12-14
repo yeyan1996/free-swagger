@@ -4,8 +4,11 @@
   "keywords": [
     "swagger",
     "typescript",
-    "jsDoc"
+    "jsdoc"
   ],
+  "engines": {
+    "node": "14"
+  },
   "repository": {
     "type": "github",
     "url": "https://github.com/yeyan1996/free-swagger"
@@ -13,19 +16,17 @@
   "license": "MIT",
   "author": "yeyan1996",
   "scripts": {
+    "precommit": "npm run lint && npm run build && npm run test && git add .",
     "postinstall": "npm run build",
+    "bootstrap": "lerna bootstrap",
     "build": "lerna exec -- npm run build",
     "lint": "lerna exec -- npm run lint",
     "test": "lerna exec -- npm run test",
-    "test:updateSnapshot": "lerna exec -- npm run test -- --updateSnapshot"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run build && npm run test && git add ."
-    }
+    "test:updateSnapshot": "lerna exec -- npm run test -- --updateSnapshot",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "husky": "^4.0.0",
+    "husky": "^8.0.0",
     "lerna": "^3.20.2"
   }
 }

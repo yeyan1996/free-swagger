@@ -1245,7 +1245,7 @@ import axios from \\"axios\\";
 
 /**
  * @description 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
- * @param {JavaList<void>} params - 设备地理坐标信息集合
+ * @param {SwaggerList<void>} params - 设备地理坐标信息集合
  **/
 export const uploadLngLatUsingPOST = (params) =>
   axios.request({
@@ -1472,7 +1472,7 @@ exports[`api test should work with only one json params 7`] = `
 **/
 
 /**
-  * @typedef {(Abc[])} ArrayOfAbc 
+  * @typedef {(Abc[])} ArrayOfAbc
 **/
 
 /**
@@ -2380,7 +2380,7 @@ exports[`api test ts language 2`] = `
 import axios from \\"axios\\";
 
 /** 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象 */
-export const uploadLngLatUsingPOST = (params: JavaList<void>) =>
+export const uploadLngLatUsingPOST = (params: SwaggerList<void>) =>
   axios.request<any>({
     url: \`/v1/dev/uploadLngLat\`,
     method: \\"post\\",
@@ -2802,7 +2802,7 @@ exports[`api test type only 1`] = `
 **/
 
 /**
-  * @typedef {(Abc[])} ArrayOfAbc 
+  * @typedef {(Abc[])} ArrayOfAbc
 **/
 
 /**
