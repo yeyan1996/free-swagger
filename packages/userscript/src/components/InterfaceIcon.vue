@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .svg-icon {
   font-size: 22px;
   position: absolute;

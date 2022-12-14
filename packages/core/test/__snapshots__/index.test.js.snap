@@ -208,7 +208,7 @@ export interface PageInfo<T> {
   total?: number;
 }
 
-export type JavaList<T> = Array<T>;
+export type SwaggerList<T> = Array<T>;
 
 export interface Qwe {
   /** aaa注释 */
@@ -380,7 +380,7 @@ exports[`core test generate ts interface snippet width generic 1`] = `
   total?: number;
 }
 
-export type JavaList<T> = Array<T>;
+export type SwaggerList<T> = Array<T>;
 
 export interface Qwe {
   /** aaa注释 */
@@ -394,7 +394,7 @@ export interface Qwe {
 exports[`core test ts code fragment with generic 1`] = `
 "/** companies */
 export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>
-  axios.request<PageInfo<JavaList<Qwe>>>({
+  axios.request<PageInfo<SwaggerList<Qwe>>>({
     url: \`/base/companies\`,
     method: \\"get\\",
     params: params,
@@ -470,7 +470,7 @@ export interface PageInfo<T> {
   total?: number;
 }
 
-export type JavaList<T> = Array<T>;
+export type SwaggerList<T> = Array<T>;
 "
 `;
 

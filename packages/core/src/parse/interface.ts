@@ -27,33 +27,33 @@ export interface ParsedInterface {
 
 const GENERIC_LIST = ['T', 'U', 'V']
 
-// 补充内建 Java 类型
-// 加上 Java 前缀，防止 Java Map 和 JavaScript Map 冲突
+// 补充内建类型
+// 加上前缀，防止 Swagger Map 和 JavaScript Map 冲突
 const buildInInterfaces: Record<
   string,
   { name: string; formatName: string; code: string; jsDocCode: string }
 > = {
   Map: {
     name: 'Map',
-    formatName: 'JavaMap',
+    formatName: 'SwaggerMap',
     code: `
-   export type JavaMap<T extends string | symbol | number, U> = Record<T, U>
+   export type SwaggerMap<T extends string | symbol | number, U> = Record<T, U>
   `,
     // TODO: JSDOC 泛型补充
     jsDocCode: `
 /**
- * @typedef {object} JavaMap
+ * @typedef {object} SwaggerMap
  **/`,
   },
   List: {
     name: 'List',
-    formatName: 'JavaList',
+    formatName: 'SwaggerList',
     code: `
-   export type JavaList<T> = Array<T>
+   export type SwaggerList<T> = Array<T>
   `,
     jsDocCode: `
 /**
- * @typedef {Array} JavaList
+ * @typedef {Array} SwaggerList
  **/`,
   },
 }
@@ -152,7 +152,7 @@ const uniqInterfaceNameImports = (imports: string[]) =>
           .filter((item) => !Object.values(TYPE_MAP).includes(item))
           // 排除一些特殊的泛型 Map<string,string>
           .filter((item) => isWord.test(item))
-          // 如果是 Java 内建类型则转换成自定义泛型
+          // 如果是内建类型则转换成自定义泛型
           .map((item) =>
             buildInInterfaces[item] ? buildInInterfaces[item].formatName : item
           )
@@ -185,7 +185,7 @@ const normalizeName = (name: string) => {
 }
 
 // 格式化含有泛型的接口
-// 同时 Java 内建的类型转成 自定义/TS 内建泛型
+// 同时内建的类型转成 自定义/TS 内建泛型
 // Animal«Dog» -> Animal<Dog>
 const formatGenericInterface = (interfaceName: string): string => {
   const tree = parseInterfaceName(interfaceName)

@@ -16,10 +16,11 @@
     "serve": "vue-cli-service serve",
     "postinstall": "patch-package",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.7",
+    "@apidevtools/json-schema-ref-parser": "9.0.7",
     "@jsdevtools/ono": "^7.1.2",
     "@vueuse/core": "^6.2.1",
     "ajax-hook": "^1.8.3",
@@ -54,7 +55,6 @@
     "git-revision-webpack-plugin": "^3.0.6",
     "lint-staged": "^10.2.11",
     "monaco-editor-webpack-plugin": "^2.1.0",
-    "node-sass": "^4.14.1",
     "patch-package": "^6.2.2",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",

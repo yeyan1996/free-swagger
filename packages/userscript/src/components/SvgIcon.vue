@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .svg-icon {
   cursor: pointer;
   width: 1em;

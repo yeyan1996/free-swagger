@@ -32,13 +32,13 @@ export const chooseApi = async (
   const { choosePaths } = await prompt([
     {
       name: 'choosePaths',
-      message: '选择需要新生成的 api 文件',
+      message: '选择需要更新的 api',
       type: 'checkbox',
       pageSize: 20,
       choices: createChoices(paths),
       validate(answer: string[]): boolean | string {
         if (answer.length < 1) {
-          return '至少选择一个 api 文件生成'
+          return '至少选择一个 api'
         }
         return true
       },

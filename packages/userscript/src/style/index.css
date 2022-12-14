@@ -1,0 +1,76 @@
+@keyframes highlight {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  60% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.custom-highlight-anime {
+  animation: highlight 5s infinite;
+}
+
+.el-button--primary.el-button--primary.el-button--primary{
+  background: #2F80ED !important;
+}
+
+.el-button.el-button.el-button{
+  padding:6px 16px;
+  height:35px;
+}
+
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+
+.ml-3{
+  margin-left: 3px;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.text-16{
+  font-size: 16px;
+}

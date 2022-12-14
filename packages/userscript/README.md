@@ -26,7 +26,7 @@ free-swagger-userscript 基于 [free-swagger-core](https://www.npmjs.com/package
 
 ![](./docs/复制interface.gif)
 
-## 复制 api  路径	
+## 复制 api 路径	
 
 ![](./docs/复制api路径.gif)
 
