@@ -345,7 +345,7 @@ const parseInterface = (
         code: `/**
   * @typedef {(${
     schemaToTsType(definitions[interfaceName]).formatType
-  })} ${interfaceName} ${description ? `- ${description}` : ''}
+  })} ${interfaceName}${description ? ` - ${description}` : ''}
 **/`,
         ...parsedInterface,
       }

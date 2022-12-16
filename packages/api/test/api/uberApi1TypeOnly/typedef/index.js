@@ -70,7 +70,7 @@
 **/
 
 /**
-  * @typedef {(Abc[])} ArrayOfAbc 
+  * @typedef {(Abc[])} ArrayOfAbc
 **/
 
 /**

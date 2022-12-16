@@ -34,24 +34,31 @@ const gen = async (
   if (config.lang === 'ts') {
     const interfacePath = path.resolve(dirPath, INTERFACE_PATH)
     fse.ensureFileSync(interfacePath)
-    await fse.writeFile(
-      interfacePath,
+
+    const { code } = await compileInterfaces({
+      source: config.source,
       // @ts-ignore
-      (await compileInterfaces({ source: config.source, url: config._url }))
-        .code
-    )
+      url: config._url,
+    })
+    await fse.writeFile(interfacePath, code)
   }
 
   // 生成 typedef
   if (config.lang === 'js') {
     const jsDocPath = path.resolve(dirPath, JSDOC_PATH)
     fse.ensureFileSync(jsDocPath)
-    await fse.writeFile(
-      jsDocPath,
+    const { code } = await compileJsDocTypedefs({
+      source: config.source,
       // @ts-ignore
-      (await compileJsDocTypedefs({ source: config.source, url: config._url }))
-        .code
-    )
+      url: config._url,
+    })
+    await fse.writeFile(jsDocPath, code)
+  }
+
+  // typeOnly = true
+  // 则只生成 interface/typedef
+  if (config.typeOnly) {
+    return
   }
 
   // 生成单个 api 文件
@@ -103,12 +110,11 @@ const gen = async (
     code += `${config.header}\n\n`
     code += apisCode
 
-    await fse.writeFile(apiCollectionPath, formatCode(config.lang)(code))
+    const formattedCode = formatCode(config.lang)(code)
+    await fse.writeFile(apiCollectionPath, formattedCode)
   }
 
-  // typeOnly 只生成 interface/typedef
-  // 不生成接口代码
-  if (!config.typeOnly && pathsObject) {
+  if (pathsObject) {
     Object.entries(pathsObject).forEach(genApi)
   }
 }
@@ -125,7 +131,7 @@ const freeSwagger = async (
   const spinner = ora().render()
 
   try {
-    // merge + normalize
+    // merge + normalize config
     const mergedConfig = await mergeDefaultParams(config)
 
     spinner.start('正在生成文件...')
@@ -144,6 +150,7 @@ const freeSwagger = async (
 
     // gen
     await gen(mergedConfig, mergedConfig.root, choosePaths)
+
     spinner.succeed(
       `api 文件生成成功，文件根目录地址: ${chalk.green(mergedConfig.root)}`
     )
