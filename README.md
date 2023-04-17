@@ -20,7 +20,7 @@ free-swagger 提供多种接入方式
 
 相关博客：[可能是你遇到最好用的 swagger 前端代码生成工具](https://juejin.cn/post/7010969620493156382)
 
-# dev
+# Contribute
 > 推荐使用 node14
 
 ```shell
