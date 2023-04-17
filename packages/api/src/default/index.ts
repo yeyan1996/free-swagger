@@ -12,6 +12,7 @@ import path from 'path'
 import { OpenAPIV2 } from 'openapi-types'
 import { fetchJSON } from '../request'
 import fse from 'fs-extra'
+import { isObject } from 'lodash'
 
 export const DEFAULT_CUSTOM_IMPORT_CODE_TS = `import axios from "axios";`
 export const DEFAULT_CUSTOM_IMPORT_CODE_JS = `import axios from "axios";`
@@ -70,7 +71,7 @@ export const mergeDefaultParams = async (
     // 给 interface/jsdoc 添加来源，便于回溯
     if (isUrl(source)) {
       // @ts-ignore
-      mergedConfig._url = config
+      mergedConfig._url = isObject(config) ? config.source ?? '' : config
     }
     // 请求源文件/加载 json 模块，并重写
     mergedConfig.source = await loadSwaggerDocument(source, mergedConfig.cookie)
