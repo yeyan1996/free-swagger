@@ -7,8 +7,8 @@
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { ApiResponse, DeviceState, LightingSummary } from "./interface/index.ts";
 import { AxiosResponse } from "axios";

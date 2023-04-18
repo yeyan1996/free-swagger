@@ -7,8 +7,8 @@
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 export interface Product {
   /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles. */

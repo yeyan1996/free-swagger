@@ -25,7 +25,8 @@
     "serve": "tsc -w",
     "build": "tsc",
     "lint": "eslint **/*.ts --fix",
-    "test": "jest"
+    "test": "jest",
+    "test:updateSnapshot": "jest --updateSnapshot"
   },
   "dependencies": {
     "api-spec-converter": "^2.12.0",

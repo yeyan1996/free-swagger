@@ -82,7 +82,7 @@ exports[`core test generate full js doc 1`] = `
  * @title Swagger Petstore
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @version 1.0.3
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -143,8 +143,8 @@ exports[`core test generate full ts interface 1`] = `
  * @title Swagger Petstore
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 export interface Category {
   id?: number;
@@ -197,8 +197,8 @@ exports[`core test generate full ts interface with generic 1`] = `
  * @see https://www.npmjs.com/package/free-swagger
  * @title 123
  * @version 1.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 export interface PageInfo<T> {
   list?: T[];
@@ -228,8 +228,8 @@ exports[`core test generate full ts interface with special generic 1`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 export interface Product {
   /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles. */

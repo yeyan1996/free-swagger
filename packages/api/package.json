@@ -27,7 +27,8 @@
 		"postinstall": "patch-package",
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix",
-		"test": "jest"
+		"test": "jest",
+		"test:updateSnapshot": "jest --updateSnapshot"
 	},
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "9.0.7",

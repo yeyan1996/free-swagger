@@ -17,7 +17,7 @@
     "postinstall": "patch-package",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.7",

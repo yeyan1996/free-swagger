@@ -28,7 +28,7 @@
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix",
 		"debug": "node dist/bin/index.js -c",
-		"test": "echo \"Error: no test specified\" && exit 0"
+		"test": "echo \"Error: no test specified\""
 	},
 	"dependencies": {
 		"@jsdevtools/ono": "^7.1.0",

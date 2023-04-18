@@ -95,8 +95,6 @@ ${title ? ` * @title ${title}\n` : ''}${
     description ? ` * @description ${description}\n` : ''
   }${fileDescription ? ` * @fileDescription ${fileDescription}\n` : ''}${
     url ? ` * @host ${String(url)}\n` : ''
-  }${version ? ` * @version ${version}\n` : ''} * @date ${dayjs(
-    Date.now()
-  ).format('YYYY-MM-DD HH:mm')}
+  }${version ? ` * @version ${version}\n` : ''}}
 **/`
 }

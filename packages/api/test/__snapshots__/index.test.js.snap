@@ -11,8 +11,8 @@ exports[`api test base option 1`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Everything about your Pets
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -136,8 +136,8 @@ exports[`api test base option 2`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Access to Petstore orders
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -204,7 +204,7 @@ exports[`api test base option 3`] = `
  * @title Swagger Petstore
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @version 1.0.3
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -270,8 +270,8 @@ exports[`api test base option 4`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Operations about user
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -390,8 +390,8 @@ exports[`api test custom ts template 1`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { DeviceRegistrationInfo } from \\"./interface/index.ts\\";
 import { AxiosResponse } from \\"axios\\";
@@ -425,8 +425,8 @@ exports[`api test custom ts template 2`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import {
   TemperatureSummary,
@@ -520,8 +520,8 @@ exports[`api test custom ts template 3`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 /** ok */
 export interface LightingSummary {
@@ -646,8 +646,8 @@ exports[`api test custom ts template 4`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { ApiResponse, DeviceState, LightingSummary } from \\"./interface/index.ts\\";
 import { AxiosResponse } from \\"axios\\";
@@ -762,8 +762,8 @@ exports[`api test custom ts template 5`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { AxiosResponse } from \\"axios\\";
 import http from \\"http\\";
@@ -803,8 +803,8 @@ exports[`api test should work in openApi3 1`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0-oas3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -846,8 +846,8 @@ exports[`api test should work in openApi3 2`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0-oas3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -931,7 +931,7 @@ exports[`api test should work in openApi3 3`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0-oas3
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -1061,8 +1061,8 @@ exports[`api test should work in openApi3 4`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0-oas3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1166,8 +1166,8 @@ exports[`api test should work in openApi3 5`] = `
  * @title home-iot-api
  * @description The API for the EatBacon IOT project
  * @version 1.0.0-oas3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1208,8 +1208,8 @@ exports[`api test should work with only one json params 1`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1238,8 +1238,8 @@ exports[`api test should work with only one json params 2`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1267,8 +1267,8 @@ exports[`api test should work with only one json params 3`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1316,8 +1316,8 @@ exports[`api test should work with only one json params 4`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1347,8 +1347,8 @@ exports[`api test should work with only one json params 5`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1378,8 +1378,8 @@ exports[`api test should work with only one json params 6`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1409,7 +1409,7 @@ exports[`api test should work with only one json params 7`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -1519,8 +1519,8 @@ exports[`api test should work with only one json params 8`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1561,8 +1561,8 @@ exports[`api test should work with only one json params 9`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1590,8 +1590,8 @@ exports[`api test should work with only one string params 1`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Everything about your Pets
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1715,8 +1715,8 @@ exports[`api test should work with only one string params 2`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Access to Petstore orders
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1783,7 +1783,7 @@ exports[`api test should work with only one string params 3`] = `
  * @title Swagger Petstore
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @version 1.0.3
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -1849,8 +1849,8 @@ exports[`api test should work with only one string params 4`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Operations about user
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -1970,8 +1970,8 @@ exports[`api test simple jsdoc 1`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Everything about your Pets
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2095,8 +2095,8 @@ exports[`api test simple jsdoc 2`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Access to Petstore orders
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2163,7 +2163,7 @@ exports[`api test simple jsdoc 3`] = `
  * @title Swagger Petstore
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @version 1.0.3
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
@@ -2229,8 +2229,8 @@ exports[`api test simple jsdoc 4`] = `
  * @description This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \`special-key\` to test the authorization filters.
  * @fileDescription Operations about user
  * @version 1.0.3
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2349,8 +2349,8 @@ exports[`api test ts language 1`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2374,8 +2374,8 @@ exports[`api test ts language 2`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2400,8 +2400,8 @@ exports[`api test ts language 3`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { PriceEstimate, Product } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
@@ -2446,8 +2446,8 @@ exports[`api test ts language 4`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 export interface Product {
   /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles. */
@@ -2590,8 +2590,8 @@ exports[`api test ts language 5`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import axios from \\"axios\\";
 
@@ -2622,8 +2622,8 @@ exports[`api test ts language 6`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { Product } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
@@ -2649,8 +2649,8 @@ exports[`api test ts language 7`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { Product } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
@@ -2676,8 +2676,8 @@ exports[`api test ts language 8`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { Profile, Activities } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
@@ -2712,8 +2712,8 @@ exports[`api test ts language 9`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
- **/
+}
+**/
 
 import { JsonResult, Guid } from \\"./interface/index.ts\\";
 import axios from \\"axios\\";
@@ -2739,7 +2739,7 @@ exports[`api test type only 1`] = `
  * @title Uber API
  * @description Move your app forward with the Uber API
  * @version 1.0.0
- * @date 2016-12-22 07:36
+}
 **/
 
 /**
