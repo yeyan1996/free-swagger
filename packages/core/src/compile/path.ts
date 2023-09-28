@@ -21,7 +21,7 @@ const compilePath = async (
   method: Method
 ) => {
   const { source } = config
-  const { definitions, paths, basePath = "" } = source
+  const { definitions, paths, basePath = '' } = source
 
   const operationObject = paths[url][method]
   if (!operationObject) {
