@@ -14,6 +14,13 @@
         class="url"
       ></svg-icon>
     </el-tooltip>
+    <el-tooltip content="写入磁盘">
+      <svg-icon
+        name="disk"
+        @click.stop="handleWriteToDisk(path, method)"
+        class="url"
+      ></svg-icon>
+    </el-tooltip>
     <el-tooltip content="复制模拟数据">
       <span class="mock" @click.stop="handleCopyFake(path, method)"
         >mock</span
@@ -23,7 +30,12 @@
 </template>
 
 <script>
-import { handleCopyPath, handleCopyApi, handleCopyFake } from "@/state";
+import {
+  handleCopyPath,
+  handleCopyApi,
+  handleCopyFake,
+  handleWriteToDisk,
+} from "@/state";
 
 export default {
   name: "ApiIcons",
@@ -39,12 +51,13 @@ export default {
     summary: {
       type: String,
       required: true
-    }
+    },
   },
   methods: {
     handleCopyPath,
     handleCopyApi,
-    handleCopyFake
+    handleCopyFake,
+    handleWriteToDisk
   }
 };
 </script>

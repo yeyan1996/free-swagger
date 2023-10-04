@@ -252,3 +252,55 @@ export const handleCopyJsDocTypeDef = async (
     Message.error("复制失败：请检查选择的 api");
   }
 };
+
+// 写入磁盘
+export const handleWriteToDisk = async (
+  path = state.currentApi.path,
+  method = state.currentApi.method,
+  source = state.swagger
+) => {
+  try {
+    if (!path) {
+      throw new Error();
+    }
+
+    if (!window.showOpenFilePicker) {
+      return Message.error(
+        "该浏览器不支持showOpenFilePicker, 检查是否是https，建议使用：chrome >= 116、Edge >= 115、Opera >=101 版本"
+      );
+    }
+
+    const storage = state.storage;
+    const codeFragment = await freeSwaggerCore(
+      {
+        source,
+        lang: storage.currentLanguage,
+        jsDoc: storage.jsDoc,
+        templateFunction: eval(
+          storage.currentLanguage === "js"
+            ? storage.jsTemplate
+            : storage.tsTemplate
+        ),
+      },
+      path,
+      method
+    );
+    const [fileHandle] = await window.showOpenFilePicker({
+      multiple: false,
+    });
+
+    const contentFile = await fileHandle.getFile();
+
+    const orgFileText = await contentFile.text();
+
+    const writableStream = await fileHandle.createWritable();
+
+    await writableStream.write(orgFileText + "\n" + codeFragment);
+
+    await writableStream.close();
+
+    Message.success("写入磁盘成功");
+  } catch (e) {
+    Message.error("写入磁盘失败");
+  }
+};
