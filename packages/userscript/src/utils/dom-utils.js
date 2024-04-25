@@ -30,7 +30,7 @@ export function highlightDOM(el, highlightClass, timeout = 3000) {
   el.setAttribute("__t", timeId);
 }
 
-export const copyMessage = message => {
+export const copyMessage = (message) => {
   if (!message) {
     throw new Error("无内容");
   }

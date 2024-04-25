@@ -30,22 +30,22 @@ export default {
   props: {
     path: {
       type: String,
-      required: true
+      required: true,
     },
     method: {
       type: String,
-      required: true
+      required: true,
     },
     summary: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     handleCopyPath,
     handleCopyApi,
-    handleCopyFake
-  }
+    handleCopyFake,
+  },
 };
 </script>
 

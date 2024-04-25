@@ -72,11 +72,11 @@ import {
   handleCopyApi,
   handleCopyPath,
   handleCopyFake,
-  handleCopyType
+  handleCopyType,
 } from "@/state";
 import {
   createApiIconsDom,
-  createInterfaceIconDom
+  createInterfaceIconDom,
 } from "@/utils/manually-mount";
 import RecursiveIterator from "recursive-iterator";
 import { assignSwagger } from "@/utils/hooks";
@@ -86,13 +86,13 @@ export default {
   name: "app",
   components: {
     MoreSetting,
-    ApiOptions
+    ApiOptions,
   },
   data() {
     return {
       state,
       collapse: false,
-      loading: true
+      loading: true,
     };
   },
   watch: {
@@ -106,12 +106,12 @@ export default {
           Promise.all([
             this.bindClickEventForController(),
             this.bindClickEventForModel(),
-            this.injectIconsForApiNodeList()
+            this.injectIconsForApiNodeList(),
           ]);
         }
         this.bindApiHandlerForApiNodeList();
       },
-      immediate: true
+      immediate: true,
     },
     "state.options": {
       handler(newVal) {
@@ -122,8 +122,8 @@ export default {
           this.loading = false;
         }, 5000);
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     handleCopyType,
@@ -151,15 +151,15 @@ export default {
       );
       const controllerNodeList = [...document.querySelectorAll(".opblock-tag")];
       // 锚点跳转时给当前锚点的 controller 节点注入 icons
-      const [openedControllerNode] = controllerNodeList.filter(node =>
+      const [openedControllerNode] = controllerNodeList.filter((node) =>
         node.parentNode.classList.contains("is-open")
       );
       // 给所有 controller 节点绑定事件，注入 icons
       (openedControllerNode
         ? [...controllerNodeList, openedControllerNode]
         : controllerNodeList
-      ).forEach(controllerNode =>
-        controllerNode.addEventListener("click", e => {
+      ).forEach((controllerNode) =>
+        controllerNode.addEventListener("click", (e) => {
           this.bindApiHandlerForApiNodeList(e.currentTarget);
           this.injectIconsForApiNodeList(e.currentTarget);
         })
@@ -185,7 +185,7 @@ export default {
     // 给每个 apiNode 绑定点击 api 事件
     async bindApiHandlerForApiNodeList(controllerNode) {
       const apiNodeList = await this.getApiNodeList(controllerNode);
-      apiNodeList.forEach(apiNode => {
+      apiNodeList.forEach((apiNode) => {
         apiNode.addEventListener("click", this.apiNodeHandler);
       });
     },
@@ -200,7 +200,7 @@ export default {
             const [url, method] = path;
             const key = `${method} ${url} ${state.swagger.paths[url][method].summary}`;
             state.key = key;
-            state.currentApi = state.options.find(item => item.key === key);
+            state.currentApi = state.options.find((item) => item.key === key);
             break;
           }
         }
@@ -214,7 +214,7 @@ export default {
           ?.innerText;
         if (!method || !path || !summary) return;
         state.currentApi = state.options.find(
-          item => item.method === method.toLowerCase() && item.path === path
+          (item) => item.method === method.toLowerCase() && item.path === path
         );
         state.key = state.currentApi.key;
       }
@@ -222,7 +222,7 @@ export default {
     // 注入 icons（老版本）
     async injectIconsForApiNodeList(controllerNode) {
       const apiNodeList = await this.getApiNodeList(controllerNode);
-      apiNodeList.forEach(apiNode => {
+      apiNodeList.forEach((apiNode) => {
         apiNode.style.position = "relative";
         const method = apiNode.querySelector(".opblock-summary-method")
           ?.innerText;
@@ -245,7 +245,7 @@ export default {
         () => [...(document.querySelectorAll(".model-container") ?? [])].length
       );
       const modelNodeList = [...document.querySelectorAll(".model-container")];
-      modelNodeList.forEach(node => {
+      modelNodeList.forEach((node) => {
         node.style.position = "relative";
         const interfaceNode = createInterfaceIconDom(node.innerText);
         node.appendChild(interfaceNode);
@@ -258,8 +258,8 @@ export default {
         .querySelector(".models")
         .firstChild?.addEventListener("click", this.modelTagHandler);
       await this.modelTagHandler();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -95,7 +95,7 @@ import {
   handleCopyInterface,
   handleCopyJsDocTypeDef,
   handleCopyPath,
-  handleCopyFake
+  handleCopyFake,
 } from "@/state";
 import { jsTemplate, tsTemplate } from "free-swagger-core";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
@@ -109,14 +109,14 @@ export default {
       instance: null,
       form: {
         jsTemplate: "",
-        tsTemplate: ""
-      }
+        tsTemplate: "",
+      },
     };
   },
   computed: {
     isJS() {
       return this.state.storage.currentLanguage === "js";
-    }
+    },
   },
   watch: {
     dialog: {
@@ -132,7 +132,7 @@ export default {
                   : state.storage.tsTemplate,
               theme: "vs-dark",
               language: "javascript",
-              automaticLayout: true
+              automaticLayout: true,
             }
           );
           this.instance.onDidChangeModelContent(() => {
@@ -144,8 +144,8 @@ export default {
           this.instance?.dispose();
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     handleCopyJsDocTypeDef,
@@ -190,8 +190,8 @@ export default {
       state.storage.tsTemplate = this.form.tsTemplate;
       Message.success("保存成功");
       this.dialog = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

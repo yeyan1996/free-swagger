@@ -12,12 +12,12 @@ start(selectorId, [injectCdn]).then(async () => {
   const { default: App } = await import("./App.vue");
   Vue.config.productionTip = false;
   new Vue({
-    render: h => h(App)
+    render: (h) => h(App),
   }).$mount(`#${selectorId}`);
 });
 
 window.SWAGGER_EXTENDS_VERSION = {
   BRANCH: BRANCH,
   COMMITHASH: COMMITHASH,
-  VERSION: VERSION
+  VERSION: VERSION,
 };
