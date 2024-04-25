@@ -65,6 +65,6 @@
   },
   "include": [
     "src",
-    "./global.d.ts"
+    "global.d.ts"
   ]
 }

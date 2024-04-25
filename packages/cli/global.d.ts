@@ -1,6 +1,8 @@
-declare namespace NodeJS {
-  interface Global {
-    __DEV__: boolean
-    __PATH__: string
-  }
+declare global {
+  // eslint-disable-next-line no-var
+  var __DEV__: boolean
+  // eslint-disable-next-line no-var
+  var __PATH__: string
 }
+
+export {}

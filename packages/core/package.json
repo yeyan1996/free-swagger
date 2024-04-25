@@ -1,15 +1,15 @@
 {
   "name": "free-swagger-core",
   "version": "5.4.2",
+  "keywords": [
+    "swagger",
+    "typescript"
+  ],
   "homepage": "https://github.com/yeyan1996/free-swagger#readme",
   "repository": {
     "type": "github",
     "url": "https://github.com/yeyan1996/free-swagger"
   },
-  "keywords": [
-    "swagger",
-    "typescript"
-  ],
   "license": "MIT",
   "author": "yeyan1996",
   "main": "dist/main.js",
@@ -22,9 +22,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "serve": "tsc -w",
     "build": "tsc",
     "lint": "eslint **/*.ts --fix",
+    "serve": "tsc -w",
     "test": "jest",
     "test:updateSnapshot": "jest --updateSnapshot"
   },
@@ -32,6 +32,7 @@
     "api-spec-converter": "^2.12.0",
     "axios": "^0.21.1",
     "camelcase": "^5.3.1",
+    "chalk": "^3.0.0",
     "dayjs": "^1.10.7",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
@@ -49,7 +50,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "jest": "^26.0.1",
     "ts-jest": "^26.1.0",
-    "typescript": "^3.7.4"
+    "typescript": "^4.9.5"
   },
   "gitHead": "74d8d330597c53940722df356254883634bf53f8"
 }

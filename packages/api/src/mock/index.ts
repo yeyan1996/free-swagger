@@ -22,7 +22,10 @@ jsf.option({
 })
 
 // 创建状态为 "200" 的模拟数据
-const createMockSchema = (schema: object, key: string): object => {
+const createMockSchema = (
+  schema: Record<string, any>,
+  key: string
+): Record<string, any> => {
   let mockSchema: any = {}
   try {
     mockSchema = jsf.generate(schema)
@@ -48,7 +51,7 @@ export const mock = async ({
   } = {}
 
   /**补充缺失的 definitions*/
-  Object.assign(source.definitions, {
+  Object.assign(source.definitions ?? {}, {
     List: {
       type: 'array',
     },
