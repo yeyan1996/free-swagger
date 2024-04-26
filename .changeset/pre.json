@@ -8,5 +8,7 @@
     "free-swagger-extension": "5.4.2",
     "free-swagger-userscript": "5.4.2"
   },
-  "changesets": []
+  "changesets": [
+    "witty-terms-search"
+  ]
 }

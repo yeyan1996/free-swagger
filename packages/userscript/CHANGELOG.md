@@ -1,0 +1,12 @@
+# free-swagger-userscript
+
+## 5.5.0-beta.0
+
+### Minor Changes
+
+- add pre release
+
+### Patch Changes
+
+- Updated dependencies
+  - free-swagger-core@5.5.0-beta.0
