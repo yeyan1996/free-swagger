@@ -28,6 +28,8 @@ jobs:
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
 
   install:
+    needs:
+      - setup
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +37,8 @@ jobs:
         run: pnpm install
 
   publish:
+    needs:
+      - install
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
