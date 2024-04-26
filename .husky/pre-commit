@@ -1,1 +1,3 @@
-npm run precommit
+if [ "$CI" != "true" ]; then
+  npm run precommit
+fi

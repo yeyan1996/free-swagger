@@ -17,7 +17,7 @@
   "author": "yeyan1996",
   "scripts": {
     "ci:publish": "pnpm publish -r",
-    "precommit": "npm run lint && npm run build && npm run test",
+    "precommit": "$CI && npm run lint && npm run build && npm run test",
     "build": "pnpm -r exec -- npm run build",
     "lint": "pnpm -r exec -- npm run lint",
     "test": "pnpm -r exec -- npm run test",
