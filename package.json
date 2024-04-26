@@ -24,6 +24,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "husky": "^9.0.11"
   },
   "pnpm": {

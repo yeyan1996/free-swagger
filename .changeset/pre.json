@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "free-swagger": "5.4.3",
+    "free-swagger-cli": "5.4.3",
+    "free-swagger-core": "5.4.2",
+    "free-swagger-extension": "5.4.2",
+    "free-swagger-userscript": "5.4.2"
+  },
+  "changesets": []
+}
