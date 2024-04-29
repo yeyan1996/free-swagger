@@ -1,5 +1,13 @@
 # free-swagger-userscript
 
+## 5.5.0-beta.1
+
+### Patch Changes
+
+- 3b57add: change access
+- Updated dependencies [3b57add]
+  - free-swagger-core@5.5.0-beta.1
+
 ## 5.5.0-beta.0
 
 ### Minor Changes

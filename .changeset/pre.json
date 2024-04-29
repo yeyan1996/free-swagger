@@ -9,6 +9,7 @@
     "free-swagger-userscript": "5.4.2"
   },
   "changesets": [
+    "hip-stingrays-smell",
     "witty-terms-search"
   ]
 }
