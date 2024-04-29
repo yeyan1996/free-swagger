@@ -33,6 +33,6 @@ jobs:
         with:
           commit: "chore: update versions"
           title: "chore: update versions"
-          publish: git status -s && pnpm ci:publish
+          publish: pnpm ci:publish --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
