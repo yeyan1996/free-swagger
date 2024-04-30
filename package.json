@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "yeyan1996",
   "scripts": {
-    "ci:publish:pre": "pnpm -r publish -- --tag beta",
+    "ci:publish:pre": "pnpm -r publish -- --tag beta -- --no-git-checks",
     "precommit": "$CI && npm run lint && npm run build && npm run test",
     "build": "pnpm -r exec -- npm run build",
     "lint": "pnpm -r exec -- npm run lint",
