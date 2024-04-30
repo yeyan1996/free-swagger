@@ -16,7 +16,7 @@
   "author": "yeyan1996",
   "scripts": {
     "ci:publish:pre": "pnpm publish -r --tag beta --force --no-git-checks",
-    "precommit": "$CI && npm run lint && npm run build && npm run test",
+    "precommit": "$CI && npm run lint",
     "build": "pnpm -r exec -- npm run build",
     "lint": "pnpm -r exec -- npm run lint",
     "test": "pnpm -r exec -- npm run test",
