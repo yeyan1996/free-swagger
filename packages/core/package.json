@@ -26,8 +26,7 @@
     "lint": "eslint **/*.ts --fix",
     "serve": "tsc -w",
     "test": "jest",
-    "test:updateSnapshot": "jest --updateSnapshot",
-    "prepublishOnly": "npm run build"
+    "test:updateSnapshot": "jest --updateSnapshot"
   },
   "dependencies": {
     "api-spec-converter": "^2.12.0",

@@ -28,8 +28,7 @@
 		"build": "tsc",
 		"lint": "eslint **/*.ts --fix",
 		"debug": "node dist/bin/index.js -c",
-		"test": "echo \"Error: no test specified\"",
-		"prepublishOnly": "npm run build"
+		"test": "echo \"Error: no test specified\""
 	},
 	"dependencies": {
 		"@jsdevtools/ono": "^7.1.0",

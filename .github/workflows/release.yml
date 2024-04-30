@@ -2,8 +2,7 @@ name: Changesets
 on:
   push:
     branches:
-      - main
-      - feat-github-action
+      - *
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
@@ -31,8 +30,11 @@ jobs:
       - name: install dependencies
         run: pnpm install
 
+      - name: build
+        run: pnpm build
+
       - name: publish
-        run: git status -s && pnpm ci:publish:pre
+        run: pnpm ci:publish:pre
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
