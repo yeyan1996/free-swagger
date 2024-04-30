@@ -4,7 +4,7 @@ exports[`core test code fragment 1`] = `
 "export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -24,7 +24,7 @@ exports[`core test code fragment with js doc 1`] = `
 export const updateUser = (queryParams, { username, qqq }, bodyParams) =>
   axios.request({
     url: \`/v2/user/\${username}/\${qqq}\`,
-    method: \\"put\\",
+    method: "put",
     params: queryParams,
     data: bodyParams
   });
@@ -65,7 +65,7 @@ exports[`core test code fragment2 1`] = `
 "export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -89,7 +89,7 @@ exports[`core test generate full js doc 1`] = `
  * @typedef Category
  * @property {number} id
  * @property {string} name
- * @property {(\\"available\\" | \\"pending\\" | \\"sold\\")[]} names
+ * @property {("available" | "pending" | "sold")[]} names
 **/
 
 /**
@@ -99,7 +99,7 @@ exports[`core test generate full js doc 1`] = `
  * @property {string} name
  * @property {string[]} photoUrls
  * @property {Tag[]} tags
- * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
+ * @property {"available" | "pending" | "sold"} status - pet status in the store
 **/
 
 /**
@@ -117,7 +117,7 @@ exports[`core test generate full js doc 1`] = `
 
 /**
  * @typedef Order
- * @property {\\"[\\"FORM_INSERT_AFTER\\"\\" | \\"\\"FORM_UPDATE_AFTER\\"]\\"} status - Order Status
+ * @property {"["FORM_INSERT_AFTER"" | ""FORM_UPDATE_AFTER"]"} status - Order Status
 **/
 
 /**
@@ -149,7 +149,7 @@ exports[`core test generate full ts interface 1`] = `
 export interface Category {
   id?: number;
   name?: string;
-  names?: (\\"available\\" | \\"pending\\" | \\"sold\\")[];
+  names?: ("available" | "pending" | "sold")[];
 }
 
 export interface Pet {
@@ -159,7 +159,7 @@ export interface Pet {
   photoUrls: string[];
   tags?: Tag[];
   /** pet status in the store */
-  status?: \\"available\\" | \\"pending\\" | \\"sold\\";
+  status?: "available" | "pending" | "sold";
 }
 
 export interface Tag {
@@ -178,7 +178,7 @@ export interface ApiResponse {
 export interface User {
   id?: number;
   username?: string;
-  \\"first-name\\"?: string;
+  "first-name"?: string;
   lastName?: string;
   email?: string;
   password?: string;
@@ -202,7 +202,7 @@ exports[`core test generate full ts interface with generic 1`] = `
 
 export interface PageInfo<T> {
   list?: T[];
-  \\"page-num\\"?: number;
+  "page-num"?: number;
   pageSize?: number;
   pages?: number;
   total?: number;
@@ -251,7 +251,7 @@ export interface PriceEstimate {
   currency_code?: string;
   /** Display name of product. */
   display_name?: string;
-  /** Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI. */
+  /** Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI. */
   estimate?: string;
   /** Lower bound of the estimated price. */
   low_estimate?: number;
@@ -291,24 +291,24 @@ export interface Activities {
 }
 
 /** Enumeration of Role Type */
-export type RoleType = \\"Admin\\" | \\"User\\" | \\"SetSms\\";
+export type RoleType = "Admin" | "User" | "SetSms";
 
 export interface CreateOrUpdateUserInput {
   /** 用户ID(ID来自User表) */
   userId?: number;
   /** 用户权限 */
   userRights?: (
-    | \\"View\\"
-    | \\"Operate\\"
-    | \\"Auth\\"
-    | \\"Search\\"
-    | \\"Delete\\"
-    | \\"UserManage\\"
-    | \\"UserConfig\\"
-    | \\"SetTime\\"
-    | \\"SetNetwork\\"
-    | \\"SetSms\\"
-    | \\"SystemManage\\"
+    | "View"
+    | "Operate"
+    | "Auth"
+    | "Search"
+    | "Delete"
+    | "UserManage"
+    | "UserConfig"
+    | "SetTime"
+    | "SetNetwork"
+    | "SetSms"
+    | "SystemManage"
   )[];
 }
 
@@ -320,8 +320,8 @@ export interface Abc {
 export type ArrayOfAbc = Abc[];
 
 export interface NumberArrayEnumModel {
-  foo?: (\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[];
-  bar?: (\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[];
+  foo?: ("0" | "1" | "2" | "4" | "8")[];
+  bar?: ("0" | "1" | "2" | "3")[];
 }
 
 export interface Error {
@@ -346,15 +346,15 @@ export interface JsonResult<T> {
   result?: boolean;
   /** 代码 */
   code?:
-    | \\"Success\\"
-    | \\"Timeout\\"
-    | \\"Fail\\"
-    | \\"Expired\\"
-    | \\"Error\\"
-    | \\"InternalServerError\\"
-    | \\"InvalidAnonymousAccess\\"
-    | \\"UserSessionExpired\\"
-    | \\"UserIsBinded\\";
+    | "Success"
+    | "Timeout"
+    | "Fail"
+    | "Expired"
+    | "Error"
+    | "InternalServerError"
+    | "InvalidAnonymousAccess"
+    | "UserSessionExpired"
+    | "UserIsBinded";
   /** 数据 */
   data?: any;
   /** 消息 */
@@ -366,7 +366,7 @@ exports[`core test generate ts interface snippet 1`] = `
 "export interface Category {
   id?: number;
   name?: string;
-  names?: (\\"available\\" | \\"pending\\" | \\"sold\\")[];
+  names?: ("available" | "pending" | "sold")[];
 }
 "
 `;
@@ -374,7 +374,7 @@ exports[`core test generate ts interface snippet 1`] = `
 exports[`core test generate ts interface snippet width generic 1`] = `
 "export interface PageInfo<T> {
   list?: T[];
-  \\"page-num\\"?: number;
+  "page-num"?: number;
   pageSize?: number;
   pages?: number;
   total?: number;
@@ -396,7 +396,7 @@ exports[`core test ts code fragment with generic 1`] = `
 export const getCompanies = (params: { pageNum?: number; pageSize?: number }) =>
   axios.request<PageInfo<SwaggerList<Qwe>>>({
     url: \`/base/companies\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -415,7 +415,7 @@ export const getPetById = (
 ) =>
   axios.request<Pet>({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -430,7 +430,7 @@ exports[`core test ts code fragment with interface 1`] = `
   photoUrls: string[];
   tags?: Tag[];
   /** pet status in the store */
-  status?: \\"available\\" | \\"pending\\" | \\"sold\\";
+  status?: "available" | "pending" | "sold";
 }
 "
 `;
@@ -447,7 +447,7 @@ export const uploadFile = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/v2/pet/\${petId}/uploadImage\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -464,7 +464,7 @@ exports[`core test ts code fragment with recursive interface 1`] = `
 
 export interface PageInfo<T> {
   list?: T[];
-  \\"page-num\\"?: number;
+  "page-num"?: number;
   pageSize?: number;
   pages?: number;
   total?: number;
@@ -481,15 +481,15 @@ export interface JsonResult<T> {
   result?: boolean;
   /** 代码 */
   code?:
-    | \\"Success\\"
-    | \\"Timeout\\"
-    | \\"Fail\\"
-    | \\"Expired\\"
-    | \\"Error\\"
-    | \\"InternalServerError\\"
-    | \\"InvalidAnonymousAccess\\"
-    | \\"UserSessionExpired\\"
-    | \\"UserIsBinded\\";
+    | "Success"
+    | "Timeout"
+    | "Fail"
+    | "Expired"
+    | "Error"
+    | "InternalServerError"
+    | "InvalidAnonymousAccess"
+    | "UserSessionExpired"
+    | "UserIsBinded";
   /** 数据 */
   data?: any;
   /** 消息 */

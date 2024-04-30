@@ -14,7 +14,7 @@ exports[`api test base option 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Find pet by ID
@@ -25,7 +25,7 @@ import axios from \\"axios\\";
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -39,7 +39,7 @@ export const getPetById = (_NOOP, { petId }) =>
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -53,7 +53,7 @@ export const updatePetWithForm = (params, { petId }) =>
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -67,7 +67,7 @@ export const deletePet = (_NOOP, { petId }) =>
 export const uploadFile = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}/uploadImage\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -79,7 +79,7 @@ export const uploadFile = (params, { petId }) =>
 export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -91,7 +91,7 @@ export const addPet = (params) =>
 export const updatePet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -99,12 +99,12 @@ export const updatePet = (params) =>
 /**
  * @description Finds Pets by status
  * @param {Object} params
- * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ * @param {"available" | "pending" | "sold"} params.status - Status values that need to be considered for filter
  **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -118,7 +118,7 @@ export const findPetsByStatus = (params) =>
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -139,7 +139,7 @@ exports[`api test base option 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Returns pet inventories by status
@@ -147,7 +147,7 @@ import axios from \\"axios\\";
 export const getInventory = () =>
   axios.request({
     url: \`/v2/store/inventory\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -161,7 +161,7 @@ export const getInventory = () =>
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -175,7 +175,7 @@ export const getOrderById = (_NOOP, { orderId }) =>
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -187,7 +187,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 export const placeOrder = (params) =>
   axios.request({
     url: \`/v2/store/order\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -220,7 +220,7 @@ exports[`api test base option 3`] = `
  * @property {string} name
  * @property {string[]} photoUrls
  * @property {Tag[]} tags
- * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
+ * @property {"available" | "pending" | "sold"} status - pet status in the store
 **/
 
 /**
@@ -242,7 +242,7 @@ exports[`api test base option 3`] = `
  * @property {number} petId
  * @property {number} quantity
  * @property {string} shipDate
- * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {"placed" | "approved" | "delivered"} status - Order Status
  * @property {boolean} complete
 **/
 
@@ -273,7 +273,7 @@ exports[`api test base option 4`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Get user by user name
@@ -284,7 +284,7 @@ import axios from \\"axios\\";
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -298,7 +298,7 @@ export const getUserByName = (_NOOP, { username }) =>
 export const updateUser = (params, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -312,7 +312,7 @@ export const updateUser = (params, { username }) =>
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -326,7 +326,7 @@ export const deleteUser = (_NOOP, { username }) =>
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -337,7 +337,7 @@ export const loginUser = (params) =>
 export const logoutUser = () =>
   axios.request({
     url: \`/v2/user/logout\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -349,7 +349,7 @@ export const logoutUser = () =>
 export const createUser = (params) =>
   axios.request({
     url: \`/v2/user\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -361,7 +361,7 @@ export const createUser = (params) =>
 export const createUsersWithArrayInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithArray\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -373,7 +373,7 @@ export const createUsersWithArrayInput = (params) =>
 export const createUsersWithListInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithList\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -393,14 +393,14 @@ exports[`api test custom ts template 1`] = `
 }
 **/
 
-import { DeviceRegistrationInfo } from \\"./interface/index.ts\\";
-import { AxiosResponse } from \\"axios\\";
-import http from \\"http\\";
+import { DeviceRegistrationInfo } from "./interface/index.ts";
+import { AxiosResponse } from "axios";
+import http from "http";
 
 export const getDevices = (params: { skip?: number; limit?: number }) =>
   axios.request<string[]>({
     url: \`/yeyan1996/IOT/1.0.0/devices\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -408,7 +408,7 @@ export const getDevices = (params: { skip?: number; limit?: number }) =>
 export const register = (params: DeviceRegistrationInfo) =>
   axios.request<any>({
     url: \`/yeyan1996/IOT/1.0.0/devices\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -434,14 +434,14 @@ import {
   TemperatueZoneStatus,
   HeaterState,
   ApiResponse
-} from \\"./interface/index.ts\\";
-import { AxiosResponse } from \\"axios\\";
-import http from \\"http\\";
+} from "./interface/index.ts";
+import { AxiosResponse } from "axios";
+import http from "http";
 
 export const temperatureSummary = () =>
   axios.request<TemperatureSummary>({
     url: \`/yeyan1996/IOT/1.0.0/temperature\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -456,7 +456,7 @@ export const getForecast = (
 ) =>
   axios.request<ForecastResponse>({
     url: \`/yeyan1996/IOT/1.0.0/temperature/forecast/\${days}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -471,7 +471,7 @@ export const getZoneTemperature = (
 ) =>
   axios.request<TemperatueZoneStatus>({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -486,7 +486,7 @@ export const getHeaterState = (
 ) =>
   axios.request<HeaterState>({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}/heater\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -503,7 +503,7 @@ export const setHeaterState = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}/heater/\${state}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -533,7 +533,7 @@ export interface LightingZone {
   id?: string;
   name?: string;
   deviceId?: number;
-  deviceType?: \\"dimmer\\" | \\"switch\\";
+  deviceType?: "dimmer" | "switch";
   zone?: string;
 }
 
@@ -570,7 +570,7 @@ export interface TemperatueZoneStatus {
   /** the temperature in the zone */
   value: number;
   /** the temperature units */
-  units?: \\"celsius\\" | \\"fahrenheit\\";
+  units?: "celsius" | "fahrenheit";
   /** the timestamp when the temperature was measured */
   timestamp: string;
 }
@@ -649,9 +649,9 @@ exports[`api test custom ts template 4`] = `
 }
 **/
 
-import { ApiResponse, DeviceState, LightingSummary } from \\"./interface/index.ts\\";
-import { AxiosResponse } from \\"axios\\";
-import http from \\"http\\";
+import { ApiResponse, DeviceState, LightingSummary } from "./interface/index.ts";
+import { AxiosResponse } from "axios";
+import http from "http";
 
 export const setDimmer = (
   _NOOP: Record<string, never>,
@@ -665,7 +665,7 @@ export const setDimmer = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/yeyan1996/IOT/1.0.0/lighting/dimmers/\${deviceId}/\${value}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -686,7 +686,7 @@ export const setDimmerTimer = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/yeyan1996/IOT/1.0.0/lighting/dimmers/\${deviceId}/\${value}/timer/\${timeunit}\`,
-    method: \\"post\\",
+    method: "post",
     params: params,
     data: {}
   });
@@ -701,7 +701,7 @@ export const getSwitchState = (
 ) =>
   axios.request<DeviceState>({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -718,7 +718,7 @@ export const setSwitch = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}/\${value}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -737,7 +737,7 @@ export const setSwitchTimer = (
 ) =>
   axios.request<ApiResponse>({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}/\${value}/timer/\${minutes}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -745,7 +745,7 @@ export const setSwitchTimer = (
 export const getLightingSummary = () =>
   axios.request<LightingSummary>({
     url: \`/yeyan1996/IOT/1.0.0/lightingSummary\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -765,13 +765,13 @@ exports[`api test custom ts template 5`] = `
 }
 **/
 
-import { AxiosResponse } from \\"axios\\";
-import http from \\"http\\";
+import { AxiosResponse } from "axios";
+import http from "http";
 
 export const getZones = () =>
   axios.request<string[]>({
     url: \`/yeyan1996/IOT/1.0.0/zones\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -786,7 +786,7 @@ export const quietZone = (
 ) =>
   axios.request<any>({
     url: \`/yeyan1996/IOT/1.0.0/zones/\${zoneId}/quiet\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -806,7 +806,7 @@ exports[`api test should work in openApi3 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -817,7 +817,7 @@ import axios from \\"axios\\";
 export const getDevices = (params) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/devices\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -829,7 +829,7 @@ export const getDevices = (params) =>
 export const register = (params) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/devices\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -849,7 +849,7 @@ exports[`api test should work in openApi3 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -857,7 +857,7 @@ import axios from \\"axios\\";
 export const temperatureSummary = () =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/temperature\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -871,7 +871,7 @@ export const temperatureSummary = () =>
 export const getForecast = (_NOOP, { days }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/temperature/forecast/\${days}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -885,7 +885,7 @@ export const getForecast = (_NOOP, { days }) =>
 export const getZoneTemperature = (_NOOP, { zoneId }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -899,7 +899,7 @@ export const getZoneTemperature = (_NOOP, { zoneId }) =>
 export const getHeaterState = (_NOOP, { zoneId }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}/heater\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -914,7 +914,7 @@ export const getHeaterState = (_NOOP, { zoneId }) =>
 export const setHeaterState = (_NOOP, { zoneId, state }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/temperature/\${zoneId}/heater/\${state}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -945,7 +945,7 @@ exports[`api test should work in openApi3 3`] = `
  * @property {string} id
  * @property {string} name
  * @property {number} deviceId
- * @property {\\"dimmer\\" | \\"switch\\"} deviceType
+ * @property {"dimmer" | "switch"} deviceType
  * @property {string} zone
 **/
 
@@ -977,7 +977,7 @@ exports[`api test should work in openApi3 3`] = `
  * @property {string} id - the unique identifier for the zone
  * @property {string} name - the name of the zone
  * @property {number} value - the temperature in the zone
- * @property {\\"celsius\\" | \\"fahrenheit\\"} units - the temperature units
+ * @property {"celsius" | "fahrenheit"} units - the temperature units
  * @property {string} timestamp - the timestamp when the temperature was measured
 **/
 
@@ -1064,7 +1064,7 @@ exports[`api test should work in openApi3 4`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -1076,7 +1076,7 @@ import axios from \\"axios\\";
 export const setDimmer = (_NOOP, { deviceId, value }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/dimmers/\${deviceId}/\${value}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -1093,7 +1093,7 @@ export const setDimmer = (_NOOP, { deviceId, value }) =>
 export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/dimmers/\${deviceId}/\${value}/timer/\${timeunit}\`,
-    method: \\"post\\",
+    method: "post",
     params: params,
     data: {}
   });
@@ -1107,7 +1107,7 @@ export const setDimmerTimer = (params, { deviceId, value, timeunit }) =>
 export const getSwitchState = (_NOOP, { deviceId }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1122,7 +1122,7 @@ export const getSwitchState = (_NOOP, { deviceId }) =>
 export const setSwitch = (_NOOP, { deviceId, value }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}/\${value}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -1138,7 +1138,7 @@ export const setSwitch = (_NOOP, { deviceId, value }) =>
 export const setSwitchTimer = (_NOOP, { deviceId, value, minutes }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lighting/switches/\${deviceId}/\${value}/timer/\${minutes}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -1149,7 +1149,7 @@ export const setSwitchTimer = (_NOOP, { deviceId, value, minutes }) =>
 export const getLightingSummary = () =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/lightingSummary\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1169,7 +1169,7 @@ exports[`api test should work in openApi3 5`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -1177,7 +1177,7 @@ import axios from \\"axios\\";
 export const getZones = () =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/zones\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1191,7 +1191,7 @@ export const getZones = () =>
 export const quietZone = (_NOOP, { zoneId }) =>
   axios.request({
     url: \`/yeyan1996/IOT/1.0.0/zones/\${zoneId}/quiet\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1211,7 +1211,7 @@ exports[`api test should work with only one json params 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -1221,7 +1221,7 @@ import axios from \\"axios\\";
 export const GetAuditLogs = (params) =>
   axios.request({
     url: \`/v1/api/services/app/AuditLog/GetAuditLogs\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1241,7 +1241,7 @@ exports[`api test should work with only one json params 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象
@@ -1250,7 +1250,7 @@ import axios from \\"axios\\";
 export const uploadLngLatUsingPOST = (params) =>
   axios.request({
     url: \`/v1/dev/uploadLngLat\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1270,7 +1270,7 @@ exports[`api test should work with only one json params 3`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Price Estimates
@@ -1283,7 +1283,7 @@ import axios from \\"axios\\";
 export const priceByGet = (params) =>
   axios.request({
     url: \`/v1/estimates/price\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1299,7 +1299,7 @@ export const priceByGet = (params) =>
 export const timeByGet = (params) =>
   axios.request({
     url: \`/v1/estimates/time\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1319,7 +1319,7 @@ exports[`api test should work with only one json params 4`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description
@@ -1330,7 +1330,7 @@ import axios from \\"axios\\";
 export const UpdateMapper = (_NOOP, { id }) =>
   axios.request({
     url: \`/v1/crawler/v1/mapper/\${id}\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: {}
   });
@@ -1350,7 +1350,7 @@ exports[`api test should work with only one json params 5`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Product Types
@@ -1361,7 +1361,7 @@ import axios from \\"axios\\";
 export const productsByGet = (params) =>
   axios.request({
     url: \`/v1/products\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1381,7 +1381,7 @@ exports[`api test should work with only one json params 6`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Product Types
@@ -1392,7 +1392,7 @@ import axios from \\"axios\\";
 export const productsTestByGet = (params) =>
   axios.request({
     url: \`/v1/products-test\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1426,7 +1426,7 @@ exports[`api test should work with only one json params 7`] = `
  * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
  * @property {string} currency_code - [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
  * @property {string} display_name - Display name of product.
- * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+ * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI.
  * @property {number} low_estimate - Lower bound of the estimated price.
  * @property {number} high_estimate - Upper bound of the estimated price.
  * @property {number} surge_multiplier - Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
@@ -1456,13 +1456,13 @@ exports[`api test should work with only one json params 7`] = `
 **/
 
 /**
-  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType - Enumeration of Role Type
+  * @typedef {("Admin" | "User" | "SetSms")} RoleType - Enumeration of Role Type
 **/
 
 /**
  * @typedef CreateOrUpdateUserInput
  * @property {number} userId - 用户ID(ID来自User表)
- * @property {(\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]} userRights - 用户权限
+ * @property {("View" | "Operate" | "Auth" | "Search" | "Delete" | "UserManage" | "UserConfig" | "SetTime" | "SetNetwork" | "SetSms" | "SystemManage")[]} userRights - 用户权限
 **/
 
 /**
@@ -1477,8 +1477,8 @@ exports[`api test should work with only one json params 7`] = `
 
 /**
  * @typedef NumberArrayEnumModel
- * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]} foo
- * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]} bar
+ * @property {("0" | "1" | "2" | "4" | "8")[]} foo
+ * @property {("0" | "1" | "2" | "3")[]} bar
 **/
 
 /**
@@ -1503,7 +1503,7 @@ exports[`api test should work with only one json params 7`] = `
 /**
  * @typedef JsonResult - 接口返回结果
  * @property {boolean} result - 结果
- * @property {\\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"} code - 代码
+ * @property {"Success" | "Timeout" | "Fail" | "Expired" | "Error" | "InternalServerError" | "InvalidAnonymousAccess" | "UserSessionExpired" | "UserIsBinded"} code - 代码
  * @property {string} data - 数据
  * @property {string} message - 消息
 **/"
@@ -1522,7 +1522,7 @@ exports[`api test should work with only one json params 8`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description User Profile
@@ -1530,7 +1530,7 @@ import axios from \\"axios\\";
 export const meByGet = () =>
   axios.request({
     url: \`/v1/me\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1544,7 +1544,7 @@ export const meByGet = () =>
 export const historyByGet = (params) =>
   axios.request({
     url: \`/v1/history\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1564,7 +1564,7 @@ exports[`api test should work with only one json params 9`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description 新增或编辑标准票, 需走审批流程
@@ -1572,7 +1572,7 @@ import axios from \\"axios\\";
 export const AddOrUpdateTicketTypical = () =>
   axios.request({
     url: \`/v1/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -1593,7 +1593,7 @@ exports[`api test should work with only one string params 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Find pet by ID
@@ -1604,7 +1604,7 @@ import axios from \\"axios\\";
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1618,7 +1618,7 @@ export const getPetById = (_NOOP, { petId }) =>
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1632,7 +1632,7 @@ export const updatePetWithForm = (params, { petId }) =>
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -1646,7 +1646,7 @@ export const deletePet = (_NOOP, { petId }) =>
 export const uploadFile = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}/uploadImage\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1658,7 +1658,7 @@ export const uploadFile = (params, { petId }) =>
 export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1670,7 +1670,7 @@ export const addPet = (params) =>
 export const updatePet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -1678,12 +1678,12 @@ export const updatePet = (params) =>
 /**
  * @description Finds Pets by status
  * @param {Object} params
- * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ * @param {"available" | "pending" | "sold"} params.status - Status values that need to be considered for filter
  **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1697,7 +1697,7 @@ export const findPetsByStatus = (params) =>
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1718,7 +1718,7 @@ exports[`api test should work with only one string params 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Returns pet inventories by status
@@ -1726,7 +1726,7 @@ import axios from \\"axios\\";
 export const getInventory = () =>
   axios.request({
     url: \`/v2/store/inventory\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1740,7 +1740,7 @@ export const getInventory = () =>
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1754,7 +1754,7 @@ export const getOrderById = (_NOOP, { orderId }) =>
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -1766,7 +1766,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 export const placeOrder = (params) =>
   axios.request({
     url: \`/v2/store/order\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1799,7 +1799,7 @@ exports[`api test should work with only one string params 3`] = `
  * @property {string} name
  * @property {string[]} photoUrls
  * @property {Tag[]} tags
- * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
+ * @property {"available" | "pending" | "sold"} status - pet status in the store
 **/
 
 /**
@@ -1821,7 +1821,7 @@ exports[`api test should work with only one string params 3`] = `
  * @property {number} petId
  * @property {number} quantity
  * @property {string} shipDate
- * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {"placed" | "approved" | "delivered"} status - Order Status
  * @property {boolean} complete
 **/
 
@@ -1852,7 +1852,7 @@ exports[`api test should work with only one string params 4`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Get user by user name
@@ -1863,7 +1863,7 @@ import axios from \\"axios\\";
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1877,7 +1877,7 @@ export const getUserByName = (_NOOP, { username }) =>
 export const updateUser = (params, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -1891,7 +1891,7 @@ export const updateUser = (params, { username }) =>
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -1905,7 +1905,7 @@ export const deleteUser = (_NOOP, { username }) =>
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -1916,7 +1916,7 @@ export const loginUser = (params) =>
 export const logoutUser = () =>
   axios.request({
     url: \`/v2/user/logout\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1928,7 +1928,7 @@ export const logoutUser = () =>
 export const createUser = (params) =>
   axios.request({
     url: \`/v2/user\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1940,7 +1940,7 @@ export const createUser = (params) =>
 export const createUsersWithArrayInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithArray\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1952,7 +1952,7 @@ export const createUsersWithArrayInput = (params) =>
 export const createUsersWithListInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithList\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -1973,7 +1973,7 @@ exports[`api test simple jsdoc 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Find pet by ID
@@ -1984,7 +1984,7 @@ import axios from \\"axios\\";
 export const getPetById = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -1998,7 +1998,7 @@ export const getPetById = (_NOOP, { petId }) =>
 export const updatePetWithForm = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2012,7 +2012,7 @@ export const updatePetWithForm = (params, { petId }) =>
 export const deletePet = (_NOOP, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -2026,7 +2026,7 @@ export const deletePet = (_NOOP, { petId }) =>
 export const uploadFile = (params, { petId }) =>
   axios.request({
     url: \`/v2/pet/\${petId}/uploadImage\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2038,7 +2038,7 @@ export const uploadFile = (params, { petId }) =>
 export const addPet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2050,7 +2050,7 @@ export const addPet = (params) =>
 export const updatePet = (params) =>
   axios.request({
     url: \`/v2/pet\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -2058,12 +2058,12 @@ export const updatePet = (params) =>
 /**
  * @description Finds Pets by status
  * @param {Object} params
- * @param {\\"available\\" | \\"pending\\" | \\"sold\\"} params.status - Status values that need to be considered for filter
+ * @param {"available" | "pending" | "sold"} params.status - Status values that need to be considered for filter
  **/
 export const findPetsByStatus = (params) =>
   axios.request({
     url: \`/v2/pet/findByStatus\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2077,7 +2077,7 @@ export const findPetsByStatus = (params) =>
 export const findPetsByTags = (params) =>
   axios.request({
     url: \`/v2/pet/findByTags\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2098,7 +2098,7 @@ exports[`api test simple jsdoc 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Returns pet inventories by status
@@ -2106,7 +2106,7 @@ import axios from \\"axios\\";
 export const getInventory = () =>
   axios.request({
     url: \`/v2/store/inventory\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -2120,7 +2120,7 @@ export const getInventory = () =>
 export const getOrderById = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -2134,7 +2134,7 @@ export const getOrderById = (_NOOP, { orderId }) =>
 export const deleteOrder = (_NOOP, { orderId }) =>
   axios.request({
     url: \`/v2/store/order/\${orderId}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -2146,7 +2146,7 @@ export const deleteOrder = (_NOOP, { orderId }) =>
 export const placeOrder = (params) =>
   axios.request({
     url: \`/v2/store/order\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2179,7 +2179,7 @@ exports[`api test simple jsdoc 3`] = `
  * @property {string} name
  * @property {string[]} photoUrls
  * @property {Tag[]} tags
- * @property {\\"available\\" | \\"pending\\" | \\"sold\\"} status - pet status in the store
+ * @property {"available" | "pending" | "sold"} status - pet status in the store
 **/
 
 /**
@@ -2201,7 +2201,7 @@ exports[`api test simple jsdoc 3`] = `
  * @property {number} petId
  * @property {number} quantity
  * @property {string} shipDate
- * @property {\\"placed\\" | \\"approved\\" | \\"delivered\\"} status - Order Status
+ * @property {"placed" | "approved" | "delivered"} status - Order Status
  * @property {boolean} complete
 **/
 
@@ -2232,7 +2232,7 @@ exports[`api test simple jsdoc 4`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /**
  * @description Get user by user name
@@ -2243,7 +2243,7 @@ import axios from \\"axios\\";
 export const getUserByName = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -2257,7 +2257,7 @@ export const getUserByName = (_NOOP, { username }) =>
 export const updateUser = (params, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: params
   });
@@ -2271,7 +2271,7 @@ export const updateUser = (params, { username }) =>
 export const deleteUser = (_NOOP, { username }) =>
   axios.request({
     url: \`/v2/user/\${username}\`,
-    method: \\"delete\\",
+    method: "delete",
     params: {},
     data: {}
   });
@@ -2285,7 +2285,7 @@ export const deleteUser = (_NOOP, { username }) =>
 export const loginUser = (params) =>
   axios.request({
     url: \`/v2/user/login\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2296,7 +2296,7 @@ export const loginUser = (params) =>
 export const logoutUser = () =>
   axios.request({
     url: \`/v2/user/logout\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -2308,7 +2308,7 @@ export const logoutUser = () =>
 export const createUser = (params) =>
   axios.request({
     url: \`/v2/user\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2320,7 +2320,7 @@ export const createUser = (params) =>
 export const createUsersWithArrayInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithArray\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2332,7 +2332,7 @@ export const createUsersWithArrayInput = (params) =>
 export const createUsersWithListInput = (params) =>
   axios.request({
     url: \`/v2/user/createWithList\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2352,12 +2352,12 @@ exports[`api test ts language 1`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 export const GetAuditLogs = (params: { StartDate?: string }) =>
   axios.request<IPagedResult<AuditLogListDto>>({
     url: \`/v1/api/services/app/AuditLog/GetAuditLogs\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2377,13 +2377,13 @@ exports[`api test ts language 2`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 /** 分页上传设备地理坐标信息, 参数list的值为 List<DeviceLngLat>, 返回Result对象 */
 export const uploadLngLatUsingPOST = (params: SwaggerList<void>) =>
   axios.request<any>({
     url: \`/v1/dev/uploadLngLat\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: params
   });
@@ -2403,8 +2403,8 @@ exports[`api test ts language 3`] = `
 }
 **/
 
-import { PriceEstimate, Product } from \\"./interface/index.ts\\";
-import axios from \\"axios\\";
+import { PriceEstimate, Product } from "./interface/index.ts";
+import axios from "axios";
 
 /** Price Estimates */
 export const priceByGet = (params: {
@@ -2415,7 +2415,7 @@ export const priceByGet = (params: {
 }) =>
   axios.request<PriceEstimate[]>({
     url: \`/v1/estimates/price\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2429,7 +2429,7 @@ export const timeByGet = (params: {
 }) =>
   axios.request<Product[]>({
     url: \`/v1/estimates/time\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2469,7 +2469,7 @@ export interface PriceEstimate {
   currency_code?: string;
   /** Display name of product. */
   display_name?: string;
-  /** Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI. */
+  /** Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI. */
   estimate?: string;
   /** Lower bound of the estimated price. */
   low_estimate?: number;
@@ -2509,24 +2509,24 @@ export interface Activities {
 }
 
 /** Enumeration of Role Type */
-export type RoleType = \\"Admin\\" | \\"User\\" | \\"SetSms\\";
+export type RoleType = "Admin" | "User" | "SetSms";
 
 export interface CreateOrUpdateUserInput {
   /** 用户ID(ID来自User表) */
   userId?: number;
   /** 用户权限 */
   userRights?: (
-    | \\"View\\"
-    | \\"Operate\\"
-    | \\"Auth\\"
-    | \\"Search\\"
-    | \\"Delete\\"
-    | \\"UserManage\\"
-    | \\"UserConfig\\"
-    | \\"SetTime\\"
-    | \\"SetNetwork\\"
-    | \\"SetSms\\"
-    | \\"SystemManage\\"
+    | "View"
+    | "Operate"
+    | "Auth"
+    | "Search"
+    | "Delete"
+    | "UserManage"
+    | "UserConfig"
+    | "SetTime"
+    | "SetNetwork"
+    | "SetSms"
+    | "SystemManage"
   )[];
 }
 
@@ -2538,8 +2538,8 @@ export interface Abc {
 export type ArrayOfAbc = Abc[];
 
 export interface NumberArrayEnumModel {
-  foo?: (\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[];
-  bar?: (\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[];
+  foo?: ("0" | "1" | "2" | "4" | "8")[];
+  bar?: ("0" | "1" | "2" | "3")[];
 }
 
 export interface Error {
@@ -2564,15 +2564,15 @@ export interface JsonResult<T> {
   result?: boolean;
   /** 代码 */
   code?:
-    | \\"Success\\"
-    | \\"Timeout\\"
-    | \\"Fail\\"
-    | \\"Expired\\"
-    | \\"Error\\"
-    | \\"InternalServerError\\"
-    | \\"InvalidAnonymousAccess\\"
-    | \\"UserSessionExpired\\"
-    | \\"UserIsBinded\\";
+    | "Success"
+    | "Timeout"
+    | "Fail"
+    | "Expired"
+    | "Error"
+    | "InternalServerError"
+    | "InvalidAnonymousAccess"
+    | "UserSessionExpired"
+    | "UserIsBinded";
   /** 数据 */
   data?: string;
   /** 消息 */
@@ -2593,7 +2593,7 @@ exports[`api test ts language 5`] = `
 }
 **/
 
-import axios from \\"axios\\";
+import axios from "axios";
 
 export const UpdateMapper = (
   _NOOP: Record<string, never>,
@@ -2605,7 +2605,7 @@ export const UpdateMapper = (
 ) =>
   axios.request<string>({
     url: \`/v1/crawler/v1/mapper/\${id}\`,
-    method: \\"put\\",
+    method: "put",
     params: {},
     data: {}
   });
@@ -2625,14 +2625,14 @@ exports[`api test ts language 6`] = `
 }
 **/
 
-import { Product } from \\"./interface/index.ts\\";
-import axios from \\"axios\\";
+import { Product } from "./interface/index.ts";
+import axios from "axios";
 
 /** Product Types */
 export const productsByGet = (params: { latitude: number; longitude: number }) =>
   axios.request<Product[]>({
     url: \`/v1/products\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2652,14 +2652,14 @@ exports[`api test ts language 7`] = `
 }
 **/
 
-import { Product } from \\"./interface/index.ts\\";
-import axios from \\"axios\\";
+import { Product } from "./interface/index.ts";
+import axios from "axios";
 
 /** Product Types */
 export const productsTestByGet = (params: { latitude: number; longitude: number }) =>
   axios.request<Product[]>({
     url: \`/v1/products-test\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2679,14 +2679,14 @@ exports[`api test ts language 8`] = `
 }
 **/
 
-import { Profile, Activities } from \\"./interface/index.ts\\";
-import axios from \\"axios\\";
+import { Profile, Activities } from "./interface/index.ts";
+import axios from "axios";
 
 /** User Profile */
 export const meByGet = () =>
   axios.request<Profile>({
     url: \`/v1/me\`,
-    method: \\"get\\",
+    method: "get",
     params: {},
     data: {}
   });
@@ -2695,7 +2695,7 @@ export const meByGet = () =>
 export const historyByGet = (params: { offset?: number; limit?: number }) =>
   axios.request<Activities>({
     url: \`/v1/history\`,
-    method: \\"get\\",
+    method: "get",
     params: params,
     data: {}
   });
@@ -2715,14 +2715,14 @@ exports[`api test ts language 9`] = `
 }
 **/
 
-import { JsonResult, Guid } from \\"./interface/index.ts\\";
-import axios from \\"axios\\";
+import { JsonResult, Guid } from "./interface/index.ts";
+import axios from "axios";
 
 /** 新增或编辑标准票, 需走审批流程 */
 export const AddOrUpdateTicketTypical = () =>
   axios.request<JsonResult<Guid>>({
     url: \`/v1/api/services/app/YmTicketTypical/AddOrUpdateTicketTypical\`,
-    method: \\"post\\",
+    method: "post",
     params: {},
     data: {}
   });
@@ -2756,7 +2756,7 @@ exports[`api test type only 1`] = `
  * @property {string} product_id - Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
  * @property {string} currency_code - [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code.
  * @property {string} display_name - Display name of product.
- * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \\"Metered\\" for TAXI.
+ * @property {string} estimate - Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI.
  * @property {number} low_estimate - Lower bound of the estimated price.
  * @property {number} high_estimate - Upper bound of the estimated price.
  * @property {number} surge_multiplier - Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
@@ -2786,13 +2786,13 @@ exports[`api test type only 1`] = `
 **/
 
 /**
-  * @typedef {(\\"Admin\\" | \\"User\\" | \\"SetSms\\")} RoleType - Enumeration of Role Type
+  * @typedef {("Admin" | "User" | "SetSms")} RoleType - Enumeration of Role Type
 **/
 
 /**
  * @typedef CreateOrUpdateUserInput
  * @property {number} userId - 用户ID(ID来自User表)
- * @property {(\\"View\\" | \\"Operate\\" | \\"Auth\\" | \\"Search\\" | \\"Delete\\" | \\"UserManage\\" | \\"UserConfig\\" | \\"SetTime\\" | \\"SetNetwork\\" | \\"SetSms\\" | \\"SystemManage\\")[]} userRights - 用户权限
+ * @property {("View" | "Operate" | "Auth" | "Search" | "Delete" | "UserManage" | "UserConfig" | "SetTime" | "SetNetwork" | "SetSms" | "SystemManage")[]} userRights - 用户权限
 **/
 
 /**
@@ -2807,8 +2807,8 @@ exports[`api test type only 1`] = `
 
 /**
  * @typedef NumberArrayEnumModel
- * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"4\\" | \\"8\\")[]} foo
- * @property {(\\"0\\" | \\"1\\" | \\"2\\" | \\"3\\")[]} bar
+ * @property {("0" | "1" | "2" | "4" | "8")[]} foo
+ * @property {("0" | "1" | "2" | "3")[]} bar
 **/
 
 /**
@@ -2833,7 +2833,7 @@ exports[`api test type only 1`] = `
 /**
  * @typedef JsonResult - 接口返回结果
  * @property {boolean} result - 结果
- * @property {\\"Success\\" | \\"Timeout\\" | \\"Fail\\" | \\"Expired\\" | \\"Error\\" | \\"InternalServerError\\" | \\"InvalidAnonymousAccess\\" | \\"UserSessionExpired\\" | \\"UserIsBinded\\"} code - 代码
+ * @property {"Success" | "Timeout" | "Fail" | "Expired" | "Error" | "InternalServerError" | "InvalidAnonymousAccess" | "UserSessionExpired" | "UserIsBinded"} code - 代码
  * @property {string} data - 数据
  * @property {string} message - 消息
 **/"

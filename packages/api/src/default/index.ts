@@ -1,4 +1,3 @@
-import { jsTemplate } from 'free-swagger-core'
 import {
   ApiConfig,
   MockConfig,
@@ -6,7 +5,10 @@ import {
   isUrl,
   checkAndNormalizePath,
 } from '../utils'
-import { mergeDefaultParams as mergeDefaultParamsCore } from 'free-swagger-core'
+import {
+  mergeDefaultParams as mergeDefaultParamsCore,
+  jsTemplate,
+} from 'free-swagger-core'
 import camelcase from 'camelcase'
 import path from 'path'
 import { OpenAPIV2 } from 'openapi-types'

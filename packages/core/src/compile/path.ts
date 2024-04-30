@@ -1,15 +1,11 @@
-import {
-  CoreConfig,
-  formatCode,
-  genJsDoc,
-  genPath,
-  Method,
-  parsePath,
-} from '../..'
 import { isString, uniq, capitalize, last } from 'lodash'
 import { compileJsDocTypedefs } from './jsDoc'
 import { compileInterfaces } from './interface'
 import camelcase from 'camelcase'
+import { CoreConfig, formatCode } from '../utils'
+import { Method, parsePath } from '../parse/path'
+import { genPath } from '../gen/path'
+import { genJsDoc } from '../gen/jsDoc'
 
 export const createDefaultApiName = (url: string, method: Method): string => {
   return `${camelcase(last(url.split('/')) ?? '')}By${capitalize(method)}`

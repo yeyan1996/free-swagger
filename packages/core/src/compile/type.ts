@@ -12,9 +12,9 @@ import {
   normalizeSource,
   transformSource,
 } from '../default'
-import { genJsDocTypeDef } from '../..'
 import { OpenAPIV2 } from 'openapi-types'
 import chalk from 'chalk'
+import { genJsDocTypeDef } from '../gen/jsDoc'
 
 const isNode = typeof window === 'undefined'
 

@@ -1,4 +1,4 @@
-import { ParsedInterface } from '../..'
+import { ParsedInterface } from '../parse/interface'
 
 const genInterface = ({
   formatName,

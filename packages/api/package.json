@@ -1,7 +1,7 @@
 {
 	"name": "free-swagger",
 	"version": "6.0.0-beta.3",
-	"description": "swagger to frontend code",
+	"description": "Swagger → API code",
 	"keywords": [
 		"swagger",
 		"typescript",
@@ -53,12 +53,12 @@
 		"@types/lodash": "^4.14.149",
 		"@typescript-eslint/eslint-plugin": "^4.15.0",
 		"@typescript-eslint/parser": "^4.15.0",
-		"babel-jest": "^26.0.1",
+		"babel-jest": "^29.7.0",
 		"eslint": "^7.4.0",
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-plugin-prettier": "^3.1.1",
-		"jest": "^26.0.1",
-		"ts-jest": "^26.1.0",
+		"jest": "^29.7.0",
+		"ts-jest": "^29.1.2",
 		"typescript": "^4.9.5"
 	},
 	"gitHead": "f1d7873500734effd34cecd197f504940c7f2114"
