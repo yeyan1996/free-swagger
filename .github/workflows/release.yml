@@ -22,9 +22,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Setup npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
       - name: install pnpm
         run: npm i pnpm@8 -g
 
@@ -32,6 +29,7 @@ jobs:
         run: pnpm install
 
       - name: publish
-        run: pnpm ci:publish:pre --no-git-checks
+        run: git status -s && pnpm ci:publish:pre
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
