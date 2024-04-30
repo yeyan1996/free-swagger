@@ -17,7 +17,7 @@
   "author": "yeyan1996",
   "scripts": {
     "ci:version:pre": "changeset pre enter next",
-    "ci:publish": "pnpm publish -r",
+    "ci:publish": "changeset publish",
     "precommit": "$CI && npm run lint && npm run build && npm run test",
     "build": "pnpm -r exec -- npm run build",
     "lint": "pnpm -r exec -- npm run lint",

@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "echo \"Error: no test specified\"",
-    "prepublishOnly": "echo \"Skip publish\""
+    "prepublishOnly": "echo \"Skip publish this package\""
   },
   "dependencies": {
     "core-js": "^3.6.5",
