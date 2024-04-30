@@ -15,15 +15,15 @@ export default {
   props: {
     interfaceName: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
-    state
+    state,
   }),
   methods: {
-    handleCopyInterface
-  }
+    handleCopyInterface,
+  },
 };
 </script>
 

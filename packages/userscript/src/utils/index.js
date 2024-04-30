@@ -2,9 +2,9 @@ export const retry = async ({
   cb = () => {},
   time = 500,
   retryNumber = 10,
-  endCondition = res => res,
+  endCondition = (res) => res,
   success = () => {},
-  error = () => {}
+  error = () => {},
 }) => {
   const res = await cb();
   const shouldEnd = endCondition(res);
@@ -23,7 +23,7 @@ export const retry = async ({
     endCondition,
     retryNumber: retryNumber - 1,
     success,
-    error
+    error,
   });
 };
 
@@ -43,7 +43,7 @@ export const waitUntil = (cb, time = 500, retryNumber = 10) =>
   });
 
 export const wait = async (time = 500) =>
-  new Promise(resolve =>
+  new Promise((resolve) =>
     setTimeout(() => {
       resolve();
     }, time)

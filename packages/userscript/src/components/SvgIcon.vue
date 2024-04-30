@@ -10,19 +10,19 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     iconName() {
       return `#icon-${this.name}`;
-    }
+    },
   },
   methods: {
     handleClick(e) {
       this.$emit("click", e);
-    }
-  }
+    },
+  },
 };
 </script>
 

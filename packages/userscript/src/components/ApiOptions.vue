@@ -24,8 +24,8 @@
               green: item.method === 'get',
               blue: item.method === 'post',
               yellow: item.method === 'put',
-              red: item.method === 'delete'
-            }
+              red: item.method === 'delete',
+            },
           ]"
         >
           {{ item.method }}
@@ -42,18 +42,18 @@ import { state, handleCopyApi } from "@/state";
 import { highlightDOM } from "@/utils/dom-utils";
 import { retry, waitUntil } from "@/utils";
 
-const createIdByHash = hash => {
+const createIdByHash = (hash) => {
   const arr = hash?.split("/") ?? [];
   return {
     tag: arr[arr.length - 2] ?? "",
-    operationId: arr[arr.length - 1] ?? ""
+    operationId: arr[arr.length - 1] ?? "",
   };
 };
 
-const findKeyByHash = hash => {
+const findKeyByHash = (hash) => {
   const { tag, operationId } = createIdByHash(hash);
   const item = state.options.find(
-    item =>
+    (item) =>
       encodeURIComponent(item.tag) === tag &&
       encodeURIComponent(item.collection.operationId) === operationId
   );
@@ -63,7 +63,7 @@ const findKeyByHash = hash => {
 export default {
   name: "ApiOptions",
   data: () => ({
-    state
+    state,
   }),
   mounted() {
     this.initOption();
@@ -113,7 +113,7 @@ export default {
       const { controller, operationId } = collection;
       const controllerDom = this.findControllerDom({
         isNewUi: state.isNewUi,
-        controller
+        controller,
       });
       if (!controllerDom) return false;
       this.openControllerDom(controllerDom, state.isNewUi);
@@ -128,7 +128,7 @@ export default {
       const apiDom = this.findApiDom({
         isNewUi: state.isNewUi,
         controllerDom,
-        id
+        id,
       });
       if (!apiDom) return false;
       this.clickApiDom(apiDom);
@@ -136,7 +136,7 @@ export default {
     },
     async handleSearch(key, echo = false) {
       state.key = key;
-      state.currentApi = state.options.find(item => item.key === key);
+      state.currentApi = state.options.find((item) => item.key === key);
       handleCopyApi(
         state.currentApi.path,
         state.currentApi.method,
@@ -159,11 +159,11 @@ export default {
             }
           },
           retryNumber: 10,
-          error: () => console.error("Error: 未监测到匹配的 dom 节点")
+          error: () => console.error("Error: 未监测到匹配的 dom 节点"),
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

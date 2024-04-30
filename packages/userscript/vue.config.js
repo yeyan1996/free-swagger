@@ -12,7 +12,7 @@ module.exports = {
       ? "http://localhost:8888"
       : `https://cdn.jsdelivr.net/npm/free-swagger-userscript/dist`,
   productionSourceMap: false,
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.optimization.delete("splitChunks");
     config.module.rule("fonts").uses.clear();
     config.module
@@ -21,7 +21,7 @@ module.exports = {
       .use("url-loader")
       .loader("url-loader")
       .options({
-        limit: Infinity
+        limit: Infinity,
       })
       .end();
     config.module.rule("svg").uses.clear();
@@ -33,17 +33,17 @@ module.exports = {
       .use("svg-sprite-loader")
       .loader("svg-sprite-loader")
       .options({
-        symbolId: "icon-[name]"
+        symbolId: "icon-[name]",
       });
     config.externals({
       "prettier/standalone": "prettier",
       "prettier/parser-typescript": "prettierPlugins.typescript",
-      "prettier/parser-babylon": "prettierPlugins.babylon"
+      "prettier/parser-babylon": "prettierPlugins.babylon",
     });
   },
   configureWebpack: {
     devServer: {
-      port: 8888
+      port: 8888,
     },
     plugins: [
       new MonacoWebpackPlugin(),
@@ -51,12 +51,12 @@ module.exports = {
         commithashCommand: "rev-list --max-count=1 --no-merges HEAD",
         versionCommand: "describe --always --tags",
         branch: true,
-        branchCommand: "rev-parse --symbolic-full-name HEAD"
+        branchCommand: "rev-parse --symbolic-full-name HEAD",
       }),
       new webpack.DefinePlugin({
         VERSION: JSON.stringify(pkg.version),
         COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
-        BRANCH: JSON.stringify(gitRevisionPlugin.branch())
+        BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
       }),
       new UserScriptPlugin({
         template: "./build/index.ejs",
@@ -66,11 +66,11 @@ module.exports = {
         description: pkg.description,
         version: pkg.version,
         include: ["/swagger", "/doc.html"], // 设置脚本匹配网页正则
-        scriptName: "userScript.js"
-      })
-    ]
+        scriptName: "userScript.js",
+      }),
+    ],
   },
   css: {
-    extract: false
-  }
+    extract: false,
+  },
 };

@@ -13,7 +13,7 @@ import {
   Input,
   Tooltip,
   Switch,
-  Loading
+  Loading,
 } from "element-ui";
 
 Vue.use(Button);

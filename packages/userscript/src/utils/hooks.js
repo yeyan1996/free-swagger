@@ -37,7 +37,7 @@ ah.hookAjax({
         console.log(xhr.response);
       }
     }, 500);
-  }
+  },
 });
 
 // fetch hooks
@@ -46,11 +46,11 @@ window.fetch = new Proxy(fetch, {
     if (ok) return Reflect.apply(...args);
     const response = Reflect.apply(...args);
     response
-      .then(async res => {
+      .then(async (res) => {
         if (res.ok) {
           const apply = (target, response, args) => {
             const promise = Reflect.apply(target, response, args);
-            promise.then(async data => {
+            promise.then(async (data) => {
               try {
                 if (typeof data !== "string") return;
                 await assignSwagger(youngParse(data), response.url);
@@ -63,14 +63,14 @@ window.fetch = new Proxy(fetch, {
             return promise;
           };
           res.json = new Proxy(res.json, {
-            apply
+            apply,
           });
           res.text = new Proxy(res.text, {
-            apply
+            apply,
           });
         }
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
     return response;
-  }
+  },
 });

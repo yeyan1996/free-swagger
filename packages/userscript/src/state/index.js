@@ -7,7 +7,7 @@ import {
   jsTemplate,
   tsTemplate,
   compileInterfaces,
-  compileJsDocTypedefs
+  compileJsDocTypedefs,
 } from "free-swagger-core";
 import { retry } from "@/utils";
 import { option, generate } from "json-schema-faker";
@@ -27,8 +27,8 @@ export const state = new Vue({
         method: "",
         collection: {
           controller: {},
-          operationId: ""
-        }
+          operationId: "",
+        },
       },
       storage: {
         jsTemplate,
@@ -38,11 +38,11 @@ export const state = new Vue({
         typedef: false,
         recursive: false,
         exportLanguage: "js",
-        currentLanguage: "js"
+        currentLanguage: "js",
       },
       isNewUi: null,
       swagger: null,
-      parsedSwagger: null // 解析所有 ref 后的 swagger 对象
+      parsedSwagger: null, // 解析所有 ref 后的 swagger 对象
     };
   },
   computed: {
@@ -50,8 +50,8 @@ export const state = new Vue({
       if (!this.swagger) return [];
       const options = [];
       const paths = this.swagger.paths;
-      Object.keys(paths).forEach(path => {
-        Object.keys(paths[path]).forEach(method => {
+      Object.keys(paths).forEach((path) => {
+        Object.keys(paths[path]).forEach((method) => {
           const { tags, summary, description, operationId } = paths[path][
             method
           ];
@@ -64,22 +64,22 @@ export const state = new Vue({
               controller: tags[tags.length - 1],
               summary,
               description,
-              operationId
-            }
+              operationId,
+            },
           });
         });
       });
       // 根据 Tags 分组排序
-      return flattenDeep(Object.values(groupBy(options, o => o.tag)));
-    }
+      return flattenDeep(Object.values(groupBy(options, (o) => o.tag)));
+    },
   },
   watch: {
     storage: {
       handler(newVal) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal));
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   created() {
     const storage = localStorage.getItem(STORAGE_KEY)
@@ -100,9 +100,9 @@ export const state = new Vue({
           this.isNewUi = false;
         }
       },
-      endCondition: () => this.isNewUi != null
+      endCondition: () => this.isNewUi != null,
     });
-  }
+  },
 });
 
 // 复制单个接口的所有 interface/typedef
@@ -127,7 +127,7 @@ export const handleCopyType = async (
         typedef: isJS,
         interface: isTS,
         recursive: storage.recursive,
-        templateFunction: eval(isJS ? storage.jsTemplate : storage.tsTemplate)
+        templateFunction: eval(isJS ? storage.jsTemplate : storage.tsTemplate),
       },
       path,
       method
@@ -162,7 +162,7 @@ export const handleCopyApi = async (
           storage.currentLanguage === "js"
             ? storage.jsTemplate
             : storage.tsTemplate
-        )
+        ),
       },
       path,
       method
@@ -199,7 +199,7 @@ export const handleCopyFake = (
     alwaysFakeOptionals: true,
     refDepthMax: 2,
     maxItems: 1,
-    failOnInvalidTypes: false
+    failOnInvalidTypes: false,
   });
   try {
     let mockSchema;
@@ -213,7 +213,7 @@ export const handleCopyFake = (
       mockSchema = {
         code: SUCCESS_CODE,
         msg: "ok",
-        data: {}
+        data: {},
       };
     }
     copyMessage(mockSchema);
