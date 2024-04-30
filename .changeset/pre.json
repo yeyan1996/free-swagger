@@ -10,6 +10,7 @@
   },
   "changesets": [
     "hip-stingrays-smell",
+    "quiet-parents-count",
     "witty-terms-search"
   ]
 }

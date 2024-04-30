@@ -1,5 +1,11 @@
 # free-swagger-core
 
+## 6.0.0-beta.2
+
+### Major Changes
+
+- test
+
 ## 5.5.0-beta.1
 
 ### Patch Changes
