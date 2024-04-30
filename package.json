@@ -7,7 +7,7 @@
     "jsdoc"
   ],
   "engines": {
-    "node": "16"
+    "node": ">=16"
   },
   "repository": {
     "type": "github",

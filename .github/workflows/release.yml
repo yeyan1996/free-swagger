@@ -28,6 +28,8 @@ jobs:
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: install dependencies
         run: pnpm install
+      - name: enter prerelease
+        run: changeset pre enter
       - name: create and publish versions
         uses: changesets/action@v1
         with:
