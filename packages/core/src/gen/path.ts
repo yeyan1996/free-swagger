@@ -1,6 +1,6 @@
 import { ParsedSchemaObject, ParsedSchema, CoreConfig } from '../utils'
 import { isEmpty } from 'lodash'
-import { ParsedApi } from '../..'
+import { ParsedApi } from '../parse/path'
 
 // 只要有一个属性值不是对象就断言当前对象类型为 ParsedSchemaObject
 const isParsedSchemaObject = (

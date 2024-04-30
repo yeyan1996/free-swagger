@@ -5,11 +5,11 @@ import Vue from "vue";
 const InterfaceIconCtor = Vue.extend(InterfaceIcon);
 const ApiIconsCtor = Vue.extend(ApiIcons);
 
-export const createInterfaceIconDom = interfaceName => {
+export const createInterfaceIconDom = (interfaceName) => {
   const instance = new InterfaceIconCtor({
     propsData: {
-      interfaceName
-    }
+      interfaceName,
+    },
   }).$mount();
   return instance.$el;
 };
@@ -19,8 +19,8 @@ export const createApiIconsDom = (path, method, summary) => {
     propsData: {
       path,
       method,
-      summary
-    }
+      summary,
+    },
   }).$mount();
   return instance.$el;
 };

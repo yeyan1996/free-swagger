@@ -1,24 +1,23 @@
 .DS_Store
 node_modules
+.pnpm-store
+/packages/*/dist
 
 # core
-/packages/core/dist
 /packages/core/test/json/company.json
 /packages/core/test/special.test.js
 /packages/core/test/__snapshots__/special.test.js.snap
 
 # cli
-/packages/cli/dist
+#
 
 # api
 /packages/api/test/mock
 /packages/api/test/json/company.json
 /packages/api/test/special.test.js
 /packages/api/test/__snapshots__/special.test.js.snap
-/packages/api/dist
 
 # extension
-/packages/extension/dist
 /packages/extension/artifacts
 
 # local env files

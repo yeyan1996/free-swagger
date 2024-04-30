@@ -23,7 +23,7 @@ free-swagger provides multiple access methods
 
 
 # Contribute
-> Node14 is recommended
+> Node.js@16 is recommended
 
 ```shell
 npm run bootstrap

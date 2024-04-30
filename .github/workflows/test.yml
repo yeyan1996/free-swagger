@@ -1,0 +1,34 @@
+name: Test
+on:
+  push:
+    branches:
+      - '*'
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: install pnpm
+        run: npm i pnpm@8 -g
+
+      - name: install dependencies
+        run: pnpm install
+
+      - name: lint
+        run: pnpm lint
+
+      - name: build
+        run: pnpm test

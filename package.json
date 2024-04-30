@@ -1,13 +1,12 @@
 {
-  "name": "free-swagger",
-  "description": "swagger to front-end code",
+  "description": "Swagger → API code",
   "keywords": [
     "swagger",
     "typescript",
     "jsdoc"
   ],
   "engines": {
-    "node": "14"
+    "node": ">=16"
   },
   "repository": {
     "type": "github",
@@ -16,17 +15,21 @@
   "license": "MIT",
   "author": "yeyan1996",
   "scripts": {
-    "precommit": "npm run lint && npm run build && npm run test && git add .",
-    "postinstall": "npm run build",
-    "bootstrap": "lerna bootstrap",
-    "build": "lerna exec -- npm run build",
-    "lint": "lerna exec -- npm run lint",
-    "test": "lerna exec -- npm run test",
-    "test:updateSnapshot": "lerna exec -- npm run test -- --updateSnapshot",
-    "prepare": "husky install"
+    "ci:publish:pre": "pnpm publish -r --tag beta --force --no-git-checks",
+    "precommit": "$CI && npm run lint",
+    "build": "pnpm -r exec -- npm run build",
+    "lint": "pnpm -r exec -- npm run lint",
+    "test": "pnpm -r exec -- npm run test",
+    "test:updateSnapshot": "pnpm -r exec -- npm run test -- --updateSnapshot",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "husky": "^8.0.0",
-    "lerna": "^6.1.0"
+    "@changesets/cli": "^2.27.1",
+    "husky": "^9.0.11"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@apidevtools/json-schema-ref-parser@9.0.7": "patches/@apidevtools__json-schema-ref-parser@9.0.7.patch"
+    }
   }
 }

@@ -1,6 +1,8 @@
-import { isParsedSchemaObject, ParsedInterface, ParsedSchema } from '../..'
-import { ParsedApi } from '../..'
 import { isEmpty } from 'lodash'
+import { ParsedInterface } from '../parse/interface'
+import { ParsedSchema } from '../utils'
+import { isParsedSchemaObject } from './path'
+import { ParsedApi } from '../parse/path'
 
 const genJsDocTypeDef = ({
   name,
