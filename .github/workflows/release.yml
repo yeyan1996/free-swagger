@@ -28,13 +28,12 @@ jobs:
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: install dependencies
         run: pnpm install
-      - name: enter prerelease
-        run: changeset pre enter
       - name: create and publish versions
         uses: changesets/action@v1
         with:
           commit: "chore: update versions"
           title: "chore: update versions"
+          version: pnpm ci:version:pre
           publish: pnpm ci:publish --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
