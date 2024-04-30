@@ -7,7 +7,8 @@
     "serve": "vue-cli-service build --mode development --watch",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "prepublishOnly": "echo \"Skip publish\""
   },
   "dependencies": {
     "core-js": "^3.6.5",
