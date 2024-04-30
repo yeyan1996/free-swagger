@@ -32,6 +32,6 @@ jobs:
         run: pnpm install
 
       - name: publish
-        run: pnpm ci:publish:pre
+        run: pnpm ci:publish:pre --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
