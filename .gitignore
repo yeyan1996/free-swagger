@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 .pnpm-store
-/packages/**/dist
+/packages/*/dist
 
 # core
 /packages/core/test/json/company.json
