@@ -15,7 +15,6 @@
   "license": "MIT",
   "author": "yeyan1996",
   "scripts": {
-    "ci:version:pre": "changeset pre enter next && changeset version",
     "ci:publish:pre": "pnpm -r publish -- --tag beta",
     "precommit": "$CI && npm run lint && npm run build && npm run test",
     "build": "pnpm -r exec -- npm run build",

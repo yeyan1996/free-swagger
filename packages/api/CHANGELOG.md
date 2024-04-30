@@ -1,5 +1,13 @@
 # free-swagger
 
+## 6.0.0-beta.3
+
+### Patch Changes
+
+- a889bdc: refactor packages
+- Updated dependencies [a889bdc]
+  - free-swagger-core@6.0.0-beta.3
+
 ## 6.0.0-beta.2
 
 ### Major Changes

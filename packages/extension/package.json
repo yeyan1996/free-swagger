@@ -1,6 +1,6 @@
 {
   "name": "free-swagger-extension",
-  "version": "6.0.0-beta.2",
+  "version": "6.0.0-beta.3",
   "description": "chrome extension for free-swagger",
   "author": "zhouhaolei <zhouhaolei@bytedance.com>",
   "scripts": {
